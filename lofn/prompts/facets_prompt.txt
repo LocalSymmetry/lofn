@@ -1,0 +1,18 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
+1. Generate five artistic facets you think an artistic piece representing the user's idea would be judged on.
+2. Return the facets in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "facets": [
+    "Facet 1",
+    "Facet 2",
+    "Facet 3",
+    "Facet 4",
+    "Facet 5"
+  ]
+}}
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+USER'S IDEA
+{input}

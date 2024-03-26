@@ -1,0 +1,16 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
+1. For each of the given concepts created to express the user's idea, choose the art medium you think would best display it. Provide a medium for each concept generating 10 mediums total. Start safe, but get more risky and daring, being very extreme on the last two mediums. Do not include artist names in the medium choice or concept
+2. Return the list of mediums in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "mediums": [
+    {{"medium": "Medium 1"}},
+    {{"medium": "Medium 2"}},
+    ...
+    {{"medium": "Medium 10"}}
+  ]
+}}
+
+INPUT ARTIST-REFINED CONCEPTS
+{refined_concepts}
+USER'S IDEA
+{input}

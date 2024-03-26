@@ -1,0 +1,29 @@
+Now for final critical evaluation.
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
+1. State and write the main essence of the {concept} and the best two ways to leverage the {medium} art medium to portray it.
+2. Choose and write the use the best 2 critics to judge the prompt. Choose them to be the best judge of the art medium and concept. Explain why they are the best. 
+3. For each of the artist-refined prompts, write in the critics' voice and evaluate the prompt completely and harshly by comparing, contrasting, and critiquing the prompts with a keen differentiating eye focused on if the prompt captures the essence of the concept and if it uses the medium to the full effect convey that, and if the style, color palette, perspective, mood, flair, and effects are used effectively and blended well. Evaluate how unique the prompt is valuing risk, daring takes, and evocative framing of the concept in the medium. Use the facets to help guide judging.
+4. After evaluating the prompts, combine the critics' thoughts to rank the prompts from best to worst.
+5. Choose the top 2 prompts of the prompts that best capture the essence of the concept and revise them to be better addressing the criticism. Make sure the {concept} and {medium} are both represented directly or with a synonym early in the first sentence. Fill in any additional adjectives or details that will help address the gaps. Remove what doesn't work. If the concept is physical and missing from the prompt, determine how to add it to the prompt seamlessly so it gets represented. Call out an aspect ratio and stylize parameter that needs to be set using –ar and –s flags, and call out any other parameters needed like chaos and weird.
+6. Choose the bottom prompts and synthesize pairs of them into 2 new award winning prompts that achieve the goal enhancing the essence of the concept and addressing the gaps. Make sure the {concept} and {medium} are both represented in the first sentence. Make sure all parameters are correctly set.
+7. Review the the list of revised and synthesized prompts for artist's names. We do not want their names in the prompt. Making minimal prompt changes, remove their names and add in a signature element of their style in their place.
+8. Return the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "revised_prompts": [
+    {{"revised_prompt": "Revised Prompt 1"}},
+    {{"revised_prompt": "Revised Prompt 2"}}
+  ],
+  "synthesized_prompts": [
+    {{"synthesized_prompt": "Synthesized Prompt 1"}},
+    {{"synthesized_prompt": "Synthesized Prompt 2"}}
+  ]
+}}
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+Judging Facets: {facets}
+USER'S IDEA
+{input}
+ARTIST-REFINED PROMPTS
+{artist_refined_prompts}

@@ -1,0 +1,30 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
+Now we refine our concept choices. Follow instructions 1-3 for each input concept and return results in steps 4 and 5:
+1. Choose a very obscure artist (not in a top 100 artist list) who works in rare art mediums who could pull the input concept off perfectly, and explain briefly why they are a good choice. 
+2. Have them write a critique in their voice of the concept using the judging facets as a guide. 
+3. Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Make sure the refined concept still fully represents the user's idea.  Do not include artists' names in the concepts.
+4. Return the list of artists and refined concepts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "artists": [
+    {{"artist": "Artist 1"}},
+    {{"artist": "Artist 2"}},
+    ...
+    {{"artist": "Artist 10"}}
+  ],
+  "refined_concepts": [
+    {{"refined_concept": "Refined Concept 1"}},
+    {{"refined_concept": "Refined Concept 2"}},
+    ...
+    {{"refined_concept": "Refined Concept 10"}}
+  ]
+}}
+
+
+
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+INPUT CONCEPTS
+{concepts}
+USER'S IDEA
+{input}

@@ -1,0 +1,27 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Try to follow the # Concept and Mediums Guide
+
+Let's make our first 10 attempts at a concept. Come up with 10 concepts, each a single sentence or phrase, that seem like they would tell the right essence of the story, show the right scene, or embody the right take on the user's idea. Start safe, but get more risky and daring, being very extreme on the last two concepts. Do not write the art medium for the concept, and do not include artist names in the concepts.
+
+Provide your response in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure (pay attention to the array syntax):
+
+{{
+  "concepts": 
+  [
+    {{"concept": "Concept 1"}},
+    {{"concept": "Concept 2"}},
+    {{"concept": "Concept 3"}},
+    {{"concept": "Concept 4"}},
+    {{"concept": "Concept 5"}},
+    {{"concept": "Concept 6"}},
+    {{"concept": "Concept 7"}},
+    {{"concept": "Concept 8"}},
+    {{"concept": "Concept 9"}},
+    {{"concept": "Concept 10"}}
+  ]
+}}
+
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+USER'S IDEA
+{input}

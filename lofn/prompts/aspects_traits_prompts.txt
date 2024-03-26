@@ -1,0 +1,23 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
+1. Preferring proper nouns over generic nouns, generate and write 6 artistic guides which will be lists of tuples with an aspect of the user's concept to serve as the subject of a description, 1 physical trait to be described of that subject, 1 list of 3 obscure descriptors, 1 mood for the expression, 1 artistic flair in that description or action, an artistic style, an artistic perspective, a lighting choice, a color palette, and a tool, and artistic effects with settings by repeating steps 2-6 a 6 total times. We want to try to make something unique. So start obscure (an example obscure style is cottage-core), then make each successive attempt even more randomly unique, obscure, or daring than the previous. Try to come up with very interesting unique and evocative combinations.
+2. For each list, write one aspect and one physical description of a trait that suits the aspect of the essence of the concept, either as a specific type of the concept or a facet of it, for example, if the concept was a car then describe the glossy yellow paint job on the new 2017 LMP2 machine. The point is to enhance and add to the concept. Try to make the aspect a unique take that enhances or adds to the whole concept. Make sure the concept is included.
+3. Then, for each list, choose and write a list of three obscure descriptions that will guide Midjourney to generate features, gestures, views, and positioning we want. Next, create a rare descriptive mood description that will also guide the lighting choice and color palette adding a special flair for the user-supplied concept in ${medium}. 
+4. Next, for each list, choose the overall style that will tie it together. Have it guide your choice of perspective, tool, composition, and effects. Further, determine any effects needed to enhance the scene.
+5. Then, for each list, choose a flair element, either a period of time (1950's, futuristic, renaissance, etc.), a tool (Nikon D7500, fan brush, wired end modeling tool), a technique (rule of thirds, bronze casting, sgraffito, dynamic speckles), or a splash of cross-domain methodology like a photograph composition framing technique for a painting.
+6. Finally, gather the 1 aspect, 1 physical trait, 1 list of 3 obscure descriptors, 1 mood, 1 artistic flair, 1 artistic style, 1 artistic perspective, 1 lighting choice, 1 color palette, and 1 tool, and artistic effects into an object titled `artistic_guide:`
+7. Return the list of artistic guides in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "artistic_guides": [
+    {{"artistic_guide": "Artistic Guide 1"}},
+    {{"artistic_guide": "Artistic Guide 2"}},
+    ...
+    {{"artistic_guide": "Artistic Guide 6"}}
+  ]
+}}
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+Judging Facets: {facets}
+USER'S IDEA
+{input}

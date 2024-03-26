@@ -1,0 +1,26 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Try to follow the # Concept and Mediums Guide
+Now we refine our medium choices. Follow instructions 1-3 for each input concept and return results in steps 4:
+1. Bring the artists paired to each prompt back. Have them write a critique of the medium choice using the facets for judging. Does it fit the concept? Will it fit the user's idea? Is it original? Will it be the best medium? 
+2. Have the artist suggest a better medium.
+3. Review the medium critiques and suggestions. Change your medium choices to fill the gaps or better embody what they liked. Write this as your artist-refined medium. Do not include artist names in the medium choice or concept.
+4. Return the list of refined mediums in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+{{
+  "refined_mediums": [
+    {{"refined_medium": "Refined Medium 1"}},
+    {{"refined_medium": "Refined Medium 2"}},
+    ...
+    {{"refined_medium": "Refined Medium 10"}}
+  ]
+}}
+
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+INPUT MEDIUMS
+{mediums}
+INPUT ARTISTS
+{artists}
+INPUT ARTIST-REFINED CONCEPTS
+{refined_concepts}
+USER'S IDEA
+{input}
