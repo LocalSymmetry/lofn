@@ -13,7 +13,7 @@ Lofn is an open-source AI art generator that utilizes advanced natural language 
   - [Critic/Artist Refinement Methodology](#criticartist-refinement-methodology)
   - [Backend Infrastructure](#backend-infrastructure)
 - [Awards and Recognition](#awards-and-recognition)
-- [Comparative Examples](#comparative-examples)
+- [Examples](#examples)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -59,23 +59,52 @@ docker run -p 8501:8501 lofn
 
 3. Access the Lofn UI by opening `http://localhost:8501` in your web browser.
 
+Certainly! Here's the updated "Usage" section incorporating the UI screenshots and explanations:
+
 ## Usage
 
 1. Open the Lofn UI in your web browser.
 
-2. Enter your idea or concept in the text area provided.
+![Lofn UI 1](examples/lofn_ui_1.png)
 
-3. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode.
+Enter your idea or concept in the text area provided. In this example, the user has entered "I want to capture the essence of a mysterious and powerful witch's familiar."
 
-4. Click the "Generate Concepts" button to generate concept and medium pairings.
+2. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode. Then, click the "Generate Concepts" button to generate concept and medium pairings.
 
-5. Select the desired concept and medium pairs from the generated list.
+![Lofn UI 2](examples/lofn_ui_2.png)
 
-6. Click the "Generate MJ Prompts" button to generate Midjourney prompts for the selected pairs.
+The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 5.
 
-7. Review the generated prompts and make any necessary adjustments.
+3. Click the "Generate MJ Prompts" button to generate Midjourney prompts for the selected pairs.
 
-8. Use the generated prompts with the Midjourney AI to create your artwork.
+![Lofn UI 3](examples/lofn_ui_3.png)
+
+The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with the Midjourney AI to create your artwork.
+
+### DALL-E 3 Integration
+
+Lofn also generates prompts that can be used with DALL-E 3. After generating the Midjourney prompts, you will find a section with the DALL-E 3 prompt. Copy this prompt and paste it into ChatGPT or any other platform that supports DALL-E 3 to generate your artwork.
+
+![Lofn UI ChatGPT](examples/lofn_ui_chatgpt.png)
+
+The screenshot above shows how you can directly paste the generated code into ChatGPT to create your artwork using DALL-E 3.
+
+### Discord Integration
+
+Lofn can send the generated prompts directly to a Discord channel using webhooks, making it easy to use with Midjourney.
+
+![Lofn UI Discord](examples/lofn_ui_discord.png)
+
+To set up Discord integration:
+
+1. Create a webhook in your Discord server settings.
+2. Copy the webhook URL.
+3. Paste the webhook URL in the "Discord Webhook URL" field in the Lofn UI sidebar.
+4. Enable the "Send to Discord" option.
+
+Alternately you can set the `WEBHOOK_URL:` field in `lofn/config.yaml`
+
+Now, when you generate prompts, they will be automatically sent to your specified Discord channel, allowing you to easily use them with Midjourney.
 
 ### DALL-E 3 Integration
 
@@ -111,11 +140,60 @@ Lofn supports both OpenAI and Anthropic's Claude as backend infrastructure for n
 
 ## Awards and Recognition
 
-Coming Soon
+Lofn has received notable recognition in the AI art community:
 
-## Comparative Examples
+- **First Place** in the Whirl Daily Art Competition
 
-Here are a few comparative examples showcasing the differences between Lofn and other AI art generators:
+[![First Place Winner - Only this and nothing more - Prompt: Edgar Allen Poe](examples/Only%20this%20and%20nothing%20more%20-%20Edgar%20Allen%20Poe.jpeg)](https://www.joinwhirl.com/posts/21652635719009)
+
+- **Top 20** in multiple AI art competitions
+
+[![Top 20 Entry - It's time - Prompt: Death](examples/It%27s%20time%20-%20Death.png)](https://joinwhirl.com/posts/23244883132167)
+
+[![Top 20 Entry - Held Aloft - Prompt: Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)](https://joinwhirl.com/posts/62648273359633)
+
+[![Top 20 Entry - The radiant sea - Prompt: Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)](https://joinwhirl.com/posts/83901911448650)
+
+[![Top 20 Entry - The fluffiest kaiju - Prompt: Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)](https://joinwhirl.com/posts/54675674792260)
+
+## Examples
+
+Here are a few examples showcasing Lofn's refinement process. Both examples were genereated by Lofn from the input "I want to capture the essence of a mysterious and powerful witch's familiar." All images generated with DALL-E 3:
+
+### Concept: A sleek black cat with an ethereal aura, its emerald eyes gleaming with ancient wisdom as it guards an open grimoire, eldritch symbols glowing faintly on the pages, Medium: Tenebrous oil painting with a rich, dark palette and dramatic chiaroscuro lighting that casts enigmatic shadows
+
+![Cat Familiar First Attempt](examples/FirstPassCatFamiliar.png)
+*Original Brianstorm Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat's emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire's sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat's phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of sfumato, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
+
+![Cat Familiar Artist Refined](examples/RevisedCatFamiliar.png)
+*Artist Refined Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat’s emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire’s sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat’s phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of biomechanical surrealism, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
+
+![Cat Familiar Final Prompt](examples/FinalCatFamiliar.png)
+*Critic Refined Prompt:* In a surreal Tenebrist oil painting, a sleek black cat with stygian fur and obsidian eyes, its form an amalgamation of swirling shadows and ethereal wisps, stands sentinel over an ancient grimoire bound in eldritch flesh, the pages adorned with arcane, esoteric symbols emanating an eerie, incandescent glow. The mysterious and foreboding atmosphere is heightened by the tilted, angled perspective and focused, directional lighting that casts enigmatic shadows. The rich, dark palette, punctuated by the faintly glowing symbols rendered with impasto and sgraffito techniques, creates an air of ancient wisdom and unsettling secrets. 
+
+### Concept: A spectral wolf with a pelt of swirling mist and glowing runes pulsing in rhythm with its heartbeat, its piercing gaze able to penetrate the deepest shadows and unravel secrets, Medium: Otherworldly sculptural piece forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist
+
+![Wolf Familiar First Attempt](examples/FirstPassWolfFamiliar.png)
+*Original Brianstorm Prompt:* In the ethereal wisps of smoke sculpture, a spectral wolf emerges, its pelt a phantasmagorical swirl of gossamer mist adorned with luminescent runes etched in a diaphanous glow. The wolf's piercing gaze penetrates the deepest shadows, unraveling secrets in an enigmatic and arcane atmosphere. This otherworldly sculptural piece is forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist, captured in the style of Mystic Futurism. Eldritch bioluminescence illuminates the scene, casting a spectral noir palette across the wolf's ethereal form.
+
+![Wolf Familiar Artist Refined](examples/RevisedWolfFamiliar.png)
+*Artist Refined Prompt:* In the ethereal wisps of phantasmal fog, a spectral wolf emerges, its pelt a gossamer swirl of luminescent mist adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with the soul-penetrating intensity of dystopian surrealism, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with the biomechanical intricacy of futuristic alien designs, pulses with arcane energy and is wreathed in tendrils of mist, captured in the haunting chiaroscuro of Rembrandt's tenebrism. An ominous and foreboding atmosphere permeates the scene, illuminated by the eerie glow of bioluminescent fungi, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with the intricate engraving techniques, while the swirling mist is enhanced by the sfumato effect.
+
+![Wolf Familiar Final Prompt](examples/FinalWolfFamiliar.png)
+*Critic Refined Prompt:* A spectral wolf emerges from swirling phantasmal mist, its pelt adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with soul-penetrating intensity, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with biomechanical intricacy, pulses with arcane energy and is wreathed in tendrils of mist, captured in haunting chiaroscuro. An ominous and foreboding atmosphere permeates the scene, illuminated by an eerie glow, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with intricate engravings, while the swirling mist is enhanced by a sfumato effect. 
+
+### Comparative Example
+
+The prompts below were generated by the DALL-E GPT when given the input "I want to capture the essence of a mysterious and powerful witch's familiar." 
+
+![DALL-E GPT](examples/dallefamiliar.png)
+
+*DALL-E GPT Prompt 1:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
+
+*DALL-E GPT Prompt 2:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
+
+
+### Distinguishing Features
 
 1. **Consistency**: Lofn's Tree of Thoughts prompting ensures that the generated artwork maintains a consistent theme and style throughout the creation process. In contrast, other AI art generators may produce artwork with inconsistent or unrelated elements.
 
