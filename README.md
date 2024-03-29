@@ -23,7 +23,7 @@ To set up Lofn, follow these steps:
 
 1. Clone the Lofn repository:
 ```bash
-git clone https://github.com/yourusername/lofn.git
+git clone https://github.com/LocalSymmetry/lofn.git
 ```
 
 2. Navigate to the project directory:
