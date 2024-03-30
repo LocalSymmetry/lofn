@@ -6,8 +6,6 @@ Lofn is an open-source AI art generator that utilizes advanced natural language 
 - [Installation](#installation)
   - [Docker](#docker)
 - [Usage](#usage)
-  - [DALL-E 3 Integration](#dall-e-3-integration)
-  - [Discord Integration](#discord-integration)
 - [What Makes Lofn Unique](#what-makes-lofn-unique)
   - [Tree of Thoughts Prompting](#tree-of-thoughts-prompting)
   - [Critic/Artist Refinement Methodology](#criticartist-refinement-methodology)
@@ -106,24 +104,6 @@ Alternately you can set the `WEBHOOK_URL:` field in `lofn/config.yaml`
 
 Now, when you generate prompts, they will be automatically sent to your specified Discord channel, allowing you to easily use them with Midjourney.
 
-### DALL-E 3 Integration
-
-Lofn also generates prompts that can be used with DALL-E 3. After generating the Midjourney prompts, you will find a section with the DALL-E 3 prompt. Copy this prompt and paste it into ChatGPT or any other platform that supports DALL-E 3 to generate your artwork.
-
-### Discord Integration
-
-Lofn can send the generated prompts directly to a Discord channel using webhooks. To set up Discord integration:
-
-1. Create a webhook in your Discord server settings.
-
-2. Copy the webhook URL.
-
-3. Paste the webhook URL in the "Discord Webhook URL" field in the Lofn UI sidebar.
-
-4. Enable the "Send to Discord" option.
-
-Now, when you generate prompts, they will be automatically sent to your specified Discord channel.
-
 ## What Makes Lofn Unique
 
 ### Tree of Thoughts Prompting
@@ -212,8 +192,6 @@ We welcome contributions to Lofn! If you'd like to contribute, please follow the
 3. Make your changes and commit them with descriptive commit messages.
 4. Push your changes to your forked repository.
 5. Submit a pull request to the main Lofn repository.
-
-Please ensure that your contributions adhere to our code of conduct and guidelines.
 
 ## License
 
