@@ -126,7 +126,7 @@ def initialize_session_state():
 
 initialize_session_state()
 
-st.title("LOFN V2")
+st.title("LOFN - The AI Artist")
 
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')
 
@@ -163,6 +163,8 @@ artist_refined_prompt_middle = read_prompt("/lofn/prompts/artist_refined_prompt.
 revision_synthesis_prompt_middle = read_prompt("/lofn/prompts/revision_synthesis_prompt.txt")
 
 dalle3_gen_prompt_middle = read_prompt("/lofn/prompts/dalle3_gen_prompt.txt")
+
+dalle3_gen_prompt_nodiv_middle = read_prompt("/lofn/prompts/dalle3_gen_nodiv_prompt.txt")
 
 # Read aesthetics from the file
 with open('/lofn/prompts/aesthetics.txt', 'r') as file:
@@ -207,6 +209,7 @@ revision_synthesis_prompt = concept_header + revision_synthesis_prompt_middle + 
 
 dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
 
+dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
 # Extended JSON Schema for Essence and Facets
 essence_and_facets_schema = {
@@ -1118,7 +1121,7 @@ if 'button_clicked' not in st.session_state:
 max_retries = st.sidebar.slider("Maximum Retries", 0, 10, 3)
 model = st.sidebar.selectbox("Select model", ["claude-3-opus-20240229", "gpt-4-turbo-preview", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo-16k", "gpt-4"])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
-competition_mode = st.sidebar.checkbox("Enable Competition Mode")
+enable_diversity = st.sidebar.checkbox("Enable Diversity", value=True)
 debug = st.sidebar.checkbox("Debug Mode")
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
@@ -1143,8 +1146,15 @@ else:
 
 
 with st.container():
-    input = st.text_area("Describe your idea", "I want to capture the essence of a mysterious and powerful witch's familiar.")
-    
+
+    st.session_state.input = st.text_area("Describe your idea", "I want to capture the essence of a mysterious and powerful witch's familiar.")
+
+    if st.button("Generate Auto-Lofn Prompt"):
+        with open("/lofn/prompts/competition_prompt.txt", "r") as file:
+            competition_prompt = file.read()
+        st.write('Run the following prompt in your favorite chatbot/LLM, and get a powerful Lofn prompt:')
+        st.code(competition_prompt.format(input=st.session_state.input), language="text")
+
     if st.button("Generate Concepts"):
         st.session_state.button_clicked = True
 
@@ -1152,9 +1162,9 @@ with st.container():
         st.write("Generating")
         # Generate concept_mediums and store in session state
         if st.session_state['concept_manual_mode']:
-            st.session_state['concept_mediums'] = generate_concept_mediums_manual(input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
+            st.session_state['concept_mediums'] = generate_concept_mediums_manual(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
         else:
-            st.session_state['concept_mediums'] = generate_concept_mediums(input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
+            st.session_state['concept_mediums'] = generate_concept_mediums(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
 
 with st.container():    
     if st.session_state['concept_mediums'] is not None:
@@ -1167,15 +1177,20 @@ with st.container():
         if st.button("Generate MJ Prompts"):
             for pair_i in st.session_state['pairs_to_try']:
                 if st.session_state['concept_manual_mode']:
-                    df_prompts = generate_prompts_manual(input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                    df_prompts = generate_prompts_manual(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
                 else:
-                    df_prompts = generate_prompts(input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                    df_prompts = generate_prompts(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
                 st.write(f"Prompts for Concept: {st.session_state['concept_mediums'][pair_i]['concept']}, Medium: {st.session_state['concept_mediums'][pair_i]['medium']}")
                 st.dataframe(df_prompts)
-                st.code(dalle3_gen_prompt.format(
+                if enable_diversity:
+                    dalle3_prompt = dalle3_gen_prompt
+                else:
+                    dalle3_prompt = dalle3_gen_nodiv_prompt
+
+                st.code(dalle3_prompt.format(
                     concept=st.session_state['concept_mediums'][pair_i]['concept'], 
                     medium=st.session_state['concept_mediums'][pair_i]['medium'], 
-                    input=input,
+                    input=st.session_state.input,
                     input_prompts = df_prompts['Revised Prompts'].tolist() + df_prompts['Synthesized Prompts'].tolist()
                 ))
 
@@ -1187,15 +1202,15 @@ with st.container():
             if st.button("Generate All"):
                 for pair_i in range(len(st.session_state['concept_mediums'])):  # Loop through all pairs
                     if st.session_state['concept_manual_mode']:
-                        df_prompts = generate_prompts_manual(input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                        df_prompts = generate_prompts_manual(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
                     else:
-                        df_prompts = generate_prompts(input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                        df_prompts = generate_prompts(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
                     st.write(f"Prompts for Concept: {st.session_state['concept_mediums'][pair_i]['concept']}, Medium: {st.session_state['concept_mediums'][pair_i]['medium']}")
                     st.dataframe(df_prompts)   
                     st.code(dalle3_gen_prompt.format(
                         concept=st.session_state['concept_mediums'][pair_i]['concept'], 
                         medium=st.session_state['concept_mediums'][pair_i]['medium'], 
-                        input=input,
+                        input=st.session_state.input,
                         input_prompts = df_prompts['Revised Prompts'].tolist() + df_prompts['Synthesized Prompts'].tolist()
                     )) 
         else:
@@ -1212,27 +1227,27 @@ with st.container():
             st.write("Generating")
             # Use manual_concept and manual_medium to generate prompts
             if st.session_state['concept_manual_mode']:
-                df_prompts_man = generate_prompts_manual(input, manual_concept, manual_medium, model=model, debug=debug, max_retries = max_retries, temperature = temperature)
+                df_prompts_man = generate_prompts_manual(st.session_state.input, manual_concept, manual_medium, model=model, debug=debug, max_retries = max_retries, temperature = temperature)
                 st.write(f"Prompts for Concept: {manual_concept}, Medium: {manual_medium}")
                 st.dataframe(df_prompts_man)
                 if df_prompts_man is not None:
                     st.code(dalle3_gen_prompt.format(
                         concept=manual_concept, 
                         medium=manual_medium, 
-                        input=input,
+                        input=st.session_state.input,
                         input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                     ))
                 st.write("MJ Prompts Complete")
                 st.write("Generation complete!")
             else:
-                df_prompts_man = generate_prompts(input, manual_concept, manual_medium, model=model, debug=debug, max_retries = max_retries, temperature = temperature)
+                df_prompts_man = generate_prompts(st.session_state.input, manual_concept, manual_medium, model=model, debug=debug, max_retries = max_retries, temperature = temperature)
                 st.write(f"Prompts for Concept: {manual_concept}, Medium: {manual_medium}")
                 st.dataframe(df_prompts_man)
                 if df_prompts_man is not None:
                     st.code(dalle3_gen_prompt.format(
                             concept=manual_concept, 
                             medium=manual_medium, 
-                            input=input,
+                            input=st.session_state.input,
                             input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                         ))
                     st.write("MJ Prompts Complete")
