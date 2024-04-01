@@ -1,0 +1,8 @@
+openai<=1.14.3
+langchain<=0.1.14
+streamlit<=0.1.0
+anthropic<=0.21.3
+langchain-community<=0.0.31
+langchain-openai<=0.1.1
+langchain-anthropic<=0.1.4
+defusedxml<=0.7.1
