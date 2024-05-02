@@ -496,7 +496,7 @@ def send_prompts_to_discord(prompts, premessage='Prompts:'):
     except Exception as e:
         st.write(f"An error occurred while sending concepts to Discord: {str(e)}")
 
-def send_concepts_to_discord(concept_list, premessage='Concepts and:'):
+def send_concepts_to_discord(input, concept_list, premessage='Concepts and:'):
     try:
         if st.session_state['send_to_discord']:
             requests.post(st.session_state['webhook_url'], data=json.dumps({"content": f'INCOMING MESSAGE for user idea: {input}'}), headers={"Content-Type": "application/json"})
@@ -713,7 +713,7 @@ def generate_concept_mediums_manual(input, max_retries, temperature, model = "gp
         refined_mediums = [x['refined_medium'] for x in st.session_state.shuffled_review_output['refined_mediums']]
         concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
         
-        send_concepts_to_discord(concept_mediums)
+        send_concepts_to_discord(input, concept_mediums)
         return concept_mediums
 
 @st.cache_data(persist=True, experimental_allow_widgets=True)
@@ -1149,11 +1149,11 @@ with st.container():
 
     st.session_state.input = st.text_area("Describe your idea", "I want to capture the essence of a mysterious and powerful witch's familiar.")
 
-    if st.button("Generate Auto-Lofn Prompt"):
-        with open("/lofn/prompts/competition_prompt.txt", "r") as file:
-            competition_prompt = file.read()
-        st.write('Run the following prompt in your favorite chatbot/LLM, and get a powerful Lofn prompt:')
-        st.code(competition_prompt.format(input=st.session_state.input), language="text")
+    # if st.button("Generate Auto-Lofn Prompt"):
+    #    with open("/lofn/prompts/competition_prompt.txt", "r") as file:
+    #        competition_prompt = file.read()
+    #    st.write('Run the following prompt in your favorite chatbot/LLM, and get a powerful Lofn prompt:')
+    #    st.code(competition_prompt.format(input=st.session_state.input), language="text")
 
     if st.button("Generate Concepts"):
         st.session_state.button_clicked = True
