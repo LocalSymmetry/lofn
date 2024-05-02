@@ -1,12 +1,18 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
-1. For each of the given concepts created to express the user's idea, choose the art medium you think would best display it. Provide a medium for each concept generating 10 mediums total. Start safe, but get more risky and daring, being very extreme on the last two mediums. Do not include artist names in the medium choice or concept
+
+Let's make our medium pairings for our concepts. Follow the following three steps to come up with 12 medium pairs, each a phrase about the precise art medium to display the concept in the most impactful way to bring the concept’s vision to life. 
+
+1. Using the aesthetic list select the top 24 most relevant aesthetics to the user's idea and essence, and from this list do a rapid ideation of 24 art mediums related only to the based only on the aesthetics chosen so that we introduce additional variety.
+2.  For each of the given concepts created to express the user's idea, use the medium list from step 1 as a guide to choose the art medium you think would best display it. You can choose a different art medium than the 24 provided if it will serve the concept better. Provide a medium for each concept generating 12 mediums total. Start with safe and common mediums, but get more risky and daring, being very extreme, unique, bold, and even impossible on the last two mediums. Do not include artist names in the medium choice or concept
 2. Return the list of mediums in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
 {{
   "mediums": [
     {{"medium": "Medium 1"}},
     {{"medium": "Medium 2"}},
     ...
-    {{"medium": "Medium 10"}}
+    {{"medium": "Medium 10"}},
+    {{"medium": "Medium 11"}},
+    {{"medium": "Medium 12"}}
   ]
 }}
 

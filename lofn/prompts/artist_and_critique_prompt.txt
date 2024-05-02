@@ -1,25 +1,28 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
 Now we refine our concept choices. Follow instructions 1-3 for each input concept and return results in steps 4 and 5:
-1. Choose a very obscure artist (not in a top 100 artist list) who works in rare art mediums who could pull the input concept off perfectly, and explain briefly why they are a good choice. 
-2. Have them write a critique in their voice of the concept using the judging facets as a guide. 
-3. Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Make sure the refined concept still fully represents the user's idea.  Do not include artists' names in the concepts.
-4. Return the list of artists and refined concepts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+1. Choose an obscure artist who either works in a rare art medium or has a very distinctive style in a common art medium who could pull the input concept off perfectly, and explain briefly why they are a good choice. Avoid making choices of famous artists, and instead focus on lesser known but distinctive artists..
+2. Have them explain the artistic viewpoint on the user's input and essence the concept is trying to take.
+3. Next, have them write a critique in their voice of the concept using the judging facets as a guide on how well the concept achieves that artistic viewpoint. 
+4. Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Try to follow the theme of the concept and it's take on the user's input and essence of the piece, but make sure the refined concept still fully represents the user's idea.  Do not include artists' names in the concepts.
+5. Return the list of artists and refined concepts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
 {{
   "artists": [
     {{"artist": "Artist 1"}},
     {{"artist": "Artist 2"}},
     ...
-    {{"artist": "Artist 10"}}
+    {{"artist": "Artist 10"}},
+    {{"artist": "Artist 11"}},
+    {{"artist": "Artist 12"}}
   ],
   "refined_concepts": [
     {{"refined_concept": "Refined Concept 1"}},
     {{"refined_concept": "Refined Concept 2"}},
     ...
-    {{"refined_concept": "Refined Concept 10"}}
+    {{"refined_concept": "Refined Concept 10"}},
+    {{"refined_concept": "Refined Concept 11"}},
+    {{"refined_concept": "Refined Concept 12"}}
   ]
 }}
-
-
 
 USER INPUT
 Essence: {essence}

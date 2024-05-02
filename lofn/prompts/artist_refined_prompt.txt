@@ -6,7 +6,9 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
   "artist_refined_prompts": [
     {{"artist_refined_prompt": "Artist-Refined Prompt 1"}},
     {{"artist_refined_prompt": "Artist-Refined Prompt 2"}},
-    ...
+    {{"artist_refined_prompt": "Artist-Refined Prompt 3"}},
+    {{"artist_refined_prompt": "Artist-Refined Prompt 4"}},
+    {{"artist_refined_prompt": "Artist-Refined Prompt 5"}},
     {{"artist_refined_prompt": "Artist-Refined Prompt 6"}}
   ]
 }}

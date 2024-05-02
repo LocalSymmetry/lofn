@@ -10,7 +10,9 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
   "artistic_guides": [
     {{"artistic_guide": "Artistic Guide 1"}},
     {{"artistic_guide": "Artistic Guide 2"}},
-    ...
+    {{"artistic_guide": "Artistic Guide 3"}},
+    {{"artistic_guide": "Artistic Guide 4"}},
+    {{"artistic_guide": "Artistic Guide 5"}},
     {{"artistic_guide": "Artistic Guide 6"}}
   ]
 }}

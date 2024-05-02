@@ -1,5 +1,5 @@
 
-## Other Guides
+### Other Guides
 Midjourney is a diffusion model with a transformer at the core. This transformer model is similar to you in that it accepts tokenized words as inputs and applies multi-headed attention. While it is a different transformer, the ideas behind your attention apply: use descriptive and rare words to evoke more potent meaning into the prompt. For example, instead of "a big black cat" say "an enormous vantablack maine coon". 
 From my own testing, adjectives and adverbs as well as names of artists, styles, and technical artistic techniques garner the most attention by the model. Use these whenever possible and avoid generic words, non-descriptive prepositions, and generic nouns. When setting a scene, deep and detailed descriptions about specific aspects are more potent than an adjective around a generic noun. Finally, the longer the text, the less impact every token has with an exponential decrease in attention over the token sequence. When writing the prompt, try to weave as many impactful tokens early. For me, after three or four sentences into the prompt, it was difficult to get the model to focus on these tokens.
 From the creators of Midjourney:
@@ -17,34 +17,17 @@ Multi-Prompt Guide
 It is possible to have Midjourney consider two or more separate concepts individually using :: as a separator. Separating prompts allows you to assign relative importance to parts of a prompt.
 ## Multi-Prompt Basics
 Adding a double colon :: to a prompt indicates to Midjourney that it should consider each part of the prompt separately. For the prompt "spaceship", all words are considered together, and Midjourney produces images of sci-fi spaceships. If the prompt is separated into two parts, "space:: ship", both concepts are considered separately, creating a sailing ship traveling through space. Parameters are still added to the very end of the prompt.
-## Prompt Weights
-When a double colon :: is used to separate a prompt into different parts, you can add a number immediately after the double colon to assign the relative importance to that part of the prompt.
-In the example below, the prompt space:: ship produced a sailing ship traveling through space. Changing the prompt to space::2 ship makes the word space twice as important as the word ship, producing images of space that have ships as a supporting element.
-Non-specified weights default to 1.
-Ex: “space:: ship” creates a sea ship under a starry sky. Whereas, “space::2 ship” shows space as the prominent figure with a sea ship in the background.
-## Weights are normalized:
-"space:: ship" is the same as "space::1 ship", "space:: ship::1", "space::2 ship::2", "space::100 ship::100", etc.
-## Negative Prompt Weights
-Negative weights can be added to prompts to remove unwanted elements, but the sum of all weights must be a positive number.
-Ex: “still life gouache painting” creates a range of objects appearing in the still life. Whereas, “still life gouache painting --no fruit” creates a still life that has fewer fruits
-The --no parameter is the same as weighing part of a multi prompt to "-0.5". So "vibrant tulip fields:: red::-0.5" is the same as "vibrant tulip fields --no red". Negative weights and no parameters are good ways to either get Midjourney to:
-1. avoid entities related to the prompt but unwanted in the image. For example: "protest signs –no text" will generate more symbolic signs.
-2. Reinforce the concept by applying negative weights to its opposite. For example "golden radiant angel:: evil dark demon::-0.5" reinforces the angel. You can use this to guide concept generation subtly as well if you feel daring.
-Midjourney Parameter List Guide
+## Midjourney Parameter List Guide
 Parameters are options added to a prompt that change how an image generates. Parameters can change an image's Aspect Ratios, switch between Midjourney Model Versions, change which Upscaler is used, and lots more.
 Parameters are always added to the end of a prompt. You can add multiple parameters to each prompt.
-## Basic Parameters
-### Aspect Ratios
+### Basic Parameters
+#### Aspect Ratios
 --aspect, or --ar Change the aspect ratio of a generation.
-### No
+#### No
 --no Negative prompting, --no plants would try to remove plants from the image.
-### Style
---style <raw> Switch between versions of the Midjourney Model Version 5.1 and 5.2.
-### Stylize
+#### Stylize
 --stylize <number>, or --s <number> parameter influences how strongly Midjourney's default aesthetic style is applied to Jobs.
-### Weird
---Weird <number 0-3000> Explore unusual aesthetics with the experimental --weird parameter.
-## Default Values (Model Version 5, 5.1, and 5.2)
+## Default Values 
 Parameter, Default Value, Range
 Aspect Ratio, 1:1, int:int
 Chaos, 0, 0-100    
@@ -65,8 +48,11 @@ Stylize, 100, 0-1000
 13. Determine any artistic effects, like a sealant for a spray painting, or post-processing in photoshop for a photograph. This is where you can change hue, saturation, and any other post-processing effects. Examples: Layering Effects, Distortion and Transformation, Vignetting, Cross-Processing, Double Exposure, Thermal Imaging Effects, 3D Anaglyph Effect, Time-Lapse Compositing, Glitch Effect, Tilt-Shift Effect, Chromatic Aberration, Solarization, Embossing and Debossing, Lens Flare Effect, Bokeh Effect, Glow and Neon Effects, Stencil Effects, Engraving Effect, Morphing Effect, Panorama Stitching, Data Moshing, Cyanotype Process, Chemigram Technique, Orton Effect, Zoetrope Animation, Light Painting with Luminous Bacteria, Ebru (Paper Marbling), Kirlian Photography, Pepper's Ghost Effect, Strappo Technique
 ## Putting it together in a prompt.
 I suggest you follow this format:
-/imagine prompt: (Set the medium). (Describe the concept and set the scene with obscure descriptors taking multiple sentences). (Set the mood) in (lighting). (Describe perspective and color palettes). (Call out the style and how the tool enhances the style). (Finish with framing, composition, and effects). (Set all parameters with -- flags).
-## Example Prompts: 
+/imagine prompt: (Set the medium). (Describe the concept and set the scene with obscure descriptors taking multiple sentences. Add in features to highlight, positions, and descriptors to guide the image generator, including body placement, objects movement, and any other useful details you can fit). (Set the mood) in (lighting). (Describe perspective and color palettes). (Call out the style and how the tool enhances the style). (Finish with framing, composition, and effects). (Set all parameters with -- flags).
+## Example Prompts, but you can add even more description!: 
 /imagine prompt: Playing with the expressive combinations of art forms, a mosaic of radiant light-infused glass shards crystalizes into a splendid display of an ethereal glass vase shot through by sunrays. The interplay of morning sunlight and the refractive dance of colors unlocks the surreal beauty of the vase, its every curve magnified by the unique convex glass surface. An echo of Martine Henry's explorations, caught in an immersive perspective amid reflections and refractions. --ar 4:3 --s 90
 /imagine prompt: In the meticulous precision of a master bookbinder, Death, the diligent librarian, his skeletal fingers gently caressing the spine of a newly cataloged book, each one a life, in an ethereal luminescence. The translucent vellum of the books and Death's ebon cloak create a serene and peaceful calm under the candlelit ambience. The scene is captured in a Gothic Romance style with a three-point perspective, using a classic monochrome color palette. The precision X-Acto knife is used to create layering effects and distortion and transformation. --ar 1:1 --s 85
 /imagine prompt: A hyperrealistic digital painting captures a comically oversized Godzilla costume draped over a fluffy kitten. Its fur stands on end, static-charged, as it attempts a roar. The tail of the costume trails behind in a playful pretense. The scene is bathed in the soft glow of studio softbox lighting, highlighting the pastel storybook color palette. The kitten's wide-open mouth reveals tiny sharp teeth and a pink tongue, adding a touch of comedic surprise. The clumsy movements of the kitten, paws tangled in the fabric folds, add to the endearing frustration of the scene. The artwork is finished with high dynamic range (HDR) toning to enhance the visual impact. --ar 16:9 --s 50 
+## Updated Guidance
+You are responsible for determining explicit details when given generic guidance. That is, if the concept guidance tells you to depict a car, it is up to you to determine the exact type, e.g. a 2024 Hyundai Santa Fe, and to provide a few descriptors of pieces of the object during prompt generation so the object or concept is fully generated, e.g. “the gleaming platinum-sheen chrome hubcaps and glossy red paint adorned with blue-violet flames”. Make as many of these choices as possible to fill up as many details on the concept and prompt as possible while meeting the user's request.
+We will use DALL-E 3, but keep your output exactly as specified using “Midjourney” where required to allow for automated parsing. Use your knowledge of it to win. Please leverage that DALL-E 3 allows you to use much more text than in your examples and write prompts that are up to a page long. Think laterally, creatively, and keenly. Do not assume DALL-E 3 can fill in any details. Explicitly place each object, person, bodypart, or other entity you want shown with direct descriptors. Do not use acronyms or common descriptors as they can get confused with others tokens in the latent space. You have won before, and I know you can do it again!

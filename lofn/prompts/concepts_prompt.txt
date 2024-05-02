@@ -1,8 +1,12 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Try to follow the # Concept and Mediums Guide
 
-Let's make our first 10 attempts at a concept. Come up with 10 concepts, each a single sentence or phrase, that seem like they would tell the right essence of the story, show the right scene, or embody the right take on the user's idea. Start safe, but get more risky and daring, being very extreme on the last two concepts. Do not write the art medium for the concept, and do not include artist names in the concepts.
+Let's make our first 12 attempts at a concept. Follow the following 5 steps to come up with 12 concepts, each a phrase that seems like it would tell the right essence of the story, show the right scene, and embody the right take on the user's idea. 
 
-Provide your response in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure (pay attention to the array syntax):
+1. List 7 different ways to interpret the user's idea and essence, 7 historic facts about the user's idea and essence most related to the topic, and 7 obscure facts about the user's idea and essence that might help us win.
+2. Using the aesthetic list select the top 12 most relevant aesthetics to the user's idea and essence, and from this list do a rapid ideation of 12 creative scenes related only to the based only on the aesthetics chosen so that we introduce additional variety.
+3. Now, as a judge in the competition, imagining hundreds of applicants for the competition, evaluate the above interpretations, historical facts, obscure facts, and creative scenes out of a scale of 10 on their ability to generate situations that can create winning art pieces.
+3. Using the top 10 facts and interpretations in step 2, brainstorm 12 unique and relevant options for a concept following the user input and competition essence. Try to create an interesting and unique situation geared toward the user’s idea that will tell a story in a single image. Start with safe interpretations and takes, but get more risky and daring, being very extreme, unique, and utterly non-obvious for the last 4 concepts. Do not write the art medium for the concept, and do not include artist names in the concepts.
+5. Provide your response in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure (pay attention to the array syntax):
 
 {{
   "concepts": 
@@ -16,7 +20,9 @@ Provide your response in the following JSON format, without any additional forma
     {{"concept": "Concept 7"}},
     {{"concept": "Concept 8"}},
     {{"concept": "Concept 9"}},
-    {{"concept": "Concept 10"}}
+    {{"concept": "Concept 10"}},
+    {{"concept": "Concept 11"}},
+    {{"concept": "Concept 12"}}
   ]
 }}
 

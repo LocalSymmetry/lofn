@@ -9,7 +9,9 @@ Now we refine our medium choices. Follow instructions 1-3 for each input concept
     {{"refined_medium": "Refined Medium 1"}},
     {{"refined_medium": "Refined Medium 2"}},
     ...
-    {{"refined_medium": "Refined Medium 10"}}
+    {{"refined_medium": "Refined Medium 10"}},
+    {{"refined_medium": "Refined Medium 11"}},
+    {{"refined_medium": "Refined Medium 12"}}
   ]
 }}
 
