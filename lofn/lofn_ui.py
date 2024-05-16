@@ -1119,9 +1119,9 @@ if 'button_clicked' not in st.session_state:
     st.session_state.button_clicked = False
 
 max_retries = st.sidebar.slider("Maximum Retries", 0, 10, 3)
-model = st.sidebar.selectbox("Select model", ["claude-3-opus-20240229", "gpt-4-turbo-preview", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo-16k", "gpt-4"])
+model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo-preview", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo-16k", "gpt-4"])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
-enable_diversity = st.sidebar.checkbox("Enable Diversity", value=True)
+enable_diversity = st.sidebar.checkbox("Enable Forced Diversity", value=False)
 debug = st.sidebar.checkbox("Debug Mode")
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
