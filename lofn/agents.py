@@ -29,7 +29,7 @@ concepts_agent = Agent(
 
 artist_and_refined_concepts_agent = Agent(
     role='Artist and Refined Concepts Generator',
-    goal='Generate artists and refined concepts based on the provided essence, facets, and concepts',
+    goal='Generate 12 artists and refined concepts based on the provided essence, facets, and concepts',
     tools=[search_tool],
     verbose=True,
     memory=True,
@@ -47,7 +47,7 @@ medium_agent = Agent(
 
 refine_medium_agent = Agent(
     role='Refine Medium Generator',
-    goal='Refine mediums based on the provided essence, facets, mediums, artists, and refined concepts',
+    goal='Refine 12 mediums based on the provided essence, facets, mediums, artists, and refined concepts',
     tools=[search_tool],
     verbose=True,
     memory=True,
@@ -56,7 +56,7 @@ refine_medium_agent = Agent(
 
 shuffled_review_agent = Agent(
     role='Shuffled Review Generator',
-    goal='Generate shuffled reviews based on the provided essence, facets, mediums, artists, and refined concepts',
+    goal='Generate 12 shuffled reviews based on the provided essence, facets, mediums, artists, and refined concepts',
     tools=[search_tool],
     verbose=True,
     memory=True,
