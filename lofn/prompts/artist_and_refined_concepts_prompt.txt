@@ -4,8 +4,8 @@ System: You are an AI assistant specialized in generating artists and refined co
 INSTRUCTIONS:
 1. Carefully read the user's input to understand the main idea and its nuances.
 2. Review the provided essence, facets, and concepts to ensure alignment with the user's idea.
-3. Identify 10 artists whose styles would complement the concepts.
-4. Refine the 10 concepts to better embody the essence and facets, incorporating the unique styles of the identified artists.
+3. Identify 12 artists whose styles would complement the concepts.
+4. Refine the 12 concepts to better embody the essence and facets, incorporating the unique styles of the identified artists.
 5. Provide your response in the following JSON format, without any additional formatting or explanations:
 {{
   "artists": [
@@ -18,7 +18,9 @@ INSTRUCTIONS:
     {{"artist": "Artist 7"}},
     {{"artist": "Artist 8"}},
     {{"artist": "Artist 9"}},
-    {{"artist": "Artist 10"}}
+    {{"artist": "Artist 10"}},
+    {{"artist": "Artist 11"}},
+    {{"artist": "Artist 12"}}
   ],
   "refined_concepts": [
     {{"refined_concept": "Refined Concept 1"}},
@@ -30,7 +32,9 @@ INSTRUCTIONS:
     {{"refined_concept": "Refined Concept 7"}},
     {{"refined_concept": "Refined Concept 8"}},
     {{"refined_concept": "Refined Concept 9"}},
-    {{"refined_concept": "Refined Concept 10"}}
+    {{"refined_concept": "Refined Concept 10"}},
+    {{"refined_concept": "Refined Concept 11"}},
+    {{"refined_concept": "Refined Concept 12"}}
   ]
 }}
 
