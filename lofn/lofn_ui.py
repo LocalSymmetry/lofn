@@ -20,7 +20,7 @@ from string import Template
 import json
 import re
 import random
-from crewai import Agent, Task, Crew, Process
+from lofn.agents import EssenceAndFacetsAgent, ConceptsAgent, ArtistAndRefinedConceptsAgent, MediumAgent, RefineMediumAgent, ShuffledReviewAgent
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
@@ -1160,7 +1160,12 @@ with st.container():
     #    st.write('Run the following prompt in your favorite chatbot/LLM, and get a powerful Lofn prompt:')
     #    st.code(competition_prompt.format(input=st.session_state.input), language="text")
 
-    concept_medium_agent = ConceptMediumAgent(role='Concept Medium Generator', goal='Generate concept mediums')
+    essence_and_facets_agent = EssenceAndFacetsAgent(role='Essence and Facets Generator', goal='Generate essence and facets')
+    concepts_agent = ConceptsAgent(role='Concepts Generator', goal='Generate concepts')
+    artist_and_refined_concepts_agent = ArtistAndRefinedConceptsAgent(role='Artist and Refined Concepts Generator', goal='Generate artist and refined concepts')
+    medium_agent = MediumAgent(role='Medium Generator', goal='Generate mediums')
+    refine_medium_agent = RefineMediumAgent(role='Refine Medium Generator', goal='Refine mediums')
+    shuffled_review_agent = ShuffledReviewAgent(role='Shuffled Review Generator', goal='Generate shuffled reviews')
 
     if st.button("Generate Concepts"):
         st.session_state.button_clicked = True
@@ -1171,7 +1176,16 @@ with st.container():
         if st.session_state['concept_manual_mode']:
             st.session_state['concept_mediums'] = generate_concept_mediums_manual(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
         else:
-            st.session_state['concept_mediums'] = concept_medium_agent.execute(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
+            essence_and_facets_output = essence_and_facets_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, essence_prompt, debug)
+            concepts_output = concepts_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, concepts_prompt, essence_and_facets_output["essence"], essence_and_facets_output["facets"], debug)
+            artist_and_refined_concepts_output = artist_and_refined_concepts_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, artist_and_critique_prompt, essence_and_facets_output["essence"], essence_and_facets_output["facets"], concepts_output["concepts"], debug)
+            medium_output = medium_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, medium_prompt, essence_and_facets_output["essence"], essence_and_facets_output["facets"], artist_and_refined_concepts_output["refined_concepts"], debug)
+            refined_medium_output = refine_medium_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, refine_medium_prompt, essence_and_facets_output["essence"], essence_and_facets_output["facets"], medium_output["mediums"], artist_and_refined_concepts_output["artists"], artist_and_refined_concepts_output["refined_concepts"], debug)
+            shuffled_review_output = shuffled_review_agent.execute(st.session_state.input, model, temperature, max_retries, concept_system, refine_medium_prompt, essence_and_facets_output["essence"], essence_and_facets_output["facets"], medium_output["mediums"], np.random.permutation(artist_and_refined_concepts_output["artists"]).tolist(), artist_and_refined_concepts_output["refined_concepts"], debug)
+
+            refined_concepts = [x['refined_concept'] for x in artist_and_refined_concepts_output['refined_concepts']]
+            refined_mediums = [x['refined_medium'] for x in shuffled_review_output['refined_mediums']]
+            st.session_state['concept_mediums'] = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
 
 with st.container():    
     if st.session_state['concept_mediums'] is not None:
