@@ -20,7 +20,7 @@ essence_and_facets_agent = Agent(
 
 concepts_agent = Agent(
     role='Concepts Generator',
-    goal='Generate concepts based on the provided essence and facets',
+    goal='Generate 12 concepts based on the provided essence and facets',
     tools=[search_tool],
     verbose=True,
     memory=True,
@@ -38,7 +38,7 @@ artist_and_refined_concepts_agent = Agent(
 
 medium_agent = Agent(
     role='Medium Generator',
-    goal='Generate mediums based on the provided essence, facets, and refined concepts',
+    goal='Generate 12 mediums based on the provided essence, facets, and refined concepts',
     tools=[search_tool],
     verbose=True,
     memory=True,
