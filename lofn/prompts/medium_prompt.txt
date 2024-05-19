@@ -19,4 +19,10 @@ Let's make our medium pairings for our concepts. Follow the following three step
 INPUT ARTIST-REFINED CONCEPTS
 {refined_concepts}
 USER'S IDEA
-{input}
+{input}# Medium Prompt
+System: You are an AI assistant helping to generate mediums based on the provided essence, facets, and refined concepts.
+Human: Please provide 10 mediums for the following:
+Essence: {essence}
+Facets: {facets}
+Refined Concepts: {refined_concepts}
+Input: {input}

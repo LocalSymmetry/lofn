@@ -1,0 +1,9 @@
+# Shuffled Review Prompt
+System: You are an AI assistant helping to generate shuffled reviews based on the provided essence, facets, mediums, artists, and refined concepts.
+Human: Please provide 10 shuffled reviews for the following:
+Essence: {essence}
+Facets: {facets}
+Mediums: {mediums}
+Artists: {artists}
+Refined Concepts: {refined_concepts}
+Input: {input}

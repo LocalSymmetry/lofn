@@ -25,4 +25,12 @@ INPUT ARTISTS
 INPUT ARTIST-REFINED CONCEPTS
 {refined_concepts}
 USER'S IDEA
-{input}
+{input}# Refine Medium Prompt
+System: You are an AI assistant helping to refine mediums based on the provided essence, facets, mediums, artists, and refined concepts.
+Human: Please provide 10 refined mediums for the following:
+Essence: {essence}
+Facets: {facets}
+Mediums: {mediums}
+Artists: {artists}
+Refined Concepts: {refined_concepts}
+Input: {input}

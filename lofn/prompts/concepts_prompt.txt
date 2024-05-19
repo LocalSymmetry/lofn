@@ -30,4 +30,9 @@ USER INPUT
 Essence: {essence}
 Facets: {facets}
 USER'S IDEA
-{input}
+{input}# Concepts Prompt
+System: You are an AI assistant helping to generate concepts based on the provided essence and facets.
+Human: Please provide 10 concepts for the following essence and facets:
+Essence: {essence}
+Facets: {facets}
+Input: {input}

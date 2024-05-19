@@ -1,0 +1,7 @@
+# Artist and Refined Concepts Prompt
+System: You are an AI assistant helping to generate artists and refined concepts based on the provided essence, facets, and concepts.
+Human: Please provide 10 artists and refined concepts for the following:
+Essence: {essence}
+Facets: {facets}
+Concepts: {concepts}
+Input: {input}

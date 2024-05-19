@@ -21,6 +21,83 @@ import json
 import re
 import random
 from lofn.agents import EssenceAndFacetsAgent, ConceptsAgent, ArtistAndRefinedConceptsAgent, MediumAgent, RefineMediumAgent, ShuffledReviewAgent
+from crewai import Task, Crew, Process
+
+# Initialize agents
+essence_and_facets_agent = EssenceAndFacetsAgent()
+concepts_agent = ConceptsAgent()
+artist_and_refined_concepts_agent = ArtistAndRefinedConceptsAgent()
+medium_agent = MediumAgent()
+refine_medium_agent = RefineMediumAgent()
+shuffled_review_agent = ShuffledReviewAgent()
+
+# Define tasks
+essence_and_facets_task = Task(
+    description="Generate essence and facets for the given input.",
+    expected_output="A JSON object with essence and facets.",
+    tools=[search_tool],
+    agent=essence_and_facets_agent
+)
+
+concepts_task = Task(
+    description="Generate concepts based on the provided essence and facets.",
+    expected_output="A JSON object with 10 concepts.",
+    tools=[search_tool],
+    agent=concepts_agent
+)
+
+artist_and_refined_concepts_task = Task(
+    description="Generate artists and refined concepts based on the provided essence, facets, and concepts.",
+    expected_output="A JSON object with 10 artists and 10 refined concepts.",
+    tools=[search_tool],
+    agent=artist_and_refined_concepts_agent
+)
+
+medium_task = Task(
+    description="Generate mediums based on the provided essence, facets, and refined concepts.",
+    expected_output="A JSON object with 10 mediums.",
+    tools=[search_tool],
+    agent=medium_agent
+)
+
+refine_medium_task = Task(
+    description="Refine mediums based on the provided essence, facets, mediums, artists, and refined concepts.",
+    expected_output="A JSON object with 10 refined mediums.",
+    tools=[search_tool],
+    agent=refine_medium_agent
+)
+
+shuffled_review_task = Task(
+    description="Generate shuffled reviews based on the provided essence, facets, mediums, artists, and refined concepts.",
+    expected_output="A JSON object with 10 shuffled reviews.",
+    tools=[search_tool],
+    agent=shuffled_review_agent
+)
+
+# Form the crew
+crew = Crew(
+    agents=[
+        essence_and_facets_agent,
+        concepts_agent,
+        artist_and_refined_concepts_agent,
+        medium_agent,
+        refine_medium_agent,
+        shuffled_review_agent
+    ],
+    tasks=[
+        essence_and_facets_task,
+        concepts_task,
+        artist_and_refined_concepts_task,
+        medium_task,
+        refine_medium_task,
+        shuffled_review_task
+    ],
+    process=Process.sequential,
+    memory=True,
+    cache=True,
+    max_rpm=100,
+    share_crew=True
+)
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')

@@ -1,0 +1,3 @@
+# Essence and Facets Prompt
+System: You are an AI assistant helping to generate the essence and facets of a concept.
+Human: Please provide the essence and facets for the following input: {input}
