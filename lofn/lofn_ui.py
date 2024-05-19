@@ -5,14 +5,15 @@ import os
 import requests
 import json
 import ast
-from langchain.chains.structured_output.base import create_structured_output_runnable
-from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
-from langchain.chains import LLMChain
-from langchain.prompts import ChatPromptTemplate
-from langchain_anthropic.experimental import ChatAnthropicTools
-from langchain.output_parsers import ResponseSchema, StructuredOutputParser
-from langchain.schema import OutputParserException
+from crewai import Task, Crew, Process
+from lofn.agents import (
+    essence_and_facets_agent,
+    concepts_agent,
+    artist_and_refined_concepts_agent,
+    medium_agent,
+    refine_medium_agent,
+    shuffled_review_agent
+)
 import numpy as np
 import os
 import pandas as pd
@@ -24,12 +25,12 @@ from lofn.agents import EssenceAndFacetsAgent, ConceptsAgent, ArtistAndRefinedCo
 from crewai import Task, Crew, Process
 
 # Initialize agents
-essence_and_facets_agent = EssenceAndFacetsAgent()
-concepts_agent = ConceptsAgent()
-artist_and_refined_concepts_agent = ArtistAndRefinedConceptsAgent()
-medium_agent = MediumAgent()
-refine_medium_agent = RefineMediumAgent()
-shuffled_review_agent = ShuffledReviewAgent()
+essence_and_facets_agent = essence_and_facets_agent
+concepts_agent = concepts_agent
+artist_and_refined_concepts_agent = artist_and_refined_concepts_agent
+medium_agent = medium_agent
+refine_medium_agent = refine_medium_agent
+shuffled_review_agent = shuffled_review_agent
 
 # Define tasks
 essence_and_facets_task = Task(
@@ -41,35 +42,35 @@ essence_and_facets_task = Task(
 
 concepts_task = Task(
     description="Generate concepts based on the provided essence and facets.",
-    expected_output="A JSON object with 10 concepts.",
+    expected_output="A JSON object with 12 concepts.",
     tools=[search_tool],
     agent=concepts_agent
 )
 
 artist_and_refined_concepts_task = Task(
     description="Generate artists and refined concepts based on the provided essence, facets, and concepts.",
-    expected_output="A JSON object with 10 artists and 10 refined concepts.",
+    expected_output="A JSON object with 12 artists and 12 refined concepts.",
     tools=[search_tool],
     agent=artist_and_refined_concepts_agent
 )
 
 medium_task = Task(
     description="Generate mediums based on the provided essence, facets, and refined concepts.",
-    expected_output="A JSON object with 10 mediums.",
+    expected_output="A JSON object with 12 mediums.",
     tools=[search_tool],
     agent=medium_agent
 )
 
 refine_medium_task = Task(
     description="Refine mediums based on the provided essence, facets, mediums, artists, and refined concepts.",
-    expected_output="A JSON object with 10 refined mediums.",
+    expected_output="A JSON object with 12 refined mediums.",
     tools=[search_tool],
     agent=refine_medium_agent
 )
 
 shuffled_review_task = Task(
     description="Generate shuffled reviews based on the provided essence, facets, mediums, artists, and refined concepts.",
-    expected_output="A JSON object with 10 shuffled reviews.",
+    expected_output="A JSON object with 12 shuffled reviews.",
     tools=[search_tool],
     agent=shuffled_review_agent
 )
@@ -327,8 +328,8 @@ concepts_schema = {
                 "required": ["concept"],
                 "description": "A generated concept"
             },
-            "minItems": 10,
-            "maxItems": 10,
+            "minItems": 12,
+            "maxItems": 12,
             "description": "The generated concepts"
         }
     },
@@ -348,8 +349,8 @@ artist_and_refined_concepts_schema = {
                 "required": ["artist"],
                 "description": "An artist"
             },
-            "minItems": 10,
-            "maxItems": 10,
+            "minItems": 12,
+            "maxItems": 12,
             "description": "The selected artists"
         },
         "refined_concepts": {
@@ -362,8 +363,8 @@ artist_and_refined_concepts_schema = {
                 "required": ["refined_concept"],
                 "description": "A refined concept"
             },
-            "minItems": 10,
-            "maxItems": 10,
+            "minItems": 12,
+            "maxItems": 12,
             "description": "The refined concepts"
         }
     },
@@ -385,8 +386,8 @@ medium_schema = {
                 "required": ["medium"],
                 "description": "A medium"
             },
-            "minItems": 10,
-            "maxItems": 10,
+            "minItems": 12,
+            "maxItems": 12,
             "description": "The selected mediums"
         }
     },
@@ -406,8 +407,8 @@ refined_medium_schema = {
                 "required": ["refined_medium"],
                 "description": "A refined medium"
             },
-            "minItems": 10,
-            "maxItems": 10,
+            "minItems": 12,
+            "maxItems": 12,
             "description": "The refined mediums"
         }
     },
@@ -598,42 +599,42 @@ def validate_facets(facets):
         st.warning("Please provide at least 5 facets.")
 
 def validate_concepts(concepts):
-    if len(concepts) >= 10:
+    if len(concepts) >= 12:
         st.session_state.concepts_output = {
-            "concepts": [{"concept": concept} for concept in concepts[:10]]
+            "concepts": [{"concept": concept} for concept in concepts[:12]]
         }
     else:
         st.warning("Please provide at least 10 concepts.")
 
 def validate_artists_and_refined_concepts(artists, refined_concepts):
-    if len(artists) >= 10 and len(refined_concepts) >= 10:
+    if len(artists) >= 12 and len(refined_concepts) >= 12:
         st.session_state.artist_and_refined_concepts_output = {
-            "artists": [{"artist": artist} for artist in artists[:10]],
-            "refined_concepts": [{"refined_concept": rc} for rc in refined_concepts[:10]]
+            "artists": [{"artist": artist} for artist in artists[:12]],
+            "refined_concepts": [{"refined_concept": rc} for rc in refined_concepts[:12]]
         }
     else:
         st.warning("Please provide at least 10 artists and 10 refined concepts.")
 
 def validate_mediums(mediums):
-    if len(mediums) >= 10:
+    if len(mediums) >= 12:
         st.session_state.medium_output = {
-            "mediums": [{"medium": medium} for medium in mediums[:10]]
+            "mediums": [{"medium": medium} for medium in mediums[:12]]
         }
     else:
         st.warning("Please provide at least 10 mediums.")
 
 def validate_refined_mediums(refined_mediums):
-    if len(refined_mediums) >= 10:
+    if len(refined_mediums) >= 12:
         st.session_state.refined_medium_output = {
-            "refined_mediums": [{"refined_medium": rm} for rm in refined_mediums[:10]]
+            "refined_mediums": [{"refined_medium": rm} for rm in refined_mediums[:12]]
         }
     else:
         st.warning("Please provide at least 10 refined mediums.")
 
 def validate_shuffled_refined_mediums(shuffled_refined_mediums):
-    if len(shuffled_refined_mediums) >= 10:
+    if len(shuffled_refined_mediums) >= 12:
         st.session_state.shuffled_review_output = {
-            "refined_mediums": [{"refined_medium": srm} for srm in shuffled_refined_mediums[:10]]
+            "refined_mediums": [{"refined_medium": srm} for srm in shuffled_refined_mediums[:12]]
         }
     else:
         st.warning("Please provide at least 10 refined mediums for shuffled reviews.")
