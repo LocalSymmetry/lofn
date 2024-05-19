@@ -20,6 +20,7 @@ from string import Template
 import json
 import re
 import random
+from crewai import Agent, Task, Crew, Process
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
@@ -717,138 +718,142 @@ def generate_concept_mediums_manual(input, max_retries, temperature, model = "gp
         return concept_mediums
 
 @st.cache_data(persist=True, experimental_allow_widgets=True)
-def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
-    # Initialize session state variables
-    for key in [
-        'essence_and_facets_output', 'concepts_output', 'artist_and_refined_concepts_output',
-        'medium_output', 'refined_medium_output', 'shuffled_review_output'
-    ]:
-        if key not in st.session_state:
-            st.session_state[key] = None
+class ConceptMediumAgent(Agent):
+    def __init__(self, role, goal, tools=None):
+        super().__init__(role=role, goal=goal, tools=tools)
 
-    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+    def execute(self, input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
+        # Initialize session state variables
+        for key in [
+            'essence_and_facets_output', 'concepts_output', 'artist_and_refined_concepts_output',
+            'medium_output', 'refined_medium_output', 'shuffled_review_output'
+        ]:
+            if key not in st.session_state:
+                st.session_state[key] = None
 
-    selected_aesthetics = random.sample(aesthetics, 100)
-    aesthetics_string = ', '.join(selected_aesthetics)
+        llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
-    chains = {
-        'essence_and_facets': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", essence_prompt)
-            ])
-        ),
-        'concepts': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", concepts_prompt)
-            ])
-        ),
-        'artist_and_refined_concepts': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", artist_and_critique_prompt)
-            ])
-        ),
-        'medium': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", medium_prompt)
-            ])
-        ),
-        'refine_medium': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", refine_medium_prompt)
-            ])
-        ),
-        'shuffled_review': LLMChain(
-            llm=llm, 
-            prompt=ChatPromptTemplate.from_messages([
-                ("system", concept_system),
-                ("human", refine_medium_prompt)
-            ])
-        )
-    }
+        selected_aesthetics = random.sample(aesthetics, 100)
+        aesthetics_string = ', '.join(selected_aesthetics)
 
-    def run_chain(chain_name, args_dict, aesthetics=selected_aesthetics):
-        args_dict["randomaesthetics"] = aesthetics
-        return run_chain_with_retries(chains[chain_name], args_dict=args_dict, max_retries=max_retries)
+        chains = {
+            'essence_and_facets': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", essence_prompt)
+                ])
+            ),
+            'concepts': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", concepts_prompt)
+                ])
+            ),
+            'artist_and_refined_concepts': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", artist_and_critique_prompt)
+                ])
+            ),
+            'medium': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", medium_prompt)
+                ])
+            ),
+            'refine_medium': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", refine_medium_prompt)
+                ])
+            ),
+            'shuffled_review': LLMChain(
+                llm=llm, 
+                prompt=ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    ("human", refine_medium_prompt)
+                ])
+            )
+        }
 
-    st.session_state.essence_and_facets_output = parse_output(essence_and_facets_schema, run_chain('essence_and_facets', {"input": input}), debug, max_retries=max_retries)
-    if debug:
-        st.write(f"essence_and_facets_output: {st.session_state.essence_and_facets_output}")
+        def run_chain(chain_name, args_dict, aesthetics=selected_aesthetics):
+            args_dict["randomaesthetics"] = aesthetics
+            return run_chain_with_retries(chains[chain_name], args_dict=args_dict, max_retries=max_retries)
 
-    st.session_state.concepts_output = parse_output(concepts_schema, run_chain('concepts', {
-        "input": input,
-        "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
-        "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"]
-    }), 
-    debug, 
-    max_retries=max_retries)
-    if debug:
-        st.write(f"concepts_output: {st.session_state.concepts_output}")
+        st.session_state.essence_and_facets_output = parse_output(essence_and_facets_schema, run_chain('essence_and_facets', {"input": input}), debug, max_retries=max_retries)
+        if debug:
+            st.write(f"essence_and_facets_output: {st.session_state.essence_and_facets_output}")
 
-    st.session_state.artist_and_refined_concepts_output = parse_output(artist_and_refined_concepts_schema, run_chain('artist_and_refined_concepts', {
-        "input": input,
-        "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
-        "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
-        "concepts": [x['concept'] for x in st.session_state.concepts_output['concepts']]
-    }), 
-    debug, 
-    max_retries=max_retries)
-    if debug:
-        st.write(f"artist_and_critique_list: {st.session_state.artist_and_refined_concepts_output}")
+        st.session_state.concepts_output = parse_output(concepts_schema, run_chain('concepts', {
+            "input": input,
+            "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
+            "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"]
+        }), 
+        debug, 
+        max_retries=max_retries)
+        if debug:
+            st.write(f"concepts_output: {st.session_state.concepts_output}")
 
-    st.session_state.medium_output = parse_output(medium_schema, run_chain('medium', {
-        "input": input,
-        "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
-        "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
-        "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
-    }), 
-    debug, 
-    max_retries=max_retries)
-    if debug:
-        st.write(f"medium_list: {st.session_state.medium_output}")
+        st.session_state.artist_and_refined_concepts_output = parse_output(artist_and_refined_concepts_schema, run_chain('artist_and_refined_concepts', {
+            "input": input,
+            "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
+            "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
+            "concepts": [x['concept'] for x in st.session_state.concepts_output['concepts']]
+        }), 
+        debug, 
+        max_retries=max_retries)
+        if debug:
+            st.write(f"artist_and_critique_list: {st.session_state.artist_and_refined_concepts_output}")
 
-    st.session_state.refined_medium_output = parse_output(refined_medium_schema, run_chain('refine_medium', {
-        "input": input,
-        "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
-        "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
-        "mediums": [x['medium'] for x in st.session_state.medium_output['mediums']],
-        "artists": [x['artist'] for x in st.session_state.artist_and_refined_concepts_output['artists']],
-        "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
-    }), 
-    debug, 
-    max_retries=max_retries)
-    if debug:
-        st.write(f"refined_medium_list: {st.session_state.refined_medium_output}")
+        st.session_state.medium_output = parse_output(medium_schema, run_chain('medium', {
+            "input": input,
+            "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
+            "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
+            "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
+        }), 
+        debug, 
+        max_retries=max_retries)
+        if debug:
+            st.write(f"medium_list: {st.session_state.medium_output}")
 
-    review_artists = np.random.permutation([x['artist'] for x in st.session_state.artist_and_refined_concepts_output['artists']]).tolist()
+        st.session_state.refined_medium_output = parse_output(refined_medium_schema, run_chain('refine_medium', {
+            "input": input,
+            "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
+            "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
+            "mediums": [x['medium'] for x in st.session_state.medium_output['mediums']],
+            "artists": [x['artist'] for x in st.session_state.artist_and_refined_concepts_output['artists']],
+            "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
+        }), 
+        debug, 
+        max_retries=max_retries)
+        if debug:
+            st.write(f"refined_medium_list: {st.session_state.refined_medium_output}")
 
-    st.session_state.shuffled_review_output = parse_output(shuffled_review_schema, run_chain('shuffled_review', {
-        "input": input,
-        "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
-        "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
-        "mediums": [x['medium'] for x in st.session_state.medium_output['mediums']],
-        "artists": review_artists,
-        "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
-    }), 
-    debug, 
-    max_retries=max_retries)
-    if debug:
-        st.write(f"shuffled_review_list: {st.session_state.shuffled_review_output}")
+        review_artists = np.random.permutation([x['artist'] for x in st.session_state.artist_and_refined_concepts_output['artists']]).tolist()
 
-    refined_concepts = [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
-    refined_mediums = [x['refined_medium'] for x in st.session_state.shuffled_review_output['refined_mediums']]
-    concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
-    send_concepts_to_discord(concept_mediums)
-    return concept_mediums
+        st.session_state.shuffled_review_output = parse_output(shuffled_review_schema, run_chain('shuffled_review', {
+            "input": input,
+            "essence": st.session_state.essence_and_facets_output["essence_and_facets"]["essence"],
+            "facets": st.session_state.essence_and_facets_output["essence_and_facets"]["facets"],
+            "mediums": [x['medium'] for x in st.session_state.medium_output['mediums']],
+            "artists": review_artists,
+            "refined_concepts": [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
+        }), 
+        debug, 
+        max_retries=max_retries)
+        if debug:
+            st.write(f"shuffled_review_list: {st.session_state.shuffled_review_output}")
+
+        refined_concepts = [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
+        refined_mediums = [x['refined_medium'] for x in st.session_state.shuffled_review_output['refined_mediums']]
+        concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
+        send_concepts_to_discord(concept_mediums)
+        return concept_mediums
     
 def generate_prompts_manual(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False):
     # Initialize session state variables if they do not exist
@@ -1155,6 +1160,8 @@ with st.container():
     #    st.write('Run the following prompt in your favorite chatbot/LLM, and get a powerful Lofn prompt:')
     #    st.code(competition_prompt.format(input=st.session_state.input), language="text")
 
+    concept_medium_agent = ConceptMediumAgent(role='Concept Medium Generator', goal='Generate concept mediums')
+
     if st.button("Generate Concepts"):
         st.session_state.button_clicked = True
 
@@ -1164,7 +1171,7 @@ with st.container():
         if st.session_state['concept_manual_mode']:
             st.session_state['concept_mediums'] = generate_concept_mediums_manual(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
         else:
-            st.session_state['concept_mediums'] = generate_concept_mediums(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
+            st.session_state['concept_mediums'] = concept_medium_agent.execute(st.session_state.input, max_retries = max_retries, temperature = temperature, model=model, debug=debug)
 
 with st.container():    
     if st.session_state['concept_mediums'] is not None:
