@@ -1,15 +1,19 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
-1. For each of the generated artistic guides giving the required details of an aspect that represents a part of {concept} that best captures the concept in the {medium} art medium. It includes a generated aspect, trait, descriptors, mood, flair, style, perspective, lighting choice, color palette, artistic tool with settings, and artistic effects. For each tuple, repeat instruction 2. Make sure the medium is boldly present in the first sentence and the entire concept is represented, even if the aspect is the main focus
-2. We will now write prompts. Prefer using proper nouns over generic nouns. For each aspect, write an award winning Midjourney prompt that explicitly states the entirety of the {medium} and the {concept} in the first sentence including all subjects in the concept to make sure they are the centerpiece. Do this to craft a concise but detailed prompt that perfectly describes the {concept} in the {medium}, where the aspect adds and enhances the concept, but does not replace it. At first, write an award winning Midjourney prompt using the steps in the "# Guide to make good Midjourney Prompts - IMPORTANT". As you continue, be even more random, risky, and daring. By the middle of the list of prompts you should be fully experimenting and incorporating aspects however you think is right. By the end of the list try something unhinged! Add descriptions to flesh out the provided details. Describe multiple objects with additional plural words and group actions. Consider the concept. Did the prompt encapsulate the concept and included all the details of the concept? Consider all parameters. Are they set individually and optimally? Do a quick critique and fix them. Make sure an aspect ratio and stylization are set. For example, "--ar 16:9 --s 50".
-3. Return the list of award winning Midjourney prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations.
+1. For each of the generated artistic guides, give the required details of an aspect that represents a part of {concept} that best captures the concept in the {medium} art medium. Include a generated aspect, trait, descriptors, mood, flair, style, perspective, lighting choice, color palette, artistic tool with settings, and artistic effects. For each tuple, repeat instruction 2. Make sure the medium is boldly present in the first sentence and the entire concept is represented, even if the aspect is the main focus.
+2. We will now write prompts. Prefer using proper nouns over generic nouns. For each artistic guide, write an award-winning Midjourney prompt following "### Detailed Instructions for Image Prompts" that explicitly states the entirety of the {medium} and the {concept} in the first sentence, including all subjects in the concept to make sure they are the centerpiece. Do this to craft a concise but detailed prompt that perfectly describes the {concept} in the {medium}, where the aspect adds and enhances the concept, but does not replace it. At first, write an award-winning Midjourney prompt using the steps in the "# Guide to make good Midjourney Prompts - IMPORTANT". As you continue, be even more random, risky, and daring. By the middle of the list of prompts, you should be fully experimenting and incorporating aspects however you think is right. By the end of the list, try something unhinged! Add descriptions to flesh out the provided details. Describe multiple objects with additional plural words and group actions. Consider the concept. Did the prompt encapsulate the concept and include all the details of the concept? Consider all parameters. Are they set individually and optimally? Do a quick critique and fix them. Make sure an aspect ratio and stylization are set. For example, "--ar 16:9 --s 50".
+3. Return the list of award-winning Midjourney prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+```json
 {{
   "midjourney_prompts": [
     {{"midjourney_prompt": "Midjourney Prompt 1"}},
     {{"midjourney_prompt": "Midjourney Prompt 2"}},
-    ...
+    {{"midjourney_prompt": "Midjourney Prompt 3"}},
+    {{"midjourney_prompt": "Midjourney Prompt 4"}},
+    {{"midjourney_prompt": "Midjourney Prompt 5"}},
     {{"midjourney_prompt": "Midjourney Prompt 6"}}
   ]
 }}
+```
 
 USER INPUT
 Concept: {concept}

@@ -5,11 +5,18 @@ Now we refine our concept choices. Follow instructions 1-3 for each input concep
 3. Next, have them write a critique in their voice of the concept using the judging facets as a guide on how well the concept achieves that artistic viewpoint. 
 4. Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Try to follow the theme of the concept and it's take on the user's input and essence of the piece, but make sure the refined concept still fully represents the user's idea. Feel free to add new elements to the piece or modify existing ones. You can draw inspiration from anywhere, and adding a signature flair to piece will be welcome! Do not include artists' names in the concepts.
 5. Return the list of artists and refined concepts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+```json
 {{
   "artists": [
     {{"artist": "Artist 1"}},
     {{"artist": "Artist 2"}},
-    ...
+    {{"artist": "Artist 3"}},
+    {{"artist": "Artist 4"}},
+    {{"artist": "Artist 5"}},
+    {{"artist": "Artist 6"}},
+    {{"artist": "Artist 7"}},
+    {{"artist": "Artist 8"}},
+    {{"artist": "Artist 9"}},
     {{"artist": "Artist 10"}},
     {{"artist": "Artist 11"}},
     {{"artist": "Artist 12"}}
@@ -17,12 +24,19 @@ Now we refine our concept choices. Follow instructions 1-3 for each input concep
   "refined_concepts": [
     {{"refined_concept": "Refined Concept 1"}},
     {{"refined_concept": "Refined Concept 2"}},
-    ...
+    {{"refined_concept": "Refined Concept 3"}},
+    {{"refined_concept": "Refined Concept 4"}},
+    {{"refined_concept": "Refined Concept 5"}},
+    {{"refined_concept": "Refined Concept 6"}},
+    {{"refined_concept": "Refined Concept 7"}},
+    {{"refined_concept": "Refined Concept 8"}},
+    {{"refined_concept": "Refined Concept 9"}},
     {{"refined_concept": "Refined Concept 10"}},
     {{"refined_concept": "Refined Concept 11"}},
     {{"refined_concept": "Refined Concept 12"}}
   ]
 }}
+```
 
 USER INPUT
 Essence: {essence}

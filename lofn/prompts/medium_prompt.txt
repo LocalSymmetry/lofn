@@ -1,20 +1,54 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
 
-Let's make our medium pairings for our concepts. Follow the following three steps to come up with 12 medium pairs, each a phrase about the precise art medium to display the concept in the most impactful way to bring the concept’s vision to life. 
+### Instructions for Pairing Mediums with Concepts (Optimized for LLM with Art Medium Insights)
 
-1. Using the aesthetic list select the top 24 most relevant aesthetics to the user's idea and essence, and from this list do a rapid ideation of 24 art mediums related only to the based only on the aesthetics chosen so that we introduce additional variety.
-2.  For each of the given concepts created to express the user's idea, use the medium list from step 1 as a guide to choose the art medium you think would best display it. You can choose a different art medium than the 24 provided if it will serve the concept better. Provide a medium for each concept generating 12 mediums total. Start with safe and common mediums, but get more risky and daring, being very extreme, unique, bold, and even impossible on the last two mediums. Do not include artist names in the medium choice or concept
-2. Return the list of mediums in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+**INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum of a single sentence. The LLM will use these steps to generate medium pairings that align with the concepts created.
+
+Let's make our medium pairings for our concepts. Follow these steps to come up with 12 medium pairings, each a phrase about the precise art medium to display the concept in the most impactful way to bring the concept’s vision to life.
+
+1. **Select Relevant Aesthetics**:
+   - Using the aesthetic list, select the top 24 most relevant aesthetics to the user's idea and essence.
+       - **Action**: List the names of these 24 aesthetics.
+
+2. **Generate Art Mediums**:
+   - Based on the selected aesthetics, generate a list of 24 art mediums that correspond to the aesthetics.
+       - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique.
+       - **Example**:
+         - Aesthetic: "Vintage Steampunk" – Medium: "Mixed media with aged metals and clockwork components."
+         - Aesthetic: "Modern Minimalism" – Medium: "Digital art with clean lines and a monochromatic palette."
+
+3. **Match Mediums to Concepts**:
+   - For each of the given concepts created to express the user's idea, use the medium list from step 2 as a guide to choose the art medium that you think would best display it.
+       - **Action**: Choose a medium for each concept, generating 12 mediums in total. You can choose a different art medium than the 24 provided if it will serve the concept better.
+       - **Factors to Consider**:
+         - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept. For instance, use watercolors for a delicate, ethereal look; oil paints for rich, textured finishes; mixed media for complex, layered compositions.
+         - **Technical Aspects**: Consider the details and realism. For example, 3D renders for intricate, lifelike objects; digital illustrations for a polished, detailed finish.
+         - **Compatibility with AI Generators**: Choose mediums known for effectiveness with AI generators like DALL-E 3 and MidJourney. Examples include digital illustrations, 3D renders, and oil painting styles, which are well-supported by these platforms.
+         - **Innovative Combinations**: Experiment with combining traditional and non-traditional mediums to achieve unique effects (e.g., using digital techniques with hand-drawn elements).
+       - **Risk-Taking Strategy**: Start with safe and common mediums, but progressively choose more risky, daring, unique, bold, and even impossible mediums for the last two concepts.
+       - **Avoid Artist Names**: Do not include artist names in the medium choice or concept.
+
+4. **Generate and Document the List of Mediums**:
+   - **JSON Format**: Provide your response in the following JSON format, without additional formatting, explanations, or text outside the JSON structure:
+   
+```json
 {{
   "mediums": [
     {{"medium": "Medium 1"}},
     {{"medium": "Medium 2"}},
-    ...
+    {{"medium": "Medium 3"}},
+    {{"medium": "Medium 4"}},
+    {{"medium": "Medium 5"}},
+    {{"medium": "Medium 6"}},
+    {{"medium": "Medium 7"}},
+    {{"medium": "Medium 8"}},
+    {{"medium": "Medium 9"}},
     {{"medium": "Medium 10"}},
     {{"medium": "Medium 11"}},
     {{"medium": "Medium 12"}}
   ]
 }}
+```
 
 INPUT ARTIST-REFINED CONCEPTS
 {refined_concepts}

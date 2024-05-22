@@ -2,6 +2,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 1. For each of the generated prompts, choose and name a random hidden gem artist known for working in the {medium}. Try to not choose a top 10 artist. Then write the aspect of their style that will compliment the prompt, and two signature techniques it flairs they can add. Have them be guided by the facets. Have them add in parts of the concept that are missing with flair.
 2. For each artist and prompt, have the artist rewrite the prompt in their style creating an artist-refined prompt that will add their special takes, techniques, and flairs to capture the {concept} in the {medium}. The artists will add or change detail, but not remove or simplify the prompt. Do not put the artist's name into their refined prompts. Instead reference their styles, techniques, flairs, and what makes them special. Prefer proper nouns over generic nouns. Make sure no artists are named in the refined prompts. Make sure that parameters are set with appropriate aspect ratios and style quantity.
 3. Return the list of artist-refined prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+```json
 {{
   "artist_refined_prompts": [
     {{"artist_refined_prompt": "Artist-Refined Prompt 1"}},
@@ -12,6 +13,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
     {{"artist_refined_prompt": "Artist-Refined Prompt 6"}}
   ]
 }}
+```
 
 USER INPUT
 Concept: {concept}

@@ -1,11 +1,83 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
-1. Preferring proper nouns over generic nouns, generate and write 6 artistic guides which will be lists of tuples with an aspect of the user's concept to serve as the subject of a description, 1 physical trait to be described of that subject, 1 list of 3 obscure descriptors, 1 mood for the expression, 1 artistic flair in that description or action, an artistic style, an artistic perspective, a lighting choice, a color palette, and a tool, and artistic effects with settings by repeating steps 2-6 a 6 total times. We want to try to make something unique. So start obscure (an example obscure style is cottage-core), then make each successive attempt even more randomly unique, obscure, or daring than the previous. Try to come up with very interesting unique and evocative combinations.
-2. For each list, write one aspect and one physical description of a trait that suits the aspect of the essence of the concept, either as a specific type of the concept or a facet of it, for example, if the concept was a car then describe the glossy yellow paint job on the new 2017 LMP2 machine. The point is to enhance and add to the concept. Try to make the aspect a unique take that enhances or adds to the whole concept. Make sure the concept is included.
-3. Then, for each list, choose and write a list of three obscure descriptions that will guide Midjourney to generate features, gestures, views, and positioning we want. Next, create a rare descriptive mood description that will also guide the lighting choice and color palette adding a special flair for the user-supplied concept in ${medium}. 
-4. Next, for each list, choose the overall style that will tie it together. Have it guide your choice of perspective, tool, composition, and effects. Further, determine any effects needed to enhance the scene.
-5. Then, for each list, choose a flair element, either a period of time (1950's, futuristic, renaissance, etc.), a tool (Nikon D7500, fan brush, wired end modeling tool), a technique (rule of thirds, bronze casting, sgraffito, dynamic speckles), or a splash of cross-domain methodology like a photograph composition framing technique for a painting.
-6. Finally, gather the 1 aspect, 1 physical trait, 1 list of 3 obscure descriptors, 1 mood, 1 artistic flair, 1 artistic style, 1 artistic perspective, 1 lighting choice, 1 color palette, and 1 tool, and artistic effects into an object titled `artistic_guide:`
-7. Return the list of artistic guides in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+### Enhanced Instructions for Creating Artistic Guides for AI Image Generation
+
+Example of Artistic Guides
+
+1. **Artistic Guide 1**:
+   - Aspect: "Gothic Cathedral"
+   - Physical Trait: "Intricate stained glass windows"
+   - Obscure Descriptors: ["Neo-Gothic revival", "Chiaroscuro lighting", "Flying buttresses"]
+   - Mood: "Mysterious and awe-inspiring"
+   - Artistic Flair: "Renaissance era"
+   - Artistic Style: "Baroque"
+   - Perspective: "Worm's eye view"
+   - Lighting Choice: "Candlelit ambiance"
+   - Color Palette: "Deep, rich jewel tones"
+   - Tool: "Digital pen with intricate detailing effects"
+   - Story Element: "Set in a time where the cathedral holds ancient secrets waiting to be uncovered."
+
+2. **Artistic Guide 2**:
+   - Aspect: "Futuristic Cityscape"
+   - Physical Trait: "Towering neon-lit skyscrapers"
+   - Obscure Descriptors: ["Cyberpunk aesthetic", "Holographic advertisements", "Flying cars"]
+   - Mood: "Energetic and vibrant"
+   - Artistic Flair: "1980s retro-futurism"
+   - Artistic Style: "Synthwave"
+   - Perspective: "Aerial perspective"
+   - Lighting Choice: "Neon and LED lighting"
+   - Color Palette: "Bright neon hues"
+   - Tool: "Digital painting with glowing effects"
+   - Story Element: "A bustling metropolis where technology and humanity intersect in dazzling displays."
+
+**INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to generate detailed and imaginative artistic guides that align with the user's concept and medium.
+
+1. **Generate and Write Artistic Guides**:
+   - **Generate 6 Artistic Guides**: Each guide will be a list of tuples with the following elements:
+     - An aspect of the user's concept to serve as the subject of a description
+     - One physical trait to be described of that subject
+     - A list of 3 obscure descriptors
+     - One mood for the expression
+     - One artistic flair in that description or action
+     - An artistic style
+     - An artistic perspective
+     - A lighting choice
+     - A color palette
+     - A tool and artistic effects with settings
+     - A storytelling element for context
+
+   - **Process**:
+     1. **Aspect and Physical Trait**:
+        - Write an aspect and a physical description of a trait that suits the aspect of the concept. Ensure the description enhances and adds to the concept.
+        - Example: If the concept is a car, describe the "glossy yellow paint job on the new 2017 LMP2 machine."
+     2. **Obscure Descriptors**:
+        - Choose and write a list of three obscure descriptors that will guide the AI in generating features, gestures, views, and positioning.
+        - Example: "Art Nouveau, ethereal glow, biomorphic shapes."
+     3. **Mood and Artistic Flair**:
+        - Create a rare descriptive mood that will guide the lighting choice and color palette, adding a special flair to the concept in the chosen medium.
+        - Example: "A melancholic and nostalgic mood with a touch of surrealism."
+     4. **Artistic Style and Perspective**:
+        - Choose an overall style that ties the guide together, guiding your choice of perspective, tool, composition, and effects.
+        - Example: "Cubist style with a worm's eye view."
+     5. **Flair Element**:
+        - Add a flair element such as a period of time, a specific tool, a technique, or a cross-domain methodology.
+        - Example: "1920s Art Deco period, with a fan brush technique."
+     6. **Lighting and Color Palette**:
+        - Determine the lighting and color palette to enhance the scene.
+        - Example: "Soft, diffused lighting with a pastel color palette."
+     7. **Tool and Artistic Effects**:
+        - Select the tool and effects to use, ensuring they enhance the visual narrative.
+        - Example: "Nikon D7500 camera with a tilt-shift effect."
+     8. **Storytelling Element**:
+        - Provide a brief narrative or background that gives context to the concept. This can include historical, cultural, or fictional elements that enhance the visual story.
+        - Example: "In a post-apocalyptic world where nature reclaims the ruins of civilization, the lone survivor..."
+
+2. **Create Unique and Evocative Combinations**:
+   - **Obscurity and Uniqueness**: Start with obscure styles from the aesthetic list (e.g., cottage-core) and make each successive attempt even more unique, obscure, or daring than the previous. Aim for interesting and evocative combinations.
+
+3. **Compile into JSON Format**:
+   - **Structure**: Gather the aspect, physical trait, obscure descriptors, mood, artistic flair, artistic style, perspective, lighting choice, color palette, tool, and effects into an object titled `artistic_guide`.
+   - **Format**: Return the list of artistic guides in the following JSON format:
+
+```json
 {{
   "artistic_guides": [
     {{"artistic_guide": "Artistic Guide 1"}},
@@ -16,6 +88,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
     {{"artistic_guide": "Artistic Guide 6"}}
   ]
 }}
+```
 
 USER INPUT
 Concept: {concept}

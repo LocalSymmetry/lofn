@@ -8,6 +8,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 6. Choose the bottom prompts and synthesize pairs of them into 2 new award winning prompts that achieve the goal enhancing the essence of the concept and addressing the gaps. Make sure the {concept} and {medium} are both represented in the first sentence. Make sure all parameters are correctly set.
 7. Review the the list of revised and synthesized prompts for artist's names. We do not want their names in the prompt. Making minimal prompt changes, remove their names and add in a signature element of their style in their place.
 8. Return the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
+```json
 {{
   "revised_prompts": [
     {{"revised_prompt": "Revised Prompt 1"}},
@@ -18,6 +19,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
     {{"synthesized_prompt": "Synthesized Prompt 2"}}
   ]
 }}
+```
 
 USER INPUT
 Concept: {concept}
