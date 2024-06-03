@@ -467,9 +467,9 @@ revision_synthesis_schema = {
 
 def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANTHROPIC_API):
     if model.startswith("claude"):
-        return ChatAnthropic(model=model, temperature=temperature, max_tokens_to_sample=2048, anthropic_api_key=anthropic_api_key)
+        return ChatAnthropic(model=model, temperature=temperature, max_tokens=4096, anthropic_api_key=anthropic_api_key)
     else:
-        return ChatOpenAI(model=model, temperature=temperature, openai_api_key=openai_api_key)
+        return ChatOpenAI(model=model, temperature=temperature, max_tokens=4096, openai_api_key=openai_api_key)
 
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None):
     output = None
@@ -559,14 +559,6 @@ def validate_shuffled_refined_mediums(shuffled_refined_mediums):
         }
     else:
         st.warning("Please provide at least 10 refined mediums for shuffled reviews.")
-
-def send_concepts_to_discord(concept_list, premessage = 'Concepts and:'):
-    if st.session_state['send_to_discord']: 
-        requests.post(st.session_state['webhook_url'], data=json.dumps({"content": f'INCOMING MESSAGE for user idea: {input}'}), headers={"Content-Type": "application/json"})
-    for con_dict in concept_list:
-        message_to_discord = {"content": '{concept} = ' + con_dict['concept'] + ' \n' + '{medium} = ' + con_dict['medium']}
-        if st.session_state['send_to_discord']: 
-            requests.post(st.session_state['webhook_url'], data=json.dumps(message_to_discord), headers={"Content-Type": "application/json"})
 
 def generate_concept_mediums_manual(input, max_retries, temperature, model = "gpt-3.5-turbo-16k", verbose = False, debug = False):
  # Initialize variables to store output for each step
@@ -847,7 +839,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
     refined_concepts = [x['refined_concept'] for x in st.session_state.artist_and_refined_concepts_output['refined_concepts']]
     refined_mediums = [x['refined_medium'] for x in st.session_state.shuffled_review_output['refined_mediums']]
     concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
-    send_concepts_to_discord(concept_mediums)
+    send_concepts_to_discord(input, concept_mediums)
     return concept_mediums
     
 def generate_prompts_manual(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False):
