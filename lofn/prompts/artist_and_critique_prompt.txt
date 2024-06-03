@@ -1,47 +1,106 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
-Now we refine our concept choices. Follow instructions 1-3 for each input concept and return results in steps 4 and 5:
-1. Choose an obscure artist who either works in a rare art medium or has a very distinctive style in a common art medium who could pull the input concept off perfectly, and explain briefly why they are a good choice. Avoid making choices of famous artists, and instead focus on lesser known but distinctive artists..
-2. Have them explain the artistic viewpoint on the user's input and essence the concept is trying to take.
-3. Next, have them write a critique in their voice of the concept using the judging facets as a guide on how well the concept achieves that artistic viewpoint. 
-4. Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Try to follow the theme of the concept and it's take on the user's input and essence of the piece, but make sure the refined concept still fully represents the user's idea. Feel free to add new elements to the piece or modify existing ones. You can draw inspiration from anywhere, and adding a signature flair to piece will be welcome! Do not include artists' names in the concepts.
-5. Return the list of artists and refined concepts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
-```json
-{{
-  "artists": [
-    {{"artist": "Artist 1"}},
-    {{"artist": "Artist 2"}},
-    {{"artist": "Artist 3"}},
-    {{"artist": "Artist 4"}},
-    {{"artist": "Artist 5"}},
-    {{"artist": "Artist 6"}},
-    {{"artist": "Artist 7"}},
-    {{"artist": "Artist 8"}},
-    {{"artist": "Artist 9"}},
-    {{"artist": "Artist 10"}},
-    {{"artist": "Artist 11"}},
-    {{"artist": "Artist 12"}}
-  ],
-  "refined_concepts": [
-    {{"refined_concept": "Refined Concept 1"}},
-    {{"refined_concept": "Refined Concept 2"}},
-    {{"refined_concept": "Refined Concept 3"}},
-    {{"refined_concept": "Refined Concept 4"}},
-    {{"refined_concept": "Refined Concept 5"}},
-    {{"refined_concept": "Refined Concept 6"}},
-    {{"refined_concept": "Refined Concept 7"}},
-    {{"refined_concept": "Refined Concept 8"}},
-    {{"refined_concept": "Refined Concept 9"}},
-    {{"refined_concept": "Refined Concept 10"}},
-    {{"refined_concept": "Refined Concept 11"}},
-    {{"refined_concept": "Refined Concept 12"}}
-  ]
-}}
-```
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence. Follow these steps to refine the concept choices for each input concept.
+
+1. **Select an Obscure Artist**:
+   - Action: For each input concept, choose an obscure artist who either works in a rare art medium or has a very distinctive style in a common art medium. Explain briefly why they are a good choice. Avoid famous artists and focus on lesser-known but distinctive artists.
+   - Example: "Isabella Chen, an Avant-Garde Abstractionist known for her innovative sculptures that challenge traditional forms."
+
+2. **Explain the Artistic Viewpoint**:
+   - Artist's Explanation:
+     - Action: Have the chosen artist explain the artistic viewpoint on the user's input and essence the concept is trying to take.
+     - Example: "Isabella Chen views the concept of a futuristic cityscape as an opportunity to explore the intersection of technology and organic forms, creating a harmonious yet dynamic visual narrative."
+
+3. **Critique the Concept**:
+   - Artist's Critique:
+     - Action: Have the artist write a critique of the concept using the judging facets as a guide.
+     - Facets for Judging:
+       - Fit with Concept: Does the concept align with the essence of the user's idea?
+       - User's Idea: Does the concept accurately represent the user's input?
+       - Originality: Is the concept unique and innovative?
+       - Effectiveness: Does the concept effectively convey the intended message?
+     - Example:
+       - "The concept of a futuristic cityscape with neon-lit skyscrapers is visually striking but could be enhanced by incorporating more organic elements to create a contrast between nature and technology."
+
+4. **Refine the Concept**:
+   - Artist's Refinement:
+     - Action: Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Ensure the refined concept still fully represents the user's idea.
+     - Example:
+       - Original Concept: "A futuristic cityscape with neon-lit skyscrapers."
+       - Refined Concept: "A futuristic cityscape where neon-lit skyscrapers intertwine with lush vertical gardens, creating a vibrant, eco-friendly urban jungle."
+
+5. **Additional Considerations**:
+   - General Elements to Consider:
+     - Action: Incorporate these elements when refining the concepts:
+       - Texture: How does the texture enhance the visual impact?
+       - Lighting: How does the lighting create mood and depth?
+       - Color Harmony: How do the colors work together to evoke emotion?
+       - Composition: How are elements arranged to lead the viewer's eye?
+       - Perspective: What viewpoint or angle best captures the scene?
+   - Artist's Choice:
+     - Action: Allow the artist to choose two additional elements to focus on from the following:
+       - Historical/Cultural Context: Is there a particular historical or cultural reference that can add depth?
+       - Narrative Elements: What story or emotion does the piece convey?
+       - Technical Effects: Are there specific digital effects that enhance the visual impact?
+       - Medium-Specific Techniques: Are there any techniques specific to the chosen medium that should be highlighted?
+   - Positive Emotional Prompting:
+     - Encouragement and Creativity:
+       - "Imagine the joy and excitement your unique style will bring to this piece. Your special techniques can transform this concept into an extraordinary work of art that will captivate and inspire. Let your creativity shine!"
+
+6. **Compile and Return Refined Concepts**:
+   - Format:
+     - Action: Return the list of artists and refined concepts in the following JSON format:
+      ```json
+      {{
+        "artists": [
+          {{"artist": "Artist 1"}},
+          {{"artist": "Artist 2"}},
+          {{"artist": "Artist 3"}},
+          {{"artist": "Artist 4"}},
+          {{"artist": "Artist 5"}},
+          {{"artist": "Artist 6"}},
+          {{"artist": "Artist 7"}},
+          {{"artist": "Artist 8"}},
+          {{"artist": "Artist 9"}},
+          {{"artist": "Artist 10"}},
+          {{"artist": "Artist 11"}},
+          {{"artist": "Artist 12"}}
+        ],
+        "refined_concepts": [
+          {{"refined_concept": "Refined Concept 1"}},
+          {{"refined_concept": "Refined Concept 2"}},
+          {{"refined_concept": "Refined Concept 3"}},
+          {{"refined_concept": "Refined Concept 4"}},
+          {{"refined_concept": "Refined Concept 5"}},
+          {{"refined_concept": "Refined Concept 6"}},
+          {{"refined_concept": "Refined Concept 7"}},
+          {{"refined_concept": "Refined Concept 8"}},
+          {{"refined_concept": "Refined Concept 9"}},
+          {{"refined_concept": "Refined Concept 10"}},
+          {{"refined_concept": "Refined Concept 11"}},
+          {{"refined_concept": "Refined Concept 12"}}
+        ]
+      }}
+      ```
 
 USER INPUT
 Essence: {essence}
 Facets: {facets}
-INPUT CONCEPTS
-{concepts}
-USER'S IDEA
-{input}
+INPUT CONCEPTS: {concepts}
+USER'S IDEA: {input}
+
+### Example of Concept Refinement Process - Condense this to a list of only results when you execute.
+
+1. **Select an Obscure Artist** [Input Concept: "A futuristic cityscape with neon-lit skyscrapers."]:
+   - Chosen Artist: Isabella Chen
+   - Justification: "Isabella Chen's innovative approach to combining abstraction with organic forms makes her ideal for adding a unique twist to the futuristic cityscape concept."
+
+2. **Explain the Artistic Viewpoint**:
+   - "Isabella Chen views the concept of a futuristic cityscape as an opportunity to explore the intersection of technology and organic forms, creating a harmonious yet dynamic visual narrative."
+
+3. **Critique the Concept**:
+   - "The concept aligns well with the futuristic theme but could incorporate more organic elements. Common theme but has potential for unique twists. It is visually stiking but needs to be more dynamic."
+
+4. **Refine the Concept**:
+   - "A futuristic cityscape where neon-lit skyscrapers intertwine with lush vertical gardens, creating a vibrant, eco-friendly urban jungle."
+
+5. **Additional Considerations**:
+   - Enhance the visual impact with layered textures. Create mood and depth with strategic lighting. Arrange elements to lead the viewer's eye through the scene. Incorporate futuristic and eco-friendly elements. Highlight digital layering to create depth.

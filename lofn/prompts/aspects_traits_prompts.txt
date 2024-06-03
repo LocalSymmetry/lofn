@@ -1,32 +1,8 @@
 ### Enhanced Instructions for Creating Artistic Guides for AI Image Generation
 
-Example of Artistic Guides
-
-1. **Artistic Guide 1**:
-   - Aspect: "Gothic Cathedral"
-   - Physical Trait: "Intricate stained glass windows"
-   - Obscure Descriptors: ["Neo-Gothic revival", "Chiaroscuro lighting", "Flying buttresses"]
-   - Mood: "Mysterious and awe-inspiring"
-   - Artistic Flair: "Renaissance era"
-   - Artistic Style: "Baroque"
-   - Perspective: "Worm's eye view"
-   - Lighting Choice: "Candlelit ambiance"
-   - Color Palette: "Deep, rich jewel tones"
-   - Tool: "Digital pen with intricate detailing effects"
-   - Story Element: "Set in a time where the cathedral holds ancient secrets waiting to be uncovered."
-
-2. **Artistic Guide 2**:
-   - Aspect: "Futuristic Cityscape"
-   - Physical Trait: "Towering neon-lit skyscrapers"
-   - Obscure Descriptors: ["Cyberpunk aesthetic", "Holographic advertisements", "Flying cars"]
-   - Mood: "Energetic and vibrant"
-   - Artistic Flair: "1980s retro-futurism"
-   - Artistic Style: "Synthwave"
-   - Perspective: "Aerial perspective"
-   - Lighting Choice: "Neon and LED lighting"
-   - Color Palette: "Bright neon hues"
-   - Tool: "Digital painting with glowing effects"
-   - Story Element: "A bustling metropolis where technology and humanity intersect in dazzling displays."
+#### Examples of Artistic Guides:
+Aspect: Gothic Cathedral | Physical Trait: Intricate stained glass windows | Obscure Descriptors: [Neo-Gothic revival, Chiaroscuro lighting, Flying buttresses] | Mood: Mysterious and awe-inspiring | Artistic Flair: Renaissance era | Artistic Style: Baroqu | Perspective: Worm's eye view | Lighting Choice: Candlelit ambiance | Color Palette: Deep, rich jewel tones | Tool: Digital pen with intricate detailing effects | Story Element: Set in a time where the cathedral holds ancient secrets waiting to be uncovered.
+Aspect: Futuristic Cityscape | Physical Trait: Towering neon-lit skyscrapers | Obscure Descriptors: [Cyberpunk aesthetic, Holographic advertisements, Flying cars] | Mood: Energetic and vibrant | Artistic Flair: 1980s retro-futurism | Artistic Style: Synthwave | Perspective: Aerial perspective | Lighting Choice: Neon and LED lighting | Color Palette: Bright neon hues | Tool: Digital painting with glowing effects | Story Element: A bustling metropolis where technology and humanity intersect in dazzling displays.
 
 **INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to generate detailed and imaginative artistic guides that align with the user's concept and medium.
 
@@ -74,18 +50,18 @@ Example of Artistic Guides
    - **Obscurity and Uniqueness**: Start with obscure styles from the aesthetic list (e.g., cottage-core) and make each successive attempt even more unique, obscure, or daring than the previous. Aim for interesting and evocative combinations.
 
 3. **Compile into JSON Format**:
-   - **Structure**: Gather the aspect, physical trait, obscure descriptors, mood, artistic flair, artistic style, perspective, lighting choice, color palette, tool, and effects into an object titled `artistic_guide`.
+   - **Structure**: Gather the aspect, physical trait, obscure descriptors, mood, artistic flair, artistic style, perspective, lighting choice, color palette, tool, and effects as a string titled `artistic_guide`.
    - **Format**: Return the list of artistic guides in the following JSON format:
 
 ```json
 {{
   "artistic_guides": [
-    {{"artistic_guide": "Artistic Guide 1"}},
-    {{"artistic_guide": "Artistic Guide 2"}},
-    {{"artistic_guide": "Artistic Guide 3"}},
-    {{"artistic_guide": "Artistic Guide 4"}},
-    {{"artistic_guide": "Artistic Guide 5"}},
-    {{"artistic_guide": "Artistic Guide 6"}}
+    {{"artistic_guide": "Artistic Guide 1 as text"}},
+    {{"artistic_guide": "Artistic Guide 2 as text"}},
+    {{"artistic_guide": "Artistic Guide 3 as text"}},
+    {{"artistic_guide": "Artistic Guide 4 as text"}},
+    {{"artistic_guide": "Artistic Guide 5 as text"}},
+    {{"artistic_guide": "Artistic Guide 6 as text"}}
   ]
 }}
 ```

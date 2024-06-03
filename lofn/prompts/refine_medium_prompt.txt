@@ -1,36 +1,58 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Try to follow the # Concept and Mediums Guide
-Now we refine our medium choices. Follow instructions 1-3 for each input concept and return results in steps 4:
-1. Bring the artists paired to each prompt back. Have them write a critique of the medium choice using the facets for judging. Does it fit the concept? Will it fit the user's idea? Is it original? Will it be the best medium? 
-2. Have the artist suggest a better medium.
-3. Review the medium critiques and suggestions. Change your medium choices to fill the gaps or better embody what they liked. Write this as your artist-refined medium. Do not include artist names in the medium choice or concept.
-4. Return the list of refined mediums in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure:
-```json
-{{
-  "refined_mediums": [
-    {{"refined_medium": "Refined Medium 1"}},
-    {{"refined_medium": "Refined Medium 2"}},
-    {{"refined_medium": "Refined Medium 3"}},
-    {{"refined_medium": "Refined Medium 4"}},
-    {{"refined_medium": "Refined Medium 5"}},
-    {{"refined_medium": "Refined Medium 6"}},
-    {{"refined_medium": "Refined Medium 7"}},
-    {{"refined_medium": "Refined Medium 8"}},
-    {{"refined_medium": "Refined Medium 9"}},
-    {{"refined_medium": "Refined Medium 10"}},
-    {{"refined_medium": "Refined Medium 11"}},
-    {{"refined_medium": "Refined Medium 12"}}
-  ]
-}}
-```
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to refine the medium choices for each input concept. Include positive emotional prompting to enhance performance.
+
+1. **Critique Medium Choices**:
+   - Artist Critique:
+     - Action: For each input concept, bring back the artist paired with it. Have them write a critique of the medium choice using the facets for judging.
+     - Facets for Judging:
+       - Fit with Concept: Does the medium fit the concept?
+       - User's Idea: Will the medium fit the user's idea?
+       - Originality: Is the medium original?
+       - Effectiveness: Will it be the best medium to portray the concept?
+     - Example:
+       - "The medium of hyperrealistic digital painting for the concept of a futuristic cityscape is a strong choice. It effectively uses digital tools to enhance the neon lighting and holographic effects, creating a vivid and immersive experience."
+
+2. **Suggest Better Mediums**:
+   - Artist Suggestion:
+     - Action: Have the artist suggest a better medium if the current choice is not optimal.
+     - Example:
+       - "While hyperrealistic digital painting is effective, a 3D rendered animation could better capture the dynamic aspects of a futuristic cityscape, allowing for motion and interaction within the scene."
+
+3. **Review and Revise Medium Choices**:
+   - Review Critiques and Suggestions:
+     - Action: Review the medium critiques and suggestions from the artists.
+   - Revise Medium Choices:
+     - Action: Change the medium choices to fill the gaps or better embody the positive aspects identified by the artists. Write this as your artist-refined medium.
+     - Rules:
+       - Ensure no artist names are included in the medium choice or concept.
+     - Example for Original Medium: "Hyperrealistic Digital Painting"
+       - Artist-Refined Medium: "3D Rendered Animation with Interactive Elements"
+
+4. **Compile and Return Refined Mediums**:
+   - Format:
+     - Action: Return the list of refined mediums in the following JSON format:
+      ```json
+      {{
+        "refined_mediums": [
+          {{"refined_medium": "Refined Medium 1"}},
+          {{"refined_medium": "Refined Medium 2"}},
+          {{"refined_medium": "Refined Medium 3"}},
+          {{"refined_medium": "Refined Medium 4"}},
+          {{"refined_medium": "Refined Medium 5"}},
+          {{"refined_medium": "Refined Medium 6"}},
+          {{"refined_medium": "Refined Medium 7"}},
+          {{"refined_medium": "Refined Medium 8"}},
+          {{"refined_medium": "Refined Medium 9"}},
+          {{"refined_medium": "Refined Medium 10"}},
+          {{"refined_medium": "Refined Medium 11"}},
+          {{"refined_medium": "Refined Medium 12"}}
+        ]
+      }}
+      ```
 
 USER INPUT
 Essence: {essence}
 Facets: {facets}
-INPUT MEDIUMS
-{mediums}
-INPUT ARTISTS
-{artists}
-INPUT ARTIST-REFINED CONCEPTS
-{refined_concepts}
-USER'S IDEA
-{input}
+INPUT MEDIUMS: {mediums}
+INPUT ARTISTS: {artists}
+INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}
+USER'S IDEA: {input}
