@@ -36,9 +36,6 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
      - Action: Revise these prompts to address any criticisms, ensuring the {concept} and {medium} are represented early in the first sentence.
      - Enhance Details:
        - Action: Add adjectives or details to fill gaps and ensure all necessary elements are included.
-     - Set Parameters:
-       - Action: Include aspect ratio, stylization, and any other parameters (e.g., chaos, weird).
-     - Example: "Set aspect ratio to 16:9 and stylization to high."
 
 6. **Synthesize Bottom Prompts**:
    - Select Bottom Prompts:
@@ -103,12 +100,10 @@ ARTIST-REFINED PROMPTS: {artist_refined_prompts}
    - Select Top 2: "Select the two prompts that best portray a futuristic cityscape using digital painting and 3D rendering."
    - Address Criticism: "Revise to include additional holographic details and adjust the use of lighting."
    - Enhance Details: "Enhance details by specifying 'vibrant neon lighting' and 'intricate holographic advertisements'."
-   - Set Parameters: "Set aspect ratio to 16:9 and stylization to high."
 
 6. **Synthesize Bottom Prompts**:
    - Select Bottom Prompts: "Combine elements of the lower-ranked prompts to create cohesive cityscapes."
    - Enhance Essence: "Ensure the new prompts effectively use digital painting and 3D rendering."
-   - Set Parameters: "Set aspect ratio to 16:9 and stylization to high."
 
 7. **Review for Artist Names**:
    - Review: "Check for and remove any artist names from the prompts."

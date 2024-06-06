@@ -7,6 +7,8 @@ RUN pip install -qU langchain-anthropic defusedxml
 
 EXPOSE 8501
 
+RUN mkdir -p /images/
+
 # Use entrypoint script to set environment variables and run Streamlit
 COPY * /lofn/
 ENTRYPOINT ["/lofn/entrypoint.sh"]
