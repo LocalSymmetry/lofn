@@ -3,6 +3,7 @@
 import streamlit as st
 import os
 import requests
+from datetime import datetime
 import json
 import ast
 from langchain.chains.structured_output.base import create_structured_output_runnable
@@ -20,11 +21,41 @@ from string import Template
 import json
 import re
 import random
+import openai
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
 ANTHROPIC_API = os.environ.get('ANTHROPIC_API', '')
 webhook_url = os.environ.get('WEBHOOK_URL', '')
+
+# Ensure the OpenAI API key is set
+openai.api_key = os.environ.get('OPENAI_API', '')
+
+
+def save_image_locally(image_url, filename, directory = 'images'):
+    try:
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            with open(f'/{directory}/{filename}', 'wb') as f:
+                f.write(response.content)
+            st.write(f"Image saved as /{directory}/{filename}")
+        else:
+            st.write(f"Failed to download image: {response.status_code}")
+    except Exception as e:
+        st.write(f"An error occurred while saving the image: {str(e)}")
+
+def generate_image_dalle3(prompt):
+    try:
+        response = openai.images.generate(
+            model="dall-e-3",
+            prompt=prompt,
+            size="1024x1024"
+        )
+        image_url = response.data[0].url
+        return image_url
+    except Exception as e:
+        st.write(f"An error occurred while generating the image with DALL-E 3: {str(e)}")
+        return None
 
 def read_prompt(file_path):
     with open(file_path, "r") as file:
@@ -395,22 +426,22 @@ aspects_traits_schema = {
 midjourney_schema = {
     "type": "object",
     "properties": {
-        "midjourney_prompts": {
+        "image_gen_prompts": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "midjourney_prompt": {"type": "string", "description": "A Midjourney prompt"}
+                    "image_gen_prompt": {"type": "string", "description": "An image generator prompt"}
                 },
-                "required": ["midjourney_prompt"],
-                "description": "A Midjourney prompt"
+                "required": ["image_gen_prompt"],
+                "description": "A image generator prompt"
             },
             "minItems": 6,
             "maxItems": 6,
-            "description": "The Midjourney prompts"
+            "description": "The image generator prompts"
         }
     },
-    "required": ["midjourney_prompts"]
+    "required": ["image_gen_prompts"]
 }
 
 artist_refined_schema = {
@@ -898,7 +929,7 @@ def generate_prompts_manual(input, concept, medium, max_retries, temperature, mo
         # Validate based on the schema
         if len(midjourney_prompts) == 6:
             st.session_state.midjourney_output = {
-                "midjourney_prompts": [{"midjourney_prompt": prompt} for prompt in midjourney_prompts]
+                "image_gen_prompts": [{"image_gen_prompt": prompt} for prompt in midjourney_prompts]
             }
         if st.button("Proceed to Artist Refined Prompts"):
             st.session_state.proceed_midjourney = True
@@ -915,7 +946,7 @@ def generate_prompts_manual(input, concept, medium, max_retries, temperature, mo
             medium=medium, 
             facets=st.session_state.facets_output['facets'], 
             input=input,
-            midjourney_prompts=[x['midjourney_prompt'] for x in st.session_state.midjourney_output['midjourney_prompts']]
+            image_gen_prompts=[x['image_gen_prompt'] for x in st.session_state.midjourney_output['image_gen_prompts']]
         ))
         
         artist_refined_prompts_str = st.text_area("Artist Refined Prompts (separated by a newline or comma):")
@@ -1057,7 +1088,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
     debug, 
     max_retries=max_retries)
     send_prompts_to_discord(
-        [prompt['midjourney_prompt'] for prompt in st.session_state.midjourney_prompts_output['midjourney_prompts']],
+        [prompt['image_gen_prompt'] for prompt in st.session_state.midjourney_prompts_output['image_gen_prompts']],
         premessage=f'Generated Prompts for {concept} in {medium}:'
     )
     if debug:
@@ -1068,7 +1099,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.facets_output['facets'],
-        "midjourney_prompts": [x['midjourney_prompt'] for x in st.session_state.midjourney_prompts_output['midjourney_prompts']]
+        "image_gen_prompts": [x['image_gen_prompt'] for x in st.session_state.midjourney_prompts_output['image_gen_prompts']]
     }), 
     debug, 
     max_retries=max_retries)
@@ -1102,6 +1133,32 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         'Synthesized Prompts': [prompt['synthesized_prompt'] for prompt in st.session_state.revised_synthesized_prompts_output['synthesized_prompts']]
     })
 
+    directory = 'images'
+    # Generate DALL-E 3 images if the checkbox is enabled
+    if st.session_state.get('use_dalle3', False):
+        for index, row in df_prompts.iterrows():
+            prompt = row['Revised Prompts']
+            image_url = generate_image_dalle3(prompt, )
+            if image_url:
+                timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+                truncated_input = input[:10].replace(" ", "_")
+                truncated_concept = concept[:10].replace(" ", "_")
+                truncated_medium = medium[:10].replace(" ", "_")
+                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
+                save_image_locally(image_url, filename, directory)
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
+        for index, row in df_prompts.iterrows():
+            prompt = row['Synthesized Prompts']
+            image_url = generate_image_dalle3(prompt)
+            if image_url:
+                timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+                truncated_input = input[:10].replace(" ", "_")
+                truncated_concept = concept[:10].replace(" ", "_")
+                truncated_medium = medium[:10].replace(" ", "_")
+                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
+                save_image_locally(image_url, filename, directory)
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
+
     return df_prompts
 
 
@@ -1110,14 +1167,16 @@ st.sidebar.header('User Input Features')
 if 'button_clicked' not in st.session_state:
     st.session_state.button_clicked = False
 
-max_retries = st.sidebar.slider("Maximum Retries", 0, 10, 3)
-model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo-preview", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo-16k", "gpt-4"])
-temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
-enable_diversity = st.sidebar.checkbox("Enable Forced Diversity", value=False)
-debug = st.sidebar.checkbox("Debug Mode")
+
+model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo", "gpt-4"])
+st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3", value=False)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
-st.session_state['concept_manual_mode'] = st.sidebar.checkbox("Enable Manual Mode")
+temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
+debug = st.sidebar.checkbox("Debug Mode")
+enable_diversity = st.sidebar.checkbox("Enable Forced Diversity", value=False)
+max_retries = st.sidebar.slider("Maximum Retries", 0, 10, 3)
+# st.session_state['concept_manual_mode'] = st.sidebar.checkbox("Enable Manual Mode")
 
 
 # Sidebar for Discord Webhook URL
@@ -1166,7 +1225,7 @@ with st.container():
         
         st.session_state['pairs_to_try'] = st.multiselect("Select Pairs to Try", list(range(0, df_concepts.shape[0])), st.session_state['pairs_to_try'])
         
-        if st.button("Generate MJ Prompts"):
+        if st.button("Generate Image Prompts"):
             for pair_i in st.session_state['pairs_to_try']:
                 if st.session_state['concept_manual_mode']:
                     df_prompts = generate_prompts_manual(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
@@ -1187,7 +1246,7 @@ with st.container():
                 ))
 
         else:
-            st.write("Ready to generate MJ Prompts")
+            st.write("Ready to generate Image Prompts")
 
     if st.session_state['concept_mediums'] is not None:
         if model != "gpt-4":  # Disable if GPT-4 is selected
@@ -1215,7 +1274,7 @@ with st.container():
         manual_concept = st.text_input("Enter your Concept")
         manual_medium = st.text_input("Enter your Medium")
 
-        if st.button("Generate MJ Prompts for Manual Input - Keep in mind it must match your idea or you will get weird results"):
+        if st.button("Generate Image Prompts for Manual Input - Keep in mind it must match your idea or you will get weird results"):
             st.write("Generating")
             # Use manual_concept and manual_medium to generate prompts
             if st.session_state['concept_manual_mode']:
@@ -1229,7 +1288,7 @@ with st.container():
                         input=st.session_state.input,
                         input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                     ))
-                st.write("MJ Prompts Complete")
+                st.write("Image Prompts Complete")
                 st.write("Generation complete!")
             else:
                 df_prompts_man = generate_prompts(st.session_state.input, manual_concept, manual_medium, model=model, debug=debug, max_retries = max_retries, temperature = temperature)
@@ -1242,5 +1301,5 @@ with st.container():
                             input=st.session_state.input,
                             input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                         ))
-                    st.write("MJ Prompts Complete")
+                    st.write("Image Prompts Complete")
                 st.write("Generation complete!")           
