@@ -63,31 +63,19 @@ docker run -p 8501:8501 -v /path/to/local/images:/images lofn
 
 ![Lofn UI 1](examples/lofn_ui_1.png)
 
-Enter your idea or concept in the text area provided. In this example, the user has entered "I want to capture the essence of a mysterious and powerful witch's familiar."
+Enter your idea or concept in the text area provided. In this example, the user has entered 'I want a beautiful, clever and wild take on "strawberry"'.
 
 2. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode. Then, click the "Generate Concepts" button to generate concept and medium pairings.
 
 ![Lofn UI 2](examples/lofn_ui_2.png)
 
-The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 5.
+The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 6.
 
-3. Click the "Generate MJ Prompts" button to generate Midjourney prompts for the selected pairs.
+3. Click the "Generate Image Prompts" button to generate Midjourney prompts for the selected pairs.
 
 ![Lofn UI 3](examples/lofn_ui_3.png)
 
-The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with the Midjourney AI to create your artwork.
-
-### Competition Mode
-
-Lofn provides a competition mode that generates prompts specifically tailored for AI art competitions. To use the competition mode:
-
-1. Enter the competition's subject or "prompt" into the text field.
-2. Click the "Generate Competition Prompt" button in the Lofn UI.
-3. The generated competition prompt will be displayed in a code block.
-4. Copy the competition prompt and use it in your favorite chat AI, such as ChatGPT or Claude, and it will create an award winning input prompt for Lofn for you. 
-5. Using that chat AI created prompt as input for Lofn, Lofn will now create artwork that has a much higher chance of winning competitions.
-
-The competition prompts are designed to leverage Lofn's unique features and strengths to create compelling and visually striking artwork and combine it with a unique take on the subject that stands out in AI art competitions.
+The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with the Midjourney or DALL-E 3 to create your artwork.
 
 ### DALL-E 3 Integration
 
