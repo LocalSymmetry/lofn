@@ -11,7 +11,7 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
        - **Action**: List the names of these 24 aesthetics.
 
 2. **Generate Art Mediums**:
-   - Based on the selected aesthetics, generate a list of 24 art mediums that correspond to the aesthetics.
+   - Based on the selected aesthetics, generate a list of 24 art distinct mediums that correspond to the aesthetics.
        - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique.
        - **Example**:
          - Aesthetic: "Vintage Steampunk" – Medium: "Mixed media with aged metals and clockwork components."
@@ -19,7 +19,7 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
 
 3. **Match Mediums to Concepts**:
    - For each of the given concepts created to express the user's idea, use the medium list from step 2 as a guide to choose the art medium that you think would best display it.
-       - **Action**: Choose a medium for each concept, generating 12 mediums in total. You can choose a different art medium than the 24 provided if it will serve the concept better.
+       - **Action**: Choose a medium for each concept, generating 12 mediums in total.
        - **Factors to Consider**:
          - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept. For instance, use watercolors for a delicate, ethereal look; oil paints for rich, textured finishes; mixed media for complex, layered compositions.
          - **Technical Aspects**: Consider the details and realism. For example, 3D renders for intricate, lifelike objects; digital illustrations for a polished, detailed finish.

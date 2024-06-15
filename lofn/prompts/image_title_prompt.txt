@@ -1,0 +1,47 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Follow these steps to critically evaluate and title the generated image, ensuring they capture the essence of the user's input and can win the competition.
+
+1. **Evaluate the Submission**:
+   - Determine the main image elements:
+     - Action: Write the elements of the image that stand out and how they are artistically presented.
+   - Determine the connection the user's input and concept:
+     - Action: Identify the take the image is giving for the user's input and how it relates.
+
+2. **Choose the Experts**:
+   - Select Authors:
+     - Action: Choose the best two authors to help review the image and craft an award winning title.
+     - Justification:
+       - Action: Explain why these authors are the best choices for this task.
+   - Select Editors:
+     - Action: Choose the best two editors to judge the title and image based on their expertise.
+     - Justification:
+       - Action: Explain why these editors are the best choices for this task.
+
+3. **Generate Title Candidates**:
+   - Action: Have each author write 10 of their best takes at a short title for the image.
+   - Action: Then have each author review their opposing author's submission and choose the best 3.
+   - Action: Finally, have each author review the given 3 submissions from the previous step and determine their favorite to submit to the editor.
+
+4. **Edit the Titles**:
+   - Action: Have the editors each take a title and edit it to be even better. Use their expertise and go through four editing rounds.
+   - Action: Then have the editors review both submission submissions together, judge them based on the judging criteria, and choose the winning title.
+
+5. **Return The Title**:
+   - Format:
+     - Action: Return the title in the following JSON format:
+      ```json
+      {{
+        "title": "The final title"
+      }}
+
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+Judging Facets: {facets}
+GENERATED IMAGE
+{image}
+USER'S IDEA
+{input}
+
+### Example winning titles:
+"Do you hear the jellyfish?", "Transmutations of Smog and Shadows", "Quackzilla", "This and nothing more", "👽⁉️"
