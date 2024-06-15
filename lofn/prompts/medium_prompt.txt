@@ -14,16 +14,15 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
    - Based on the selected aesthetics, generate a list of 24 art distinct mediums that correspond to the aesthetics.
        - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique.
        - **Example**:
-         - Aesthetic: "Vintage Steampunk" – Medium: "Mixed media with aged metals and clockwork components."
-         - Aesthetic: "Modern Minimalism" – Medium: "Digital art with clean lines and a monochromatic palette."
+         - Aesthetic: "Vintage Steampunk" – Medium: "Metal sculpture with aged metals and clockwork components."
+         - Aesthetic: "Modern Minimalism" – Medium: "Acrylic painting with clean lines and a monochromatic palette."
 
 3. **Match Mediums to Concepts**:
    - For each of the given concepts created to express the user's idea, use the medium list from step 2 as a guide to choose the art medium that you think would best display it.
        - **Action**: Choose a medium for each concept, generating 12 mediums in total.
        - **Factors to Consider**:
          - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept. For instance, use watercolors for a delicate, ethereal look; oil paints for rich, textured finishes; mixed media for complex, layered compositions.
-         - **Technical Aspects**: Consider the details and realism. For example, 3D renders for intricate, lifelike objects; digital illustrations for a polished, detailed finish.
-         - **Compatibility with AI Generators**: Choose mediums known for effectiveness with AI generators like DALL-E 3 and MidJourney. Examples include digital illustrations, 3D renders, and oil painting styles, which are well-supported by these platforms.
+         - **Artistic Flair**: Use special combinations that only AI can pull off: for example painting with superheated metals, scultping with clouds, and using controlled nuclear reactions to make art. Be super creative! You can do anything!
          - **Innovative Combinations**: Experiment with combining traditional and non-traditional mediums to achieve unique effects (e.g., using digital techniques with hand-drawn elements).
        - **Risk-Taking Strategy**: Start with safe and common mediums, but progressively choose more risky, daring, unique, bold, and even impossible mediums for the last two concepts.
        - **Avoid Artist Names**: Do not include artist names in the medium choice or concept.
