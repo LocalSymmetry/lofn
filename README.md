@@ -63,19 +63,19 @@ docker run -p 8501:8501 -v /path/to/local/images:/images lofn
 
 ![Lofn UI 1](examples/lofn_ui_1.png)
 
-Enter your idea or concept in the text area provided. In this example, the user has entered 'I want a beautiful, clever and wild take on "strawberry"'.
+Enter your idea or concept in the text area provided. In this example, the user has entered "I want to capture the essence of a mysterious and powerful witch's familiar."
 
 2. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode. Then, click the "Generate Concepts" button to generate concept and medium pairings.
 
 ![Lofn UI 2](examples/lofn_ui_2.png)
 
-The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 6.
+The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 5.
 
-3. Click the "Generate Image Prompts" button to generate Midjourney prompts for the selected pairs.
+3. Click the "Generate Image Prompts" button to generate image generator prompts for the selected pairs. If Use DALL-E 3 checkbox is selected, the iamges are automatically generated and titles are created for competition submissions.
 
 ![Lofn UI 3](examples/lofn_ui_3.png)
 
-The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with the Midjourney or DALL-E 3 to create your artwork.
+The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with Midjourney, DALL-E, or any other image generator to create your artwork.
 
 ### DALL-E 3 Integration
 
