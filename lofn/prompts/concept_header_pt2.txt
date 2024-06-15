@@ -8,10 +8,7 @@ A future system will generate art based on concept and medium pairs. The concept
 2. A steampunk florist tending her shop.
 3. Fear of the AI-driven future, even though it will be better.
 
-### Medium Examples:
-
-Vintage Steampunk – Medium: "Sculpted automaton made from reclaimed Victorian machinery, powered by a captured lightning storm."
-Modern Minimalism – Medium: "Laser-etched obsidian monolith with self-illuminating, programmable microscopic LED arrays."
+### More Medium Examples to inspire you! Make your own!
 Surrealist Dreamscape – Medium: "Psycho-reactive paint on genetically engineered, multi-layered canvas, influenced by gravitational waves."
 Futuristic Cyberpunk – Medium: "Bio-nanotech infused graphene circuitry embedded in transparent, self-healing polymer."
 Abstract Expressionism – Medium: "Zero-gravity ferrofluid sculpture manipulated by AI-controlled electromagnetic fields, creating complex forms."
