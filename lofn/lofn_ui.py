@@ -536,8 +536,7 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.facets_output['facets'],
-        "image": image,
-        "image_prompt": image_prompt
+        "image": image
     }, max_retries=max_retries)
 
     title_schema = {
