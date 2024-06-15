@@ -526,7 +526,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None):
     return str(output)
 
 @st.cache_data(persist=True, experimental_allow_widgets=True)
-def generate_image_title(input, concept, medium, image, image_prompt, max_retries, temperature, model, verbose=False, debug=False):
+def generate_image_title(input, concept, medium, image, max_retries, temperature, model, verbose=False, debug=False):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     chain = LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("human", image_title_prompt)]))
