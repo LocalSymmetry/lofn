@@ -1179,13 +1179,14 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
                 truncated_input = input[:10].replace(" ", "_")
                 truncated_concept = concept[:10].replace(" ", "_")
                 truncated_medium = medium[:10].replace(" ", "_")
-                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
-                save_image_locally(image_url, filename, directory)
-                st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
-                
-                # Generate a title for the image
+
+                 # Generate a title for the image
                 image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
-                st.write(f"Image Title: {image_title}")
+    
+                filename = f"{image_title}_{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
+                save_image_locally(image_url, filename, directory)
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image {image_title}")
+                
                 
         for index, row in df_prompts.iterrows():
             prompt = row['Synthesized Prompts']
