@@ -23,6 +23,11 @@ import re
 import random
 import openai
 
+st.set_page_config(page_title="Lofn - The AI Artist", page_icon=":art:", layout="wide")
+# Read custom CSS file
+with open("/lofn/style.css") as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
 ANTHROPIC_API = os.environ.get('ANTHROPIC_API', '')
@@ -197,6 +202,8 @@ dalle3_gen_prompt_middle = read_prompt("/lofn/prompts/dalle3_gen_prompt.txt")
 
 dalle3_gen_prompt_nodiv_middle = read_prompt("/lofn/prompts/dalle3_gen_nodiv_prompt.txt")
 
+image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
+
 # Read aesthetics from the file
 with open('/lofn/prompts/aesthetics.txt', 'r') as file:
     aesthetics = file.read().split(', ')
@@ -241,6 +248,8 @@ revision_synthesis_prompt = concept_header + revision_synthesis_prompt_middle + 
 dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
 
 dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
+
+image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
 # Extended JSON Schema for Essence and Facets
 essence_and_facets_schema = {
@@ -516,6 +525,32 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None):
         st.write("Max retries reached. Exiting.")
     return str(output)
 
+@st.cache_data(persist=True, experimental_allow_widgets=True)
+def generate_image_title(input, concept, medium, image, max_retries, temperature, model, verbose=False, debug=False):
+    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+
+    chain = LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("human", image_title_prompt)]))
+    
+    output = run_chain_with_retries(chain, args_dict={
+        "input": input,
+        "concept": concept,
+        "medium": medium,
+        "facets": st.session_state.facets_output['facets'],
+        "image": image
+    }, max_retries=max_retries)
+
+    title_schema = {
+        "type": "object",
+        "properties": {
+            "title": {"type": "string", "description": "The final title"}
+        },
+        "required": ["title"]
+    }
+
+    title_output = parse_output(title_schema, output, debug, max_retries=max_retries)
+
+    return title_output["title"]
+
 def send_prompts_to_discord(prompts, premessage='Prompts:'):
     try:
         if st.session_state['send_to_discord']:
@@ -530,7 +565,7 @@ def send_prompts_to_discord(prompts, premessage='Prompts:'):
 def send_concepts_to_discord(input, concept_list, premessage='Concepts and:'):
     try:
         if st.session_state['send_to_discord']:
-            requests.post(st.session_state['webhook_url'], data=json.dumps({"content": f'INCOMING MESSAGE for user idea: {input}'}), headers={"Content-Type": "application/json"})
+            requests.post(st.session_state['webhook_url'], data=json.dumps({"content": f'INCOMING MESSAGE for Patron\'s idea: {input}'}), headers={"Content-Type": "application/json"})
 
         for con_dict in concept_list:
             message_to_discord = {"content": '{concept} = ' + con_dict['concept'] + ' \n' + '{medium} = ' + con_dict['medium']}
@@ -1138,7 +1173,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
     if st.session_state.get('use_dalle3', False):
         for index, row in df_prompts.iterrows():
             prompt = row['Revised Prompts']
-            image_url = generate_image_dalle3(prompt, )
+            image_url = generate_image_dalle3(prompt)
             if image_url:
                 timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
                 truncated_input = input[:10].replace(" ", "_")
@@ -1147,6 +1182,11 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
                 filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
                 save_image_locally(image_url, filename, directory)
                 st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
+                
+                # Generate a title for the image
+                image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
+                st.write(f"Image Title: {image_title}")
+                
         for index, row in df_prompts.iterrows():
             prompt = row['Synthesized Prompts']
             image_url = generate_image_dalle3(prompt)
@@ -1154,22 +1194,28 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
                 timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
                 truncated_input = input[:10].replace(" ", "_")
                 truncated_concept = concept[:10].replace(" ", "_")
+
                 truncated_medium = medium[:10].replace(" ", "_")
-                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
+
+                # Generate a title for the image
+                image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
+                
+                filename = f"{image_title}_{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
+                
                 save_image_locally(image_url, filename, directory)
-                st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image: {image_title}")           
 
     return df_prompts
 
 
-st.sidebar.header('User Input Features')
+st.sidebar.header('Patron Input Features')
 
 if 'button_clicked' not in st.session_state:
     st.session_state.button_clicked = False
 
 
 model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo", "gpt-4"])
-st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3", value=False)
+st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=True)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)

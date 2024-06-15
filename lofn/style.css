@@ -1,0 +1,66 @@
+/* Base styles */
+body {
+    font-family: "Garamond", serif;
+    background-color: #F5F5F5;
+    color: #333333;
+}
+
+/* Header */
+header.css-1avcm0n.e8zbici2 {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 1rem;
+}
+
+header .css-1xarl3l.e16fv1kl1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Sidebar */
+section.css-1lcbmhc.e1fqkh3o0 {
+    background-color: #FFFFFF;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section.css-1lcbmhc.e1fqkh3o0 label {
+    font-size: 1.1rem;
+    color: #333333;
+}
+
+/* Main content */
+section.main > div {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+button.css-1x8cf1d.edgvbvh10 {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button.css-1x8cf1d.edgvbvh10:hover {
+    background-color: #555555;
+}
+
+/* Inputs */
+input[type="text"], textarea {
+    border: 1px solid #E0E0E0;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Garamond", serif;
+    color: #333333;
+}
