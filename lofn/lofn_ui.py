@@ -526,7 +526,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None):
     return str(output)
 
 @st.cache_data(persist=True, experimental_allow_widgets=True)
-def generate_image_title(input, concept, medium, image, max_retries, temperature, model, verbose=False, debug=False):
+def generate_image_title(input, concept, medium, image, image_prompt, max_retries, temperature, model, verbose=False, debug=False):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     chain = LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("human", image_title_prompt)]))
@@ -536,7 +536,8 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.facets_output['facets'],
-        "image": image
+        "image": image,
+        "image_prompt": image_prompt
     }, max_retries=max_retries)
 
     title_schema = {
@@ -1179,14 +1180,13 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
                 truncated_input = input[:10].replace(" ", "_")
                 truncated_concept = concept[:10].replace(" ", "_")
                 truncated_medium = medium[:10].replace(" ", "_")
-
-                 # Generate a title for the image
-                image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
-    
-                filename = f"{image_title}_{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
+                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
                 save_image_locally(image_url, filename, directory)
-                st.image('/'+directory+'/'+filename, caption=f"Generated Image {image_title}")
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
                 
+                # Generate a title for the image
+                image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
+                st.write(f"Image Title: {image_title}")
                 
         for index, row in df_prompts.iterrows():
             prompt = row['Synthesized Prompts']
@@ -1198,13 +1198,14 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
 
                 truncated_medium = medium[:10].replace(" ", "_")
 
+                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
+                save_image_locally(image_url, filename, directory)
+                
+                st.image('/'+directory+'/'+filename, caption=f"Generated Image: {index+1}")   
                 # Generate a title for the image
                 image_title = generate_image_title(st.session_state.input, concept, medium, '/'+directory+'/'+filename, max_retries, temperature, model=model, debug=debug)
-                
-                filename = f"{image_title}_{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
-                
-                save_image_locally(image_url, filename, directory)
-                st.image('/'+directory+'/'+filename, caption=f"Generated Image: {image_title}")           
+                st.write(f"Image Title: {image_title}")
+                     
 
     return df_prompts
 
