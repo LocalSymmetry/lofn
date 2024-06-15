@@ -10,8 +10,8 @@ A future system will generate art based on concept and medium pairs. The concept
 
 ### Medium Examples:
 
-Vintage Steampunk – Medium: "Mixed media with aged metals and clockwork components."
-Modern Minimalism – Medium: "Digital art with clean lines and a monochromatic palette."
-Surrealist Dreamscape – Medium: "Oil painting with melting and distorted forms."
-Futuristic Cyberpunk – Medium: "Neon acrylics with holographic overlays."
-Abstract Expressionism – Medium: "Acrylics with heavy texture and bold colors."
+Vintage Steampunk – Medium: "Sculpted automaton made from reclaimed Victorian machinery, powered by a captured lightning storm."
+Modern Minimalism – Medium: "Laser-etched obsidian monolith with self-illuminating, programmable microscopic LED arrays."
+Surrealist Dreamscape – Medium: "Psycho-reactive paint on genetically engineered, multi-layered canvas, influenced by gravitational waves."
+Futuristic Cyberpunk – Medium: "Bio-nanotech infused graphene circuitry embedded in transparent, self-healing polymer."
+Abstract Expressionism – Medium: "Zero-gravity ferrofluid sculpture manipulated by AI-controlled electromagnetic fields, creating complex forms."
