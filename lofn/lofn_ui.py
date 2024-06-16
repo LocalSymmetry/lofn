@@ -54,6 +54,7 @@ def generate_image_dalle3(prompt):
         response = openai.images.generate(
             model="dall-e-3",
             prompt=prompt,
+            quality="hd",
             size="1024x1024"
         )
         image_url = response.data[0].url
