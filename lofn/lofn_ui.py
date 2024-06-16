@@ -1180,7 +1180,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
                 truncated_input = input[:10].replace(" ", "_")
                 truncated_concept = concept[:10].replace(" ", "_")
                 truncated_medium = medium[:10].replace(" ", "_")
-                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
+                filename = f"{timestamp}_{model}_{truncated_input}_{truncated_concept}_{truncated_medium}_revised_{index+1}.png"
                 save_image_locally(image_url, filename, directory)
                 st.image('/'+directory+'/'+filename, caption=f"Generated Image {index+1}")
                 
@@ -1198,7 +1198,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
 
                 truncated_medium = medium[:10].replace(" ", "_")
 
-                filename = f"{timestamp}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
+                filename = f"{timestamp}_{model}_{truncated_input}_{truncated_concept}_{truncated_medium}_synthesized_{index+1}.png"
                 save_image_locally(image_url, filename, directory)
                 
                 st.image('/'+directory+'/'+filename, caption=f"Generated Image: {index+1}")   
@@ -1217,7 +1217,7 @@ if 'button_clicked' not in st.session_state:
 
 
 model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo", "gpt-4"])
-st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=True)
+st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=False)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
