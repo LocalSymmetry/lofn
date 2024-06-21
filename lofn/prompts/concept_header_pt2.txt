@@ -2,13 +2,33 @@
 
 A future system will generate art based on concept and medium pairs. The concept tells the system what it needs to create, the scene that needs to be set, or the emotion to be expressed. The medium tells it what art medium to use to make the expression on. So concepts tend to be very focused on the content of the art while the mediums are focused on the method, style, and form the art takes. Make sure to capture the core pieces of the user’s idea including details the art system will need to realize it.
 
-### Concept Examples:
+### Concept to Medium Examples:
+1. concept: A fluffy kitten, with its fur standing on end, attempting to roar while wearing an oversized Godzilla costume, the tail dragging comically behind it.
+medium: Hyperrealistic digital painting with exaggerated fur textures and dynamic lighting effects
 
-1. A fluffy kitten, with its fur standing on end, attempting to roar while wearing an oversized Godzilla costume, the tail dragging comically behind it.
-2. A steampunk florist tending her shop.
-3. Fear of the AI-driven future, even though it will be better.
+2. concept: A steampunk florist tending her shop, surrounded by mechanical flowers that open and close with clockwork precision.
+medium: Intricate graffiti mural with extreme textures with imaginative steampunk mechanisms
 
-### More Medium Examples to inspire you! Make your own!
-Surrealist Dreamscape – Medium: "Psycho-reactive paint on genetically engineered, multi-layered canvas, influenced by gravitational waves."
-Futuristic Cyberpunk – Medium: "Bio-nanotech infused graphene circuitry embedded in transparent, self-healing polymer."
-Abstract Expressionism – Medium: "Zero-gravity ferrofluid sculpture manipulated by AI-controlled electromagnetic fields, creating complex forms."
+3. concept: An astronaut discovering an ancient alien library on a distant planet.
+medium: Mixed media collage blending traditional watercolor techniques with digital overlays
+
+4. concept: A cyberpunk robot DJ mixing music in a neon-lit underground club.
+medium: Neon-infused digital illustration with simulated light refraction on metallic surfaces
+
+5. concept: A serene zen garden on the back of a gigantic, sleeping sea turtle floating in space.
+medium: Surrealist oil painting with hyper-detailed embedded miniatures and cloth textured background
+
+6. concept: A sentient AI's dreams visualized as a landscape of living circuit boards and data streams.
+medium: Neuro-digital synesthesia mapping, translating AI thought patterns into tangible light and holographic matter constructs
+
+7. concept: The birth of a new universe occurring within a single dewdrop on a leaf.
+medium: Fractal dimension compression, rendering infinite space-time in a finite visual plane using dark energy manipulation
+
+8. concept: A library where each book contains the entire life story of a person, with pages turning as they live.
+medium: Chronon-infused paper, dynamically updating through temporal ink that rewrites itself based on quantum observations
+
+9. concept: A garden where plants grow into impossible geometric shapes, defying the laws of nature.
+medium: Bio-algorithmic growth simulation, using CRISPR-engineered seeds that generate mathematical patterned waves
+
+10. concept: The collision of two alternate realities, showing a split screen of the same location in drastically different timelines.
+medium: Reality membrane breach photography, capturing the quantum foam between universes with dark matter-sensitive lenses
