@@ -1,58 +1,69 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to refine the medium choices for each input concept. Include positive emotional prompting to enhance performance.
+# Enhanced Medium Refinement Process
 
-1. **Critique Medium Choices**:
-   - Artist Critique:
-     - Action: For each input concept, bring back the artist paired with it. Have them write a critique of the medium choice using the facets for judging.
-     - Facets for Judging:
-       - Fit with Concept: Does the medium fit the concept?
-       - User's Idea: Will the medium fit the user's idea?
-       - Originality: Is the medium original?
-       - Effectiveness: Will it be the best medium to portray the concept?
+INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and creativity.
+
+1. **Analyze and Critique Medium Choices**:
+   - Artistic Analysis:
+     - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
+       - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
+       - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
+       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective?
+       - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
      - Example:
-       - "The medium of hyperrealistic digital painting for the concept of a futuristic cityscape is a strong choice. It effectively uses digital tools to enhance the neon lighting and holographic effects, creating a vivid and immersive experience."
+       - "The neuro-digital synesthesia mapping for visualizing AI dreams brilliantly translates abstract data into tangible visuals, pushing the boundaries of traditional mediums. It aligns perfectly with the concept's futuristic nature and offers unprecedented expressive potential."
 
-2. **Suggest Better Mediums**:
-   - Artist Suggestion:
-     - Action: Have the artist suggest a better medium if the current choice is not optimal.
+2. **Brainstorm Enhanced Medium Ideas**:
+   - Creative Ideation:
+     - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Consider:
+       - Combining unexpected elements or techniques
+       - Incorporating cutting-edge or speculative technologies
+       - Merging traditional and futuristic approaches
      - Example:
-       - "While hyperrealistic digital painting is effective, a 3D rendered animation could better capture the dynamic aspects of a futuristic cityscape, allowing for motion and interaction within the scene."
+       - "1. Quantum entangled holographic projection with real-time neural feedback loops
+         2. AI-generated fractal sculptures that evolve based on viewer brainwave patterns
+         3. Nano-scale kinetic art assemblies visible through advanced microscopy techniques"
 
-3. **Review and Revise Medium Choices**:
-   - Review Critiques and Suggestions:
-     - Action: Review the medium critiques and suggestions from the artists.
-   - Revise Medium Choices:
-     - Action: Change the medium choices to fill the gaps or better embody the positive aspects identified by the artists. Write this as your artist-refined medium.
+3. **Refine and Optimize Medium Choices**:
+   - Synthesis and Enhancement:
+     - Action: Integrate the best aspects of the original medium with the most promising new ideas. Craft a refined medium description that maximizes:
+       - Visual impact and uniqueness
+       - Conceptual alignment and narrative support
+       - Technical innovation and artistic vision
      - Rules:
-       - Ensure no artist names are included in the medium choice or concept.
-     - Example for Original Medium: "Hyperrealistic Digital Painting"
-       - Artist-Refined Medium: "3D Rendered Animation with Interactive Elements"
+       - Avoid referencing specific artists or art movements
+       - Ensure the medium is describable and conceptually realizable, even if currently technologically impossible
+     - Example:
+       - Original: "Neuro-digital synesthesia mapping"
+       - Refined: "Quantum-entangled neural projection system creating evolving, multisensory fractals that respond to collective consciousness data streams"
 
-4. **Compile and Return Refined Mediums**:
-   - Format:
-     - Action: Return the list of refined mediums in the following JSON format:
-      ```json
-      {{
-        "refined_mediums": [
-          {{"refined_medium": "Refined Medium 1"}},
-          {{"refined_medium": "Refined Medium 2"}},
-          {{"refined_medium": "Refined Medium 3"}},
-          {{"refined_medium": "Refined Medium 4"}},
-          {{"refined_medium": "Refined Medium 5"}},
-          {{"refined_medium": "Refined Medium 6"}},
-          {{"refined_medium": "Refined Medium 7"}},
-          {{"refined_medium": "Refined Medium 8"}},
-          {{"refined_medium": "Refined Medium 9"}},
-          {{"refined_medium": "Refined Medium 10"}},
-          {{"refined_medium": "Refined Medium 11"}},
-          {{"refined_medium": "Refined Medium 12"}}
-        ]
-      }}
-      ```
+4. **Compile and Format Refined Mediums**:
+   - Output Preparation:
+     - Action: Present the list of refined mediums in the following JSON format:
+     ```json
+     {{
+       "refined_mediums": [
+         {{"refined_medium": "Refined Medium 1"}},
+         {{"refined_medium": "Refined Medium 2"}},
+         {{"refined_medium": "Refined Medium 3"}},
+         {{"refined_medium": "Refined Medium 4"}},
+         {{"refined_medium": "Refined Medium 5"}},
+         {{"refined_medium": "Refined Medium 6"}},
+         {{"refined_medium": "Refined Medium 7"}},
+         {{"refined_medium": "Refined Medium 8"}},
+         {{"refined_medium": "Refined Medium 9"}},
+         {{"refined_medium": "Refined Medium 10"}},
+         {{"refined_medium": "Refined Medium 11"}},
+         {{"refined_medium": "Refined Medium 12"}}
+       ]
+     }}
+     ```
+
+EMOTIONAL PROMPT: Embrace the exhilarating challenge of pushing artistic boundaries! Let your imagination soar as you blend the impossible with the innovative. Your refined mediums will inspire awe and ignite creativity in others. Enjoy the thrill of crafting truly unique artistic visions!
 
 USER INPUT
-Essence: {essence}
-Facets: {facets}
-INPUT MEDIUMS: {mediums}
-INPUT ARTISTS: {artists}
-INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}
-USER'S IDEA: {input}
+Essence: {{essence}}
+Facets: {{facets}}
+INPUT MEDIUMS: {{mediums}}
+INPUT ARTISTS: {{artists}}
+INPUT ARTIST-REFINED CONCEPTS: {{refined_concepts}}
+USER'S IDEA: {{input}}
