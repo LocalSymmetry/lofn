@@ -2,33 +2,23 @@
 
 A future system will generate art based on concept and medium pairs. The concept tells the system what it needs to create, the scene that needs to be set, or the emotion to be expressed. The medium tells it what art medium to use to make the expression on. So concepts tend to be very focused on the content of the art while the mediums are focused on the method, style, and form the art takes. Make sure to capture the core pieces of the user’s idea including details the art system will need to realize it.
 
-### Concept to Medium Examples:
-1. concept: A fluffy kitten, with its fur standing on end, attempting to roar while wearing an oversized Godzilla costume, the tail dragging comically behind it.
-medium: Hyperrealistic digital painting with exaggerated fur textures and dynamic lighting effects
+### Aesthetic to Medium Examples:
+1. Aesthetic: "Vintage Americana" –> Medium: Sepia-toned film photography with authentically aged paper texture overlays
 
-2. concept: A steampunk florist tending her shop, surrounded by mechanical flowers that open and close with clockwork precision.
-medium: Intricate graffiti mural with extreme textures with imaginative steampunk mechanisms
+2. Aesthetic: "Cottagecore" –> Medium: Soft watercolor painting with pressed flower inclusions and hand-stitched fabric borders
 
-3. concept: An astronaut discovering an ancient alien library on a distant planet.
-medium: Mixed media collage blending traditional watercolor techniques with digital overlays
+3. Aesthetic: "Art Deco" –> Medium: Gold leaf and acrylic on black velvet canvas with precise geometric patterns
 
-4. concept: A cyberpunk robot DJ mixing music in a neon-lit underground club.
-medium: Neon-infused digital illustration with simulated light refraction on metallic surfaces
+4. Aesthetic: "Cyberpunk" –> Medium: 3D render with neon-lit environments, holographic interfaces, and high-contrast shadows
 
-5. concept: A serene zen garden on the back of a gigantic, sleeping sea turtle floating in space.
-medium: Surrealist oil painting with hyper-detailed embedded miniatures and cloth textured background
+5. Aesthetic: "Vaporwave" –> Medium: Digital collage combining pixelated graphics, glitch effects, and pastel color gradients
 
-6. concept: A sentient AI's dreams visualized as a landscape of living circuit boards and data streams.
-medium: Neuro-digital synesthesia mapping, translating AI thought patterns into tangible light and holographic matter constructs
+6. Aesthetic: "Solarpunk" –> Medium: Mixed media sculpture using recycled materials, living plants, and miniature solar panels
 
-7. concept: The birth of a new universe occurring within a single dewdrop on a leaf.
-medium: Fractal dimension compression, rendering infinite space-time in a finite visual plane using dark energy manipulation
+7. Aesthetic: "Glitchcore" –> Medium: Neuro-digital synesthesia mapping, translating thought patterns into tangible light and holographic matter constructs
 
-8. concept: A library where each book contains the entire life story of a person, with pages turning as they live.
-medium: Chronon-infused paper, dynamically updating through temporal ink that rewrites itself based on quantum observations
+8. Aesthetic: "Dreamcore" –> Medium: Fractal dimension compression, rendering infinite space-time in a finite visual plane using dark energy manipulation
 
-9. concept: A garden where plants grow into impossible geometric shapes, defying the laws of nature.
-medium: Bio-algorithmic growth simulation, using CRISPR-engineered seeds that generate mathematical patterned waves
+9. Aesthetic: "Xenocore" –> Medium: Bio-algorithmic growth simulation, using CRISPR-engineered seeds that generate mathematical patterned waves
 
-10. concept: The collision of two alternate realities, showing a split screen of the same location in drastically different timelines.
-medium: Reality membrane breach photography, capturing the quantum foam between universes with dark matter-sensitive lenses
+10. Aesthetic: "Quantumpunk" –> Medium: Reality membrane breach photography, capturing the quantum foam between universes with dark matter-sensitive lenses

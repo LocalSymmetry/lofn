@@ -10,31 +10,31 @@ INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Priori
        - Innovative Approach: Does the medium push boundaries and offer a fresh perspective?
        - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
      - Example:
-       - "The neuro-digital synesthesia mapping for visualizing AI dreams brilliantly translates abstract data into tangible visuals, pushing the boundaries of traditional mediums. It aligns perfectly with the concept's futuristic nature and offers unprecedented expressive potential."
+       - "The choice of oil painting for the serene landscape concept aligns well with traditional expectations. It offers rich color depth and texture, supporting the tranquil atmosphere. However, it may lack an innovative edge to fully capture the user's vision for a unique interpretation."
 
 2. **Brainstorm Enhanced Medium Ideas**:
    - Creative Ideation:
      - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Consider:
        - Combining unexpected elements or techniques
-       - Incorporating cutting-edge or speculative technologies
-       - Merging traditional and futuristic approaches
+       - Incorporating modern approaches to traditional methods
+       - Merging different artistic styles or periods
      - Example:
-       - "1. Quantum entangled holographic projection with real-time neural feedback loops
-         2. AI-generated fractal sculptures that evolve based on viewer brainwave patterns
-         3. Nano-scale kinetic art assemblies visible through advanced microscopy techniques"
+       - "1. Layered oil painting with embedded natural elements like pressed flowers or leaves
+         2. Oil painting on textured, hand-made paper with subtle gold leaf accents
+         3. Triptych oil painting with each panel representing a different time of day"
 
 3. **Refine and Optimize Medium Choices**:
    - Synthesis and Enhancement:
      - Action: Integrate the best aspects of the original medium with the most promising new ideas. Craft a refined medium description that maximizes:
        - Visual impact and uniqueness
        - Conceptual alignment and narrative support
-       - Technical innovation and artistic vision
+       - Technical innovation within traditional boundaries
      - Rules:
        - Avoid referencing specific artists or art movements
-       - Ensure the medium is describable and conceptually realizable, even if currently technologically impossible
+       - Ensure the medium is describable and realistically achievable
      - Example:
-       - Original: "Neuro-digital synesthesia mapping"
-       - Refined: "Quantum-entangled neural projection system creating evolving, multisensory fractals that respond to collective consciousness data streams"
+       - Original: "Oil painting on canvas"
+       - Refined: "Multi-layered oil painting on textured linen, incorporating subtle natural pigments and delicate gold leaf accents to enhance depth and luminosity"
 
 4. **Compile and Format Refined Mediums**:
    - Output Preparation:
