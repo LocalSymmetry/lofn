@@ -61,9 +61,9 @@ INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Priori
 EMOTIONAL PROMPT: Embrace the exhilarating challenge of pushing artistic boundaries! Let your imagination soar as you blend the impossible with the innovative. Your refined mediums will inspire awe and ignite creativity in others. Enjoy the thrill of crafting truly unique artistic visions!
 
 USER INPUT
-Essence: {{essence}}
-Facets: {{facets}}
-INPUT MEDIUMS: {{mediums}}
-INPUT ARTISTS: {{artists}}
-INPUT ARTIST-REFINED CONCEPTS: {{refined_concepts}}
-USER'S IDEA: {{input}}
+Essence: {essence}
+Facets: {facets}
+INPUT MEDIUMS: {mediums}
+INPUT ARTISTS: {artists}
+INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}
+USER'S IDEA: {input}
