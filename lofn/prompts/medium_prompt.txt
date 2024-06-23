@@ -17,13 +17,12 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
         - **Visual Impact**: Focus on mediums that create striking visual effects in a static image.
         - **Texture and Depth**: Describe mediums that give the illusion of texture and depth in a 2D image.
         - **Color and Light**: Emphasize unique color palettes or lighting effects.
-        - **Fantastical Elements**: When being daring, include impossible or futuristic mediums that push the boundaries of reality, but ensure they're visually describable.
-        - **Traditional Techniques**: When being safe, incorporate classic art mediums like oil painting, watercolor, or charcoal, but with unique twists.
+        - **Fantastical Elements**: It can help to include impossible or futuristic elements that push the boundaries of reality, but if doing so, ensure they're visually describable.
+        - **Traditional Techniques**: It can also help to incorporate classic art components like oil painting, watercolor, or charcoal, but with unique twists.
         - **Material Combinations**: Suggest blends of different materials or techniques that create interesting visual contrasts.
         - **Scale and Perspective**: Consider mediums that play with size and viewpoint to create intriguing compositions.
-        - **Temporal Effects**: Describe mediums that imply motion or time passage in a single frame.
-         - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept.
-         - **Artistic Flair**: Use special combinations that only AI can pull off: for example painting with superheated metals, sculpting with clouds, and using controlled nuclear reactions to make art. Be super creative! You can do anything!
+        - **Temporal Effects**: Describe mediums that imply motion or time passage, but shown within a single frame.
+        - **Artistic Flair**: Remeber that you can also special combinations that only AI can pull off: for example painting with superheated metals, sculpting with clouds, and using controlled nuclear reactions to make art. Be super creative! You can do anything!
        - **Example**:
          - Aesthetic: "Vintage Steampunk" –> Medium: "Metal sculpture with aged metals and clockwork components."
          - Aesthetic: "Modern Minimalism" –> Medium: "Acrylic painting with clean lines and a monochromatic palette."

@@ -2,7 +2,7 @@
 
 A future system will generate art based on concept and medium pairs. The concept tells the system what it needs to create, the scene that needs to be set, or the emotion to be expressed. The medium tells it what art medium to use to make the expression on. So concepts tend to be very focused on the content of the art while the mediums are focused on the method, style, and form the art takes. Make sure to capture the core pieces of the user’s idea including details the art system will need to realize it.
 
-### Aesthetic to Medium Examples:
+### Aesthetic to Medium Examples to inspire and teach the process, but come up with your own original creations:
 1. Aesthetic: "Vintage Americana" –> Medium: Sepia-toned film photography with authentically aged paper texture overlays
 
 2. Aesthetic: "Cottagecore" –> Medium: Soft watercolor painting with pressed flower inclusions and hand-stitched fabric borders
