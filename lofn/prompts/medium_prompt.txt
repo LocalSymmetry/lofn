@@ -8,11 +8,11 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
 
 1. **Select Relevant Aesthetics**:
    - Using the aesthetic list, select the top 12 most relevant aesthetics to the user's idea and essence and the 12 least relevant aesthetics to the user's idea.
-       - **Action**: List the names of these 24 total aesthetics.
+       - **Action**: List the names of these 15 total aesthetics.
 
 2. **Generate Art Mediums**:
-   - Based on the selected aesthetics, generate a list of 24 art distinct mediums that correspond to the aesthetics that will be striking when rendered using DALL-E 3, Midjourney, or another diffusion model.
-       - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique.
+   - Based on the selected aesthetics, generate a list of 15 art distinct mediums that correspond to the aesthetics that will be striking when rendered using DALL-E 3, Midjourney, or another diffusion model.
+       - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique from the others and from the examples in this prompt.
        - **Factors to Consider**:
         - **Visual Impact**: Focus on mediums that create striking visual effects in a static image.
         - **Texture and Depth**: Describe mediums that give the illusion of texture and depth in a 2D image.
@@ -32,7 +32,7 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
        - **Action**: Choose a medium for each concept, generating 12 mediums in total.
        - **Factors to Consider**:
         - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept. 
-        - **Innovative Combinations**: When being more bold, experiment with combining disparate concepts and mediums to achieve unique effects.
+        - **Innovative Combinations**: Try to provide interesting combinations between concepts and generated mediums.
        - **Risk-Taking Strategy**: Start with safe and common mediums, but progressively choose more risky, daring, unique, bold, and even impossible mediums for the last two concepts.
        - **Avoid Artist Names**: Do not include artist names in the medium choice or concept.
 

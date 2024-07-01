@@ -7,7 +7,7 @@ INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Priori
      - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
        - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
        - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
-       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective?
+       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a creative challenge for the concept?
        - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
      - Example:
        - "The choice of oil painting for the serene landscape concept aligns well with traditional expectations. It offers rich color depth and texture, supporting the tranquil atmosphere. However, it may lack an innovative edge to fully capture the user's vision for a unique interpretation."
@@ -28,12 +28,12 @@ INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Priori
      - Action: Integrate the best aspects of the original medium with the most promising new ideas. Craft a refined medium description that maximizes:
        - Visual impact and uniqueness
        - Conceptual alignment and narrative support
-       - Technical innovation within traditional boundaries
+       - Technical innovation within traditional boundaries of DALL-E 3 or other image generators.
      - Rules:
-       - Avoid referencing specific artists or art movements
-       - Ensure the medium is describable and realistically achievable
+       - Avoid referencing specific artists
+       - Ensure the medium is describable and realistically achievable by an image generator
      - Example:
-       - Original: "Oil painting on canvas"
+       - Original: "Oil painting on canvas with natural pigments"
        - Refined: "Multi-layered oil painting on textured linen, incorporating subtle natural pigments and delicate gold leaf accents to enhance depth and luminosity"
 
 4. **Compile and Format Refined Mediums**:

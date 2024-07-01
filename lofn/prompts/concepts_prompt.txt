@@ -5,9 +5,9 @@ Let's make our first 12 attempts at a concept. Follow these steps to come up wit
 1. **Diverse Interpretations and Facts**:
    1.1 **List Different Interpretations**: Identify 7 different ways to interpret the user's idea and essence.
        - Action: Write down each interpretation as a brief statement.
-   1.2 **Historic Facts**: Find 7 historical facts most related to the user's idea and essence.
+   1.2 **Historic Facts**: Find 6 historical facts most related to the user's idea and essence.
        - Action: Write each fact as a short sentence.
-   1.3 **Obscure Facts**: Gather 7 obscure facts about the user's idea and essence that might help create a winning concept.
+   1.3 **Obscure Facts**: Gather 8 obscure facts about the user's idea and essence that might help create a winning concept.
        - Action: List these facts concisely.
    1.4 **Mind Mapping**:
        - Action 1: Start with a central idea in the middle of a text document.
