@@ -526,7 +526,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None):
         st.write("Max retries reached. Exiting.")
     return str(output)
 
-@st.cache_data(persist=True, experimental_allow_widgets=True)
+@st.cache_data(persist=True)
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, verbose=False, debug=False):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
@@ -775,7 +775,7 @@ def generate_concept_mediums_manual(input, max_retries, temperature, model = "gp
         send_concepts_to_discord(input, concept_mediums)
         return concept_mediums
 
-@st.cache_data(persist=True, experimental_allow_widgets=True)
+@st.cache_data(persist=True)
 def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
     # Initialize session state variables
     for key in [
@@ -1042,7 +1042,7 @@ def generate_prompts_manual(input, concept, medium, max_retries, temperature, mo
 
      
 
-@st.cache_data(persist=True, experimental_allow_widgets=True)
+@st.cache_data(persist=True)
 def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
     # Initialize session state variables
     for key in [
