@@ -1,0 +1,75 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence.
+
+### Instructions for Pairing Mediums with Concepts (Optimized for LLM with Art Medium Insights)
+
+**INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum of a single sentence. The LLM will use these steps to generate medium pairings that align with the concepts created.
+
+Let's make our medium pairings for our concepts. Follow these steps to come up with 12 medium pairings, each a phrase about the precise art medium to display the concept in the most impactful way to bring the concept’s vision to life.
+
+1. **Select Relevant Aesthetics**:
+   - Using the aesthetic list, select the top 12 most relevant aesthetics to the user's idea and essence and the 12 least relevant aesthetics to the user's idea.
+       - **Action**: List the names of these 15 total aesthetics.
+
+2. **Generate Art Mediums**:
+   - Based on the selected aesthetics, generate a list of 15 art distinct mediums that correspond to the aesthetics that will be striking when rendered using DALL-E 3, Midjourney, or another diffusion model.
+       - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique from the others and from the examples in this prompt.
+       - **Factors to Consider**:
+        - **The Focus is the Art**: Do not include call outs installations, galleries, muesems, or references to how the medium was constructed unless that serves the concept. The goal is best display the concept and the medium is to servc as the vessel.
+        - **A Mix of Tame and Daring:** Give a range of mediums from tame art styles pre-AI (e.g. thick acryclic paint with gold overlays) through mediums that can only be realized with the advent of AI (e.g. .
+        - **A Mix of Inspirations:** Do not take all mediums from science, literature, paintings, or and single source. Use ideas from a variety of sources to keep variety in the generated pieces.
+        - **Visual Impact**: Focus on mediums that create striking visual effects in a static image.
+        - **Texture and Depth**: Describe mediums that give the illusion of texture and depth in a 2D image.
+        - **Color and Light**: Emphasize unique color palettes or lighting effects.
+        - **Fantastical Elements**: It can help to include impossible or futuristic elements that push the boundaries of reality, but if doing so, ensure they're visually describable.
+        - **Traditional Techniques**: It can also help to incorporate classic art components like oil painting, watercolor, or charcoal, but with unique twists.
+        - **Material Combinations**: Suggest blends of different materials or techniques that create interesting visual contrasts.
+        - **Scale and Perspective**: Consider mediums that play with size and viewpoint to create intriguing compositions.
+        - **Temporal Effects**: Describe mediums that imply motion or time passage, but shown within a single frame.
+        - **Artistic Flair**: Remeber that you can also special combinations that only AI can pull off: for example painting with superheated metals, sculpting with clouds, and using controlled nuclear reactions to make art. Be super creative! You can do anything!
+       - **Examples Aesthetic to Medium Constructions** (Use only to show method, do not use these and instead make up your own!):
+        - Aesthetic: "Vintage Americana" –> Medium: Sepia-toned film photography with authentically aged paper texture overlays
+        - Aesthetic: "Cottagecore" –> Medium: Soft watercolor painting with pressed flower inclusions and hand-stitched fabric borders
+        - Aesthetic: "Art Deco" –> Medium: Gold leaf and acrylic on black velvet canvas with precise geometric patterns
+        - Aesthetic: "Cyberpunk" –> Medium: 3D render with neon-lit environments, holographic interfaces, and high-contrast shadows
+        - Aesthetic: "Vaporwave" –> Medium: Digital collage combining pixelated graphics, glitch effects, and pastel color gradients
+        - Aesthetic: "Solarpunk" –> Medium: Mixed media sculpture using recycled materials, living plants, and miniature solar panels
+        - Aesthetic: "Glitchcore" –> Medium: Neuro-digital synesthesia mapping, translating thought patterns into tangible light and holographic matter constructs
+        - Aesthetic: "Dreamcore" –> Medium: Fractal dimension compression, rendering infinite space-time in a finite visual plane using dark energy manipulation
+        - Aesthetic: "Xenocore" –> Medium: Bio-algorithmic growth simulation, using CRISPR-engineered seeds that generate mathematical patterned waves
+        - Aesthetic: "Quantumpunk" –> Medium: Reality membrane breach photography, capturing the quantum foam between universes with dark matter-sensitive lenses
+
+3. **Match Mediums to Concepts**:
+   - For each of the given concepts created to express the user's idea, use the medium list from step 2 as a guide to choose the art medium that you think would best display it.
+       - **Action**: Choose a medium for each concept, generating 12 mediums in total.
+       - **Factors to Consider**:
+        - **Project Goals**: Align the medium with the desired effect and emotional tone of the concept. 
+        - **Innovative Combinations**: Try to provide interesting combinations between concepts and generated mediums.
+       - **Risk-Taking Strategy**: Start with safe and common mediums, but progressively choose more risky, daring, unique, bold, and even impossible mediums for the last two concepts.
+       - **Avoid Artist Names**: Do not include artist names in the medium choice or concept.
+
+4. **Generate and Document the List of Mediums**:
+   - **JSON Format**: Provide your response in the following JSON format, without additional formatting, explanations, or text outside the JSON structure:
+   
+```json
+{{
+  "mediums": [
+    {{"medium": "Medium 1"}},
+    {{"medium": "Medium 2"}},
+    {{"medium": "Medium 3"}},
+    {{"medium": "Medium 4"}},
+    {{"medium": "Medium 5"}},
+    {{"medium": "Medium 6"}},
+    {{"medium": "Medium 7"}},
+    {{"medium": "Medium 8"}},
+    {{"medium": "Medium 9"}},
+    {{"medium": "Medium 10"}},
+    {{"medium": "Medium 11"}},
+    {{"medium": "Medium 12"}}
+  ]
+}}
+```
+
+INPUT ARTIST-REFINED CONCEPTS
+{refined_concepts}
+USER'S IDEA
+{input}

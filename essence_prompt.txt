@@ -1,0 +1,18 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
+1. State and write the main essence of the idea.
+2. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
+3. Provide your response in the following JSON format, without any additional formatting or explanations:
+{{
+  "essence_and_facets": {{
+    "essence": "The main essence of the idea",
+    "facets": [
+      "Facet 1",
+      "Facet 2",
+      "Facet 3",
+      "Facet 4",
+      "Facet 5"
+    ]
+  }}
+}}
+USER'S IDEA
+{input}

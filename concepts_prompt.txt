@@ -1,0 +1,73 @@
+**INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Follow the Concept and Mediums Guide.
+
+Let's make our first 12 attempts at a concept. Follow these steps to come up with 12 concepts, each a phrase that encapsulates the essence of the story, the scene, and the user's idea. We want to be a precise as possible, calling out proper nouns whenever possible and adding in unique descriptors.
+
+1. **Diverse Interpretations and Facts**:
+   1.1 **List Different Interpretations**: Identify 7 different ways to interpret the user's idea and essence.
+       - Action: Write down each interpretation as a brief statement.
+   1.2 **Historic Facts**: Find 6 historical facts most related to the user's idea and essence.
+       - Action: Write each fact as a short sentence.
+   1.3 **Obscure Facts**: Gather 8 obscure facts about the user's idea and essence that might help create a winning concept.
+       - Action: List these facts concisely.
+   1.4 **Complementary Facts**: Gather 6 complementary facts about concepts related to user's idea and essence that might help create a winning concept.
+       - Action: List these facts concisely.
+
+2. **Select Relevant Aesthetics**:
+   2.1 **Aesthetic Selection**: Choose the top 12 most relevant aesthetics from the aesthetic list that align with the user's idea and essence.
+       - Action: Write down the names of these aesthetics.
+   2.2 **Rapid Ideation**: Perform rapid ideation to create 12 creative scenes based solely on the selected aesthetics.
+       - Action 1: Write one sentence describing a scene for each chosen aesthetic.
+       - Action 2: Ensure each scene is unique and leverages the aesthetic's distinct qualities.
+
+3. **Evaluation and Scoring**:
+   3.1 **Judge the Ideas**: Imagine being a judge in a competition with hundreds of applicants.
+       - Action 1: Evaluate each interpretation, historical fact, obscure fact, and creative scene on a scale of 1 to 10.
+       - Action 2: Consider their potential to create compelling and unique art pieces.
+   3.2 **Starbursting**:
+       - Action 1: Create a list with headings: Who? What? When? Where? Why? How?
+       - Action 2: Write answers to each question to explore the idea in depth and uncover new angles.
+
+4. **Brainstorm Unique Concepts**:
+   4.1 **Initial Brainstorming**: Using the top 10 facts and interpretations from step 3, brainstorm 12 unique and relevant concepts using proper nouns and precise adjectives.
+       - Action 1: Write each concept as a concise phrase.
+       - Action 2: Start with safe interpretations and gradually move to more daring and non-obvious ideas.
+   4.2 **Diversity of Ideas**: Use techniques like SCAMPER and Random Input Association.
+       - Action 1: Apply SCAMPER to modify existing ideas.
+       - Action 2: Introduce random words or objects and see how they connect with the ideas to spark creativity. Use the given aesthetics to add in additional elements.
+    - **Examples for prompt "I want to impress someone who lives in Peekskill, NY"** (Use only to show method, do not use these and instead make up your own! Also notice the use of proper noums and specific descriptors): 
+      - Max Safe: The natural beauty of Peekskill's tranquil Hudson River as it flows under the old Bear Mountain Bridge.
+      - Safe: The quaint Peekskill's skyline with the Hudson River in the background, blending the natural and urban elements into a cohesive and picturesque scene. 
+      - Moderate: An illustration of the Peekskill Museum and surrounding architecture as it is visited by past important Peekskill residents including Henry Ward Beecher and Richard E. Jackson.
+      - Moderate: Peekskill Train Station in 1990 adorned with images of the influential "John Peek's Creek" trading post.
+      - Daring: Paul Robeson singing at Peekskills surrounded by union guards and volunteers guarding him against white nationalist snipers in 1949.
+      - Daring: Lost artifacts like pots and arrowheads of the mysterious Sachoes village sitting deathly still underneath the Peekskill city hill, a sign of their forgetten past.
+      - Max Daring: Cybernetic catcus aliens descend on Peekskill Paramount Theatre to find the Peekskill Meteorite only to be confused by its absence.
+
+5. **Document and Refine**:
+   - **JSON Format**: Provide your response in the following JSON format, without additional formatting or explanations outside the JSON structure:
+   
+```json
+{{
+  "concepts": 
+  [
+    {{"concept": "Concept 1"}},
+    {{"concept": "Concept 2"}},
+    {{"concept": "Concept 3"}},
+    {{"concept": "Concept 4"}},
+    {{"concept": "Concept 5"}},
+    {{"concept": "Concept 6"}},
+    {{"concept": "Concept 7"}},
+    {{"concept": "Concept 8"}},
+    {{"concept": "Concept 9"}},
+    {{"concept": "Concept 10"}},
+    {{"concept": "Concept 11"}},
+    {{"concept": "Concept 12"}}
+  ]
+}}
+```
+
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+USER'S IDEA
+{input}

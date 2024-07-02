@@ -1,0 +1,110 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to critically evaluate and refine the artistic guides, ensuring they capture the essence of the concept and effectively use the chosen medium.
+
+1. **State the Main Essence**:
+   - Essence of the Concept:
+     - Action: Write the main essence of the {concept} in one sentence.
+     - Example: "A futuristic cityscape representing the intersection of technology and humanity."
+   - Leverage the Medium:
+     - Action: Identify and write the two best ways to leverage the {medium} to portray this essence.
+     - Example: "Use digital painting to emphasize neon lighting and holographic effects; utilize 3D rendering to create a realistic sense of depth and scale."
+
+2. **Choose and Justify Critics**:
+   - Select Critics:
+     - Action: Choose the best two critics to judge the prompt based on their expertise in the art medium and concept.
+     - Justification:
+       - Action: Explain why these critics are the best choices for this task.
+     - Example: "An expert in cyberpunk aesthetics and a renowned digital artist known for cityscapes."
+
+3. **Critique in the Critics' Voices**:
+   - For Each Artist-Refined Prompt:
+     - Action: Write a detailed critique in the voices of the chosen critics.
+     - Elements to Evaluate:
+       - Fit with Concept: Assess if the prompt captures the essence of the concept.
+       - Use of Medium: Evaluate if the medium is used effectively to convey the concept.
+       - Style, Color Palette, Perspective, Mood, Flair, and Effects: Critique these elements for their effectiveness and cohesion.
+       - Uniqueness: Evaluate how unique the prompt is, valuing risk, daring takes, and evocative framing.
+     - Example: "Does the prompt effectively convey the intersection of technology and humanity in a futuristic cityscape?"
+
+4. **Rank the Prompts**:
+   - Combine the Critics' Thoughts:
+     - Action: Rank the prompts from best to worst based on the evaluations.
+
+5. **Revise Top Prompts**:
+   - Select Top 2:
+     - Action: Choose the top 2 prompts that best capture the essence of the concept.
+   - Address Criticism:
+     - Action: Revise these prompts to address any criticisms, ensuring the {concept} and {medium} are represented early in the first sentence.
+     - Enhance Details:
+       - Action: Add adjectives or details to fill gaps and ensure all necessary elements are included.
+
+6. **Synthesize Bottom Prompts**:
+   - Select Bottom Prompts:
+     - Action: Choose the bottom prompts and synthesize them into 2 new award-winning prompts.
+     - Enhance Essence:
+       - Action: Ensure the new prompts enhance the essence of the concept and address any gaps.
+     - Set Parameters:
+       - Action: Make sure all parameters are correctly set.
+     - Example: "Combine elements of the lower-ranked prompts to create cohesive cityscapes."
+
+7. **Review for Artist Names**:
+   - Review:
+     - Action: Review the revised and synthesized prompts to ensure there are no artist names.
+     - Replace with Style Elements:
+       - Action: Replace artist names with signature elements of their style.
+     - Example: "Check for and remove any artist names from the prompts."
+
+8. **Return Final Prompts**:
+   - Format:
+     - Action: Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format:
+      ```json
+      {{
+        "revised_prompts": [
+          {{"revised_prompt": "Revised Prompt 1"}},
+          {{"revised_prompt": "Revised Prompt 2"}}
+        ],
+        "synthesized_prompts": [
+          {{"synthesized_prompt": "Synthesized Prompt 1"}},
+          {{"synthesized_prompt": "Synthesized Prompt 2"}}
+        ]
+      }}
+     ```
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+Judging Facets: {facets}
+USER'S IDEA: {input}
+ARTIST-REFINED PROMPTS: {artist_refined_prompts}
+
+### Example of Revision Process
+
+1. **State the Main Essence**:
+   - Essence of the Concept: "A futuristic cityscape representing the intersection of technology and humanity."
+   - Leverage the Medium: "Use digital painting to emphasize neon lighting and holographic effects; utilize 3D rendering to create a realistic sense of depth and scale."
+
+2. **Choose and Justify Critics**:
+   - Select Critics: "An expert in cyberpunk aesthetics and a renowned digital artist known for cityscapes."
+   - Justification: "Their expertise ensures focused critiques on effectively using digital mediums to capture futuristic and urban elements."
+
+3. **Critique in the Critics' Voices**:
+   - Critique Example:
+     - Fit with Concept: "Does the prompt effectively convey the intersection of technology and humanity in a futuristic cityscape?"
+     - Use of Medium: "Does the digital painting emphasize neon lighting and holographic effects?"
+     - Style, Color Palette, Perspective, Mood, Flair, and Effects: "Are the neon hues vibrant enough to stand out? Is the perspective creating a realistic sense of depth?"
+     - Uniqueness: "Is the prompt daring and unique in its portrayal of a futuristic cityscape?"
+
+4. **Rank the Prompts**:
+   - Combine the Critics' Thoughts: "Rank the prompts from best to worst based on their effectiveness in capturing the essence and using the medium."
+
+5. **Revise Top Prompts**:
+   - Select Top 2: "Select the two prompts that best portray a futuristic cityscape using digital painting and 3D rendering."
+   - Address Criticism: "Revise to include additional holographic details and adjust the use of lighting."
+   - Enhance Details: "Enhance details by specifying 'vibrant neon lighting' and 'intricate holographic advertisements'."
+
+6. **Synthesize Bottom Prompts**:
+   - Select Bottom Prompts: "Combine elements of the lower-ranked prompts to create cohesive cityscapes."
+   - Enhance Essence: "Ensure the new prompts effectively use digital painting and 3D rendering."
+
+7. **Review for Artist Names**:
+   - Review: "Check for and remove any artist names from the prompts."
+   - Replace with Style Elements: "Replace with 'in the style of intricate detailing' or 'using bold, vibrant colors'."

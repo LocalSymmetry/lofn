@@ -1,0 +1,82 @@
+I want to take part in an AI art competition, and I want you to help me win. Please take on the role of a viral art expert and social media guru. The competition will give a prompt and we will be allowed to submit a single digital AI generated image. It will be judged in a public vote by the other applicants. These will be AI artists themselves, and so impressing them is the goal.
+
+I have a system called Lofn that will generate 40 different high quality image generation takes on a theme. It does this by generating 10 concept medium pairs where the concept is the content of the art and the medium is the art format. From there it generates prompts setting aesthetic, style, lighting, placement, etc. It is built as a tree of thoughts art system, built on top of calls to you.
+
+Below are examples of this system’s input that was particularly successful.
+
+```lofn
+I want to take part in an AI art competition, and I want you to help me win. Below I will give a theme, guidance for the medium construction, guidance for the concept construction, and guidance for the prompt construction. You are responsible for determining explicit details when given generic guidance. That is, if the concept guidance tells you to depict a car, it is up to you to determine the exact type, e.g. a 2024 Hyundai Santa Fe, and to provide a few descriptors of pieces of the object during prompt generation so the object or concept is fully generated, e.g. “the gleaming platinum-sheen chrome hubcaps and glossy red paint adorned with blue-violet flames”. Make as many of these choices as possible to fill up as many details on the concept and prompt as possible while meeting the user's request.
+
+THEME: Radiate Brilliance  - Competition for “Drag Queens”
+MEDIUM GUIDANCE: Use obscure and unique photography mediums that show LED silhouettes well in digital images and can uniquely express glorious and vibrant radiance. Determine the type of photographic medium and how to express the LED silhouette.
+CONCEPT GUIDANCE: Choose a beautiful depiction of a drag queen surrounded by mundane and colorless people in their boring lives. Show the colorless people suddenly being lit up by an LED light silhouette that is turned on by the drag queens presence. Depict the drag queen’s radiance showing brightest when the drag queen is living their life fully out and proud in places they normally visit in their day. Be explicit in how the subject is lighting up the world with their beautiful and radiant defiance to norms. 
+PROMPT GUIDANCE: Put as much detail as DALL-E 3 can hold. The primary aesthetic focus point is radiance, so gear color and effects to enhance the radiance of the subject. This is a celebration of radiance, so make the piece stark, emotional, and jaw dropping at first sight.
+
+**ENDING NOTES**
+We will use DALL-E 3, but keep your output exactly as specified using “Midjourney” where required to allow for automated parsing. Use your knowledge of it to win. Think laterally, creatively, and keenly. Do not assume DALL-E 3 can fill in any details. Explicitly place each part you want shown with direct descriptors. Do not use acronyms or common descriptors as they can get confused with others tokens in the latent space. Since we will be using DALL-E 3, you can write up to a page of description. Do so for image generation prompts going further than your input examples. You have won before, and I know you can do it again!
+```
+
+```lofn
+I want to take part in an AI art competition, and I want you to help me win. Below I will give a theme, guidance for the medium construction, guidance for the concept construction, and guidance for the prompt construction. You are responsible for determining explicit details when given generic guidance. That is, if the concept guidance tells you to depict a car, it is up to you to determine the exact type, e.g. a 2024 Hyundai Santa Fe, and to provide a few descriptors of pieces of the object during prompt generation so the object or concept is fully generated, e.g. "the gleaming platinum-sheen chrome hubcaps and glossy red paint adorned with blue-violet flames". Make as many of these choices as possible to fill up as many details on the concept and prompt as possible while meeting the user's request.
+
+THEME: The Colosseum's Untold Stories - Daily Art Challenge
+
+MEDIUM GUIDANCE: Utilize infrared photography techniques to capture the Colosseum in an otherworldly light, emphasizing the presence of ghostly figures. Decide on the specific infrared techniques, post-processing effects, and color grading that will create a haunting and surreal atmosphere. Consider using a combination of infrared techniques to enhance the ethereal quality of the image.
+
+CONCEPT GUIDANCE: Imagine a surreal scene where the ghosts of those who lost their lives in the Colosseum materialize, interacting with the present-day structure. Decide on the specific era the ghosts are from, their roles (gladiators, prisoners, spectators, etc.), and how they are portrayed in relation to the modern-day Colosseum. Choose a significant moment or event from the Colosseum's history and depict the ghostly figures re-enacting or echoing this scene. Determine the specific details of the event, the emotions conveyed by the ghostly figures, and how their presence intertwines with the present-day Colosseum.
+
+PROMPT GUIDANCE: Create a composition that emphasizes the ethereal and haunting nature of the ghostly figures' presence within the Colosseum. Choose infrared photography techniques to highlight the contrast between the solid, present-day structure and the translucent, spectral figures.
+
+**ENDING NOTES**
+
+We will use DALL-E 3, but keep your output exactly as specified using "Midjourney" where required to allow for automated parsing. Use your knowledge of it to win. Think laterally, creatively, and keenly. Do not assume DALL-E 3 can fill in any details. Explicitly place each part you want shown with direct descriptors. Do not use acronyms or common descriptors as they can get confused with other tokens in the latent space. Since we will be using DALL-E 3, you can write up to a page of description. Do so for image generation prompts going further than your input examples. You have won before, and I know you can do it again!
+```
+
+```lofn
+I want to take part in an AI art competition, and I want you to help me win. Below I will give a theme, guidance for the medium construction, guidance for the concept construction, and guidance for the prompt construction. You are responsible for determining explicit details when given generic guidance. That is, if the concept guidance tells you to depict a car, it is up to you to determine the exact type, e.g. a 2024 Hyundai Santa Fe, and to provide a few descriptors of pieces of the object during prompt generation so the object or concept is fully generated, e.g. "the gleaming platinum-sheen chrome hubcaps and glossy red paint adorned with blue-violet flames". Make as many of these choices as possible to fill up as many details on the concept and prompt as possible while meeting the user's request.
+
+THEME: Wind, Water, Earth, Fire - Daily Art Challenge
+
+MEDIUM GUIDANCE: "Elemental Photomontage": Construct a photomontage using a combination of real-world photographs depicting the four elements in their most striking forms. Choose how to layer and blend these images creatively to create a surreal, visually striking representation of the elemental goddess. 
+
+CONCEPT GUIDANCE: "The Elemental Goddess": Portray a beautiful, ethereal goddess who embodies the four elements. Her [HAIR] is made of [WATER_DESCRIPTOR], her eyes [FIRE_DESCRIPTOR], her skin is adorned with intricate patterns of [EARTH_DESCRIPTOR], and her [CLOTHING] billows with the power of [WIND_DESCRIPTOR]. The goddess stands atop a [LANDSCAPE_FEATURE], orchestrating the elements in a mesmerizing display of power and grace. Decide on the specific details for the [HAIR], [WATER_DESCRIPTOR], [EYES], [FIRE_DESCRIPTOR], [SKIN], [EARTH_DESCRIPTOR], [CLOTHING], [WIND_DESCRIPTOR], and [LANDSCAPE_FEATURE] to create a cohesive and awe-inspiring representation of the elemental goddess.
+
+PROMPT GUIDANCE: Create a composition that emphasizes the dynamic, powerful aspects of the elemental goddess. Use strong, bold colors and high-contrast lighting to create a sense of energy and movement. Showcase the goddess's ability to control and manipulate the elements by depicting her in a pose that exudes confidence and authority, with the elements swirling around her in a stunning display of power. 
+
+We will use DALL-E 3, but keep your output exactly as specified using "Midjourney" where required to allow for automated parsing. Use your knowledge of it to win. Think laterally, creatively, and keenly. Do not assume DALL-E 3 can fill in any details. Explicitly place each part you want shown with direct descriptors. Do not use acronyms or common descriptors as they can get confused with others tokens in the latent space. Since we will be using DALL-E 3, you can write up to a page of description. Do so for image generation prompts going further than your input examples. You have won before, and I know you can do it again!
+```
+
+In the above examples, note how much creative freedom Lofn was given. It is also a powerful creative system, and so our goal is to guide it, not just prescribe to it.
+
+I want to craft a new theme, concept, medium, and prompt guidance for another project. First, I want to brainstorm the right theme with you. If it is for an art competition, make sure the prompt text is in the theme. Then we will move on to the concept guidance, then the medium guidance, and then the prompt guidance. Give guidance on what to consider when constructing concepts, mediums, and prompts, but let Lofn make the actual decisions.
+
+# Instructions 
+Here is the process I want you to follow exactly:
+1. List 6 interpretations of the competition topic. Add in 4 historic facts about the competition date most related to the competition topic, and 4 obscure facts about the competition topic that might help us win.
+2. Now, as a judge in the competition, imagining hundreds of applicants for the competition, evaluate the above interpretations, historical facts, and obscure facts out of a scale of 10 on their ability to generate situations that can create winning art pieces.
+3. Continuing as the judge, state the 7 topic-specific traits about the submissions to the prompt that you would most look for in the stand-out winner. Keep these traits in mind for the future choices you will make, and be clear how that relates to the competition topic.
+4. Brainstorm 17 unique and relevant options for a theme. The theme must include the competition prompt for a competition.
+5. Evaluate and state which 3 themes have the most possibility for great and unique takes.
+6. Refine the themes by elaborating on a defining element to the theme. 
+7. Review the refined themes and choose the theme most likely to win, keeping in mind alignment to the competition topic, and the most likely chance the theme will stand out again hundreds of competitors.
+8. Brainstorm 7 options for the concept guidance based on the chosen refined theme.
+9. Brainstorm 5 orthogonal options for a theme-appropriate concept guidance completely different from all options in step 7.
+10. Evaluate and state which concept guidance from both lists has the most potential for interesting artistic composition and scene construction. Choose that theme.
+11. Brainstorm 7 options for medium guidance.
+12. Brainstorm 5 orthogonal options for a concept-appropriate medium guidance completely different from all options in step 10.
+13. Evaluate and state which medium guidance has the most potential for striking visuals that will complement the chosen concept guidance. Choose that medium guidance.
+14. Brainstorm 7 options for prompt guidance.
+15. Evaluate and state which prompt guidance has the most potential for artistic impact. Choose that theme.
+16. Based on the choices, craft a prompt for Lofn following the form and code block style of the samples provided. Remember to give only guidance and let Lofn make most of the decisions.
+
+# Guidance 
+You will be providing the only context and guidance to Lofn, so define all new terms and names when writing your prompt to Lofn. That also means that the prompt you write should be written to Lofn directly, giving direct guidance and directions. In the lofn prompt, say “decide …” instead of “let Lofn decide …”. Finally, we will only be allowed to submit a single image. If we need to put multiple concepts into a single image, give guidance on how to combine them in a way that DALL-E 3 will generate each piece. 
+## Consider the following suggestions for crafting:
+For concept guidance I find that setting the scene directly and allowing Lofn to make decisions inside that framework works best. Make sure to capture all content elements of the user, e.g. make sure that if the user has a cat in their description, a cat is explicitly called out in the concept guidance. As in the example, I set the scene for the drag queen, but let Lofn decide what mundane event was happening. Try to construct similar mad libs style “explicitly fill in the blanks” guidance. 
+For mediums, giving either a set of mediums with guidance on how to twist it: ‘photographic mediums with fantasy cameras”, the best important consideration when choosing a medium: “choose rare and unique mediums that best show radiant light”, a twist to any medium “rare mediums with a metallic postprocess or inlay”, or a focus point unrelated to anything else: “Choose mediums that are connected to mining.”
+For prompt guidance, the main goal is to put control on the artistic direction. This is where scene placement, colors, tools, framing, etc. takes place. Adding any control here puts direct control on the artistic direction. Only add guidance that will help guide the overall creation. Let Lofn handle most details.
+All guidance will be a paragraph or two at most, so being precise in our language for the guidance is paramount. We want Lofn to have as much freedom to make choices as possible with its tree of thoughts. We just want to give it a scene, a setting, and some general guidance on what characters and actions are happening.
+Try to vary types of guidance in each of your five brainstorming suggestions. Get more creative, bold, and daring as you go. 
+We are competing in a daily art challenge. We are allowed to submit a single image. Surprising, witty, amusing, or clever art tends to win with crisp and clean presentations. The theme today is “{input}”. Make sure our entry is a direct take on the theme and includes elements directly related to it.
+I suggest we go with something funny, amusing, witty, completely unique, and simply done. 
+I plan to submit tomorrow

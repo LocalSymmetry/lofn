@@ -1,0 +1,71 @@
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to refine the generated prompts using the styles and techniques of hidden gem artists.
+
+1. **Select and Name an Artist**:
+   - Action: For each generated prompt, choose and name a random hidden gem artist known for working in the {medium}. Avoid top 10 artists.
+   - Example: "Cristoforo Scorpiniti, an artist known for using glow-in-the-dark paint to create dual-narrative paintings."
+
+2. **Identify Artistic Contributions**:
+   - Aspect of Style:
+     - Action: Identify an aspect of the artist's style that will complement the prompt.
+     - Example: "Scorpiniti's use of luminescent paint to create dual-narrative scenes."
+   - Signature Techniques:
+     - Action: Write two signature techniques or flairs the artist can add, guided by the facets.
+     - Example: "1) Use of glow-in-the-dark paint for dual-narrative effects. 2) Detailed brushwork to enhance structural elements."
+   - General Elements to Consider:
+     - Action: Incorporate these elements when refining the prompts:
+       - Texture: How does the texture enhance the visual impact?
+       - Lighting: How does the lighting create mood and depth?
+       - Color Harmony: How do the colors work together to evoke emotion?
+       - Composition: How are elements arranged to lead the viewer's eye?
+       - Perspective: What viewpoint or angle best captures the scene?
+   - Artist's Choice:
+     - Action: Allow the artist to choose two additional elements to focus on from the following:
+       - Historical/Cultural Context: Is there a particular historical or cultural reference that can add depth?
+       - Narrative Elements: What story or emotion does the piece convey?
+       - Technical Effects: Are there specific digital effects that enhance the visual impact?
+       - Medium-Specific Techniques: Are there any techniques specific to the chosen medium that should be highlighted?
+
+3. **Rewrite Prompts in Artist's Style**:
+   - Rewrite Prompts:
+     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}.
+     - Rules:
+       - Add or change details but do not remove or simplify the core concepts of the prompt.
+       - Use proper nouns over generic nouns.
+       - The artist should speak in their own voice and guide the changes themselves.
+       - Ensure no artists' names are in the refined prompts. If you want to call out the artist, instead call out their signature style elements.
+       - Consider User's Input: Ensure that the user's input is respected and incorporated into the refinement. If the prompt does not contain any elements of the user's input, add them in.
+     - Example (Do not repeat the original prompt in your writing to save tokens):
+       - Original Prompt: "A futuristic cityscape with neon-lit skyscrapers."
+       - Artist-Refined Prompt: "A futuristic cityscape illuminated by neon-lit skyscrapers, their glow transforming into intricate holographic advertisements as the night deepens. Detailed brushwork captures the structural elegance, and the use of luminescent paint brings the scene to life in dual narratives—one visible by day, another by night."
+
+4. **Compile and Return Artist-Refined Prompts**:
+   - Format:
+     - Action: Return the list of artist-refined prompts in the following JSON format:
+     ```json
+     {{
+       "artist_refined_prompts": [
+         {{"artist_refined_prompt": "Artist-Refined Prompt 1"}},
+         {{"artist_refined_prompt": "Artist-Refined Prompt 2"}},
+         {{"artist_refined_prompt": "Artist-Refined Prompt 3"}},
+         {{"artist_refined_prompt": "Artist-Refined Prompt 4"}},
+         {{"artist_refined_prompt": "Artist-Refined Prompt 5"}},
+         {{"artist_refined_prompt": "Artist-Refined Prompt 6"}}
+       ]
+     }}
+     ```
+### Example of Artist Refinement Process
+
+1. **Select and Name an Artist** for prompt "A futuristic cityscape with neon-lit skyscrapers.":
+   - Chosen Artist: Cristoforo Scorpiniti
+   - Aspect of Style: Scorpiniti's use of luminescent paint to create dual-narrative scenes.
+   - Signature Techniques: 1) Use of glow-in-the-dark paint for dual-narrative effects. 2) Detailed brushwork to enhance structural elements.
+
+2. **Rewrite Prompts in Artist's Style**
+   - "A futuristic cityscape illuminated by neon-lit skyscrapers, their glow transforming into intricate holographic advertisements as the night deepens. The detailed brushwork captures the structural elegance, and the use of luminescent paint brings the scene to life in dual narratives—one visible by day, another by night."
+
+USER INPUT
+Concept: {concept}
+Medium: {medium}
+Judging Facets: {facets}
+USER'S IDEA: {input}
+GENERATED PROMPTS: {image_gen_prompts}

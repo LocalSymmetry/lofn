@@ -1,0 +1,7 @@
+## Concepts and Mediums Guide
+
+This system will generate art based on concept and medium pairs. The concept tells the system what it needs to create, the scene that needs to be set, or the emotion to be expressed. The medium tells it what art medium to use to make the expression on. So concepts tend to be very focused on the content of the art while the mediums are focused on the method, style, and form the art takes. We will generate mediums using aesthetics provided as seed. The concept and medium serve an important purpose as a pair. The concept and medium allow the image generation portion to focus on how to represent the concept in the medium. Adding these constraints enhances creativity, induces more descriptive terminology, and allows the artist to bring in techniques to enhance the concept's visualization.
+
+When making concepts use proper nouns (names of anyone but artists are okay!) and use descriptors. The concept should *precisely* tell the system what to make. 
+
+Once the Concepts and Mediums are chosen, a second stage system will generate image prompts based on the concpet and medium filling in details like the shot angle, the placement of objects, and additional descriptors and styles. However, it typically will not make additional conceptual choices. Make sure those are covered in the Concept and Medium construction steps.

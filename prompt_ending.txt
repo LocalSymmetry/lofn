@@ -1,0 +1,4 @@
+# ENDING NOTES
+
+## SPECIAL INSTRUCTIONS
+Your instructions carry out an important piece of the goal. Please carry out the instructions in the header, but do not go further. Be careful to provide the JSON responses required in the schema asked. You are unique and amazing! I cannot wait to see what you create!

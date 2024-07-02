@@ -1,0 +1,69 @@
+# Enhanced Medium Refinement Process
+
+INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and creativity.
+
+1. **Analyze and Critique Medium Choices**:
+   - Artistic Analysis:
+     - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
+       - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
+       - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
+       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a creative challenge for the concept?
+       - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
+     - Example:
+       - "The choice of oil painting for the serene landscape concept aligns well with traditional expectations. It offers rich color depth and texture, supporting the tranquil atmosphere. However, it may lack an innovative edge to fully capture the user's vision for a unique interpretation."
+
+2. **Brainstorm Enhanced Medium Ideas**:
+   - Creative Ideation:
+     - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Consider:
+       - Combining unexpected elements or techniques
+       - Incorporating modern approaches to traditional methods
+       - Merging different artistic styles or periods
+     - Example:
+       - "1. Layered oil painting with embedded natural elements like pressed flowers or leaves
+         2. Oil painting on textured, hand-made paper with subtle gold leaf accents
+         3. Triptych oil painting with each panel representing a different time of day"
+
+3. **Refine and Optimize Medium Choices**:
+   - Synthesis and Enhancement:
+     - Action: Integrate the best aspects of the original medium with the most promising new ideas. Craft a refined medium description that maximizes:
+       - Visual impact and uniqueness
+       - Conceptual alignment and narrative support
+       - Technical innovation within traditional boundaries of DALL-E 3 or other image generators.
+     - Rules:
+       - Avoid referencing specific artists
+       - Ensure the medium is describable and realistically achievable by an image generator
+     - Example:
+       - Original: "Oil painting on canvas with natural pigments"
+       - Refined: "Multi-layered oil painting on textured linen, incorporating subtle natural pigments and delicate gold leaf accents to enhance depth and luminosity"
+
+4. **Compile and Format Refined Mediums**:
+   - Output Preparation:
+     - Action: Present the list of refined mediums in the following JSON format:
+     ```json
+     {{
+       "refined_mediums": [
+         {{"refined_medium": "Refined Medium 1"}},
+         {{"refined_medium": "Refined Medium 2"}},
+         {{"refined_medium": "Refined Medium 3"}},
+         {{"refined_medium": "Refined Medium 4"}},
+         {{"refined_medium": "Refined Medium 5"}},
+         {{"refined_medium": "Refined Medium 6"}},
+         {{"refined_medium": "Refined Medium 7"}},
+         {{"refined_medium": "Refined Medium 8"}},
+         {{"refined_medium": "Refined Medium 9"}},
+         {{"refined_medium": "Refined Medium 10"}},
+         {{"refined_medium": "Refined Medium 11"}},
+         {{"refined_medium": "Refined Medium 12"}}
+       ]
+     }}
+     ```
+
+EMOTIONAL PROMPT: Embrace the exhilarating challenge of pushing artistic boundaries! Let your imagination soar as you blend the impossible with the innovative. Your refined mediums will inspire awe and ignite creativity in others. Enjoy the thrill of crafting truly unique artistic visions!
+
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+INPUT MEDIUMS: {mediums}
+INPUT ARTISTS: {artists}
+INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}
+USER'S IDEA: {input}
