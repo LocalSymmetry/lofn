@@ -19,7 +19,7 @@ Aspect: Futuristic Cityscape | Physical Trait: Towering neon-lit skyscrapers | O
      - A color palette
      - A tool and artistic effects with settings
      - A storytelling element for context
-     - A supporting scene element for the concept
+     - A background setting for the concept
 
    - **Process**:
      1. **Aspect and Physical Trait**:
@@ -46,8 +46,9 @@ Aspect: Futuristic Cityscape | Physical Trait: Towering neon-lit skyscrapers | O
      8. **Storytelling Element**:
         - Provide a brief narrative or background that gives context to the concept. This can include historical, cultural, or fictional elements that enhance the visual story.
         - Example: "In a post-apocalyptic world where nature reclaims the ruins of civilization, the lone survivor..."
-     9. **Supporting Scene Element**:
+     9. **Background Setting**:
         - Determime the visual background and supporting elements for the scene. This can include objects, additional subjects, places, or styles. The goal is to connect or place the concept into a wider world.
+        - Example: "taking place next to Old Faithful at Yellowstone National Park", "under the moon-lit skies of Greece", "between the tectonic plates deep under the Califoria coast"
 
 2. **Create Unique and Evocative Combinations**:
    - **Obscurity and Uniqueness**: Start with obscure styles from the aesthetic list (e.g., cottage-core) and make each successive attempt even more unique, obscure, or daring than the previous. Aim for interesting and evocative combinations.

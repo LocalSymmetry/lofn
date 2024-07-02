@@ -11,7 +11,7 @@ Let's make our medium pairings for our concepts. Follow these steps to come up w
        - **Action**: List the names of these 15 total aesthetics.
 
 2. **Generate Art Mediums**:
-   - Based on the selected aesthetics, generate a list of 15 art distinct mediums that correspond to the aesthetics that will be striking when rendered using DALL-E 3, Midjourney, or another diffusion model.
+   - Based on the selected aesthetics, generate a list of 15 art distinct mediums that are inspired by and correspond to the aesthetics that will be striking when rendered using DALL-E 3, Midjourney, or another diffusion model.
        - **Action**: For each chosen aesthetic, generate a detailed description of an art medium that leverages its distinct qualities. Ensure each medium is unique from the others and from the examples in this prompt.
        - **Factors to Consider**:
         - **The Focus is the Art**: Do not include call outs installations, galleries, muesems, or references to how the medium was constructed unless that serves the concept. The goal is best display the concept and the medium is to servc as the vessel.
