@@ -1,19 +1,19 @@
 # Enhanced Medium Refinement Process
 
-INSTRUCTIONS: Be intentional, detailed, and creative when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and creativity.
+INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and creativity.
 
 1. **Analyze and Critique Medium Choices**:
    - Artistic Analysis:
      - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
        - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
        - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
-       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a creative challenge for the concept?
+       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a insightful challenge for the concept?
        - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
      - Example:
        - "The choice of oil painting for the serene landscape concept aligns well with traditional expectations. It offers rich color depth and texture, supporting the tranquil atmosphere. However, it may lack an innovative edge to fully capture the user's vision for a unique interpretation."
 
 2. **Brainstorm Enhanced Medium Ideas**:
-   - Creative Ideation:
+   - Ideation:
      - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Consider:
        - Combining unexpected elements or techniques
        - Incorporating modern approaches to traditional methods

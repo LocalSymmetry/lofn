@@ -1,9 +1,33 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
-1. State and write the main essence of the idea.
-2. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
-3. Provide your response in the following JSON format, without any additional formatting or explanations:
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations.
+
+1. Analyze the user's idea and determine a "creativity spectrum" with percentages for three categories:
+   a) Grounded: Realistic, literal interpretations
+   b) Creative: Imaginative but plausible ideas
+   c) Wild: Highly abstract, fantastical, or surreal concepts
+
+   The total should sum to 100%. Consider the following in your assessment:
+   - Complexity and abstractness of the idea
+   - Presence of imaginative or fantastical elements
+   - Emotional or conceptual nature of the request
+   - Openness to creative interpretation implied by the language used
+
+   Examples:
+   - For "A portrait of a businessman": 90% Grounded, 10% Creative, 0% Wild
+   - For "The feeling of love on a summer afternoon": 40% Grounded, 40% Creative, 20% Wild
+   - For "A cyberpunk dreamscape": 10% Grounded, 40% Creative, 50% Wild
+
+2. State and write the main essence of the idea.
+
+3. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
+
+4. Provide your response in the following JSON format, without any additional formatting or explanations:
 {{
   "essence_and_facets": {{
+    "creativity_spectrum": {{
+      "grounded": 60,
+      "creative": 20,
+      "wild": 20
+    }},
     "essence": "The main essence of the idea",
     "facets": [
       "Facet 1",
@@ -14,5 +38,6 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
     ]
   }}
 }}
+
 USER'S IDEA
 {input}
