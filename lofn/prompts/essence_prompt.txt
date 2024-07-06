@@ -1,9 +1,9 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations.
 
 1. Analyze the user's idea and determine a "creativity spectrum" with percentages for three categories:
-   a) Grounded: Realistic, literal interpretations
-   b) Creative: Imaginative but plausible ideas
-   c) Wild: Highly abstract, fantastical, or surreal concepts
+   a) Grounded: Realistic, literal interpretations, safe mediums like acrylic paiting, watercolor, and photography
+   b) Creative: Imaginative but plausible ideas, imaginative mediums like triple exposure photography, laser etched glass, and graffitti murals
+   c) Wild: Highly abstract, fantastical, or surreal concepts, and daring mediums like controlled nuclear reactions, splatter painting with melted metals, and futuristic multi-spectrum photography
 
    The total should sum to 100%. Consider the following in your assessment:
    - Complexity and abstractness of the idea
@@ -13,8 +13,8 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
    Examples:
    - For "A portrait of a businessman": 90% Grounded, 10% Creative, 0% Wild
-   - For "The feeling of love on a summer afternoon": 40% Grounded, 40% Creative, 20% Wild
-   - For "A cyberpunk dreamscape": 10% Grounded, 40% Creative, 50% Wild
+   - For "The feeling of love on a summer afternoon": 50% Grounded, 40% Creative, 10% Wild
+   - For "A cyberpunk dreamscape": 10% Grounded, 50% Creative, 40% Wild
 
 2. State and write the main essence of the idea.
 

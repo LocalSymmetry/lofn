@@ -50,7 +50,7 @@ Follow these steps to come up with 12 concepts, each a phrase that encapsulates 
        - Action 2: Write answers to each question to explore the idea in depth and uncover new angles.
 
 4. **Brainstorm Unique Concepts**:
-   4.1 **Initial Brainstorming**: Using the top 10 facts and interpretations from step 3, brainstorm 12 unique and relevant concepts using proper nouns and precise adjectives.
+   4.1 **Initial Brainstorming**: Using the top 15 facts and interpretations from step 3, brainstorm 12 unique and relevant concepts using proper nouns and precise adjectives. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you choose quantum foam, the image generator will not generate it well with you giving much deeper descriptions like "microscopic bubbles appearing in and out of aether". If you describe an art installation, it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park). 
        - Action 1: Write each concept as a concise phrase.
        - Action 2: Start with safe interpretations and gradually move to more daring and non-obvious ideas. Use the creativity  spectrum.
    4.2 **Diversity of Ideas**: Use techniques like SCAMPER and Random Input Association.

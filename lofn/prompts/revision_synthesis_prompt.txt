@@ -1,4 +1,4 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to critically evaluate and refine the artistic guides, ensuring they capture the essence of the concept and effectively use the chosen medium.
+INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to critically evaluate and refine the artistic guides, ensuring they capture the essence of the concept and effectively use the chosen medium. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
 
 1. **State the Main Essence**:
    - Essence of the Concept:

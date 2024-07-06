@@ -27,7 +27,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 3. **Rewrite Prompts in Artist's Style**:
    - Rewrite Prompts:
-     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}.
+     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
      - Rules:
        - Add or change details but do not remove or simplify the core concepts of the prompt.
        - Use proper nouns over generic nouns.

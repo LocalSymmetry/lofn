@@ -34,10 +34,8 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Follow these step
       }}
 
 
-USER INPUT
-Concept: {concept}
-Medium: {medium}
-Judging Facets: {facets}
+JUDGING FACETS
+{facets}
 GENERATED IMAGE
 {image}
 USER'S IDEA
@@ -45,3 +43,5 @@ USER'S IDEA
 
 ### Example winning titles:
 "Do you hear the jellyfish?", "Transmutations of Smog and Shadows", "Quackzilla", "This and nothing more", "👽⁉️"
+### Guidance
+Keep it witty, insightful, simple, and clean. Avoid complicateds titled or titles that have colons in them like "A long goodbye: a dogs journey".

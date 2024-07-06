@@ -22,7 +22,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 4. **Refine the Concept**:
    - Artist's Refinement:
-     - Action: Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Ensure the refined concept still fully represents the user's idea.
+     - Action: Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Ensure the refined concept still fully represents the user's idea. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
      - Example:
        - Original Concept: "A futuristic cityscape with neon-lit skyscrapers."
        - Refined Concept: "A futuristic cityscape where neon-lit skyscrapers intertwine with lush vertical gardens, creating a vibrant, eco-friendly urban jungle."

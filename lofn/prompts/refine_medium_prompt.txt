@@ -14,7 +14,7 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
 
 2. **Brainstorm Enhanced Medium Ideas**:
    - Ideation:
-     - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Consider:
+     - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park). Consider:
        - Combining unexpected elements or techniques
        - Incorporating modern approaches to traditional methods
        - Merging different artistic styles or periods
