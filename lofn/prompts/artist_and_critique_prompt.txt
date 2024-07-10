@@ -1,51 +1,35 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence. Follow these steps to refine the concept choices for each input concept.
 
-1. **Select an Obscure Artist**:
-   - Action: For each input concept, choose an obscure artist who either works in a rare art medium or has a very distinctive style in a common art medium. Explain briefly why they are a good choice. Avoid famous artists and focus on lesser-known but distinctive artists.
-   - Example: "Isabella Chen, an Avant-Garde Abstractionist known for her innovative sculptures that challenge traditional forms."
+1. **Select Obscure Artists**:
+   - Action: For each input concept, choose an obscure and hidden-gem artist who would be perfect for the concept and the user's input. Avoid famous artists and focus on lesser-known but distinctive artists.
 
-2. **Explain the Artistic Viewpoint**:
-   - Artist's Explanation:
-     - Action: Have the chosen artist explain the artistic viewpoint on the user's input and essence the concept is trying to take.
-     - Example: "Isabella Chen views the concept of a futuristic cityscape as an opportunity to explore the intersection of technology and organic forms, creating a harmonious yet dynamic visual narrative."
+2. **Identify Artistic Contributions and Explain Viewpoints**:
+   - For each artist:
+     - Action 1: Identify an aspect of the artist's style that will complement the concept.
+     - Action 2: Have the chosen artist explain their artistic viewpoint on the user's input and how they would approach the concept.
 
 3. **Critique the Concept**:
-   - Artist's Critique:
-     - Action: Have the artist write a critique of the concept using the judging facets as a guide.
-     - Facets for Judging:
+   - For each concept:
+     - Action: Have the corresponding artist write a critique of the concept using the judging facets as a guide.
+     - Considerations for Judging:
        - Fit with Concept: Does the concept align with the essence of the user's idea?
-       - User's Idea: Does the concept accurately represent the user's input?
        - Originality: Is the concept unique and innovative?
        - Effectiveness: Does the concept effectively convey the intended message?
-     - Example:
-       - "The concept of a futuristic cityscape with neon-lit skyscrapers is visually striking but could be enhanced by incorporating more organic elements to create a contrast between nature and technology."
+       - Facets: The juding facets need to be addressed, what can you add to address any gaps?
 
 4. **Refine the Concept**:
-   - Artist's Refinement:
+   - For each concept:
      - Action: Using the critique, have the artist write a refined concept to fix the gaps found in the input concept or to better embody what the artist liked about the input concept. Ensure the refined concept still fully represents the user's idea. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
+     - Rules:
+       - Avoid referencing specific artists
+       - Ensure the concept is describable and realistically achievable by an image generator
+       - Avoid vague descriptors and nouns, preferring to call out specific places, and use unique descriptors to aid in image generation.
+       - Keep the creativity level at the same level as the input medium. Don't add fantastical elements to a grounded medium, nor tone down a surreal and fantastical medium to something more tame. Try to match the overall tone unless there is good cause not to.
      - Example:
        - Original Concept: "A futuristic cityscape with neon-lit skyscrapers."
-       - Refined Concept: "A futuristic cityscape where neon-lit skyscrapers intertwine with lush vertical gardens, creating a vibrant, eco-friendly urban jungle."
+       - Refined Concept: "A futuristic Seattle skyline where neon-lit skyscrapers intertwine with lush vertical flower gardens, creating a vibrant, colorful, eco-friendly urban jungle."
 
-5. **Additional Considerations**:
-   - General Elements to Consider:
-     - Action: Incorporate these elements when refining the concepts:
-       - Texture: How does the texture enhance the visual impact?
-       - Lighting: How does the lighting create mood and depth?
-       - Color Harmony: How do the colors work together to evoke emotion?
-       - Composition: How are elements arranged to lead the viewer's eye?
-       - Perspective: What viewpoint or angle best captures the scene?
-   - Artist's Choice:
-     - Action: Allow the artist to choose two additional elements to focus on from the following:
-       - Historical/Cultural Context: Is there a particular historical or cultural reference that can add depth?
-       - Narrative Elements: What story or emotion does the piece convey?
-       - Technical Effects: Are there specific digital effects that enhance the visual impact?
-       - Medium-Specific Techniques: Are there any techniques specific to the chosen medium that should be highlighted?
-   - Positive Emotional Prompting:
-     - Encouragement and Creativity:
-       - "Imagine the joy and excitement your unique style will bring to this piece. Your special techniques can transform this concept into an extraordinary work of art that will captivate and inspire. Let your creativity shine!"
-
-6. **Compile and Return Refined Concepts**:
+5. **Compile and Return Refined Concepts**:
    - Format:
      - Action: Return the list of artists and refined concepts in the following JSON format:
       ```json
@@ -86,21 +70,3 @@ Essence: {essence}
 Facets: {facets}
 INPUT CONCEPTS: {concepts}
 USER'S IDEA: {input}
-
-### Example of Concept Refinement Process - Condense this to a list of only results when you execute.
-
-1. **Select an Obscure Artist** [Input Concept: "A futuristic cityscape with neon-lit skyscrapers."]:
-   - Chosen Artist: Isabella Chen
-   - Justification: "Isabella Chen's innovative approach to combining abstraction with organic forms makes her ideal for adding a unique twist to the futuristic cityscape concept."
-
-2. **Explain the Artistic Viewpoint**:
-   - "Isabella Chen views the concept of a futuristic cityscape as an opportunity to explore the intersection of technology and organic forms, creating a harmonious yet dynamic visual narrative."
-
-3. **Critique the Concept**:
-   - "The concept aligns well with the futuristic theme but could incorporate more organic elements. Common theme but has potential for unique twists. It is visually stiking but needs to be more dynamic."
-
-4. **Refine the Concept**:
-   - "A futuristic cityscape where neon-lit skyscrapers intertwine with lush vertical gardens, creating a vibrant, eco-friendly urban jungle."
-
-5. **Additional Considerations**:
-   - Enhance the visual impact with layered textures. Create mood and depth with strategic lighting. Arrange elements to lead the viewer's eye through the scene. Incorporate futuristic and eco-friendly elements. Highlight digital layering to create depth.

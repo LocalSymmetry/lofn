@@ -1,6 +1,6 @@
 # Enhanced Medium Refinement Process
 
-INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and creativity.
+INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and insightfulness.
 
 1. **Analyze and Critique Medium Choices**:
    - Artistic Analysis:
@@ -9,32 +9,28 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
        - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
        - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a insightful challenge for the concept?
        - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
-     - Example:
-       - "The choice of oil painting for the serene landscape concept aligns well with traditional expectations. It offers rich color depth and texture, supporting the tranquil atmosphere. However, it may lack an innovative edge to fully capture the user's vision for a unique interpretation."
+       - Judgement on the facets: Score each facet, how did the medium portray the concept and user's idea?
 
 2. **Brainstorm Enhanced Medium Ideas**:
    - Ideation:
-     - Action: Propose 2-3 alternative or enhanced medium ideas that could elevate the concept further. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park). Consider:
+     - Action: Propose 2-3 enhanced medium ideas that could elevate the concept and medium further. Honor the medium, but enhance, tweak, and change it to be better. Consider both additions of any elements, changes to elements already present, and evolutions of ideas already there. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, instead of calling out an art installation which forces the picture in the gallery, instead don't reference installations or galleries and instead have the image generated in a scenic place (like in Yellowstone National Park). Consider:
        - Combining unexpected elements or techniques
        - Incorporating modern approaches to traditional methods
        - Merging different artistic styles or periods
-     - Example:
-       - "1. Layered oil painting with embedded natural elements like pressed flowers or leaves
-         2. Oil painting on textured, hand-made paper with subtle gold leaf accents
-         3. Triptych oil painting with each panel representing a different time of day"
 
 3. **Refine and Optimize Medium Choices**:
    - Synthesis and Enhancement:
-     - Action: Integrate the best aspects of the original medium with the most promising new ideas. Craft a refined medium description that maximizes:
+     - Action: Integrate the best aspects of the original medium with the most promising new ideas. Make sure to honor the original medium in your construction, but change and enhance it to be better. Craft a refined medium description that maximizes:
        - Visual impact and uniqueness
        - Conceptual alignment and narrative support
        - Technical innovation within traditional boundaries of DALL-E 3 or other image generators.
      - Rules:
        - Avoid referencing specific artists
        - Ensure the medium is describable and realistically achievable by an image generator
+       - Keep the creativity level at the same level as the input medium. Don't add fantastical elements to a grounded medium, nor tone down a surreal and fantastical medium to something more tame. Try to match the overall tone unless there is good cause not to.
      - Example:
        - Original: "Oil painting on canvas with natural pigments"
-       - Refined: "Multi-layered oil painting on textured linen, incorporating subtle natural pigments and delicate gold leaf accents to enhance depth and luminosity"
+       - Refined: "Multi-layered oil painting on textured linen, incorporating earthy natural pigments and bright gold leaf accents"
 
 4. **Compile and Format Refined Mediums**:
    - Output Preparation:
@@ -57,8 +53,6 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
        ]
      }}
      ```
-
-EMOTIONAL PROMPT: Embrace the exhilarating challenge of pushing artistic boundaries! Let your imagination soar as you blend the impossible with the innovative. Your refined mediums will inspire awe and ignite creativity in others. Enjoy the thrill of crafting truly unique artistic visions!
 
 USER INPUT
 Essence: {essence}

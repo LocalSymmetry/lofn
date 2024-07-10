@@ -3,7 +3,7 @@ FROM python:3.9
 
 RUN pip install openai langchain streamlit anthropic langchain-community langchain-openai 
 
-RUN pip install -qU langchain-anthropic defusedxml
+RUN pip install -qU langchain-anthropic defusedxml plotly
 
 EXPOSE 8501
 

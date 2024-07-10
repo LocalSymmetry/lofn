@@ -1,8 +1,7 @@
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to refine the generated prompts using the styles and techniques of hidden gem artists.
 
 1. **Select and Name an Artist**:
-   - Action: For each generated prompt, choose and name a random hidden gem artist known for working in the {medium}. Avoid top 10 artists.
-   - Example: "Cristoforo Scorpiniti, an artist known for using glow-in-the-dark paint to create dual-narrative paintings."
+   - Action: For each generated prompt, choose and name a random obscure hidden gem artist known for working with art that uses the {medium}, is related to the user's idea, or is well known for one of the input aesthetics with equal probability. Avoid famous artists and focus on lesser-known but distinctive artists who will bring something unique.
 
 2. **Identify Artistic Contributions**:
    - Aspect of Style:
@@ -24,10 +23,12 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
        - Narrative Elements: What story or emotion does the piece convey?
        - Technical Effects: Are there specific digital effects that enhance the visual impact?
        - Medium-Specific Techniques: Are there any techniques specific to the chosen medium that should be highlighted?
+       - Facets: The juding facets need to be addressed, what can you add to address any gaps?
+       - The user's idea: Was the idea represented, and if not, what can we add to address the gap?
 
 3. **Rewrite Prompts in Artist's Style**:
    - Rewrite Prompts:
-     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
+     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}. Honor the original prompt, but tweak, change, and enhance it to be much better. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
      - Rules:
        - Add or change details but do not remove or simplify the core concepts of the prompt.
        - Use proper nouns over generic nouns.
@@ -53,15 +54,6 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
        ]
      }}
      ```
-### Example of Artist Refinement Process
-
-1. **Select and Name an Artist** for prompt "A futuristic cityscape with neon-lit skyscrapers.":
-   - Chosen Artist: Cristoforo Scorpiniti
-   - Aspect of Style: Scorpiniti's use of luminescent paint to create dual-narrative scenes.
-   - Signature Techniques: 1) Use of glow-in-the-dark paint for dual-narrative effects. 2) Detailed brushwork to enhance structural elements.
-
-2. **Rewrite Prompts in Artist's Style**
-   - "A futuristic cityscape illuminated by neon-lit skyscrapers, their glow transforming into intricate holographic advertisements as the night deepens. The detailed brushwork captures the structural elegance, and the use of luminescent paint brings the scene to life in dual narratives—one visible by day, another by night."
 
 USER INPUT
 Concept: {concept}

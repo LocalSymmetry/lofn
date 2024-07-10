@@ -24,6 +24,8 @@ import random
 import openai
 import asyncio
 import functools
+import plotly.graph_objects as go
+import math
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
@@ -39,9 +41,10 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
     
     # Combine Revised and Synthesized prompts
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
-    
+
     for index, prompt in enumerate(all_prompts):
-        st.write(f"Generating image for prompt {index + 1}: {prompt}")
+        if debug:
+            st.write(f"Generating image for prompt {index + 1}: {prompt}")
         
         image_url = generate_image_dalle3(prompt)
         
@@ -59,7 +62,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
             # Save the image locally
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
-            filename = f"{timestamp}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}.png"
+            filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}.png"
             save_image_locally(image_url, filename)
             
             # Save metadata
@@ -72,6 +75,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                 "prompt": prompt,
                 "title": title,
                 "image_url": image_url,
+                "model": model,
                 "filename": filename
             }
             save_metadata(metadata)
@@ -195,6 +199,107 @@ def parse_output(output, debug=False):
 
     except json.JSONDecodeError as e:
         return None, f"JSON parsing error: {str(e)}"
+
+def display_creativity_spectrum(creativity_spectrum):
+    labels = ['Grounded', 'Creative', 'Wild']
+    values = [creativity_spectrum['grounded'], creativity_spectrum['creative'], creativity_spectrum['wild']]
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # Blue, Orange, Green
+
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3, marker_colors=colors)])
+    fig.update_layout(
+        title_text="Creativity Spectrum",
+        height=300  # Adjust this value to change the height of the chart
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+def display_facets(facets):
+    st.subheader("Facets")
+    cols = st.columns(len(facets))
+    for i, facet in enumerate(facets):
+        with cols[i]:
+            st.markdown(f"**Facet {i+1}**")
+            st.markdown(f"<div style='background-color: #f0f2f6; padding: 10px; border-radius: 5px;'>{facet}</div>", unsafe_allow_html=True)
+
+def display_generation_progress(step, total_steps, process_name):
+    progress = st.progress(0)
+    status = st.empty()
+    for i in range(total_steps):
+        if i < step:
+            progress.progress((i + 1) / total_steps)
+        elif i == step:
+            status.text(f"{process_name} - Step {i+1}/{total_steps}: {get_step_name(process_name, i)}")
+            progress.progress((i + 1) / total_steps)
+        else:
+            break
+
+def display_generation_results(title, data, is_dataframe=False):
+    st.subheader(title)
+    if is_dataframe:
+        st.dataframe(data)
+    elif isinstance(data, list):
+        for i, item in enumerate(data, 1):
+            if isinstance(item, dict):
+                for key, value in item.items():
+                    st.markdown(f"**{i}. {key}:** {value}")
+            else:
+                st.markdown(f"**{i}.** {item}")
+            st.markdown("---")
+    elif isinstance(data, dict):
+        for key, value in data.items():
+            st.markdown(f"**{key}:** {value}")
+    else:
+        st.write(data)
+
+def create_mini_dashboard(pairs):
+    cols = 3
+    selected_pairs = []
+    for i in range(0, len(pairs), cols):
+        row = st.columns(cols)
+        for j in range(cols):
+            if i + j < len(pairs):
+                pair = pairs[i + j]
+                with row[j]:
+                    st.markdown(f"**Pair {i+j+1}**")
+                    with st.expander("View Details", expanded=True):
+                        st.markdown(f"**Concept:** {pair['concept']}")
+                        st.markdown(f"**Medium:** {pair['medium']}")
+                    if st.checkbox(f"Select Pair {i+j+1}", key=f"pair_{i+j}"):
+                        selected_pairs.append(i+j)
+                    st.markdown("---")
+    return selected_pairs
+
+def get_step_name(process_name, step):
+    steps = {
+        "Concept Medium Generation": [
+            "Generating Essence and Facets",
+            "Generating Concepts",
+            "Refining Concepts",
+            "Generating Mediums",
+            "Refining Mediums",
+            "Reviewing and Shuffling"
+        ],
+        "Prompt Generation": [
+            "Generating Facets",
+            "Creating Artistic Guides",
+            "Generating Midjourney Prompts",
+            "Refining Prompts",
+            "Synthesizing Final Prompts"
+        ]
+    }
+    return steps[process_name][step]
+
+def display_temporary_results(title, data, is_dataframe=False):
+    with st.expander(title, expanded=True):
+        if is_dataframe:
+            st.dataframe(data)
+        elif isinstance(data, list):
+            for item in data:
+                st.write(item)
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                st.write(f"{key}: {value}")
+        else:
+            st.write(data)
 
 # Initialize session state
 def initialize_session_state():
@@ -551,6 +656,39 @@ def process_revised_synthesized_prompts(chains, input, concept, medium, facets, 
         send_to_discord([prompt['synthesized_prompt'] for prompt in output['synthesized_prompts']], premessage=f'Synthesized Prompts for {concept} in {medium}:')
     return output
 
+def display_generation_progress(step, total_steps, process_name):
+    progress = st.progress(0)
+    status = st.empty()
+    for i in range(total_steps):
+        if i < step:
+            progress.progress((i + 1) / total_steps)
+        elif i == step:
+            status.text(f"{process_name} - Step {i+1}/{total_steps}: {get_step_name(process_name, i)}")
+            progress.progress((i + 1) / total_steps)
+        else:
+            break
+
+def get_step_name(process_name, step):
+    steps = {
+        "Concept Medium Generation": [
+            "Generating Essence and Facets",
+            "Generating Concepts",
+            "Refining Concepts",
+            "Generating Mediums",
+            "Refining Mediums",
+            "Reviewing and Shuffling"
+        ],
+        "Prompt Generation": [
+            "Generating Facets",
+            "Creating Artistic Guides",
+            "Generating Midjourney Prompts",
+            "Refining Prompts",
+            "Synthesizing Final Prompts"
+        ]
+    }
+    return steps[process_name][step]
+
+
 @st.cache_data(persist=True)
 def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
@@ -565,18 +703,59 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         'shuffled_review': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)]))
     }
 
-    essence_and_facets = process_essence_and_facets(chains, input, max_retries, debug)
-    concepts = process_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], st.session_state.creativity_spectrum, max_retries, debug)
-    artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], concepts, max_retries, debug)
-    mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
-    refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
-    shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+    with st.status("Generating Concepts and Mediums...", expanded=True) as status:
+        # Step 1: Essence and Facets
+        status.write("Generating Essence and Facets...")
+        essence_and_facets = process_essence_and_facets(chains, input, max_retries, debug)
+        if essence_and_facets:
+            display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
+            display_facets(essence_and_facets["essence_and_facets"]["facets"])
+        
+        # Step 2: Concepts
+        status.write("Generating Concepts...")
+        concepts = process_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], st.session_state.creativity_spectrum, max_retries, debug)
+        if debug:
+            st.write("Initial Concepts:")
+            for i, concept in enumerate(concepts['concepts'], 1):
+                st.write(f"{i}. {concept['concept']}")
+        
+        # Step 3: Refined Concepts
+        status.write("Refining Concepts...")
+        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], concepts, max_retries, debug)
+        if debug:
+            st.write("Refined Concepts:")
+            for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
+                st.write(f"{i}. {concept['refined_concept']}")
+        
+        # Step 4: Generating Mediums
+        status.write("Generating Mediums...")
+        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
+        if debug:
+            st.write("Initial Mediums:")
+            for i, medium in enumerate(mediums['mediums'], 1):
+                st.write(f"{i}. {medium['medium']}")
+        
+        # Step 5: Refining Mediums
+        status.write("Refining Mediums...")
+        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+        if debug:
+            st.write("Refined Mediums:")
+            for i, medium in enumerate(refined_mediums['refined_mediums'], 1):
+                st.write(f"{i}. {medium['refined_medium']}")
+        
+        # Step 6: Shuffling and Reviewing
+        status.write("Shuffling and Reviewing...")
+        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+
+        status.update(label="Generation Complete!", state="complete")
 
     refined_concepts = [x['refined_concept'] for x in artist_and_refined_concepts['refined_concepts']]
     refined_mediums = [x['refined_medium'] for x in shuffled_review['refined_mediums']]
     concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
+    
     send_to_discord(concept_mediums, content_type='concepts')
     return concept_mediums
+
 
 @st.cache_data(persist=True)
 def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics):
@@ -591,45 +770,66 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         'revision_synthesis': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)]))
     }
 
-    facets = process_facets(chains, input, concept, medium, max_retries, debug)
-    artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug)
-    midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug)
-    artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, midjourney_prompts, max_retries, debug)
-    revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug)
+    with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
+        status.write("Generating Facets...")
+        facets = process_facets(chains, input, concept, medium, max_retries, debug)
+        display_facets(facets['facets'])
+        
+        status.write("Creating Artistic Guides...")
+        artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug)
+        if debug:
+            st.write("Artistic Guides:")
+            for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
+                st.write(f"{i}. {guide['artistic_guide']}")
+        
+        status.write("Generating Midjourney Prompts...")
+        midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug)
+        if debug:
+            st.write("Midjourney Prompts:")
+            for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
+                st.write(f"{i}. {prompt['image_gen_prompt']}")
+        
+        status.write("Refining Prompts...")
+        artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, midjourney_prompts, max_retries, debug)
+        if debug:
+            st.write("Artist Refined Prompts:")
+            for i, prompt in enumerate(artist_refined_prompts['artist_refined_prompts'], 1):
+                st.write(f"{i}. {prompt['artist_refined_prompt']}")
+        
+        status.write("Synthesizing Final Prompts...")
+        revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug)
+
+        status.update(label="Prompt Generation Complete!", state="complete")
+
+    # Display the final prompts
+    st.subheader("Final Prompts")
+    for i, (revised, synthesized) in enumerate(zip(revised_synthesized_prompts['revised_prompts'], revised_synthesized_prompts['synthesized_prompts']), 1):
+        st.markdown(f"**Prompt Set {i}:**")
+        st.markdown(f"*Revised:* {revised['revised_prompt']}")
+        st.markdown(f"*Synthesized:* {synthesized['synthesized_prompt']}")
+        st.markdown("---")
 
     df_prompts = pd.DataFrame({
         'Revised Prompts': [prompt['revised_prompt'] for prompt in revised_synthesized_prompts['revised_prompts']],
         'Synthesized Prompts': [prompt['synthesized_prompt'] for prompt in revised_synthesized_prompts['synthesized_prompts']]
-    })
+    })    
 
     if st.session_state.get('use_dalle3', False):
         generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug)
 
-    return df_prompts
-
-def async_wrap(func):
-    @functools.wraps(func)
-    async def run(*args, loop=None, executor=None, **kwargs):
-        if loop is None:
-            loop = asyncio.get_event_loop()
-        pfunc = functools.partial(func, *args, **kwargs)
-        return await loop.run_in_executor(executor, pfunc)
-    return run
-
-async_generate_prompts = async_wrap(generate_prompts)
-
-async def generate_all_prompts_async(input, concept_mediums, max_retries, temperature, model, debug):
-    tasks = []
-    for pair in concept_mediums:
-        task = async_generate_prompts(input, pair['concept'], pair['medium'], max_retries, temperature, model, debug)
-        tasks.append(task)
-    
-    results = await asyncio.gather(*tasks)
-    return results
+    return revised_synthesized_prompts
 
 def generate_all_prompts(input, concept_mediums, max_retries, temperature, model, debug):
-    return asyncio.run(generate_all_prompts_async(input, concept_mediums, max_retries, temperature, model, debug))
-
+    results = []
+    total_pairs = len(concept_mediums)
+    
+    for i, pair in enumerate(concept_mediums):
+        st.write(f"Generating prompts for pair {i+1}/{total_pairs}: {pair['concept']} in {pair['medium']}")
+        result = generate_prompts(input, pair['concept'], pair['medium'], max_retries, temperature, model, debug)
+        results.append(result)
+        st.markdown("---")  # Add a separator between each pair's results
+        
+    return results
 
 st.set_page_config(page_title="Lofn - The AI Artist", page_icon=":art:", layout="wide")
 with open("/lofn/style.css") as f:
@@ -641,7 +841,7 @@ st.title("LOFN - The AI Artist")
 
 # Sidebar settings
 st.sidebar.header('Patron Input Features')
-model = st.sidebar.selectbox("Select model", ["claude-3-5-sonnet-20240620", "gpt-4o", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-3.5-turbo", "gpt-4"])
+model = st.sidebar.selectbox("Select model", ["claude-3-5-sonnet-20240620", "gpt-4o", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
 st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=False)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
@@ -661,7 +861,74 @@ if st.session_state['use_default_webhook']:
 else:
     st.session_state['webhook_url'] = st.sidebar.text_input("Discord Webhook URL", st.session_state['webhook_url'])
 
-# Main UI
+@st.cache_data(persist=True)
+def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
+    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+    selected_aesthetics = random.sample(aesthetics, 100)
+
+    chains = {
+        'essence_and_facets': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", essence_prompt)])),
+        'concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", concepts_prompt)])),
+        'artist_and_refined_concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", artist_and_critique_prompt)])),
+        'medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", medium_prompt)])),
+        'refine_medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)])),
+        'shuffled_review': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)]))
+    }
+
+    with st.status("Generating Concepts and Mediums...", expanded=True) as status:
+        # Step 1: Essence and Facets
+        status.write("Generating Essence and Facets...")
+        essence_and_facets = process_essence_and_facets(chains, input, max_retries, debug)
+        if essence_and_facets:
+            display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
+            display_facets(essence_and_facets["essence_and_facets"]["facets"])
+        
+        # Step 2: Concepts
+        status.write("Generating Concepts...")
+        concepts = process_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], st.session_state.creativity_spectrum, max_retries, debug)
+        if debug:
+            st.write("Initial Concepts:")
+            for i, concept in enumerate(concepts['concepts'], 1):
+                st.write(f"{i}. {concept['concept']}")
+        
+        # Step 3: Refined Concepts
+        status.write("Refining Concepts...")
+        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], concepts, max_retries, debug)
+        if debug:
+            st.write("Refined Concepts:")
+            for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
+                st.write(f"{i}. {concept['refined_concept']}")
+        
+        # Step 4: Generating Mediums
+        status.write("Generating Mediums...")
+        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
+        if debug:
+            st.write("Initial Mediums:")
+            for i, medium in enumerate(mediums['mediums'], 1):
+                st.write(f"{i}. {medium['medium']}")
+        
+        # Step 5: Refining Mediums
+        status.write("Refining Mediums...")
+        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+        if debug:
+            st.write("Refined Mediums:")
+            for i, medium in enumerate(refined_mediums['refined_mediums'], 1):
+                st.write(f"{i}. {medium['refined_medium']}")
+        
+        # Step 6: Shuffling and Reviewing
+        status.write("Shuffling and Reviewing...")
+        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+
+        status.update(label="Generation Complete!", state="complete")
+
+    refined_concepts = [x['refined_concept'] for x in artist_and_refined_concepts['refined_concepts']]
+    refined_mediums = [x['refined_medium'] for x in shuffled_review['refined_mediums']]
+    concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
+    
+    send_to_discord(concept_mediums, content_type='concepts')
+    return concept_mediums
+
+# Modify the main UI part
 with st.container():
     st.session_state.input = st.text_area("Describe your idea", "I want to capture the essence of a mysterious and powerful witch's familiar.")
 
@@ -672,41 +939,47 @@ with st.container():
         st.write("Generating")
         st.session_state['concept_mediums'] = generate_concept_mediums(st.session_state.input, max_retries=max_retries, temperature=temperature, model=model, debug=debug)
 
-with st.container():    
     if st.session_state['concept_mediums'] is not None:
-        st.write("Concepts Complete")
-        df_concepts = pd.DataFrame(st.session_state['concept_mediums'])
-        st.dataframe(df_concepts)
+        st.write("Concepts and Mediums Generated")
         
-        st.session_state['pairs_to_try'] = st.multiselect("Select Pairs to Try", list(range(0, df_concepts.shape[0])), st.session_state['pairs_to_try'])
+        # Display the final pairs using the mini-dashboard
+        st.subheader("Concept and Medium Pairs")
+        selected_pairs = create_mini_dashboard(st.session_state['concept_mediums'])
         
         if st.button("Generate Image Prompts"):
-            for pair_i in st.session_state['pairs_to_try']:
-                df_prompts = generate_prompts(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
-                st.write(f"Prompts for Concept: {st.session_state['concept_mediums'][pair_i]['concept']}, Medium: {st.session_state['concept_mediums'][pair_i]['medium']}")
-                st.dataframe(df_prompts)
+            for pair_i in selected_pairs:
+                pair = st.session_state['concept_mediums'][pair_i]
+                st.write(f"Generating prompts for Pair {pair_i + 1}:")
+                st.markdown(f"*Concept:* {pair['concept']}")
+                st.markdown(f"*Medium:* {pair['medium']}")
+                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                
                 dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
                 st.code(dalle_prompt.format(
-                    concept=st.session_state['concept_mediums'][pair_i]['concept'], 
-                    medium=st.session_state['concept_mediums'][pair_i]['medium'], 
+                    concept=pair['concept'], 
+                    medium=pair['medium'], 
                     input=st.session_state.input,
-                    input_prompts = df_prompts['Revised Prompts'].tolist() + df_prompts['Synthesized Prompts'].tolist()
+                    input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
+                                  [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
                 ))
         else:
             st.write("Ready to generate Image Prompts")
 
     if st.session_state['concept_mediums'] is not None and model != "gpt-4":
         if st.button("Generate All"):
-            for pair_i in range(len(st.session_state['concept_mediums'])):
-                df_prompts = generate_prompts(st.session_state.input, st.session_state['concept_mediums'][pair_i]['concept'], st.session_state['concept_mediums'][pair_i]['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
-                st.write(f"Prompts for Concept: {st.session_state['concept_mediums'][pair_i]['concept']}, Medium: {st.session_state['concept_mediums'][pair_i]['medium']}")
-                st.dataframe(df_prompts)   
+            for i, pair in enumerate(st.session_state['concept_mediums']):
+                st.write(f"Generating prompts for Pair {i + 1}:")
+                st.markdown(f"*Concept:* {pair['concept']}")
+                st.markdown(f"*Medium:* {pair['medium']}")
+                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                
                 st.code(dalle3_gen_prompt.format(
-                    concept=st.session_state['concept_mediums'][pair_i]['concept'], 
-                    medium=st.session_state['concept_mediums'][pair_i]['medium'], 
+                    concept=pair['concept'], 
+                    medium=pair['medium'], 
                     input=st.session_state.input,
-                    input_prompts = df_prompts['Revised Prompts'].tolist() + df_prompts['Synthesized Prompts'].tolist()
-                )) 
+                    input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
+                                  [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
+                ))
     elif st.session_state['concept_mediums'] is None:
         st.write("Waiting to generate concepts")
     else:
