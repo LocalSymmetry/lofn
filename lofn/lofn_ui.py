@@ -26,6 +26,7 @@ import asyncio
 import functools
 import plotly.graph_objects as go
 import math
+import json_repair
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
@@ -137,37 +138,52 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         "medium": medium,
         "facets": st.session_state.essence_and_facets_output['essence_and_facets']['facets'],
         "image": image
-    }, max_retries=max_retries)
+    }, max_retries=max_retries, debug=debug)
 
-    title_output, error = parse_output(output, debug)
-    
-    if error:
-        st.error(f"Error generating image title: {error}")
+    if debug:
+        st.write("Output from run_chain_with_retries:")
+        st.write(output)
+
+    if output is None:
         return "Untitled"
-    
-    if title_output and "title" in title_output:
-        return title_output["title"]
-    else:
-        st.error("Failed to generate image title")
-        return "Untitled"
+
+    if isinstance(output, dict) and "title" in output:
+        return output["title"]
+    elif isinstance(output, str):
+        # If the output is a string, it might be a JSON string
+        try:
+            parsed_output = json.loads(output)
+            if isinstance(parsed_output, dict) and "title" in parsed_output:
+                return parsed_output["title"]
+        except json.JSONDecodeError:
+            pass
+
+    st.error("Failed to generate image title")
+    return "Untitled"
 
 def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
 def extract_json_from_text(output):
-    text_pattern = r"'text':\s*'.*?({.*}).*?'}"
-    text_match = re.search(text_pattern, output, re.DOTALL)
-    if text_match:
-        return text_match.group(1)
+    # List of potential JSON patterns
+    patterns = [
+        r"'text':\s*'(json\n)?(.*?)'?\s*}$",  # Original pattern
+        r'```json\n(.*?)```',  # Code block format
+        r'json\s*(\{.*\})',  # JSON prefixed with "json"
+        r'json\n\s*(\{.*\})',  # JSON prefixed with "json\n"       
+        r'\{.*\}'  # Any JSON-like structure
+    ]
+    
+    for pattern in patterns:
+        matches = re.findall(pattern, output, re.DOTALL)
+        if matches:
+            # If it's a tuple (from capturing groups), join all parts
+            if isinstance(matches[0], tuple):
+                return ''.join(matches[0])
+            return matches[0]
+    
     return None
-
-def clean_json_string(json_string):
-    json_string = json_string.replace('\\n', '').replace('\\\\', '\\')
-    json_string = json_string.strip()
-    json_string = re.sub(r"(?<!\\)'", '"', json_string)
-    json_string = json_string.replace('\\"', '"').replace("'","").replace("\\","'")
-    return json_string
 
 def parse_json_string(json_string, parser):
     try:
@@ -179,6 +195,44 @@ def parse_json_string(json_string, parser):
         parsed_output = json.loads(json_string)
         return parser.parse(json.dumps(parsed_output))
 
+def repair_json(json_string):
+    try:
+        return json_repair.repair_json(json_string)
+    except Exception as e:
+        st.write(f"Failed to repair JSON: {e}")
+        return json_string
+
+def extract_json_from_text(output):
+    # Look for JSON within the 'text' field
+    text_pattern = r"'text':\s*'(.*?)\s*(?:(?<!\\)'\s*}|$)"
+    text_match = re.search(text_pattern, output, re.DOTALL)
+    if text_match:
+        text_content = text_match.group(1)
+        # Now look for JSON within the extracted text content
+        json_pattern = r'({.*})'
+        json_match = re.search(json_pattern, text_content, re.DOTALL)
+        if json_match:
+            return json_match.group(1)
+    # If not found in 'text' field, look for JSON in the entire output
+    json_pattern = r'({.*})'
+    json_match = re.search(json_pattern, output, re.DOTALL)
+    if json_match:
+        return json_match.group(1)
+    return None
+
+def clean_json_string(json_string):
+    if json_string is None:
+        return None
+    # Remove newlines and extra backslashes
+    json_string = json_string.replace('\\n', '').replace('\\\\', '\\')
+    # Remove leading/trailing whitespace
+    json_string = json_string.strip()
+    # Replace single quotes with double quotes, but not those escaped
+    json_string = re.sub(r"(?<!\\)'", '"', json_string)
+    # Replace remaining escaped quotes and clean up any leftover single quotes or backslashes
+    json_string = json_string.replace('\\"', '"').replace("'", "").replace("\\", "'")
+    return json_string
+
 def parse_output(output, debug=False):
     try:
         if debug:
@@ -187,6 +241,8 @@ def parse_output(output, debug=False):
 
         json_string = extract_json_from_text(output)
         if json_string is None:
+            if debug:
+                st.write("Failed to extract JSON-like structure from the output.")
             return None, "No JSON-like structure found in the output."
 
         json_string = clean_json_string(json_string)
@@ -195,10 +251,33 @@ def parse_output(output, debug=False):
             st.write("Extracted and cleaned JSON string:")
             st.write(json_string)
 
-        return json.loads(json_string), None
+        # Attempt to parse the cleaned JSON
+        parsed_json = json.loads(json_string)
+
+        if debug:
+            st.write("Successfully parsed JSON:")
+            st.write(parsed_json)
+        return parsed_json, None
 
     except json.JSONDecodeError as e:
-        return None, f"JSON parsing error: {str(e)}"
+        error_message = f"JSON parsing error: {str(e)}"
+        st.write(error_message)
+        if 'json_string' in locals():
+            st.write("Problematic JSON string:")
+            st.write(json_string)
+        else:
+            st.write("No JSON string was extracted.")
+        return None, error_message
+
+    except Exception as e:
+        error_message = f"JSON parsing error: {str(e)}"
+        print(error_message)
+        if 'json_string' in locals():
+            print("Problematic JSON string:")
+            print(json_string)
+        else:
+            print("No JSON string was extracted.")
+        return None, error_message
 
 def display_creativity_spectrum(creativity_spectrum):
     labels = ['Grounded', 'Creative', 'Wild']
@@ -412,8 +491,6 @@ revision_synthesis_prompt = concept_header + revision_synthesis_prompt_middle + 
 
 dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
 
-dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
-
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
 def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANTHROPIC_API):
@@ -422,7 +499,7 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
     else:
         return ChatOpenAI(model=model, temperature=temperature, max_tokens=4096, openai_api_key=openai_api_key)
 
-def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False):
+def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
     output = None
     retry_count = 0
     while retry_count < max_retries:
@@ -433,16 +510,33 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
                 Please refer to the instructions provided earlier and respond with only the complete JSON output.
                 Ensure that all required fields are included and properly formatted according to the instructions.
                 """
+                if debug:
+                    st.write(f"Attempt {retry_count + 1}: Using correction prompt")
                 output = _lang_chain.invoke({"correction_prompt": correction_prompt})
             else:
+                if debug:
+                    st.write(f"Attempt {retry_count + 1}: Using original prompt")
                 output = _lang_chain.invoke(args_dict)
-            break
+            
+            if debug:
+                st.write(f"Raw output from LLM:\n{output}")
+            
+            # Parse the output
+            parsed_output, error = parse_output(str(output), debug)
+            if parsed_output is not None:
+                if debug:
+                    st.write("Successfully parsed JSON output")
+                return parsed_output  # Return the parsed Python object
+            else:
+                st.write(f"Failed to parse JSON: {error}")
+                raise ValueError(f"Invalid JSON: {error}")
         except Exception as e:
-            st.write(f"An error occurred, retrying: {e}")
+            st.write(f"An error occurred in attempt {retry_count + 1}: {e}")
             retry_count += 1
+            is_correction = True  # Use correction prompt in next iteration
     if retry_count >= max_retries:
         st.write("Max retries reached. Exiting.")
-    return str(output)
+    return None
 
 def send_to_discord(content, content_type='prompts', premessage=''):
     try:
@@ -464,35 +558,29 @@ def send_to_discord(content, content_type='prompts', premessage=''):
 
 def run_llm_chain(chains, chain_name, args_dict, max_retries):
     chain = chains[chain_name]
-    for attempt in range(max_retries):
-        output = run_chain_with_retries(chain, max_retries=1, args_dict=args_dict, is_correction=(attempt > 0))
-        parsed_output, error = parse_output(output)
-        
-        if parsed_output is not None:
-            return output  # Return the raw output
-        
-        if attempt == max_retries - 1:
-            st.error(f"Failed to get valid JSON response after {max_retries} attempts: {error}")
-            return None
-        
-        st.write(f"Attempt {attempt + 1} failed: {error}. Retrying...")
-    return None
-
-def process_essence_and_facets(chains, input, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'essence_and_facets', {"input": input}, max_retries)
-    if raw_output is None:
+    output = run_chain_with_retries(chain, max_retries=max_retries, args_dict=args_dict, is_correction=False, debug=debug)
+    
+    if output is None:
+        st.error(f"Failed to get valid JSON response after {max_retries} attempts.")
         return None
     
-    output, error = parse_output(raw_output, debug)
-    if output is not None:
-        st.session_state.essence_and_facets_output = output
-        st.session_state.creativity_spectrum = output["essence_and_facets"]["creativity_spectrum"]
-    else:
-        st.error(f"Failed to process essence and facets: {error}")
     return output
 
+def process_essence_and_facets(chains, input, max_retries, debug=False):
+    parsed_output = run_llm_chain(chains, 'essence_and_facets', {"input": input}, max_retries)
+    if parsed_output is None:
+        return None
+    
+    if "essence_and_facets" in parsed_output:
+        st.session_state.essence_and_facets_output = parsed_output
+        st.session_state.creativity_spectrum = parsed_output["essence_and_facets"]["creativity_spectrum"]
+    else:
+        st.error(f"Failed to process essence and facets: Unexpected output structure")
+        return None
+    return parsed_output
+
 def process_concepts(chains, input, essence, facets, creativity_spectrum, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'concepts', {
+    parsed_output = run_llm_chain(chains, 'concepts', {
         "input": input,
         "essence": essence,
         "facets": facets,
@@ -500,31 +588,26 @@ def process_concepts(chains, input, essence, facets, creativity_spectrum, max_re
         "creativity_spectrum_creative": creativity_spectrum['creative'],
         "creativity_spectrum_grounded": creativity_spectrum['grounded'],
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process concepts")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process concepts: {error}")
-    return output
+    return parsed_output
+
 
 def process_artist_and_refined_concepts(chains, input, essence, facets, concepts, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'artist_and_refined_concepts', {
+    parsed_output = run_llm_chain(chains, 'artist_and_refined_concepts', {
         "input": input,
         "essence": essence,
         "facets": facets,
         "concepts": [x['concept'] for x in concepts['concepts']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process artist and refined concepts")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process artist and refined concepts: {error}")
-    return output
+    return parsed_output
 
 def process_mediums(chains, input, essence, facets, refined_concepts, creativity_spectrum, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'medium', {
+    parsed_output = run_llm_chain(chains, 'medium', {
         "input": input,
         "essence": essence,
         "facets": facets,
@@ -533,16 +616,13 @@ def process_mediums(chains, input, essence, facets, refined_concepts, creativity
         "creativity_spectrum_creative": creativity_spectrum['creative'],
         "creativity_spectrum_grounded": creativity_spectrum['grounded'],
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process mediums")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process mediums: {error}")
-    return output
+    return parsed_output
 
 def process_refined_mediums(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'refine_medium', {
+    parsed_output = run_llm_chain(chains, 'refine_medium', {
         "input": input,
         "essence": essence,
         "facets": facets,
@@ -550,17 +630,14 @@ def process_refined_mediums(chains, input, essence, facets, mediums, artists, re
         "artists": artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process refined mediums")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process refined mediums: {error}")
-    return output
+    return parsed_output
 
 def process_shuffled_review(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False):
     review_artists = np.random.permutation(artists).tolist()
-    raw_output = run_llm_chain(chains, 'shuffled_review', {
+    parsed_output = run_llm_chain(chains, 'shuffled_review', {
         "input": input,
         "essence": essence,
         "facets": facets,
@@ -568,93 +645,76 @@ def process_shuffled_review(chains, input, essence, facets, mediums, artists, re
         "artists": review_artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process shuffled review")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process shuffled review: {error}")
-    return output
+    return parsed_output
 
 def process_facets(chains, input, concept, medium, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium}, max_retries)
-    if raw_output is None:
+    parsed_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium}, max_retries)
+    if parsed_output is None:
+        st.error(f"Failed to process facets")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process facets: {error}")
-    return output
+    return parsed_output
 
 def process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'aspects_traits', {
+    parsed_output = run_llm_chain(chains, 'aspects_traits', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets']
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process artistic guides")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process artistic guides: {error}")
-    return output
+    return parsed_output
 
 def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'midjourney', {
+    parsed_output = run_llm_chain(chains, 'midjourney', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process midjourney prompts")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process midjourney prompts: {error}")
-    else:
-        send_to_discord([prompt['image_gen_prompt'] for prompt in output['image_gen_prompts']], premessage=f'Generated Prompts for {concept} in {medium}:')
-    return output
+    if parsed_output.get('image_gen_prompts'):
+        send_to_discord([prompt['image_gen_prompt'] for prompt in parsed_output['image_gen_prompts']], premessage=f'Generated Prompts for {concept} in {medium}:')
+    return parsed_output
 
 def process_artist_refined_prompts(chains, input, concept, medium, facets, image_gen_prompts, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'artist_refined', {
+    parsed_output = run_llm_chain(chains, 'artist_refined', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
         "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process artist refined prompts")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process artist refined prompts: {error}")
-    else:
-        send_to_discord([prompt['artist_refined_prompt'] for prompt in output['artist_refined_prompts']], premessage=f'Artist-Refined Prompts for {concept} in {medium}:')
-    return output
+    if parsed_output.get('artist_refined_prompts'):
+        send_to_discord([prompt['artist_refined_prompt'] for prompt in parsed_output['artist_refined_prompts']], premessage=f'Artist-Refined Prompts for {concept} in {medium}:')
+    return parsed_output
 
 def process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug=False):
-    raw_output = run_llm_chain(chains, 'revision_synthesis', {
+    parsed_output = run_llm_chain(chains, 'revision_synthesis', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
         "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
     }, max_retries)
-    if raw_output is None:
+    if parsed_output is None:
+        st.error(f"Failed to process revised synthesized prompts")
         return None
-    
-    output, error = parse_output(raw_output, debug)
-    if output is None:
-        st.error(f"Failed to process revised synthesized prompts: {error}")
-    else:
-        send_to_discord([prompt['revised_prompt'] for prompt in output['revised_prompts']], premessage=f'Revised Prompts for {concept} in {medium}:')
-        send_to_discord([prompt['synthesized_prompt'] for prompt in output['synthesized_prompts']], premessage=f'Synthesized Prompts for {concept} in {medium}:')
-    return output
+    if parsed_output.get('revised_prompts'):
+        send_to_discord([prompt['revised_prompt'] for prompt in parsed_output['revised_prompts']], premessage=f'Revised Prompts for {concept} in {medium}:')
+    if parsed_output.get('synthesized_prompts'):
+        send_to_discord([prompt['synthesized_prompt'] for prompt in parsed_output['synthesized_prompts']], premessage=f'Synthesized Prompts for {concept} in {medium}:')
+    return parsed_output
 
 def display_generation_progress(step, total_steps, process_name):
     progress = st.progress(0)
