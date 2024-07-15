@@ -54,18 +54,28 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
             
             # Generate a title for the image
             try:
-                title = generate_image_title(input, concept, medium, image_url, max_retries, temperature, model, debug)
-                st.write(f"Generated title: {title}")
+                title_data_json = generate_image_title(input, concept, medium, image_url, max_retries, temperature, model, debug)
+                title_data = json.loads(title_data_json)
+                st.write(f"Generated title: {title_data['title']}")
+                
+                # Display Instagram post information
+                st.subheader("Instagram Post")
+                st.write(f"Caption: {title_data['instagram_post']['caption']}")
+                st.write("Hashtags:")
+                st.write(", ".join(title_data['instagram_post']['hashtags']))
+                
+                st.subheader("SEO Keywords")
+                st.write(", ".join(title_data['seo_keywords']))
             except Exception as e:
-                st.error(f"Error generating title: {str(e)}")
-                title = "Untitled"
-            
+                st.error(f"Error generating title and Instagram post: {str(e)}")
+                title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
+    
             # Save the image locally
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
             filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}.png"
             save_image_locally(image_url, filename)
-            
+
             # Save metadata
             metadata = {
                 "timestamp": timestamp,
@@ -74,7 +84,9 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                 "prompt_type": prompt_type,
                 "prompt_index": index + 1,
                 "prompt": prompt,
-                "title": title,
+                "title": title_data['title'],
+                "instagram_post": title_data['instagram_post'],
+                "seo_keywords": title_data['seo_keywords'],
                 "image_url": image_url,
                 "model": model,
                 "filename": filename
@@ -92,9 +104,15 @@ def save_metadata(metadata):
     # Create a filename for the metadata
     metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
+    # Ensure all data is JSON serializable
+    def json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f"Type {type(obj)} not serializable")
+
     # Save the metadata as a JSON file
     with open(metadata_filename, 'w') as f:
-        json.dump(metadata, f, indent=2)
+        json.dump(metadata, f, indent=2, default=json_serializable)
     
     st.write(f"Metadata saved as {metadata_filename}")
 
@@ -145,21 +163,18 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         st.write(output)
 
     if output is None:
-        return "Untitled"
+        return json.dumps({"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []})
 
-    if isinstance(output, dict) and "title" in output:
-        return output["title"]
-    elif isinstance(output, str):
-        # If the output is a string, it might be a JSON string
-        try:
-            parsed_output = json.loads(output)
-            if isinstance(parsed_output, dict) and "title" in parsed_output:
-                return parsed_output["title"]
-        except json.JSONDecodeError:
-            pass
-
-    st.error("Failed to generate image title")
-    return "Untitled"
+    try:
+        # If output is already a dict, convert it to JSON string
+        if isinstance(output, dict):
+            return json.dumps(output)
+        # If output is a string, try to parse it as JSON and then convert back to string
+        parsed_output = json.loads(output)
+        return json.dumps(parsed_output)
+    except json.JSONDecodeError:
+        st.error("Failed to parse JSON output from title generation")
+        return json.dumps({"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []})
 
 def read_prompt(file_path):
     with open(file_path, "r") as file:
@@ -490,6 +505,8 @@ artist_refined_prompt = prompt_header + artist_refined_prompt_middle + prompt_en
 revision_synthesis_prompt = concept_header + revision_synthesis_prompt_middle + prompt_ending
 
 dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
+
+dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 

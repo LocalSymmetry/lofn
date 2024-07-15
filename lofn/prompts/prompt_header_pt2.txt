@@ -64,10 +64,10 @@ SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE TO INSPIRE YOU, BUT DO NOT USE TH
     - **Examples**: Dark Academia, Cyberpop, Cottagecore, Synthwave.
 
 13. **Frame the Subject**:
-14. **Set the Composition Principles**:
     - Use detailed framing techniques to position the subject within the composition.
     - **Examples**: Leading Lines, Golden Spiral, Dynamic Tension.
 
+14. **Set the Composition Principles**:
     - Describe the composition principles that guide the visual structure of the image.
     - **Examples**: Balance, contrast, emphasis, movement, rhythm.
 
@@ -78,7 +78,7 @@ SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE TO INSPIRE YOU, BUT DO NOT USE TH
 16. **Incorporate Adjectives and Analogies**:
     - Use descriptive adjectives and analogies to add nuance and depth to the image. For instance, describing something in terms of another thing can create a unique visual interpretation.
     - **Examples**:
-      - “A futuristic city skyline at dusk” becomes “A futuristic city skyline at dusk with glowing neon signs and flying cars zooming past towering skyscrapers.”
+      - “A futuristic city skyline at dusk” becomes “A futuristic Dubai skyline at dusk with glowing neon signs and flying sports cars zooming past towering opulent skyscrapers.”
 
 17. **Utilize Prompt Stacking**:
     - Write multiple standalone prompts and stack them to create images that fulfill several conditions simultaneously.

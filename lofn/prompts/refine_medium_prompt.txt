@@ -26,7 +26,7 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
        - Technical innovation within traditional boundaries of DALL-E 3 or other image generators.
      - Rules:
        - Avoid referencing specific artists
-       - Ensure the medium is describable and realistically achievable by an image generator
+       - Ensure the final prompt is describable and realistically achievable by DALL-E or another image generator
        - Keep the creativity level at the same level as the input medium. Don't add fantastical elements to a grounded medium, nor tone down a surreal and fantastical medium to something more tame. Try to match the overall tone unless there is good cause not to.
      - Example:
        - Original: "Oil painting on canvas with natural pigments"
