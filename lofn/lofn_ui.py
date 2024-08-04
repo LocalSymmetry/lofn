@@ -330,7 +330,7 @@ def display_style_axes(style_axes):
     st.subheader("Style Axes")
     
     # Create the radar chart (as before)
-    radar_fig = create_style_axes_chart(style_axes)
+    radar_fig = create_style_axes_chart(st.session_state.style_axes)
     
     # Create a radial bar chart
     axes = list(style_axes.keys())
@@ -349,7 +349,7 @@ def display_style_axes(style_axes):
     ))
 
     radial_bar_fig.update_layout(
-        title_text="Style Axes Values",
+        title_text="Style Axes (Lofn Determined)",
         polar=dict(
             radialaxis=dict(range=[0, 100], showticklabels=True, ticks=''),
             angularaxis=dict(showticklabels=True, ticks='')
@@ -361,7 +361,7 @@ def display_style_axes(style_axes):
     # Display both charts side by side
     col1, col2 = st.columns(2)
     with col1:
-        st.plotly_chart(radar_fig, use_container_width=True)
+        st.plotly_chart(radar_fig, use_container_width=True, title_text="Style Axes (Used Values)")
     with col2:
         st.plotly_chart(radial_bar_fig, use_container_width=True)
 
@@ -827,7 +827,7 @@ def get_step_name(process_name, step):
         "Prompt Generation": [
             "Generating Facets",
             "Creating Artistic Guides",
-            "Generating Midjourney Prompts",
+            "Generating Image Prompts",
             "Refining Prompts",
             "Synthesizing Final Prompts"
         ]
@@ -941,7 +941,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
             for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
                 st.write(f"{i}. {guide['artistic_guide']}")
         
-        status.write("Generating Midjourney Prompts...")
+        status.write("Generating Image Prompts...")
         midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, st.session_state.style_axes, artistic_guides, max_retries, debug)
         if debug:
             st.write("Midjourney Prompts:")
