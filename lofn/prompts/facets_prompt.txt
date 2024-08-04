@@ -14,5 +14,6 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 USER INPUT
 Concept: {concept}
 Medium: {medium}
+Style Axes: {style_axes}
 USER'S IDEA
 {input}

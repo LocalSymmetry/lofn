@@ -7,9 +7,9 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
      - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
        - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
        - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
-       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or a insightful challenge for the concept?
+       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or an insightful challenge for the concept?
        - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
-       - Judgement on the facets: Score each facet, how did the medium portray the concept and user's idea?
+       - Judgment on the facets: Score each facet, how did the medium portray the concept and user's idea?
 
 2. **Brainstorm Enhanced Medium Ideas**:
    - Ideation:
@@ -31,12 +31,33 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
      - Example:
        - Original: "Oil painting on canvas with natural pigments"
        - Refined: "Multi-layered oil painting on textured linen, incorporating earthy natural pigments and bright gold leaf accents"
+   - Fixing Gaps and Errors:
+     - Action: Fill in gaps within the medium and concept if they do not conform to achieving the user's input. Seperate what is being shown into the concept and they way it is being shown into the medium so that the concept and medium are related but distinct and not overlapping.
+     - Example:
+       - User Input: "A depiction of love"
+       - Original Concept: "A painting of two elderly lovers sitting on a bench in central park with dirt-brown pigments expressing their hair"
+       - Original Medium: "Oil painting on canvas with natural pigments on a park bench in central park"
+       - Refined Concept: "Two elderly lovers sitting on a bench holding hands making a heart with the shapes of their body. Their dusty-brown hair showing all the colors of the earth."
+       - Refined Medium: "Multi-layered oil painting on textured linen, incorporating earthy natural pigments and bright leafy accents"
 
 4. **Compile and Format Refined Mediums**:
    - Output Preparation:
      - Action: Present the list of refined mediums in the following JSON format:
      ```json
      {{
+       "refined_concepts": [
+         {{"refined_concept": "Refined Concept 1"}},
+         {{"refined_concept": "Refined Concept 2"}},
+         {{"refined_concept": "Refined Concept 3"}},
+         {{"refined_concept": "Refined Concept 4"}},
+         {{"refined_concept": "Refined Concept 5"}},
+         {{"refined_concept": "Refined Concept 6"}},
+         {{"refined_concept": "Refined Concept 7"}},
+         {{"refined_concept": "Refined Concept 8"}},
+         {{"refined_concept": "Refined Concept 9"}},
+         {{"refined_concept": "Refined Concept 10"}},
+         {{"refined_concept": "Refined Concept 11"}},
+         {{"refined_concept": "Refined Concept 12"}}
        "refined_mediums": [
          {{"refined_medium": "Refined Medium 1"}},
          {{"refined_medium": "Refined Medium 2"}},
@@ -57,6 +78,7 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
 USER INPUT
 Essence: {essence}
 Facets: {facets}
+Style Axes: {style_axes}
 INPUT MEDIUMS: {mediums}
 INPUT ARTISTS: {artists}
 INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}

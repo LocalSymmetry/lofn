@@ -48,6 +48,8 @@ INSTRUCTIONS: As an expert AI art curator and social media strategist, your task
 
 JUDGING FACETS
 {facets}
+STYLE AXES
+{style_axes}
 GENERATED IMAGE
 {image}
 USER'S IDEA

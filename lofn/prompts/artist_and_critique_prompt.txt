@@ -68,5 +68,6 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 USER INPUT
 Essence: {essence}
 Facets: {facets}
+Style Axes: {style_axes}
 INPUT CONCEPTS: {concepts}
 USER'S IDEA: {input}

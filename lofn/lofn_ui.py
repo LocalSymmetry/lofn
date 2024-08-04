@@ -36,6 +36,26 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
 
+def create_style_axes_chart(style_axes):
+    categories = list(style_axes.keys())
+    values = list(style_axes.values())
+    
+    fig = go.Figure(data=go.Scatterpolar(
+      r=values,
+      theta=categories,
+      fill='toself'
+    ))
+
+    fig.update_layout(
+      polar=dict(
+        radialaxis=dict(
+          visible=True,
+          range=[0, 100]
+        )),
+      showlegend=False
+    )
+    
+    return fig
 
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug):
     st.write("Generating DALL-E 3 images...")
@@ -306,6 +326,45 @@ def display_creativity_spectrum(creativity_spectrum):
     )
     st.plotly_chart(fig, use_container_width=True)
 
+def display_style_axes(style_axes):
+    st.subheader("Style Axes")
+    
+    # Create the radar chart (as before)
+    radar_fig = create_style_axes_chart(style_axes)
+    
+    # Create a radial bar chart
+    axes = list(style_axes.keys())
+    values = list(style_axes.values())
+    
+    radial_bar_fig = go.Figure()
+
+    radial_bar_fig.add_trace(go.Barpolar(
+        r=values,
+        theta=axes,
+        marker_color=values,
+        marker_cmin=0,
+        marker_cmax=100,
+        marker_colorscale="Viridis",
+        opacity=0.8
+    ))
+
+    radial_bar_fig.update_layout(
+        title_text="Style Axes Values",
+        polar=dict(
+            radialaxis=dict(range=[0, 100], showticklabels=True, ticks=''),
+            angularaxis=dict(showticklabels=True, ticks='')
+        ),
+        height=500,
+        showlegend=False
+    )
+
+    # Display both charts side by side
+    col1, col2 = st.columns(2)
+    with col1:
+        st.plotly_chart(radar_fig, use_container_width=True)
+    with col2:
+        st.plotly_chart(radial_bar_fig, use_container_width=True)
+
 def display_facets(facets):
     st.subheader("Facets")
     cols = st.columns(len(facets))
@@ -375,7 +434,7 @@ def get_step_name(process_name, step):
         "Prompt Generation": [
             "Generating Facets",
             "Creating Artistic Guides",
-            "Generating Midjourney Prompts",
+            "Generating Image Prompts",
             "Refining Prompts",
             "Synthesizing Final Prompts"
         ]
@@ -591,16 +650,18 @@ def process_essence_and_facets(chains, input, max_retries, debug=False):
     if "essence_and_facets" in parsed_output:
         st.session_state.essence_and_facets_output = parsed_output
         st.session_state.creativity_spectrum = parsed_output["essence_and_facets"]["creativity_spectrum"]
+        st.session_state.style_axes = parsed_output["essence_and_facets"]["style_axes"]
     else:
         st.error(f"Failed to process essence and facets: Unexpected output structure")
         return None
     return parsed_output
 
-def process_concepts(chains, input, essence, facets, creativity_spectrum, max_retries, debug=False):
+def process_concepts(chains, input, essence, facets, style_axes, creativity_spectrum, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'concepts', {
         "input": input,
         "essence": essence,
         "facets": facets,
+        "style_axes": style_axes,
         "creativity_spectrum_wild": creativity_spectrum['wild'],
         "creativity_spectrum_creative": creativity_spectrum['creative'],
         "creativity_spectrum_grounded": creativity_spectrum['grounded'],
@@ -611,11 +672,12 @@ def process_concepts(chains, input, essence, facets, creativity_spectrum, max_re
     return parsed_output
 
 
-def process_artist_and_refined_concepts(chains, input, essence, facets, concepts, max_retries, debug=False):
+def process_artist_and_refined_concepts(chains, input, essence, facets, style_axes, concepts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'artist_and_refined_concepts', {
         "input": input,
         "essence": essence,
         "facets": facets,
+        "style_axes": style_axes,
         "concepts": [x['concept'] for x in concepts['concepts']]
     }, max_retries)
     if parsed_output is None:
@@ -623,11 +685,12 @@ def process_artist_and_refined_concepts(chains, input, essence, facets, concepts
         return None
     return parsed_output
 
-def process_mediums(chains, input, essence, facets, refined_concepts, creativity_spectrum, max_retries, debug=False):
+def process_mediums(chains, input, essence, facets, style_axes, refined_concepts, creativity_spectrum, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'medium', {
         "input": input,
         "essence": essence,
         "facets": facets,
+        "style_axes": style_axes,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']],
         "creativity_spectrum_wild": creativity_spectrum['wild'],
         "creativity_spectrum_creative": creativity_spectrum['creative'],
@@ -638,11 +701,12 @@ def process_mediums(chains, input, essence, facets, refined_concepts, creativity
         return None
     return parsed_output
 
-def process_refined_mediums(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False):
+def process_refined_mediums(chains, input, essence, facets, style_axes, mediums, artists, refined_concepts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'refine_medium', {
         "input": input,
         "essence": essence,
         "facets": facets,
+        "style_axes": style_axes,
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
@@ -652,12 +716,13 @@ def process_refined_mediums(chains, input, essence, facets, mediums, artists, re
         return None
     return parsed_output
 
-def process_shuffled_review(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False):
+def process_shuffled_review(chains, input, essence, facets, style_axes, mediums, artists, refined_concepts, max_retries, debug=False):
     review_artists = np.random.permutation(artists).tolist()
     parsed_output = run_llm_chain(chains, 'shuffled_review', {
         "input": input,
         "essence": essence,
         "facets": facets,
+        "style_axes": style_axes,
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": review_artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
@@ -667,31 +732,33 @@ def process_shuffled_review(chains, input, essence, facets, mediums, artists, re
         return None
     return parsed_output
 
-def process_facets(chains, input, concept, medium, max_retries, debug=False):
-    parsed_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium}, max_retries)
+def process_facets(chains, input, concept, medium, style_axes, max_retries, debug=False):
+    parsed_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium, "style_axes":style_axes}, max_retries)
     if parsed_output is None:
         st.error(f"Failed to process facets")
         return None
     return parsed_output
 
-def process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug=False):
+def process_artistic_guides(chains, input, concept, medium, facets, style_axes, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'aspects_traits', {
         "input": input,
         "concept": concept,
         "medium": medium,
-        "facets": facets['facets']
+        "facets": facets['facets'],
+        "style_axes": style_axes,
     }, max_retries)
     if parsed_output is None:
         st.error(f"Failed to process artistic guides")
         return None
     return parsed_output
 
-def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug=False):
+def process_midjourney_prompts(chains, input, concept, medium, facets, style_axes, artistic_guides, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'midjourney', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
+        "style_axes": style_axes,
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }, max_retries)
     if parsed_output is None:
@@ -701,12 +768,13 @@ def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_
         send_to_discord([prompt['image_gen_prompt'] for prompt in parsed_output['image_gen_prompts']], premessage=f'Generated Prompts for {concept} in {medium}:')
     return parsed_output
 
-def process_artist_refined_prompts(chains, input, concept, medium, facets, image_gen_prompts, max_retries, debug=False):
+def process_artist_refined_prompts(chains, input, concept, medium, facets, style_axes, image_gen_prompts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'artist_refined', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
+        "style_axes": style_axes,
         "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
     }, max_retries)
     if parsed_output is None:
@@ -716,12 +784,13 @@ def process_artist_refined_prompts(chains, input, concept, medium, facets, image
         send_to_discord([prompt['artist_refined_prompt'] for prompt in parsed_output['artist_refined_prompts']], premessage=f'Artist-Refined Prompts for {concept} in {medium}:')
     return parsed_output
 
-def process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug=False):
+def process_revised_synthesized_prompts(chains, input, concept, medium, facets, style_axes, artist_refined_prompts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'revision_synthesis', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
+        "style_axes": style_axes,
         "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
     }, max_retries)
     if parsed_output is None:
@@ -787,10 +856,19 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         if essence_and_facets:
             display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
             display_facets(essence_and_facets["essence_and_facets"]["facets"])
+            display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
         
         # Step 2: Concepts
         status.write("Generating Concepts...")
-        concepts = process_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], st.session_state.creativity_spectrum, max_retries, debug)
+        concepts = process_concepts(
+            chains, 
+            input, 
+            essence_and_facets["essence_and_facets"]["essence"], 
+            essence_and_facets["essence_and_facets"]["facets"], 
+            st.session_state.style_axes, 
+            st.session_state.creativity_spectrum, 
+            max_retries, 
+            debug)
         if debug:
             st.write("Initial Concepts:")
             for i, concept in enumerate(concepts['concepts'], 1):
@@ -798,7 +876,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 3: Refined Concepts
         status.write("Refining Concepts...")
-        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], concepts, max_retries, debug)
+        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, concepts, max_retries, debug)
         if debug:
             st.write("Refined Concepts:")
             for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
@@ -806,7 +884,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 4: Generating Mediums
         status.write("Generating Mediums...")
-        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
+        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
         if debug:
             st.write("Initial Mediums:")
             for i, medium in enumerate(mediums['mediums'], 1):
@@ -814,19 +892,22 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 5: Refining Mediums
         status.write("Refining Mediums...")
-        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
         if debug:
+            st.write("Refined Concepts:")
+            for i, concept in enumerate(refined_mediums['refined_concepts'], 1):
+                st.write(f"{i}. {concept['refined_concept']}")
             st.write("Refined Mediums:")
             for i, medium in enumerate(refined_mediums['refined_mediums'], 1):
                 st.write(f"{i}. {medium['refined_medium']}")
         
         # Step 6: Shuffling and Reviewing
         status.write("Shuffling and Reviewing...")
-        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], refined_mediums, max_retries, debug)
 
         status.update(label="Generation Complete!", state="complete")
 
-    refined_concepts = [x['refined_concept'] for x in artist_and_refined_concepts['refined_concepts']]
+    refined_concepts = [x['refined_concept'] for x in shuffled_review['refined_concepts']]
     refined_mediums = [x['refined_medium'] for x in shuffled_review['refined_mediums']]
     concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
     
@@ -849,32 +930,33 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
 
     with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
         status.write("Generating Facets...")
-        facets = process_facets(chains, input, concept, medium, max_retries, debug)
+        facets = process_facets(chains, input, concept, medium, st.session_state.style_axes, max_retries, debug)
+
         display_facets(facets['facets'])
         
         status.write("Creating Artistic Guides...")
-        artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug)
+        artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, st.session_state.style_axes, max_retries, debug)
         if debug:
             st.write("Artistic Guides:")
             for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
                 st.write(f"{i}. {guide['artistic_guide']}")
         
         status.write("Generating Midjourney Prompts...")
-        midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug)
+        midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, st.session_state.style_axes, artistic_guides, max_retries, debug)
         if debug:
             st.write("Midjourney Prompts:")
             for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
                 st.write(f"{i}. {prompt['image_gen_prompt']}")
         
         status.write("Refining Prompts...")
-        artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, midjourney_prompts, max_retries, debug)
+        artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, st.session_state.style_axes, midjourney_prompts, max_retries, debug)
         if debug:
             st.write("Artist Refined Prompts:")
             for i, prompt in enumerate(artist_refined_prompts['artist_refined_prompts'], 1):
                 st.write(f"{i}. {prompt['artist_refined_prompt']}")
         
         status.write("Synthesizing Final Prompts...")
-        revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug)
+        revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, st.session_state.style_axes, artist_refined_prompts, max_retries, debug)
 
         status.update(label="Prompt Generation Complete!", state="complete")
 
@@ -916,9 +998,33 @@ initialize_session_state()
 
 st.title("LOFN - The AI Artist")
 
+
+st.sidebar.header('Style Personalization')
+auto_style = st.sidebar.checkbox("Automatic Style", value=True)
+
+if not auto_style:
+    st.sidebar.subheader("Adjust Style Axes")
+    style_axes = {
+        "Abstraction vs. Realism": st.sidebar.slider("Abstraction vs. Realism", 0, 100, 50),
+        "Emotional Valence": st.sidebar.slider("Emotional Valence", 0, 100, 50),
+        "Color Intensity": st.sidebar.slider("Color Intensity", 0, 100, 50),
+        "Symbolic Density": st.sidebar.slider("Symbolic Density", 0, 100, 50),
+        "Compositional Complexity": st.sidebar.slider("Compositional Complexity", 0, 100, 50),
+        "Textural Richness": st.sidebar.slider("Textural Richness", 0, 100, 50),
+        "Symmetry vs. Asymmetry": st.sidebar.slider("Symmetry vs. Asymmetry", 0, 100, 50),
+        "Novelty": st.sidebar.slider("Novelty", 0, 100, 50),
+        "Figure-Ground Relationship": st.sidebar.slider("Figure-Ground Relationship", 0, 100, 50),
+        "Dynamic vs. Static": st.sidebar.slider("Dynamic vs. Static", 0, 100, 50)
+    }
+else:
+    style_axes = None
+
+# Add style_axes to session state
+st.session_state['style_axes'] = style_axes
+
 # Sidebar settings
 st.sidebar.header('Patron Input Features')
-model = st.sidebar.selectbox("Select model", ["claude-3-5-sonnet-20240620", "gpt-4o", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
+model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-5-sonnet-20240620",  "gpt-4o-mini", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
 st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=False)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
@@ -937,73 +1043,6 @@ if st.session_state['use_default_webhook']:
     st.sidebar.text("Webhook URL: **********")
 else:
     st.session_state['webhook_url'] = st.sidebar.text_input("Discord Webhook URL", st.session_state['webhook_url'])
-
-@st.cache_data(persist=True)
-def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics):
-    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
-    selected_aesthetics = random.sample(aesthetics, 100)
-
-    chains = {
-        'essence_and_facets': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", essence_prompt)])),
-        'concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", concepts_prompt)])),
-        'artist_and_refined_concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", artist_and_critique_prompt)])),
-        'medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", medium_prompt)])),
-        'refine_medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)])),
-        'shuffled_review': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)]))
-    }
-
-    with st.status("Generating Concepts and Mediums...", expanded=True) as status:
-        # Step 1: Essence and Facets
-        status.write("Generating Essence and Facets...")
-        essence_and_facets = process_essence_and_facets(chains, input, max_retries, debug)
-        if essence_and_facets:
-            display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
-            display_facets(essence_and_facets["essence_and_facets"]["facets"])
-        
-        # Step 2: Concepts
-        status.write("Generating Concepts...")
-        concepts = process_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], st.session_state.creativity_spectrum, max_retries, debug)
-        if debug:
-            st.write("Initial Concepts:")
-            for i, concept in enumerate(concepts['concepts'], 1):
-                st.write(f"{i}. {concept['concept']}")
-        
-        # Step 3: Refined Concepts
-        status.write("Refining Concepts...")
-        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], concepts, max_retries, debug)
-        if debug:
-            st.write("Refined Concepts:")
-            for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
-                st.write(f"{i}. {concept['refined_concept']}")
-        
-        # Step 4: Generating Mediums
-        status.write("Generating Mediums...")
-        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
-        if debug:
-            st.write("Initial Mediums:")
-            for i, medium in enumerate(mediums['mediums'], 1):
-                st.write(f"{i}. {medium['medium']}")
-        
-        # Step 5: Refining Mediums
-        status.write("Refining Mediums...")
-        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
-        if debug:
-            st.write("Refined Mediums:")
-            for i, medium in enumerate(refined_mediums['refined_mediums'], 1):
-                st.write(f"{i}. {medium['refined_medium']}")
-        
-        # Step 6: Shuffling and Reviewing
-        status.write("Shuffling and Reviewing...")
-        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"], mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
-
-        status.update(label="Generation Complete!", state="complete")
-
-    refined_concepts = [x['refined_concept'] for x in artist_and_refined_concepts['refined_concepts']]
-    refined_mediums = [x['refined_medium'] for x in shuffled_review['refined_mediums']]
-    concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums)]
-    
-    send_to_discord(concept_mediums, content_type='concepts')
-    return concept_mediums
 
 # Modify the main UI part
 with st.container():

@@ -141,3 +141,36 @@ SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE TO INSPIRE YOU, BUT DO NOT USE TH
 **Concept**: Low-light capture of a Bornean Orangutan crafting a leaf umbrella during monsoon rain in Tanjung Puting, raindrops illuminated by a shaft of sunlight breaking through the canopy.
 **Medium**: Low-light digital photography with high dynamic range, employing a single soft fill light to gently illuminate the orangutan while maintaining the natural ambiance
 **Prompt**: Low-light capture of a Bornean Orangutan crafting a leaf umbrella during monsoon rain in Tanjung Puting, raindrops illuminated by a shaft of sunlight breaking through the canopy. High dynamic range photography emphasizes the contrast between deep shadows and vibrant earth tones. A single soft fill light gently illuminates the ape's dexterous fingers and contemplative expression, highlighting its ingenuity amidst the challenging rainforest environment. Glistening raindrops on broad leaves create a dynamic foreground, while the misty rainforest floor provides depth, embodying the orangutan's harmonious existence within its ecosystem.
+
+
+## Example of Prompt Generation:
+
+User Input: "Expression of movement"
+Generated Concept: A dynamic cityscape where every element embodies fluid motion and constant change
+
+Style Axes:
+- Abstraction vs. Realism: 60
+- Emotional Valence: 75
+- Color Intensity: 80
+- Symbolic Density: 70
+- Compositional Complexity: 85
+- Textural Richness: 65
+- Symmetry vs. Asymmetry: 25
+- Novelty: 90
+- Figure-Ground Relationship: 50
+- Dynamic vs. Static: 95
+
+Base Prompt: Create a fluid, ever-changing cityscape that embodies the essence of movement. Buildings twist and flow like liquid, their surfaces rippling with waves of energy. Streets curve and undulate, filled with streams of light representing traffic. In the sky, flocks of birds or futuristic vehicles create complex, interwoven flight patterns. The entire scene should pulse with a sense of rhythm and constant motion, as if the city itself is dancing to an unheard beat.
+
+Now, let's see how adjusting some style axes can dramatically change the prompt:
+
+1. Increased Realism (Abstraction vs. Realism: 85)
+   Refined Prompt: Capture a hyper-realistic view of New York City's Times Square, transformed into a kinetic wonderland. The iconic skyscrapers of Manhattan sway and bend like reeds in the wind, their windows flickering with the movement of people inside. The famous LED billboards display flowing, liquid-like advertisements for "KinetiCola" and "MoveBank," the images spilling off the screens and into the air as holographic extensions. On the ground, the crowd moves in a mesmerizing display of Brownian motion, with individuals leaving colorful motion trails. Yellow cabs and electric buses weave through the streets, their bodies elongated by speed, creating a modern take on Boccioni's "Unique Forms of Continuity in Space." In the distance, the Brooklyn Bridge undulates like a sine wave, its cables thrumming with the rhythm of unseen music.
+
+2. Increased Symbolism (Symbolic Density: 90)
+   Refined Prompt: Illustrate the concept of social mobility through a surreal, motion-filled cityscape. The central structure is a massive, spiraling DNA helix made of bustling elevators and escalators, representing the "Ladder of Success." People of diverse backgrounds ascend and descend, their paths intertwining. The surrounding buildings are anthropomorphized into giant figures in various poses of motion - running, leaping, dancing - symbolizing different career paths. The streets flow like rivers of data, carrying boats shaped like books, briefcases, and mortarboards. In the sky, clock faces melt and swirl à la Dalí, their hands spinning wildly to show the passage of time. Raining down upon the scene are glowing, animated resumes and business cards, creating a storm of opportunity.
+
+3. Increased Dynamism in Photography (Dynamic vs. Static: 100)
+   Refined Prompt: Create a composite photograph that pushes the boundaries of capturing motion in still imagery. Use multiple exposure techniques to show the fluid movement of dancers from the New York City Ballet as they perform across iconic city locations. Their graceful forms should blur and stretch across the frame, creating ribbons of motion that interweave with the urban landscape. At Columbus Circle, capture a whirling dervish of pigeons taking flight, their wings forming a living vortex. On the High Line, photograph parkour athletes in mid-leap, their bodies creating arcs and spirals between buildings. Employ light painting techniques to trace the paths of yellow cabs down 5th Avenue, transforming them into rivers of golden light. In Central Park, use ultra-long exposure to turn the carousel into a kaleidoscope of concentric circles. The overall effect should be a city that vibrates with energy, where every element, from nature to architecture to human activity, is caught in a beautiful, ceaseless flow of motion.
+
+Remember: When generating prompts, your goal is to transform the general concept into a vividly detailed scene. Use specific proper nouns, brand names, and precise descriptors. Don't just say "dancing figures," specify "prima ballerina Tiler Peck performing a grand jeté across Times Square." Instead of "fast-moving cars," describe "a 30-second exposure of red Toyota Prius taillights creating light trails along the FDR Drive." Replace "flowing water" with "the Bethesda Fountain captured with a neutral density filter, rendering the water as smooth as silk." Your prompt should paint a picture so detailed that no two artists would interpret it the same way.

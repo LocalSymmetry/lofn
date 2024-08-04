@@ -91,5 +91,10 @@ Follow these steps to come up with 12 concepts, each a phrase that encapsulates 
 USER INPUT
 Essence: {essence}
 Facets: {facets}
+Style Axes: {style_axes}
+CREATIVITY SPECTRUM
+Wild: {creativity_spectrum_wild}
+Creative: {creativity_spectrum_creative}
+Grounded: {creativity_spectrum_grounded}
 USER'S IDEA
 {input}

@@ -50,3 +50,36 @@ Use these roles as needed. If it helps, give each role a name and personality, a
 
 5. **Ethical Considerations**:
    - Ensure all generated content respects cultural sensitivities, promotes inclusivity and diversity, and accurately represents the depicted subjects.
+
+6. **Style Axes**:
+   The style axes determined in the initial essence prompt serve as a creative blueprint for all subsequent stages of the Lofn system. These axes act as guiding parameters that influence the conceptualization, medium selection, and image generation processes. By consistently referencing and applying these style values throughout the workflow, Lofn ensures a cohesive and personalized artistic vision from start to finish.
+   - Abstraction vs. Realism (0: Highly Abstract, 100: Photorealistic)
+     Explainer: This axis determines how closely the artwork represents reality. Lower values suggest more abstract interpretations, while higher values indicate more realistic depictions.
+     Example: For "A dream about flying," a value of 30 might be appropriate, favoring a more abstract representation of the concept.
+   - Emotional Valence (0: Negative, 50: Neutral, 100: Positive)
+     Explainer: This axis reflects the emotional tone of the artwork. Lower values suggest darker or more negative emotions, while higher values indicate more positive or uplifting emotions.
+     Example: For "A joyful reunion," a value of 90 would be fitting, emphasizing the positive emotional content.
+   - Color Intensity (0: Muted, 100: Vibrant)
+     Explainer: This axis determines the vibrancy and saturation of colors used. Lower values suggest more subdued or pastel colors, while higher values indicate bold, vivid colors.
+     Example: For "A foggy morning in London," a value of 20 might be appropriate, favoring muted, atmospheric colors.
+   - Symbolic Density (0: Literal, 100: Highly Symbolic)
+     Explainer: This axis indicates how much the artwork relies on symbols and metaphors versus literal representations. Higher values suggest more use of symbolic elements.
+     Example: For "The passage of time," a value of 85 would encourage the use of symbolic representations rather than literal depictions of clocks or calendars.
+   - Compositional Complexity (0: Simple, 100: Highly Complex)
+     Explainer: This axis determines the intricacy of the artwork's composition. Lower values suggest simpler, more straightforward compositions, while higher values indicate more complex, multi-layered arrangements.
+     Example: For "A single rose in a vase," a value of 15 might be appropriate, favoring a simple, focused composition.
+   - Textural Richness (0: Smooth, 100: Highly Textured)
+     Explainer: This axis reflects the level of texture in the artwork. Lower values suggest smooth, flat surfaces, while higher values indicate rich, tactile textures.
+     Example: For "The rough bark of an ancient tree," a value of 90 would emphasize the textural qualities of the subject.
+   - Symmetry vs. Asymmetry (0: Highly Asymmetrical, 100: Perfectly Symmetrical)
+     Explainer: This axis determines the balance and symmetry of the composition. Lower values suggest more asymmetrical, dynamic compositions, while higher values indicate more balanced, symmetrical arrangements.
+     Example: For "A butterfly's wings," a value of 95 would emphasize the natural symmetry of the subject.
+   - Novelty (0: Traditional, 100: Highly Innovative)
+     Explainer: This axis reflects how conventional or innovative the artistic approach should be. Lower values suggest more traditional techniques and styles, while higher values encourage more experimental and unique approaches.
+     Example: For "A futuristic cityscape," a value of 80 might be appropriate, encouraging innovative and unconventional depictions.
+   - Figure-Ground Relationship (0: Distinct, 100: Blended)
+     Explainer: This axis determines how clearly the main subject (figure) is distinguished from its surroundings (ground). Lower values suggest clear distinction, while higher values indicate more integration between figure and ground.
+     Example: For "A chameleon in a rainforest," a value of 75 would encourage a more blended relationship between the subject and its environment.
+   - Dynamic vs. Static (0: Completely Static, 100: Highly Dynamic)
+     Explainer: This axis reflects the sense of movement or energy in the artwork. Lower values suggest stillness and stability, while higher values indicate motion and dynamism.
+     Example: For "A serene lake at dawn," a value of 10 might be appropriate, emphasizing the calm and static nature of the scene.

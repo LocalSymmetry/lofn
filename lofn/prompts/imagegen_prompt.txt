@@ -21,6 +21,7 @@ USER INPUT
 Concept: {concept}
 Medium: {medium}
 Judging Facets: {facets}
+Style Axes: {style_axes}
 ARTISTIC GUIDES
 {artistic_guides}
 USER'S IDEA

@@ -59,5 +59,6 @@ USER INPUT
 Concept: {concept}
 Medium: {medium}
 Judging Facets: {facets}
+Style Axes: {style_axes}
 USER'S IDEA: {input}
 GENERATED PROMPTS: {image_gen_prompts}

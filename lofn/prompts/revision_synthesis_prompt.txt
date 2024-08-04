@@ -69,5 +69,6 @@ USER INPUT
 Concept: {concept}
 Medium: {medium}
 Judging Facets: {facets}
+Style Axes: {style_axes}
 USER'S IDEA: {input}
 ARTIST-REFINED PROMPTS: {artist_refined_prompts}

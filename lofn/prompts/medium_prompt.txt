@@ -90,6 +90,14 @@ Follow these steps to come up with 12 medium pairings, each a phrase about the p
 }}
 ```
 
+USER INPUT
+Essence: {essence}
+Facets: {facets}
+Style Axes: {style_axes}
+CREATIVITY SPECTRUM
+Wild: {creativity_spectrum_wild}
+Creative: {creativity_spectrum_creative}
+Grounded: {creativity_spectrum_grounded}
 INPUT ARTIST-REFINED CONCEPTS
 {refined_concepts}
 USER'S IDEA
