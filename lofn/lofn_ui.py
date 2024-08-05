@@ -15,6 +15,7 @@ from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
 from langchain.schema import OutputParserException
 import numpy as np
+import fal_client
 import os
 import pandas as pd
 from string import Template
@@ -35,6 +36,21 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
+
+def generate_fal_image(model_name, prompt, image_size="square_hd"):
+    try:
+        handler = fal_client.submit(
+            model_name,
+            arguments={
+                "prompt": prompt,
+                "image_size": image_size
+            },
+        )
+        result = handler.get()
+        return result['images'][0]['url']
+    except Exception as e:
+        st.write(f"An error occurred while generating the image with FAL: {str(e)}")
+        return None
 
 def create_style_axes_chart(style_axes):
     categories = list(style_axes.keys())
@@ -57,8 +73,8 @@ def create_style_axes_chart(style_axes):
     
     return fig
 
-def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug):
-    st.write("Generating DALL-E 3 images...")
+def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model):
+    st.write(f"Generating images using {image_model}...")
     
     # Combine Revised and Synthesized prompts
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
@@ -67,7 +83,10 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         if debug:
             st.write(f"Generating image for prompt {index + 1}: {prompt}")
         
-        image_url = generate_image_dalle3(prompt)
+        if image_model == "DALL-E 3":
+            image_url = generate_image_dalle3(prompt)
+        else:
+            image_url = generate_fal_image(image_model, prompt)
         
         if image_url:
             st.image(image_url, caption=f"Generated image for {concept} in {medium} - Prompt: {prompt}")
@@ -110,6 +129,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                 "instagram_post": title_data['instagram_post'],
                 "seo_keywords": title_data['seo_keywords'],
                 "image_url": image_url,
+                "image_model": image_model,
                 "model": model,
                 "filename": filename
             }
@@ -117,7 +137,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         else:
             st.write(f"Failed to generate image for prompt {index + 1}.")
 
-    st.write("DALL-E 3 image generation complete.")
+    st.write(f"{image_model} image generation complete.")
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
@@ -968,7 +988,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
 
 
 @st.cache_data(persist=True)
-def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics):
+def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics, image_model="None"):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
     selected_aesthetics = random.sample(aesthetics, 100)
 
@@ -1025,18 +1045,18 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         'Synthesized Prompts': [prompt['synthesized_prompt'] for prompt in revised_synthesized_prompts['synthesized_prompts']]
     })    
 
-    if st.session_state.get('use_dalle3', False):
-        generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug)
+    if image_model != 'None':
+        generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model)
 
     return revised_synthesized_prompts
 
-def generate_all_prompts(input, concept_mediums, max_retries, temperature, model, debug):
+def generate_all_prompts(input, concept_mediums, max_retries, temperature, model, debug, aesthetics=aesthetics, image_model = "None"):
     results = []
     total_pairs = len(concept_mediums)
     
     for i, pair in enumerate(concept_mediums):
         st.write(f"Generating prompts for pair {i+1}/{total_pairs}: {pair['concept']} in {pair['medium']}")
-        result = generate_prompts(input, pair['concept'], pair['medium'], max_retries, temperature, model, debug)
+        result = generate_prompts(input, pair['concept'], pair['medium'], max_retries, temperature, model, debug, aesthetics, image_model)
         results.append(result)
         st.markdown("---")  # Add a separator between each pair's results
         
@@ -1057,16 +1077,16 @@ st.session_state.auto_style = st.sidebar.checkbox("Automatic Style", value=True)
 if not st.session_state.auto_style:
     st.sidebar.subheader("Adjust Style Axes")
     style_axes = {
-        "Abstraction vs. Realism": st.sidebar.slider("Abstraction vs. Realism", 0, 100, 50),
-        "Emotional Valence": st.sidebar.slider("Emotional Valence", 0, 100, 50),
-        "Color Intensity": st.sidebar.slider("Color Intensity", 0, 100, 50),
-        "Symbolic Density": st.sidebar.slider("Symbolic Density", 0, 100, 50),
-        "Compositional Complexity": st.sidebar.slider("Compositional Complexity", 0, 100, 50),
-        "Textural Richness": st.sidebar.slider("Textural Richness", 0, 100, 50),
-        "Symmetry vs. Asymmetry": st.sidebar.slider("Symmetry vs. Asymmetry", 0, 100, 50),
-        "Novelty": st.sidebar.slider("Novelty", 0, 100, 50),
-        "Figure-Ground Relationship": st.sidebar.slider("Figure-Ground Relationship", 0, 100, 50),
-        "Dynamic vs. Static": st.sidebar.slider("Dynamic vs. Static", 0, 100, 50)
+        "Abstraction vs. Realism": st.sidebar.slider("Abstraction vs. Realism (0: Abstract)", 0, 100, 50),
+        "Emotional Valence": st.sidebar.slider("Emotional Valence (0: Negative)", 0, 100, 50),
+        "Color Intensity": st.sidebar.slider("Color Intensity (0: Muted)", 0, 100, 50),
+        "Symbolic Density": st.sidebar.slider("Symbolic Density (0: Literal)", 0, 100, 50),
+        "Compositional Complexity": st.sidebar.slider("Compositional Complexity (0: Simple)", 0, 100, 50),
+        "Textural Richness": st.sidebar.slider("Textural Richness (0: Smooth)", 0, 100, 50),
+        "Symmetry vs. Asymmetry": st.sidebar.slider("Symmetry vs. Asymmetry (0: Asymmetrical)", 0, 100, 50),
+        "Novelty": st.sidebar.slider("Novelty (0: Traditional)", 0, 100, 50),
+        "Figure-Ground Relationship": st.sidebar.slider("Figure-Ground Relationship (0: Distinct)", 0, 100, 50),
+        "Dynamic vs. Static": st.sidebar.slider("Dynamic vs. Static (0: Static)", 0, 100, 50)
     }
 else:
     style_axes = None
@@ -1074,9 +1094,12 @@ else:
 # Add style_axes to session state
 st.session_state['style_axes'] = style_axes
 
+st.sidebar.header('Image Generation Settings')
+image_model = st.sidebar.selectbox("Select image model", ["fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", "fal-ai/hyper-sdxl", "fal-ai/playground-v25"])
+
 # Sidebar settings
 st.sidebar.header('Patron Input Features')
-model = st.sidebar.selectbox("Select model", ["gpt-4o", "claude-3-5-sonnet-20240620",  "gpt-4o-mini", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
+model = st.sidebar.selectbox("Select language model", ["gpt-4o-mini", "gpt-4o", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
 st.session_state['use_dalle3'] = st.sidebar.checkbox("Use DALL-E 3 (increased cost)", value=False)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
@@ -1120,7 +1143,7 @@ with st.container():
                 st.write(f"Generating prompts for Pair {pair_i + 1}:")
                 st.markdown(f"*Concept:* {pair['concept']}")
                 st.markdown(f"*Medium:* {pair['medium']}")
-                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
                 
                 dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
                 st.code(dalle_prompt.format(
@@ -1139,7 +1162,7 @@ with st.container():
                 st.write(f"Generating prompts for Pair {i + 1}:")
                 st.markdown(f"*Concept:* {pair['concept']}")
                 st.markdown(f"*Medium:* {pair['medium']}")
-                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature)
+                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
                 
                 st.code(dalle3_gen_prompt.format(
                     concept=pair['concept'], 

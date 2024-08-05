@@ -1,3 +1,4 @@
 OPENAI_API: ""
 ANTHROPIC_API: ""
 WEBHOOK_URL:  ""
+FAL_KEY: ""
