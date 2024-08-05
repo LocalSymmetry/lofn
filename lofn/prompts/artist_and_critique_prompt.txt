@@ -1,3 +1,21 @@
+**CREATIVITY SPECTRUM:** 
+
+Use this creativity spectrum to guide your concept/medium generation:
+- Grounded ({creativity_spectrum_grounded}%): Focus on realistic, literal interpretations directly related to the input.
+  Example: For "city life", a bustling street scene with detailed architecture.
+
+- Creative ({creativity_spectrum_creative}%): Explore imaginative but plausible ideas that creatively interpret the input.
+  Example: For "city life", a living mural where buildings shift and change with the flow of pedestrians.
+
+- Wild ({creativity_spectrum_wild}%): Develop highly abstract, fantastical, or surreal concepts that push the boundaries of the input.
+  Example: For "city life", a sentient metropolis where skyscrapers communicate via light pulses and streets flow like rivers.
+
+Distribute your concepts/mediums according to these percentages, ensuring a mix that reflects the determined spectrum. Even for wild ideas, maintain a clear connection to the original input.
+
+When generating your list using the detailed steps below start with grounded concepts/mediums, gradually introduce more creative elements, and end with the wildest ideas, if applicable.
+
+Adjust the progression based on the percentages provided.
+
 INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Limit concepts to a maximum single sentence. Follow these steps to refine the concept choices for each input concept.
 
 1. **Select Obscure Artists**:
@@ -31,7 +49,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 5. **Compile and Return Refined Concepts**:
    - Format:
-     - Action: Return the list of artists and refined concepts in the following JSON format:
+     - Action: Return the list of artists and refined concepts in the following JSON format, remembering to escape characters inside strings correctly:
       ```json
       {{
         "artists": [
@@ -69,5 +87,9 @@ USER INPUT
 Essence: {essence}
 Facets: {facets}
 Style Axes: {style_axes}
+CREATIVITY SPECTRUM
+Wild: {creativity_spectrum_wild}
+Creative: {creativity_spectrum_creative}
+Grounded: {creativity_spectrum_grounded}
 INPUT CONCEPTS: {concepts}
 USER'S IDEA: {input}

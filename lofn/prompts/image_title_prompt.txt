@@ -55,7 +55,7 @@ USER'S IDEA
 Generated concept: {concept}
 Generated medium: {medium}
 
-Return the results in the following JSON format:
+Return the results in the following JSON format, remembering to escape characters inside strings correctly:
 
 {{
   "title": "Captivating title here",

@@ -70,7 +70,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         image_url = generate_image_dalle3(prompt)
         
         if image_url:
-            st.image(image_url, caption=f"Generated image for {concept} in {medium} - Prompt {index + 1}")
+            st.image(image_url, caption=f"Generated image for {concept} in {medium} - Prompt: {prompt}")
             
             # Generate a title for the image
             try:
@@ -99,6 +99,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
             # Save metadata
             metadata = {
                 "timestamp": timestamp,
+                "style_axes": st.session_state.style_axes,
+                "creativity_spectrum": st.session_state.creativity_spectrum,
                 "concept": concept,
                 "medium": medium,
                 "prompt_type": prompt_type,
@@ -650,7 +652,8 @@ def process_essence_and_facets(chains, input, max_retries, debug=False):
     if "essence_and_facets" in parsed_output:
         st.session_state.essence_and_facets_output = parsed_output
         st.session_state.creativity_spectrum = parsed_output["essence_and_facets"]["creativity_spectrum"]
-        st.session_state.style_axes = parsed_output["essence_and_facets"]["style_axes"]
+        if st.session_state.auto_style:
+            st.session_state.style_axes = parsed_output["essence_and_facets"]["style_axes"]
     else:
         st.error(f"Failed to process essence and facets: Unexpected output structure")
         return None
@@ -672,12 +675,15 @@ def process_concepts(chains, input, essence, facets, style_axes, creativity_spec
     return parsed_output
 
 
-def process_artist_and_refined_concepts(chains, input, essence, facets, style_axes, concepts, max_retries, debug=False):
+def process_artist_and_refined_concepts(chains, input, essence, facets, style_axes, creativity_spectrum, concepts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'artist_and_refined_concepts', {
         "input": input,
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
+        "creativity_spectrum_wild": creativity_spectrum['wild'],
+        "creativity_spectrum_creative": creativity_spectrum['creative'],
+        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
         "concepts": [x['concept'] for x in concepts['concepts']]
     }, max_retries)
     if parsed_output is None:
@@ -685,7 +691,7 @@ def process_artist_and_refined_concepts(chains, input, essence, facets, style_ax
         return None
     return parsed_output
 
-def process_mediums(chains, input, essence, facets, style_axes, refined_concepts, creativity_spectrum, max_retries, debug=False):
+def process_mediums(chains, input, essence, facets, style_axes, creativity_spectrum, refined_concepts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'medium', {
         "input": input,
         "essence": essence,
@@ -701,12 +707,15 @@ def process_mediums(chains, input, essence, facets, style_axes, refined_concepts
         return None
     return parsed_output
 
-def process_refined_mediums(chains, input, essence, facets, style_axes, mediums, artists, refined_concepts, max_retries, debug=False):
+def process_refined_mediums(chains, input, essence, facets, style_axes, creativity_spectrum, mediums, artists, refined_concepts, max_retries, debug=False):
     parsed_output = run_llm_chain(chains, 'refine_medium', {
         "input": input,
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
+        "creativity_spectrum_wild": creativity_spectrum['wild'],
+        "creativity_spectrum_creative": creativity_spectrum['creative'],
+        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
@@ -716,13 +725,16 @@ def process_refined_mediums(chains, input, essence, facets, style_axes, mediums,
         return None
     return parsed_output
 
-def process_shuffled_review(chains, input, essence, facets, style_axes, mediums, artists, refined_concepts, max_retries, debug=False):
+def process_shuffled_review(chains, input, essence, facets, style_axes, creativity_spectrum, mediums, artists, refined_concepts, max_retries, debug=False):
     review_artists = np.random.permutation(artists).tolist()
     parsed_output = run_llm_chain(chains, 'shuffled_review', {
         "input": input,
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
+        "creativity_spectrum_wild": creativity_spectrum['wild'],
+        "creativity_spectrum_creative": creativity_spectrum['creative'],
+        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": review_artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
@@ -876,7 +888,16 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 3: Refined Concepts
         status.write("Refining Concepts...")
-        artist_and_refined_concepts = process_artist_and_refined_concepts(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, concepts, max_retries, debug)
+        artist_and_refined_concepts = process_artist_and_refined_concepts(
+            chains, 
+            input, 
+            essence_and_facets["essence_and_facets"]["essence"], 
+            essence_and_facets["essence_and_facets"]["facets"],  
+            st.session_state.style_axes,
+            st.session_state.creativity_spectrum, 
+            concepts,
+            max_retries, 
+            debug)
         if debug:
             st.write("Refined Concepts:")
             for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
@@ -884,7 +905,16 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 4: Generating Mediums
         status.write("Generating Mediums...")
-        mediums = process_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, artist_and_refined_concepts, st.session_state.creativity_spectrum, max_retries, debug)
+        mediums = process_mediums(
+            chains, 
+            input, 
+            essence_and_facets["essence_and_facets"]["essence"], 
+            essence_and_facets["essence_and_facets"]["facets"],  
+            st.session_state.style_axes, 
+            st.session_state.creativity_spectrum,
+            artist_and_refined_concepts, 
+            max_retries, 
+            debug)
         if debug:
             st.write("Initial Mediums:")
             for i, medium in enumerate(mediums['mediums'], 1):
@@ -892,7 +922,18 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 5: Refining Mediums
         status.write("Refining Mediums...")
-        refined_mediums = process_refined_mediums(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], artist_and_refined_concepts, max_retries, debug)
+        refined_mediums = process_refined_mediums(
+            chains, 
+            input, 
+            essence_and_facets["essence_and_facets"]["essence"], 
+            essence_and_facets["essence_and_facets"]["facets"],  
+            st.session_state.style_axes, 
+            st.session_state.creativity_spectrum, 
+            mediums, 
+            [x['artist'] for x in artist_and_refined_concepts['artists']], 
+            artist_and_refined_concepts, 
+            max_retries, 
+            debug)
         if debug:
             st.write("Refined Concepts:")
             for i, concept in enumerate(refined_mediums['refined_concepts'], 1):
@@ -903,7 +944,18 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         
         # Step 6: Shuffling and Reviewing
         status.write("Shuffling and Reviewing...")
-        shuffled_review = process_shuffled_review(chains, input, essence_and_facets["essence_and_facets"]["essence"], essence_and_facets["essence_and_facets"]["facets"],  st.session_state.style_axes, mediums, [x['artist'] for x in artist_and_refined_concepts['artists']], refined_mediums, max_retries, debug)
+        shuffled_review = process_shuffled_review(
+            chains, 
+            input, 
+            essence_and_facets["essence_and_facets"]["essence"], 
+            essence_and_facets["essence_and_facets"]["facets"],  
+            st.session_state.style_axes,
+            st.session_state.creativity_spectrum, 
+            mediums, 
+            [x['artist'] for x in artist_and_refined_concepts['artists']], 
+            refined_mediums, 
+            max_retries, 
+            debug)
 
         status.update(label="Generation Complete!", state="complete")
 
@@ -1000,9 +1052,9 @@ st.title("LOFN - The AI Artist")
 
 
 st.sidebar.header('Style Personalization')
-auto_style = st.sidebar.checkbox("Automatic Style", value=True)
+st.session_state.auto_style = st.sidebar.checkbox("Automatic Style", value=True)
 
-if not auto_style:
+if not st.session_state.auto_style:
     st.sidebar.subheader("Adjust Style Axes")
     style_axes = {
         "Abstraction vs. Realism": st.sidebar.slider("Abstraction vs. Realism", 0, 100, 50),

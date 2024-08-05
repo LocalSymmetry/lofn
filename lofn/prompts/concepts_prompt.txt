@@ -66,7 +66,7 @@ Follow these steps to come up with 12 concepts, each a phrase that encapsulates 
       - Max Daring: Cybernetic catcus aliens descend on Peekskill Paramount Theatre to find the Peekskill Meteorite only to be confused by its absence.
 
 5. **Document and Refine**:
-   - **JSON Format**: Provide your response in the following JSON format, without additional formatting or explanations outside the JSON structure:
+   - **JSON Format**: Provide your response in the following JSON format, without additional formatting or explanations outside the JSON structure, remembering to escape characters inside strings correctly:
    
 ```json
 {{

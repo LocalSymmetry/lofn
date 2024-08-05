@@ -51,7 +51,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 8. **Return Final Prompts**:
    - Format:
-     - Action: Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format:
+     - Action: Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, remembering to escape characters inside strings correctly:
       ```json
       {{
         "revised_prompts": [
