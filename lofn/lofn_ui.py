@@ -23,31 +23,234 @@ import json
 import re
 import random
 import openai
-import asyncio
 import functools
 import plotly.graph_objects as go
 import math
 import json_repair
+from dataclasses import dataclass, field
+from typing import List, Optional
+import google.generativeai as genai
+import fastapi_poe as fp
+from modal import Image, Stub, asgi_app
+import asyncio
+from typing import AsyncIterable, List, Optional
+import fastapi_poe as fp
+from langchain.callbacks import AsyncIteratorCallbackHandler
+from langchain.schema import HumanMessage
+from typing import Any, Dict, List, Optional
+from langchain_core.callbacks.manager import CallbackManagerForLLMRun
+from langchain_core.language_models.llms import LLM
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
 ANTHROPIC_API = os.environ.get('ANTHROPIC_API', '')
+GOOGLE_API = os.environ.get('GOOGLE_API', '')
+POE_API = os.environ.get('POE_API', '')
 webhook_url = os.environ.get('WEBHOOK_URL', '')
 
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
 
-def generate_fal_image(model_name, prompt, image_size="square_hd"):
+class PoeLLM(LLM):
+    """A custom LLM that uses Poe's API for text generation."""
+
+    model_name: str
+    api_key: str
+    temperature: float = 0.7
+
+    def _call(
+        self,
+        prompt: str,
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[CallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> str:
+        """Generate text using the Poe API."""
+        if stop is not None:
+            raise ValueError("Stop sequences are not supported for Poe models.")
+        
+        message = fp.ProtocolMessage(role="user", content=prompt)
+        async def get_response():
+            response = ""
+            async for partial in fp.get_bot_response(messages=[message], bot_name=self.model_name.split("-", 1)[1], api_key=self.api_key):
+                if isinstance(partial, fp.PartialResponse):
+                    response += partial.text
+            return response
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            return loop.run_until_complete(get_response())
+        finally:
+            loop.close()
+
+    @property
+    def _llm_type(self) -> str:
+        """Return the type of LLM."""
+        return "poe"
+
+    @property
+    def _identifying_params(self) -> Dict[str, Any]:
+        """Return a dictionary of identifying parameters."""
+        return {
+            "model_name": self.model_name,
+            "temperature": self.temperature,
+        }
+
+def render_image_controls(model: str):
+    
+    if model == "DALL-E 3":
+        st.selectbox("Image Size", ["1792x1024", "1024x1024", "1024x1792"], key=f"{model}_image_size")
+        st.selectbox("Quality", ["hd", "standard"], key="dalle_quality")
+        st.selectbox("Style", ["vivid", "natural"], key="dalle_style")
+    elif model == "fal-ai/flux/schnell":
+        st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
+        st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-pro"]:
+        st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
+        st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
+        st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
+    elif model in ["fal-ai/stable-diffusion-v3", "fal-ai/fast-sdxl", "fal-ai/playground-v25"]:
+        st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
+        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
+    elif model in ["fal-ai/hyper-sdxl", "fal-ai/fast-sdxl", "fal-ai/playground-v25"]:
+        st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
+        st.checkbox("Expand Prompt", value=False, key=f"{model}_expand_prompt")
+        st.selectbox("Format", ["jpeg", "png"], key=f"{model}_format")
+    elif model == "fal-ai/playground-v25":
+        st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
+        st.number_input("Guidance Rescale", min_value=0.0, max_value=1.0, value=0.0, step=0.1, key="playground_guidance_rescale")
+    elif model.startswith("Poe-"):
+        st.selectbox("Image Size", [ "1024x1024", "512x512"], key=f"{model}_image_size")
+    else:
+        st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
+    
+    st.number_input("Number of Images", min_value=1, max_value=10, value=1, key=f"{model}_num_images")
+    
+
+
+def get_model_params(model: str):
+    base_params = {
+        "num_images": st.session_state[f"{model}_num_images"]
+    }
+
+    image_size = st.session_state[f"{model}_image_size"]
+    if model == "DALL-E 3":
+        base_params["size"] = image_size
+    else:
+        # Convert size string to width and height
+        width, height = map(int, image_size.split('x'))
+        base_params["width"] = width
+        base_params["height"] = height
+
+    model_specific_params = {
+        "DALL-E 3": {
+            "model": "dall-e-3",
+            "quality": st.session_state.get("dalle_quality", "hd"),
+            "style": st.session_state.get("dalle_style", "vivid")
+        },
+        "fal-ai/flux/schnell": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 12),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/flux/dev": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/flux-pro": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/hyper-sdxl": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "expand_prompt": st.session_state.get(f"{model}_expand_prompt", False),
+            "format": st.session_state.get(f"{model}_format", "jpeg")
+        },
+        "fal-ai/aura-flow": {
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "expand_prompt": st.session_state.get(f"{model}_expand_prompt", True)
+        },
+        "fal-ai/stable-diffusion-v3": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 5.0),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "prompt_expansion": False
+        },
+        "fal-ai/fast-sdxl": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 7.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "expand_prompt": st.session_state.get(f"{model}_expand_prompt", False),
+            "format": st.session_state.get(f"{model}_format", "jpeg")
+        },
+        "fal-ai/playground-v25": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.0),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "expand_prompt": st.session_state.get(f"{model}_expand_prompt", False),
+            "format": st.session_state.get(f"{model}_format", "jpeg"),
+            "guidance_rescale": st.session_state.get("playground_guidance_rescale", 0.0)
+        }
+    }
+
+
+    params = base_params.copy()
+    params.update(model_specific_params.get(model, {}))
+    return params
+
+def generate_fal_image(model_name, params):
     try:
-        handler = fal_client.submit(
-            model_name,
-            arguments={
-                "prompt": prompt,
-                "image_size": image_size
-            },
-        )
+        # Base arguments common to all or most models
+        arguments = {
+            "prompt": params['prompt'],
+            "image_width": params['width'],
+            "image_height": params['height'],
+            "num_images": params['num_images'],
+        }
+
+        # Add model-specific parameters
+        if "flux" in model_name or "sdxl" in model_name:
+            arguments.update({
+                "num_inference_steps": params.get('num_inference_steps', 28),
+                "guidance_scale": params.get('guidance_scale', 3.5),
+                "enable_safety_checker": params.get('enable_safety_checker', True),
+            })
+
+        if "stable-diffusion-v3" in model_name or "fast-sdxl" in model_name or "playground-v25" in model_name:
+            arguments["negative_prompt"] = params.get('negative_prompt', "")
+
+        if "hyper-sdxl" in model_name or "fast-sdxl" in model_name or "playground-v25" in model_name:
+            arguments.update({
+                "expand_prompt": params.get('expand_prompt', False),
+                "format": params.get('format', 'jpeg'),
+            })
+
+        if "playground-v25" in model_name:
+            arguments["guidance_rescale"] = params.get('guidance_rescale', 0.0)
+
+        if "aura-flow" in model_name:
+            arguments["expand_prompt"] = params.get('expand_prompt', True)
+
+        # Submit the job to fal.ai
+        handler = fal_client.submit(model_name, arguments=arguments)
         result = handler.get()
-        return result['images'][0]['url']
+
+        # Check if the result contains images
+        if 'images' in result and len(result['images']) > 0:
+            return [image['url'] for image in result['images']]
+        else:
+            st.write("No images were generated.")
+            return None
+
     except Exception as e:
         st.write(f"An error occurred while generating the image with FAL: {str(e)}")
         return None
@@ -73,78 +276,98 @@ def create_style_axes_chart(style_axes):
     
     return fig
 
+def update_image_controls():
+    # Clear previous image controls
+    for key in list(st.session_state.keys()):
+        if key.endswith(("_prompt", "_image_size", "_num_images", "_quality", "_style",
+                         "_inference_steps", "_guidance_scale", "_enable_safety_checker",
+                         "_negative_prompt", "_expand_prompt", "_format", "_guidance_rescale")):
+            del st.session_state[key]
+
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model):
     st.write(f"Generating images using {image_model}...")
     
-    # Combine Revised and Synthesized prompts
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
 
     for index, prompt in enumerate(all_prompts):
         if debug:
             st.write(f"Generating image for prompt {index + 1}: {prompt}")
         
-        if image_model == "DALL-E 3":
-            image_url = generate_image_dalle3(prompt)
-        else:
-            image_url = generate_fal_image(image_model, prompt)
+        params = get_model_params(image_model)
+        params['prompt'] = prompt  # Override the prompt with the current one
         
-        if image_url:
-            st.image(image_url, caption=f"Generated image for {concept} in {medium} - Prompt: {prompt}")
-            
-            # Generate a title for the image
-            try:
-                title_data_json = generate_image_title(input, concept, medium, image_url, max_retries, temperature, model, debug)
-                title_data = json.loads(title_data_json)
-                st.write(f"Generated title: {title_data['title']}")
+        results = generate_image(image_model, params)
+        
+        if results:
+            for i, result in enumerate(results):
+                st.image(result, caption=f"Generated image {i+1} for {concept} in {medium} - Prompt: {prompt}")
                 
-                # Display Instagram post information
-                st.subheader("Instagram Post")
-                st.write(f"Caption: {title_data['instagram_post']['caption']}")
-                st.write("Hashtags:")
-                st.write(", ".join(title_data['instagram_post']['hashtags']))
-                
-                st.subheader("SEO Keywords")
-                st.write(", ".join(title_data['seo_keywords']))
-            except Exception as e:
-                st.error(f"Error generating title and Instagram post: {str(e)}")
-                title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
-    
-            # Save the image locally
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
-            filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}.png"
-            save_image_locally(image_url, filename)
+                # Generate a title for the image
+                try:
+                    title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug)
+                    title_data = json.loads(title_data_json)
+                    st.write(f"Generated title: {title_data['title']}")
+                    
+                    # Display Instagram post information
+                    st.subheader("Instagram Post")
+                    st.write(f"Caption: {title_data['instagram_post']['caption']}")
+                    st.write("Hashtags:")
+                    st.write(", ".join(title_data['instagram_post']['hashtags']))
+                    
+                    st.subheader("SEO Keywords")
+                    st.write(", ".join(title_data['seo_keywords']))
+                except Exception as e:
+                    st.error(f"Error generating title and Instagram post: {str(e)}")
+                    title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
+        
+                # Save the image locally
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
+                filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
+                save_image_locally(result, filename)
 
-            # Save metadata
-            metadata = {
-                "timestamp": timestamp,
-                "style_axes": st.session_state.style_axes,
-                "creativity_spectrum": st.session_state.creativity_spectrum,
-                "concept": concept,
-                "medium": medium,
-                "prompt_type": prompt_type,
-                "prompt_index": index + 1,
-                "prompt": prompt,
-                "title": title_data['title'],
-                "instagram_post": title_data['instagram_post'],
-                "seo_keywords": title_data['seo_keywords'],
-                "image_url": image_url,
-                "image_model": image_model,
-                "model": model,
-                "filename": filename
-            }
-            save_metadata(metadata)
+                # Save metadata
+                metadata = {
+                    "timestamp": timestamp,
+                    "style_axes": st.session_state.style_axes,
+                    "creativity_spectrum": st.session_state.creativity_spectrum,
+                    "concept": concept,
+                    "medium": medium,
+                    "prompt_type": prompt_type,
+                    "prompt_index": index + 1,
+                    "image_index": i + 1,
+                    "prompt": prompt,
+                    "title": title_data['title'],
+                    "instagram_post": title_data['instagram_post'],
+                    "seo_keywords": title_data['seo_keywords'],
+                    "image_url": result,
+                    "image_model": image_model,
+                    "model": model,
+                    "filename": filename
+                }
+                save_metadata(metadata)
         else:
             st.write(f"Failed to generate image for prompt {index + 1}.")
 
     st.write(f"{image_model} image generation complete.")
+
+def generate_image(model: str, params: dict):
+    if model == "DALL-E 3":
+        return [generate_image_dalle3(params)]
+    elif model.startswith("fal-ai/"):
+        return generate_fal_image(model, params)
+    elif model.startswith("Poe-"):
+        return generate_poe_image(model, params)
+    else:
+        st.write(f"Unsupported model: {model}")
+        return None
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
     os.makedirs('/metadata', exist_ok=True)
     
     # Create a filename for the metadata
-    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
+    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10]}_{metadata['image_model'][0:10]}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
     # Ensure all data is JSON serializable
     def json_serializable(obj):
@@ -158,16 +381,52 @@ def save_metadata(metadata):
     
     st.write(f"Metadata saved as {metadata_filename}")
 
-def generate_image_dalle3(prompt):
+def generate_poe_image(model: str, params: dict):
+    try:
+        poe_model = model.split("-", 1)[1]  # Remove "Poe-" prefix
+        messages = [fp.ProtocolMessage(role="user", content=params['prompt'])]
+        
+        async def get_responses():
+            async for partial in fp.get_bot_response(messages=messages, bot_name=poe_model, api_key=POE_API):
+                if isinstance(partial, fp.PartialResponse):
+                    yield partial.text
+
+        response = asyncio.run(collect_responses(get_responses()))
+        image_url = extract_image_url_from_response(response)
+        
+        if image_url:
+            return [image_url]
+        else:
+            st.write("No image URL found in the Poe response.")
+            return None
+    except Exception as e:
+        st.write(f"An error occurred while generating the image with Poe: {str(e)}")
+        return None
+
+async def collect_responses(response_generator):
+    full_response = ""
+    async for partial_response in response_generator:
+        full_response += partial_response
+    return full_response
+
+def extract_image_url_from_response(response):
+    # Use a regular expression to find URLs in the response
+    import re
+    url_pattern = r'https?://\S+\.(?:jpg|jpeg|png|gif)'
+    urls = re.findall(url_pattern, response)
+    return urls[0] if urls else None
+
+def generate_image_dalle3(params):
     try:
         response = openai.images.generate(
             model="dall-e-3",
-            prompt=prompt,
-            quality="hd",
-            size="1024x1024"
+            prompt=params['prompt'],
+            size=params['size'],
+            quality=params['quality'],
+            style=params['style'],
+            n=params['num_images']
         )
-        image_url = response.data[0].url
-        return image_url
+        return response.data[0].url
     except Exception as e:
         st.write(f"An error occurred while generating the image with DALL-E 3: {str(e)}")
         return None
@@ -497,7 +756,9 @@ def initialize_session_state():
         'proceed_mediums_clicked': False,
         'proceed_refined_mediums_clicked': False,
         'proceed_shuffled_reviews_clicked': False,
-        'complete_all_steps_clicked': False
+        'complete_all_steps_clicked': False,
+        'image_model':'fal-ai/flux/schnell',
+
     }
 
     for key, value in default_values.items():
@@ -591,11 +852,18 @@ dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
-def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANTHROPIC_API):
+
+def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANTHROPIC_API, google_api_key=GOOGLE_API, poe_api_key=POE_API):
     if model.startswith("claude"):
         return ChatAnthropic(model=model, temperature=temperature, max_tokens=4096, anthropic_api_key=anthropic_api_key)
+    elif model.startswith("gemini"):
+        genai.configure(api_key=google_api_key)
+        return genai.GenerativeModel(model_name=model, temperature=temperature)
+    elif model.startswith("Poe-"):
+        return PoeLLM(model_name=model, api_key=poe_api_key, temperature=temperature)
     else:
         return ChatOpenAI(model=model, temperature=temperature, max_tokens=4096, openai_api_key=openai_api_key)
+
 
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
     output = None
@@ -610,10 +878,11 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
                 """
                 if debug:
                     st.write(f"Attempt {retry_count + 1}: Using correction prompt")
-                output = _lang_chain.invoke({"correction_prompt": correction_prompt})
+                output = _lang_chain.invoke({"input": correction_prompt})
             else:
                 if debug:
                     st.write(f"Attempt {retry_count + 1}: Using original prompt")
+                    st.write(f"Input args: {args_dict}")
                 output = _lang_chain.invoke(args_dict)
             
             if debug:
@@ -629,7 +898,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
                 st.write(f"Failed to parse JSON: {error}")
                 raise ValueError(f"Invalid JSON: {error}")
         except Exception as e:
-            st.write(f"An error occurred in attempt {retry_count + 1}: {e}")
+            st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
             retry_count += 1
             is_correction = True  # Use correction prompt in next iteration
     if retry_count >= max_retries:
@@ -1095,11 +1364,46 @@ else:
 st.session_state['style_axes'] = style_axes
 
 st.sidebar.header('Image Generation Settings')
-image_model = st.sidebar.selectbox("Select image model", ["fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", "fal-ai/hyper-sdxl", "fal-ai/playground-v25"])
+poe_image_models = [
+    "Poe-DALL-E-3", "Poe-FLUX-pro", "Poe-Playground-v2.5", "Poe-Ideogram", "Poe-FLUX-dev",
+    "Poe-FLUX-schnell", "Poe-Pika", "Poe-LivePortrait", "Poe-StableDiffusion3",
+    "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
+    "Poe-SD3-Medium", "Poe-RealVisXL", "Poe-"
+]
+image_model = st.sidebar.selectbox(
+    "Select image model",
+    ["fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", 
+     "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
+     "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
+    key="image_model",
+    on_change=update_image_controls
+)
 
 # Sidebar settings
 st.sidebar.header('Patron Input Features')
-model = st.sidebar.selectbox("Select language model", ["gpt-4o-mini", "gpt-4o", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", "claude-3-haiku-20240307", "gpt-4"])
+poe_models = [
+    "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
+    "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
+    "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
+    "Poe-Llama-3.1-8B-FW-128k", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
+    "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
+    "Poe-Gemini-1.5-Flash-128k", "Poe-Gemini-1.5-Pro-128k", "Poe-Gemini-1.0-Pro",
+    "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW", "Poe-Mixtral8x22b-Inst-FW",
+    "Poe-Command-R", "Poe-Gemma-2-9b-T", "Poe-Mistral-Large-2", "Poe-Mistral-Medium",
+    "Poe-Snowflake-Arctic-T", "Poe-RekaCore", "Poe-RekaFlash", "Poe-Command-R-Plus",
+    "Poe-GPT-3.5-Turbo", "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
+    "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T", "Poe-Claude-2",
+    "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-Instruct-7B-T",
+    "Poe-MythoMax-L2-13B", "Poe-Code-Llama-34b", "Poe-Code-Llama-13b", "Poe-Solar-Mini",
+    "Poe-GPT-3.5-Turbo-Instruct", "Poe-GPT-3.5-Turbo-Raw", "Poe-Claude-instant",
+    "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T"
+]
+
+model = st.sidebar.selectbox("Select language model", 
+    ["gpt-4o-mini", "gpt-4o", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
+     "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
+     "claude-3-haiku-20240307", "gpt-4",
+     "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro"] + poe_models)
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
@@ -1121,6 +1425,8 @@ else:
 # Modify the main UI part
 with st.container():
     st.session_state.input = st.text_area("Describe your idea", "I want to capture the essence of a mysterious and powerful witch's familiar.")
+    if image_model != "None":
+        render_image_controls(image_model)
 
     if st.button("Generate Concepts"):
         st.session_state.button_clicked = True
