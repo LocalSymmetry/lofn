@@ -32,7 +32,7 @@ Style Axes:
 
 4. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
 
-5. Provide your response in the following JSON format, remembering to escape characters inside strings correctly, without any additional formatting or explanations:
+5. Provide your response in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks, without any additional formatting or explanations:
 ```json
 {{
   "essence_and_facets": {{

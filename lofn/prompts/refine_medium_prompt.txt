@@ -60,7 +60,7 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
 
 4. **Compile and Format Refined Mediums**:
    - Output Preparation:
-     - Action: Present the list of refined mediums in the following JSON format, remembering to escape characters inside strings correctly:
+     - Action: Present the list of refined mediums in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
      ```json
      {{
        "refined_concepts": [

@@ -81,3 +81,5 @@ Use these roles as needed. If it helps, give each role a name and personality, a
    - Dynamic vs. Static (0: Completely Static, 100: Highly Dynamic)
      Explainer: This axis reflects the sense of movement or energy in the artwork. Lower values suggest stillness and stability, while higher values indicate motion and dynamism.
      Example: For "A serene lake at dawn," a value of 10 might be appropriate, emphasizing the calm and static nature of the scene.
+
+     

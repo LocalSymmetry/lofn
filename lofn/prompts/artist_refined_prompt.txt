@@ -41,7 +41,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 4. **Compile and Return Artist-Refined Prompts**:
    - Format:
-     - Action: Return the list of artist-refined prompts in the following JSON format, remembering to escape characters inside strings correctly:
+     - Action: Return the list of artist-refined prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
      ```json
      {{
        "artist_refined_prompts": [

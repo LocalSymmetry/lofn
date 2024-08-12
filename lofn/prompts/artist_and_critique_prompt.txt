@@ -49,7 +49,7 @@ INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over 
 
 5. **Compile and Return Refined Concepts**:
    - Format:
-     - Action: Return the list of artists and refined concepts in the following JSON format, remembering to escape characters inside strings correctly:
+     - Action: Return the list of artists and refined concepts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
       ```json
       {{
         "artists": [

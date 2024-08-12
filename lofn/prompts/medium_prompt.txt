@@ -69,7 +69,7 @@ Follow these steps to come up with 12 medium pairings, each a phrase about the p
        - **Avoid Artist Names**: Do not include artist names in the medium choice or concept.
 
 4. **Generate and Document the List of Mediums**:
-   - **JSON Format**: Provide your response in the following JSON format, without additional formatting, explanations, or text outside the JSON structure, remembering to escape characters inside strings correctly:
+   - **JSON Format**: Provide your response in the following JSON format, without additional formatting, explanations, or text outside the JSON structure, escaping all special characters inside strings including apostrophes and quotation marks:
    
 ```json
 {{

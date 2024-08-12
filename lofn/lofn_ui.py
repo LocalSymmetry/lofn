@@ -45,24 +45,6 @@ from langchain_core.language_models.llms import LLM
 from PIL import Image
 from io import BytesIO
 
-
-async def run_poe_chain(chain, args_dict, debug=False):
-    full_response = ""
-    try:
-        if debug:
-            st.write(f"Poe Attempt: Using current prompt")
-            st.write(f"Input args: {args_dict}")
-        
-        async for partial in chain.astream(args_dict):
-            full_response += partial
-            if debug:
-                st.write(f"Partial response: {partial}")
-        
-        return full_response
-    except Exception as e:
-        st.write(f"An error occurred in Poe attempt: {str(e)}")
-        return None
-
 def fetch_and_save_image(url, filename):
     try:
         response = requests.get(url)
@@ -614,39 +596,42 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
         
         # Construct the prompt with settings
         prompt = params['prompt']
-
+        size = params.get('size', '1792x1024')
         suffix = ""
         
         # Add model-specific options
         if poe_model == "DALL-E-3":
-            if params.get('size', '1792x1024') == "1792x1024":
+            if size == "1792x1024":
                 suffix += '--aspect 7:4'
-            elif get('size', '1792x1024') == "1024x1024":
+            elif size == "1024x1024":
                 suffix += '--aspect 1:1'
             else: 
                 suffix += '--aspect 4:7'
         elif poe_model in ["FLUX-schnell", "FLUX-pro", "FLUX-dev", "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"]:
-            if params.get('size', 'square_hd') in ["square_hd", "square"]:
+            if size in ["square_hd", "square"]:
                 suffix += '--aspect 1:1'
-            elif get('size', '1792x1024') == "portrait_4_3":
+            elif size == "portrait_4_3":
                 suffix += '--aspect 3:4'
-            elif get('size', '1792x1024') == "portrait_16_9":
+            elif size == "portrait_16_9":
                 suffix += '--aspect 9:16'
-            elif get('size', '1792x1024') == "landscape_4_3":
+            elif size == "landscape_4_3":
                 suffix += '--aspect 4:3'
             else: 
                 suffix += '--aspect 16:9'
         elif poe_model == "Playground-v2.5":
             options['guidance_scale'] = params.get('guidance_scale', 7.5)
             options['negative_prompt'] = params.get('negative_prompt', '')
+            suffix += '--aspect 16:9'
         elif poe_model == "Ideogram":
             options['style_preset'] = params.get('style_preset', 'default')
+            suffix += '--aspect 16:9'
         elif poe_model == "LivePortrait":
             options['video_length'] = params.get('video_length', 3)
+            suffix += '--aspect 16:9'
         elif poe_model == "RealVisXL":
             options['guidance_scale'] = params.get('guidance_scale', 7.5)
             options['negative_prompt'] = params.get('negative_prompt', '')
-
+            suffix += '--aspect 16:9'
         full_prompt = f"""{prompt} {suffix}"""
 
         if debug:
@@ -1078,8 +1063,7 @@ def initialize_session_state():
         'proceed_refined_mediums_clicked': False,
         'proceed_shuffled_reviews_clicked': False,
         'complete_all_steps_clicked': False,
-        'image_model':'fal-ai/flux/schnell',
-
+        'image_model':'Poe-FLUX-pro'
     }
 
     for key, value in default_values.items():
@@ -1262,7 +1246,6 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
     else:
         return ChatOpenAI(model=model, temperature=temperature, max_tokens=max_tokens, openai_api_key=openai_api_key)
 
-
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
     output = None
     retry_count = 0
@@ -1270,15 +1253,16 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
         try:
             if isinstance(_lang_chain.llm, PoeLLM):
                 # Handle Poe models
-                output = asyncio.run(run_poe_chain(_lang_chain, args_dict, debug))
+                output = run_poe_chain(_lang_chain, args_dict, is_correction, retry_count, debug)
             else:
                 # Handle other models as before
                 if is_correction:
-                    correction_prompt = """
-                    The previous response was not in the correct JSON format or was incomplete.
-                    Please refer to the instructions provided earlier and respond with only the complete JSON output.
-                    Ensure that all required fields are included and properly formatted according to the instructions.
-                    """
+                    correction_prompt = f"""
+                        Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete and failed to parse. Check common parsing errors and fix your repsonse.
+                        Please refer to the instructions provided earlier and respond with only the complete JSON output.
+                        Ensure that all required fields are included and properly formatted according to the instructions.
+                        Be careful about esacping all non 0-9 and a-z characters like apostrophes within your JSON strings in your response as it will be parsed by a JSON parser that can be fooled by it (so pleave have "key":"value's" instead be "key":"value\'s" or "key":"values").
+                        """
                     if debug:
                         st.write(f"Attempt {retry_count + 1}: Using correction prompt")
                     output = _lang_chain.invoke({"input": correction_prompt})
@@ -1307,6 +1291,44 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
     if retry_count >= max_retries:
         st.write("Max retries reached. Exiting.")
     return None
+
+def run_poe_chain(chain, args_dict, is_correction, retry_count, debug=False):
+    try:
+        if is_correction:
+            correction_prompt = f"""
+            Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete and failed to parse. Check common parsing errors and fix your repsonse.
+            Please refer to the instructions provided earlier and respond with only the complete JSON output.
+            Ensure that all required fields are included and properly formatted according to the instructions.
+            Be careful about esacping all non 0-9 and a-z characters like apostrophes within your JSON strings in your response as it will be parsed by a JSON parser that can be fooled by it (so pleave have "key":"value's" instead be "key":"value\'s" or "key":"values").
+            """
+            # Preserve original input parameters
+            corrected_args = args_dict.copy()
+            corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '')
+            
+            if debug:
+                st.write(f"Poe Attempt {retry_count + 1}: Using correction prompt")
+                st.write(f"Corrected input args: {corrected_args}")
+            response = chain.invoke(corrected_args)
+        else:
+            if debug:
+                st.write(f"Poe Attempt {retry_count + 1}: Using original prompt")
+                st.write(f"Input args: {args_dict}")
+            response = chain.invoke(args_dict)
+        
+        if isinstance(response, dict) and 'text' in response:
+            full_response = response['text']
+        elif isinstance(response, str):
+            full_response = response
+        else:
+            full_response = str(response)
+        
+        if debug:
+            st.write(f"Full response: {full_response}")
+        
+        return full_response
+    except Exception as e:
+        st.write(f"An error occurred in Poe attempt {retry_count + 1}: {str(e)}")
+        return None
 
 def send_to_discord(content, content_type='prompts', premessage=''):
     try:

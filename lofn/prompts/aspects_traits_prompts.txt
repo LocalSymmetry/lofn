@@ -55,7 +55,7 @@ Aspect: Futuristic Cityscape | Physical Trait: Towering neon-lit skyscrapers | O
 
 3. **Compile into JSON Format**:
    - **Structure**: Gather the aspect, physical trait, obscure descriptors, mood, artistic flair, artistic style, perspective, lighting choice, color palette, tool, and effects as a string titled `artistic_guide`.
-   - **Format**: Return the list of artistic guides in the following JSON format, remembering to escape characters inside strings correctly:
+   - **Format**: Return the list of artistic guides in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
 
 ```json
 {{
