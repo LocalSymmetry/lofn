@@ -1163,7 +1163,7 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
     model_max_tokens = {
         # OpenAI models
         "gpt-4o-mini": 4096,
-        "gpt-4o": 8192,
+        "gpt-4o": 4096,
         "gpt-4o-2024-08-06": 8192,
         "gpt-3.5-turbo": 4096,
         "gpt-4-turbo": 4096,
