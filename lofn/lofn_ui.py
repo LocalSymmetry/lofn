@@ -3,6 +3,8 @@
 import streamlit as st
 import os
 import requests
+from requests.exceptions import RequestException
+import time
 from datetime import datetime
 import json
 import ast
@@ -40,6 +42,37 @@ from langchain.schema import HumanMessage
 from typing import Any, Dict, List, Optional
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
+from PIL import Image
+from io import BytesIO
+
+
+async def run_poe_chain(chain, args_dict, debug=False):
+    full_response = ""
+    try:
+        if debug:
+            st.write(f"Poe Attempt: Using current prompt")
+            st.write(f"Input args: {args_dict}")
+        
+        async for partial in chain.astream(args_dict):
+            full_response += partial
+            if debug:
+                st.write(f"Partial response: {partial}")
+        
+        return full_response
+    except Exception as e:
+        st.write(f"An error occurred in Poe attempt: {str(e)}")
+        return None
+
+def fetch_and_save_image(url, filename):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        img = Image.open(BytesIO(response.content))
+        img.save(f"/images/{filename}")
+        return f"/images/{filename}"
+    except Exception as e:
+        st.error(f"Error fetching and saving image: {str(e)}")
+        return None
 
 # Read environment variables
 OPENAI_API = os.environ.get('OPENAI_API', '')
@@ -52,11 +85,10 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 openai.api_key = os.environ.get('OPENAI_API', '')
 
 class PoeLLM(LLM):
-    """A custom LLM that uses Poe's API for text generation."""
-
     model_name: str
     api_key: str
     temperature: float = 0.7
+    max_tokens: int = 4096
 
     def _call(
         self,
@@ -65,7 +97,6 @@ class PoeLLM(LLM):
         run_manager: Optional[CallbackManagerForLLMRun] = None,
         **kwargs: Any,
     ) -> str:
-        """Generate text using the Poe API."""
         if stop is not None:
             raise ValueError("Stop sequences are not supported for Poe models.")
         
@@ -86,33 +117,148 @@ class PoeLLM(LLM):
 
     @property
     def _llm_type(self) -> str:
-        """Return the type of LLM."""
         return "poe"
 
     @property
     def _identifying_params(self) -> Dict[str, Any]:
-        """Return a dictionary of identifying parameters."""
         return {
             "model_name": self.model_name,
             "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
         }
+
+def extract_video_url_from_response(response, debug):
+    if debug:
+        st.write("Attempting to extract video URL from response")
+        st.write("Response content:")
+        st.code(response)
+
+    # Use a regular expression to find URLs in the response, including query parameters
+    url_pattern = r'(https?://\S+\.(?:mp4|mov|avi|wmv)(?:\?\S*)?)'
+    urls = re.findall(url_pattern, response)
+    
+    if debug:
+        if urls:
+            st.write(f"Found {len(urls)} potential video URL(s):")
+            for url in urls:
+                st.write(url)
+        else:
+            st.write("No video URLs found in the response")
+
+    return urls[0] if urls else None
+
+def save_video_locally(video_url, filename, directory='videos'):
+    max_retries = 3
+    retry_delay = 1  # seconds
+    
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(video_url, timeout=60)  # Increased timeout for video download
+            response.raise_for_status()
+            
+            # Ensure the directory exists
+            os.makedirs(f'/{directory}', exist_ok=True)
+            with open(f'/{directory}/{filename}', 'wb') as f:
+                f.write(response.content)
+            st.write(f"Video saved as /{directory}/{filename}")
+            return
+        except requests.exceptions.RequestException as e:
+            st.write(f"Attempt {attempt + 1} failed: {str(e)}")
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+            else:
+                st.write(f"Failed to download video after {max_retries} attempts")
+                st.write(f"Full URL attempted: {video_url}")  # Log the full URL for debugging
+
+def generate_poe_video(prompt: str, image_url: str, params: dict, debug: bool = False):
+    try:
+        if debug:
+            st.write("Starting Poe video generation process")
+            st.write(f"Prompt: {prompt}")
+            st.write(f"Image URL: {image_url}")
+            st.write("Parameters:")
+            st.json(params)
+
+        poe_model = "Pika"
+        
+        # Construct the Pika options
+        pika_options = {
+            "frameRate": params['frame_rate'],
+            "aspectRatio": params['aspect_ratio'],
+            "camera": {
+                "zoom": params['camera_zoom'],
+                "pan": params['camera_pan'],
+                "tilt": params['camera_tilt'],
+                "rotate": params['camera_rotate']
+            },
+            "parameters": {
+                "motion": params['motion'],
+                "guidanceScale": params['guidance_scale'],
+                "negativePrompt": params['negative_prompt']
+            }
+        }
+        
+        # Construct the message
+        message_content = f"""Generate a video based on this image: {image_url}
+Prompt: {prompt}
+Pika Options: {json.dumps(pika_options)}"""
+        
+        if debug:
+            st.write("Full message content sent to Poe-Pika:")
+            st.code(message_content)
+
+        messages = [fp.ProtocolMessage(role="user", content=message_content)]
+        
+        async def get_responses():
+            if debug:
+                st.write("Sending request to Poe-Pika and awaiting response...")
+            async for partial in fp.get_bot_response(messages=messages, bot_name=poe_model, api_key=POE_API):
+                if isinstance(partial, fp.PartialResponse):
+                    if debug:
+                        st.write("Received partial response:")
+                        st.write(partial.text)
+                    yield partial.text
+
+        response = asyncio.run(collect_responses(get_responses()))
+        
+        #if debug:
+        st.write("Full response from Poe-Pika:")
+        st.code(response)
+
+        video_url = extract_video_url_from_response(response, debug)
+        
+        if video_url:
+            # if debug:
+            st.write(f"Extracted video URL: {video_url}")
+            return video_url
+        else:
+            st.write("No video URL found in the Poe-Pika response.")
+            if debug:
+                st.write("Failed to extract video URL from the response.")
+            return None
+    except Exception as e:
+        st.write(f"An error occurred while generating the video with Poe-Pika: {str(e)}")
+        if debug:
+            st.write("Exception details:")
+            st.exception(e)
+        return None
 
 def render_image_controls(model: str):
     
-    if model == "DALL-E 3":
+    if model == "DALL-E 3" or model == "Poe-DALL-E-3":
         st.selectbox("Image Size", ["1792x1024", "1024x1024", "1024x1792"], key=f"{model}_image_size")
-        st.selectbox("Quality", ["hd", "standard"], key="dalle_quality")
-        st.selectbox("Style", ["vivid", "natural"], key="dalle_style")
-    elif model == "fal-ai/flux/schnell":
+        st.selectbox("Quality", ["hd", "standard"], key=f"{model}_quality")
+        st.selectbox("Style", ["vivid", "natural"], key=f"{model}_style")
+    elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
         st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux/dev", "fal-ai/flux-pro"]:
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/stable-diffusion-v3", "fal-ai/fast-sdxl", "fal-ai/playground-v25"]:
+    elif model in [ "fal-ai/fast-sdxl", "fal-ai/playground-v25", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B", "Poe-SD3-Medium"]:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
     elif model in ["fal-ai/hyper-sdxl", "fal-ai/fast-sdxl", "fal-ai/playground-v25"]:
@@ -123,12 +269,12 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.number_input("Guidance Rescale", min_value=0.0, max_value=1.0, value=0.0, step=0.1, key="playground_guidance_rescale")
     elif model.startswith("Poe-"):
-        st.selectbox("Image Size", [ "1024x1024", "512x512"], key=f"{model}_image_size")
+        # For other Poe models we don't have specific information about
+        st.selectbox("Image Size", ["1024x1024", "512x512"], key=f"{model}_image_size")
     else:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
     
     st.number_input("Number of Images", min_value=1, max_value=10, value=1, key=f"{model}_num_images")
-    
 
 
 def get_model_params(model: str):
@@ -137,7 +283,7 @@ def get_model_params(model: str):
     }
 
     image_size = st.session_state[f"{model}_image_size"]
-    if model == "DALL-E 3":
+    if model == "DALL-E 3" or ('flux' in model) or ('Flux' in model) or ('FLUX' in model):
         base_params["size"] = image_size
     else:
         # Convert size string to width and height
@@ -207,15 +353,21 @@ def get_model_params(model: str):
     params.update(model_specific_params.get(model, {}))
     return params
 
-def generate_fal_image(model_name, params):
+def generate_fal_image(model_name, params, debug=False):
     try:
+        if debug:
+            st.write(f"Generating image with FAL model: {model_name}")
+            st.write(f"Input parameters: {json.dumps(params, indent=2)}")
+
         # Base arguments common to all or most models
         arguments = {
             "prompt": params['prompt'],
-            "image_width": params['width'],
-            "image_height": params['height'],
             "num_images": params['num_images'],
         }
+
+        if debug:
+            st.write("Base arguments:")
+            st.write(json.dumps(arguments, indent=2))
 
         # Add model-specific parameters
         if "flux" in model_name or "sdxl" in model_name:
@@ -225,6 +377,14 @@ def generate_fal_image(model_name, params):
                 "enable_safety_checker": params.get('enable_safety_checker', True),
             })
 
+        if "flux" in model_name or "Stable" in model_name or "SD3" in model_name or "stable in model_name":
+            arguments.update({"image_size": params.get('image_size', 'square_hd')})
+        else:
+            arguments.update({
+                "image_height": params.get('image_height', '1024'),
+                "image_width": params.get('image_width', '1024')
+            })
+        
         if "stable-diffusion-v3" in model_name or "fast-sdxl" in model_name or "playground-v25" in model_name:
             arguments["negative_prompt"] = params.get('negative_prompt', "")
 
@@ -240,19 +400,42 @@ def generate_fal_image(model_name, params):
         if "aura-flow" in model_name:
             arguments["expand_prompt"] = params.get('expand_prompt', True)
 
+        if debug:
+            st.write("Final arguments for FAL:")
+            st.write(json.dumps(arguments, indent=2))
+
         # Submit the job to fal.ai
+        if debug:
+            st.write("Submitting job to FAL...")
+
         handler = fal_client.submit(model_name, arguments=arguments)
+        
+        if debug:
+            st.write("Job submitted, waiting for result...")
+
         result = handler.get()
+
+        if debug:
+            st.write("Received result from FAL:")
+            st.write(json.dumps(result, indent=2))
 
         # Check if the result contains images
         if 'images' in result and len(result['images']) > 0:
-            return [image['url'] for image in result['images']]
+            image_urls = [image['url'] for image in result['images']]
+            if debug:
+                st.write(f"Generated {len(image_urls)} image(s):")
+                for url in image_urls:
+                    st.write(url)
+            return image_urls
         else:
             st.write("No images were generated.")
             return None
 
     except Exception as e:
         st.write(f"An error occurred while generating the image with FAL: {str(e)}")
+        if debug:
+            st.write("Exception details:")
+            st.exception(e)
         return None
 
 def create_style_axes_chart(style_axes):
@@ -296,60 +479,100 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         params = get_model_params(image_model)
         params['prompt'] = prompt  # Override the prompt with the current one
         
-        results = generate_image(image_model, params)
-        
-        if results:
-            for i, result in enumerate(results):
-                st.image(result, caption=f"Generated image {i+1} for {concept} in {medium} - Prompt: {prompt}")
-                
-                # Generate a title for the image
-                try:
-                    title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug)
-                    title_data = json.loads(title_data_json)
-                    st.write(f"Generated title: {title_data['title']}")
+        try:
+            results = generate_image(image_model, params)
+            
+            if results:
+                for i, result in enumerate(results):
+                    try:
+                        # Display the image
+                        st.image(result, caption=f"Generated image {i+1} for {concept} in {medium} - Prompt: {prompt}")
+                        
+                        # Generate a title for the image
+                        try:
+                            title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug)
+                            title_data = json.loads(title_data_json)
+                            st.write(f"Generated title: {title_data['title']}")
+                            
+                            # Display Instagram post information
+                            st.subheader("Instagram Post")
+                            st.write(f"Caption: {title_data['instagram_post']['caption']}")
+                            st.write("Hashtags:")
+                            st.write(", ".join(title_data['instagram_post']['hashtags']))
+                            
+                            st.subheader("SEO Keywords")
+                            st.write(", ".join(title_data['seo_keywords']))
+                        except Exception as e:
+                            st.error(f"Error generating title and Instagram post: {str(e)}")
+                            title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
                     
-                    # Display Instagram post information
-                    st.subheader("Instagram Post")
-                    st.write(f"Caption: {title_data['instagram_post']['caption']}")
-                    st.write("Hashtags:")
-                    st.write(", ".join(title_data['instagram_post']['hashtags']))
-                    
-                    st.subheader("SEO Keywords")
-                    st.write(", ".join(title_data['seo_keywords']))
-                except Exception as e:
-                    st.error(f"Error generating title and Instagram post: {str(e)}")
-                    title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
-        
-                # Save the image locally
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
-                filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
-                save_image_locally(result, filename)
+                        # Save the image locally
+                        try:
+                            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                            prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
+                            filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
+                            save_image_locally(result, filename)
+                        except Exception as e:
+                            st.error(f"Error saving image locally: {str(e)}")
 
-                # Save metadata
-                metadata = {
-                    "timestamp": timestamp,
-                    "style_axes": st.session_state.style_axes,
-                    "creativity_spectrum": st.session_state.creativity_spectrum,
-                    "concept": concept,
-                    "medium": medium,
-                    "prompt_type": prompt_type,
-                    "prompt_index": index + 1,
-                    "image_index": i + 1,
-                    "prompt": prompt,
-                    "title": title_data['title'],
-                    "instagram_post": title_data['instagram_post'],
-                    "seo_keywords": title_data['seo_keywords'],
-                    "image_url": result,
-                    "image_model": image_model,
-                    "model": model,
-                    "filename": filename
-                }
-                save_metadata(metadata)
-        else:
-            st.write(f"Failed to generate image for prompt {index + 1}.")
+                        # Generate video using Pika through Poe if enabled
+                        video_url = None
+                        if enable_pika_video:
+                            try:
+                                pika_params = {
+                                    'motion': pika_motion,
+                                    'guidance_scale': pika_guidance_scale,
+                                    'frame_rate': pika_frame_rate,
+                                    'aspect_ratio': pika_aspect_ratio,
+                                    'negative_prompt': pika_negative_prompt,
+                                    'camera_zoom': pika_camera_zoom,
+                                    'camera_pan': pika_camera_pan,
+                                    'camera_tilt': pika_camera_tilt,
+                                    'camera_rotate': pika_camera_rotate
+                                }
+                                video_url = generate_poe_video(prompt, result, pika_params, debug)
+                                if video_url:
+                                    video_filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.mp4"
+                                    save_video_locally(video_url, video_filename)
+                            except Exception as e:
+                                st.error(f"Error generating or saving video: {str(e)}")
+                                video_url = None
 
-    st.write(f"{image_model} image generation complete.")
+                        # Save metadata
+                        try:
+                            metadata = {
+                                "timestamp": timestamp,
+                                "style_axes": st.session_state.style_axes,
+                                "creativity_spectrum": st.session_state.creativity_spectrum,
+                                "concept": concept,
+                                "medium": medium,
+                                "prompt_type": prompt_type,
+                                "prompt_index": index + 1,
+                                "image_index": i + 1,
+                                "prompt": prompt,
+                                "title": title_data['title'],
+                                "instagram_post": title_data['instagram_post'],
+                                "seo_keywords": title_data['seo_keywords'],
+                                "image_url": result,
+                                "video_url": video_url,
+                                "image_model": image_model,
+                                "model": model,
+                                "image_filename": filename,
+                                "video_filename": video_filename if video_url else None
+                            }
+                            if enable_pika_video:
+                                metadata["pika_params"] = pika_params
+                            save_metadata(metadata)
+                        except Exception as e:
+                            st.error(f"Error saving metadata: {str(e)}")
+                    except Exception as e:
+                        st.error(f"Error processing generated image {i+1}: {str(e)}")
+            else:
+                st.write(f"Failed to generate image for prompt {index + 1}.")
+        except Exception as e:
+            st.error(f"Error generating image for prompt {index + 1}: {str(e)}")
+
+    st.write(f"{image_model} image generation and video generation complete.")
 
 def generate_image(model: str, params: dict):
     if model == "DALL-E 3":
@@ -357,7 +580,7 @@ def generate_image(model: str, params: dict):
     elif model.startswith("fal-ai/"):
         return generate_fal_image(model, params)
     elif model.startswith("Poe-"):
-        return generate_poe_image(model, params)
+        return generate_poe_image(model, params, debug)
     else:
         st.write(f"Unsupported model: {model}")
         return None
@@ -367,7 +590,7 @@ def save_metadata(metadata):
     os.makedirs('/metadata', exist_ok=True)
     
     # Create a filename for the metadata
-    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10]}_{metadata['image_model'][0:10]}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
+    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10]}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
     # Ensure all data is JSON serializable
     def json_serializable(obj):
@@ -381,10 +604,56 @@ def save_metadata(metadata):
     
     st.write(f"Metadata saved as {metadata_filename}")
 
-def generate_poe_image(model: str, params: dict):
+def generate_poe_image(model: str, params: dict, debug: bool = False):
     try:
         poe_model = model.split("-", 1)[1]  # Remove "Poe-" prefix
-        messages = [fp.ProtocolMessage(role="user", content=params['prompt'])]
+        
+        if debug:
+            st.write(f"Generating image with Poe model: {poe_model}")
+            st.write(f"Parameters: {json.dumps(params, indent=2)}")
+        
+        # Construct the prompt with settings
+        prompt = params['prompt']
+
+        suffix = ""
+        
+        # Add model-specific options
+        if poe_model == "DALL-E-3":
+            if params.get('size', '1792x1024') == "1792x1024":
+                suffix += '--aspect 7:4'
+            elif get('size', '1792x1024') == "1024x1024":
+                suffix += '--aspect 1:1'
+            else: 
+                suffix += '--aspect 4:7'
+        elif poe_model in ["FLUX-schnell", "FLUX-pro", "FLUX-dev", "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"]:
+            if params.get('size', 'square_hd') in ["square_hd", "square"]:
+                suffix += '--aspect 1:1'
+            elif get('size', '1792x1024') == "portrait_4_3":
+                suffix += '--aspect 3:4'
+            elif get('size', '1792x1024') == "portrait_16_9":
+                suffix += '--aspect 9:16'
+            elif get('size', '1792x1024') == "landscape_4_3":
+                suffix += '--aspect 4:3'
+            else: 
+                suffix += '--aspect 16:9'
+        elif poe_model == "Playground-v2.5":
+            options['guidance_scale'] = params.get('guidance_scale', 7.5)
+            options['negative_prompt'] = params.get('negative_prompt', '')
+        elif poe_model == "Ideogram":
+            options['style_preset'] = params.get('style_preset', 'default')
+        elif poe_model == "LivePortrait":
+            options['video_length'] = params.get('video_length', 3)
+        elif poe_model == "RealVisXL":
+            options['guidance_scale'] = params.get('guidance_scale', 7.5)
+            options['negative_prompt'] = params.get('negative_prompt', '')
+
+        full_prompt = f"""{prompt} {suffix}"""
+
+        if debug:
+            st.write("Full prompt sent to Poe:")
+            st.code(full_prompt)
+
+        messages = [fp.ProtocolMessage(role="user", content=full_prompt)]
         
         async def get_responses():
             async for partial in fp.get_bot_response(messages=messages, bot_name=poe_model, api_key=POE_API):
@@ -392,15 +661,25 @@ def generate_poe_image(model: str, params: dict):
                     yield partial.text
 
         response = asyncio.run(collect_responses(get_responses()))
-        image_url = extract_image_url_from_response(response)
+        
+        if debug:
+            st.write("Raw response from Poe:")
+            st.code(response)
+
+        image_url = extract_image_url_from_response(response, debug)
         
         if image_url:
-            return [image_url]
+            #if debug:
+            st.write(f"Extracted image URL: {image_url}")
+            return [image_url]  # Return a list of URLs to maintain consistency with other image generation functions
         else:
             st.write("No image URL found in the Poe response.")
             return None
     except Exception as e:
         st.write(f"An error occurred while generating the image with Poe: {str(e)}")
+        if debug:
+            st.write("Exception details:")
+            st.exception(e)
         return None
 
 async def collect_responses(response_generator):
@@ -409,11 +688,24 @@ async def collect_responses(response_generator):
         full_response += partial_response
     return full_response
 
-def extract_image_url_from_response(response):
-    # Use a regular expression to find URLs in the response
-    import re
-    url_pattern = r'https?://\S+\.(?:jpg|jpeg|png|gif)'
+def extract_image_url_from_response(response, debug):
+    if debug:
+        st.write("Attempting to extract image URL from response")
+        st.write("Response content:")
+        st.code(response)
+
+    # Use a regular expression to find URLs in the response, including all query parameters
+    url_pattern = r'(https?://\S+\.(?:jpg|jpeg|png|gif)(?:\?\S*)?)'
     urls = re.findall(url_pattern, response)
+    
+    if debug:
+        if urls:
+            st.write(f"Found {len(urls)} potential image URL(s):")
+            for url in urls:
+                st.write(url)
+        else:
+            st.write("No image URLs found in the response")
+
     return urls[0] if urls else None
 
 def generate_image_dalle3(params):
@@ -432,18 +724,47 @@ def generate_image_dalle3(params):
         return None
 
 def save_image_locally(image_url, filename, directory='images'):
-    try:
-        response = requests.get(image_url)
-        if response.status_code == 200:
+    max_retries = 3
+    retry_delay = 1  # seconds
+
+    for attempt in range(max_retries):
+        try:
+            # No headers needed for the signed URL
+            response = requests.get(image_url, timeout=3)  # Add a timeout
+            response.raise_for_status()  # This will raise an exception for HTTP errors
+
             # Ensure the directory exists
             os.makedirs(f'/{directory}', exist_ok=True)
             with open(f'/{directory}/{filename}', 'wb') as f:
                 f.write(response.content)
             st.write(f"Image saved as /{directory}/{filename}")
-        else:
-            st.write(f"Failed to download image: {response.status_code}")
-    except Exception as e:
-        st.write(f"An error occurred while saving the image: {str(e)}")
+            return
+        except requests.exceptions.RequestException as e:
+            st.write(f"Attempt {attempt + 1} failed: {str(e)}")
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+            else:
+                st.write(f"Failed to download image after {max_retries} attempts")
+                st.write(f"Full URL attempted: {image_url}")  # Log the full URL for debugging
+
+def refresh_image_url(concept, medium, prompt):
+    # This function should regenerate the image using the Poe API
+    # and return a new URL with fresh access tokens
+    new_image_url = generate_poe_image("Poe-DALL-E-3", {
+        "prompt": prompt,
+        "size": '1024x1792',
+        "num_images": 1
+    })
+    return new_image_url[0] if new_image_url else None
+
+def get_image_with_retry(image_url, concept, medium, prompt):
+    try:
+        response = requests.head(image_url, timeout=10)
+        response.raise_for_status()
+        return image_url
+    except requests.exceptions.RequestException:
+        st.write("Image URL expired or inaccessible. Refreshing...")
+        return refresh_image_url(concept, medium, prompt)
 
 @st.cache_data(persist=True)
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
@@ -854,15 +1175,92 @@ image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending
 
 
 def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANTHROPIC_API, google_api_key=GOOGLE_API, poe_api_key=POE_API):
+    # Dictionary mapping models to their maximum token limits
+    model_max_tokens = {
+        # OpenAI models
+        "gpt-4o-mini": 4096,
+        "gpt-4o": 8192,
+        "gpt-4o-2024-08-06": 8192,
+        "gpt-3.5-turbo": 4096,
+        "gpt-4-turbo": 4096,
+        "gpt-4": 8192,
+
+        # Anthropic models
+        "claude-3-5-sonnet-20240620": 4096,
+        "claude-3-opus-20240229": 4096,
+        "claude-3-sonnet-20240229": 4096,
+        "claude-3-haiku-20240307": 4096,
+
+        # Google models
+        "gemini-1.5-flash": 16384,
+        "gemini-1.5-pro": 32768,
+        "gemini-1.0-pro": 32768,
+
+        # Poe models
+        "Poe-Assistant": 4096,  # FIXME: Verify token limit
+        "Poe-Claude-3.5-Sonnet": 200000,
+        "Poe-GPT-4o-Mini": 4096,
+        "Poe-GPT-4o": 8192,
+        "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
+        "Poe-Gemini-1.5-Flash": 16384,
+        "Poe-Gemini-1.5-Pro": 32768,
+        "Poe-Llama-3.1-8B-T-128k": 128000,
+        "Poe-Llama-3.1-70B-FW-128k": 128000,
+        "Poe-Llama-3.1-70B-T-128k": 128000,
+        "Poe-Llama-3.1-8B-FW-128k": 128000,
+        "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
+        "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
+        "Poe-Claude-3-Sonnet": 200000,
+        "Poe-Claude-3-Haiku": 200000,
+        "Poe-Claude-3-Opus": 200000,
+        "Poe-Gemini-1.5-Flash-128k": 128000,
+        "Poe-Gemini-1.5-Pro-128k": 128000,
+        "Poe-Gemini-1.0-Pro": 32768,
+        "Poe-Llama-3-70B-T": 4096,  # FIXME: Verify token limit
+        "Poe-Llama-3-70b-Inst-FW": 4096,  # FIXME: Verify token limit
+        "Poe-Mixtral8x22b-Inst-FW": 4096,  # FIXME: Verify token limit
+        "Poe-Command-R": 4096,  # FIXME: Verify token limit
+        "Poe-Gemma-2-9b-T": 4096,  # FIXME: Verify token limit
+        "Poe-Mistral-Large-2": 4096,  # FIXME: Verify token limit
+        "Poe-Mistral-Medium": 4096,  # FIXME: Verify token limit
+        "Poe-Snowflake-Arctic-T": 4096,  # FIXME: Verify token limit
+        "Poe-RekaCore": 4096,  # FIXME: Verify token limit
+        "Poe-RekaFlash": 4096,  # FIXME: Verify token limit
+        "Poe-Command-R-Plus": 4096,  # FIXME: Verify token limit
+        "Poe-GPT-3.5-Turbo": 4096,
+        "Poe-Mixtral-8x7B-Chat": 4096,  # FIXME: Verify token limit
+        "Poe-DeepSeek-Coder-33B-T": 4096,  # FIXME: Verify token limit
+        "Poe-CodeLlama-70B-T": 4096,  # FIXME: Verify token limit
+        "Poe-Qwen2-72B-Chat": 4096,  # FIXME: Verify token limit
+        "Poe-Qwen-72B-T": 4096,  # FIXME: Verify token limit
+        "Poe-Claude-2": 100000,
+        "Poe-Google-PaLM": 4096,  # FIXME: Verify token limit
+        "Poe-Llama-3-8b-Groq": 4096,  # FIXME: Verify token limit
+        "Poe-Llama-3-8B-T": 4096,  # FIXME: Verify token limit
+        "Poe-Gemma-Instruct-7B-T": 4096,  # FIXME: Verify token limit
+        "Poe-MythoMax-L2-13B": 4096,  # FIXME: Verify token limit
+        "Poe-Code-Llama-34b": 4096,  # FIXME: Verify token limit
+        "Poe-Code-Llama-13b": 4096,  # FIXME: Verify token limit
+        "Poe-Solar-Mini": 4096,  # FIXME: Verify token limit
+        "Poe-GPT-3.5-Turbo-Instruct": 4096,
+        "Poe-GPT-3.5-Turbo-Raw": 4096,
+        "Poe-Claude-instant": 100000,
+        "Poe-Mixtral-8x7b-Groq": 4096,  # FIXME: Verify token limit
+        "Poe-Mistral-7B-v0.3-T": 4096,  # FIXME: Verify token limit
+    }
+
+    # Get the maximum token limit for the selected model
+    max_tokens = model_max_tokens.get(model, 4096)  # Default to 4096 if not specified
+
     if model.startswith("claude"):
-        return ChatAnthropic(model=model, temperature=temperature, max_tokens=4096, anthropic_api_key=anthropic_api_key)
+        return ChatAnthropic(model=model, temperature=temperature, max_tokens=max_tokens, anthropic_api_key=anthropic_api_key)
     elif model.startswith("gemini"):
         genai.configure(api_key=google_api_key)
-        return genai.GenerativeModel(model_name=model, temperature=temperature)
+        return genai.GenerativeModel(model_name=model)
     elif model.startswith("Poe-"):
-        return PoeLLM(model_name=model, api_key=poe_api_key, temperature=temperature)
+        return PoeLLM(model_name=model, api_key=poe_api_key, temperature=temperature, max_tokens=max_tokens)
     else:
-        return ChatOpenAI(model=model, temperature=temperature, max_tokens=4096, openai_api_key=openai_api_key)
+        return ChatOpenAI(model=model, temperature=temperature, max_tokens=max_tokens, openai_api_key=openai_api_key)
 
 
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
@@ -870,20 +1268,25 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
     retry_count = 0
     while retry_count < max_retries:
         try:
-            if is_correction:
-                correction_prompt = """
-                The previous response was not in the correct JSON format or was incomplete.
-                Please refer to the instructions provided earlier and respond with only the complete JSON output.
-                Ensure that all required fields are included and properly formatted according to the instructions.
-                """
-                if debug:
-                    st.write(f"Attempt {retry_count + 1}: Using correction prompt")
-                output = _lang_chain.invoke({"input": correction_prompt})
+            if isinstance(_lang_chain.llm, PoeLLM):
+                # Handle Poe models
+                output = asyncio.run(run_poe_chain(_lang_chain, args_dict, debug))
             else:
-                if debug:
-                    st.write(f"Attempt {retry_count + 1}: Using original prompt")
-                    st.write(f"Input args: {args_dict}")
-                output = _lang_chain.invoke(args_dict)
+                # Handle other models as before
+                if is_correction:
+                    correction_prompt = """
+                    The previous response was not in the correct JSON format or was incomplete.
+                    Please refer to the instructions provided earlier and respond with only the complete JSON output.
+                    Ensure that all required fields are included and properly formatted according to the instructions.
+                    """
+                    if debug:
+                        st.write(f"Attempt {retry_count + 1}: Using correction prompt")
+                    output = _lang_chain.invoke({"input": correction_prompt})
+                else:
+                    if debug:
+                        st.write(f"Attempt {retry_count + 1}: Using original prompt")
+                        st.write(f"Input args: {args_dict}")
+                    output = _lang_chain.invoke(args_dict)
             
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
@@ -893,7 +1296,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
             if parsed_output is not None:
                 if debug:
                     st.write("Successfully parsed JSON output")
-                return parsed_output  # Return the parsed Python object
+                return parsed_output
             else:
                 st.write(f"Failed to parse JSON: {error}")
                 raise ValueError(f"Invalid JSON: {error}")
@@ -1364,23 +1767,7 @@ else:
 st.session_state['style_axes'] = style_axes
 
 st.sidebar.header('Image Generation Settings')
-poe_image_models = [
-    "Poe-DALL-E-3", "Poe-FLUX-pro", "Poe-Playground-v2.5", "Poe-Ideogram", "Poe-FLUX-dev",
-    "Poe-FLUX-schnell", "Poe-Pika", "Poe-LivePortrait", "Poe-StableDiffusion3",
-    "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
-    "Poe-SD3-Medium", "Poe-RealVisXL", "Poe-"
-]
-image_model = st.sidebar.selectbox(
-    "Select image model",
-    ["fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", 
-     "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
-     "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
-    key="image_model",
-    on_change=update_image_controls
-)
 
-# Sidebar settings
-st.sidebar.header('Patron Input Features')
 poe_models = [
     "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
     "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
@@ -1400,10 +1787,44 @@ poe_models = [
 ]
 
 model = st.sidebar.selectbox("Select language model", 
-    ["gpt-4o-mini", "gpt-4o", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
+    ["gpt-4o-mini", "gpt-4o", "gpt-4o-2024-08-06", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
      "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
      "claude-3-haiku-20240307", "gpt-4",
      "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro"] + poe_models)
+
+poe_image_models = [
+    "Poe-Playground-v2.5", "Poe-Ideogram", "Poe-FLUX-dev",
+    "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
+    "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
+    "Poe-SD3-Medium", "Poe-RealVisXL"
+]
+image_model = st.sidebar.selectbox(
+    "Select image model",
+    ["Poe-FLUX-pro", "Poe-DALL-E-3", "fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", 
+     "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
+     "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
+    key="image_model",
+    on_change=update_image_controls
+)
+
+st.sidebar.header('Pika Video Generation Settings')
+enable_pika_video = st.sidebar.checkbox("Enable Pika Video Generation", value=False)
+
+if enable_pika_video:
+    st.sidebar.subheader("Pika Video Parameters")
+    pika_motion = st.sidebar.slider("Motion", min_value=1, max_value=4, value=1)
+    pika_guidance_scale = st.sidebar.slider("Guidance Scale", min_value=5, max_value=25, value=12)
+    pika_frame_rate = st.sidebar.slider("Frame Rate", min_value=1, max_value=24, value=24)
+    pika_aspect_ratio = st.sidebar.selectbox("Aspect Ratio", ["16:9", "9:16", "1:1", "5:2", "4:5", "4:3"])
+    pika_negative_prompt = st.sidebar.text_area("Negative Prompt", "")
+    pika_camera_zoom = st.sidebar.selectbox("Camera Zoom", [None, "in", "out"])
+    pika_camera_pan = st.sidebar.selectbox("Camera Pan", [None, "left", "right"])
+    pika_camera_tilt = st.sidebar.selectbox("Camera Tilt", [None, "up", "down"])
+    pika_camera_rotate = st.sidebar.selectbox("Camera Rotate", [None, "cw", "ccw"])
+
+# Sidebar settings
+st.sidebar.header('Patron Input Features')
+
 manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
