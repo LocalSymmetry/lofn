@@ -11,7 +11,7 @@ import ast
 from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
-from langchain.chains import LLMChain
+from langchain_core.runnables import RunnableSequence
 from langchain.prompts import ChatPromptTemplate
 from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
@@ -30,7 +30,7 @@ import plotly.graph_objects as go
 import math
 import json_repair
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Optional, Union
 import google.generativeai as genai
 import fastapi_poe as fp
 from modal import Image, Stub, asgi_app
@@ -44,6 +44,7 @@ from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
 from PIL import Image
 from io import BytesIO
+from langchain_core.runnables import RunnablePassthrough
 
 def fetch_and_save_image(url, filename):
     try:
@@ -65,6 +66,50 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
+
+class GeminiLLM(LLM):
+    model_name: str
+    temperature: float = 0.7
+    max_tokens: int = 4096
+    api_key: str
+    generative_model: Any = None  # Changed from 'model' to 'generative_model'
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        genai.configure(api_key=self.api_key)
+        self.generative_model = genai.GenerativeModel(self.model_name)  # Use 'generative_model' instead of 'model'
+
+    def _call(
+        self,
+        prompt: str,
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[CallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> str:
+        generation_config = genai.types.GenerationConfig(
+            temperature=self.temperature,
+            max_output_tokens=self.max_tokens,
+            stop_sequences=stop or []
+        )
+
+        response = self.generative_model.generate_content(  # Use 'generative_model' instead of 'model'
+            prompt,
+            generation_config=generation_config
+        )
+
+        return response.text
+
+    @property
+    def _llm_type(self) -> str:
+        return "gemini"
+
+    @property
+    def _identifying_params(self) -> Dict[str, Any]:
+        return {
+            "model_name": self.model_name,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+        }
 
 class PoeLLM(LLM):
     model_name: str
@@ -228,15 +273,15 @@ Pika Options: {json.dumps(pika_options)}"""
 def render_image_controls(model: str):
     
     if model == "DALL-E 3" or model == "Poe-DALL-E-3":
-        st.selectbox("Image Size", ["1792x1024", "1024x1024", "1024x1792"], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024",], key=f"{model}_image_size")
         st.selectbox("Quality", ["hd", "standard"], key=f"{model}_quality")
         st.selectbox("Style", ["vivid", "natural"], key=f"{model}_style")
     elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
-        st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in ["fal-ai/flux/dev", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
-        st.selectbox("Image Size", ["square_hd", "square", "portrait_4_3", "portrait_16_9", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
@@ -755,7 +800,10 @@ def get_image_with_retry(image_url, concept, medium, prompt):
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
-    chain = LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("human", image_title_prompt)]))
+    chain = (
+        ChatPromptTemplate.from_messages([("human", image_title_prompt)])
+        | llm
+    )
     
     output = run_chain_with_retries(chain, args_dict={
         "input": input,
@@ -807,16 +855,6 @@ def extract_json_from_text(output):
     
     return None
 
-def parse_json_string(json_string, parser):
-    try:
-        parsed_output = json.loads(json_string)
-        return parser.parse(json.dumps(parsed_output))
-    except (OutputParserException, json.JSONDecodeError) as e:
-        st.write(f"An error occurred while parsing the output trying fixes: {e}")
-        json_string = json_string + "}"
-        parsed_output = json.loads(json_string)
-        return parser.parse(json.dumps(parsed_output))
-
 def repair_json(json_string):
     try:
         return json_repair.repair_json(json_string)
@@ -849,33 +887,33 @@ def clean_json_string(json_string):
     json_string = json_string.replace('\\n', '').replace('\\\\', '\\')
     # Remove leading/trailing whitespace
     json_string = json_string.strip()
-    # Replace single quotes with double quotes, but not those escaped
-    json_string = re.sub(r"(?<!\\)'", '"', json_string)
     # Replace remaining escaped quotes and clean up any leftover single quotes or backslashes
     json_string = json_string.replace('\\"', '"').replace("'", "").replace("\\", "'")
     return json_string
+
 
 def parse_output(output, debug=False):
     try:
         if debug:
             st.write("Original output:")
             st.write(output)
-
         json_string = extract_json_from_text(output)
         if json_string is None:
             if debug:
                 st.write("Failed to extract JSON-like structure from the output.")
             return None, "No JSON-like structure found in the output."
 
-        json_string = clean_json_string(json_string)
-
+        json_string = clean_json_string(json_string.split("response_metadata")[0])
         if debug:
             st.write("Extracted and cleaned JSON string:")
             st.write(json_string)
 
         # Attempt to parse the cleaned JSON
-        parsed_json = json.loads(json_string)
-
+        try: 
+            parsed_json = json.loads(json_string)
+        except json.JSONDecodeError as e:
+            st.write("Error decoding JSON. Attemping automated repairs first.")
+            parsed_json = json.loads(repair_json(json_string))
         if debug:
             st.write("Successfully parsed JSON:")
             st.write(parsed_json)
@@ -884,6 +922,7 @@ def parse_output(output, debug=False):
     except json.JSONDecodeError as e:
         error_message = f"JSON parsing error: {str(e)}"
         st.write(error_message)
+
         if 'json_string' in locals():
             st.write("Problematic JSON string:")
             st.write(json_string)
@@ -1182,7 +1221,7 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
 
         # Poe models
         "Poe-Assistant": 4096,  # FIXME: Verify token limit
-        "Poe-Claude-3.5-Sonnet": 200000,
+        "Poe-Claude-3.5-Sonnet": 4096,
         "Poe-GPT-4o-Mini": 4096,
         "Poe-GPT-4o": 8192,
         "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
@@ -1194,9 +1233,9 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
         "Poe-Llama-3.1-8B-FW-128k": 128000,
         "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
         "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
-        "Poe-Claude-3-Sonnet": 200000,
-        "Poe-Claude-3-Haiku": 200000,
-        "Poe-Claude-3-Opus": 200000,
+        "Poe-Claude-3-Sonnet": 4096,
+        "Poe-Claude-3-Haiku": 4096,
+        "Poe-Claude-3-Opus": 4096,
         "Poe-Gemini-1.5-Flash-128k": 128000,
         "Poe-Gemini-1.5-Pro-128k": 128000,
         "Poe-Gemini-1.0-Pro": 32768,
@@ -1238,9 +1277,8 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
 
     if model.startswith("claude"):
         return ChatAnthropic(model=model, temperature=temperature, max_tokens=max_tokens, anthropic_api_key=anthropic_api_key)
-    elif model.startswith("gemini"):
-        genai.configure(api_key=google_api_key)
-        return genai.GenerativeModel(model_name=model)
+    if model.startswith("gemini"):
+        return GeminiLLM(model_name=model, api_key=google_api_key, temperature=temperature, max_tokens=model_max_tokens.get(model, 4096))
     elif model.startswith("Poe-"):
         return PoeLLM(model_name=model, api_key=poe_api_key, temperature=temperature, max_tokens=max_tokens)
     else:
@@ -1251,27 +1289,8 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
     retry_count = 0
     while retry_count < max_retries:
         try:
-            if isinstance(_lang_chain.llm, PoeLLM):
-                # Handle Poe models
-                output = run_poe_chain(_lang_chain, args_dict, is_correction, retry_count, debug)
-            else:
-                # Handle other models as before
-                if is_correction:
-                    correction_prompt = f"""
-                        Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete and failed to parse. Check common parsing errors and fix your repsonse.
-                        Please refer to the instructions provided earlier and respond with only the complete JSON output.
-                        Ensure that all required fields are included and properly formatted according to the instructions.
-                        Be careful about esacping all non 0-9 and a-z characters like apostrophes within your JSON strings in your response as it will be parsed by a JSON parser that can be fooled by it (so pleave have "key":"value's" instead be "key":"value\'s" or "key":"values").
-                        """
-                    if debug:
-                        st.write(f"Attempt {retry_count + 1}: Using correction prompt")
-                    output = _lang_chain.invoke({"input": correction_prompt})
-                else:
-                    if debug:
-                        st.write(f"Attempt {retry_count + 1}: Using original prompt")
-                        st.write(f"Input args: {args_dict}")
-                    output = _lang_chain.invoke(args_dict)
-            
+            output = run_any_chain(_lang_chain, args_dict, is_correction, retry_count, debug)
+            args_dict['output'] = output
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
             
@@ -1292,26 +1311,54 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
         st.write("Max retries reached. Exiting.")
     return None
 
-def run_poe_chain(chain, args_dict, is_correction, retry_count, debug=False):
+def truncate_prompt(prompt: Union[str, List[dict]], max_tokens: int = 3000) -> Union[str, List[dict]]:
+    """
+    Truncate a prompt string or a list of message dicts to a maximum number of tokens.
+    """
+    if isinstance(prompt, str):
+        words = prompt.split()
+        if len(words) <= max_tokens:
+            return prompt
+        return ' '.join(words[-max_tokens:])
+    elif isinstance(prompt, list):
+        total_tokens = sum(len(m['content'].split()) for m in prompt)
+        if total_tokens <= max_tokens:
+            return prompt
+        truncated_prompt = []
+        remaining_tokens = max_tokens
+        for message in reversed(prompt):
+            content = message['content']
+            words = content.split()
+            if len(words) <= remaining_tokens:
+                truncated_prompt.insert(0, message)
+                remaining_tokens -= len(words)
+            else:
+                truncated_content = ' '.join(words[-remaining_tokens:])
+                truncated_prompt.insert(0, {**message, 'content': truncated_content})
+                break
+        return truncated_prompt
+
+def run_any_chain(chain, args_dict, is_correction, retry_count, debug=False):
     try:
         if is_correction:
             correction_prompt = f"""
-            Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete and failed to parse. Check common parsing errors and fix your repsonse.
+            Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete.
             Please refer to the instructions provided earlier and respond with only the complete JSON output.
             Ensure that all required fields are included and properly formatted according to the instructions.
-            Be careful about esacping all non 0-9 and a-z characters like apostrophes within your JSON strings in your response as it will be parsed by a JSON parser that can be fooled by it (so pleave have "key":"value's" instead be "key":"value\'s" or "key":"values").
+            Escape any special characters within JSON strings including apostrophes. The last 1500 characters of your
+            previous message is included. Please start from the last complete step using your previous output.
             """
             # Preserve original input parameters
             corrected_args = args_dict.copy()
-            corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '')
+            corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('input', '')[-1500:]
             
             if debug:
-                st.write(f"Poe Attempt {retry_count + 1}: Using correction prompt")
+                st.write(f"Attempt {retry_count + 1}: Using correction prompt")
                 st.write(f"Corrected input args: {corrected_args}")
             response = chain.invoke(corrected_args)
         else:
             if debug:
-                st.write(f"Poe Attempt {retry_count + 1}: Using original prompt")
+                st.write(f"Attempt {retry_count + 1}: Using original prompt")
                 st.write(f"Input args: {args_dict}")
             response = chain.invoke(args_dict)
         
@@ -1323,12 +1370,15 @@ def run_poe_chain(chain, args_dict, is_correction, retry_count, debug=False):
             full_response = str(response)
         
         if debug:
-            st.write(f"Full response: {full_response}")
-        
+            st.write(f"Full response from attempt {retry_count + 1}: {full_response}")
+
         return full_response
+
     except Exception as e:
-        st.write(f"An error occurred in Poe attempt {retry_count + 1}: {str(e)}")
+        st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
         return None
+
+
 
 def send_to_discord(content, content_type='prompts', premessage=''):
     try:
@@ -1567,12 +1617,48 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
     selected_aesthetics = random.sample(aesthetics, 100)
 
     chains = {
-        'essence_and_facets': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", essence_prompt)])),
-        'concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", concepts_prompt)])),
-        'artist_and_refined_concepts': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", artist_and_critique_prompt)])),
-        'medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", medium_prompt)])),
-        'refine_medium': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)])),
-        'shuffled_review': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", refine_medium_prompt)]))
+        'essence_and_facets': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", essence_prompt)
+            ])
+            | llm
+        ),
+        'concepts': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", concepts_prompt)
+            ])
+            | llm
+        ),
+        'artist_and_refined_concepts': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", artist_and_critique_prompt)
+            ])
+            | llm
+        ),
+        'medium': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", medium_prompt)
+            ])
+            | llm
+        ),
+        'refine_medium': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", refine_medium_prompt)
+            ])
+            | llm
+        ),
+        'shuffled_review': (
+            ChatPromptTemplate.from_messages([
+                ("system", concept_system),
+                ("human", refine_medium_prompt)
+            ])
+            | llm
+        )
     }
 
     with st.status("Generating Concepts and Mediums...", expanded=True) as status:
@@ -1687,13 +1773,27 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
     selected_aesthetics = random.sample(aesthetics, 100)
 
     chains = {
-        'facets': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", concept_system), ("human", facets_prompt)])),
-        'aspects_traits': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", prompt_system), ("human", aspects_traits_prompt)])),
-        'midjourney': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", prompt_system), ("human", midjourney_prompt)])),
-        'artist_refined': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", prompt_system), ("human", artist_refined_prompt)])),
-        'revision_synthesis': LLMChain(llm=llm, prompt=ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)]))
+        'facets': (
+            ChatPromptTemplate.from_messages([("system", concept_system), ("human", facets_prompt)])
+            | llm
+        ),
+        'aspects_traits': (
+            ChatPromptTemplate.from_messages([("system", prompt_system), ("human", aspects_traits_prompt)])
+            | llm
+        ),
+        'midjourney': (
+            ChatPromptTemplate.from_messages([("system", prompt_system), ("human", midjourney_prompt)])
+            | llm
+        ),
+        'artist_refined': (
+            ChatPromptTemplate.from_messages([("system", prompt_system), ("human", artist_refined_prompt)])
+            | llm
+        ),
+        'revision_synthesis': (
+            ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)])
+            | llm
+        )
     }
-
     with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
         status.write("Generating Facets...")
         facets = process_facets(chains, input, concept, medium, st.session_state.style_axes, max_retries, debug)
