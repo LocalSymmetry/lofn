@@ -1911,22 +1911,24 @@ st.session_state['style_axes'] = style_axes
 st.sidebar.header('Image Generation Settings')
 
 poe_models = [
-    "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
-    "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
+    "Poe-Gemini-1.5-Pro-128k", "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
+    "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
+    "Poe-Mistral-Large-2-128k", 
     "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
-    "Poe-Llama-3.1-8B-FW-128k", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
-    "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
-    "Poe-Gemini-1.5-Flash-128k", "Poe-Gemini-1.5-Pro-128k", "Poe-Gemini-1.0-Pro",
-    "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW", "Poe-Mixtral8x22b-Inst-FW",
-    "Poe-Command-R", "Poe-Gemma-2-9b-T", "Poe-Mistral-Large-2", "Poe-Mistral-Medium",
+    "Poe-Llama-3.1-8B-FW-128k", "Poe-GPT-4-Turbo-128k", "Poe-Claude-3-Opus-200k",
+    "Poe-Claude-3-Sonnet-200k", "Poe-Claude-3-Haiku-200k",
+    "Poe-Mixtral8x22b-Inst-FW", "Poe-Command-R", "Poe-Gemma-2-9b-T", "Poe-Mistral-Large-2", "Poe-Mistral-Medium",
     "Poe-Snowflake-Arctic-T", "Poe-RekaCore", "Poe-RekaFlash", "Poe-Command-R-Plus",
     "Poe-GPT-3.5-Turbo", "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
     "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T", "Poe-Claude-2",
     "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-Instruct-7B-T",
     "Poe-MythoMax-L2-13B", "Poe-Code-Llama-34b", "Poe-Code-Llama-13b", "Poe-Solar-Mini",
     "Poe-GPT-3.5-Turbo-Instruct", "Poe-GPT-3.5-Turbo-Raw", "Poe-Claude-instant",
-    "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T"
-]
+    "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
+    "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
+    "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
+    "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
+    "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW"]
 
 model = st.sidebar.selectbox("Select language model", 
     ["gpt-4o-mini", "gpt-4o", "gpt-4o-2024-08-06", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
