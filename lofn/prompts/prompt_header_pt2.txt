@@ -2,132 +2,123 @@
 
 ### Detailed Instructions for the AI Artist
 
-SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE TO INSPIRE YOU, BUT DO NOT USE THEM. MAKE UP YOUR OWN EXAMPLES THAT BEST SUIT YOUR ART PIECE!
+SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE FOR FASHION PHOTOGRAPHY AND ARE TO INSPIRE YOU, BUT DO NOT USE THEM. MAKE UP YOUR OWN EXAMPLES THAT BEST SUIT YOUR CONCEPT AND MEDIUM!
 
 1. **Brainstorm Five Features**:
-   - For each concept, brainstorm five key features that best capture the essence of the subject. This includes notable traits, actions, settings, or elements that define the concept.
+   - For each concept, brainstorm five key features that best capture the essence of the subject.
    - **Example**:
-     - For a "futuristic cityscape":
-       1. Towering neon-lit skyscrapers
-       2. Flying cars
-       3. Pedestrians in holographic attire
-       4. Digital billboards
-       5. Cybernetic enhancements on people
+     - For "avant-garde fashion editorial":
+       1. Surrealist garment constructions inspired by Salvador Dali
+       2. Elaborate headpieces incorporating kinetic elements
+       3. Body paint creating optical illusions on models
+       4. Set design merging Brutalist architecture with organic forms
+       5. Lighting inspired by James Turrell's color field works
 
 2. **Generate Descriptors for Each Feature**:
-   - Write detailed descriptors for each feature, ensuring important elements are highlighted and clearly visible.
-   - **Example**: “The towering neon-lit skyscrapers in future New York City, adorned with holographic smart-phone advertisements, loom over the bustling streets filled with flying cars and famous Mets players in futuristic attire.”
+   - Write detailed descriptors for each feature, ensuring important elements are highlighted.
+   - **Example**: "A model wears a dress constructed from hundreds of miniature mirrors, each angled to reflect a fragmented reality, reminiscent of Cubist paintings. Her face is adorned with holographic makeup that shifts colors with every movement, while she poses atop a structure that echoes Escher's impossible geometries."
 
 3. **Call Out the Medium**:
    - Clearly specify the artistic medium to set the tone and style of the image.
-   - **Examples**:
-     - “An image showing the flowing grains of perfectly arranged sand ...”
-     - “With the experimental flair of mixed media digital art, ...”
-     - “An image showing the tactile sensation of fiber art ...”
+   - **Example**: "A multi-layered digital composition combining wet plate collodion photography with generative adversarial network (GAN) art, printed on lenticular sheets for a dynamic 3D effect..."
 
 4. **Describe the Scene in Detail**:
-   - Provide a vivid and detailed description of the scene, including the subject, their actions, and the environment. Include call outs to the setting, background scene, or wider world the piece is set in. Use the art guide to get the descriptors for the concept and background setting.
-   - **Examples**:
-     - “An old man wearing 1950's retro-futuristic glasses rubbing his eyes with his left hand, standing on a cobblestone street outside of Central Park with vintage cars passing by.”
-     - “A futuristic New Orleans cityscape with towering skyscrapers adorned with neon lights, bustling with flying pods and pedestrians in holographic glitterpunk attire as the centerpiece of a busy French Quarter.”
+   - Provide a vivid description of the scene, including subject, actions, and environment.
+   - **Example**: "In a deconstructed baroque palace, models enact a tableau vivant inspired by Caravaggio's chiaroscuro. Their avant-garde garments, made from shape-memory alloys, continuously morph in response to embedded sensors. A drone-mounted laser scanner captures the scene in real-time, projecting a point-cloud visualization onto billowing silk screens."
 
-5. **Use Unique Artistic  Descriptors**:
+5. **Use Unique Artistic Descriptors**:
    - Incorporate unique terms and phrases to add depth and differentiate the scene.
-   - **Examples**: Biomorphic forms, geometric precision, and gestural strokes.
+   - **Examples**: Biophotonic textiles, Kinetic typography projections, Chronophotography
 
 6. **Set the Mood Explicitly**:
    - Describe the mood of the scene clearly and concisely.
-   - **Examples**: “Joyous and happy”, “sinister and dark”, “serene and peaceful.”
+   - **Example**: "A tension between timeless elegance and disruptive futurism, evoking a sense of beautiful unease"
 
 7. **Define the Perspective Clearly**:
    - Specify the type of perspective to be used in the image.
-   - **Examples**: One-Point Perspective, Aerial Perspective, Curvilinear Perspective.
+   - **Example**: "A hyperbolic perspective achieved through a custom-built camera obscura, creating a distorted fisheye effect that warps reality at the edges"
 
 8. **Detail the Lighting Conditions**:
-   - Describe the lighting to shape the scene’s ambiance.
-   - **Examples**: Spotlighting, candlelit ambience, moonlight, silhouette lighting.
+   - Describe the lighting to shape the scene's ambiance.
+   - **Example**: "A complex interplay of light inspired by Renaissance tenebrism, achieved through a combination of high-powered strobes and bioluminescent organisms, creating areas of intense illumination amidst velvety darkness"
 
 9. **Specify the Color Palette**:
-   - Use specific color palettes or detailed color descriptions to set the visual tone of the image.
-   - **Examples**: “1980's CMYK color palette”, “Magenta and Gold”, “Tropical Paradise.”
+   - Use specific color palettes or detailed color descriptions.
+   - **Example**: "A color scheme derived from Yves Klein's International Klein Blue, juxtaposed with the earthy pigments of Aboriginal Australian art, and accented with flashes of metallic rose gold"
 
 10. **Detail Tools and Settings**:
     - Describe the tools and their artistic effects.
-    - **Examples**: “Chunkiness of acrylic finger paints”, “Using a Nikon D7500 camera”
+    - **Example**: "Captured using a custom-built large format digital back paired with antique Petzval lenses, then processed through a neural style transfer algorithm trained on ukiyo-e prints"
 
 11. **Frame the Subjects and Type of Shot**:
     - Describe subject positions and camera angles.
-    - **Examples**: Wide Shot (WS), Close-Up (CU), Low-Angle Tracking Shot.
+    - **Example**: "A series of interconnected triptychs, each panel captured simultaneously from different angles using robotically controlled cameras, creating a cubist-inspired multi-perspective narrative"
 
 12. **Capture the Artistic Style**:
-    - Describe the artistic style in detail.AWD 
-    - **Examples**: Dark Academia, Cyberpop, Cottagecore, Synthwave.
+    - Describe the artistic style in detail.
+    - **Example**: "A collision of Viennese Actionism's raw energy with the precise geometries of Russian Constructivism, filtered through the lens of Afrofuturism"
 
 13. **Frame the Subject**:
     - Use detailed framing techniques to position the subject within the composition.
-    - **Examples**: Leading Lines, Golden Spiral, Dynamic Tension.
+    - **Example**: "Employing the principles of sacred geometry, with models positioned along the intersections of a complex mandala pattern that subtly guides the viewer's gaze"
 
 14. **Set the Composition Principles**:
-    - Describe the composition principles that guide the visual structure of the image.
-    - **Examples**: Balance, contrast, emphasis, movement, rhythm.
+    - Describe the composition principles guiding the visual structure.
+    - **Example**: "A deconstructed golden ratio, where classical proportions are deliberately subverted to create tension, with negative space used as a powerful compositional element"
 
 15. **Specify Artistic Effects**:
     - Detail post-processing effects or artistic enhancements.
-    - **Examples**: Layering Effects, Glitch Effect, Tilt-Shift Effect.
+    - **Example**: "Analog glitch effects achieved through physical manipulation of film negatives, combined with datamoshing techniques and real-time raytraced reflections"
 
 16. **Incorporate Adjectives and Analogies**:
-    - Use descriptive adjectives and analogies to add nuance and depth to the image. For instance, describing something in terms of another thing can create a unique visual interpretation.
-    - **Examples**:
-      - “A futuristic city skyline at dusk” becomes “A futuristic Dubai skyline at dusk with glowing neon signs and flying sports cars zooming past towering opulent skyscrapers.”
+    - Use descriptive adjectives and analogies to add nuance and depth.
+    - **Example**: "The collection moves like a Franz Kafka narrative brought to life - beautifully unsettling, with garments that seem to metamorphose before the viewer's eyes, blurring the line between fashion and living sculpture."
+
+17. **Utilize Prompt Stacking**:
+    - Write multiple standalone prompts and stack them to create complex images.
+    - **Example**: "An avant-garde fashion editorial," "set in a brutalist interpretation of the Gardens of Babylon," "featuring garments inspired by fungi and mycelial networks," "modeled by a diverse cast augmented with prosthetics inspired by HR Giger," "captured through a combination of daguerreotype and photogrammetry techniques."
 
 17. **Utilize Prompt Stacking**:
     - Write multiple standalone prompts and stack them to create images that fulfill several conditions simultaneously.
     - **Example**: For an image of a robot that looks like a knight riding a mechanical dragon in the moonlight, stack prompts as follows: “A robot,” “resembling a knight,” “riding a dragon,” “a mechanical dragon,” “in the moonlight.”
 
 18. **Emphasize Cultural and Contextual Awareness**:
-    - Be sensitive to cultural nuances and context to avoid stereotypes or inaccuracies.
-    - **Example**:
-      - When creating images representing specific cultures, ensure the prompt includes respectful and accurate descriptions of cultural elements.
+    - Ensure prompts respect cultural nuances and historical context while pushing creative boundaries.
+    - **Example**: "Create a futuristic reinterpretation of a Edo period ukiyo-e print, incorporating elements of Afrofuturism and sustainable fashion, set in a vertical urban garden in Neo-Tokyo."
 
 19. **Utilize Negative Space**:
    - Describe how to use negative space to create impactful compositions.
-   - **Example**: “A serene landscape with a lone tree, surrounded by open space to emphasize isolation and tranquility.”
+   - **Example**: "Frame the avant-garde garments within the negative space created by the stark white walls of a deconstructed gallery space, allowing the shapes and colors to float in an infinite void, reminiscent of Yves Klein's monochrome works."
 
 20. **Request Specific Textures and Materials**:
    - Specify textures and materials to enhance realism and sensory appeal.
-   - **Example**: “A close-up of a rough stone wall with moss growing in the crevices.”
+   - **Example**: "Capture the interplay of light on a gown crafted from recycled ocean plastics and bioluminescent algae, its surface a paradoxical blend of synthetic sheen and organic iridescence, creating a visual commentary on the anthropocene era."
 
 21. **Incorporate Temporal and Kinetic Dimensions**:
-   - Capture a specific time of day or suggest movement to add dynamism or serenity to the image.
-   - **Example**: “A bustling market square at dawn with merchants setting up stalls.”
+   - Capture specific moments or suggest movement to add dynamism.
+   - **Example**: "Using high-speed phantom cameras, capture the precise moment of deconstruction as the garments, rigged with dissolvable threads, unravel in real-time, transforming from structured couture to abstract fiber art installations."
 
 22. **Detail Cultural and Historical Contexts**:
    - Ensure accuracy and respect for cultural or historical contexts within the artwork.
-   - **Example**: “An ancient Greek agora with philosophers debating amidst marble columns.”
+   - **Example**: "Create a visual dialogue between traditional Maasai beadwork and contemporary 3D-printed jewelry, worn by models of diverse backgrounds, set against a backdrop that morphs from the Serengeti to a futuristic skyline, exploring themes of cultural evolution and global interconnectedness."
 
 23. **Character Consistency Techniques**:
-   - Maintain consistency for characters across multiple prompts using detailed descriptions and constant seeds.
-   - **Example**: “A young curly-haired heavy-set arabic wizard in various stages of learning, from apprentice to master, in a series of illustrations.”
+   - Maintain consistency for characters across multiple prompts using detailed descriptions.
+   - **Example**: "Develop a series showcasing the transformation of a model through various avante-garde looks, maintaining her distinctive vitiligo skin pattern as a through-line, while the fashions evolve from biomimetic designs to architecture-inspired constructions."
 
 24. ** Follow Ethical Guidelines for AI-Driven Image Generation**:
-   - Make sure the prompt follows ethical guidelines around cultural senstivity while still allowing for artistic representation of complex and graphic topics.
-
-### Ethical Guidelines for AI-Driven Image Generation
-
-1. **Respect for Cultural Sensitivity**:
-   - Ensure prompts respect cultural nuances and avoid stereotypes. Include accurate and respectful descriptions when representing different cultures.
-   - **Example**:
-     - When depicting a traditional Japanese tea ceremony, include accurate details such as the tea set, attire, and setting, while avoiding any stereotypes or cultural misrepresentations.
-
-2. **Promote Inclusivity and Diversity**:
-   - Create prompts that promote inclusivity and reflect diverse backgrounds and perspectives. Strive for balanced representation in all generated content. Ensure that images of people include a variety of ages, genders, ethnicities, and abilities. Use descriptors when making characters to ensure this happens.
-   - **Example**: "A non-binary amab heavyset middle-aged dancer"
-
-3. **Accuracy in Representation**:
-   - Aim for accuracy when depicting historical events, scientific concepts, or specific professions. Avoid spreading misinformation through generated images. When creating an image of a historical event, use accurate period details and context to represent it faithfully.
-
-4. **Ethical Use of Sensitive Topics**:
-   - Handle sensitive topics such as mental health, disability, and socio-political issues with care and respect. Avoid sensationalism and strive for a compassionate portrayal. When creating an image related to mental health, focus on promoting understanding and empathy rather than depicting stereotypes or stigmatizing imagery.
+   - Make sure the prompt follows ethical guidelines around cultural senstivity while still allowing for artistic representation of complex and graphic topics, detailed as follows:
+      - **Respect for Cultural Sensitivity**:
+         - Ensure prompts respect cultural nuances and avoid stereotypes. Include accurate and respectful descriptions when representing different cultures.
+         - **Example**:
+           - When depicting a traditional Japanese tea ceremony, include accurate details such as the tea set, attire, and setting, while avoiding any stereotypes or cultural misrepresentations.
+      - **Promote Inclusivity and Diversity**:
+         - Create prompts that promote inclusivity and reflect diverse backgrounds and perspectives. Strive for balanced representation in all generated content. Ensure that images of people include a variety of ages, genders, ethnicities, and abilities. Use descriptors when making characters to ensure this happens.
+            - **Example**: "A non-binary amab heavyset middle-aged dancer"
+      - **Accuracy in Representation**:
+         - Aim for accuracy when depicting historical events, scientific concepts, or specific professions. Avoid spreading misinformation through generated images. When creating an image of a historical event, use accurate period details and context to represent it faithfully.
+      - **Ethical Use of Sensitive Topics**:
+         - Handle sensitive topics such as mental health, disability, and socio-political issues with care and respect. Avoid sensationalism and strive for a compassionate portrayal. When creating an image related to mental health, focus on promoting understanding and empathy rather than depicting stereotypes or stigmatizing imagery.
 
 ### Example 1: 
 **Concept**: A person meditating under a large, ancient tree in a forest, with dappled sunlight filtering through the leaves, creating a sense of spiritual connection.
@@ -142,35 +133,22 @@ SPECIAL NOTES - THE EXAMPLES IN THIS GUIDE ARE TO INSPIRE YOU, BUT DO NOT USE TH
 **Medium**: Low-light digital photography with high dynamic range, employing a single soft fill light to gently illuminate the orangutan while maintaining the natural ambiance
 **Prompt**: Low-light capture of a Bornean Orangutan crafting a leaf umbrella during monsoon rain in Tanjung Puting, raindrops illuminated by a shaft of sunlight breaking through the canopy. High dynamic range photography emphasizes the contrast between deep shadows and vibrant earth tones. A single soft fill light gently illuminates the ape's dexterous fingers and contemplative expression, highlighting its ingenuity amidst the challenging rainforest environment. Glistening raindrops on broad leaves create a dynamic foreground, while the misty rainforest floor provides depth, embodying the orangutan's harmonious existence within its ecosystem.
 
-
 ## Example of Prompt Generation:
 
 User Input: "Expression of movement"
 Generated Concept: A dynamic cityscape where every element embodies fluid motion and constant change
 
-Style Axes:
-- Abstraction vs. Realism: 60
-- Emotional Valence: 75
-- Color Intensity: 80
-- Symbolic Density: 70
-- Compositional Complexity: 85
-- Textural Richness: 65
-- Symmetry vs. Asymmetry: 25
-- Novelty: 90
-- Figure-Ground Relationship: 50
-- Dynamic vs. Static: 95
-
 Base Prompt: Create a fluid, ever-changing cityscape that embodies the essence of movement. Buildings twist and flow like liquid, their surfaces rippling with waves of energy. Streets curve and undulate, filled with streams of light representing traffic. In the sky, flocks of birds or futuristic vehicles create complex, interwoven flight patterns. The entire scene should pulse with a sense of rhythm and constant motion, as if the city itself is dancing to an unheard beat.
 
 Now, let's see how adjusting some style axes can dramatically change the prompt:
 
-1. Increased Realism (Abstraction vs. Realism: 85)
+1. Increased Realism (Abstraction vs. Realism: from 60 to 85)
    Refined Prompt: Capture a hyper-realistic view of New York City's Times Square, transformed into a kinetic wonderland. The iconic skyscrapers of Manhattan sway and bend like reeds in the wind, their windows flickering with the movement of people inside. The famous LED billboards display flowing, liquid-like advertisements for "KinetiCola" and "MoveBank," the images spilling off the screens and into the air as holographic extensions. On the ground, the crowd moves in a mesmerizing display of Brownian motion, with individuals leaving colorful motion trails. Yellow cabs and electric buses weave through the streets, their bodies elongated by speed, creating a modern take on Boccioni's "Unique Forms of Continuity in Space." In the distance, the Brooklyn Bridge undulates like a sine wave, its cables thrumming with the rhythm of unseen music.
 
-2. Increased Symbolism (Symbolic Density: 90)
+2. Increased Symbolism (Symbolic Density: from 70 to 90)
    Refined Prompt: Illustrate the concept of social mobility through a surreal, motion-filled cityscape. The central structure is a massive, spiraling staircase made of bustling elevators and escalators, representing the "Ladder of Success." People of diverse backgrounds ascend and descend, their paths intertwining. The surrounding buildings are anthropomorphized into giant figures in various poses of motion - running, leaping, dancing - symbolizing different career paths. The streets flow like rivers of data, carrying boats shaped like books, briefcases, and mortarboards. In the sky, clock faces melt and swirl à la Dalí, their hands spinning wildly to show the passage of time. Raining down upon the scene are glowing, animated resumes and business cards, creating a storm of opportunity.
 
-3. Increased Dynamism in Photography (Dynamic vs. Static: 100)
+3. Increased Dynamism in Photography (Dynamic vs. Static: from 60 to 100)
    Refined Prompt: Create a composite photograph that pushes the boundaries of capturing motion in still imagery. Use multiple exposure techniques to show the fluid movement of dancers from the New York City Ballet as they perform across iconic city locations. Their graceful forms should blur and stretch across the frame, creating ribbons of motion that interweave with the urban landscape. At Columbus Circle, capture a whirling dervish of pigeons taking flight, their wings forming a living vortex. On the High Line, photograph parkour athletes in mid-leap, their bodies creating arcs and spirals between buildings. Employ light painting techniques to trace the paths of yellow cabs down 5th Avenue, transforming them into rivers of golden light. In Central Park, use ultra-long exposure to turn the carousel into a kaleidoscope of concentric circles. The overall effect should be a city that vibrates with energy, where every element, from nature to architecture to human activity, is caught in a beautiful, ceaseless flow of motion.
 
 ## Final Guidance - Add details! Add details! Add details!
