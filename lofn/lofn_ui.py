@@ -284,7 +284,7 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux/dev", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
@@ -310,7 +310,8 @@ def render_image_controls(model: str):
 
 def get_model_params(model: str):
     base_params = {
-        "num_images": st.session_state[f"{model}_num_images"]
+        "num_images": st.session_state[f"{model}_num_images"],
+        "image_size" : st.session_state[f"{model}_image_size"]
     }
 
     image_size = st.session_state[f"{model}_image_size"]
@@ -338,6 +339,11 @@ def get_model_params(model: str):
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
         },
         "fal-ai/flux-pro": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/flux-realism": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
@@ -403,13 +409,13 @@ def generate_fal_image(model_name, params, debug=False):
         # Add model-specific parameters
         if "flux" in model_name or "sdxl" in model_name:
             arguments.update({
-                "num_inference_steps": params.get('num_inference_steps', 28),
-                "guidance_scale": params.get('guidance_scale', 3.5),
+                "num_inference_steps": int(params.get('num_inference_steps', 28)),
+                "guidance_scale": float(params.get('guidance_scale', 3.5)),
                 "enable_safety_checker": params.get('enable_safety_checker', True),
             })
 
         if "flux" in model_name or "Stable" in model_name or "SD3" in model_name or "stable in model_name":
-            arguments.update({"image_size": params.get('image_size', 'square_hd')})
+            arguments.update({"image_size": str(params.get('image_size', 'portrait_16_9'))})
         else:
             arguments.update({
                 "image_height": params.get('image_height', '1024'),
@@ -893,7 +899,12 @@ def clean_json_string(json_string):
     json_string = json_string.strip()
     # Replace remaining escaped quotes and clean up any leftover single quotes or backslashes
     json_string = json_string.replace('\\"', '"').replace("'", "").replace("\\", "'")
-    return json_string
+    json_pattern = r'({.*})'
+    json_match = re.search(json_pattern, json_string, re.DOTALL)
+    if json_match:
+        return json_match.group(1)
+    else:
+        return json_string
 
 
 def parse_output(output, debug=False):
@@ -1944,7 +1955,7 @@ poe_image_models = [
 ]
 image_model = st.sidebar.selectbox(
     "Select image model",
-    ["Poe-FLUX-pro", "Poe-DALL-E-3", "fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux/dev", 
+    ["Poe-FLUX-pro", "Poe-DALL-E-3", "fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux/dev", 
      "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
      "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
     key="image_model",
@@ -2000,7 +2011,7 @@ with st.container():
             st.write("Generating")
             st.session_state['concept_mediums'] = generate_concept_mediums(st.session_state.input, max_retries=max_retries, temperature=temperature, model=model, debug=debug)
         except LofnError as e:
-            st.error(f"An error occurred during concept generation: {str(e)}")
+            st.warning(f"An error occurred during concept generation: {str(e)}")
             if debug:
                 st.exception(e)
             st.warning("Please try again or enable debug mode for more information.")
@@ -2031,7 +2042,7 @@ with st.container():
                                       [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
                     ))
                 except LofnError as e:
-                    st.error(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
+                    st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
                     if debug:
                         st.exception(e)
                     st.warning("Please try again or enable debug mode for more information.")
@@ -2079,7 +2090,7 @@ with st.container():
                 st.write("Image Prompts Complete")
                 st.write("Generation complete!")
             except LofnError as e:
-                st.error(f"An error occurred during manual prompt generation: {str(e)}")
+                st.warning(f"An error occurred during manual prompt generation: {str(e)}")
                 if debug:
                     st.exception(e)
                 st.warning("Please try again or enable debug mode for more information.")    
