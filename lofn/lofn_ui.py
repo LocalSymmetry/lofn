@@ -675,7 +675,7 @@ def generate_image(model: str, params: dict):
     elif model.startswith("Poe-"):
         return generate_poe_image(model, params, debug)
     elif model.startswith("runware:"):
-        return asyncio.run(generate_runware_image(params['prompt'], params))
+        return generate_runware_image(params['prompt'], params)
     else:
         st.write(f"Unsupported model: {model}")
         return None
@@ -683,8 +683,8 @@ def generate_image(model: str, params: dict):
 def generate_runware_image(prompt, params):
     runware_client.connect()
     controlnet_params = []
-    if params.get('controlnet'):
-        for cn in params['controlnet']:
+    if params.get('controlNet'):
+        for cn in params['controlNet']:
             controlnet_params.append({
                 'model': cn['model'],
                 'guideImage': cn['guideImage'],
@@ -696,18 +696,17 @@ def generate_runware_image(prompt, params):
     
     request_image = IRequestImage(
         positive_prompt=prompt,
-        width=params.get('width', 512),
-        height=params.get('height', 512),
-        model_id=params.get('model_id', 'runware:100@1'),  # Default to FLUX model
+        width=params['width'],
+        height=params['height'],
+        model_id=params['model'],
         number_of_images=params.get('num_images', 1),
         negative_prompt=params.get('negative_prompt', ''),
-        steps=params.get('steps', 20),
-        CFGScale=params.get('CFGScale', 7.0),
-        controlNet=controlnet_params
+        steps=params['steps'],
+        CFGScale=params['CFGScale'],
+        controlNet=controlnet_params if controlnet_params else None
     )
     images = runware_client.requestImages(requestImage=request_image)
     return [image.imageURL for image in images]
-
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
