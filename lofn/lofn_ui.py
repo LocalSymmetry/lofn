@@ -609,27 +609,27 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             st.error(f"Error saving image locally: {str(e)}")
 
                         # Generate video using Pika through Poe if enabled
-                        video_url = None
-                        if enable_pika_video:
-                            try:
-                                pika_params = {
-                                    'motion': pika_motion,
-                                    'guidance_scale': pika_guidance_scale,
-                                    'frame_rate': pika_frame_rate,
-                                    'aspect_ratio': pika_aspect_ratio,
-                                    'negative_prompt': pika_negative_prompt,
-                                    'camera_zoom': pika_camera_zoom,
-                                    'camera_pan': pika_camera_pan,
-                                    'camera_tilt': pika_camera_tilt,
-                                    'camera_rotate': pika_camera_rotate
-                                }
-                                video_url = generate_poe_video(prompt, result, pika_params, debug)
-                                if video_url:
-                                    video_filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.mp4"
-                                    save_video_locally(video_url, video_filename)
-                            except Exception as e:
-                                st.error(f"Error generating or saving video: {str(e)}")
-                                video_url = None
+                        # video_url = None
+                        # if enable_pika_video:
+                        #     try:
+                        #         pika_params = {
+                        #             'motion': pika_motion,
+                        #             'guidance_scale': pika_guidance_scale,
+                        #             'frame_rate': pika_frame_rate,
+                        #             'aspect_ratio': pika_aspect_ratio,
+                        #             'negative_prompt': pika_negative_prompt,
+                        #             'camera_zoom': pika_camera_zoom,
+                        #             'camera_pan': pika_camera_pan,
+                        #             'camera_tilt': pika_camera_tilt,
+                        #             'camera_rotate': pika_camera_rotate
+                        #         }
+                        #         video_url = generate_poe_video(prompt, result, pika_params, debug)
+                        #         if video_url:
+                        #             video_filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.mp4"
+                        #             save_video_locally(video_url, video_filename)
+                        #     except Exception as e:
+                        #         st.error(f"Error generating or saving video: {str(e)}")
+                        #         video_url = None
 
                         # Save metadata
                         try:
@@ -2257,10 +2257,9 @@ with st.container():
                         concept=pair['concept'], 
                         medium=pair['medium'], 
                         input=st.session_state.input,
-                        input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
-                                      [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
+                        input_prompts=prompts['Revised Prompts'].tolist() + prompts['Synthesized Prompts'].tolist()
                     ))
-                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], prompts, max_retries, temperature, model, debug, image_model)
                     # Generate Runway video prompt
                     runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
                     st.subheader("Runway Gen-3 Alpha Video Prompt")
@@ -2286,16 +2285,15 @@ with st.container():
                         concept=pair['concept'], 
                         medium=pair['medium'], 
                         input=st.session_state.input,
-                        input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
-                                      [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
+                        input_prompts=prompts['Revised Prompts'].tolist() + prompts['Synthesized Prompts'].tolist()
                     ))
-                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], prompts, max_retries, temperature, model, debug, image_model)
                     # Generate Runway video prompt
                     runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
                     st.subheader("Runway Gen-3 Alpha Video Prompt")
                     st.code(runway_prompt, language="") 
                 except LofnError as e:
-                    st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
+                    st.warning(f"An error occurred during prompt generation for Pair {i + 1}: {str(e)}")
                     if debug:
                         st.exception(e)
                     st.warning("Please try again or enable debug mode for more information.")
