@@ -293,7 +293,7 @@ def render_image_controls(model: str):
     elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
-        st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
+        st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in ["fal-ai/fast-sdxl", "fal-ai/playground-v25", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B", "Poe-SD3-Medium"]:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
@@ -318,10 +318,9 @@ def render_image_controls(model: str):
             st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
             st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
     elif model == "runware:100@1":
-        st.selectbox("Image Size", ["512x512", "768x768", "1024x1024"], key=f"{model}_image_size")
-        st.number_input("Inference Steps", min_value=1, max_value=50, value=20, key=f"{model}_inference_steps")
+        st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
-        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
         st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
         if st.session_state.get(f"{model}_use_controlnet", False):
             st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
@@ -2245,27 +2244,32 @@ with st.container():
         st.subheader("Concept and Medium Pairs")
         selected_pairs = create_mini_dashboard(st.session_state['concept_mediums'])
 
-        if st.button(f"Generate Images for Pair {pair_i + 1}"):
-            try:
-                prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
-                dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
-                st.code(dalle_prompt.format(
-                    concept=pair['concept'], 
-                    medium=pair['medium'], 
-                    input=st.session_state.input,
-                    input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
-                                  [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
-                ))
-                generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
-                # Generate Runway video prompt
-                runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
-                st.subheader("Runway Gen-3 Alpha Video Prompt")
-                st.code(runway_prompt, language="")
-            except LofnError as e:
-                st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
-                if debug:
-                    st.exception(e)
-                st.warning("Please try again or enable debug mode for more information.")
+        if st.button("Generate Image Prompts"):
+            for pair_i in selected_pairs:
+                pair = st.session_state['concept_mediums'][pair_i]
+                st.write(f"Generating prompts for Pair {pair_i + 1}:")
+                st.markdown(f"*Concept:* {pair['concept']}")
+                st.markdown(f"*Medium:* {pair['medium']}")
+                try:
+                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
+                    dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
+                    st.code(dalle_prompt.format(
+                        concept=pair['concept'], 
+                        medium=pair['medium'], 
+                        input=st.session_state.input,
+                        input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
+                                      [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
+                    ))
+                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                    # Generate Runway video prompt
+                    runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
+                    st.subheader("Runway Gen-3 Alpha Video Prompt")
+                    st.code(runway_prompt, language="")
+                except LofnError as e:
+                    st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
+                    if debug:
+                        st.exception(e)
+                    st.warning("Please try again or enable debug mode for more information.")
         else:
             st.write("Ready to generate Image Prompts")
 
