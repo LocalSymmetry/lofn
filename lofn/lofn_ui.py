@@ -2251,7 +2251,7 @@ with st.container():
                 st.markdown(f"*Concept:* {pair['concept']}")
                 st.markdown(f"*Medium:* {pair['medium']}")
                 try:
-                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
+                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics)
                     dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
                     st.code(dalle_prompt.format(
                         concept=pair['concept'], 
@@ -2280,7 +2280,7 @@ with st.container():
                     st.write(f"Generating prompts for Pair {i + 1}:")
                     st.markdown(f"*Concept:* {pair['concept']}")
                     st.markdown(f"*Medium:* {pair['medium']}")
-                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
+                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics)
                     
                     st.code(dalle3_gen_prompt.format(
                         concept=pair['concept'], 
