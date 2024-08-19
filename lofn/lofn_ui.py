@@ -23,6 +23,7 @@ import pandas as pd
 from string import Template
 import json
 import re
+import uuid
 import random
 import openai
 import functools
@@ -282,7 +283,29 @@ def generate_poe_video(prompt: str, image_url: str, params: dict, debug: bool = 
         return None
 
 def render_image_controls(model: str):
-    if model == "DALL-E 3" or model == "Poe-DALL-E-3":
+    if model.startswith("runware:") or model.startswith("civitai:"):
+        st.selectbox("Image Size", ["512x512", "512x768", "512x1024", "768x512", "1024x512", "704x512", "896x512", "512x896", "512x704", "1024x1024", "1344x768", "768x1344", "640x960", "960x640"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=100, value=20, key=f"{model}_inference_steps")
+        st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.5, step=0.1, key=f"{model}_guidance_scale")
+        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
+        st.number_input("CLIP Skip", min_value=0, max_value=2, value=0, key=f"{model}_clip_skip")
+        st.checkbox("Check NSFW", value=False, key=f"{model}_check_nsfw")
+        st.checkbox("Use Prompt Weighting", value=False, key=f"{model}_use_prompt_weighting")
+        st.selectbox("Scheduler", ["Default", "DDIMScheduler", "DDPMScheduler", "PNDMScheduler", "LMSDiscreteScheduler", "EulerDiscreteScheduler", "EulerAncestralDiscreteScheduler", "DPMSolverMultistepScheduler"], key=f"{model}_scheduler_id")
+        
+        st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
+        if st.session_state.get(f"{model}_use_controlnet", False):
+            st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
+            st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
+            st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
+            st.number_input("ControlNet Start Step", min_value=0, max_value=100, value=0, key=f"{model}_controlnet_start_step")
+            st.number_input("ControlNet End Step", min_value=0, max_value=100, value=20, key=f"{model}_controlnet_end_step")
+            st.selectbox("ControlNet Mode", ["balanced", "prompt", "controlnet"], key=f"{model}_controlnet_mode")
+
+        st.checkbox("Use LoRA", key=f"{model}_use_lora")
+        if st.session_state.get(f"{model}_use_lora", False):
+            st.text_area("LoRA Models", placeholder="Enter one LoRA model per line in format: model_id:weight", key=f"{model}_lora_models")
+    elif model == "DALL-E 3" or model == "Poe-DALL-E-3":
         st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024"], key=f"{model}_image_size")
         st.selectbox("Quality", ["hd", "standard"], key=f"{model}_quality")
         st.selectbox("Style", ["vivid", "natural"], key=f"{model}_style")
@@ -305,28 +328,6 @@ def render_image_controls(model: str):
     elif model == "fal-ai/playground-v25":
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.number_input("Guidance Rescale", min_value=0.0, max_value=1.0, value=0.0, step=0.1, key="playground_guidance_rescale")
-    elif model == "runware:civitai_custom":
-        st.text_input("Civitai Model ID", key=f"{model}_civitai_model_id")
-        st.selectbox("Image Size", ["512x512", "768x768", "1024x1024"], key=f"{model}_image_size")
-        st.number_input("Inference Steps", min_value=1, max_value=100, value=20, key=f"{model}_inference_steps")
-        st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
-        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
-        st.text_area("LoRA Models", placeholder="Enter one LoRA model per line in format: model_id:weight", key=f"{model}_lora_models")
-        st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
-        if st.session_state.get(f"{model}_use_controlnet", False):
-            st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
-            st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
-            st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
-    elif model == "runware:100@1":
-        st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024"], key=f"{model}_image_size")
-        st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
-        st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
-        st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
-        if st.session_state.get(f"{model}_use_controlnet", False):
-            st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
-            st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
-            st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
-    
     elif model.startswith("Poe-"):
         st.selectbox("Image Size", ["1024x1024", "512x512"], key=f"{model}_image_size")
     else:
@@ -408,38 +409,30 @@ def get_model_params(model: str):
             "expand_prompt": st.session_state.get(f"{model}_expand_prompt", False),
             "format": st.session_state.get(f"{model}_format", "jpeg"),
             "guidance_rescale": st.session_state.get("playground_guidance_rescale", 0.0)
-        },
-        "runware:civitai_custom": {
-            "model": st.session_state.get(f"{model}_civitai_model_id", ""),
-            "steps": st.session_state.get(f"{model}_inference_steps", 20),
-            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
-            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
-            "lora": parse_lora_input(st.session_state.get(f"{model}_lora_models", "")),
-            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
-        },
-        "runware:100@1": {
-            "model": "runware:100@1",
-            "steps": st.session_state.get(f"{model}_inference_steps", 20),
-            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
-            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
-            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
         }
     }
 
     params = base_params.copy()
     params.update(model_specific_params.get(model, {}))
 
-    if model == "runware:100@1":
+    if model.startswith("runware:") or model.startswith("civitai:"):
         params = base_params.copy()
         params.update({
-            "model": "runware:100@1",
-            "steps": st.session_state.get(f"{model}_inference_steps", 20),
-            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
-            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "model": model,
             "width": width,
             "height": height,
-            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
-        })
+            "steps": st.session_state.get(f"{model}_inference_steps", 20),
+            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.5),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "use_cache": True,
+            "save_to_cache": True,
+            "clip_skip": st.session_state.get(f"{model}_clip_skip", 0),
+            "check_nsfw": st.session_state.get(f"{model}_check_nsfw", False),
+            "use_prompt_weighting": st.session_state.get(f"{model}_use_prompt_weighting", False),
+            "scheduler_id": st.session_state.get(f"{model}_scheduler_id", 1),
+            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None,
+            "lora": get_lora_params(model) if st.session_state.get(f"{model}_use_lora", False) else None
+    })
 
     return params
 
@@ -681,47 +674,136 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
     st.write(f"{image_model} image generation and video generation complete.")
 
 def generate_image(model: str, params: dict):
-    if model == "DALL-E 3":
+    if model.startswith("runware:") or model.startswith("civitai:"):
+        return generate_runware_image(params['prompt'], params)
+    elif model == "DALL-E 3":
         return [generate_image_dalle3(params)]
     elif model.startswith("fal-ai/"):
         return generate_fal_image(model, params)
     elif model.startswith("Poe-"):
         return generate_poe_image(model, params, debug)
-    elif model.startswith("runware:"):
-        return generate_runware_image(params['prompt'], params)
     else:
         st.write(f"Unsupported model: {model}")
         return None
 
 def generate_runware_image(prompt, params):
-    runware_client.connect()
-    controlnet_params = []
+    # Establish a connection
+    session = requests.Session()
+    
+    # Authenticate
+    auth_url = "https://api.runware.ai/v1/auth"
+    auth_payload = {
+        "apiKey": RUNWARE_API_KEY
+    }
+    auth_response = session.post(auth_url, json=auth_payload)
+    auth_data = auth_response.json()
+    session_token = auth_data.get('sessionToken')
+    
+    if not session_token:
+        raise Exception("Authentication failed")
+
+    # Prepare the image generation request
+    task_uuid = str(uuid.uuid4())
+    image_request = {
+        "newTask": {
+            "taskUUID": task_uuid,
+            "promptText": prompt,
+            "numberResults": params.get('num_images', 1),
+            "modelId": params['model'],
+            "sizeId": get_size_id(params['width'], params['height']),
+            "taskType": 1,  # Text to Image
+            "promptLanguageId": None,  # Auto-detect language
+            "steps": params.get('steps', 20),
+            "gScale": params.get('CFGScale', 7.5),
+            "seed": params.get('seed', None),
+            "useCache": params.get('use_cache', True),
+            "saveToCache": params.get('save_to_cache', True),
+            "clipSkip": params.get('clip_skip', 0),
+            "checkNsfw": params.get('check_nsfw', False),
+            "usePromptWeighting": params.get('use_prompt_weighting', False),
+            "schedulerId": params.get('scheduler_id', 1),  # Default scheduler
+            "negativePrompt": params.get('negative_prompt', ''),
+        }
+    }
+
+    # Add ControlNet if specified
     if params.get('controlNet'):
-        for cn in params['controlNet']:
-            controlnet_params.append({
-                'model': cn['model'],
-                'guideImage': cn['guideImage'],
-                'weight': cn.get('weight', 1.0),
-                'startStep': cn.get('startStep', 0),
-                'endStep': cn.get('endStep', params.get('steps', 20)),
-                'controlMode': cn.get('controlMode', 'balanced')
-            })
+        image_request['newTask']['controlNet'] = [
+            {
+                "preprocessor": cn['model'],
+                "weight": cn.get('weight', 1.0),
+                "startStep": cn.get('startStep', 0),
+                "endStep": cn.get('endStep', params.get('steps', 20)),
+                "guideImageUUID": cn['guideImage'],
+                "controlMode": cn.get('controlMode', 'balanced')
+            }
+            for cn in params['controlNet']
+        ]
+
+    # Add LoRA if specified
+    if params.get('lora'):
+        image_request['newTask']['lora'] = params['lora']
+
+    # Send the image generation request
+    generate_url = "https://api.runware.ai/v1/generate"
+    headers = {"Authorization": f"Bearer {session_token}"}
+    generate_response = session.post(generate_url, json=image_request, headers=headers)
     
-    # Convert width and height to image_size
-    image_size = f"{params['width']}x{params['height']}"
-    
-    request_image = IRequestImage(
-        positive_prompt=prompt,
-        image_size=image_size,  # Use image_size instead of width and height
-        model_id=params['model'],
-        number_of_images=params.get('num_images', 1),
-        negative_prompt=params.get('negative_prompt', ''),
-        steps=params['steps'],
-        CFGScale=params['CFGScale'],
-        controlNet=controlnet_params if controlnet_params else None
-    )
-    images = runware_client.requestImages(requestImage=request_image)
-    return [image.imageURL for image in images]
+    if generate_response.status_code != 200:
+        raise Exception(f"Image generation failed: {generate_response.text}")
+
+    # Poll for results
+    image_urls = []
+    while len(image_urls) < params.get('num_images', 1):
+        time.sleep(1)  # Wait for 1 second before polling again
+        status_url = f"https://api.runware.ai/v1/status/{task_uuid}"
+        status_response = session.get(status_url, headers=headers)
+        status_data = status_response.json()
+        
+        if 'newImages' in status_data:
+            for image in status_data['newImages']['images']:
+                if image['taskUUID'] == task_uuid:
+                    image_urls.append(image['imageSrc'])
+
+    return image_urls
+
+def get_size_id(width, height):
+    size_map = {
+        (512, 512): 1,
+        (512, 768): 2,
+        (512, 1024): 3,
+        (768, 512): 4,
+        (1024, 512): 5,
+        (704, 512): 6,
+        (896, 512): 7,
+        (512, 896): 8,
+        (512, 704): 9,
+        (1024, 1024): 11,
+        (1344, 768): 16,
+        (768, 1344): 17,
+        (640, 960): 20,
+        (960, 640): 21
+    }
+    return size_map.get((width, height), 11)  # Default to 512x512 if size not found
+
+def get_controlnet_params(model: str):
+    return [{
+        "model": st.session_state.get(f"{model}_controlnet_model", ""),
+        "guideImage": st.session_state.get(f"{model}_controlnet_image", ""),
+        "weight": st.session_state.get(f"{model}_controlnet_weight", 1.0),
+        "startStep": st.session_state.get(f"{model}_controlnet_start_step", 0),
+        "endStep": st.session_state.get(f"{model}_controlnet_end_step", st.session_state.get(f"{model}_inference_steps", 20)),
+        "controlMode": st.session_state.get(f"{model}_controlnet_mode", "balanced")
+    }]
+
+def get_lora_params(model: str):
+    lora_input = st.session_state.get(f"{model}_lora_models", "")
+    lora_list = []
+    for line in lora_input.split('\n'):
+        if line.strip():
+            model_id, weight = line.strip().split(':')
+            lora_list.append({"model": model_id.strip(), "weight": float(weight.strip())})
+    return lora_list
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
@@ -2076,7 +2158,13 @@ def generate_runway_prompt(input, concept, medium, style_axes, creativity_spectr
         "creativity_spectrum": creativity_spectrum
     }, max_retries=max_retries, debug=debug)
 
-    return output
+    # Extract the actual prompt from the output
+    prompt_pattern = r'```runway\n(.*?)\n```'
+    match = re.search(prompt_pattern, output, re.DOTALL)
+    if match:
+        return match.group(1)
+    else:
+        return "Failed to generate Runway prompt"
 
 def generate_all_prompts(input, concept_mediums, max_retries, temperature, model, debug, aesthetics=aesthetics, image_model = "None"):
     results = []
