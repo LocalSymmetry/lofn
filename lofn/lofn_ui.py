@@ -680,8 +680,8 @@ def generate_image(model: str, params: dict):
         st.write(f"Unsupported model: {model}")
         return None
 
-async def generate_runware_image(prompt, params):
-    await runware_client.connect()
+def generate_runware_image(prompt, params):
+    runware_client.connect()
     controlnet_params = []
     if params.get('controlnet'):
         for cn in params['controlnet']:
@@ -705,7 +705,7 @@ async def generate_runware_image(prompt, params):
         CFGScale=params.get('CFGScale', 7.0),
         controlNet=controlnet_params
     )
-    images = await runware_client.requestImages(requestImage=request_image)
+    images = runware_client.requestImages(requestImage=request_image)
     return [image.imageURL for image in images]
 
 
