@@ -428,6 +428,19 @@ def get_model_params(model: str):
 
     params = base_params.copy()
     params.update(model_specific_params.get(model, {}))
+
+    if model == "runware:100@1":
+        params = base_params.copy()
+        params.update({
+            "model": "runware:100@1",
+            "steps": st.session_state.get(f"{model}_inference_steps", 20),
+            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "width": width,
+            "height": height,
+            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
+        })
+
     return params
 
 def parse_lora_input(lora_input: str):
@@ -694,10 +707,12 @@ def generate_runware_image(prompt, params):
                 'controlMode': cn.get('controlMode', 'balanced')
             })
     
+    # Convert width and height to image_size
+    image_size = f"{params['width']}x{params['height']}"
+    
     request_image = IRequestImage(
         positive_prompt=prompt,
-        width=params['width'],
-        height=params['height'],
+        image_size=image_size,  # Use image_size instead of width and height
         model_id=params['model'],
         number_of_images=params.get('num_images', 1),
         negative_prompt=params.get('negative_prompt', ''),
