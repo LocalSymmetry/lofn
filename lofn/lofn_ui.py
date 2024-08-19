@@ -656,8 +656,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "image_url": result,
                                 "image_model": image_model,
                                 "model": model,
-                                "image_filename": filename,
-                                "video_filename": video_filename if video_url else None
+                                "image_filename": filename
+                                #"video_filename": video_filename if video_url else None
                             }
                             if enable_pika_video:
                                 metadata["pika_params"] = pika_params
@@ -2230,7 +2230,7 @@ manual_input = st.sidebar.checkbox("Manually input Concept and Medium")
 st.session_state['send_to_discord'] = st.sidebar.checkbox("Send to Discord", st.session_state['send_to_discord'])
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.0, step=0.02)
 debug = st.sidebar.checkbox("Debug Mode")
-enable_diversity = st.sidebar.checkbox("Enable Forced Diversity", value=False)
+# enable_diversity = st.sidebar.checkbox("Enable Forced Diversity", value=False)
 max_retries = st.sidebar.slider("Maximum Retries", 0, 10, 3)
 
 # Discord settings
