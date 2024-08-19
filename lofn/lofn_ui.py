@@ -432,9 +432,10 @@ def get_model_params(model: str):
             "scheduler_id": st.session_state.get(f"{model}_scheduler_id", 1),
             "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None,
             "lora": get_lora_params(model) if st.session_state.get(f"{model}_use_lora", False) else None
-    })
-
+        })
     return params
+
+
 
 def parse_lora_input(lora_input: str):
     lora_list = []
@@ -653,7 +654,6 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "instagram_post": title_data['instagram_post'],
                                 "seo_keywords": title_data['seo_keywords'],
                                 "image_url": result,
-                                "video_url": video_url,
                                 "image_model": image_model,
                                 "model": model,
                                 "image_filename": filename,
@@ -688,122 +688,46 @@ def generate_image(model: str, params: dict):
 
 def generate_runware_image(prompt, params):
     # Establish a connection
-    session = requests.Session()
-    
-    # Authenticate
-    auth_url = "https://api.runware.ai/v1/auth"
-    auth_payload = {
-        "apiKey": RUNWARE_API_KEY
-    }
-    auth_response = session.post(auth_url, json=auth_payload)
-    auth_data = auth_response.json()
-    session_token = auth_data.get('sessionToken')
-    
-    if not session_token:
-        raise Exception("Authentication failed")
+    runware = Runware(api_key=RUNWARE_API_KEY)
+    runware.connect()
 
-    # Prepare the image generation request
-    task_uuid = str(uuid.uuid4())
-    image_request = {
-        "newTask": {
-            "taskUUID": task_uuid,
-            "promptText": prompt,
-            "numberResults": params.get('num_images', 1),
-            "modelId": params['model'],
-            "sizeId": get_size_id(params['width'], params['height']),
-            "taskType": 1,  # Text to Image
-            "promptLanguageId": None,  # Auto-detect language
-            "steps": params.get('steps', 20),
-            "gScale": params.get('CFGScale', 7.5),
-            "seed": params.get('seed', None),
-            "useCache": params.get('use_cache', True),
-            "saveToCache": params.get('save_to_cache', True),
-            "clipSkip": params.get('clip_skip', 0),
-            "checkNsfw": params.get('check_nsfw', False),
-            "usePromptWeighting": params.get('use_prompt_weighting', False),
-            "schedulerId": params.get('scheduler_id', 1),  # Default scheduler
-            "negativePrompt": params.get('negative_prompt', ''),
-        }
-    }
+    request_image = IRequestImage(
+        positive_prompt=prompt,
+        image_size=get_size_id(params['width'], params['height']),
+        model_id=params['model'],
+        number_of_images=params.get('num_images', 1),
+        negative_prompt=params.get('negative_prompt', ''),
+        steps=params.get('steps', 20),
+        g_scale=params.get('CFGScale', 7.5),
+        seed=params.get('seed', None),
+        use_cache=params.get('use_cache', True),
+        save_to_cache=params.get('save_to_cache', True),
+        clip_skip=params.get('clip_skip', 0),
+        check_nsfw=params.get('check_nsfw', False),
+        use_prompt_weighting=params.get('use_prompt_weighting', False),
+        scheduler_id=params.get('scheduler_id', 1),
+    )
 
     # Add ControlNet if specified
     if params.get('controlNet'):
-        image_request['newTask']['controlNet'] = [
+        request_image.control_net = [
             {
                 "preprocessor": cn['model'],
                 "weight": cn.get('weight', 1.0),
-                "startStep": cn.get('startStep', 0),
-                "endStep": cn.get('endStep', params.get('steps', 20)),
-                "guideImageUUID": cn['guideImage'],
-                "controlMode": cn.get('controlMode', 'balanced')
+                "start_step": cn.get('startStep', 0),
+                "end_step": cn.get('endStep', params.get('steps', 20)),
+                "guide_image_uuid": cn['guideImage'],
+                "control_mode": cn.get('controlMode', 'balanced')
             }
             for cn in params['controlNet']
         ]
 
     # Add LoRA if specified
     if params.get('lora'):
-        image_request['newTask']['lora'] = params['lora']
+        request_image.lora = params['lora']
 
-    # Send the image generation request
-    generate_url = "https://api.runware.ai/v1/generate"
-    headers = {"Authorization": f"Bearer {session_token}"}
-    generate_response = session.post(generate_url, json=image_request, headers=headers)
-    
-    if generate_response.status_code != 200:
-        raise Exception(f"Image generation failed: {generate_response.text}")
-
-    # Poll for results
-    image_urls = []
-    while len(image_urls) < params.get('num_images', 1):
-        time.sleep(1)  # Wait for 1 second before polling again
-        status_url = f"https://api.runware.ai/v1/status/{task_uuid}"
-        status_response = session.get(status_url, headers=headers)
-        status_data = status_response.json()
-        
-        if 'newImages' in status_data:
-            for image in status_data['newImages']['images']:
-                if image['taskUUID'] == task_uuid:
-                    image_urls.append(image['imageSrc'])
-
-    return image_urls
-
-def get_size_id(width, height):
-    size_map = {
-        (512, 512): 1,
-        (512, 768): 2,
-        (512, 1024): 3,
-        (768, 512): 4,
-        (1024, 512): 5,
-        (704, 512): 6,
-        (896, 512): 7,
-        (512, 896): 8,
-        (512, 704): 9,
-        (1024, 1024): 11,
-        (1344, 768): 16,
-        (768, 1344): 17,
-        (640, 960): 20,
-        (960, 640): 21
-    }
-    return size_map.get((width, height), 11)  # Default to 512x512 if size not found
-
-def get_controlnet_params(model: str):
-    return [{
-        "model": st.session_state.get(f"{model}_controlnet_model", ""),
-        "guideImage": st.session_state.get(f"{model}_controlnet_image", ""),
-        "weight": st.session_state.get(f"{model}_controlnet_weight", 1.0),
-        "startStep": st.session_state.get(f"{model}_controlnet_start_step", 0),
-        "endStep": st.session_state.get(f"{model}_controlnet_end_step", st.session_state.get(f"{model}_inference_steps", 20)),
-        "controlMode": st.session_state.get(f"{model}_controlnet_mode", "balanced")
-    }]
-
-def get_lora_params(model: str):
-    lora_input = st.session_state.get(f"{model}_lora_models", "")
-    lora_list = []
-    for line in lora_input.split('\n'):
-        if line.strip():
-            model_id, weight = line.strip().split(':')
-            lora_list.append({"model": model_id.strip(), "weight": float(weight.strip())})
-    return lora_list
+    images = runware.requestImages(requestImage=request_image)
+    return [image.imageSrc for image in images]
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
