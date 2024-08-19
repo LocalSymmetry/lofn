@@ -45,6 +45,9 @@ from langchain_core.language_models.llms import LLM
 from PIL import Image
 from io import BytesIO
 from langchain_core.runnables import RunnablePassthrough
+import runware
+from runware import Runware, IRequestImage
+
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -70,6 +73,10 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
+RUNWARE_API_KEY = os.environ.get('RUNWARE_API_KEY', '')
+
+# Initialize Runware client
+runware_client = Runware(api_key=RUNWARE_API_KEY)
 
 class GeminiLLM(LLM):
     model_name: str
@@ -231,8 +238,8 @@ def generate_poe_video(prompt: str, image_url: str, params: dict, debug: bool = 
         
         # Construct the message
         message_content = f"""Generate a video based on this image: {image_url}
-Prompt: {prompt}
-Pika Options: {json.dumps(pika_options)}"""
+        Prompt: {prompt}
+        Pika Options: {json.dumps(pika_options)}"""
         
         if debug:
             st.write("Full message content sent to Poe-Pika:")
@@ -275,9 +282,8 @@ Pika Options: {json.dumps(pika_options)}"""
         return None
 
 def render_image_controls(model: str):
-    
     if model == "DALL-E 3" or model == "Poe-DALL-E-3":
-        st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024",], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024"], key=f"{model}_image_size")
         st.selectbox("Quality", ["hd", "standard"], key=f"{model}_quality")
         st.selectbox("Style", ["vivid", "natural"], key=f"{model}_style")
     elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
@@ -289,7 +295,7 @@ def render_image_controls(model: str):
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=3.5, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in [ "fal-ai/fast-sdxl", "fal-ai/playground-v25", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B", "Poe-SD3-Medium"]:
+    elif model in ["fal-ai/fast-sdxl", "fal-ai/playground-v25", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B", "Poe-SD3-Medium"]:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
     elif model in ["fal-ai/hyper-sdxl", "fal-ai/fast-sdxl", "fal-ai/playground-v25"]:
@@ -299,8 +305,30 @@ def render_image_controls(model: str):
     elif model == "fal-ai/playground-v25":
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.number_input("Guidance Rescale", min_value=0.0, max_value=1.0, value=0.0, step=0.1, key="playground_guidance_rescale")
+    elif model == "runware:civitai_custom":
+        st.text_input("Civitai Model ID", key=f"{model}_civitai_model_id")
+        st.selectbox("Image Size", ["512x512", "768x768", "1024x1024"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=100, value=20, key=f"{model}_inference_steps")
+        st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
+        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
+        st.text_area("LoRA Models", placeholder="Enter one LoRA model per line in format: model_id:weight", key=f"{model}_lora_models")
+        st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
+        if st.session_state.get(f"{model}_use_controlnet", False):
+            st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
+            st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
+            st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
+    elif model == "runware:100@1":
+        st.selectbox("Image Size", ["512x512", "768x768", "1024x1024"], key=f"{model}_image_size")
+        st.number_input("Inference Steps", min_value=1, max_value=50, value=20, key=f"{model}_inference_steps")
+        st.number_input("Guidance Scale", min_value=0.0, max_value=30.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
+        st.text_area("Negative Prompt", key=f"{model}_negative_prompt")
+        st.checkbox("Use ControlNet", key=f"{model}_use_controlnet")
+        if st.session_state.get(f"{model}_use_controlnet", False):
+            st.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"], key=f"{model}_controlnet_model")
+            st.file_uploader("ControlNet Guide Image", type=["png", "jpg", "jpeg"], key=f"{model}_controlnet_image")
+            st.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1, key=f"{model}_controlnet_weight")
+    
     elif model.startswith("Poe-"):
-        # For other Poe models we don't have specific information about
         st.selectbox("Image Size", ["1024x1024", "512x512"], key=f"{model}_image_size")
     else:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
@@ -311,7 +339,6 @@ def render_image_controls(model: str):
 def get_model_params(model: str):
     base_params = {
         "num_images": st.session_state[f"{model}_num_images"],
-        "image_size" : st.session_state[f"{model}_image_size"]
     }
 
     image_size = st.session_state[f"{model}_image_size"]
@@ -326,8 +353,8 @@ def get_model_params(model: str):
     model_specific_params = {
         "DALL-E 3": {
             "model": "dall-e-3",
-            "quality": st.session_state.get("dalle_quality", "hd"),
-            "style": st.session_state.get("dalle_style", "vivid")
+            "quality": st.session_state.get(f"{model}_quality", "hd"),
+            "style": st.session_state.get(f"{model}_style", "vivid")
         },
         "fal-ai/flux/schnell": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 12),
@@ -382,13 +409,42 @@ def get_model_params(model: str):
             "expand_prompt": st.session_state.get(f"{model}_expand_prompt", False),
             "format": st.session_state.get(f"{model}_format", "jpeg"),
             "guidance_rescale": st.session_state.get("playground_guidance_rescale", 0.0)
+        },
+        "runware:civitai_custom": {
+            "model": st.session_state.get(f"{model}_civitai_model_id", ""),
+            "steps": st.session_state.get(f"{model}_inference_steps", 20),
+            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "lora": parse_lora_input(st.session_state.get(f"{model}_lora_models", "")),
+            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
+        },
+        "runware:100@1": {
+            "model": "runware:100@1",
+            "steps": st.session_state.get(f"{model}_inference_steps", 20),
+            "CFGScale": st.session_state.get(f"{model}_guidance_scale", 7.0),
+            "negative_prompt": st.session_state.get(f"{model}_negative_prompt", ""),
+            "controlNet": get_controlnet_params(model) if st.session_state.get(f"{model}_use_controlnet", False) else None
         }
     }
-
 
     params = base_params.copy()
     params.update(model_specific_params.get(model, {}))
     return params
+
+def parse_lora_input(lora_input: str):
+    lora_list = []
+    for line in lora_input.split('\n'):
+        if line.strip():
+            model_id, weight = line.strip().split(':')
+            lora_list.append({"model": model_id.strip(), "weight": float(weight.strip())})
+    return lora_list
+
+def get_controlnet_params(model: str):
+    return {
+        "model": st.session_state.get(f"{model}_controlnet_model", ""),
+        "guideImage": st.session_state.get(f"{model}_controlnet_image", ""),
+        "weight": st.session_state.get(f"{model}_controlnet_weight", 1.0)
+    }
 
 def generate_fal_image(model_name, params, debug=False):
     try:
@@ -504,6 +560,7 @@ def update_image_controls():
                          "_negative_prompt", "_expand_prompt", "_format", "_guidance_rescale")):
             del st.session_state[key]
 
+@st.cache_data(persist=True)
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model):
     st.write(f"Generating images using {image_model}...")
     
@@ -618,9 +675,40 @@ def generate_image(model: str, params: dict):
         return generate_fal_image(model, params)
     elif model.startswith("Poe-"):
         return generate_poe_image(model, params, debug)
+    elif model.startswith("runware:"):
+        return asyncio.run(generate_runware_image(params['prompt'], params))
     else:
         st.write(f"Unsupported model: {model}")
         return None
+
+async def generate_runware_image(prompt, params):
+    await runware_client.connect()
+    controlnet_params = []
+    if params.get('controlnet'):
+        for cn in params['controlnet']:
+            controlnet_params.append({
+                'model': cn['model'],
+                'guideImage': cn['guideImage'],
+                'weight': cn.get('weight', 1.0),
+                'startStep': cn.get('startStep', 0),
+                'endStep': cn.get('endStep', params.get('steps', 20)),
+                'controlMode': cn.get('controlMode', 'balanced')
+            })
+    
+    request_image = IRequestImage(
+        positive_prompt=prompt,
+        width=params.get('width', 512),
+        height=params.get('height', 512),
+        model_id=params.get('model_id', 'runware:100@1'),  # Default to FLUX model
+        number_of_images=params.get('num_images', 1),
+        negative_prompt=params.get('negative_prompt', ''),
+        steps=params.get('steps', 20),
+        CFGScale=params.get('CFGScale', 7.0),
+        controlNet=controlnet_params
+    )
+    images = await runware_client.requestImages(requestImage=request_image)
+    return [image.imageURL for image in images]
+
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
@@ -1790,7 +1878,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         raise LofnError(f"Error in concept generation: {str(e)}")        
 
 @st.cache_data(persist=True)
-def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics, image_model="None"):
+def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics):
     try:
         llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
         selected_aesthetics = random.sample(aesthetics, 100)
@@ -1865,12 +1953,117 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
             'Synthesized Prompts': [prompt['synthesized_prompt'] for prompt in revised_synthesized_prompts['synthesized_prompts']]
         })    
 
-        if image_model != 'None':
-            generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model)
-
-        return revised_synthesized_prompts
+        return df_prompts
     except Exception as e:
-        raise LofnError(f"Error in prompt generation: {str(e)}")        
+        raise LofnError(f"Error in prompt generation: {str(e)}")    
+
+def generate_runway_prompt(input, concept, medium, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
+    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+
+    runway_prompt_template = """
+    Generate a detailed prompt for Runway's Gen-3 Alpha video generation model based on the following input:
+
+    User's Idea: {input}
+    Concept: {concept}
+    Medium: {medium}
+    Style Axes: {style_axes}
+    Creativity Spectrum: {creativity_spectrum}
+
+    # Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha
+
+    Objective: Create visually stunning, emotionally resonant, and conceptually innovative video prompts that push the boundaries of AI-generated cinematography.
+
+    I. Conceptualization (20-30 words)
+    1. Core Concept: Describe a central, thought-provoking idea
+    2. Emotional Resonance: Specify the primary emotion to evoke
+    3. Visual Metaphor: Introduce a powerful visual metaphor related to the concept
+
+    II. Visual Language (30-40 words)
+    1. Cinematographic Style: Choose a distinctive visual approach (e.g., "hyper-real long takes", "fragmented montage", "surreal forced perspective")
+    2. Color Palette: Describe a unique color scheme and its emotional significance
+    3. Lighting Dynamics: Detail innovative lighting that evolves throughout the sequence
+
+    III. Motion and Transformation (30-40 words)
+    1. Camera Movement: Specify fluid, complex camera motions (e.g., "spiraling ascent transitioning to a cosmic zoom-out")
+    2. Subject Transformation: Describe metamorphoses of key elements
+    3. Transitional Fluidity: Explain seamless scene-to-scene transitions
+
+    IV. Temporal and Spatial Manipulation (20-30 words)
+    1. Time Distortion: Incorporate non-linear time elements (e.g., "cascading time loops", "parallel timelines merging")
+    2. Spatial Warping: Describe reality-bending spatial effects
+    3. Dimensional Shifts: Suggest transitions between different realities or dimensions
+
+    V. Sensory Layering (20-30 words)
+    1. Visual Texture: Specify unique textural elements that add depth
+    2. Auditory Cues: Suggest synesthetic visual representations of sound
+    3. Haptic Visuals: Describe visuals that evoke tactile sensations
+
+    VI. Narrative Complexity (20-30 words)
+    1. Nested Stories: Introduce multi-layered narrative elements
+    2. Perspective Shifts: Describe changes in point-of-view
+    3. Symbolic Progression: Explain the evolution of visual symbols throughout the sequence
+
+    VII. Technical Innovation (20-30 words)
+    1. AI-Enhanced Realism: Specify hyper-detailed elements beyond human perception
+    2. Generative Patterns: Describe complex, evolving patterns that emerge and transform
+    3. Style Fusion: Suggest blending of distinct artistic styles in novel ways
+
+    VIII. Emotional Journey (20-30 words)
+    1. Emotional Arc: Map out an emotional progression
+    2. Contrast and Resonance: Describe emotional contrasts and harmonies
+    3. Culmination: Specify an emotionally impactful conclusion
+
+    IX. Cultural and Philosophical Depth (20-30 words)
+    1. Cultural References: Incorporate diverse cultural elements
+    2. Philosophical Undertones: Suggest underlying philosophical themes
+    3. Zeitgeist Reflection: Reference contemporary issues or futuristic concepts
+
+    X. Runway-Specific Optimization
+    1. Emphasize fluid motion and seamless transitions
+    2. Focus on maintaining style consistency across the entire sequence
+    3. Leverage Gen-3 Alpha's strength in complex scene evolution and long-form coherence
+
+    Prompt Structure:
+    "[Conceptualization]: [Visual Language]. [Motion and Transformation], creating [Temporal and Spatial Manipulation]. [Sensory Layering] enhances the experience, while [Narrative Complexity] unfolds. [Technical Innovation] pushes boundaries, as [Emotional Journey] guides the viewer. [Cultural and Philosophical Depth] adds layers of meaning."
+
+    Before finalizing:
+    1. Ensure the prompt is 200-250 words long
+    2. Review for clarity, creativity, and emotional impact
+    3. Verify that each section contributes to a cohesive whole
+    4. Confirm the prompt leverages Gen-3 Alpha's unique capabilities
+    5. Assess the prompt's potential for generating award-worthy visuals
+
+    # Instructions
+
+   Your task is to take an image prompt and transform it into a detailed video prompt suitable for Runway ML's Gen-3 Alpha text-to-video AI. 
+    1. You will analyze the given image prompt carefully, noting all visual elements, style, mood, and composition.
+    2. Create a video prompt following the Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha: 
+
+
+    Remember: The goal is to create a prompt that not only guides the AI but also inspires it to generate truly revolutionary visual narratives that captivate, challenge, and move the audience in unprecedented ways.
+    Include specific keywords for camera styles, lighting, movement speeds, movement types, and overall aesthetic.
+    Make sure the prompt is descriptive, clear, and aligns with Runway's Gen-3 Alpha capabilities.
+
+    Output the prompt in the following format:
+    ```runway
+    [Your generated prompt here]
+    ```
+    """
+
+    chain = (
+        ChatPromptTemplate.from_messages([("human", runway_prompt_template)])
+        | llm
+    )
+    
+    output = run_chain_with_retries(chain, args_dict={
+        "input": input,
+        "concept": concept,
+        "medium": medium,
+        "style_axes": style_axes,
+        "creativity_spectrum": creativity_spectrum
+    }, max_retries=max_retries, debug=debug)
+
+    return output
 
 def generate_all_prompts(input, concept_mediums, max_retries, temperature, model, debug, aesthetics=aesthetics, image_model = "None"):
     results = []
@@ -1955,27 +2148,55 @@ poe_image_models = [
 ]
 image_model = st.sidebar.selectbox(
     "Select image model",
-    ["Poe-FLUX-pro", "Poe-DALL-E-3", "fal-ai/flux/schnell", "None", "DALL-E 3", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux/dev", 
+    ["Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "runware:100@1",  "fal-ai/flux-pro", "fal-ai/flux/schnell", "None", "runware:civitai_custom","fal-ai/flux-realism", "fal-ai/flux/dev", 
      "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
      "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
     key="image_model",
     on_change=update_image_controls
 )
 
-st.sidebar.header('Pika Video Generation Settings')
-enable_pika_video = st.sidebar.checkbox("Enable Pika Video Generation", value=False)
+# st.sidebar.subheader("LoRA Settings")
+# use_lora = st.sidebar.checkbox("Use LoRA")
+# if use_lora:
+#     lora_models = st.sidebar.text_area("Enter LoRA models (one per line, format: 'model_id:weight')")
 
-if enable_pika_video:
-    st.sidebar.subheader("Pika Video Parameters")
-    pika_motion = st.sidebar.slider("Motion", min_value=1, max_value=4, value=1)
-    pika_guidance_scale = st.sidebar.slider("Guidance Scale", min_value=5, max_value=25, value=12)
-    pika_frame_rate = st.sidebar.slider("Frame Rate", min_value=1, max_value=24, value=24)
-    pika_aspect_ratio = st.sidebar.selectbox("Aspect Ratio", ["16:9", "9:16", "1:1", "5:2", "4:5", "4:3"])
-    pika_negative_prompt = st.sidebar.text_area("Negative Prompt", "")
-    pika_camera_zoom = st.sidebar.selectbox("Camera Zoom", [None, "in", "out"])
-    pika_camera_pan = st.sidebar.selectbox("Camera Pan", [None, "left", "right"])
-    pika_camera_tilt = st.sidebar.selectbox("Camera Tilt", [None, "up", "down"])
-    pika_camera_rotate = st.sidebar.selectbox("Camera Rotate", [None, "cw", "ccw"])
+# st.sidebar.header('Pika Video Generation Settings')
+# enable_pika_video = st.sidebar.checkbox("Enable Pika Video Generation", value=False)
+
+# if enable_pika_video:
+#     st.sidebar.subheader("Pika Video Parameters")
+#     pika_motion = st.sidebar.slider("Motion", min_value=1, max_value=4, value=1)
+#     pika_guidance_scale = st.sidebar.slider("Guidance Scale", min_value=5, max_value=25, value=12)
+#     pika_frame_rate = st.sidebar.slider("Frame Rate", min_value=1, max_value=24, value=24)
+#     pika_aspect_ratio = st.sidebar.selectbox("Aspect Ratio", ["16:9", "9:16", "1:1", "5:2", "4:5", "4:3"])
+#     pika_negative_prompt = st.sidebar.text_area("Negative Prompt", "")
+#     pika_camera_zoom = st.sidebar.selectbox("Camera Zoom", [None, "in", "out"])
+#     pika_camera_pan = st.sidebar.selectbox("Camera Pan", [None, "left", "right"])
+#     pika_camera_tilt = st.sidebar.selectbox("Camera Tilt", [None, "up", "down"])
+#     pika_camera_rotate = st.sidebar.selectbox("Camera Rotate", [None, "cw", "ccw"])
+
+# st.sidebar.header('ControlNet Settings')
+# enable_controlnet = st.sidebar.checkbox("Enable ControlNet", value=False)
+
+# if enable_controlnet:
+#     st.sidebar.subheader("ControlNet Parameters")
+#     controlnet_model = st.sidebar.selectbox("ControlNet Model", ["canny", "depth", "mlsd", "normalbae", "openpose", "tile", "seg", "lineart", "lineart_anime", "shuffle", "scribble", "softedge"])
+#     controlnet_image = st.sidebar.file_uploader("Upload ControlNet Guide Image", type=["png", "jpg", "jpeg"])
+#     controlnet_weight = st.sidebar.slider("ControlNet Weight", min_value=0.0, max_value=1.0, value=1.0, step=0.1)
+#     controlnet_start_step = st.sidebar.slider("ControlNet Start Step", min_value=0, max_value=50, value=0)
+#     controlnet_end_step = st.sidebar.slider("ControlNet End Step", min_value=0, max_value=50, value=20)
+#     controlnet_mode = st.sidebar.selectbox("ControlNet Mode", ["balanced", "prompt", "controlnet"])
+
+# # In the generate_images function, add ControlNet parameters if enabled
+# if enable_controlnet and controlnet_image:
+#     params['controlnet'] = [{
+#         'model': controlnet_model,
+#         'guideImage': controlnet_image,
+#         'weight': controlnet_weight,
+#         'startStep': controlnet_start_step,
+#         'endStep': controlnet_end_step,
+#         'controlMode': controlnet_mode
+#     }]
 
 # Sidebar settings
 st.sidebar.header('Patron Input Features')
@@ -2023,47 +2244,57 @@ with st.container():
         # Display the final pairs using the mini-dashboard
         st.subheader("Concept and Medium Pairs")
         selected_pairs = create_mini_dashboard(st.session_state['concept_mediums'])
-        
-        if st.button("Generate Image Prompts"):
-            for pair_i in selected_pairs:
-                pair = st.session_state['concept_mediums'][pair_i]
-                st.write(f"Generating prompts for Pair {pair_i + 1}:")
-                st.markdown(f"*Concept:* {pair['concept']}")
-                st.markdown(f"*Medium:* {pair['medium']}")
-                try:
-                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
-                    
-                    dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
-                    st.code(dalle_prompt.format(
-                        concept=pair['concept'], 
-                        medium=pair['medium'], 
-                        input=st.session_state.input,
-                        input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
-                                      [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
-                    ))
-                except LofnError as e:
-                    st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
-                    if debug:
-                        st.exception(e)
-                    st.warning("Please try again or enable debug mode for more information.")
-        else:
-            st.write("Ready to generate Image Prompts")
 
-    if st.session_state['concept_mediums'] is not None and model != "gpt-4":
-        if st.button("Generate All"):
-            for i, pair in enumerate(st.session_state['concept_mediums']):
-                st.write(f"Generating prompts for Pair {i + 1}:")
-                st.markdown(f"*Concept:* {pair['concept']}")
-                st.markdown(f"*Medium:* {pair['medium']}")
+        if st.button(f"Generate Images for Pair {pair_i + 1}"):
+            try:
                 prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
-                
-                st.code(dalle3_gen_prompt.format(
+                dalle_prompt = dalle3_gen_prompt if enable_diversity else dalle3_gen_nodiv_prompt
+                st.code(dalle_prompt.format(
                     concept=pair['concept'], 
                     medium=pair['medium'], 
                     input=st.session_state.input,
                     input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
                                   [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
                 ))
+                generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                # Generate Runway video prompt
+                runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
+                st.subheader("Runway Gen-3 Alpha Video Prompt")
+                st.code(runway_prompt, language="")
+            except LofnError as e:
+                st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
+                if debug:
+                    st.exception(e)
+                st.warning("Please try again or enable debug mode for more information.")
+        else:
+            st.write("Ready to generate Image Prompts")
+
+    if st.session_state['concept_mediums'] is not None:
+        if st.button("Generate All"):
+            for i, pair in enumerate(st.session_state['concept_mediums']):
+                try:
+                    st.write(f"Generating prompts for Pair {i + 1}:")
+                    st.markdown(f"*Concept:* {pair['concept']}")
+                    st.markdown(f"*Medium:* {pair['medium']}")
+                    prompts = generate_prompts(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, aesthetics=aesthetics, image_model=image_model)
+                    
+                    st.code(dalle3_gen_prompt.format(
+                        concept=pair['concept'], 
+                        medium=pair['medium'], 
+                        input=st.session_state.input,
+                        input_prompts=[p['revised_prompt'] for p in prompts['revised_prompts']] + 
+                                      [p['synthesized_prompt'] for p in prompts['synthesized_prompts']]
+                    ))
+                    generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                    # Generate Runway video prompt
+                    runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
+                    st.subheader("Runway Gen-3 Alpha Video Prompt")
+                    st.code(runway_prompt, language="") 
+                except LofnError as e:
+                    st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
+                    if debug:
+                        st.exception(e)
+                    st.warning("Please try again or enable debug mode for more information.")
     elif st.session_state['concept_mediums'] is None:
         st.write("Waiting to generate concepts")
     else:
@@ -2087,6 +2318,11 @@ with st.container():
                         input=st.session_state.input,
                         input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                     ))
+                generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
+                # Generate Runway video prompt
+                runway_prompt = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
+                st.subheader("Runway Gen-3 Alpha Video Prompt")
+                st.code(runway_prompt, language="") 
                 st.write("Image Prompts Complete")
                 st.write("Generation complete!")
             except LofnError as e:
