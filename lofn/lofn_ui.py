@@ -2049,7 +2049,7 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
     2. Focus on maintaining style consistency across the entire sequence
     3. Leverage Gen-3 Alpha's strength in complex scene evolution and long-form coherence
 
-    Prompt Structure Template Fill inm each bracketed section for a single paragraph form prompt:
+    Prompt Structure Template Fill in each bracketed section for a single paragraph form prompt:
     "[Conceptualization sentence]: [Visual Language sentence]. [Motion and Transformation sentence], [leading to Temporal and Spatial Manipulation sentence]. [Sensory Layering mixed with Narrative Complexity sentence]. [Technical Innovation and Emotional Journey sentence]. [Cultural and Philosophical Depth sentence]."
 
     Before finalizing:
