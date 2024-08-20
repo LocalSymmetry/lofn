@@ -2049,8 +2049,8 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
     2. Focus on maintaining style consistency across the entire sequence
     3. Leverage Gen-3 Alpha's strength in complex scene evolution and long-form coherence
 
-    Prompt Structure:
-    "[Conceptualization]: [Visual Language]. [Motion and Transformation], creating [Temporal and Spatial Manipulation]. [Sensory Layering] enhances the experience, while [Narrative Complexity] unfolds. [Technical Innovation] pushes boundaries, as [Emotional Journey] guides the viewer. [Cultural and Philosophical Depth] adds layers of meaning."
+    Prompt Structure Template Fill inm each bracketed section for a single paragraph form prompt:
+    "[Conceptualization sentence]: [Visual Language sentence]. [Motion and Transformation sentence], [leading to Temporal and Spatial Manipulation sentence]. [Sensory Layering mixed with Narrative Complexity sentence]. [Technical Innovation and Emotional Journey sentence]. [Cultural and Philosophical Depth sentence]."
 
     Before finalizing:
     1. Ensure the prompt is 200-250 words long
@@ -2063,14 +2063,13 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
 
     Your task is to take an image prompt and transform it into a detailed video prompt suitable for Runway ML's Gen-3 Alpha text-to-video AI. 
     1. You will analyze the given image prompt carefully, noting all visual elements, style, mood, and composition.
-    2. Create a video prompt following the Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha: 
-
+    2. Create a video prompt following the Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha:  
 
     Remember: The goal is to create a prompt that not only guides the AI but also inspires it to generate truly revolutionary visual narratives that captivate, challenge, and move the audience in unprecedented ways.
     Include specific keywords for camera styles, lighting, movement speeds, movement types, and overall aesthetic.
     Make sure the prompt is descriptive, clear, and aligns with Runway's Gen-3 Alpha capabilities.
 
-       Output the prompt in the following JSON format, ensuring to escape any special characters within JSON strings including apostrophes and quotation marks:
+    Output the prompt in the following JSON format, ensuring to escape any special characters within JSON strings including apostrophes and quotation marks:
 
     ```json
     {{
