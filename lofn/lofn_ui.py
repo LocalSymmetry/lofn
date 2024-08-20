@@ -655,6 +655,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "prompt_index": index + 1,
                                 "image_index": i + 1,
                                 "prompt": prompt,
+                                "video_prompt": runway_prompt_json['runway_prompt'],
                                 "title": title_data['title'],
                                 "instagram_post": title_data['instagram_post'],
                                 "seo_keywords": title_data['seo_keywords'],
