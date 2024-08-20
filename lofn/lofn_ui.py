@@ -602,6 +602,11 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             
                             st.subheader("SEO Keywords")
                             st.write(", ".join(title_data['seo_keywords']))
+
+                            # Generate Runway video prompt
+                            runway_prompt_json  = generate_runway_prompt(input, concept, medium, result, prompt, st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
+                            st.subheader("Runway Gen-3 Alpha Video Prompt")
+                            st.code(runway_prompt_json['runway_prompt'], language="")
                         except Exception as e:
                             st.error(f"Error generating title and Instagram post: {str(e)}")
                             title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
@@ -1976,7 +1981,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
     except Exception as e:
         raise LofnError(f"Error in prompt generation: {str(e)}")    
 
-def generate_runway_prompt(input, concept, medium, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
+def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     runway_prompt_template = """
@@ -1987,6 +1992,8 @@ def generate_runway_prompt(input, concept, medium, style_axes, creativity_spectr
     Medium: {medium}
     Style Axes: {style_axes}
     Creativity Spectrum: {creativity_spectrum}
+    Image: {image}
+    Prompt: {prompt}
 
     # Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha
 
@@ -2082,7 +2089,9 @@ def generate_runway_prompt(input, concept, medium, style_axes, creativity_spectr
         "concept": concept,
         "medium": medium,
         "style_axes": style_axes,
-        "creativity_spectrum": creativity_spectrum
+        "creativity_spectrum": creativity_spectrum,
+        "image": image,
+        "prompt": prompt
     }, max_retries=max_retries, debug=debug)
 
     if debug:
@@ -2294,10 +2303,6 @@ with st.container():
                         input_prompts=prompts['Revised Prompts'].tolist() + prompts['Synthesized Prompts'].tolist()
                     ))
                     generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], prompts, max_retries, temperature, model, debug, image_model)
-                    # Generate Runway video prompt
-                    runway_prompt_json  = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
-                    st.subheader("Runway Gen-3 Alpha Video Prompt")
-                    st.code(runway_prompt_json['runway_prompt'], language="")
                 except LofnError as e:
                     st.warning(f"An error occurred during prompt generation for Pair {pair_i + 1}: {str(e)}")
                     if debug:
@@ -2322,10 +2327,6 @@ with st.container():
                         input_prompts=prompts['Revised Prompts'].tolist() + prompts['Synthesized Prompts'].tolist()
                     ))
                     generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], prompts, max_retries, temperature, model, debug, image_model)
-                    # Generate Runway video prompt
-                    runway_prompt_json  = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
-                    st.subheader("Runway Gen-3 Alpha Video Prompt")
-                    st.code(runway_prompt_json['runway_prompt'], language="")
                 except LofnError as e:
                     st.warning(f"An error occurred during prompt generation for Pair {i + 1}: {str(e)}")
                     if debug:
@@ -2355,10 +2356,6 @@ with st.container():
                         input_prompts = df_prompts_man['Revised Prompts'].tolist() + df_prompts_man['Synthesized Prompts'].tolist()
                     ))
                 generate_dalle_images(st.session_state.input, pair['concept'], pair['medium'], model=model, debug=debug, max_retries=max_retries, temperature=temperature, image_model=image_model)
-                # Generate Runway video prompt
-                runway_prompt_json  = generate_runway_prompt(st.session_state.input, pair['concept'], pair['medium'], st.session_state.style_axes, st.session_state.creativity_spectrum, max_retries, temperature, model, debug)
-                st.subheader("Runway Gen-3 Alpha Video Prompt")
-                st.code(runway_prompt_json['runway_prompt'], language="")
                 st.write("Image Prompts Complete")
                 st.write("Generation complete!")
             except LofnError as e:
