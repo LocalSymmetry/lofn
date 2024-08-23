@@ -75,6 +75,7 @@ webhook_url = os.environ.get('WEBHOOK_URL', '')
 # Ensure the OpenAI API key is set
 openai.api_key = os.environ.get('OPENAI_API', '')
 RUNWARE_API_KEY = os.environ.get('RUNWARE_API_KEY', '')
+IDEOGRAM_API_KEY = os.environ.get('IDEOGRAM_API_KEY', '')
 
 # Initialize Runware client
 runware_client = Runware(api_key=RUNWARE_API_KEY)
@@ -309,11 +310,21 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["1024x1792", "1792x1024", "1024x1024"], key=f"{model}_image_size")
         st.selectbox("Quality", ["hd", "standard"], key=f"{model}_quality")
         st.selectbox("Style", ["vivid", "natural"], key=f"{model}_style")
+    elif model == "Ideogram":
+        st.selectbox("Model", ["V_2", "V_2_TURBO", "V_1", "V_1_TURBO"], key=f"{model}_model")
+        st.selectbox("Magic Prompt Option", ["OFF", "AUTO", "ON"], key=f"{model}_magic_prompt_option")
+        st.selectbox("Aspect Ratio", [
+                "ASPECT_9_16", "ASPECT_1_1", "ASPECT_10_16", "ASPECT_16_10", "ASPECT_16_9",
+                "ASPECT_3_2", "ASPECT_2_3", "ASPECT_4_3", "ASPECT_3_4", "ASPECT_1_3", "ASPECT_3_1"
+            ], key=f"{model}_image_size")
+        
+        st.selectbox("Style Type", ["GENERAL", "REALISTIC", "DESIGN", "RENDER_3D", "ANIME"], key=f"{model}_style_type")
+        st.number_input("Seed", min_value=0, max_value=2147483647, value=0, key=f"{model}_seed", help="0 for random seed")
     elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/flux-pro", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
@@ -342,13 +353,18 @@ def get_model_params(model: str):
     }
 
     image_size = st.session_state[f"{model}_image_size"]
-    if model == "DALL-E 3" or ('flux' in model) or ('Flux' in model) or ('FLUX' in model):
+    if model == "DALL-E 3" or ('flux' in model) or ('Flux' in model) or ('FLUX' in model) or ('Ideogram' in model) or ('Playground' in model):
         base_params["size"] = image_size
+        base_params["image_size"] = image_size
     else:
-        # Convert size string to width and height
-        width, height = map(int, image_size.split('x'))
-        base_params["width"] = width
-        base_params["height"] = height
+        try:
+            # Convert size string to width and height
+            width, height = map(int, image_size.split('x'))
+            base_params["width"] = width
+            base_params["height"] = height
+        except:
+            base_params["width"] = 1024
+            base_params["height"] = 1024           
 
     model_specific_params = {
         "DALL-E 3": {
@@ -374,6 +390,12 @@ def get_model_params(model: str):
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "Ideogram": {
+            "model": st.session_state.get(f"{model}_model", "V_2"),
+            "magic_prompt_option": st.session_state.get(f"{model}_magic_prompt_option", "AUTO"),
+            "style_type": st.session_state.get(f"{model}_style_type", "GENERAL"),
+            "seed": st.session_state.get(f"{model}_seed", 0)
         },
         "fal-ai/hyper-sdxl": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 28),
@@ -435,6 +457,44 @@ def get_model_params(model: str):
         })
     return params
 
+def generate_ideogram_image(prompt, params, api_key=IDEOGRAM_API_KEY):
+    url = "https://api.ideogram.ai/generate"
+    
+    payload = {
+        "image_request": {
+            "model": params["model"],
+            "magic_prompt_option": params["magic_prompt_option"],
+            "prompt": prompt,
+            "aspect_ratio": params["image_size"],
+            "style_type": params["style_type"],
+            "seed": params["seed"]
+        }
+    }
+    
+    if "resolution" in params:
+        payload["image_request"]["resolution"] = params["resolution"]
+    else:
+        payload["image_request"]["aspect_ratio"] = params["aspect_ratio"]
+    
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "api-key": api_key
+    }
+    
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        result = response.json()
+        
+        if 'data' in result and len(result['data']) > 0:
+            return [image['url'] for image in result['data'] if image['is_image_safe']]
+        else:
+            st.error("No safe images were generated.")
+            return None
+    except requests.exceptions.RequestException as e:
+        st.error(f"An error occurred while generating the image with Ideogram: {str(e)}")
+        return None
 
 
 def parse_lora_input(lora_input: str):
@@ -688,6 +748,8 @@ def generate_image(model: str, params: dict):
         return generate_fal_image(model, params)
     elif model.startswith("Poe-"):
         return generate_poe_image(model, params, debug)
+    elif model == "Ideogram":
+        return generate_ideogram_image(params['prompt'], params)
     else:
         st.write(f"Unsupported model: {model}")
         return None
@@ -775,7 +837,7 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
                 suffix += '--aspect 1:1'
             else: 
                 suffix += '--aspect 4:7'
-        elif poe_model in ["FLUX-schnell", "FLUX-pro", "FLUX-dev", "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"]:
+        elif poe_model in ["Playground-v3", "Playground-v2.5", "Ideogram", "Ideogram-v2", "FLUX-schnell", "FLUX-pro", "FLUX-dev", "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"]:
             if size in ["square_hd", "square"]:
                 suffix += '--aspect 1:1'
             elif size == "portrait_4_3":
@@ -786,13 +848,11 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
                 suffix += '--aspect 4:3'
             else: 
                 suffix += '--aspect 16:9'
-        elif poe_model == "Playground-v2.5":
+        elif poe_model == "Playground-v2.5" or poe_model == "Playground-v3":
             options['guidance_scale'] = params.get('guidance_scale', 7.5)
             options['negative_prompt'] = params.get('negative_prompt', '')
-            suffix += '--aspect 16:9'
         elif poe_model == "Ideogram":
             options['style_preset'] = params.get('style_preset', 'default')
-            suffix += '--aspect 16:9'
         elif poe_model == "LivePortrait":
             options['video_length'] = params.get('video_length', 3)
             suffix += '--aspect 16:9'
@@ -2183,14 +2243,14 @@ model = st.sidebar.selectbox("Select language model",
      "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro"] + poe_models)
 
 poe_image_models = [
-    "Poe-Playground-v2.5", "Poe-Ideogram", "Poe-FLUX-dev",
+    "Poe-Ideogram-v2", "Poe-Playground-v2.5", "Poe-Playground-v3", "Poe-Ideogram", "Poe-FLUX-dev",
     "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
     "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
     "Poe-SD3-Medium", "Poe-RealVisXL"
 ]
 image_model = st.sidebar.selectbox(
     "Select image model",
-    ["Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "runware:100@1",  "fal-ai/flux-pro", "fal-ai/flux/schnell", "None", "runware:civitai_custom","fal-ai/flux-realism", "fal-ai/flux/dev", 
+    ["Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "Ideogram", "runware:100@1",  "fal-ai/flux-pro", "fal-ai/flux/schnell", "None", "runware:civitai_custom","fal-ai/flux-realism", "fal-ai/flux/dev", 
      "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
      "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
     key="image_model",
