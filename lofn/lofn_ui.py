@@ -471,11 +471,6 @@ def generate_ideogram_image(prompt, params, api_key=IDEOGRAM_API_KEY):
         }
     }
     
-    if "resolution" in params:
-        payload["image_request"]["resolution"] = params["resolution"]
-    else:
-        payload["image_request"]["aspect_ratio"] = params["aspect_ratio"]
-    
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
