@@ -1075,7 +1075,7 @@ def clean_json_string(json_string):
         return json_string
 
 
-def parse_output(output, debug=False):
+def parse_output(output, debug=False, is_correction=True):
     try:
         if debug:
             st.write("Original output:")
@@ -1095,8 +1095,11 @@ def parse_output(output, debug=False):
         try: 
             parsed_json = json.loads(json_string)
         except json.JSONDecodeError as e:
-            st.write("Error decoding JSON. Attemping automated repairs first.")
-            parsed_json = json.loads(repair_json(json_string))
+            if is_correction:
+                st.write("Error decoding JSON. Attempting automated repairs first.")
+                parsed_json = json.loads(repair_json(json_string))
+            else:
+                raise LofnError(f"Error in first time parsing: {str(e)}")  
         if debug:
             st.write("Successfully parsed JSON:")
             st.write(parsed_json)
@@ -1400,7 +1403,9 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
         # Google models
         "gemini-1.5-flash": 16384,
         "gemini-1.5-pro": 32768,
-        "gemini-1.0-pro": 32768,
+        "gemini-1.5-pro": 32768,
+        "gemini-1.5-pro-exp-0801": 32768,
+        "gemini-1.0-pro-exp-0827": 32768,
 
         # Poe models
         "Poe-Assistant": 4096,  # FIXME: Verify token limit
@@ -1478,7 +1483,7 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
                 st.write(f"Raw output from LLM:\n{output}")
             
             # Parse the output
-            parsed_output, error = parse_output(str(output), debug)
+            parsed_output, error = parse_output(str(output), debug, is_correction)
             if parsed_output is not None:
                 if debug:
                     st.write("Successfully parsed JSON output")
@@ -2041,98 +2046,184 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     runway_prompt_template = """
-    Generate a detailed prompt for Runway's Gen-3 Alpha video generation model based on the following input:
+        [Context: Runway Gen-3 Alpha Capabilities and Tips:
+        High-Fidelity Video Generation:
+        Produces photorealistic videos with exceptional detail
+        Captures complex actions and natural motion
+        Temporal Consistency:
+        Maintains coherency of characters and objects across frames
+        Reduces flickering and distortion for seamless viewing
+        Advanced Control Features:
+        Allows fine-tuning of style, atmosphere, lighting, and camera angles
+        Supports detailed text prompts for precise control
+        Prompt Structure:
+        Use detailed, descriptive prompts for best results
+        Include subject, action, setting, camera movement, and style keywords
+        Example structure: "[Subject] [Action] in [Setting]. [Camera movement] reveals [Additional details]. [Style keywords]."
+        Tips for Effective Prompting:
+        Be as specific as possible in descriptions
+        Experiment with prompt order and structure
+        Include cinematographic elements (e.g., "low-angle tracking shot", "aerial pan")
+        Specify visual style, color palette, and lighting
+        Incorporate motion and transformation details
+        Consider temporal flow (e.g., slow-motion, time-lapse)
+        Use style keywords like "cinematic" or "IMAX"
+        Character Consistency:
+        Use very specific descriptors for characters (e.g., hair color, clothing)
+        Maintain consistent prompts for characters across generations
+        Consider using Custom Model feature for better consistency
+        Practical Tips:
+        Start with 5-second generations to conserve credits
+        Reuse successful seeds for stylistic consistency
+        Plan sequences in advance for better coherence
+        Generate multiple options and curate in post-production
+        Remember that Gen-3 Alpha is still in development, and its capabilities are continually evolving. Experiment with different approaches and learn from the community for best results.]
+        [Goal: Generate a detailed prompt for Runway's Gen-3 Alpha video generation model based on the following input:
+        User's Idea: {input}
+        Concept: {concept}
+        Medium: {medium}
+        Style Axes: {style_axes}
+        Creativity Spectrum: {creativity_spectrum}
+        Image: {image}
+        Prompt: {prompt}
+        Runway Gen-3 Alpha Video Prompt Generation Guide
+        Objective: Create a vivid, narrative-style prompt that leverages Gen-3 Alpha's strengths in fluid motion, scene evolution, and long-form coherence.
+        I. Core Elements (40-50 words)
+        Subject: Clearly describe the main focus
+        Action: Detail what the subject is doing
+        Setting: Specify the environment or backdrop
+        Mood/Atmosphere: Convey the overall feeling or tone
+        Style Keywords: Include terms like "cinematic", "IMAX", or specific genre references
+        II. Cinematography (30-40 words)
+        Camera Movement: Describe specific movements (e.g., "sweeping dolly shot", "intimate handheld")
+        Shot Types: Specify angles and framing (e.g., "extreme close-up", "bird's-eye view")
+        Transitions: Detail how scenes evolve or transform (e.g., "seamless morph", "match cut")
+        III. Visual Aesthetics (30-40 words)
+        Lighting: Describe quality, direction, and changes in lighting
+        Color Palette: Specify key colors and their emotional significance
+        Texture and Detail: Mention visual textures or intricate details to focus on
+        IV. Motion and Transformation (30-40 words)
+        Subject Movement: Describe how main elements move or change
+        Background Activity: Detail secondary motion or events
+        Pacing: Specify speed of action (e.g., "slow-motion", "time-lapse")
+        V. Audio-Visual Synergy (20-30 words)
+        Sound Cues: Suggest audio elements that could be visually represented
+        Rhythm: Describe visual patterns or repetitions implying rhythm
+        Emotional Crescendo: Detail how visuals build to enhance emotional impact
+        VI. Stylistic Flourishes (20-30 words)
+        Special Effects: Describe any CGI or stylized elements
+        Artistic Influences: Reference specific directors or visual artists if relevant
+        Unique Visuals: Detail any standout or unusual visual elements
+        Prompt Structure:
+        "[Core Elements]: [Cinematography description]. [Visual Aesthetics details] create a [mood] atmosphere. [Motion and Transformation explanation], while [Audio-Visual Synergy elements] enhance the scene. [Stylistic Flourishes] add depth and intrigue. Style keywords: [list relevant style terms]."
+        **Instructions:**
+        1. Analyze the given inputs carefully.
+        2. Create a video prompt following the guide above, ensuring a cohesive narrative flow.
+        3. Aim for a prompt length of 150-200 words.
+        4. Use descriptive language that aligns with Gen-3 Alpha's capabilities.
+        5. Focus on fluid transitions and evolving scenes.
+        6. Experiment with the order of prompt elements for best results.
+        7. Output the prompt in the following JSON format, escaping any special characters:
+        json
+        {{
+            "runway_prompt": "Your generated prompt here"
+        }}
 
-    User's Idea: {input}
-    Concept: {concept}
-    Medium: {medium}
-    Style Axes: {style_axes}
-    Creativity Spectrum: {creativity_spectrum}
-    Image: {image}
-    Prompt: {prompt}
+        """
 
-    # Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha
+    # runway_prompt_template = """
+    # Generate a detailed prompt for Runway's Gen-3 Alpha video generation model based on the following input:
 
-    Objective: Create visually stunning, emotionally resonant, and conceptually innovative video prompts that push the boundaries of AI-generated cinematography.
+    # User's Idea: {input}
+    # Concept: {concept}
+    # Medium: {medium}
+    # Style Axes: {style_axes}
+    # Creativity Spectrum: {creativity_spectrum}
+    # Image: {image}
+    # Prompt: {prompt}
 
-    I. Conceptualization (20-30 words)
-    1. Core Concept: Describe a central, thought-provoking idea
-    2. Emotional Resonance: Specify the primary emotion to evoke
-    3. Visual Metaphor: Introduce a powerful visual metaphor related to the concept
+    # # Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha
 
-    II. Visual Language (30-40 words)
-    1. Cinematographic Style: Choose a distinctive visual approach (e.g., "hyper-real long takes", "fragmented montage", "surreal forced perspective")
-    2. Color Palette: Describe a unique color scheme and its emotional significance
-    3. Lighting Dynamics: Detail innovative lighting that evolves throughout the sequence
+    # Objective: Create visually stunning, emotionally resonant, and conceptually innovative video prompts that push the boundaries of AI-generated cinematography.
 
-    III. Motion and Transformation (30-40 words)
-    1. Camera Movement: Specify fluid, complex camera motions (e.g., "spiraling ascent transitioning to a cosmic zoom-out")
-    2. Subject Transformation: Describe metamorphoses of key elements
-    3. Transitional Fluidity: Explain seamless scene-to-scene transitions
+    # I. Conceptualization (20-30 words)
+    # 1. Core Concept: Describe a central, thought-provoking idea
+    # 2. Emotional Resonance: Specify the primary emotion to evoke
+    # 3. Visual Metaphor: Introduce a powerful visual metaphor related to the concept
 
-    IV. Temporal and Spatial Manipulation (20-30 words)
-    1. Time Distortion: Incorporate non-linear time elements (e.g., "cascading time loops", "parallel timelines merging")
-    2. Spatial Warping: Describe reality-bending spatial effects
-    3. Dimensional Shifts: Suggest transitions between different realities or dimensions
+    # II. Visual Language (30-40 words)
+    # 1. Cinematographic Style: Choose a distinctive visual approach (e.g., "hyper-real long takes", "fragmented montage", "surreal forced perspective")
+    # 2. Color Palette: Describe a unique color scheme and its emotional significance
+    # 3. Lighting Dynamics: Detail innovative lighting that evolves throughout the sequence
 
-    V. Sensory Layering (20-30 words)
-    1. Visual Texture: Specify unique textural elements that add depth
-    2. Auditory Cues: Suggest synesthetic visual representations of sound
-    3. Haptic Visuals: Describe visuals that evoke tactile sensations
+    # III. Motion and Transformation (30-40 words)
+    # 1. Camera Movement: Specify fluid, complex camera motions (e.g., "spiraling ascent transitioning to a cosmic zoom-out")
+    # 2. Subject Transformation: Describe metamorphoses of key elements
+    # 3. Transitional Fluidity: Explain seamless scene-to-scene transitions
 
-    VI. Narrative Complexity (20-30 words)
-    1. Nested Stories: Introduce multi-layered narrative elements
-    2. Perspective Shifts: Describe changes in point-of-view
-    3. Symbolic Progression: Explain the evolution of visual symbols throughout the sequence
+    # IV. Temporal and Spatial Manipulation (20-30 words)
+    # 1. Time Distortion: Incorporate non-linear time elements (e.g., "cascading time loops", "parallel timelines merging")
+    # 2. Spatial Warping: Describe reality-bending spatial effects
+    # 3. Dimensional Shifts: Suggest transitions between different realities or dimensions
 
-    VII. Technical Innovation (20-30 words)
-    1. AI-Enhanced Realism: Specify hyper-detailed elements beyond human perception
-    2. Generative Patterns: Describe complex, evolving patterns that emerge and transform
-    3. Style Fusion: Suggest blending of distinct artistic styles in novel ways
+    # V. Sensory Layering (20-30 words)
+    # 1. Visual Texture: Specify unique textural elements that add depth
+    # 2. Auditory Cues: Suggest synesthetic visual representations of sound
+    # 3. Haptic Visuals: Describe visuals that evoke tactile sensations
 
-    VIII. Emotional Journey (20-30 words)
-    1. Emotional Arc: Map out an emotional progression
-    2. Contrast and Resonance: Describe emotional contrasts and harmonies
-    3. Culmination: Specify an emotionally impactful conclusion
+    # VI. Narrative Complexity (20-30 words)
+    # 1. Nested Stories: Introduce multi-layered narrative elements
+    # 2. Perspective Shifts: Describe changes in point-of-view
+    # 3. Symbolic Progression: Explain the evolution of visual symbols throughout the sequence
 
-    IX. Cultural and Philosophical Depth (20-30 words)
-    1. Cultural References: Incorporate diverse cultural elements
-    2. Philosophical Undertones: Suggest underlying philosophical themes
-    3. Zeitgeist Reflection: Reference contemporary issues or futuristic concepts
+    # VII. Technical Innovation (20-30 words)
+    # 1. AI-Enhanced Realism: Specify hyper-detailed elements beyond human perception
+    # 2. Generative Patterns: Describe complex, evolving patterns that emerge and transform
+    # 3. Style Fusion: Suggest blending of distinct artistic styles in novel ways
 
-    X. Runway-Specific Optimization
-    1. Emphasize fluid motion and seamless transitions
-    2. Focus on maintaining style consistency across the entire sequence
-    3. Leverage Gen-3 Alpha's strength in complex scene evolution and long-form coherence
+    # VIII. Emotional Journey (20-30 words)
+    # 1. Emotional Arc: Map out an emotional progression
+    # 2. Contrast and Resonance: Describe emotional contrasts and harmonies
+    # 3. Culmination: Specify an emotionally impactful conclusion
 
-    Prompt Structure Template Fill in each bracketed section for a single paragraph form prompt:
-    "[Conceptualization sentence]: [Visual Language sentence]. [Motion and Transformation sentence], [leading to Temporal and Spatial Manipulation sentence]. [Sensory Layering mixed with Narrative Complexity sentence]. [Technical Innovation and Emotional Journey sentence]. [Cultural and Philosophical Depth sentence]."
+    # IX. Cultural and Philosophical Depth (20-30 words)
+    # 1. Cultural References: Incorporate diverse cultural elements
+    # 2. Philosophical Undertones: Suggest underlying philosophical themes
+    # 3. Zeitgeist Reflection: Reference contemporary issues or futuristic concepts
 
-    Before finalizing:
-    1. Ensure the prompt is 200-250 words long
-    2. Review for clarity, creativity, and emotional impact
-    3. Verify that each section contributes to a cohesive whole
-    4. Confirm the prompt leverages Gen-3 Alpha's unique capabilities
-    5. Assess the prompt's potential for generating award-worthy visuals
+    # X. Runway-Specific Optimization
+    # 1. Emphasize fluid motion and seamless transitions
+    # 2. Focus on maintaining style consistency across the entire sequence
+    # 3. Leverage Gen-3 Alpha's strength in complex scene evolution and long-form coherence
 
-    # Instructions
+    # Prompt Structure Template Fill in each bracketed section for a single paragraph form prompt:
+    # "[Conceptualization sentence]: [Visual Language sentence]. [Motion and Transformation sentence], [leading to Temporal and Spatial Manipulation sentence]. [Sensory Layering mixed with Narrative Complexity sentence]. [Technical Innovation and Emotional Journey sentence]. [Cultural and Philosophical Depth sentence]."
 
-    Your task is to take an image prompt and transform it into a detailed video prompt suitable for Runway ML's Gen-3 Alpha text-to-video AI. 
-    1. You will analyze the given image prompt carefully, noting all visual elements, style, mood, and composition.
-    2. Create a video prompt following the Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha:  
+    # Before finalizing:
+    # 1. Ensure the prompt is 200-250 words long
+    # 2. Review for clarity, creativity, and emotional impact
+    # 3. Verify that each section contributes to a cohesive whole
+    # 4. Confirm the prompt leverages Gen-3 Alpha's unique capabilities
+    # 5. Assess the prompt's potential for generating award-worthy visuals
 
-    Remember: The goal is to create a prompt that not only guides the AI but also inspires it to generate truly revolutionary visual narratives that captivate, challenge, and move the audience in unprecedented ways.
-    Include specific keywords for camera styles, lighting, movement speeds, movement types, and overall aesthetic.
-    Make sure the prompt is descriptive, clear, and aligns with Runway's Gen-3 Alpha capabilities.
+    # # Instructions
 
-    Output the prompt in the following JSON format, ensuring to escape any special characters within JSON strings including apostrophes and quotation marks:
+    # Your task is to take an image prompt and transform it into a detailed video prompt suitable for Runway ML's Gen-3 Alpha text-to-video AI. 
+    # 1. You will analyze the given image prompt carefully, noting all visual elements, style, mood, and composition.
+    # 2. Create a video prompt following the Award-Winning Video Prompt Generation Guide for Runway's Gen-3 Alpha:  
 
-    ```json
-    {{
-        "runway_prompt": "Your generated prompt here"
-    }}
-    ```
-    """
+    # Remember: The goal is to create a prompt that not only guides the AI but also inspires it to generate truly revolutionary visual narratives that captivate, challenge, and move the audience in unprecedented ways.
+    # Include specific keywords for camera styles, lighting, movement speeds, movement types, and overall aesthetic.
+    # Make sure the prompt is descriptive, clear, and aligns with Runway's Gen-3 Alpha capabilities.
+
+    # Output the prompt in the following JSON format, ensuring to escape any special characters within JSON strings including apostrophes and quotation marks:
+
+    # ```json
+    # {{
+    #     "runway_prompt": "Your generated prompt here"
+    # }}
+    # ```
+    # """
 
     chain = (
         ChatPromptTemplate.from_messages([("human", runway_prompt_template)])
@@ -2235,7 +2326,8 @@ model = st.sidebar.selectbox("Select language model",
     ["gpt-4o-mini", "gpt-4o", "gpt-4o-2024-08-06", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
      "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
      "claude-3-haiku-20240307", "gpt-4",
-     "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro"] + poe_models)
+     "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro", 
+     "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"] + poe_models)
 
 poe_image_models = [
     "Poe-Ideogram-v2", "Poe-Playground-v2.5", "Poe-Playground-v3", "Poe-Ideogram", "Poe-FLUX-dev",
