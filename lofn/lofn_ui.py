@@ -976,6 +976,10 @@ def get_image_with_retry(image_url, concept, medium, prompt):
 
 @st.cache_data(persist=True)
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
+    # o1 takes forever.
+    if model[0] == 'o':
+        model = 'gpt-4o'
+
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     chain = (
@@ -2076,7 +2080,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
             status.write("Generating Image Prompts...")
             midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, st.session_state.style_axes, artistic_guides, max_retries, debug)
             if debug:
-                st.write("Midjourney Prompts:")
+                st.write("Image Prompts:")
                 for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
                     st.write(f"{i}. {prompt['image_gen_prompt']}")
             
@@ -2110,6 +2114,10 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         raise LofnError(f"Error in prompt generation: {str(e)}")    
 
 def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
+    # O1 takes too, long, if they want o1, use gpt-4o.
+    if model[0] == 'o':
+        model = 'gpt-4o'
+
     llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
 
     runway_prompt_template = """
