@@ -46,8 +46,8 @@ from langchain_core.language_models.llms import LLM
 from PIL import Image
 from io import BytesIO
 from langchain_core.runnables import RunnablePassthrough
-import runware
-from runware import Runware, IRequestImage
+# import runware
+# from runware import Runware, IRequestImage
 
 
 class LofnError(Exception):
@@ -78,7 +78,7 @@ RUNWARE_API_KEY = os.environ.get('RUNWARE_API_KEY', '')
 IDEOGRAM_API_KEY = os.environ.get('IDEOGRAM_API_KEY', '')
 
 # Initialize Runware client
-runware_client = Runware(api_key=RUNWARE_API_KEY)
+# runware_client = Runware(api_key=RUNWARE_API_KEY)
 
 class GeminiLLM(LLM):
     model_name: str
@@ -735,9 +735,9 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
     st.write(f"{image_model} image generation and video generation complete.")
 
 def generate_image(model: str, params: dict):
-    if model.startswith("runware:") or model.startswith("civitai:"):
-        return generate_runware_image(params['prompt'], params)
-    elif model == "DALL-E 3":
+    # if model.startswith("runware:") or model.startswith("civitai:"):
+    #     return generate_runware_image(params['prompt'], params)
+    if model == "DALL-E 3":
         return [generate_image_dalle3(params)]
     elif model.startswith("fal-ai/"):
         return generate_fal_image(model, params)
@@ -749,48 +749,48 @@ def generate_image(model: str, params: dict):
         st.write(f"Unsupported model: {model}")
         return None
 
-def generate_runware_image(prompt, params):
-    # Establish a connection
-    runware = Runware(api_key=RUNWARE_API_KEY)
-    runware.connect()
+# def generate_runware_image(prompt, params):
+#     # Establish a connection
+#     runware = Runware(api_key=RUNWARE_API_KEY)
+#     runware.connect()
 
-    request_image = IRequestImage(
-        positive_prompt=prompt,
-        image_size=get_size_id(params['width'], params['height']),
-        model_id=params['model'],
-        number_of_images=params.get('num_images', 1),
-        negative_prompt=params.get('negative_prompt', ''),
-        steps=params.get('steps', 20),
-        g_scale=params.get('CFGScale', 7.5),
-        seed=params.get('seed', None),
-        use_cache=params.get('use_cache', True),
-        save_to_cache=params.get('save_to_cache', True),
-        clip_skip=params.get('clip_skip', 0),
-        check_nsfw=params.get('check_nsfw', False),
-        use_prompt_weighting=params.get('use_prompt_weighting', False),
-        scheduler_id=params.get('scheduler_id', 1),
-    )
+#     request_image = IRequestImage(
+#         positive_prompt=prompt,
+#         image_size=get_size_id(params['width'], params['height']),
+#         model_id=params['model'],
+#         number_of_images=params.get('num_images', 1),
+#         negative_prompt=params.get('negative_prompt', ''),
+#         steps=params.get('steps', 20),
+#         g_scale=params.get('CFGScale', 7.5),
+#         seed=params.get('seed', None),
+#         use_cache=params.get('use_cache', True),
+#         save_to_cache=params.get('save_to_cache', True),
+#         clip_skip=params.get('clip_skip', 0),
+#         check_nsfw=params.get('check_nsfw', False),
+#         use_prompt_weighting=params.get('use_prompt_weighting', False),
+#         scheduler_id=params.get('scheduler_id', 1),
+#     )
 
-    # Add ControlNet if specified
-    if params.get('controlNet'):
-        request_image.control_net = [
-            {
-                "preprocessor": cn['model'],
-                "weight": cn.get('weight', 1.0),
-                "start_step": cn.get('startStep', 0),
-                "end_step": cn.get('endStep', params.get('steps', 20)),
-                "guide_image_uuid": cn['guideImage'],
-                "control_mode": cn.get('controlMode', 'balanced')
-            }
-            for cn in params['controlNet']
-        ]
+#     # Add ControlNet if specified
+#     if params.get('controlNet'):
+#         request_image.control_net = [
+#             {
+#                 "preprocessor": cn['model'],
+#                 "weight": cn.get('weight', 1.0),
+#                 "start_step": cn.get('startStep', 0),
+#                 "end_step": cn.get('endStep', params.get('steps', 20)),
+#                 "guide_image_uuid": cn['guideImage'],
+#                 "control_mode": cn.get('controlMode', 'balanced')
+#             }
+#             for cn in params['controlNet']
+#         ]
 
-    # Add LoRA if specified
-    if params.get('lora'):
-        request_image.lora = params['lora']
+#     # Add LoRA if specified
+#     if params.get('lora'):
+#         request_image.lora = params['lora']
 
-    images = runware.requestImages(requestImage=request_image)
-    return [image.imageSrc for image in images]
+#     images = runware.requestImages(requestImage=request_image)
+#     return [image.imageSrc for image in images]
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
@@ -1075,7 +1075,7 @@ def clean_json_string(json_string):
         return json_string
 
 
-def parse_output(output, debug=False, is_correction=True):
+def parse_output(output, debug=False):
     try:
         if debug:
             st.write("Original output:")
@@ -1095,11 +1095,8 @@ def parse_output(output, debug=False, is_correction=True):
         try: 
             parsed_json = json.loads(json_string)
         except json.JSONDecodeError as e:
-            if is_correction:
-                st.write("Error decoding JSON. Attempting automated repairs first.")
-                parsed_json = json.loads(repair_json(json_string))
-            else:
-                raise LofnError(f"Error in first time parsing: {str(e)}")  
+            st.write("Error decoding JSON. Attempting automated repairs first.")
+            parsed_json = json.loads(repair_json(json_string))
         if debug:
             st.write("Successfully parsed JSON:")
             st.write(parsed_json)
@@ -1125,6 +1122,7 @@ def parse_output(output, debug=False, is_correction=True):
         else:
             print("No JSON string was extracted.")
         return None, error_message
+
 
 def display_creativity_spectrum(creativity_spectrum):
     labels = ['Grounded', 'Creative', 'Wild']
@@ -1387,6 +1385,8 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
     # Dictionary mapping models to their maximum token limits
     model_max_tokens = {
         # OpenAI models
+        "o1-preview": 32768,
+        "o1-mini": 32768,
         "gpt-4o-mini": 4096,
         "gpt-4o": 4096,
         "gpt-4o-2024-08-06": 8192,
@@ -1482,8 +1482,8 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
             
-            # Parse the output
-            parsed_output, error = parse_output(str(output), debug, is_correction)
+            # Parse the output - FIXME
+            parsed_output, error = parse_output(str(output), debug)
             if parsed_output is not None:
                 if debug:
                     st.write("Successfully parsed JSON output")
@@ -2323,7 +2323,7 @@ poe_models = [
     "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW"]
 
 model = st.sidebar.selectbox("Select language model", 
-    ["gpt-4o-mini", "gpt-4o", "gpt-4o-2024-08-06", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
+    ["gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-2024-08-06", "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
      "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
      "claude-3-haiku-20240307", "gpt-4",
      "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro", 
@@ -2337,13 +2337,13 @@ poe_image_models = [
 ]
 image_model = st.sidebar.selectbox(
     "Select image model",
-    ["Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "Ideogram", "runware:100@1",  "fal-ai/flux-pro", "fal-ai/flux/schnell", "None", "runware:civitai_custom","fal-ai/flux-realism", "fal-ai/flux/dev", 
+    ["Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "Ideogram",   "fal-ai/flux-pro", "fal-ai/flux/schnell", "None", "fal-ai/flux-realism", "fal-ai/flux/dev", 
      "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
      "fal-ai/hyper-sdxl", "fal-ai/playground-v25"] + poe_image_models,
     key="image_model",
     on_change=update_image_controls
 )
-
+# "runware:100@1", "runware:civitai_custom",
 # st.sidebar.subheader("LoRA Settings")
 # use_lora = st.sidebar.checkbox("Use LoRA")
 # if use_lora:
