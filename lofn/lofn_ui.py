@@ -1469,8 +1469,10 @@ def get_llm(model, temperature, openai_api_key=OPENAI_API, anthropic_api_key=ANT
         return GeminiLLM(model_name=model, api_key=google_api_key, temperature=temperature, max_tokens=model_max_tokens.get(model, 4096))
     elif model.startswith("Poe-"):
         return PoeLLM(model_name=model, api_key=poe_api_key, temperature=temperature, max_tokens=max_tokens)
-    else:
+    elif model.startswith("gpt"):
         return ChatOpenAI(model=model, temperature=temperature, max_tokens=max_tokens, openai_api_key=openai_api_key)
+    else:
+        return ChatOpenAI(model=model, openai_api_key=openai_api_key, temperature = 1)
 
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
     output = None
@@ -1810,50 +1812,91 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
 
-        chains = {
-            'essence_and_facets': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", essence_prompt)
-                ])
-                | llm
-            ),
-            'concepts': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", concepts_prompt)
-                ])
-                | llm
-            ),
-            'artist_and_refined_concepts': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", artist_and_critique_prompt)
-                ])
-                | llm
-            ),
-            'medium': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", medium_prompt)
-                ])
-                | llm
-            ),
-            'refine_medium': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", refine_medium_prompt)
-                ])
-                | llm
-            ),
-            'shuffled_review': (
-                ChatPromptTemplate.from_messages([
-                    ("system", concept_system),
-                    ("human", refine_medium_prompt)
-                ])
-                | llm
-            )
-        }
+        # o series doesn't use system prompts
+        if model[0] == "o":
+            chains = {
+                'essence_and_facets': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", essence_prompt)
+                    ])
+                    | llm
+                ),
+                'concepts': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", concepts_prompt)
+                    ])
+                    | llm
+                ),
+                'artist_and_refined_concepts': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", artist_and_critique_prompt)
+                    ])
+                    | llm
+                ),
+                'medium': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", medium_prompt)
+                    ])
+                    | llm
+                ),
+                'refine_medium': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", refine_medium_prompt)
+                    ])
+                    | llm
+                ),
+                'shuffled_review': (
+                    ChatPromptTemplate.from_messages([
+                        ("human", refine_medium_prompt)
+                    ])
+                    | llm
+                )
+            }
+        else:
+            chains = {
+                'essence_and_facets': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", essence_prompt)
+                    ])
+                    | llm
+                ),
+                'concepts': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", concepts_prompt)
+                    ])
+                    | llm
+                ),
+                'artist_and_refined_concepts': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", artist_and_critique_prompt)
+                    ])
+                    | llm
+                ),
+                'medium': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", medium_prompt)
+                    ])
+                    | llm
+                ),
+                'refine_medium': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", refine_medium_prompt)
+                    ])
+                    | llm
+                ),
+                'shuffled_review': (
+                    ChatPromptTemplate.from_messages([
+                        ("system", concept_system),
+                        ("human", refine_medium_prompt)
+                    ])
+                    | llm
+                )
+            }
 
         with st.status("Generating Concepts and Mediums...", expanded=True) as status:
             # Step 1: Essence and Facets
@@ -1970,29 +2013,53 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
 
-
-        chains = {
-            'facets': (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", facets_prompt)])
-                | llm
-            ),
-            'aspects_traits': (
-                ChatPromptTemplate.from_messages([("system", prompt_system), ("human", aspects_traits_prompt)])
-                | llm
-            ),
-            'midjourney': (
-                ChatPromptTemplate.from_messages([("system", prompt_system), ("human", midjourney_prompt)])
-                | llm
-            ),
-            'artist_refined': (
-                ChatPromptTemplate.from_messages([("system", prompt_system), ("human", artist_refined_prompt)])
-                | llm
-            ),
-            'revision_synthesis': (
-                ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)])
-                | llm
-            )
-        }
+        # o series doesn't use system prompts
+        if model[0] == "o":
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("human", facets_prompt)])
+                    | llm
+                ),
+                'aspects_traits': (
+                    ChatPromptTemplate.from_messages([ ("human", aspects_traits_prompt)])
+                    | llm
+                ),
+                'midjourney': (
+                    ChatPromptTemplate.from_messages([("human", midjourney_prompt)])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("human", artist_refined_prompt)])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("human", revision_synthesis_prompt)])
+                    | llm
+                )
+            }
+        else:
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", facets_prompt)])
+                    | llm
+                ),
+                'aspects_traits': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", aspects_traits_prompt)])
+                    | llm
+                ),
+                'midjourney': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", midjourney_prompt)])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", artist_refined_prompt)])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)])
+                    | llm
+                )
+            }
         with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
             status.write("Generating Facets...")
             facets = process_facets(chains, input, concept, medium, st.session_state.style_axes, max_retries, debug)
