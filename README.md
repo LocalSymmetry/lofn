@@ -52,7 +52,7 @@ docker build -t lofn .
 
 2. Run the Docker container:
 ```bash
-docker run -p 8501:8501 -v /path/to/local/images:/images lofn
+docker run -p 8501:8501 -v /path/to/local/images:/images -v /path/to/local/videos:/videos -v /path/to/local/metadata:/metadata lofn
 ```
 
 3. Access the Lofn UI by opening `http://localhost:8501` in your web browser.

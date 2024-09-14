@@ -978,9 +978,11 @@ def get_image_with_retry(image_url, concept, medium, prompt):
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
     # o1 takes forever.
     if model[0] == 'o':
-        model = 'gpt-4o'
+        inner_model = 'gpt-4o-mini'
+    else:
+        inner_model = model
 
-    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+    llm = get_llm(inner_model, temperature, OPENAI_API, ANTHROPIC_API)
 
     chain = (
         ChatPromptTemplate.from_messages([("human", image_title_prompt)])
@@ -2116,9 +2118,11 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
 def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
     # O1 takes too, long, if they want o1, use gpt-4o.
     if model[0] == 'o':
-        model = 'gpt-4o'
+        inner_model = 'gpt-4o-mini'
+    else: 
+        inner_model = model
 
-    llm = get_llm(model, temperature, OPENAI_API, ANTHROPIC_API)
+    llm = get_llm(inner_model, temperature, OPENAI_API, ANTHROPIC_API)
 
     runway_prompt_template = """
         [Context: Runway Gen-3 Alpha Capabilities and Tips:
