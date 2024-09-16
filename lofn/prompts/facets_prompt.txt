@@ -1,19 +1,49 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
-1. State and write five facets that should be used to judge if a proposed prompt aligns with the user's indea, the input concept, and portayed in the input medium. If there are none available, make your best guesses based on the user's write-up.
-2. Return the facets in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure, escaping all special characters inside strings including apostrophes and quotation marks:
-{{
-  "facets": [
-    "Facet 1",
-    "Facet 2",
-    "Facet 3",
-    "Facet 4",
-    "Facet 5"
-  ]
-}}
+**GENERAL INSTRUCTIONS:**
 
-USER INPUT
-Concept: {concept}
-Medium: {medium}
-Style Axes: {style_axes}
-USER'S IDEA
+- Be intentional and detailed when describing art.
+- Prefer bullet points over lengthy explanations.
+- Follow the steps below to generate facets for judging the prompt.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Write Five Facets**
+
+- Identify five facets to judge if a proposed prompt aligns with the user's idea, the {concept}, and the {medium}.
+
+- *Action*: Write down the facets.
+
+---
+
+**Step 2: Provide the Final Output**
+
+- **Return the facets in the following JSON format:**
+
+  ```json
+  {{
+    "facets": [
+      "Facet 1",
+      "Facet 2",
+      "Facet 3",
+      "Facet 4",
+      "Facet 5"
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
 {input}

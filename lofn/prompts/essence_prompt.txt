@@ -1,69 +1,101 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations.
+**INSTRUCTIONS:**
 
-1. Analyze the user's idea and determine a "creativity spectrum" with percentages for three categories and for style values for the next 10 style axes.
-Creativity Spectrum:
-   a) Grounded: Realistic, literal interpretations, safe mediums like acrylic paiting, watercolor, and photography
-   b) Creative: Imaginative but plausible ideas, imaginative mediums like triple exposure photography, laser etched glass, and graffitti murals
-   c) Wild: Highly abstract, fantastical, or surreal concepts, and daring mediums like controlled nuclear reactions, splatter painting with melted metals, and futuristic multi-spectrum photography
-   The total should sum to 100%. Consider the following in your assessment:
-   - Complexity and abstractness of the idea
-   - Presence of imaginative or fantastical elements
-   - Emotional or conceptual nature of the request
-   - Openness to creative interpretation implied by the language used
-   Examples:
-   - For "A portrait of a businessman": 91.7% Grounded, 8.3% Creative, 0.0% Wild
-   - For "The feeling of love on a summer afternoon": 41.5% Grounded, 41.5% Creative, 17.0% Wild
-   - For "A cyberpunk dreamscape": 8.3% Grounded, 41.5% Creative, 50.2% Wild
+- Be intentional and detailed when analyzing the user's idea.
+- Prefer bullet points over lengthy explanations.
+- Follow the steps below to determine the essence and facets.
 
-2. Analyze the user's idea and determine a appropriate values for the style axes based on the user's idea. Each axis should be given a value from 0 to 100:
-Style Axes:
-   - Abstraction vs. Realism
-   - Emotional Valence
-   - Color Intensity
-   - Symbolic Density
-   - Compositional Complexity
-   - Textural Richness
-   - Symmetry vs. Asymmetry
-   - Novelty
-   - Figure-Ground Relationship
-   - Dynamic vs. Static
+---
 
-3. State and write the main essence of the idea.
+**Step 1: Determine the Creativity Spectrum**
 
-4. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
+- Assign percentages (totaling 100%) based on the user's idea:
 
-5. Provide your response in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks, without any additional formatting or explanations:
-```json
-{{
-  "essence_and_facets": {{
-    "creativity_spectrum": {{
-      "grounded": 83.4,
-      "creative": 8.3,
-      "wild": 8.3
-    }},
-    "essence": "The main essence of the idea",
-    "facets": [
-      "Facet 1",
-      "Facet 2",
-      "Facet 3",
-      "Facet 4",
-      "Facet 5"
-    ],
-    "style_axes": {{
-      "Abstraction vs. Realism": 23,
-      "Emotional Valence": 79,
-      "Color Intensity": 79,
-      "Symbolic Density": 11,
-      "Compositional Complexity": 37,
-      "Textural Richness": 37,
-      "Symmetry vs. Asymmetry": 58,
-      "Novelty": 89,
-      "Figure-Ground Relationship": 24,
-      "Dynamic vs. Static": 98
+  1. **Grounded:** Realistic, literal interpretations.
+  2. **Creative:** Imaginative but plausible interpretations.
+  3. **Wild:** Abstract, fantastical, or surreal interpretations.
+
+- **Consider:**
+
+  - Complexity and abstractness of the idea.
+  - Presence of imaginative or fantastical elements.
+  - Emotional or conceptual nature of the request.
+  - Openness to creative interpretation.
+
+---
+
+**Step 2: Assign Style Axes Values**
+
+- Assign a value from 0 to 100 for each style axis:
+
+  - **Abstraction vs. Realism**
+  - **Emotional Valence**
+  - **Color Intensity**
+  - **Symbolic Density**
+  - **Compositional Complexity**
+  - **Textural Richness**
+  - **Symmetry vs. Asymmetry**
+  - **Novelty**
+  - **Figure-Ground Relationship**
+  - **Dynamic vs. Static**
+
+---
+
+**Step 3: State the Essence**
+
+- Write the main essence of the idea in one concise sentence.
+
+---
+
+**Step 4: Write Five Facets**
+
+- Identify five facets to judge if a proposed concept aligns with the idea.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the results in the following JSON format:**
+
+  ```json
+  {{
+    "essence_and_facets": {{
+      "creativity_spectrum": {{
+        "grounded": 83.4,
+        "creative": 8.3,
+        "wild": 8.3
+      }},
+      "essence": "The main essence of the idea",
+      "facets": [
+        "Facet 1",
+        "Facet 2",
+        "Facet 3",
+        "Facet 4",
+        "Facet 5"
+      ],
+      "style_axes": {{
+        "Abstraction vs. Realism": 23,
+        "Emotional Valence": 79,
+        "Color Intensity": 79,
+        "Symbolic Density": 11,
+        "Compositional Complexity": 37,
+        "Textural Richness": 37,
+        "Symmetry vs. Asymmetry": 58,
+        "Novelty": 89,
+        "Figure-Ground Relationship": 24,
+        "Dynamic vs. Static": 98
+      }}
     }}
   }}
-}}
-```
+  ```
 
-USER'S IDEA
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for all strings.
+  - Replace placeholder values with actual percentages and values.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER'S IDEA:**
+
 {input}

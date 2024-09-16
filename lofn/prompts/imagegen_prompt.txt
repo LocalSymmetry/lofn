@@ -1,28 +1,106 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations.
-1. For each of the generated artistic guides, give the required details of an aspect that represents a part of {concept} that best captures the concept in the {medium} art medium. Include a generated aspect of the user's concept to serve as the subject of a description, one physical trait to be described of that subject, a list of 3 obscure descriptors, one mood for the expression, one artistic flair element, an artistic style, an artistic perspective, a lighting choice, a color palette, a tool and artistic effects with settings, a storytelling element for context, a background setting for the concept. For each tuple, repeat instruction 2. Make sure the medium is boldly present in the first sentence and the entire concept is represented, even if the aspect is the main focus. However, remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
-2. We will now write prompts. Be exact, precise, and descriptive using proper nouns when possible. For each artistic guide, write an award-winning image generator prompts following "### Detailed Instructions for Image Prompts" that explicitly states the entirety of the {medium} and the {concept} in the first sentence, including all subjects in the concept to make sure they are the centerpiece. Do this to craft a concise but detailed prompt that perfectly describes the {concept} in the {medium}, where the aspect adds and enhances the concept, but does not replace it. When following the steps, skip writing the step numbers and instead just focus on the content you need to generate. 
- - When writing the prompts, at first write an award-winning image generator prompt using the steps in the "### Detailed Instructions for Image Prompts". As you continue, be even more random, risky, and daring. By the middle of the list of prompts, you should be fully experimenting and incorporating aspects however you think is right. By the end of the list, try something unhinged! Add descriptions to flesh out the provided details. Describe multiple objects with additional plural words and group actions. 
- - Consider the concept. Did the prompt encapsulate the concept and include all the details of the concept? 
-3. Return the list of award-winning Image generator prompts in the following JSON format, without any additional formatting, explanations, or text outside the JSON structure, escaping all special characters inside strings including apostrophes and quotation marks:
-```json
-{{
-  "image_gen_prompts": [
-    {{"image_gen_prompt": "Image Generator Prompt 1"}},
-    {{"image_gen_prompt": "Image Generator Prompt 2"}},
-    {{"image_gen_prompt": "Image Generator Prompt 3"}},
-    {{"image_gen_prompt": "Image Generator Prompt 4"}},
-    {{"image_gen_prompt": "Image Generator Prompt 5"}},
-    {{"image_gen_prompt": "Image Generator Prompt 6"}}
-  ]
-}}
-```
+**INSTRUCTIONS:**
 
-USER INPUT
-Concept: {concept}
-Medium: {medium}
-Judging Facets: {facets}
-Style Axes: {style_axes}
-ARTISTIC GUIDES
+- Be intentional and detailed when describing art.
+- Prefer bullet points over lengthy explanations.
+- Follow the steps below to create award-winning image generator prompts.
+
+---
+
+**Step 1: Describe Key Elements**
+
+- For each artistic guide:
+
+  - Identify an aspect that represents part of the {concept} and captures it in the {medium}.
+  - Include:
+
+    - **Aspect and Physical Trait:**
+      - *Example*: "A solitary oak tree with sprawling branches."
+
+    - **Three Obscure Descriptors:**
+      - *Example*: "Esoteric, luminescent, ethereal."
+
+    - **Mood:**
+      - *Example*: "Melancholic yet hopeful."
+
+    - **Artistic Flair Element:**
+      - *Example*: "Incorporating fractal patterns."
+
+    - **Artistic Style:**
+      - *Example*: "Surrealism."
+
+    - **Perspective:**
+      - *Example*: "Worm's-eye view."
+
+    - **Lighting Choice:**
+      - *Example*: "Soft, diffused moonlight."
+
+    - **Color Palette:**
+      - *Example*: "Muted blues and silvers."
+
+    - **Tool and Artistic Effects with Settings:**
+      - *Example*: "Digital pen with glow effect at 70% opacity."
+
+    - **Storytelling Element for Context:**
+      - *Example*: "Set in a world where trees are guardians of memories."
+
+    - **Background Setting:**
+      - *Example*: "A mist-covered meadow under a starlit sky."
+
+---
+
+**Step 2: Write Award-Winning Prompts**
+
+- For each artistic guide, craft a concise yet detailed image generator prompt.
+
+- **Ensure:**
+
+  - The {medium} and the {concept} are explicitly stated in the first sentence.
+  - All subjects in the concept are the centerpiece.
+  - Proper nouns are used when possible.
+  - The prompt is precise, descriptive, and suitable for AI image generation.
+
+- **Remember:**
+
+  - Honor the original concept but be daring and creative.
+  - Avoid impossible or unrenderable scenarios.
+  - Do not reference the image creation process or art installations.
+
+---
+
+**Step 3: Provide the Final Output**
+
+- **Return the prompts in the following JSON format:**
+
+  ```json
+  {{
+    "image_gen_prompts": [
+      {{"image_gen_prompt": "Image Generator Prompt 1"}},
+      {{"image_gen_prompt": "Image Generator Prompt 2"}},
+      {{"image_gen_prompt": "Image Generator Prompt 3"}},
+      {{"image_gen_prompt": "Image Generator Prompt 4"}},
+      {{"image_gen_prompt": "Image Generator Prompt 5"}},
+      {{"image_gen_prompt": "Image Generator Prompt 6"}}
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Judging Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Artistic Guides:**
+
 {artistic_guides}
-USER'S IDEA
+
+- **User's Idea:**
+
 {input}

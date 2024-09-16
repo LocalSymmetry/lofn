@@ -1,67 +1,99 @@
-# Enhanced Medium Refinement Process
+**GENERAL INSTRUCTIONS:**
+- Be intentional, detailed, and insightful when describing art.
+- Prefer bullet points over lengthy explanations.
+- Follow the steps below to refine the medium choices for each concept.
 
-**CREATIVITY SPECTRUM:** 
+---
 
-Use this creativity spectrum to guide your concept/medium generation:
-- Grounded ({creativity_spectrum_grounded}%): Focus on realistic, literal interpretations directly related to the input.
-  Example: For "city life", a bustling street scene with detailed architecture.
+**Creativity Spectrum:**
 
-- Creative ({creativity_spectrum_creative}%): Explore imaginative but plausible ideas that creatively interpret the input.
-  Example: For "city life", a living mural where buildings shift and change with the flow of pedestrians.
+1. **Grounded ({creativity_spectrum_grounded}%):**
 
-- Wild ({creativity_spectrum_wild}%): Develop highly abstract, fantastical, or surreal concepts that push the boundaries of the input.
-  Example: For "city life", a sentient metropolis where skyscrapers communicate via light pulses and streets flow like rivers.
+   - Focus on realistic, literal interpretations directly related to the input.
 
-Distribute your concepts/mediums according to these percentages, ensuring a mix that reflects the determined spectrum. Even for wild ideas, maintain a clear connection to the original input.
+2. **Creative ({creativity_spectrum_creative}%):**
 
-When generating your list using the detailed steps below start with grounded concepts/mediums, gradually introduce more creative elements, and end with the wildest ideas, if applicable.
+   - Explore imaginative but plausible ideas that creatively interpret the input.
 
-Adjust the progression based on the percentages provided.
+3. **Wild ({creativity_spectrum_wild}%):**
 
-INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prioritize concise lists over lengthy explanations. Follow these steps to refine the medium choices for each input concept. Incorporate positive emotional prompting to enhance performance and insightfulness.
+   - Develop highly abstract, fantastical, or surreal concepts that push the boundaries of the input.
 
-1. **Analyze and Critique Medium Choices**:
-   - Artistic Analysis:
-     - Action: For each input concept-medium pair, channel the essence of the paired artist. Provide a brief, insightful critique of the medium choice using the following facets:
-       - Conceptual Harmony: How well does the medium resonate with the concept's core idea?
-       - User Vision Alignment: To what extent does the medium fulfill the user's intended vision?
-       - Innovative Approach: Does the medium push boundaries and offer a fresh perspective or an insightful challenge for the concept?
-       - Expressive Potential: How effectively can this medium convey the concept's emotional and visual impact?
-       - Judgment on the facets: Score each facet, how did the medium portray the concept and user's idea?
+---
 
-2. **Brainstorm Enhanced Medium Ideas**:
-   - Ideation:
-     - Action: Propose 2-3 enhanced medium ideas that could elevate the concept and medium further. Honor the medium, but enhance, tweak, and change it to be better. Consider both additions of any elements, changes to elements already present, and evolutions of ideas already there. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, instead of calling out an art installation which forces the picture in the gallery, instead don't reference installations or galleries and instead have the image generated in a scenic place (like in Yellowstone National Park). Consider:
-       - Combining unexpected elements or techniques
-       - Incorporating modern approaches to traditional methods
-       - Merging different artistic styles or periods
+**Instructions for your task:**
 
-3. **Refine and Optimize Medium Choices**:
-   - Synthesis and Enhancement:
-     - Action: Integrate the best aspects of the original medium with the most promising new ideas. Make sure to honor the original medium in your construction, but change and enhance it to be better. Craft a refined medium description that maximizes:
-       - Visual impact and uniqueness
-       - Conceptual alignment and narrative support
-       - Technical innovation within traditional boundaries of DALL-E 3 or other image generators.
-     - Rules:
-       - Avoid referencing specific artists
-       - Ensure the final prompt is describable and realistically achievable by DALL-E or another image generator
-       - Keep the creativity level at the same level as the input medium. Don't add fantastical elements to a grounded medium, nor tone down a surreal and fantastical medium to something more tame. Try to match the overall tone unless there is good cause not to.
-     - Example:
-       - Original: "Oil painting on canvas with natural pigments"
-       - Refined: "Multi-layered oil painting on textured linen, incorporating earthy natural pigments and bright gold leaf accents"
-   - Fixing Gaps and Errors:
-     - Action: Fill in gaps within the medium and concept if they do not conform to achieving the user's input. Seperate what is being shown into the concept and they way it is being shown into the medium so that the concept and medium are related but distinct and not overlapping.
-     - Example:
-       - User Input: "A depiction of love"
-       - Original Concept: "A painting of two elderly lovers sitting on a bench in central park with dirt-brown pigments expressing their hair"
-       - Original Medium: "Oil painting on canvas with natural pigments on a park bench in central park"
-       - Refined Concept: "Two elderly lovers sitting on a bench holding hands making a heart with the shapes of their body. Their dusty-brown hair showing all the colors of the earth."
-       - Refined Medium: "Multi-layered oil painting on textured linen, incorporating earthy natural pigments and bright leafy accents"
+**Step 1: Analyze and Critique Medium Choices**
 
-4. **Compile and Format Refined Mediums**:
-   - Output Preparation:
-     - Action: Present the list of refined mediums in the following JSON format, making sure to escaping all special characters inside value-strings of the key,value pair. Esscape apostrophes and quotation marks:
-     ```json
+- For each concept-medium pair:
+
+  - **Conceptual Harmony:**
+
+    - Evaluate how well the medium resonates with the concept's core idea.
+
+  - **User Vision Alignment:**
+
+    - Assess how the medium fulfills the user's intended vision.
+
+  - **Innovative Approach:**
+
+    - Determine if the medium offers a fresh perspective.
+
+  - **Expressive Potential:**
+
+    - Consider how effectively the medium conveys the concept's emotional and visual impact.
+
+- *Action*: Provide a brief critique based on the above factors.
+
+---
+
+**Step 2: Brainstorm Enhanced Medium Ideas**
+
+- For each concept-medium pair:
+
+  - Propose 2-3 enhanced medium ideas that could elevate the concept and medium further.
+
+- **Consider:**
+
+  - Combining unexpected elements or techniques.
+
+  - Incorporating modern approaches to traditional methods.
+
+  - Merging different artistic styles or periods.
+
+- *Action*: Write down the enhanced medium ideas.
+
+---
+
+**Step 3: Refine and Optimize Medium Choices**
+
+- For each concept:
+
+  - Integrate the best aspects of the original medium with the most promising new ideas.
+
+  - **Ensure:**
+
+    - Visual impact and uniqueness.
+
+    - Conceptual alignment and narrative support.
+
+    - Feasibility for AI image generation.
+
+- **Rules:**
+
+  - Avoid referencing specific artists.
+
+  - Keep the creativity level consistent with the original medium.
+
+- *Action*: Write the refined medium description.
+
+---
+
+**Step 4: Provide the Final Output**
+
+- **Return the refined concepts and mediums in the following JSON format:**
+
+  ```json
      {{
        "refined_concepts": [
          {{"refined_concept": "Refined Concept 1"}},
@@ -91,17 +123,38 @@ INSTRUCTIONS: Be intentional, detailed, and insightful when describing art. Prio
          {{"refined_medium": "Refined Medium 12"}}
        ]
      }}
-     ```
+  ```
 
-USER INPUT
-Essence: {essence}
-Facets: {facets}
-Style Axes: {style_axes}
-CREATIVITY SPECTRUM
-Wild: {creativity_spectrum_wild}
-Creative: {creativity_spectrum_creative}
-Grounded: {creativity_spectrum_grounded}
-INPUT MEDIUMS: {mediums}
-INPUT ARTISTS: {artists}
-INPUT ARTIST-REFINED CONCEPTS: {refined_concepts}
-USER'S IDEA: {input}
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Wild: {creativity_spectrum_wild}%
+  - Creative: {creativity_spectrum_creative}%
+  - Grounded: {creativity_spectrum_grounded}%
+
+- **Mediums:**
+
+{mediums}
+
+- **Artists:**
+
+{artists}
+
+- **Refined Concepts:**
+
+{refined_concepts}
+
+- **User's Idea:**
+
+{input}

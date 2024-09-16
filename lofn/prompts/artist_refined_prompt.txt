@@ -1,64 +1,129 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to refine the generated prompts using the styles and techniques of hidden gem artists.
+**INSTRUCTIONS:**
 
-1. **Select and Name an Artist**:
-   - Action: For each generated prompt, choose and name a random obscure hidden gem artist known for working with art that uses the {medium}, is related to the user's idea, or is well known for one of the input aesthetics with equal probability. Avoid famous artists and focus on lesser-known but distinctive artists who will bring something unique.
+- Be intentional and detailed when describing art.
+- Prefer bullet points over lengthy explanations.
+- Follow the steps below to refine the generated prompts using styles and techniques of obscure, hidden gem artists.
 
-2. **Identify Artistic Contributions**:
-   - Aspect of Style:
-     - Action: Identify an aspect of the artist's style that will complement the prompt.
-     - Example: "Scorpiniti's use of luminescent paint to create dual-narrative scenes."
-   - Signature Techniques:
-     - Action: Write two signature techniques or flairs the artist can add, guided by the facets.
-     - Example: "1) Use of glow-in-the-dark paint for dual-narrative effects. 2) Detailed brushwork to enhance structural elements."
-   - General Elements to Consider:
-     - Action: Incorporate these elements when refining the prompts:
-       - Texture: How does the texture enhance the visual impact?
-       - Lighting: How does the lighting create mood and depth?
-       - Color Harmony: How do the colors work together to evoke emotion?
-       - Composition: How are elements arranged to lead the viewer's eye?
-       - Perspective: What viewpoint or angle best captures the scene?
-   - Artist's Choice:
-     - Action: Allow the artist to choose two additional elements to focus on from the following:
-       - Historical/Cultural Context: Is there a particular historical or cultural reference that can add depth?
-       - Narrative Elements: What story or emotion does the piece convey?
-       - Technical Effects: Are there specific digital effects that enhance the visual impact?
-       - Medium-Specific Techniques: Are there any techniques specific to the chosen medium that should be highlighted?
-       - Facets: The juding facets need to be addressed, what can you add to address any gaps?
-       - The user's idea: Was the idea represented, and if not, what can we add to address the gap?
+---
 
-3. **Rewrite Prompts in Artist's Style**:
-   - Rewrite Prompts:
-     - Action: For each artist and prompt, have the artist rewrite the prompt in their style, adding their special takes, techniques, and flairs to capture the {concept} in the {medium}. Honor the original prompt, but tweak, change, and enhance it to be much better. Remember that you are describing a digital image that will be made with a diffusion model. Make sure what you describe is possible and will look good when made with an image generator. For example, if you describe an art installation it will draw artists or viewers, which we want to avoid. Instead have the sculpture in a scenic place (like in Yellowstone National Park).
-     - Rules:
-       - Add or change details but do not remove or simplify the core concepts of the prompt.
-       - Use proper nouns over generic nouns.
-       - The artist should speak in their own voice and guide the changes themselves.
-       - Ensure no artists' names are in the refined prompts. If you want to call out the artist, instead call out their signature style elements or unique descriptors of their work.
-       - Consider User's Input: Ensure that the user's input is respected and incorporated into the refinement. If the prompt does not contain any elements of the user's input, add them in.
-     - Example (Do not repeat the original prompt in your writing to save tokens):
-       - Original Prompt: "A futuristic cityscape with neon-lit skyscrapers."
-       - Artist-Refined Prompt: "A futuristic Dubai skyline illuminated by neon-lit opulent skyscrapers, their glow transforming into intricate holographic advertisements as the night deepens. Detailed brushwork captures the structural elegance, and the use of luminescent paint brings the scene to life in dual narratives—one visible by day, another by night."
+**Style Axes:**
 
-4. **Compile and Return Artist-Refined Prompts**:
-   - Format:
-     - Action: Return the list of artist-refined prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
-     ```json
-     {{
-       "artist_refined_prompts": [
-         {{"artist_refined_prompt": "Artist-Refined Prompt 1"}},
-         {{"artist_refined_prompt": "Artist-Refined Prompt 2"}},
-         {{"artist_refined_prompt": "Artist-Refined Prompt 3"}},
-         {{"artist_refined_prompt": "Artist-Refined Prompt 4"}},
-         {{"artist_refined_prompt": "Artist-Refined Prompt 5"}},
-         {{"artist_refined_prompt": "Artist-Refined Prompt 6"}}
-       ]
-     }}
-     ```
+{style_axes}
 
-USER INPUT
-Concept: {concept}
-Medium: {medium}
-Judging Facets: {facets}
-Style Axes: {style_axes}
-USER'S IDEA: {input}
-GENERATED PROMPTS: {image_gen_prompts}
+---
+
+**Step 1: Select an Artist**
+
+- For each generated prompt:
+
+  - Choose and name a random **obscure hidden gem artist** who:
+
+    - Works with art that uses the {medium}, or
+    - Is related to the user's idea, or
+    - Is known for one of the input aesthetics.
+
+  - **Note:** Avoid famous artists; focus on lesser-known but distinctive artists who bring unique perspectives.
+
+---
+
+**Step 2: Identify Artistic Contributions**
+
+- **Aspect of Style:**
+
+  - Identify an aspect of the artist's style that complements the prompt.
+  - *Example*: "Linnea Strid's hyper-realistic depiction of water droplets to convey emotion."
+
+- **Signature Techniques:**
+
+  - Write two signature techniques or flairs the artist can add, guided by the facets.
+
+- **General Elements to Consider:**
+
+  - Texture
+  - Lighting
+  - Color Harmony
+  - Composition
+  - Perspective
+
+- **Artist's Choice:**
+
+  - Allow the artist to choose two additional elements to focus on from:
+
+    - Historical/Cultural Context
+    - Narrative Elements
+    - Technical Effects
+    - Medium-Specific Techniques
+    - Facets
+    - User's Idea
+
+---
+
+**Step 3: Rewrite Prompts in Artist's Style**
+
+- For each artist and prompt:
+
+  - Rewrite the prompt in their style, adding their special techniques and flairs to capture the {concept} in the {medium}.
+  - Briefly explain how it aligns with the style axes if they are provided.
+
+  - **Rules:**
+
+    - Add or change details but do not remove or simplify the core concepts of the prompt.
+    - Use proper nouns over generic nouns.
+    - The artist should guide the changes in their own voice.
+    - **Ensure no artists' names are included** in the refined prompts.
+    - Incorporate the user's input to address any gaps.
+
+- **Example (Do not include in your response):**
+
+  - *Original Prompt:* "A futuristic cityscape with neon-lit skyscrapers."
+  - *Artist-Refined Prompt:* "In a sprawling metropolis reminiscent of Neo-Tokyo, towering skyscrapers adorned with endless streams of neon kanji reach towards a starless sky..."
+
+---
+
+**Step 4: Self-Evaluation**
+
+- **Evaluate the artist-refined prompts** against the judging facets and style axes.
+
+- **Identify areas for enhancement**.
+
+- **Revise the prompts** to make necessary adjustments.
+
+- *Action*: Provide a brief summary of the evaluation and revisions.   
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the list of artist-refined prompts in the following JSON format:**
+
+  ```json
+   {{
+     "artist_refined_prompts": [
+       {{"artist_refined_prompt": "Artist-Refined Prompt 1"}},
+       {{"artist_refined_prompt": "Artist-Refined Prompt 2"}},
+       {{"artist_refined_prompt": "Artist-Refined Prompt 3"}},
+       {{"artist_refined_prompt": "Artist-Refined Prompt 4"}},
+       {{"artist_refined_prompt": "Artist-Refined Prompt 5"}},
+       {{"artist_refined_prompt": "Artist-Refined Prompt 6"}}
+     ]
+    }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Judging Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}
+
+- **Generated Prompts:**
+
+{image_gen_prompts}
