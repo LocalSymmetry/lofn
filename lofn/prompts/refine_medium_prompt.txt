@@ -1,23 +1,24 @@
 **GENERAL INSTRUCTIONS:**
 - Be intentional, detailed, and insightful when describing art.
-- Prefer bullet points over lengthy explanations.
+- Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the medium choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
 
 ---
 
 **Creativity Spectrum:**
 
-1. **Grounded ({creativity_spectrum_grounded}%):**
+1. **Literal ({creativity_spectrum_literal}%):**
 
-   - Focus on realistic, literal interpretations directly related to the input.
+   - Realistic, direct interpretations closely tied to the input.
 
-2. **Creative ({creativity_spectrum_creative}%):**
+2. **Inventive ({creativity_spectrum_inventive}%):**
 
-   - Explore imaginative but plausible ideas that creatively interpret the input.
+   - Creative interpretations that add unique elements while remaining plausible.
 
-3. **Wild ({creativity_spectrum_wild}%):**
+3. **Transformative ({creativity_spectrum_transformative}%):**
 
-   - Develop highly abstract, fantastical, or surreal concepts that push the boundaries of the input.
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
 
 ---
 
@@ -29,19 +30,19 @@
 
   - **Conceptual Harmony:**
 
-    - Evaluate how well the medium resonates with the concept's core idea.
+    - Evaluate how well the medium resonates with the concept's core idea and emotional tone.
 
-  - **User Vision Alignment:**
+  - **Historical and Cultural Alignment:**
 
-    - Assess how the medium fulfills the user's intended vision.
+    - Consider any historical or cultural contexts that could enhance the medium's significance.
 
   - **Innovative Approach:**
 
-    - Determine if the medium offers a fresh perspective.
+    - Determine if the medium offers a fresh and original perspective, possibly through cross-disciplinary methods.
 
-  - **Expressive Potential:**
+  - **Sensory and Emotional Engagement:**
 
-    - Consider how effectively the medium conveys the concept's emotional and visual impact.
+    - Assess how effectively the medium engages the senses and conveys emotional impact.
 
 - *Action*: Provide a brief critique based on the above factors.
 
@@ -57,9 +58,11 @@
 
   - Combining unexpected elements or techniques.
 
-  - Incorporating modern approaches to traditional methods.
+  - Incorporating modern or cross-disciplinary approaches to traditional methods.
 
-  - Merging different artistic styles or periods.
+  - Merging different artistic styles, periods, or cultural influences.
+
+  - Utilizing lateral thinking to generate innovative ideas.
 
 - *Action*: Write down the enhanced medium ideas.
 
@@ -73,23 +76,48 @@
 
   - **Ensure:**
 
-    - Visual impact and uniqueness.
+    - Visual impact, uniqueness, and sensory engagement.
 
-    - Conceptual alignment and narrative support.
+    - Conceptual alignment, narrative support, and emotional resonance.
 
     - Feasibility for AI image generation.
+
+  - **Consider Historical and Cultural Contexts:**
+
+    - Incorporate any relevant contexts to deepen the medium's significance.
 
 - **Rules:**
 
   - Avoid referencing specific artists.
 
-  - Keep the creativity level consistent with the original medium.
+  - Keep the creativity level consistent with the original medium per the creativity spectrum.
+
+  - Adhere to ethical guidelines and avoid disallowed content.
 
 - *Action*: Write the refined medium description.
 
 ---
 
-**Step 4: Provide the Final Output**
+**Step 4: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each refined medium** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Sensory and Emotional Impact**
+    - **Historical and Cultural Significance**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 5: Provide the Final Output**
 
 - **Return the refined concepts and mediums in the following JSON format:**
 
@@ -139,9 +167,9 @@
 - **Style Axes:** {style_axes}
 - **Creativity Spectrum:**
 
-  - Wild: {creativity_spectrum_wild}%
-  - Creative: {creativity_spectrum_creative}%
-  - Grounded: {creativity_spectrum_grounded}%
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
 
 - **Mediums:**
 

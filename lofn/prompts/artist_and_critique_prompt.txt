@@ -1,47 +1,55 @@
+**GENERAL INSTRUCTIONS:**
 
-**INSTRUCTIONS:**
-
-- Be intentional and detailed when describing art.
-- Prefer bullet points over lengthy explanations.
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich descriptions.
 - Limit concepts to a single sentence.
 - **Use the style axes** to guide your refinements.
 - **Explain** how each refined concept aligns with the style axes.
 - **Introduce feedback loops** by assessing and refining your outputs based on the style axes and judging facets.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
 
 ---
 
 **Creativity Spectrum:**
 
-1. **Grounded ({creativity_spectrum_grounded}%):**
+1. **Literal ({creativity_spectrum_literal}%):**
 
-   - Focus on realistic, literal interpretations directly related to the input.
+   - Realistic, direct interpretations closely tied to the input.
    - *Example*: For "city life," a bustling street scene with detailed architecture.
 
-2. **Creative ({creativity_spectrum_creative}%):**
+2. **Inventive ({creativity_spectrum_inventive}%):**
 
-   - Explore imaginative but plausible ideas that creatively interpret the input.
+   - Creative interpretations that add unique elements while remaining plausible.
    - *Example*: For "city life," a living mural where buildings shift and change with the flow of pedestrians.
 
-3. **Wild ({creativity_spectrum_wild}%):**
+3. **Transformative ({creativity_spectrum_transformative}%):**
 
-   - Develop highly abstract, fantastical, or surreal concepts that push the boundaries of the input.
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
    - *Example*: For "city life," a sentient metropolis where skyscrapers communicate via light pulses and streets flow like rivers.
 
 **Distribution:**
 
 - Distribute your concepts according to these percentages, ensuring a mix that reflects the determined spectrum.
-- Start with grounded concepts, gradually introduce more creative elements, and end with the wildest ideas if applicable.
-- Adjust the progression based on the percentages provided.
+- Begin with literal concepts, introduce inventive elements, and conclude with transformative ideas based on the percentages provided.
 
 ---
 
-**Instructions:**
+**Instructions for your task:**
 
 **Step 1: Select Obscure Artists**
 
 - For each input concept:
 
-  - **Action:** Choose an obscure and hidden-gem artist who would be perfect for the concept and the user's input.
+  - **Action:** Choose an obscure, hidden-gem artist whose style aligns with the concept and the user's input.
+
+    - **Criteria for Selection:**
+
+      - The artist's work resonates with the concept's themes or emotions.
+
+      - They employ mediums or techniques suitable for the concept.
+
+      - They are lesser-known but have distinctive artistic qualities.
+
   - **Avoid:** Famous artists; focus on lesser-known but distinctive artists.
 
 ---
@@ -50,13 +58,13 @@
 
 - For each artist:
 
-  - **Action 1:** Identify an aspect of the artist's style that will complement the concept.
+  - **Action 1:** Identify specific aspects of the artist's style that will complement the concept, focusing on emotional and thematic depth.
 
-  - **Action 2:** Have the artist explain their artistic viewpoint on the user's input and how they would approach the concept.
+  - **Action 2:** Have the artist explain their artistic viewpoint on the user's idea and how they would approach the concept, using empathy to align with the user's perspective.
 
   - **Consider Style Axes:**
 
-  {style_axes}
+    {style_axes}
 
 ---
 
@@ -64,15 +72,15 @@
 
 - For each concept:
 
-  - **Action:** Have the corresponding artist write a critique of the concept using the judging facets and style axes as guides.
+  - **Action:** Have the corresponding artist write a detailed critique of the concept using the judging facets, style axes, and cognitive empathy.
 
   - **Considerations for Judging:**
 
-    - **Fit with Concept:** Does the concept align with the essence of the user's idea and the style axes?
+    - **Fit with Concept:** Does the concept capture the essence and emotional core of the user's idea?
 
-    - **Originality:** Is the concept unique and innovative?
+    - **Originality:** Is the concept unique, innovative, and emotionally resonant?
 
-    - **Effectiveness:** Does the concept effectively convey the intended message?
+    - **Effectiveness:** Does the concept effectively convey the intended message and evoke the desired emotions?
 
     - **Facets and Style Axes:** Address the judging facets and explain any gaps or misalignments with the style axes.
 
@@ -82,29 +90,31 @@
 
 - For each concept:
 
-  - **Action:** Using the critique, have the artist write a refined concept to fix gaps and better embody the artist's vision while fully representing the user's idea.
+  - **Action:** Using the critique, have the artist write a refined concept that enhances emotional and thematic depth while fully representing the user's idea.
 
   - **Ensure:**
 
     - The refined concept aligns with the style axes values.
+
     - The creativity level matches the original concept per the creativity spectrum.
+
     - The concept is feasible for AI image generation.
 
   - **Rules:**
 
-    - Avoid referencing specific artists in the refined concept.
+    - Avoid referencing specific artists or including artist names in the refined concept.
 
-    - Use specific places and unique descriptors to aid image generation.
+    - Use specific places, proper nouns, and unique descriptors to aid image generation.
 
-    - **Explain Alignment:**
+  - **Explain Alignment:**
 
-      - Provide a brief explanation of how the refined concept aligns with the style axes.
+    - Provide a brief explanation of how the refined concept aligns with the style axes and enhances emotional impact.
 
 ---
 
 **Step 5: Introduce Feedback Loop**
 
-- **Self-Evaluation:**
+- **Self-Evaluation and Iterative Refinement:**
 
   - **Action:** Assess the refined concepts for alignment with:
 
@@ -116,7 +126,7 @@
 
   - **Revise if Necessary:**
 
-    - Make adjustments to improve alignment.
+    - Make adjustments to improve alignment, emotional resonance, and originality.
 
     - **Provide Explanations** of any revisions made.
 
@@ -177,11 +187,11 @@
 
 - **Creativity Spectrum:**
 
-  - **Wild:** {creativity_spectrum_wild}%
+  - **Transformative:** {creativity_spectrum_transformative}%
 
-  - **Creative:** {creativity_spectrum_creative}%
+  - **Inventive:** {creativity_spectrum_inventive}%
 
-  - **Grounded:** {creativity_spectrum_grounded}%
+  - **Literal:** {creativity_spectrum_literal}%
 
 - **Input Concepts:**
 

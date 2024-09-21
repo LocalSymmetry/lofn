@@ -4,51 +4,82 @@
 Aspect: Gothic Cathedral -- Physical Trait: Intricate stained glass windows -- Obscure Descriptors: [Neo-Gothic revival, Chiaroscuro lighting, Flying buttresses] -- Mood: Mysterious and awe-inspiring -- Artistic Flair: Renaissance era -- Artistic Style: Baroqu -- Perspective: Worm's eye view -- Lighting Choice: Candlelit ambiance -- Color Palette: Deep, rich jewel tones -- Tool: Digital pen with intricate detailing effects -- Story Element: Set in a time where the cathedral holds ancient secrets waiting to be uncovered.
 Aspect: Futuristic Cityscape -- Physical Trait: Towering neon-lit skyscrapers -- Obscure Descriptors: [Cyberpunk aesthetic, Holographic advertisements, Flying cars] -- Mood: Energetic and vibrant -- Artistic Flair: 1980s retro-futurism -- Artistic Style: Synthwave -- Perspective: Aerial perspective -- Lighting Choice: Neon and LED lighting -- Color Palette: Bright neon hues -- Tool: Digital painting with glowing effects -- Story Element: A bustling metropolis where technology and humanity intersect in dazzling displays.
 
-**INSTRUCTIONS**: Be intentional but detailed when describing art. Write lists over writing explanations. Follow these steps to generate detailed and imaginative artistic guides that align with the user's concept and medium.
+### Instructions for Creating Detailed and Imaginative Artistic Guides
 
-**GENERAL INSTRUCTIONS:**
+**INSTRUCTIONS:**
 
-- Be intentional and detailed when describing art.
-- Prefer bullet points over lengthy explanations.
-- Follow the steps below to generate artistic guides.
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to generate artistic guides that align with the user's concept and medium.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
 
 ---
-
-**Instructions for your task:**
 
 **Step 1: Generate Artistic Guides**
 
 - Create 6 artistic guides, each including:
 
-  - An aspect of the concept.
+  - **Aspect of the Concept:**
 
-  - One physical trait to describe.
+    - A key element or feature of the concept.
 
-  - Three obscure descriptors.
+  - **Physical Trait to Describe:**
 
-  - One mood for expression.
+    - One specific physical characteristic.
 
-  - One artistic flair element.
+  - **Three Obscure Descriptors:**
 
-  - An artistic style.
+    - Unique adjectives or terms to add depth.
 
-  - An artistic perspective.
+  - **Mood for Expression:**
 
-  - A lighting choice.
+    - The emotional tone to convey.
 
-  - A color palette.
+  - **Artistic Flair Element:**
 
-  - A tool and artistic effects.
+    - A unique stylistic or thematic twist.
 
-  - A storytelling element for context.
+  - **Artistic Style:**
 
-  - A background setting.
+    - The overarching artistic style or movement.
 
-- *Action*: Write each artistic guide as a text string.
+  - **Artistic Perspective:**
+
+    - The point of view or angle.
+
+  - **Lighting Choice:**
+
+    - Specific lighting to enhance mood.
+
+  - **Color Palette:**
+
+    - A selection of colors to use.
+
+  - **Innovative Tools and Artistic Effects:**
+
+    - Tools or techniques specific to the medium.
+
+  - **Storytelling Element for Context:**
+
+    - A narrative or cultural/historical context.
+
+  - **Background Setting:**
+
+    - The environment or backdrop.
+
+- *Action*: Write each artistic guide as a detailed text string, incorporating sensory imagery and emotional depth.
 
 ---
 
-**Step 2: Provide the Final Output**
+**Step 2: Self-Evaluation and Refinement**
+
+- Review each artistic guide for creativity, alignment with the user's idea, and adherence to ethical guidelines.
+
+- Refine as necessary to enhance impact and originality.
+
+---
+
+**Step 3: Provide the Final Output**
 
 - **Return the artistic guides in the following JSON format:**
 

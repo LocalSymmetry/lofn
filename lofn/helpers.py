@@ -175,8 +175,8 @@ def get_step_name(process_name, step):
     return steps[process_name][step]
 
 def display_creativity_spectrum(creativity_spectrum):
-    labels = ['Grounded', 'Creative', 'Wild']
-    values = [creativity_spectrum['grounded'], creativity_spectrum['creative'], creativity_spectrum['wild']]
+    labels = ['literal', 'inventive', 'transformative']
+    values = [creativity_spectrum['literal'], creativity_spectrum['inventive'], creativity_spectrum['transformative']]
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # Blue, Orange, Green
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3, marker_colors=colors)])

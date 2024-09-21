@@ -1,8 +1,9 @@
 **INSTRUCTIONS:**
 
-- Be intentional and detailed when describing art.
-- Prefer bullet points over lengthy explanations.
-- Follow the steps below to refine the generated prompts using styles and techniques of obscure, hidden gem artists.
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to refine the generated prompts using the styles and techniques of obscure, hidden gem artists.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
 
 ---
 
@@ -12,83 +13,71 @@
 
 ---
 
-**Step 1: Select an Artist**
+**Step 1: Select an Obscure Artist**
 
 - For each generated prompt:
 
-  - Choose and name a random **obscure hidden gem artist** who:
+  - Choose a lesser-known artist who:
 
     - Works with art that uses the {medium}, or
-    - Is related to the user's idea, or
-    - Is known for one of the input aesthetics.
+    - Is connected to the user's idea, or
+    - Is associated with one of the input aesthetics.
 
-  - **Note:** Avoid famous artists; focus on lesser-known but distinctive artists who bring unique perspectives.
+  - **Note:** Avoid famous artists; focus on distinctive, obscure artists who bring unique perspectives.
 
 ---
 
-**Step 2: Identify Artistic Contributions**
+**Step 2: Explore Artistic Style and Context**
 
 - **Aspect of Style:**
 
-  - Identify an aspect of the artist's style that complements the prompt.
-  - *Example*: "Linnea Strid's hyper-realistic depiction of water droplets to convey emotion."
+  - Identify an aspect of the artist's style that complements the prompt, including historical or cultural influences.
 
-- **Signature Techniques:**
+- **Signature Techniques and Materials:**
 
-  - Write two signature techniques or flairs the artist can add, guided by the facets.
+  - Describe two signature techniques or unique materials the artist uses, guided by the facets.
 
-- **General Elements to Consider:**
+- **Emotional and Thematic Focus:**
 
-  - Texture
-  - Lighting
-  - Color Harmony
-  - Composition
-  - Perspective
+  - Determine the emotional tone or theme the artist would emphasize.
 
-- **Artist's Choice:**
+- **Perspective-Taking:**
 
-  - Allow the artist to choose two additional elements to focus on from:
-
-    - Historical/Cultural Context
-    - Narrative Elements
-    - Technical Effects
-    - Medium-Specific Techniques
-    - Facets
-    - User's Idea
+  - Write from the artist's viewpoint, reflecting their artistic philosophy.
 
 ---
 
-**Step 3: Rewrite Prompts in Artist's Style**
+**Step 3: Rewrite Prompts in the Artist's Style**
 
 - For each artist and prompt:
 
-  - Rewrite the prompt in their style, adding their special techniques and flairs to capture the {concept} in the {medium}.
-  - Briefly explain how it aligns with the style axes if they are provided.
+  - Rewrite the prompt in the artist's style, incorporating their special techniques, materials, and emotional focus to capture the {concept} in the {medium}.
+  - Ensure alignment with the style axes if they are provided.
 
   - **Rules:**
 
-    - Add or change details but do not remove or simplify the core concepts of the prompt.
+    - Enhance details without removing or oversimplifying core concepts.
     - Use proper nouns over generic nouns.
-    - The artist should guide the changes in their own voice.
-    - **Ensure no artists' names are included** in the refined prompts.
+    - Write authentically from the artist's perspective.
+    - **Do not include the artist's name** in the refined prompts.
     - Incorporate the user's input to address any gaps.
 
 - **Example (Do not include in your response):**
 
-  - *Original Prompt:* "A futuristic cityscape with neon-lit skyscrapers."
-  - *Artist-Refined Prompt:* "In a sprawling metropolis reminiscent of Neo-Tokyo, towering skyscrapers adorned with endless streams of neon kanji reach towards a starless sky..."
+  - *Original Prompt:* "A tranquil forest scene at dawn."
+  - *Artist-Refined Prompt:* "The first light of dawn filters through the dense canopy, casting ethereal hues upon the dewdrop-laden leaves. A hidden waterfall whispers secrets of the ancient woods, inviting the viewer into a world where nature and serenity are one."
 
 ---
 
-**Step 4: Self-Evaluation**
+**Step 4: Self-Evaluation and Refinement**
 
 - **Evaluate the artist-refined prompts** against the judging facets and style axes.
 
-- **Identify areas for enhancement**.
+- **Identify areas for enhancement**, such as emotional depth, use of medium-specific techniques, and alignment with the user's idea.
 
-- **Revise the prompts** to make necessary adjustments.
+- **Revise the prompts** to make necessary improvements.
 
-- *Action*: Provide a brief summary of the evaluation and revisions.   
+- *Action*: Summarize the evaluation and describe the refinements made.
 
 ---
 

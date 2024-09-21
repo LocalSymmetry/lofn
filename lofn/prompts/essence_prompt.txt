@@ -1,8 +1,9 @@
 **INSTRUCTIONS:**
 
-- Be intentional and detailed when analyzing the user's idea.
-- Prefer bullet points over lengthy explanations.
+- Be intentional, detailed, and insightful when analyzing the user's idea.
+- Use vivid, sensory language to enrich descriptions.
 - Follow the steps below to determine the essence and facets.
+- Adhere to ethical guidelines, avoiding disallowed content.
 
 ---
 
@@ -10,9 +11,17 @@
 
 - Assign percentages (totaling 100%) based on the user's idea:
 
-  1. **Grounded:** Realistic, literal interpretations.
-  2. **Creative:** Imaginative but plausible interpretations.
-  3. **Wild:** Abstract, fantastical, or surreal interpretations.
+  1. **Literal (%):**
+
+     - Realistic, direct interpretations closely tied to the input.
+
+  2. **Inventive (%):**
+
+     - Creative interpretations that add unique elements while remaining plausible.
+
+  3. **Transformative (%):**
+
+     - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
 
 - **Consider:**
 
@@ -25,34 +34,70 @@
 
 **Step 2: Assign Style Axes Values**
 
-- Assign a value from 0 to 100 for each style axis:
+- Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
 
-  - **Abstraction vs. Realism**
-  - **Emotional Valence**
-  - **Color Intensity**
-  - **Symbolic Density**
-  - **Compositional Complexity**
-  - **Textural Richness**
-  - **Symmetry vs. Asymmetry**
-  - **Novelty**
-  - **Figure-Ground Relationship**
-  - **Dynamic vs. Static**
+  - **Abstraction vs. Realism (Value):**
+
+    - *Example*: 30 - The artwork leans towards abstraction, focusing on shapes and forms rather than realistic depiction.
+
+  - **Emotional Valence (Value):**
+
+    - *Example*: 80 - The piece evokes strong positive emotions like joy and excitement.
+
+  - **Color Intensity (Value):**
+
+    - *Example*: 60 - The colors are moderately vibrant, striking a balance between muted and vivid.
+
+  - **Symbolic Density (Value):**
+
+    - *Example*: 50 - The artwork contains a moderate amount of symbolism alongside literal elements.
+
+  - **Compositional Complexity (Value):**
+
+    - *Example*: 70 - The composition is intricate with multiple interacting elements.
+
+  - **Textural Richness (Value):**
+
+    - *Example*: 40 - The textures are subtle, with smooth transitions.
+
+  - **Symmetry vs. Asymmetry (Value):**
+
+    - *Example*: 20 - The composition is largely asymmetrical, creating dynamic interest.
+
+  - **Novelty (Value):**
+
+    - *Example*: 90 - The artwork is highly innovative, introducing new concepts or styles.
+
+  - **Figure-Ground Relationship (Value):**
+
+    - *Example*: 60 - The main subject is somewhat blended with the background.
+
+  - **Dynamic vs. Static (Value):**
+
+    - *Example*: 75 - The scene conveys a strong sense of movement and energy.
 
 ---
 
 **Step 3: State the Essence**
 
-- Write the main essence of the idea in one concise sentence.
+- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language.
 
 ---
 
 **Step 4: Write Five Facets**
 
-- Identify five facets to judge if a proposed concept aligns with the idea.
+- Identify five facets to judge if a proposed concept aligns with the user's idea. Focus only on how the art will be judged without recommending artistic elements beyond the user's input.
 
 ---
 
-**Step 5: Provide the Final Output**
+**Step 5: Self-Evaluation and Refinement**
+
+- Review the essence and facets for alignment with the user's idea and the style axes.
+- Refine if necessary to enhance clarity and impact.
+
+---
+
+**Step 6: Provide the Final Output**
 
 - **Return the results in the following JSON format:**
 
@@ -60,9 +105,9 @@
   {{
     "essence_and_facets": {{
       "creativity_spectrum": {{
-        "grounded": 83.4,
-        "creative": 8.3,
-        "wild": 8.3
+        "literal": 83.4,
+        "inventive": 8.3,
+        "transformative": 8.3
       }},
       "essence": "The main essence of the idea",
       "facets": [

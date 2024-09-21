@@ -1,8 +1,9 @@
 **GENERAL INSTRUCTIONS:**
 
-- Be intentional and detailed when describing art.
-- Prefer bullet points over lengthy explanations.
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich descriptions.
 - Follow the steps below to generate facets for judging the prompt.
+- Adhere to ethical guidelines, avoiding disallowed content.
 
 ---
 
@@ -11,23 +12,31 @@
 **Step 1: Write Five Facets**
 
 - Identify five facets to judge if a proposed prompt aligns with the user's idea, the {concept}, and the {medium}.
-
-- *Action*: Write down the facets.
+- Incorporate sensory details and emotional resonance in each facet.
+- *Action*: Write down the facets as concise statements.
 
 ---
 
-**Step 2: Provide the Final Output**
+**Step 2: Self-Evaluation and Refinement**
+
+- Review the facets for alignment with the style axes and the essence of the concept.
+- Refine if necessary to enhance clarity and impact.
+- *Action*: Make any necessary adjustments to the facets.
+
+---
+
+**Step 3: Provide the Final Output**
 
 - **Return the facets in the following JSON format:**
 
   ```json
   {{
     "facets": [
-      "Facet 1",
-      "Facet 2",
-      "Facet 3",
-      "Facet 4",
-      "Facet 5"
+      "Facet 1 with sensory element.",
+      "Facet 2 with sensory element.",
+      "Facet 3 with sensory element.",
+      "Facet 4 with sensory element.",
+      "Facet 5 with sensory element."
     ]
   }}
   ```

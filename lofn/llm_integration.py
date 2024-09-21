@@ -403,9 +403,9 @@ def process_concepts(chains, input, essence, facets, max_retries, debug=False, s
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
-        "creativity_spectrum_wild": creativity_spectrum['wild'],
-        "creativity_spectrum_creative": creativity_spectrum['creative'],
-        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
     }, max_retries, debug)
     if parsed_output is None:
         st.error(f"Failed to process concepts")
@@ -419,9 +419,9 @@ def process_artist_and_refined_concepts(chains, input, essence, facets, concepts
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
-        "creativity_spectrum_wild": creativity_spectrum['wild'],
-        "creativity_spectrum_creative": creativity_spectrum['creative'],
-        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
         "concepts": [x['concept'] for x in concepts['concepts']]
     }, max_retries, debug)
     if parsed_output is None:
@@ -436,9 +436,9 @@ def process_mediums(chains, input, essence, facets, refined_concepts, max_retrie
         "facets": facets,
         "style_axes": style_axes,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']],
-        "creativity_spectrum_wild": creativity_spectrum['wild'],
-        "creativity_spectrum_creative": creativity_spectrum['creative'],
-        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
     }, max_retries, debug)
     if parsed_output is None:
         st.error(f"Failed to process mediums")
@@ -451,9 +451,9 @@ def process_refined_mediums(chains, input, essence, facets, mediums, artists, re
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
-        "creativity_spectrum_wild": creativity_spectrum['wild'],
-        "creativity_spectrum_creative": creativity_spectrum['creative'],
-        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
@@ -470,9 +470,9 @@ def process_shuffled_review(chains, input, essence, facets, mediums, artists, re
         "essence": essence,
         "facets": facets,
         "style_axes": style_axes,
-        "creativity_spectrum_wild": creativity_spectrum['wild'],
-        "creativity_spectrum_creative": creativity_spectrum['creative'],
-        "creativity_spectrum_grounded": creativity_spectrum['grounded'],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": review_artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]

@@ -37,7 +37,6 @@ import fastapi_poe as fp
 from modal import Image, Stub, asgi_app
 import asyncio
 from typing import AsyncIterable, List, Optional
-import fastapi_poe as fp
 from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import HumanMessage
 from typing import Any, Dict, List, Optional
@@ -977,7 +976,7 @@ def get_image_with_retry(image_url, concept, medium, prompt):
 @st.cache_data(persist=True)
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
     # o1 takes forever.
-    if model[0] == 'o':
+    if model[0] in ['o', 'P']:
         inner_model = 'gpt-4o-mini'
     else:
         inner_model = model
@@ -1019,25 +1018,6 @@ def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
-def extract_json_from_text(output):
-    # List of potential JSON patterns
-    patterns = [
-        r"'text':\s*'(json\n)?(.*?)'?\s*}$",  # Original pattern
-        r'```json\n(.*?)```',  # Code block format
-        r'json\s*(\{.*\})',  # JSON prefixed with "json"
-        r'json\n\s*(\{.*\})',  # JSON prefixed with "json\n"       
-        r'\{.*\}'  # Any JSON-like structure
-    ]
-    
-    for pattern in patterns:
-        matches = re.findall(pattern, output, re.DOTALL)
-        if matches:
-            # If it's a tuple (from capturing groups), join all parts
-            if isinstance(matches[0], tuple):
-                return ''.join(matches[0])
-            return matches[0]
-    
-    return None
 
 def repair_json(json_string):
     try:
@@ -2117,7 +2097,7 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
 
 def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
     # O1 takes too, long, if they want o1, use gpt-4o.
-    if model[0] == 'o':
+    if model[0] in ['o', 'P']:
         inner_model = 'gpt-4o-mini'
     else: 
         inner_model = model
@@ -2382,7 +2362,7 @@ st.session_state['style_axes'] = style_axes
 st.sidebar.header('Image Generation Settings')
 
 poe_models = [
-    "Poe-Gemini-1.5-Pro-128k", "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
+    "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k", "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
     "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
     "Poe-Mistral-Large-2-128k", 
     "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",

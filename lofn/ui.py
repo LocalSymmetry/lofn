@@ -166,9 +166,9 @@ class LofnApp:
                 # Creativity Spectrum
                 st.subheader("Adjust Creativity Spectrum")
                 st.session_state['creativity_spectrum'] = {
-                    "grounded": st.slider("Grounded", 0, 100, 33),
-                    "creative": st.slider("Creative", 0, 100, 33),
-                    "wild": st.slider("Wild", 0, 100, 34),
+                    "literal": st.slider("Literal", 0, 100, 33),
+                    "inventive": st.slider("Inventive", 0, 100, 33),
+                    "transformative": st.slider("Transformative", 0, 100, 34),
             }
             else:
                 st.session_state['creativity_spectrum'] = None
