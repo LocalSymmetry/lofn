@@ -1,208 +1,721 @@
 # Lofn AI Art Generator
 
-Lofn is an open-source AI art generator that utilizes advanced natural language processing and image generation techniques to create unique and compelling artwork. It stands out from other AI art generators through its innovative use of Tree of Thoughts prompting and a critic/artist refinement methodology.
+Lofn is an open-source advanced AI art generator that utilizes cutting-edge natural language processing and image generation techniques to create unique and compelling artwork. It determines the subject, the art style, the presentation, generates the images, titles the images, creates an instagram post with hashtags, and generates SEO keywords! By leveraging a sophisticated Tree of Thoughts prompting approach and an innovative critic/artist refinement methodology, Lofn produces art that is both emotionally resonant and visually captivating.
+
+![License](https://img.shields.io/badge/license-Apache%202.0-blue)
+![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
 ## Table of Contents
+
+- [Key Features](#key-features)
 - [Installation](#installation)
   - [Docker](#docker)
+- [Getting Started](#getting-started)
 - [Usage](#usage)
 - [What Makes Lofn Unique](#what-makes-lofn-unique)
   - [Tree of Thoughts Prompting](#tree-of-thoughts-prompting)
   - [Critic/Artist Refinement Methodology](#criticartist-refinement-methodology)
-  - [Backend Infrastructure](#backend-infrastructure)
+  - [Style Personalization with Style Axes and Creativity Spectrum](#style-personalization-with-style-axes-and-creativity-spectrum)
+  - [Extensive Language Model Support](#extensive-language-model-support)
+  - [Advanced Image and Video Generation Capabilities](#advanced-image-and-video-generation-capabilities)
+  - [Discord Integration](#discord-integration)
 - [Awards and Recognition](#awards-and-recognition)
 - [Examples](#examples)
+- [Comparison of Language Model Outputs](#comparison-of-language-model-outputs)
+- [Lofn's Prompt Structure and Process Steps](#lofns-prompt-structure-and-process-steps)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Key Features
+
+- **Tree of Thoughts Prompting**: Enables strategic exploration and generation of ideas.
+- **Critic/Artist Refinement Methodology**: Allows iterative improvement of generated artwork.
+- **Style Personalization**: Customize your art with style axes and creativity spectrum adjustments.
+- **Extensive Language Model Support**: Choose from a wide range of language models, including GPT-4, Claude, Gemini, and more.
+- **Advanced Image and Video Generation**: Supports multiple image models and integrates with Runway Gen-3 Alpha for video generation.
+- **Discord Integration**: Send generated prompts directly to a Discord channel for seamless use with platforms like Midjourney.
+- **Ethical AI Art Generation**: Incorporates guidelines to ensure ethically generated content respecting cultural sensitivities.
 
 ## Installation
 
 To set up Lofn, follow these steps:
 
-1. Clone the Lofn repository:
-```bash
-git clone https://github.com/LocalSymmetry/lofn.git
-```
+1. **Clone the Lofn repository**:
 
-2. Navigate to the project directory:
-```bash
-cd lofn
-```
+   ```bash
+   git clone https://github.com/LocalSymmetry/lofn.git
+   ```
 
-3. Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
+2. **Navigate to the project directory**:
 
-4. Set up your API keys for the necessary services (e.g., OpenAI, Anthropic) in the `config.yaml` file.
+   ```bash
+   cd lofn
+   ```
 
-5. Run the Lofn UI:
-```bash
-streamlit run lofn_ui.py
-```
+3. **Set up your API keys**:
+
+   - Copy the provided `config.yaml` template:
+
+     ```bash
+     cp lofn/config.yaml.example lofn/config.yaml
+     ```
+
+   - Fill in your API keys for the necessary services (e.g., OpenAI, Anthropic, Google, Poe, Discord) in the `config.yaml` file.
+
+4. **Build the Docker image**:
+
+   ```bash
+   docker build -t lofn .
+   ```
+
+5. **Run the Docker container**:
+
+   ```bash
+   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata lofn
+   ```
+
+6. **Access the Lofn UI**:
+
+   Open your web browser and navigate to `http://localhost:8501`.
+
+**Note**: Ensure that you have Docker installed and running on your system.
 
 ### Docker
 
-Alternatively, you can use Docker to run Lofn:
+Alternatively, you can use the provided `Dockerfile` and `entrypoint.sh` scripts to containerize Lofn for consistent deployment across environments.
 
-1. Build the Docker image:
-```bash
-docker build -t lofn .
-```
+## Getting Started
 
-2. Run the Docker container:
-```bash
-docker run -p 8501:8501 -v /path/to/local/images:/images -v /path/to/local/videos:/videos -v /path/to/local/metadata:/metadata lofn
-```
+1. **Launch Lofn**:
 
-3. Access the Lofn UI by opening `http://localhost:8501` in your web browser.
+   - After installation, start Lofn using the provided Docker commands or your desired setup.
+
+2. **Access the UI**:
+
+   - Navigate to `http://localhost:8501` in your web browser.
+
+3. **Begin Creating Art**:
+
+   - Follow the usage instructions below to start generating art with Lofn.
 
 ## Usage
 
-1. Open the Lofn UI in your web browser.
+1. **Open the Lofn UI in your web browser**.
 
-![Lofn UI 1](examples/lofn_ui_1.png)
+   ![Lofn UI 1](examples/lofn_ui_1.png)
 
-Enter your idea or concept in the text area provided. In this example, the user has entered "I want to capture the essence of a mysterious and powerful witch's familiar."
+   Enter your idea or concept in the text area provided. For example, "I want to capture the essence of a mysterious and powerful witch's familiar."
 
-2. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode. Then, click the "Generate Concepts" button to generate concept and medium pairings.
+2. **Adjust the settings in the sidebar**.
 
-![Lofn UI 2](examples/lofn_ui_2.png)
+   - **Language Model**: Select from a wide range of language models, including GPT-4, Claude, Gemini, and more.
+   - **Image Generation Settings**: Choose the image model and adjust parameters such as image size, number of images, and more.
+   - **Style Personalization**: Customize the style axes and creativity spectrum to influence the artistic output.
+   - **Discord Integration**: Enable and configure if you wish to send prompts to a Discord channel.
 
-The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 5.
+3. **Generate Concepts**.
 
-3. Click the "Generate Image Prompts" button to generate image generator prompts for the selected pairs. If Use DALL-E 3 checkbox is selected, the iamges are automatically generated and titles are created for competition submissions.
+   Click the **"Generate Concepts"** button to initiate the concept generation process. Lofn will generate a set of concepts and mediums based on your input.
 
-![Lofn UI 3](examples/lofn_ui_3.png)
+   ![Lofn UI 2](examples/lofn_ui_2.png)
 
-The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with Midjourney, DALL-E, or any other image generator to create your artwork.
+4. **Select Concepts and Generate Prompts**.
 
-### DALL-E 3 Integration
+   Review the generated concepts and mediums. Select the ones you wish to explore further. Then, click **"Generate Image Prompts for Selected Concepts"** to create detailed prompts suitable for AI image generation.
 
-Lofn also generates prompts that can be used with DALL-E 3. After generating the Midjourney prompts, you will find a section with the DALL-E 3 prompt. Copy this prompt and paste it into ChatGPT or any other platform that supports DALL-E 3 to generate your artwork.
+   ![Lofn UI 3](examples/lofn_ui_3.png)
 
-![Lofn UI ChatGPT](examples/lofn_ui_chatgpt.png)
+5. **View and Use the Generated Prompts**.
 
-The screenshot above shows how you can directly paste the generated code into ChatGPT to create your artwork using DALL-E 3.
+   The UI will display the generated prompts for the selected concept and medium pairs. You can use these prompts with image generation platforms like Midjourney, DALL·E, or any other compatible service.
 
-#### Toggling Diversity in DALL-E 3 Prompts
+   ![Lofn UI 4](examples/lofn_ui_4.png)
 
-Lofn provides an option to toggle the inclusion of diversity-related prompts in the generated DALL-E 3 prompts. By default, diversity is enabled, but you can turn it off if desired.
+6. **Generate Images**.
 
-To toggle diversity in DALL-E 3 prompts:
+   Lofn can generate images directly if you have configured the image generation settings accordingly. The images will be displayed in the UI and saved to your specified output directory.
 
-1. Locate the "Enable Diversity" checkbox in the Lofn UI sidebar.
-2. Check or uncheck the box to enable or disable diversity in the generated DALL-E 3 prompts.
+   ![Lofn UI 5](examples/lofn_ui_5.png)
 
-When diversity is enabled, Lofn incorporates prompts that encourage the inclusion of diverse elements, such as varying skin tones, cultural references, and representation of different groups. Disabling diversity will generate DALL-E 3 prompts without these specific diversity-related elements.
+7. **Review Generated Content**.
 
-### Discord Integration
+   - View the generated images, titles, Instagram captions, and SEO keywords.
+   - Optionally, generate video prompts compatible with Runway Gen-3 Alpha.
 
-Lofn can send the generated prompts directly to a Discord channel using webhooks, making it easy to use with Midjourney.
-
-![Lofn UI Discord](examples/lofn_ui_discord.png)
-
-To set up Discord integration:
-
-1. Create a webhook in your Discord server settings.
-2. Copy the webhook URL.
-3. Paste the webhook URL in the "Discord Webhook URL" field in the Lofn UI sidebar.
-4. Enable the "Send to Discord" option.
-
-Alternately you can set the `WEBHOOK_URL:` field in `lofn/config.yaml`
-
-Now, when you generate prompts, they will be automatically sent to your specified Discord channel, allowing you to easily use them with Midjourney.
+   ![Lofn UI 5](examples/lofn_ui_6.png)
 
 ## What Makes Lofn Unique
 
 ### Tree of Thoughts Prompting
 
-Lofn utilizes a Tree of Thoughts (ToT) prompting approach, which enables the AI to explore and generate ideas in a more strategic and coherent manner. By maintaining a tree of thoughts, where each thought represents an intermediate step towards solving the problem, Lofn can self-evaluate its progress and make informed decisions during the art generation process.
+Lofn utilizes a Tree of Thoughts (ToT) prompting approach, enabling the AI to explore and generate ideas in a strategic and coherent manner. By maintaining a tree structure of intermediate thoughts, Lofn self-evaluates its progress and makes informed decisions during the art generation process.
 
 ### Critic/Artist Refinement Methodology
 
-Lofn incorporates a critic/artist refinement methodology to iteratively improve the generated artwork. The AI takes on the roles of both the critic and the artist, critiquing the generated artwork based on predefined criteria and then refining it based on the feedback. This process allows Lofn to create more sophisticated and polished artwork compared to other AI art generators.
+Lofn incorporates a critic/artist refinement methodology for iterative improvement of generated artwork. The AI assumes both critic and artist roles, critiquing the generated content based on predefined criteria and refining it accordingly. This results in more sophisticated and polished artwork compared to single-pass generation methods.
 
-### Backend Infrastructure
+### Style Personalization with Style Axes and Creativity Spectrum
 
-Lofn supports both OpenAI and Anthropic's Claude as backend infrastructure for natural language processing. This flexibility allows users to choose their preferred AI model based on their requirements and available resources.
+Customize your art with Lofn's style personalization features. The **Style Axes** and **Creativity Spectrum** allow you to fine-tune the artistic output to match your vision.
+
+#### Style Axes
+
+The Style Axes control various aspects of the artwork's style, each ranging from 0 to 100:
+
+1. **Abstraction vs. Realism**: Controls the level of abstraction in the artwork.
+2. **Emotional Valence**: Adjusts the emotional tone from negative to positive.
+3. **Color Intensity**: Determines the vibrancy of colors.
+4. **Symbolic Density**: Varies the use of symbolism versus literal representation.
+5. **Compositional Complexity**: Sets the intricacy of the composition.
+6. **Textural Richness**: Influences the richness of textures.
+7. **Symmetry vs. Asymmetry**: Balances symmetrical and asymmetrical elements.
+8. **Novelty**: Adjusts the level of originality and innovation.
+9. **Figure-Ground Relationship**: Controls the distinction between main subjects and background.
+10. **Dynamic vs. Static**: Determines the sense of movement in the artwork.
+
+By adjusting these axes, you can guide the AI to produce art that aligns with specific stylistic preferences.
+
+#### Creativity Spectrum
+
+The Creativity Spectrum allows you to set the balance between different levels of creative interpretation:
+
+- **Literal (%):** Realistic, direct interpretations closely tied to the input.
+- **Inventive (%):** Creative interpretations that add unique elements while remaining plausible.
+- **Transformative (%):** Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+The percentages should total 100%, distributing the focus among these creative levels. This spectrum guides the AI in generating concepts and prompts that match your desired level of creativity.
+
+### Extensive Language Model Support
+
+Lofn supports a wide range of language models, allowing you to select the one that best suits your needs. Supported models include:
+
+- **OpenAI models**: GPT-4, GPT-3.5-turbo, GPT-4o, and more.
+- **Anthropic's Claude models**: Claude 3.5 Sonnet, Claude 3.5 Opus, among others.
+- **Google's Gemini models**: Gemini 1.5 Pro, Gemini 1.5 Flash.
+- **Poe models**: Diverse models accessible via the Poe API.
+- **o1-mini** and other specialized models.
+
+This flexibility lets you leverage the strengths of different models for varied outputs. Each model may offer unique styles and nuances in the generated content.
+
+### Advanced Image and Video Generation Capabilities
+
+Lofn provides extensive image generation options:
+
+- **Image Models Supported**:
+
+  - **DALL·E 3**
+  - **Ideogram**
+  - **FAL models** (`fal-ai/flux-pro`, `fal-ai/fast-sdxl`, etc.)
+  - **Poe-integrated image models**
+
+- **Runway Gen-3 Alpha Integration**:
+
+  Generate detailed prompts compatible with Runway's Gen-3 Alpha video generation model, enabling the creation of high-fidelity, cinematic videos based on your concepts.
+
+### Discord Integration
+
+Lofn can send generated prompts directly to a Discord channel using webhooks, making it easy to use with platforms like Midjourney. Configure your webhook URL in the settings, and Lofn will handle the rest.
 
 ## Awards and Recognition
 
 Lofn has received notable recognition in the AI art community:
 
-- **First Place** in the Whirl Daily Art Competition
+- **First Place** in the Whirl Daily Art Competition.
 
-[![First Place Winner - Only this and nothing more - Prompt: Edgar Allen Poe](examples/Only%20this%20and%20nothing%20more%20-%20Edgar%20Allen%20Poe.jpeg)](https://www.joinwhirl.com/posts/21652635719009)
+  ![First Place Winner - Only this and nothing more - Prompt: Edgar Allan Poe](examples/Only%20this%20and%20nothing%20more%20-%20Edgar%20Allen%20Poe.jpeg)
 
-- **Top 20** in multiple AI art competitions
+- **Second Place** in Whirl's Discord Art Challenge.
 
-[![Top 20 Entry - It's time - Prompt: Death](examples/It%27s%20time%20-%20Death.png)](https://joinwhirl.com/posts/23244883132167)
+  ![Second Place - A Victorian Chrononaut - Journeys to the Past](examples/2nd_A%20Victorian%20Chrononaut_JourneysToThePast.png)
 
-[![Top 20 Entry - Held Aloft - Prompt: Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)](https://joinwhirl.com/posts/62648273359633)
+- **Top 20** in multiple AI art competitions:
 
-[![Top 20 Entry - The radiant sea - Prompt: Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)](https://joinwhirl.com/posts/83901911448650)
+  - ["Dangerous Bap Target" - Biomechanical Creature](examples/Top20_DangerousBapTarget_BiomechanicalCreature.jpeg)
 
-[![Top 20 Entry - The fluffiest kaiju - Prompt: Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)](https://joinwhirl.com/posts/54675674792260)
+  - ["🦎👑" - Lizard King](examples/Top20_%F0%9F%A6%8E%F0%9F%91%91_LizardKing.png)
+
+  - ["🫰" - Light Painting](examples/Top20_%F0%9F%AB%B0_LightPainting.png)
+
+  - ["It's time" - Death](examples/It%27s%20time%20-%20Death.png)
+
+  - ["Held Aloft" - Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)
+
+  - ["The radiant sea" - Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)
+
+  - ["The fluffiest kaiju" - Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)
 
 ## Examples
 
-Here are a few examples showcasing Lofn's refinement process. Both examples were generated by Lofn from the input "I want to capture the essence of a mysterious and powerful witch's familiar." All images generated with DALL-E 3:
+Below are examples showcasing Lofn's refinement process, generated from the input "I want to capture the essence of a mysterious and powerful witch's familiar." All images were generated using DALL·E 3.
 
-### Concept: A sleek black cat with an ethereal aura, its emerald eyes gleaming with ancient wisdom as it guards an open grimoire, eldritch symbols glowing faintly on the pages, Medium: Tenebrous oil painting with a rich, dark palette and dramatic chiaroscuro lighting that casts enigmatic shadows
+### Concept: A sleek black cat with an ethereal aura, its emerald eyes gleaming with ancient wisdom as it guards an open grimoire, eldritch symbols glowing faintly on the pages.
 
-![Cat Familiar First Attempt](examples/FirstPassCatFamiliar.png)
-*Original Brainstorm Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat's emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire's sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat's phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of sfumato, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
+**Medium**: Tenebrous oil painting with a rich, dark palette and dramatic chiaroscuro lighting that casts enigmatic shadows.
 
-![Cat Familiar Artist Refined](examples/RevisedCatFamiliar.png)
-*Artist Refined Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat’s emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire’s sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat’s phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of biomechanical surrealism, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
+![Cat Familiar Final](examples/FinalCatFamiliar.png)
 
-![Cat Familiar Final Prompt](examples/FinalCatFamiliar.png)
-*Critic Refined Prompt:* In a surreal Tenebrist oil painting, a sleek black cat with stygian fur and obsidian eyes, its form an amalgamation of swirling shadows and ethereal wisps, stands sentinel over an ancient grimoire bound in eldritch flesh, the pages adorned with arcane, esoteric symbols emanating an eerie, incandescent glow. The mysterious and foreboding atmosphere is heightened by the tilted, angled perspective and focused, directional lighting that casts enigmatic shadows. The rich, dark palette, punctuated by the faintly glowing symbols rendered with impasto and sgraffito techniques, creates an air of ancient wisdom and unsettling secrets. 
+*Final Prompt:* In a surreal Tenebrist oil painting, a sleek black cat with stygian fur and obsidian eyes, its form an amalgamation of swirling shadows and ethereal wisps, stands sentinel over an ancient grimoire bound in eldritch flesh, the pages adorned with arcane, esoteric symbols emanating an eerie, incandescent glow. The mysterious and foreboding atmosphere is heightened by the tilted, angled perspective and focused, directional lighting that casts enigmatic shadows. The rich, dark palette, punctuated by the faintly glowing symbols rendered with impasto and sgraffito techniques, creates an air of ancient wisdom and unsettling secrets.
 
-### Concept: A spectral wolf with a pelt of swirling mist and glowing runes pulsing in rhythm with its heartbeat, its piercing gaze able to penetrate the deepest shadows and unravel secrets, Medium: Otherworldly sculptural piece forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist
+### Concept: A spectral wolf with a pelt of swirling mist and glowing runes pulsing in rhythm with its heartbeat, its piercing gaze able to penetrate the deepest shadows and unravel secrets.
 
-![Wolf Familiar First Attempt](examples/FirstPassWolfFamiliar.png)
-*Original Brainstorm Prompt:* In the ethereal wisps of smoke sculpture, a spectral wolf emerges, its pelt a phantasmagorical swirl of gossamer mist adorned with luminescent runes etched in a diaphanous glow. The wolf's piercing gaze penetrates the deepest shadows, unraveling secrets in an enigmatic and arcane atmosphere. This otherworldly sculptural piece is forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist, captured in the style of Mystic Futurism. Eldritch bioluminescence illuminates the scene, casting a spectral noir palette across the wolf's ethereal form.
+**Medium**: Otherworldly sculptural piece forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist.
 
-![Wolf Familiar Artist Refined](examples/RevisedWolfFamiliar.png)
-*Artist Refined Prompt:* In the ethereal wisps of phantasmal fog, a spectral wolf emerges, its pelt a gossamer swirl of luminescent mist adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with the soul-penetrating intensity of dystopian surrealism, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with the biomechanical intricacy of futuristic alien designs, pulses with arcane energy and is wreathed in tendrils of mist, captured in the haunting chiaroscuro of Rembrandt's tenebrism. An ominous and foreboding atmosphere permeates the scene, illuminated by the eerie glow of bioluminescent fungi, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with the intricate engraving techniques, while the swirling mist is enhanced by the sfumato effect.
+![Wolf Familiar Final](examples/FinalWolfFamiliar.png)
 
-![Wolf Familiar Final Prompt](examples/FinalWolfFamiliar.png)
-*Critic Refined Prompt:* A spectral wolf emerges from swirling phantasmal mist, its pelt adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with soul-penetrating intensity, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with biomechanical intricacy, pulses with arcane energy and is wreathed in tendrils of mist, captured in haunting chiaroscuro. An ominous and foreboding atmosphere permeates the scene, illuminated by an eerie glow, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with intricate engravings, while the swirling mist is enhanced by a sfumato effect. 
+*Final Prompt:* A spectral wolf emerges from swirling phantasmal mist, its pelt adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with soul-penetrating intensity, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with biomechanical intricacy, pulses with arcane energy and is wreathed in tendrils of mist, captured in haunting chiaroscuro. An ominous and foreboding atmosphere permeates the scene, illuminated by an eerie glow, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with intricate engravings, while the swirling mist is enhanced by a sfumato effect.
 
-### Comparative Example
+These examples demonstrate how Lofn's iterative refinement process leads to highly detailed and evocative prompts, resulting in compelling artwork.
 
-The prompts below were generated by the DALL-E GPT when given the input "I want to capture the essence of a mysterious and powerful witch's familiar." 
+## Comparison of Language Model Outputs
 
-![DALL-E GPT](examples/dallefamiliar.png)
+Lofn supports multiple language models, each with unique characteristics and styles. Below, we compare outputs using the "witch's familiar" example across different language models and image generators.
 
-*DALL-E GPT Prompt 1:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
+### Test Input
 
-*DALL-E GPT Prompt 2:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
+- **User's Idea**: "I want to capture the essence of a mysterious and powerful witch's familiar."
 
+### Language Models Tested
 
-### Distinguishing Features
+- **GPT-4**
+- **Claude 3.5 Sonnet**
+- **Gemini 1.5 Pro**
+- **o1-mini**
 
-1. **Consistency**: Lofn's Tree of Thoughts prompting ensures that the generated artwork maintains a consistent theme and style throughout the creation process. In contrast, other AI art generators may produce artwork with inconsistent or unrelated elements.
+### Image Generators Tested
 
-2. **Refinement**: Lofn's critic/artist refinement methodology allows for iterative improvements to the generated artwork. Other AI art generators often produce a single output without the ability to refine or enhance it further.
+- **DALL·E 3**
+- **Midjourney**
+- **Ideogram**
+- **Flux**
+- **Playground 2.5**
+- **Auroa**
+- **StableDiffusion3**
 
-3. **Customization**: Lofn provides users with more control over the art generation process through its extensive settings and options. Users can fine-tune the generation process to align with their specific preferences and requirements. This includes the ability to toggle diversity in the generated DALL-E 3 prompts and access to a competition mode that generates prompts tailored for AI art competitions.
+### Observations
 
-4. **Originality**: Lofn's unique combination of Tree of Thoughts prompting and critic/artist refinement results in more original and creative artwork compared to other AI art generators that rely on predefined styles or templates.
+- **Language Model Differences**: Each language model brings its own nuances to the generated prompts. GPT-4 may provide more detailed and context-aware prompts, while others may excel in creativity or stylistic diversity.
+- **Image Generator Variations**: Different image generators interpret prompts uniquely. Comparing outputs helps identify which combination best suits specific artistic goals.
+- **Impact of Style Axes and Creativity Spectrum**: Adjusting these settings can lead to significant variations in the outputs, even with the same language model and image generator.
+
+## Lofn's Prompt Structure and Process Steps
+
+Lofn employs a multi-stage process to generate artwork based on user input. Each stage involves specific prompts and outputs that build upon each other to create a refined and compelling piece of art. Below is a detailed breakdown of each step in the process, including the inputs provided, the tasks performed, and the expected outputs.
+
+### Overview of the Process
+
+1. **Essence and Facets Determination**
+2. **Concept Generation**
+3. **Artist and Concept Refinement**
+4. **Medium Selection**
+5. **Refined Medium and Concept Review**
+6. **Facets for Prompt Generation**
+7. **Artistic Guides Creation**
+8. **Image Prompt Generation**
+9. **Artist-Refined Prompt**
+10. **Prompt Revision and Synthesis**
+11. **Title and Caption Generation (Optional)**
+12. **Image Generation**
+
+Each of these steps involves specific prompts that guide the AI in generating the desired outputs.Each of these steps involves specific prompts that guide the AI in generating the desired outputs.
+
+---
+
+#### 1. Essence and Facets Determination
+
+**Input:**
+
+- **User's Idea**: A text description of what the user wants to capture in the artwork.
+
+**Process:**
+
+- The AI analyzes the user's idea to extract the core essence and facets.
+- Determines the **Creativity Spectrum** percentages (Literal, Inventive, Transformative) based on the idea's complexity and openness to interpretation.
+- Assigns values (0-100) to the **Style Axes**.
+
+**Expected Output:**
+
+- A JSON object containing:
+  - **Essence**: A concise, emotionally resonant sentence capturing the main idea.
+  - **Facets**: Five aspects to judge the alignment of future concepts and prompts with the user's idea.
+  - **Creativity Spectrum**: Percentages for Literal, Inventive, and Transformative interpretations.
+  - **Style Axes**: Values for each of the ten style axes.
+
+**Example:**
+
+```json
+{
+  "essence_and_facets": {
+    "essence": "The mysterious bond between a witch and her powerful familiar.",
+    "facets": [
+      "Mystery and intrigue",
+      "Magical elements",
+      "Emotional connection",
+      "Power and strength",
+      "Enigmatic atmosphere"
+    ],
+    "creativity_spectrum": {
+      "literal": 50,
+      "inventive": 30,
+      "transformative": 20
+    },
+    "style_axes": {
+      "Abstraction vs. Realism": 40,
+      "Emotional Valence": 70,
+      "Color Intensity": 60,
+      "Symbolic Density": 50,
+      "Compositional Complexity": 65,
+      "Textural Richness": 75,
+      "Symmetry vs. Asymmetry": 30,
+      "Novelty": 80,
+      "Figure-Ground Relationship": 55,
+      "Dynamic vs. Static": 60
+    }
+  }
+}
+```
+
+---
+
+#### 2. Concept Generation
+
+**Input:**
+
+- **Essence and Facets** from Step 1.
+- **User's Idea**.
+
+**Process:**
+
+- Generates 12 unique concepts that align with the essence, facets, and creativity spectrum.
+- Utilizes creative thinking techniques and considers cultural and historical contexts.
+- Ensures concepts are distributed according to the creativity spectrum percentages.
+
+**Expected Output:**
+
+- A JSON array of concepts:
+
+```json
+{
+  "concepts": [
+    {"concept": "A black cat with piercing green eyes sitting on a spellbook."},
+    {"concept": "An owl with feathers made of stardust hovering over a cauldron."},
+    // ...10 more concepts
+  ]
+}
+```
+
+---
+
+#### 3. Artist and Concept Refinement
+
+**Input:**
+
+- **Concepts** from Step 2.
+- **Essence, Facets, Style Axes**, and **Creativity Spectrum**.
+
+**Process:**
+
+- Selects obscure artists whose styles align with each concept.
+- For each concept, the AI:
+  - Identifies specific aspects of the artist's style that complement the concept.
+  - Writes a critique using the artist's perspective.
+  - Refines the concept based on the critique, ensuring alignment with style axes.
+
+**Expected Output:**
+
+- A JSON object containing:
+  - **Artists**: List of selected artists.
+  - **Refined Concepts**: The refined version of each concept.
+
+```json
+{
+  "artists": [
+    {"artist": "Obscure Artist 1"},
+    {"artist": "Obscure Artist 2"},
+    // ...more artists
+  ],
+  "refined_concepts": [
+    {"refined_concept": "A shadowy fox with luminous eyes weaving through misty woods, symbolizing stealth and wisdom."},
+    // ...more refined concepts
+  ]
+}
+```
+
+---
+
+#### 4. Medium Selection
+
+**Input:**
+
+- **Refined Concepts** from Step 3.
+- **Essence, Facets, Style Axes**, and **Creativity Spectrum**.
+
+**Process:**
+
+- Selects relevant and innovative art mediums for each refined concept.
+- Considers both highly relevant and unconventional aesthetics.
+- Ensures the mediums enhance the emotional and thematic elements of the concepts.
+
+**Expected Output:**
+
+- A JSON array of mediums:
+
+```json
+{
+  "mediums": [
+    {"medium": "Chiaroscuro oil painting with rich textures and deep contrasts"},
+    // ...more mediums
+  ]
+}
+```
+
+---
+
+#### 5. Refined Medium and Concept Review
+
+**Input:**
+
+- **Refined Concepts** and **Mediums** from previous steps.
+- **Artists**.
+
+**Process:**
+
+- Critiques the initial medium choices for alignment with the concepts.
+- Brainstorms enhanced medium ideas.
+- Refines mediums to optimize visual impact, uniqueness, and alignment with style axes.
+
+**Expected Output:**
+
+- A JSON object containing:
+  - **Refined Concepts**: Potentially further refined concepts.
+  - **Refined Mediums**: The refined mediums for each concept.
+
+```json
+{
+  "refined_concepts": [
+    {"refined_concept": "A spectral wolf emerging from swirling mist, runes glowing along its ethereal form."},
+    // ...more refined concepts
+  ],
+  "refined_mediums": [
+    {"refined_medium": "Ethereal digital illustration with luminescent highlights and soft gradients"},
+    // ...more refined mediums
+  ]
+}
+```
+
+---
+
+#### 6. Facets for Prompt Generation
+
+**Input:**
+
+- **Refined Concept** and **Medium** for the selected concept.
+
+**Process:**
+
+- Identifies five facets to ensure image prompts align with the concept and medium.
+- Incorporates sensory details and emotional resonance.
+
+**Expected Output:**
+
+- A JSON array of facets:
+
+```json
+{
+  "facets": [
+    "The mystical atmosphere of the scene",
+    "The interplay of light and shadow",
+    "The ethereal qualities of the familiar",
+    "The connection between the witch and the familiar",
+    "The depiction of ancient wisdom"
+  ]
+}
+```
+
+---
+
+#### 7. Artistic Guides Creation
+
+**Input:**
+
+- **Refined Concept**, **Medium**, and **Facets**.
+
+**Process:**
+
+- Creates six detailed **Artistic Guides**.
+- Each guide includes aspects like mood, artistic flair, style, perspective, lighting, color palette, tools, and storytelling elements.
+- Uses vivid, sensory-rich language.
+
+**Expected Output:**
+
+- A JSON array of artistic guides:
+
+```json
+{
+  "artistic_guides": [
+    {"artistic_guide": "A close-up of the familiar's eyes reflecting swirling galaxies, emphasizing its ancient wisdom."},
+    // ...more guides
+  ]
+}
+```
+
+---
+
+#### 8. Image Prompt Generation
+
+**Input:**
+
+- **Artistic Guides** from Step 7.
+- **Style Axes**, **Facets**, **Refined Concept**, **Medium**, and **User's Idea**.
+
+**Process:**
+
+- Crafts concise yet detailed image generator prompts for each artistic guide.
+- Ensures prompts are suitable for AI image generation.
+- Aligns with style axes and avoids disallowed content.
+
+**Expected Output:**
+
+- A JSON array of image generation prompts:
+
+```json
+{
+  "image_gen_prompts": [
+    {"image_gen_prompt": "An ethereal digital illustration of a spectral wolf with glowing runes, emerging from misty woods illuminated by moonlight."},
+    // ...more prompts
+  ]
+}
+```
+
+---
+
+#### 9. Artist-Refined Prompt
+
+**Input:**
+
+- **Image Generation Prompts** from Step 8.
+- **Style Axes**, **Facets**, **Refined Concept**, **Medium**, and **User's Idea**.
+
+**Process:**
+
+- Selects obscure artists to further refine the prompts.
+- Rewrites prompts in the artists' styles, incorporating signature techniques and emotional focus.
+- Enhances details while maintaining core concepts.
+
+**Expected Output:**
+
+- A JSON array of artist-refined prompts:
+
+```json
+{
+  "artist_refined_prompts": [
+    {"artist_refined_prompt": "A surreal Tenebrist painting depicting a spectral wolf with luminescent runes, its form dissolving into mist under a crescent moon."},
+    // ...more prompts
+  ]
+}
+```
+
+---
+
+#### 10. Prompt Revision and Synthesis
+
+**Input:**
+
+- **Artist-Refined Prompts** from Step 9.
+- **Style Axes**, **Facets**, **Refined Concept**, **Medium**, and **User's Idea**.
+
+**Process:**
+
+- Critiques prompts using chosen critics' perspectives.
+- Ranks prompts and selects top candidates.
+- Revises top prompts to address criticisms.
+- Synthesizes bottom prompts into new, innovative prompts.
+
+**Expected Output:**
+
+- A JSON object containing:
+  - **Revised Prompts**: Improved versions of top prompts.
+  - **Synthesized Prompts**: New prompts synthesized from lower-ranked ones.
+
+```json
+{
+  "revised_prompts": [
+    {"revised_prompt": "An eerie digital painting of a spectral wolf with glowing runes, emerging from swirling mist in an ancient forest."},
+    // ...more revised prompts
+  ],
+  "synthesized_prompts": [
+    {"synthesized_prompt": "A mist-shrouded landscape where a luminous wolf strides through shadows, runes pulsating along its form."},
+    // ...more synthesized prompts
+  ]
+}
+```
+
+---
+
+#### 11. Title and Caption Generation (Optional)
+
+**Input:**
+
+- **Final Prompts** and **Generated Images**.
+
+**Process:**
+
+- Generates titles, Instagram captions, hashtags, and SEO keywords.
+- Consults a panel of experts for suggestions.
+- Aims to create engaging content for social media sharing.
+
+**Expected Output:**
+
+- A JSON object containing:
+  - **Title**
+  - **Instagram Post**: Caption and hashtags.
+  - **SEO Keywords**
+
+```json
+{
+  "title": "Guardian of Shadows",
+  "instagram_post": {
+    "caption": "Unveiling the ethereal 'Guardian of Shadows,' where mysticism meets artistry. What secrets does this spectral wolf hold? 🌙🐺 #Art #DigitalIllustration #Mystical",
+    "hashtags": ["#Art", "#DigitalIllustration", "#Mystical", "#Ethereal", "#SpectralWolf"]
+  },
+  "seo_keywords": ["art", "digital illustration", "mystical art", "spectral wolf", "ethereal imagery"]
+}
+```
+
+---
+
+#### 12. Image Generation
+
+**Input:**
+
+- **Final Prompts** from Step 10.
+- **Configured Image Generation Settings**.
+
+**Process:**
+
+- Generates images using the selected image model (e.g., DALL·E 3).
+- Applies any additional image generation parameters specified.
+
+**Expected Output:**
+
+- Generated images saved to the specified directory.
+- Displayed within the Lofn UI.
+
 
 ## Contributing
 
-We welcome contributions to Lofn! If you'd like to contribute, please follow these steps:
+We welcome contributions to Lofn! To contribute:
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive commit messages.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main Lofn repository.
+1. **Fork the repository**.
 
-Please ensure that your contributions adhere to our code of conduct and guidelines.
+2. **Create a new branch** for your feature or bug fix.
+
+3. **Make your changes** and commit them with descriptive commit messages.
+
+4. **Push your changes** to your forked repository.
+
+5. **Submit a pull request** to the main Lofn repository.
+
+Please ensure that your contributions adhere to our [code of conduct](CODE_OF_CONDUCT.md) and [contribution guidelines](CONTRIBUTING.md).
 
 ## License
 

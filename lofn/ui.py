@@ -78,7 +78,7 @@ class LofnApp:
                     "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-2024-08-06", 
                     "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
                     "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
-                    "claude-3-haiku-20240307", "gpt-4",
+                    "claude-3-haiku-20240307", "gpt-4", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
                     "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro", 
                     "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801",
                     "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k", 
