@@ -142,7 +142,7 @@ Alternatively, you can use the provided `Dockerfile` and `entrypoint.sh` scripts
    - View the generated images, titles, Instagram captions, and SEO keywords.
    - Optionally, generate video prompts compatible with Runway Gen-3 Alpha.
 
-   ![Lofn UI 5](examples/lofn_ui_6.png)
+   ![Lofn UI 6](examples/lofn_ui_6.png)
 
 ## What Makes Lofn Unique
 
