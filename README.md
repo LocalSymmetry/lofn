@@ -230,41 +230,66 @@ Lofn has received notable recognition in the AI art community:
 
 - **Top 20** in multiple AI art competitions:
 
-  - ["Dangerous Bap Target" - Biomechanical Creature](examples/Top20_DangerousBapTarget_BiomechanicalCreature.jpeg)
+  - !["Dangerous Bap Target" - Biomechanical Creature](examples/Top20_DangerousBapTarget_BiomechanicalCreature.jpeg)
 
-  - ["🦎👑" - Lizard King](examples/Top20_%F0%9F%A6%8E%F0%9F%91%91_LizardKing.png)
+  - !["🦎👑" - Lizard King](examples/Top20_%F0%9F%A6%8E%F0%9F%91%91_LizardKing.png)
 
-  - ["🫰" - Light Painting](examples/Top20_%F0%9F%AB%B0_LightPainting.png)
+  - !["🫰" - Light Painting](examples/Top20_%F0%9F%AB%B0_LightPainting.png)
 
-  - ["It's time" - Death](examples/It%27s%20time%20-%20Death.png)
+  - !["It's time" - Death](examples/It%27s%20time%20-%20Death.png)
 
-  - ["Held Aloft" - Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)
+  - !["Held Aloft" - Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)
 
-  - ["The radiant sea" - Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)
+  - !["The radiant sea" - Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)
 
-  - ["The fluffiest kaiju" - Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)
+  - !["The fluffiest kaiju" - Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)
 
 ## Examples
 
-Below are examples showcasing Lofn's refinement process, generated from the input "I want to capture the essence of a mysterious and powerful witch's familiar." All images were generated using DALL·E 3.
+Below are examples showcasing Lofn's refinement process, generated from the input "I want to capture the essence of a mysterious and powerful witch's familiar." using o1-preview and Ideogram v2.
 
-### Concept: A sleek black cat with an ethereal aura, its emerald eyes gleaming with ancient wisdom as it guards an open grimoire, eldritch symbols glowing faintly on the pages.
+### Concept: A shadowy black cat with emerald eyes, its fur subtly blending into tendrils of dark mist, perched atop an ancient, moss-covered grimoire that glows faintly, surrounded by ethereal floating runes that emit a soft, eerie luminescence in a dimly lit, arcane chamber.  
 
-**Medium**: Tenebrous oil painting with a rich, dark palette and dramatic chiaroscuro lighting that casts enigmatic shadows.
+**Medium**: Ethereal shadow painting using luminescent inks on layered translucent silk panels, creating depth and movement as light passes through, highlighting the glowing runes and misty elements in the dimly lit scene. 
 
 ![Cat Familiar Final](examples/FinalCatFamiliar.png)
 
-*Final Prompt:* In a surreal Tenebrist oil painting, a sleek black cat with stygian fur and obsidian eyes, its form an amalgamation of swirling shadows and ethereal wisps, stands sentinel over an ancient grimoire bound in eldritch flesh, the pages adorned with arcane, esoteric symbols emanating an eerie, incandescent glow. The mysterious and foreboding atmosphere is heightened by the tilted, angled perspective and focused, directional lighting that casts enigmatic shadows. The rich, dark palette, punctuated by the faintly glowing symbols rendered with impasto and sgraffito techniques, creates an air of ancient wisdom and unsettling secrets.
+*Final Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, portraying a shadowy black cat with piercing emerald eyes that subtly dissolve into tendrils of dark mist, emanating an aura of mystery and supernatural presence in a dimly lit arcane chamber. Perched atop an ancient, moss-covered grimoire that emits a faint, otherworldly glow, the cat is surrounded by ethereal floating runes whose soft luminescence casts shifting patterns upon the layered silk, intensifying the mystical atmosphere. The interplay of light passing through the luminescent inks creates depth and movement, bringing the glowing runes and misty elements to life with mesmerizing fluidity.
 
-### Concept: A spectral wolf with a pelt of swirling mist and glowing runes pulsing in rhythm with its heartbeat, its piercing gaze able to penetrate the deepest shadows and unravel secrets.
+### Concept: A raven with wings made of swirling galaxies, each feather shimmering with starlight, soaring beneath a looming blood moon over a surreal landscape where the ground ripples like water and ancient, floating monoliths inscribed with runes hover in the distance.
 
-**Medium**: Otherworldly sculptural piece forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist.
+**Medium**: Chromatic fractal tapestry woven with iridescent and metallic threads, enhanced with holographic overlays to depict the swirling galaxies in the raven's wings and the surreal landscape.
 
-![Wolf Familiar Final](examples/FinalWolfFamiliar.png)
+![Raven Familiar Final](examples/FinalRavenFamiliar.png)
 
-*Final Prompt:* A spectral wolf emerges from swirling phantasmal mist, its pelt adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with soul-penetrating intensity, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with biomechanical intricacy, pulses with arcane energy and is wreathed in tendrils of mist, captured in haunting chiaroscuro. An ominous and foreboding atmosphere permeates the scene, illuminated by an eerie glow, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with intricate engravings, while the swirling mist is enhanced by a sfumato effect.
+*Final Prompt:* An enigmatic raven with wings made of swirling galaxies, each feather shimmering with starlight woven from iridescent and metallic threads, soars gracefully beneath a looming blood moon in a chromatic fractal tapestry enhanced with holographic overlays, illuminating its path through a surreal landscape of rippling ground and ancient, floating monoliths inscribed with glowing runes.
 
 These examples demonstrate how Lofn's iterative refinement process leads to highly detailed and evocative prompts, resulting in compelling artwork.
+
+### Refinement Process Example - Cat Familiar
+For the following concept and medium pair, the final prompts generated and further refined through two steps: The initial generation is first enhanced by an artist and then that result is refined by an art critic. The goal is to have the language model brainstorm additional impactful elements through the artist and then have the result refined to smooth any stylistic clashes that could result. 
+
+**Concept:** A shadowy black cat with emerald eyes, its fur subtly blending into tendrils of dark mist, perched atop an ancient, moss-covered grimoire that glows faintly, surrounded by ethereal floating runes that emit a soft, eerie luminescence in a dimly lit, arcane chamber.  
+
+**Medium**: Ethereal shadow painting using luminescent inks on layered translucent silk panels, creating depth and movement as light passes through, highlighting the glowing runes and misty elements in the dimly lit scene. 
+
+#### Step 1: Initial Prompt Generation
+
+*Initial Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, depicting a shadowy black cat in a dimly lit arcane chamber, its fur unfolding into tenebrous wisps that transition into swirling tendrils of dark mist. The mist contains subtle fractal patterns, hinting at infinite complexity and the mysteries of the spirit world. Subtle backlighting enhances the mist's translucence, creating an ethereal glow against the backdrop. Deep charcoal greys blend with muted blues and hints of violet, composing a mysterious and spectral palette. Luminescent inks give the mist a tangible movement that shifts as the viewer's perspective changes.
+
+![Cat Familiar Initial](examples/InitialCatFamiliar.png)
+
+#### Step 2: Artist Refinement and Extension
+
+*Artist Refined Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, depicting a shadowy black cat whose fur subtly dissolves into tendrils of dark mist, emanating an aura of mystery and supernatural presence. Piercing emerald eyes, adorned with intricate Celtic knot patterns, glow softly, hinting at ancient magic and forbidden knowledge. The cat perches atop an ancient, moss-covered grimoire that emits a faint, otherworldly glow, symbolizing hidden powers. Ethereal floating runes encircle the scene, their soft luminescence casting shifting patterns upon the layered silk, intensifying the mystical atmosphere. The dimly lit arcane chamber is shrouded in shadows, the interplay of light passing through the luminescent inks creating depth and movement, bringing the glowing runes and misty elements to life with mesmerizing fluidity.
+
+![Cat Familiar Artist Refined](examples/ArtistRefCatFamiliar.png)
+
+#### Step 3: Critic Refinement and Smoothing
+
+*Final Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, portraying a shadowy black cat with piercing emerald eyes that subtly dissolve into tendrils of dark mist, emanating an aura of mystery and supernatural presence in a dimly lit arcane chamber. Perched atop an ancient, moss-covered grimoire that emits a faint, otherworldly glow, the cat is surrounded by ethereal floating runes whose soft luminescence casts shifting patterns upon the layered silk, intensifying the mystical atmosphere. The interplay of light passing through the luminescent inks creates depth and movement, bringing the glowing runes and misty elements to life with mesmerizing fluidity.
+
+![Raven Familiar Final](examples/FinalRavenFamiliar.png)
 
 ## Comparison of Language Model Outputs
 
