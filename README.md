@@ -252,7 +252,7 @@ Below are examples showcasing Lofn's refinement process, generated from the inpu
 
 **Medium**: Ethereal shadow painting using luminescent inks on layered translucent silk panels, creating depth and movement as light passes through, highlighting the glowing runes and misty elements in the dimly lit scene. 
 
-![Cat Familiar Final](examples/FinalCatFamiliar.png)
+![Cat Familiar Final](examples/FinalFelineFamiliar.png)
 
 *Final Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, portraying a shadowy black cat with piercing emerald eyes that subtly dissolve into tendrils of dark mist, emanating an aura of mystery and supernatural presence in a dimly lit arcane chamber. Perched atop an ancient, moss-covered grimoire that emits a faint, otherworldly glow, the cat is surrounded by ethereal floating runes whose soft luminescence casts shifting patterns upon the layered silk, intensifying the mystical atmosphere. The interplay of light passing through the luminescent inks creates depth and movement, bringing the glowing runes and misty elements to life with mesmerizing fluidity.
 
@@ -289,7 +289,7 @@ For the following concept and medium pair, the final prompts generated and furth
 
 *Final Prompt:* An ethereal shadow painting using luminescent inks on layered translucent silk panels, portraying a shadowy black cat with piercing emerald eyes that subtly dissolve into tendrils of dark mist, emanating an aura of mystery and supernatural presence in a dimly lit arcane chamber. Perched atop an ancient, moss-covered grimoire that emits a faint, otherworldly glow, the cat is surrounded by ethereal floating runes whose soft luminescence casts shifting patterns upon the layered silk, intensifying the mystical atmosphere. The interplay of light passing through the luminescent inks creates depth and movement, bringing the glowing runes and misty elements to life with mesmerizing fluidity.
 
-![Cat Familiar Final](examples/FinalCatFamiliar.png)
+![Cat Familiar Final](examples/FinalFelineFamiliar.png)
 
 ## Comparison of Language Model Outputs
 
