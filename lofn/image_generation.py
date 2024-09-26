@@ -282,7 +282,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "image_url": result,
                                 "image_model": image_model,
                                 "model": model,
-                                "image_filename": filename
+                                "image_filename": filename,
+                                "user_input": input
                                 #"video_filename": video_filename if video_url else None
                             }
                             # if enable_pika_video:
