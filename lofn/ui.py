@@ -84,7 +84,7 @@ class LofnApp:
                     "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k", 
                     "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
                     "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
-                    "Poe-Mistral-Large-2-128k", 
+                    "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", "Poe-Llama-3.2-90B-FW-131k",
                     "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
                     "Poe-Llama-3.1-8B-FW-128k", "Poe-GPT-4-Turbo-128k", "Poe-Claude-3-Opus-200k",
                     "Poe-Claude-3-Sonnet-200k", "Poe-Claude-3-Haiku-200k",
@@ -100,7 +100,8 @@ class LofnApp:
                     "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
                     "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
                     "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
-                    "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW"
+                    "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW", "Poe-Llama-3.2-90B-FW-131k",
+                    "Poe-Llama-3.2-11B-FW-131k"
                 ],
                 help="Choose the language model for generating concepts and prompts.",
             )

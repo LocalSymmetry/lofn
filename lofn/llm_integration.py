@@ -239,6 +239,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None):
         "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
         "Poe-Gemini-1.5-Flash": 16384,
         "Poe-Gemini-1.5-Pro": 32768,
+        "Poe-Llama-3.2-11B-FW-131k": 128000,
+        "Poe-Llama-3.2-90B-FW-131k": 128000,
         "Poe-Llama-3.1-8B-T-128k": 128000,
         "Poe-Llama-3.1-70B-FW-128k": 128000,
         "Poe-Llama-3.1-70B-T-128k": 128000,
@@ -299,12 +301,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None):
         return ChatOpenAI(model=model, openai_api_key=Config.OPENAI_API, temperature=1)
 
 
-def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, debug=False):
+def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, model = None, debug=False):
     output = None
     retry_count = 0
     while retry_count < max_retries:
         try:
-            output = run_any_chain(_lang_chain, args_dict, is_correction, retry_count, debug)
+            output = run_any_chain(_lang_chain, args_dict, is_correction, retry_count, model, debug)
             args_dict['output'] = output
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
@@ -326,20 +328,19 @@ def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correcti
         st.write("Max retries reached. Exiting.")
     return None
 
-def run_any_chain(chain, args_dict, is_correction, retry_count, debug=False):
+def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=False):
     try:
         if is_correction:
             correction_prompt = f"""
             Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete.
             Please refer to the instructions provided earlier and respond with only the complete JSON output.
-            Ensure that all required fields are included and properly formatted according to the instructions.
-            Escape any special characters within JSON strings including apostrophes. The last portion of your
-            previous message is included. Please start from the last complete step using your previous output.
+            You have confirmation on your plans. Escape any special characters within JSON strings including apostrophes. 
+            The last portion of your previous message is included.
             """
             # Preserve original input parameters
             corrected_args = args_dict.copy()
             if "Poe" in model:
-                corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('output', '')[-200:]
+                corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('output', '')[-400:]
             else:
                 corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('output', '')
             
@@ -369,9 +370,9 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, debug=False):
         st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
         return None
 
-def run_llm_chain(chains, chain_name, args_dict, max_retries, debug = None):
+def run_llm_chain(chains, chain_name, args_dict, max_retries, model = None, debug = None):
     chain = chains[chain_name]
-    output = run_chain_with_retries(chain, max_retries=max_retries, args_dict=args_dict, is_correction=False, debug=debug)
+    output = run_chain_with_retries(chain, max_retries=max_retries, args_dict=args_dict, is_correction=False, model=model, debug=debug)
     
     if output is None:
         st.error(f"Failed to get valid JSON response after {max_retries} attempts.")
@@ -379,8 +380,8 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, debug = None):
     
     return output
 
-def process_essence_and_facets(chains, input, max_retries, debug=False, style_axes = None, creativity_spectrum = None):
-    parsed_output = run_llm_chain(chains, 'essence_and_facets', {"input": input}, max_retries, debug)
+def process_essence_and_facets(chains, input, max_retries, debug=False, style_axes = None, creativity_spectrum = None, model = None):
+    parsed_output = run_llm_chain(chains, 'essence_and_facets', {"input": input}, max_retries, model, debug)
     if parsed_output is None:
         return None
     
@@ -397,7 +398,7 @@ def process_essence_and_facets(chains, input, max_retries, debug=False, style_ax
         return None
     return parsed_output, style_axes, creativity_spectrum
 
-def process_concepts(chains, input, essence, facets, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}):
+def process_concepts(chains, input, essence, facets, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}, model = None):
     parsed_output = run_llm_chain(chains, 'concepts', {
         "input": input,
         "essence": essence,
@@ -406,14 +407,14 @@ def process_concepts(chains, input, essence, facets, max_retries, debug=False, s
         "creativity_spectrum_transformative": creativity_spectrum['transformative'],
         "creativity_spectrum_inventive": creativity_spectrum['inventive'],
         "creativity_spectrum_literal": creativity_spectrum['literal'],
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process concepts")
         return None
     return parsed_output
 
 
-def process_artist_and_refined_concepts(chains, input, essence, facets, concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}):
+def process_artist_and_refined_concepts(chains, input, essence, facets, concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}, model = None):
     parsed_output = run_llm_chain(chains, 'artist_and_refined_concepts', {
         "input": input,
         "essence": essence,
@@ -423,13 +424,13 @@ def process_artist_and_refined_concepts(chains, input, essence, facets, concepts
         "creativity_spectrum_inventive": creativity_spectrum['inventive'],
         "creativity_spectrum_literal": creativity_spectrum['literal'],
         "concepts": [x['concept'] for x in concepts['concepts']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process artist and refined concepts")
         return None
     return parsed_output
 
-def process_mediums(chains, input, essence, facets, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}):
+def process_mediums(chains, input, essence, facets, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}, model = None):
     parsed_output = run_llm_chain(chains, 'medium', {
         "input": input,
         "essence": essence,
@@ -439,13 +440,13 @@ def process_mediums(chains, input, essence, facets, refined_concepts, max_retrie
         "creativity_spectrum_transformative": creativity_spectrum['transformative'],
         "creativity_spectrum_inventive": creativity_spectrum['inventive'],
         "creativity_spectrum_literal": creativity_spectrum['literal'],
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process mediums")
         return None
     return parsed_output
 
-def process_refined_mediums(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}):
+def process_refined_mediums(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}, model = None):
     parsed_output = run_llm_chain(chains, 'refine_medium', {
         "input": input,
         "essence": essence,
@@ -457,13 +458,13 @@ def process_refined_mediums(chains, input, essence, facets, mediums, artists, re
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process refined mediums")
         return None
     return parsed_output
 
-def process_shuffled_review(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}):
+def process_shuffled_review(chains, input, essence, facets, mediums, artists, refined_concepts, max_retries, debug=False, style_axes = None, creativity_spectrum = {'wild':33.3, 'creative':33.3, 'grounded':33.3}, model = None):
     review_artists = np.random.permutation(artists).tolist()
     parsed_output = run_llm_chain(chains, 'shuffled_review', {
         "input": input,
@@ -476,33 +477,33 @@ def process_shuffled_review(chains, input, essence, facets, mediums, artists, re
         "mediums": [x['medium'] for x in mediums['mediums']],
         "artists": review_artists,
         "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process shuffled review")
         return None
     return parsed_output
 
-def process_facets(chains, input, concept, medium, max_retries, debug=False, style_axes = None):
-    parsed_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium, "style_axes":style_axes}, max_retries)
+def process_facets(chains, input, concept, medium, max_retries, debug=False, style_axes = None, model = None):
+    parsed_output = run_llm_chain(chains, 'facets', {"input": input, "concept": concept, "medium": medium, "style_axes":style_axes}, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process facets")
         return None
     return parsed_output
 
-def process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug=False, style_axes = None):
+def process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug=False, style_axes = None, model = None):
     parsed_output = run_llm_chain(chains, 'aspects_traits', {
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": facets['facets'],
         "style_axes": style_axes,
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process artistic guides")
         return None
     return parsed_output
 
-def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug=False, style_axes = None):
+def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug=False, style_axes = None, model = None):
     parsed_output = run_llm_chain(chains, 'midjourney', {
         "input": input,
         "concept": concept,
@@ -510,7 +511,7 @@ def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_
         "facets": facets['facets'],
         "style_axes": style_axes,
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process midjourney prompts")
         return None
@@ -518,7 +519,7 @@ def process_midjourney_prompts(chains, input, concept, medium, facets, artistic_
         send_to_discord([prompt['image_gen_prompt'] for prompt in parsed_output['image_gen_prompts']], premessage=f'Generated Prompts for {concept} in {medium}:')
     return parsed_output
 
-def process_artist_refined_prompts(chains, input, concept, medium, facets, image_gen_prompts, max_retries, debug=False, style_axes = None):
+def process_artist_refined_prompts(chains, input, concept, medium, facets, image_gen_prompts, max_retries, debug=False, style_axes = None, model = None):
     parsed_output = run_llm_chain(chains, 'artist_refined', {
         "input": input,
         "concept": concept,
@@ -526,7 +527,7 @@ def process_artist_refined_prompts(chains, input, concept, medium, facets, image
         "facets": facets['facets'],
         "style_axes": style_axes,
         "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process artist refined prompts")
         return None
@@ -534,7 +535,7 @@ def process_artist_refined_prompts(chains, input, concept, medium, facets, image
         send_to_discord([prompt['artist_refined_prompt'] for prompt in parsed_output['artist_refined_prompts']], premessage=f'Artist-Refined Prompts for {concept} in {medium}:')
     return parsed_output
 
-def process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug=False, style_axes = None):
+def process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug=False, style_axes = None, model = None):
     parsed_output = run_llm_chain(chains, 'revision_synthesis', {
         "input": input,
         "concept": concept,
@@ -542,7 +543,7 @@ def process_revised_synthesized_prompts(chains, input, concept, medium, facets, 
         "facets": facets['facets'],
         "style_axes": style_axes,
         "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
-    }, max_retries, debug)
+    }, max_retries, model, debug)
     if parsed_output is None:
         st.error(f"Failed to process revised synthesized prompts")
         return None
@@ -649,7 +650,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
         with st.status("Generating Concepts and Mediums...", expanded=True) as status:
             # Step 1: Essence and Facets
             status.write("Generating Essence and Facets...")
-            essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(chains, input, max_retries, debug, style_axes, creativity_spectrum)
+            essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(chains, input, max_retries, debug, style_axes, creativity_spectrum, model)
             if essence_and_facets:
                 if st.session_state.creativity_spectrum == None:
                     display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
@@ -668,7 +669,8 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
                 max_retries, 
                 debug,
                 style_axes, 
-                creativity_spectrum)
+                creativity_spectrum,
+                model)
             if debug:
                 st.write("Initial Concepts:")
                 for i, concept in enumerate(concepts['concepts'], 1):
@@ -685,7 +687,8 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
                 max_retries, 
                 debug,
                 style_axes, 
-                creativity_spectrum)
+                creativity_spectrum,
+                model)
             if debug:
                 st.write("Refined Concepts:")
                 for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
@@ -702,7 +705,8 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
                 max_retries, 
                 debug,
                 style_axes, 
-                creativity_spectrum)
+                creativity_spectrum,
+                model)
             if debug:
                 st.write("Initial Mediums:")
                 for i, medium in enumerate(mediums['mediums'], 1):
@@ -721,7 +725,8 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
                 max_retries, 
                 debug,
                 style_axes, 
-                creativity_spectrum)
+                creativity_spectrum,
+                model)
             if debug:
                 st.write("Refined Concepts:")
                 for i, concept in enumerate(refined_mediums['refined_concepts'], 1):
@@ -743,7 +748,8 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
                 max_retries, 
                 debug,
                 style_axes, 
-                creativity_spectrum)
+                creativity_spectrum,
+                model)
 
             status.update(label="Generation Complete!", state="complete")
 
@@ -813,33 +819,33 @@ def generate_prompts(input, concept, medium, max_retries, temperature, model="gp
             }
         with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
             status.write("Generating Facets...")
-            facets = process_facets(chains, input, concept, medium, max_retries, debug, style_axes)
+            facets = process_facets(chains, input, concept, medium, max_retries, debug, style_axes, model)
 
             display_facets(facets['facets'])
             
             status.write("Creating Artistic Guides...")
-            artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug, style_axes)
+            artistic_guides = process_artistic_guides(chains, input, concept, medium, facets, max_retries, debug, style_axes, model)
             if debug:
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
                     st.write(f"{i}. {guide['artistic_guide']}")
             
             status.write("Generating Image Prompts...")
-            midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug, style_axes)
+            midjourney_prompts = process_midjourney_prompts(chains, input, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model)
             if debug:
                 st.write("Image Prompts:")
                 for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
                     st.write(f"{i}. {prompt['image_gen_prompt']}")
             
             status.write("Refining Prompts...")
-            artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, midjourney_prompts, max_retries, debug, style_axes)
+            artist_refined_prompts = process_artist_refined_prompts(chains, input, concept, medium, facets, midjourney_prompts, max_retries, debug, style_axes, model)
             if debug:
                 st.write("Artist Refined Prompts:")
                 for i, prompt in enumerate(artist_refined_prompts['artist_refined_prompts'], 1):
                     st.write(f"{i}. {prompt['artist_refined_prompt']}")
             
             status.write("Synthesizing Final Prompts...")
-            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes)
+            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model)
 
             status.update(label="Prompt Generation Complete!", state="complete")
 
@@ -1054,7 +1060,7 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
         "creativity_spectrum": creativity_spectrum,
         "image": image,
         "prompt": prompt
-    }, max_retries=max_retries, debug=debug)
+    }, max_retries=max_retries, model=model, debug=debug)
 
     if debug:
         st.write("Raw output from Runway prompt generation:")
