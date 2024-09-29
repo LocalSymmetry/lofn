@@ -97,7 +97,7 @@ def generate_google_imagen_image(params, debug=False):
 
         prompt = params['prompt']
         number_of_images = params.get('num_images', 1)
-        aspect_ratio = params.get('aspect_ratio', '1:1')
+        image_size = params.get('image_size', '1:1')
         safety_filter_level = params.get('safety_filter_level', 'block_some')
         person_generation = params.get('person_generation', 'allow_all')
         add_watermark = params.get('add_watermark', True)
@@ -273,7 +273,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                         try:
                             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                             prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
-                            filename = f"{timestamp}_{model}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
+                            filename = f"{timestamp}_{model.replace('/','_')}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
                             save_image_locally(result, filename)
                         except Exception as e:
                             st.error(f"Error saving image locally: {str(e)}")
@@ -857,7 +857,7 @@ def save_metadata(metadata):
     os.makedirs('/metadata', exist_ok=True)
     
     # Create a filename for the metadata
-    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10]}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
+    metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10].replace('/','_')}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
     # Ensure all data is JSON serializable
     def json_serializable(obj):

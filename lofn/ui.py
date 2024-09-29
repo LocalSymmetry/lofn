@@ -385,7 +385,8 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
             with st.spinner(f"Generating prompts for '{pair['concept']}'..."):
-                prompts_df = generate_prompts(
+                if st.session_state.get('style_axes') == None:
+                    prompts_df = generate_prompts(
                     st.session_state['input'],
                     pair['concept'],
                     pair['medium'],
@@ -393,9 +394,21 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=st.session_state.get('style_axes'),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    style_axes=style_axes,
+                    creativity_spectrum=creativity_spectrum,
                 )
+                else: 
+                    prompts_df = generate_prompts(
+                        st.session_state['input'],
+                        pair['concept'],
+                        pair['medium'],
+                        max_retries=self.max_retries,
+                        temperature=self.temperature,
+                        model=self.model,
+                        debug=self.debug,
+                        style_axes=st.session_state.get('style_axes'),
+                        creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
             self.display_prompts(prompts_df, pair)
@@ -407,17 +420,30 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{concept}' in '{medium}'")
         try:
             with st.spinner(f"Generating prompts for '{concept}'..."):
-                prompts_df = generate_prompts(
+                if st.session_state.get('style_axes') == None:
+                    prompts_df = generate_prompts(
                     st.session_state['input'],
-                    concept,
-                    medium,
+                    pair['concept'],
+                    pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=st.session_state.get('style_axes'),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    style_axes=style_axes,
+                    creativity_spectrum=creativity_spectrum,
                 )
+                else: 
+                    prompts_df = generate_prompts(
+                        st.session_state['input'],
+                        pair['concept'],
+                        pair['medium'],
+                        max_retries=self.max_retries,
+                        temperature=self.temperature,
+                        model=self.model,
+                        debug=self.debug,
+                        style_axes=st.session_state.get('style_axes'),
+                        creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
             self.display_prompts(prompts_df, {'concept': concept, 'medium': medium})

@@ -119,6 +119,7 @@ dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
 
 dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
+@st.cache_data(persist=True)
 def fetch_openrouter_models():
     api_key = Config.OPEN_ROUTER_API_KEY
     if not api_key:
@@ -296,7 +297,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Find the model in the list
         model_data = next((m for m in or_models if m['id'] == model_id), None)
         if model_data:
-            context_length = model_data.get('context_length', 0)
+            context_length = model_data.get('context_length', 32000)
             # Subtract 10k for input prompts and retries
             max_tokens = context_length - 10000
             # Ensure max_tokens is not negative
