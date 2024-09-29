@@ -48,7 +48,7 @@ image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
-def generate_image(model: str, params: dict, debug = False):
+def generate_google_imagen_image(model: str, params: dict, debug = False):
     # if model.startswith("runware:") or model.startswith("civitai:"):
     #     return generate_runware_image(params['prompt'], params)
     if model == "DALL-E 3":
@@ -100,22 +100,22 @@ def generate_google_imagen_image(params, debug=False):
         image_size = params.get('image_size', '1:1')
         safety_filter_level = params.get('safety_filter_level', 'block_some')
         person_generation = params.get('person_generation', 'allow_all')
-        add_watermark = params.get('add_watermark', True)
+        add_watermark = params.get('add_watermark', False)
 
         images = generation_model.generate_images(
           prompt=prompt,
           number_of_images=number_of_images,
           aspect_ratio=image_size,
-          safety_filters=safety_filter_level,
+          safety_filter_level=safety_filter_level,
           # Other parameters as needed
         )
 
         # The images returned are PIL Image objects
         image_paths = []
         for i, image in enumerate(images):
-            filename = f"google_imagen_{i}.png"
+            filename = f"google_imagen_{i}_{prompt[:40]}.png"
             image.save(f"/images/{filename}")
-            image_paths.append(f"/images/{filename}")
+            image_paths.append(f"file:///images/{filename}")
         return image_paths
 
     except Exception as e:
@@ -631,7 +631,7 @@ def get_model_params(model: str):
             "style": st.session_state.get(f"{model}_style", "vivid")
         },
         "Google Imagen 3": {
-            "aspect_ratio": st.session_state.get(f"{model}_aspect_ratio", "1:1"),
+            "image_size": st.session_state.get(f"{model}_image_size", "1:1"),
             "safety_filter_level": st.session_state.get(f"{model}_safety_filter_level", "block_some"),
             "person_generation": st.session_state.get(f"{model}_person_generation", "allow_all"),
             "add_watermark": st.session_state.get(f"{model}_add_watermark", False),
