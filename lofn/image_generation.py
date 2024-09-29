@@ -102,7 +102,7 @@ def generate_google_imagen_image(params, debug=False):
         person_generation = params.get('person_generation', 'allow_all')
         add_watermark = params.get('add_watermark', True)
 
-        images = generation_model.predict(
+        images = generation_model.generate_images(
           prompt=prompt,
           number_of_images=number_of_images,
           aspect_ratio=image_size,
