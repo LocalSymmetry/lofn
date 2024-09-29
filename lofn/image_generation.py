@@ -48,7 +48,7 @@ image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
-def generate_google_imagen_image(model: str, params: dict, debug = False):
+def generate_image(model: str, params: dict, debug = False):
     # if model.startswith("runware:") or model.startswith("civitai:"):
     #     return generate_runware_image(params['prompt'], params)
     if model == "DALL-E 3":
