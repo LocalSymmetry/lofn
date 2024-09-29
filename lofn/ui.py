@@ -36,6 +36,8 @@ class LofnApp:
         self.debug = False
         self.llm_client = None
         self.image_generator = None
+        self.style_axes = None
+        self.creativity_spectrum = None
 
         # Build the model list dynamically
         self.available_models = self.get_available_models()
@@ -224,7 +226,7 @@ class LofnApp:
             st.session_state['auto_style'] = st.checkbox("Automatic Style", value=True, help="Enable automatic style determination.")
             if not st.session_state['auto_style']:
                 st.subheader("Adjust Style Axes")
-                st.session_state['style_axes'] = {
+                self.style_axes = {
                     "Abstraction vs. Realism": st.slider("Abstraction vs. Realism (0: Abstract)", 0, 100, 50),
                     "Emotional Valence": st.slider("Emotional Valence (0: Negative)", 0, 100, 50),
                     "Color Intensity": st.slider("Color Intensity (0: Muted)", 0, 100, 50),
@@ -237,19 +239,19 @@ class LofnApp:
                     "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static)", 0, 100, 50)
                 }
             else:
-                st.session_state['style_axes'] = None
+                self.style_axes = None
 
             st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
             if not st.session_state['auto_creativity_spectrum']:
                 # Creativity Spectrum
                 st.subheader("Adjust Creativity Spectrum")
-                st.session_state['creativity_spectrum'] = {
+                self.creativity_spectrum = {
                     "literal": st.slider("Literal", 0, 100, 33),
                     "inventive": st.slider("Inventive", 0, 100, 33),
                     "transformative": st.slider("Transformative", 0, 100, 34),
             }
             else:
-                st.session_state['creativity_spectrum'] = None
+                self.creativity_spectrum  = None
 
         with st.sidebar.expander("Discord Settings", expanded=False):
             st.session_state['send_to_discord'] = st.checkbox(
@@ -328,18 +330,13 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=st.session_state.get('style_axes'),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    style_axes=self.style_axes,
+                    creativity_spectrum=self.creativity_spectrum,
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
-            st.session_state['style_axes'] = style_axes
-            st.session_state['creativity_spectrum'] = creativity_spectrum
-
-            # Display Style Axes and Creativity Spectrum if automatic
-            if st.session_state.get('auto_style', True):
-                display_style_axes(st.session_state.get('style_axes'))
-                display_creativity_spectrum(st.session_state.get('creativity_spectrum'))
+            self.style_axes = create_style_axes
+            self.creativity_spectrum = creativity_spectrum
 
         except Exception as e:
             st.error("An error occurred while generating concepts.")
@@ -372,8 +369,7 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
             with st.spinner(f"Generating prompts for '{pair['concept']}'..."):
-                if st.session_state.get('style_axes') == None:
-                    prompts_df = generate_prompts(
+                prompts_df = generate_prompts(
                     st.session_state['input'],
                     pair['concept'],
                     pair['medium'],
@@ -384,18 +380,6 @@ class LofnApp:
                     style_axes=style_axes,
                     creativity_spectrum=creativity_spectrum,
                 )
-                else: 
-                    prompts_df = generate_prompts(
-                        st.session_state['input'],
-                        pair['concept'],
-                        pair['medium'],
-                        max_retries=self.max_retries,
-                        temperature=self.temperature,
-                        model=self.model,
-                        debug=self.debug,
-                        style_axes=st.session_state.get('style_axes'),
-                        creativity_spectrum=st.session_state.get('creativity_spectrum'),
-                    )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
             self.display_prompts(prompts_df, pair)
@@ -407,8 +391,7 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{concept}' in '{medium}'")
         try:
             with st.spinner(f"Generating prompts for '{concept}'..."):
-                if st.session_state.get('style_axes') == None:
-                    prompts_df = generate_prompts(
+                prompts_df = generate_prompts(
                     st.session_state['input'],
                     pair['concept'],
                     pair['medium'],
@@ -419,18 +402,6 @@ class LofnApp:
                     style_axes=style_axes,
                     creativity_spectrum=creativity_spectrum,
                 )
-                else: 
-                    prompts_df = generate_prompts(
-                        st.session_state['input'],
-                        pair['concept'],
-                        pair['medium'],
-                        max_retries=self.max_retries,
-                        temperature=self.temperature,
-                        model=self.model,
-                        debug=self.debug,
-                        style_axes=st.session_state.get('style_axes'),
-                        creativity_spectrum=st.session_state.get('creativity_spectrum'),
-                    )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
             self.display_prompts(prompts_df, {'concept': concept, 'medium': medium})
@@ -462,8 +433,8 @@ class LofnApp:
                     model=self.model,
                     debug=self.debug,
                     image_model=self.image_model,
-                    style_axes=st.session_state.get('style_axes'),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum'),
+                    style_axes=self.style_axes,
+                    creativity_spectrum=self.creativity_spectrum,
                 )
             st.success(f"Images generated for '{pair['concept']}'")
         except Exception as e:

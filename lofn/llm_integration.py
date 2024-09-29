@@ -142,7 +142,7 @@ def fetch_openrouter_models():
 class OpenRouterLLM(LLM):
     model_name: str
     temperature: float = 0.7
-    max_tokens: int = 4096
+    max_tokens: int = 32000
     api_key: str
     debug: bool = False
 
@@ -198,7 +198,7 @@ class OpenRouterLLM(LLM):
         return {
             "model_name": self.model_name,
             "temperature": self.temperature,
-            "max_tokens": self.max_tokens,
+            "max_tokens": max(22000, self.max_tokens), # fixing false context lengths in their api for now.
         }
 
 class GeminiLLM(LLM):
@@ -574,7 +574,7 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
             """
             # Preserve original input parameters
             corrected_args = args_dict.copy()
-            if "Poe" in model:
+            if ("Poe" in model) or ("OR-" in model):
                 corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('output', '')[-400:]
             else:
                 corrected_args['input'] = correction_prompt + "\n\nOriginal query: " + args_dict.get('input', '') + "\n\n End of last output - start from here: " + args_dict.get('output', '')

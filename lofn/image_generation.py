@@ -305,8 +305,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                         try:
                             metadata = {
                                 "timestamp": timestamp,
-                                "style_axes": st.session_state.style_axes,
-                                "creativity_spectrum": st.session_state.creativity_spectrum,
+                                "style_axes": style_axes,
+                                "creativity_spectrum": creativity_spectrum,
                                 "concept": concept,
                                 "medium": medium,
                                 "prompt_type": prompt_type,

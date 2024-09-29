@@ -147,7 +147,9 @@ def initialize_session_state():
         'proceed_refined_mediums_clicked': False,
         'proceed_shuffled_reviews_clicked': False,
         'complete_all_steps_clicked': False,
-        'image_model':'Poe-FLUX-pro'
+        'image_model':'Poe-FLUX-pro',
+        'creativity_spectrum': None,
+        'style_axes': None
     }
 
     for key, value in default_values.items():
