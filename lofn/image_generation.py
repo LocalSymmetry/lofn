@@ -10,7 +10,6 @@ import os
 import time
 import asyncio
 import streamlit as st
-from google.cloud import aiplatform
 from config import Config
 from helpers import *
 import logging
@@ -19,8 +18,6 @@ from config import Config
 import plotly.graph_objects as go
 import pandas as pd
 from llm_integration import *
-
-
 from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
@@ -33,6 +30,9 @@ from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import HumanMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
+
+import vertexai
+from vertexai.preview.vision_models import ImageGenerationModel
 
 prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
 
@@ -91,10 +91,9 @@ def save_image_locally(image_url, filename, directory='images'):
 
 def generate_google_imagen_image(params, debug=False):
     try:
-        # Initialize the Vertex AI client
-        aiplatform.init(project=Config.GOOGLE_PROJECT_ID, location="us-central1")
+        vertexai.init(project=Config.GOOGLE_PROJECT_ID, location="us-central1")
 
-        generation_model = aiplatform.VisionModel.from_pretrained("imagen-3.0")
+        generation_model = ImageGenerationModel.from_pretrained("imagen-3.0-generate-001")
 
         prompt = params['prompt']
         number_of_images = params.get('num_images', 1)
@@ -106,7 +105,7 @@ def generate_google_imagen_image(params, debug=False):
         images = generation_model.predict(
           prompt=prompt,
           number_of_images=number_of_images,
-          aspect_ratio=aspect_ratio,
+          aspect_ratio=image_size,
           safety_filters=safety_filter_level,
           # Other parameters as needed
         )
@@ -761,7 +760,7 @@ def render_image_controls(model: str):
         st.selectbox("Style Type", ["GENERAL", "REALISTIC", "DESIGN", "RENDER_3D", "ANIME"], key=f"{model}_style_type")
         st.number_input("Seed", min_value=0, max_value=2147483647, value=0, key=f"{model}_seed", help="0 for random seed")
     elif model == "Google Imagen 3":
-          st.selectbox("Aspect Ratio", ["1:1", "4:3", "3:4", "16:9", "9:16"], key=f"{model}_aspect_ratio")
+          st.selectbox("Aspect Ratio", ["1:1", "4:3", "3:4", "16:9", "9:16"], key=f"{model}_image_size")
           st.selectbox("Safety Filter Level", ["block_most", "block_some", "block_few"], key=f"{model}_safety_filter_level")
           st.selectbox("Person Generation", ["allow_all", "allow_adult", "dont_allow"], key=f"{model}_person_generation")
           st.checkbox("Add Watermark", value=True, key=f"{model}_add_watermark")

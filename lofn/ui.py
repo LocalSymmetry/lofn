@@ -90,14 +90,19 @@ class LofnApp:
 
         # Fetch models from OpenRouter API if API key is available
         if Config.OPEN_ROUTER_API_KEY:
-            or_models = fetch_openrouter_models()
-            if or_models:
-                # Filter models based on context length and response tokens
-                filtered_or_models = filter_models_by_context_length(or_models, min_total_tokens=25000, min_response_tokens=15000)
-                # Extract model IDs for selection
-                models.extend(['OR-'+model['id'] for model in filtered_or_models])
-        else:
-            print("No OpenRouter API key found. Skipping OpenRouter models.")
+            try:
+                or_models = fetch_openrouter_models()
+                if or_models:
+                    # Filter models based on context length and response tokens
+                    filtered_or_models = filter_models_by_context_length(or_models, min_total_tokens=25000, min_response_tokens=15000)
+                    # Extract model IDs for selection
+                    models.extend(['OR-'+model['id'] for model in filtered_or_models])
+                else:
+                    print("No OpenRouter API key found. Skipping OpenRouter models.")
+            except Exception as e:
+                st.error("An error occurred while get OpenRouter models.")
+                logger.exception("Error getting OpenRouter models: %s", e)
+
         # Add OpenRouter models if OPEN_ROUTER_API_KEY is available
         # if Config.OPEN_ROUTER_API_KEY:
         #     # For simplicity, let's add a few example models; you can extend this list
