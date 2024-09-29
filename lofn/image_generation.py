@@ -763,7 +763,7 @@ def render_image_controls(model: str):
           st.selectbox("Aspect Ratio", ["1:1", "4:3", "3:4", "16:9", "9:16"], key=f"{model}_image_size")
           st.selectbox("Safety Filter Level", ["block_most", "block_some", "block_few"], key=f"{model}_safety_filter_level")
           st.selectbox("Person Generation", ["allow_all", "allow_adult", "dont_allow"], key=f"{model}_person_generation")
-          st.checkbox("Add Watermark", value=True, key=f"{model}_add_watermark")
+          st.checkbox("Add Watermark", value=False, key=f"{model}_add_watermark")
     elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
