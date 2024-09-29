@@ -634,7 +634,7 @@ def get_model_params(model: str):
             "aspect_ratio": st.session_state.get(f"{model}_aspect_ratio", "1:1"),
             "safety_filter_level": st.session_state.get(f"{model}_safety_filter_level", "block_some"),
             "person_generation": st.session_state.get(f"{model}_person_generation", "allow_all"),
-            "add_watermark": st.session_state.get(f"{model}_add_watermark", True),
+            "add_watermark": st.session_state.get(f"{model}_add_watermark", False),
             "prompt": st.session_state.get(f"{model}_prompt"),
         },
         "fal-ai/flux/schnell": {

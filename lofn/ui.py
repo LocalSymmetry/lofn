@@ -377,8 +377,8 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=style_axes,
-                    creativity_spectrum=creativity_spectrum,
+                    style_axes=self.style_axes,
+                    creativity_spectrum=self.creativity_spectrum,
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
