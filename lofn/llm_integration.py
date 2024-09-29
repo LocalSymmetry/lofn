@@ -4,6 +4,8 @@ import openai
 import google.generativeai as genai
 import asyncio
 import fastapi_poe as fp
+import requests
+import json
 from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
@@ -117,6 +119,86 @@ dalle3_gen_prompt = dalle3_gen_prompt_middle + prompt_ending
 
 dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
+def fetch_openrouter_models():
+    api_key = Config.OPEN_ROUTER_API_KEY
+    if not api_key:
+        print("OpenRouter API key is not set.")
+        return []
+
+    url = "https://openrouter.ai/api/v1/models"
+    headers = {
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        models_data = response.json()
+        return models_data.get('data', [])
+    else:
+        print(f"Failed to fetch models from OpenRouter API: {response.status_code} {response.text}")
+        return []
+
+class OpenRouterLLM(LLM):
+    model_name: str
+    temperature: float = 0.7
+    max_tokens: int = 4096
+    api_key: str
+    debug: bool = False
+
+    def _call(
+        self,
+        prompt: str,
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[CallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> str:
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+
+        # Prepare messages for OpenRouter API
+        messages = [{"role": "user", "content": prompt}]
+
+        data = {
+            "model": self.model_name,
+            "messages": messages,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+        }
+
+        if stop is not None:
+            data["stop"] = stop
+
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers=headers,
+            json=data,
+        )
+
+        if response.status_code != 200:
+            raise Exception(f"OpenRouter API error: {response.text}")
+
+        if self.debug:
+            st.write(f"OpenRouter API response: {response.text}")
+
+        result = response.json()
+
+        # Extract assistant's reply
+        text = result["choices"][0]["message"]["content"]
+        return text
+
+    @property
+    def _llm_type(self) -> str:
+        return "openrouter"
+
+    @property
+    def _identifying_params(self) -> Dict[str, Any]:
+        return {
+            "model_name": self.model_name,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+        }
 
 class GeminiLLM(LLM):
     model_name: str
@@ -205,101 +287,253 @@ class PoeLLM(LLM):
             "max_tokens": self.max_tokens,
         }
 
-def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None):
-    # Dictionary mapping models to their maximum token limits
-    model_max_tokens = {
-        # OpenAI models
-        "o1-preview": 32768,
-        "o1-mini": 32768,
-        "gpt-4o-mini": 4096,
-        "gpt-4o": 4096,
-        "gpt-4o-2024-08-06": 8192,
-        "gpt-3.5-turbo": 4096,
-        "gpt-4-turbo": 4096,
-        "gpt-4": 8192,
-
-        # Anthropic models
-        "claude-3-5-sonnet-20240620": 4096,
-        "claude-3-opus-20240229": 4096,
-        "claude-3-sonnet-20240229": 4096,
-        "claude-3-haiku-20240307": 4096,
-
-        # Google models
-        "gemini-1.5-flash": 16384,
-        "gemini-1.5-pro": 32768,
-        "gemini-1.5-pro": 32768,
-        "gemini-1.5-pro-exp-0801": 32768,
-        "gemini-1.0-pro-exp-0827": 32768,
-
-        # Poe models
-        "Poe-Assistant": 4096,  # FIXME: Verify token limit
-        "Poe-Claude-3.5-Sonnet": 4096,
-        "Poe-GPT-4o-Mini": 4096,
-        "Poe-GPT-4o": 8192,
-        "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
-        "Poe-Gemini-1.5-Flash": 16384,
-        "Poe-Gemini-1.5-Pro": 32768,
-        "Poe-Llama-3.2-11B-FW-131k": 128000,
-        "Poe-Llama-3.2-90B-FW-131k": 128000,
-        "Poe-Llama-3.1-8B-T-128k": 128000,
-        "Poe-Llama-3.1-70B-FW-128k": 128000,
-        "Poe-Llama-3.1-70B-T-128k": 128000,
-        "Poe-Llama-3.1-8B-FW-128k": 128000,
-        "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
-        "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
-        "Poe-Claude-3-Sonnet": 4096,
-        "Poe-Claude-3-Haiku": 4096,
-        "Poe-Claude-3-Opus": 4096,
-        "Poe-Gemini-1.5-Flash-128k": 128000,
-        "Poe-Gemini-1.5-Pro-128k": 128000,
-        "Poe-Gemini-1.0-Pro": 32768,
-        "Poe-Llama-3-70B-T": 4096,  # FIXME: Verify token limit
-        "Poe-Llama-3-70b-Inst-FW": 4096,  # FIXME: Verify token limit
-        "Poe-Mixtral8x22b-Inst-FW": 4096,  # FIXME: Verify token limit
-        "Poe-Command-R": 4096,  # FIXME: Verify token limit
-        "Poe-Gemma-2-9b-T": 4096,  # FIXME: Verify token limit
-        "Poe-Mistral-Large-2": 4096,  # FIXME: Verify token limit
-        "Poe-Mistral-Medium": 4096,  # FIXME: Verify token limit
-        "Poe-Snowflake-Arctic-T": 4096,  # FIXME: Verify token limit
-        "Poe-RekaCore": 4096,  # FIXME: Verify token limit
-        "Poe-RekaFlash": 4096,  # FIXME: Verify token limit
-        "Poe-Command-R-Plus": 4096,  # FIXME: Verify token limit
-        "Poe-GPT-3.5-Turbo": 4096,
-        "Poe-Mixtral-8x7B-Chat": 4096,  # FIXME: Verify token limit
-        "Poe-DeepSeek-Coder-33B-T": 4096,  # FIXME: Verify token limit
-        "Poe-CodeLlama-70B-T": 4096,  # FIXME: Verify token limit
-        "Poe-Qwen2-72B-Chat": 4096,  # FIXME: Verify token limit
-        "Poe-Qwen-72B-T": 4096,  # FIXME: Verify token limit
-        "Poe-Claude-2": 100000,
-        "Poe-Google-PaLM": 4096,  # FIXME: Verify token limit
-        "Poe-Llama-3-8b-Groq": 4096,  # FIXME: Verify token limit
-        "Poe-Llama-3-8B-T": 4096,  # FIXME: Verify token limit
-        "Poe-Gemma-Instruct-7B-T": 4096,  # FIXME: Verify token limit
-        "Poe-MythoMax-L2-13B": 4096,  # FIXME: Verify token limit
-        "Poe-Code-Llama-34b": 4096,  # FIXME: Verify token limit
-        "Poe-Code-Llama-13b": 4096,  # FIXME: Verify token limit
-        "Poe-Solar-Mini": 4096,  # FIXME: Verify token limit
-        "Poe-GPT-3.5-Turbo-Instruct": 4096,
-        "Poe-GPT-3.5-Turbo-Raw": 4096,
-        "Poe-Claude-instant": 100000,
-        "Poe-Mixtral-8x7b-Groq": 4096,  # FIXME: Verify token limit
-        "Poe-Mistral-7B-v0.3-T": 4096,  # FIXME: Verify token limit
-    }
-
-    # Get the maximum token limit for the selected model
-    max_tokens = model_max_tokens.get(model, 4096)
-
-    if model.startswith("claude"):
-        return ChatAnthropic(model=model, temperature=temperature, max_tokens=max_tokens, anthropic_api_key=Config.ANTHROPIC_API)
-    elif model.startswith("gemini"):
-        return GeminiLLM(model_name=model, api_key=Config.GOOGLE_API, temperature=temperature, max_tokens=max_tokens)
-    elif model.startswith("Poe-"):
-        return PoeLLM(model_name=model, api_key=Config.POE_API, temperature=temperature, max_tokens=max_tokens)
-    elif model.startswith("gpt"):
-        return ChatOpenAI(model=model, temperature=temperature, max_tokens=max_tokens, openai_api_key=Config.OPENAI_API)
+def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False):
+    # If the model is an OpenRouter model
+    if model.startswith("OR-"):
+        model_id = model[3:] # Remove OR-.
+        # Fetch models from OpenRouter to get the context length
+        or_models = fetch_openrouter_models()
+        # Find the model in the list
+        model_data = next((m for m in or_models if m['id'] == model_id), None)
+        if model_data:
+            context_length = model_data.get('context_length', 0)
+            # Subtract 10k for input prompts and retries
+            max_tokens = context_length - 10000
+            # Ensure max_tokens is not negative
+            max_tokens = max(max_tokens, 0)
+            return OpenRouterLLM(
+                model_name=model_id,
+                api_key=Config.OPEN_ROUTER_API_KEY,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                debug=debug
+            )
+        else:
+            raise ValueError(f"Model {model_id} not found in OpenRouter models.")
     else:
-        return ChatOpenAI(model=model, openai_api_key=Config.OPENAI_API, temperature=1)
+        # Dictionary mapping models to their maximum token limits
+        model_max_tokens = {
+            # OpenAI models
+            "o1-preview": 32768,
+            "o1-mini": 32768,
+            "gpt-4o-mini": 4096,
+            "gpt-4o": 4096,
+            "gpt-4o-2024-08-06": 8192,
+            "gpt-3.5-turbo": 4096,
+            "gpt-4-turbo": 4096,
+            "gpt-4": 8192,
 
+            # Anthropic models
+            "claude-3-5-sonnet-20240620": 4096,
+            "claude-3-opus-20240229": 4096,
+            "claude-3-sonnet-20240229": 4096,
+            "claude-3-haiku-20240307": 4096,
+
+            # Google models
+            "gemini-1.5-flash": 16384,
+            "gemini-1.5-pro": 32768,
+            "gemini-1.5-pro": 32768,
+            "gemini-1.5-pro-exp-0801": 32768,
+            "gemini-1.0-pro-exp-0827": 32768,
+
+            # Poe models
+            "Poe-Assistant": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-3.5-Sonnet": 4096,
+            "Poe-GPT-4o-Mini": 4096,
+            "Poe-GPT-4o": 8192,
+            "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Gemini-1.5-Flash": 16384,
+            "Poe-Gemini-1.5-Pro": 32768,
+            "Poe-Llama-3.2-11B-FW-131k": 128000,
+            "Poe-Llama-3.2-90B-FW-131k": 128000,
+            "Poe-Llama-3.1-8B-T-128k": 128000,
+            "Poe-Llama-3.1-70B-FW-128k": 128000,
+            "Poe-Llama-3.1-70B-T-128k": 128000,
+            "Poe-Llama-3.1-8B-FW-128k": 128000,
+            "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-3-Sonnet": 4096,
+            "Poe-Claude-3-Haiku": 4096,
+            "Poe-Claude-3-Opus": 4096,
+            "Poe-Gemini-1.5-Flash-128k": 128000,
+            "Poe-Gemini-1.5-Pro-128k": 128000,
+            "Poe-Gemini-1.0-Pro": 32768,
+            "Poe-Llama-3-70B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-70b-Inst-FW": 4096,  # FIXME: Verify token limit
+            "Poe-Mixtral8x22b-Inst-FW": 4096,  # FIXME: Verify token limit
+            "Poe-Command-R": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-2-9b-T": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-Large-2": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-Medium": 4096,  # FIXME: Verify token limit
+            "Poe-Snowflake-Arctic-T": 4096,  # FIXME: Verify token limit
+            "Poe-RekaCore": 4096,  # FIXME: Verify token limit
+            "Poe-RekaFlash": 4096,  # FIXME: Verify token limit
+            "Poe-Command-R-Plus": 4096,  # FIXME: Verify token limit
+            "Poe-GPT-3.5-Turbo": 4096,
+            "Poe-Mixtral-8x7B-Chat": 4096,  # FIXME: Verify token limit
+            "Poe-DeepSeek-Coder-33B-T": 4096,  # FIXME: Verify token limit
+            "Poe-CodeLlama-70B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Qwen2-72B-Chat": 4096,  # FIXME: Verify token limit
+            "Poe-Qwen-72B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-2": 100000,
+            "Poe-Google-PaLM": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-8b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-8B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-Instruct-7B-T": 4096,  # FIXME: Verify token limit
+            "Poe-MythoMax-L2-13B": 4096,  # FIXME: Verify token limit
+            "Poe-Code-Llama-34b": 4096,  # FIXME: Verify token limit
+            "Poe-Code-Llama-13b": 4096,  # FIXME: Verify token limit
+            "Poe-Solar-Mini": 4096,  # FIXME: Verify token limit
+            "Poe-GPT-3.5-Turbo-Instruct": 4096,
+            "Poe-GPT-3.5-Turbo-Raw": 4096,
+            "Poe-Claude-instant": 100000,
+            "Poe-Mixtral-8x7b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-7B-v0.3-T": 4096,  # FIXME: Verify token limit
+
+        # # OpenRouter models (with "OR-" prefix)
+        # # Note: All model IDs are prefixed with "OR-"
+        # # Context lengths are provided as per your list
+
+        # # Meta Models
+        # "OR-meta-llama/llama-3.2-3b-instruct": 24072,
+        # "OR-meta-llama/llama-3.2-1b-instruct": 24072,
+        # "OR-meta-llama/llama-3.2-90b-vision-instruct": 24072,
+        # "OR-meta-llama/llama-3.2-11b-vision-instruct": 24072,
+        # "OR-meta-llama/llama-3.1-405b": 24072,
+        # "OR-meta-llama/llama-3.1-405b-instruct": 24072,
+        # "OR-meta-llama/llama-3.1-70b-instruct": 24072,
+        # "OR-meta-llama/llama-3.1-8b-instruct": 24072,
+        # "OR-meta-llama/llama-guard-2-8b": 8192,
+        # "OR-meta-llama/llama-3-70b-instruct": 8192,
+        # "OR-meta-llama/llama-3-8b-instruct": 8192,
+
+        # # OpenAI Models
+        # "OR-openai/o1-mini-2024-09-12": 110000,
+        # "OR-openai/o1-mini": 110000,
+        # "OR-openai/o1-preview-2024-09-12": 110000,
+        # "OR-openai/o1-preview": 110000,
+        # "OR-openai/gpt-4o-mini-2024-07-18": 110000,
+        # "OR-openai/gpt-4o-mini": 110000,
+        # "OR-openai/gpt-4o-2024-08-06": 110000,
+        # "OR-openai/chatgpt-4o-latest": 110000,
+        # "OR-openai/gpt-4": 8192,
+        # "OR-openai/gpt-4-32k": 28768,
+        # "OR-openai/gpt-4-turbo": 110000,
+        # "OR-openai/gpt-3.5-turbo": 4096,
+        # "OR-openai/gpt-3.5-turbo-16k": 10384,
+
+        # # Anthropic Models
+        # "OR-anthropic/claude-3.5-sonnet": 200000,
+        # "OR-anthropic/claude-3.5-sonnet:beta": 200000,
+        # "OR-anthropic/claude-3-haiku": 200000,
+        # "OR-anthropic/claude-3-haiku:beta": 200000,
+        # "OR-anthropic/claude-3-sonnet": 200000,
+        # "OR-anthropic/claude-3-sonnet:beta": 200000,
+        # "OR-anthropic/claude-3-opus": 200000,
+        # "OR-anthropic/claude-3-opus:beta": 200000,
+        # "OR-anthropic/claude-3.5-opus": 200000,
+        # "OR-anthropic/claude-instant-1.1": 100000,
+        # "OR-anthropic/claude-2.1": 200000,
+        # "OR-anthropic/claude-2.1:beta": 200000,
+        # "OR-anthropic/claude-2": 200000,
+        # "OR-anthropic/claude-2:beta": 200000,
+        # "OR-anthropic/claude-2.0": 100000,
+        # "OR-anthropic/claude-2.0:beta": 100000,
+        # "OR-anthropic/claude-instant-1": 100000,
+        # "OR-anthropic/claude-instant-1:beta": 100000,
+        # "OR-anthropic/claude-1.2": 100000,
+        # "OR-anthropic/claude-1": 100000,
+
+        # # Google Models
+        # "OR-google/gemini-pro-1.5-exp": 3900000,
+        # "OR-google/gemini-flash-8b-1.5-exp": 3900000,
+        # "OR-google/gemini-flash-1.5-exp": 3900000,
+        # "OR-google/gemini-pro-1.5": 3900000,
+        # "OR-google/gemini-pro-1.5-exp": 3900000,
+        # "OR-google/gemini-pro-vision": 55536,
+        # "OR-google/gemini-pro": 121040,
+        # "OR-google/gemini-flash-1.5": 3900000,
+        # "OR-google/gemma-2-27b-it": 8192,
+        # "OR-google/gemma-2-9b-it": 8192,
+
+        # # Qwen Models
+        # "OR-qwen/qwen-2.5-72b-instruct": 131072,
+        # "OR-qwen/qwen-2-vl-72b-instruct": 28768,
+        # "OR-qwen/qwen-2-vl-7b-instruct": 28768,
+        # "OR-qwen/qwen-2-7b-instruct": 28768,
+        # "OR-qwen/qwen-72b-chat": 28768,
+        # "OR-qwen/qwen-110b-chat": 28768,
+        # "OR-qwen/qwen-2-72b-instruct": 28768,
+        # "OR-qwen/qwen-2-7b-instruct:free": 28768,
+
+        # # Cohere Models
+        # "OR-cohere/command-r-03-2024": 90000,
+        # "OR-cohere/command-r-plus-04-2024": 90000,
+        # "OR-cohere/command-r-plus-08-2024": 90000,
+        # "OR-cohere/command-r-08-2024": 90000,
+        # "OR-cohere/command-r-plus": 90000,
+        # "OR-cohere/command-r": 90000,
+        # "OR-cohere/command": 4096,
+
+        # # Microsoft Models
+        # "OR-microsoft/phi-3.5-mini-128k-instruct": 100000,
+        # "OR-microsoft/phi-3-mini-128k-instruct:free": 100000,
+        # "OR-microsoft/phi-3-mini-128k-instruct": 100000,
+        # "OR-microsoft/phi-3-medium-128k-instruct:free": 100000,
+        # "OR-microsoft/phi-3-medium-128k-instruct": 100000,
+        # "OR-microsoft/wizardlm-2-7b": 28000,
+        # "OR-microsoft/wizardlm-2-8x22b": 55536,
+
+        # # AI21 Models
+        # "OR-ai21/jamba-1-5-large": 226000,
+        # "OR-ai21/jamba-1-5-mini": 226000,
+        # "OR-ai21/jamba-instruct": 226000,
+
+        # # Perplexity Models
+        # "OR-perplexity/llama-3.1-sonar-huge-128k-online": 117072,
+        # "OR-perplexity/llama-3.1-sonar-large-128k-online": 117072,
+        # "OR-perplexity/llama-3.1-sonar-large-128k-chat": 121072,
+        # "OR-perplexity/llama-3.1-sonar-small-128k-online": 117072,
+        # "OR-perplexity/llama-3.1-sonar-small-128k-chat": 121072,
+        # "OR-perplexity/llama-3-sonar-large-32k-online": 22000,
+        # "OR-perplexity/llama-3-sonar-large-32k-chat": 28768,
+        # "OR-perplexity/llama-3-sonar-small-32k-online": 24000,
+        # "OR-perplexity/llama-3-sonar-small-32k-chat": 28768,
+
+        # # Mistral Models
+        # "OR-mistralai/pixtral-12b": 4096,
+        # "OR-mistralai/mistral-7b-instruct-v0.3": 28768,
+        # "OR-mistralai/mistral-7b-instruct-v0.2": 28768,
+        # "OR-mistralai/mistral-7b-instruct": 28768,
+        # "OR-mistralai/mistral-7b-instruct:free": 28768,
+        # "OR-mistralai/mistral-7b-instruct:nitro": 28768,
+        # "OR-mistralai/mixtral-8x22b-instruct": 55536,
+        # "OR-mistralai/mixtral-8x7b-instruct": 28768,
+        # "OR-mistralai/mixtral-8x7b-instruct:nitro": 28768,
+        # "OR-mistralai/mixtral-8x7b": 28768,
+        # "OR-mistralai/mistral-nemo": 120000,
+        # "OR-mistralai/mistral-large": 120000,
+        # "OR-mistralai/mistral-medium": 28000,
+        # # "OR-mistralai/mistral-small": 28000,
+        # "OR-mistralai/mistral-tiny": 28000,
+
+        }
+
+        # Get the maximum token limit for the selected model
+        max_tokens = model_max_tokens.get(model, 14096)
+
+        if model.startswith("claude"):
+            return ChatAnthropic(model=model, temperature=temperature, max_tokens=max_tokens, anthropic_api_key=Config.ANTHROPIC_API)
+        elif model.startswith("gemini"):
+            return GeminiLLM(model_name=model, api_key=Config.GOOGLE_API, temperature=temperature, max_tokens=max_tokens)
+        elif model.startswith("Poe-"):
+            return PoeLLM(model_name=model, api_key=Config.POE_API, temperature=temperature, max_tokens=max_tokens)
+        elif model.startswith("gpt"):
+            return ChatOpenAI(model=model, temperature=temperature, max_tokens=max_tokens, openai_api_key=Config.OPENAI_API)
+        elif model.startswith("o1"):
+            return ChatOpenAI(model=model, openai_api_key=Config.OPENAI_API, temperature=1)
+        else:
+            raise LofnError(f"{model} not found!")
 
 def run_chain_with_retries(_lang_chain, max_retries, args_dict=None, is_correction=False, model = None, debug=False):
     output = None
@@ -556,7 +790,7 @@ def process_revised_synthesized_prompts(chains, input, concept, medium, facets, 
 @st.cache_data(persist=True)
 def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-turbo-16k", verbose=False, debug=False, aesthetics=aesthetics, style_axes=None, creativity_spectrum=None):
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
         selected_aesthetics = random.sample(aesthetics, 100)
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
@@ -765,7 +999,7 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
 @st.cache_data(persist=True)
 def generate_prompts(input, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, aesthetics=aesthetics, style_axes=None, creativity_spectrum=None):
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
         selected_aesthetics = random.sample(aesthetics, 100)
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
@@ -865,7 +1099,7 @@ def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, cr
     else: 
         inner_model = model
 
-    llm = get_llm(inner_model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API)
+    llm = get_llm(inner_model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
 
     runway_prompt_template = """
         [Context: Runway Gen-3 Alpha Capabilities and Tips:

@@ -154,6 +154,24 @@ def initialize_session_state():
         if key not in st.session_state:
             st.session_state[key] = value
 
+def filter_models_by_context_length(models, min_total_tokens=25000, min_response_tokens=15000):
+    filtered_models = []
+    for model in models:
+        context_length = model.get('context_length', 0)
+        if context_length >= min_total_tokens:
+            # Compute max_tokens for the model
+            max_tokens = context_length - 10000  # Subtract 10k for input prompts and retries
+            if max_tokens >= min_response_tokens:
+                filtered_models.append({
+                    'id': model['id'],
+                    'name': model['name'],
+                    'context_length': context_length,
+                    'max_tokens': max_tokens,
+                    'description': model.get('description', ''),
+                    'pricing': model.get('pricing', {}),
+                })
+    return filtered_models
+
 def get_step_name(process_name, step):
     steps = {
         "Concept Medium Generation": [

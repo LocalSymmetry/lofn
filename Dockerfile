@@ -12,6 +12,7 @@ RUN mkdir -p /metadata/
 
 # Use entrypoint script to set environment variables and run Streamlit
 COPY * /lofn/
+COPY lofn/style.css /
 ENTRYPOINT ["/lofn/entrypoint.sh"]
 
 # docker run -p 8501:8501 -v /path/to/local/images:/images -v /path/to/local/videos:/videos -v /path/to/local/metadata:/metadata lofn

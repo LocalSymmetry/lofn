@@ -2,18 +2,13 @@
 
 import streamlit as st
 from config import Config
-from helpers import (
-    initialize_session_state,
-    create_mini_dashboard,
-    display_style_axes,
-    display_facets,
-    display_creativity_spectrum,
-)
+from helpers import *
 from llm_integration import (
     read_prompt,
     get_llm,
     generate_concept_mediums,
     generate_prompts,
+    fetch_openrouter_models
 )
 from image_generation import (
     render_image_controls,
@@ -41,6 +36,129 @@ class LofnApp:
         self.debug = False
         self.llm_client = None
         self.image_generator = None
+
+        # Build the model list dynamically
+        self.available_models = self.get_available_models()
+
+    def get_available_models(self):
+        models = []
+
+        # Add OpenAI models if OPENAI_API is available
+        if Config.OPENAI_API:
+            models.extend([
+                "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini",
+                "gpt-4o-2024-08-06", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
+            ])
+        # Add Anthropic models if ANTHROPIC_API is available
+        if Config.ANTHROPIC_API:
+            models.extend([
+                "claude-3-5-sonnet-20240620", "claude-3-opus-20240229",
+                "claude-3-sonnet-20240229", "claude-3-haiku-20240307"
+            ])
+        # Add Google models if GOOGLE_API is available
+        if Config.GOOGLE_API:
+            models.extend([
+                "gemini-1.5-flash-002", "gemini-1.5-pro-002", 
+                "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro",
+                "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"
+            ])
+        # Add Poe models if POE_API is available
+        if Config.POE_API:
+            models.extend([
+                "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k", 
+                "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
+                "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
+                "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", "Poe-Llama-3.2-90B-FW-131k",
+                "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
+                "Poe-Llama-3.1-8B-FW-128k", "Poe-GPT-4-Turbo-128k", "Poe-Claude-3-Opus-200k",
+                "Poe-Claude-3-Sonnet-200k", "Poe-Claude-3-Haiku-200k",
+                "Poe-Mixtral8x22b-Inst-FW", "Poe-Command-R", "Poe-Gemma-2-9b-T", 
+                "Poe-Mistral-Large-2", "Poe-Mistral-Medium",
+                "Poe-Snowflake-Arctic-T", "Poe-RekaCore", "Poe-RekaFlash", "Poe-Command-R-Plus",
+                "Poe-GPT-3.5-Turbo", "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
+                "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T", "Poe-Claude-2",
+                "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-Instruct-7B-T",
+                "Poe-MythoMax-L2-13B", "Poe-Code-Llama-34b", "Poe-Code-Llama-13b", "Poe-Solar-Mini",
+                "Poe-GPT-3.5-Turbo-Instruct", "Poe-GPT-3.5-Turbo-Raw", "Poe-Claude-instant",
+                "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
+                "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
+                "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
+                "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
+                "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW", "Poe-Llama-3.2-90B-FW-131k",
+                "Poe-Llama-3.2-11B-FW-131k"
+            ])
+
+        # Fetch models from OpenRouter API if API key is available
+        if Config.OPEN_ROUTER_API_KEY:
+            or_models = fetch_openrouter_models()
+            if or_models:
+                # Filter models based on context length and response tokens
+                filtered_or_models = filter_models_by_context_length(or_models, min_total_tokens=25000, min_response_tokens=15000)
+                # Extract model IDs for selection
+                models.extend(['OR-'+model['id'] for model in filtered_or_models])
+        else:
+            print("No OpenRouter API key found. Skipping OpenRouter models.")
+        # Add OpenRouter models if OPEN_ROUTER_API_KEY is available
+        # if Config.OPEN_ROUTER_API_KEY:
+        #     # For simplicity, let's add a few example models; you can extend this list
+        #     or_models  = [
+        #         "OR-meta-llama/llama-3.2-3b-instruct",  "OR-meta-llama/llama-3.2-1b-instruct", 
+        #          "OR-meta-llama/llama-3.2-90b-vision-instruct",  "OR-meta-llama/llama-3.2-11b-vision-instruct",  
+        #          "OR-meta-llama/llama-3.1-405b",  "OR-meta-llama/llama-3.1-405b-instruct",  
+        #          "OR-meta-llama/llama-3.1-70b-instruct",  "OR-meta-llama/llama-3.1-8b-instruct",  
+        #          "OR-meta-llama/llama-guard-2-8b",  "OR-meta-llama/llama-3-70b-instruct",  
+        #          "OR-meta-llama/llama-3-8b-instruct",  "OR-openai/o1-mini-2024-09-12",  
+        #          "OR-openai/o1-mini",  "OR-openai/o1-preview-2024-09-12",  "OR-openai/o1-preview",  
+        #          "OR-openai/gpt-4o-mini-2024-07-18",  "OR-openai/gpt-4o-mini",  "OR-openai/gpt-4o-2024-08-06",  
+        #          "OR-openai/chatgpt-4o-latest",  "OR-openai/gpt-4",  "OR-openai/gpt-4-32k",  "OR-openai/gpt-4-turbo",  
+        #          "OR-openai/gpt-3.5-turbo",  "OR-openai/gpt-3.5-turbo-16k",  "OR-anthropic/claude-3.5-sonnet",  
+        #          "OR-anthropic/claude-3.5-sonnet",  "OR-anthropic/claude-3-haiku",  
+        #          "OR-anthropic/claude-3-sonnet", "OR-anthropic/claude-3-opus", "OR-anthropic/claude-instant-1.1",
+        #           "OR-anthropic/claude-1.2",  "OR-anthropic/claude-1",  "OR-google/gemini-pro-1.5-exp",  
+        #           "OR-google/gemini-flash-8b-1.5-exp",  "OR-google/gemini-flash-1.5-exp",  
+        #           "OR-google/gemini-pro-1.5",  "OR-google/gemini-pro-1.5-exp",  "OR-google/gemini-pro-vision",  
+        #           "OR-google/gemini-pro",  "OR-google/gemini-flash-1.5",  "OR-google/gemma-2-27b-it",  
+        #           "OR-google/gemma-2-9b-it",  "OR-qwen/qwen-2.5-72b-instruct",  "OR-qwen/qwen-2-vl-72b-instruct",  
+        #           "OR-qwen/qwen-2-vl-7b-instruct",  "OR-qwen/qwen-2-7b-instruct",  "OR-qwen/qwen-72b-chat",  
+        #           "OR-qwen/qwen-110b-chat",  "OR-qwen/qwen-2-72b-instruct",  "OR-qwen/qwen-2-7b-instruct",  
+        #           "OR-cohere/command-r-03-2024",  "OR-cohere/command-r-plus-04-2024",  "OR-cohere/command-r-plus-08-2024", 
+        #           "OR-cohere/command-r-08-2024",  "OR-cohere/command-r-plus",  "OR-cohere/command-r",  "OR-cohere/command",  
+        #           "OR-microsoft/phi-3.5-mini-128k-instruct",  "OR-microsoft/phi-3-mini-128k-instruct",  
+        #           "OR-microsoft/phi-3-mini-128k-instruct",  "OR-microsoft/phi-3-medium-128k-instruct",  
+        #           "OR-microsoft/phi-3-medium-128k-instruct",  "OR-microsoft/wizardlm-2-7b",  "OR-microsoft/wizardlm-2-8x22b",  
+        #           "OR-ai21/jamba-1-5-large",  "OR-ai21/jamba-1-5-mini",  "OR-ai21/jamba-instruct",  
+        #           "OR-perplexity/llama-3.1-sonar-huge-128k-online",  "OR-perplexity/llama-3.1-sonar-large-128k-online",  
+        #           "OR-perplexity/llama-3.1-sonar-large-128k-chat",  "OR-perplexity/llama-3.1-sonar-small-128k-online",  
+        #           "OR-perplexity/llama-3.1-sonar-small-128k-chat",  "OR-perplexity/llama-3-sonar-large-32k-online",  
+        #           "OR-perplexity/llama-3-sonar-large-32k-chat",  "OR-perplexity/llama-3-sonar-small-32k-online",  
+        #           "OR-perplexity/llama-3-sonar-small-32k-chat",  "OR-mistralai/pixtral-12b",  
+        #           "OR-mistralai/mistral-7b-instruct-v0.3",  "OR-mistralai/mistral-7b-instruct-v0.2",  
+        #           "OR-mistralai/mistral-7b-instruct", 
+        #           "OR-mistralai/mixtral-8x22b-instruct",  "OR-mistralai/mixtral-8x7b-instruct",  
+        #           "OR-mistralai/mixtral-8x7b",  "OR-mistralai/mistral-nemo", 
+        #           "OR-mistralai/mistral-large",  "OR-mistralai/mistral-medium",  
+        #           "OR-mistralai/mistral-small",  "OR-mistralai/mistral-tiny"]
+        #     models.extend(or_models)
+        return models
+
+    def get_available_image_models(self):
+        models = []
+        if Config.FAL_API_KEY:
+            models.extend([
+                "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
+                # Add other FAL models
+            ])
+        if Config.IDEOGRAM_API_KEY:
+            models.extend([
+                "Ideogram",
+                # Add other Ideogram models
+            ])
+        # Models that don't require API keys
+        models.extend([
+            "DALL-E 3",
+            # Add other models
+        ])
+        return models
 
     def run(self):
         st.set_page_config(
@@ -74,35 +192,7 @@ class LofnApp:
         with st.sidebar.expander("Language Model Settings", expanded=True):
             self.model = st.selectbox(
                 "Select Language Model",
-                [
-                    "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-2024-08-06", 
-                    "claude-3-5-sonnet-20240620", "gpt-3.5-turbo", 
-                    "claude-3-opus-20240229", "gpt-4-turbo", "claude-3-sonnet-20240229", 
-                    "claude-3-haiku-20240307", "gpt-4", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
-                    "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro", 
-                    "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801",
-                    "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k", 
-                    "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k", 
-                    "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
-                    "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", "Poe-Llama-3.2-90B-FW-131k",
-                    "Poe-Llama-3.1-8B-T-128k", "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
-                    "Poe-Llama-3.1-8B-FW-128k", "Poe-GPT-4-Turbo-128k", "Poe-Claude-3-Opus-200k",
-                    "Poe-Claude-3-Sonnet-200k", "Poe-Claude-3-Haiku-200k",
-                    "Poe-Mixtral8x22b-Inst-FW", "Poe-Command-R", "Poe-Gemma-2-9b-T", 
-                    "Poe-Mistral-Large-2", "Poe-Mistral-Medium",
-                    "Poe-Snowflake-Arctic-T", "Poe-RekaCore", "Poe-RekaFlash", "Poe-Command-R-Plus",
-                    "Poe-GPT-3.5-Turbo", "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
-                    "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T", "Poe-Claude-2",
-                    "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-Instruct-7B-T",
-                    "Poe-MythoMax-L2-13B", "Poe-Code-Llama-34b", "Poe-Code-Llama-13b", "Poe-Solar-Mini",
-                    "Poe-GPT-3.5-Turbo-Instruct", "Poe-GPT-3.5-Turbo-Raw", "Poe-Claude-instant",
-                    "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
-                    "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
-                    "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
-                    "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
-                    "Poe-Gemini-1.0-Pro", "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW", "Poe-Llama-3.2-90B-FW-131k",
-                    "Poe-Llama-3.2-11B-FW-131k"
-                ],
+                self.available_models,
                 help="Choose the language model for generating concepts and prompts.",
             )
 
@@ -126,18 +216,11 @@ class LofnApp:
             self.debug = st.checkbox("Debug Mode", value=False, help="Enable debug mode for detailed logs.")
 
         with st.sidebar.expander("Image Generation Settings", expanded=True):
+            self.available_image_models = self.get_available_image_models()
+
             self.image_model = st.selectbox(
                 "Select Image Model",
-                [
-                    "Poe-FLUX-pro", "Poe-DALL-E-3", "DALL-E 3", "Ideogram", "fal-ai/flux-pro", 
-                    "fal-ai/flux/schnell", "None", "fal-ai/flux-realism", "fal-ai/flux/dev", 
-                    "fal-ai/aura-flow", "fal-ai/stable-diffusion-v3-medium", "fal-ai/fast-sdxl", 
-                    "fal-ai/hyper-sdxl", "fal-ai/playground-v25",
-                    "Poe-Ideogram-v2", "Poe-Playground-v2.5", "Poe-Playground-v3", "Poe-Ideogram", "Poe-FLUX-dev",
-                    "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
-                    "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
-                    "Poe-SD3-Medium", "Poe-RealVisXL"
-                ],
+                self.available_image_models,
                 help="Choose the image generation model.",
             )
 
@@ -256,6 +339,8 @@ class LofnApp:
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity_spectrum
 
             # Display Style Axes and Creativity Spectrum if automatic
             if st.session_state.get('auto_style', True):

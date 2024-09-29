@@ -8,4 +8,4 @@ export STREAMLIT_TELEMETRY_DISABLED=1
 export STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
 
 # Run Streamlit
-exec streamlit run /lofn/lofn_ui.py
+exec streamlit run /lofn/ui.py

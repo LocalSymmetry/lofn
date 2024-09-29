@@ -13,3 +13,4 @@ class Config:
     RUNWARE_API_KEY = os.environ.get('RUNWARE_API_KEY', '')
     IDEOGRAM_API_KEY = os.environ.get('IDEOGRAM_API_KEY', '')
     FAL_API_KEY = os.environ.get('FAL_KEY', '')
+    OPEN_ROUTER_API_KEY = os.environ.get('OPEN_ROUTER_API_KEY', '')
