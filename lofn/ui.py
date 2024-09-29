@@ -168,19 +168,6 @@ class LofnApp:
         return models
 
     def run(self):
-        st.set_page_config(
-            page_title="Lofn - The AI Artist",
-            page_icon=":art:",
-            layout="wide",
-            initial_sidebar_state="expanded",
-        )
-        # Load custom CSS if available
-        if os.path.exists("style.css"):
-            with open("style.css") as f:
-                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-        else:
-            logger.warning("style.css not found. Proceeding without custom styles.")
-
         # Initialize session state
         initialize_session_state()
 
@@ -486,6 +473,18 @@ class LofnApp:
     # Additional methods can be added here for further functionality
 
 def main():
+    st.set_page_config(
+        page_title="Lofn - The AI Artist",
+        page_icon=":art:",
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
+    # Load custom CSS if available
+    if os.path.exists("style.css"):
+        with open("style.css") as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    else:
+        logger.warning("style.css not found. Proceeding without custom styles.")
     app = LofnApp()
     app.run()
 
