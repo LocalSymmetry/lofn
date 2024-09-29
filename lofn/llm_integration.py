@@ -301,7 +301,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Subtract 10k for input prompts and retries
             max_tokens = context_length - 10000
             # Ensure max_tokens is not negative
-            max_tokens = max(max_tokens, 0)
+            max_tokens = min(max(max_tokens, 0), 23000) #fix to stop bad config values
             return OpenRouterLLM(
                 model_name=model_id,
                 api_key=Config.OPEN_ROUTER_API_KEY,

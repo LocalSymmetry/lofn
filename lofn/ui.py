@@ -335,7 +335,7 @@ class LofnApp:
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
-            self.style_axes = create_style_axes
+            self.style_axes = style_axes
             self.creativity_spectrum = creativity_spectrum
 
         except Exception as e:
@@ -399,8 +399,8 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=style_axes,
-                    creativity_spectrum=creativity_spectrum,
+                    style_axes=self.style_axes,
+                    creativity_spectrum=self.creativity_spectrum,
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
