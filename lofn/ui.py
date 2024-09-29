@@ -153,11 +153,13 @@ class LofnApp:
                 "Ideogram",
                 # Add other Ideogram models
             ])
-        # Models that don't require API keys
-        models.extend([
-            "DALL-E 3",
-            # Add other models
-        ])
+        if Config.GOOGLE_PROJECT_ID:
+            models.append("Google Imagen 3")
+        if Config.OPENAI_API:
+            models.extend([
+                "DALL-E 3",
+                # Add other models
+            ])
         return models
 
     def run(self):

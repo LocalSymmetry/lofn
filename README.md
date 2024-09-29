@@ -193,7 +193,7 @@ Lofn supports a wide range of language models, allowing you to select the one th
 - **Anthropic's Claude models**: Claude 3.5 Sonnet, Claude 3.5 Opus, among others.
 - **Google's Gemini models**: Gemini 1.5 Pro, Gemini 1.5 Flash.
 - **Poe models**: Diverse models accessible via the Poe API.
-- **o1-mini** and other specialized models.
+- **OpenRouter models**: Access a variety of models through the OpenRouter API, including those from Meta, Google, Anthropic, and more.
 
 This flexibility lets you leverage the strengths of different models for varied outputs. Each model may offer unique styles and nuances in the generated content.
 
@@ -204,13 +204,78 @@ Lofn provides extensive image generation options:
 - **Image Models Supported**:
 
   - **DALL·E 3**
+  - **Google Imagen 3**
   - **Ideogram**
   - **FAL models** (`fal-ai/flux-pro`, `fal-ai/fast-sdxl`, etc.)
   - **Poe-integrated image models**
 
+- **Google Imagen 3 Integration**:
+
+  Generate high-quality images using Google's latest Imagen 3 model. Lofn integrates directly with Google Cloud's Vertex AI services to provide seamless image generation with enhanced control over style, quality, and safety filters.
+
 - **Runway Gen-3 Alpha Integration**:
 
   Generate detailed prompts compatible with Runway's Gen-3 Alpha video generation model, enabling the creation of high-fidelity, cinematic videos based on your concepts.
+
+### OpenRouter Integration
+
+**OpenRouter** allows Lofn to access a wide array of language models through a unified API. By integrating OpenRouter, Lofn can utilize models from different providers, such as Meta, Google, Anthropic, and more, all with a single API key and interface.
+
+**Key Benefits:**
+
+- **Unified Access**: Access multiple models without dealing with individual providers.
+- **Extended Model Availability**: Utilize cutting-edge models and versions as they become available.
+- **Simplified Billing**: Manage costs and billing through a single platform.
+
+**Setup Instructions:**
+
+1. **Sign Up for OpenRouter**:
+
+   - Visit [OpenRouter](https://openrouter.ai/) and create an account.
+   - Obtain your API key from the dashboard.
+
+2. **Configure Lofn**:
+
+   - Add your OpenRouter API key to the `config.yaml` file under `OPEN_ROUTER_API_KEY`.
+
+   ```yaml
+   OPEN_ROUTER_API_KEY: "your-openrouter-api-key"
+   ```
+
+3. **Select OpenRouter Models in Lofn**:
+
+   - In the Lofn UI, select OpenRouter models prefixed with `OR-` from the **Language Model** dropdown.
+
+### Google Imagen 3 Integration
+
+**Google Imagen 3** is a state-of-the-art text-to-image model that produces photorealistic visuals with exceptional composition, sharpness, color accuracy, and resolution. Lofn integrates Google Imagen 3 for elevated image generation capabilities.
+
+**Key Features:**
+
+- **Photorealistic Quality**: Produce high-resolution, detailed images.
+- **Versatile Styles and Formats**: Generate images across various artistic styles.
+- **Advanced Prompt Adherence**: Improved alignment with detailed prompts.
+- **Safety Filters**: Configure safety settings to meet ethical guidelines.
+- **SynthID Watermarking**: Protect and verify generated images with invisible watermarks.
+
+**Setup Instructions:**
+
+1. **Set Up Google Cloud Vertex AI**:
+
+   - Create a Google Cloud project and enable the Vertex AI API.
+   - Create a service account with the necessary permissions.
+   - Download the service account key JSON file.
+
+2. **Configure Lofn**:
+
+   - Add your Google Cloud project ID and the path to your service account key in the `config.yaml` file.
+
+   ```yaml
+   GOOGLE_PROJECT_ID: "your-google-cloud-project-id"
+   GOOGLE_APPLICATION_CREDENTIALS: "/path/to/your/service-account-key.json"
+   ```
+
+   - Ensure the service account key is securely stored and the path is correctly specified.
 
 ### Discord Integration
 
@@ -346,12 +411,6 @@ Prompts take from the first concept-medium pair generation.
 | **Gemini 1.5 Pro 002** | DALL·E 3        | *A majestic griffin perches atop Elara of Whispering Pines ivory staff, its amber eyes glowing with arcane energy under a blood moon over the ruins of Eldoria. Hyperrealistic digital painting with dramatic chiaroscuro lighting. The staff, polished smooth by countless spells, cradles the griffins weight, its feathers catching the crimson glow like embers. Eldorias broken spires claw at the sky, skeletal fingers against the ethereal light. The griffins gaze, pools of molten amber, holds the secrets of forgotten magic. Intricate details of feather and bone emphasize the raw, untamed essence of this bond.*                                      | ![Gemini Pro 1.5 002 DALL·E 3](examples/comparisons/gemini-pro_dalle.png)                |
 | **Gemini 1.5 Pro 002** | Flux Pro      | *A majestic griffin perches atop Elara of Whispering Pines ivory staff, its amber eyes glowing with arcane energy under a blood moon over the ruins of Eldoria. Hyperrealistic digital painting with dramatic chiaroscuro lighting. The staff, polished smooth by countless spells, cradles the griffins weight, its feathers catching the crimson glow like embers. Eldorias broken spires claw at the sky, skeletal fingers against the ethereal light. The griffins gaze, pools of molten amber, holds the secrets of forgotten magic. Intricate details of feather and bone emphasize the raw, untamed essence of this bond.*                                      | ![Gemini Pro 1.5 002 Flux Pro](examples/comparisons/gemini-pro_flux.jpg)          |
 | **Gemini 1.5 Pro 002** | Ideogram v2        | *A majestic griffin perches atop Elara of Whispering Pines ivory staff, its amber eyes glowing with arcane energy under a blood moon over the ruins of Eldoria. Hyperrealistic digital painting with dramatic chiaroscuro lighting. The staff, polished smooth by countless spells, cradles the griffins weight, its feathers catching the crimson glow like embers. Eldorias broken spires claw at the sky, skeletal fingers against the ethereal light. The griffins gaze, pools of molten amber, holds the secrets of forgotten magic. Intricate details of feather and bone emphasize the raw, untamed essence of this bond.*                                      | ![Gemini Pro 1.5 002 Ideogram](examples/comparisons/gemini-pro_ideogram.png)              |
-
-### Observations
-
-- **Language Model Differences**: Each language model brings its own nuances to the generated prompts. GPT-4 may provide more detailed and context-aware prompts, while others may excel in creativity or stylistic diversity.
-- **Image Generator Variations**: Different image generators interpret prompts uniquely. Comparing outputs helps identify which combination best suits specific artistic goals.
-- **Impact of Style Axes and Creativity Spectrum**: Adjusting these settings can lead to significant variations in the outputs, even with the same language model and image generator.
 
 ## Lofn's Prompt Structure and Process Steps
 

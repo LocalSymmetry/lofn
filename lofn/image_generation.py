@@ -10,6 +10,7 @@ import os
 import time
 import asyncio
 import streamlit as st
+from google.cloud import aiplatform
 from config import Config
 from helpers import *
 import logging
@@ -52,6 +53,8 @@ def generate_image(model: str, params: dict, debug = False):
     #     return generate_runware_image(params['prompt'], params)
     if model == "DALL-E 3":
         return [generate_image_dalle3(params, debug = debug)]
+    elif model == "Google Imagen 3":
+          return generate_google_imagen_image(params, debug=debug)
     elif model.startswith("fal-ai/"):
         return generate_fal_image(model, params, debug = debug)
     elif model.startswith("Poe-"):
@@ -85,6 +88,42 @@ def save_image_locally(image_url, filename, directory='images'):
             else:
                 st.write(f"Failed to download image after {max_retries} attempts")
                 st.write(f"Full URL attempted: {image_url}")  # Log the full URL for debugging
+
+def generate_google_imagen_image(params, debug=False):
+    try:
+        # Initialize the Vertex AI client
+        aiplatform.init(project=Config.GOOGLE_PROJECT_ID, location="us-central1")
+
+        generation_model = aiplatform.VisionModel.from_pretrained("imagen-3.0")
+
+        prompt = params['prompt']
+        number_of_images = params.get('num_images', 1)
+        aspect_ratio = params.get('aspect_ratio', '1:1')
+        safety_filter_level = params.get('safety_filter_level', 'block_some')
+        person_generation = params.get('person_generation', 'allow_all')
+        add_watermark = params.get('add_watermark', True)
+
+        images = generation_model.predict(
+          prompt=prompt,
+          number_of_images=number_of_images,
+          aspect_ratio=aspect_ratio,
+          safety_filters=safety_filter_level,
+          # Other parameters as needed
+        )
+
+        # The images returned are PIL Image objects
+        image_paths = []
+        for i, image in enumerate(images):
+            filename = f"google_imagen_{i}.png"
+            image.save(f"/images/{filename}")
+            image_paths.append(f"/images/{filename}")
+        return image_paths
+
+    except Exception as e:
+        st.error(f"An error occurred while generating the image with Google Imagen 3: {str(e)}")
+        if debug:
+            st.exception(e)
+        return None
 
 def generate_poe_image(model: str, params: dict, debug: bool = False):
     try:
@@ -592,6 +631,13 @@ def get_model_params(model: str):
             "quality": st.session_state.get(f"{model}_quality", "hd"),
             "style": st.session_state.get(f"{model}_style", "vivid")
         },
+        "Google Imagen 3": {
+            "aspect_ratio": st.session_state.get(f"{model}_aspect_ratio", "1:1"),
+            "safety_filter_level": st.session_state.get(f"{model}_safety_filter_level", "block_some"),
+            "person_generation": st.session_state.get(f"{model}_person_generation", "allow_all"),
+            "add_watermark": st.session_state.get(f"{model}_add_watermark", True),
+            "prompt": st.session_state.get(f"{model}_prompt"),
+        },
         "fal-ai/flux/schnell": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 12),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
@@ -714,6 +760,11 @@ def render_image_controls(model: str):
         
         st.selectbox("Style Type", ["GENERAL", "REALISTIC", "DESIGN", "RENDER_3D", "ANIME"], key=f"{model}_style_type")
         st.number_input("Seed", min_value=0, max_value=2147483647, value=0, key=f"{model}_seed", help="0 for random seed")
+    elif model == "Google Imagen 3":
+          st.selectbox("Aspect Ratio", ["1:1", "4:3", "3:4", "16:9", "9:16"], key=f"{model}_aspect_ratio")
+          st.selectbox("Safety Filter Level", ["block_most", "block_some", "block_few"], key=f"{model}_safety_filter_level")
+          st.selectbox("Person Generation", ["allow_all", "allow_adult", "dont_allow"], key=f"{model}_person_generation")
+          st.checkbox("Add Watermark", value=True, key=f"{model}_add_watermark")
     elif model in ["fal-ai/flux/schnell", "Poe-FLUX-schnell"]:
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
