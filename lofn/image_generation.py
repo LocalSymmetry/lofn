@@ -69,25 +69,35 @@ def save_image_locally(image_url, filename, directory='images'):
     max_retries = 3
     retry_delay = 1  # seconds
 
+    # Ensure the directory exists
+    os.makedirs(f'/{directory}', exist_ok=True)
+
     for attempt in range(max_retries):
         try:
-            # No headers needed for the signed URL
-            response = requests.get(image_url, timeout=3)  # Add a timeout
-            response.raise_for_status()  # This will raise an exception for HTTP errors
+            if image_url[0] != '/':
+                # It's a URL; download the image
+                response = requests.get(image_url, timeout=3)
+                response.raise_for_status()  # Raise an exception for HTTP errors
+                content = response.content
+            else:
+                # It's a local file path; read the file content
+                with open(image_url, 'rb') as f:
+                    content = f.read()
 
-            # Ensure the directory exists
-            os.makedirs(f'/{directory}', exist_ok=True)
+            # Save the content to the desired location
             with open(f'/{directory}/{filename}', 'wb') as f:
-                f.write(response.content)
+                f.write(content)
+
             st.write(f"Image saved as /{directory}/{filename}")
-            return
-        except requests.exceptions.RequestException as e:
+            return  # Exit the function after successful save
+        except Exception as e:
             st.write(f"Attempt {attempt + 1} failed: {str(e)}")
-            if attempt < max_retries - 1:
+            if attempt < max_retries:
                 time.sleep(retry_delay)
             else:
-                st.write(f"Failed to download image after {max_retries} attempts")
-                st.write(f"Full URL attempted: {image_url}")  # Log the full URL for debugging
+                st.write(f"Failed to save image after {max_retries} attempts")
+                st.write(f"Full URL or path attempted: {image_url}")
+
 
 def generate_google_imagen_image(params, debug=False):
     try:
@@ -115,7 +125,7 @@ def generate_google_imagen_image(params, debug=False):
         for i, image in enumerate(images):
             filename = f"google_imagen_{i}_{prompt[:40]}.png"
             image.save(f"/images/{filename}")
-            image_paths.append(f"file:///images/{filename}")
+            image_paths.append(f"/images/{filename}")
         return image_paths
 
     except Exception as e:
