@@ -332,8 +332,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 
             # Google models
             "gemini-1.5-flash": 16384,
+            "gemini-1.5-flash-002": 8191,
             "gemini-1.5-pro": 32768,
-            "gemini-1.5-pro": 32768,
+            "gemini-1.5-pro-002": 32768,
             "gemini-1.5-pro-exp-0801": 32768,
             "gemini-1.0-pro-exp-0827": 32768,
 

@@ -661,6 +661,11 @@ def get_model_params(model: str):
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
         },
+        "fal-ai/flux-pro/v1.1": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
         "fal-ai/flux-realism": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
