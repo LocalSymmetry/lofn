@@ -165,6 +165,14 @@ class LofnApp:
                 "DALL-E 3",
                 # Add other models
             ])
+        if Config.POE_API:
+            models.extend([
+                "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-DALL-E-3", "Poe-Ideogram-v2", "Poe-Playground-v2.5", 
+                "Poe-Playground-v3", "Poe-Ideogram", "Poe-FLUX-dev",
+                "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
+                "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
+                "Poe-SD3-Medium", "Poe-RealVisXL"
+            ])
         return models
 
     def run(self):
