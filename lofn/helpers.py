@@ -126,36 +126,6 @@ def extract_image_url_from_response(response, debug):
 
     return urls[0] if urls else None
 
-def initialize_session_state():
-    default_values = {
-        'concept_mediums': None,
-        'pairs_to_try': [0],
-        'button_clicked': False,
-        'webhook_url': Config.webhook_url,
-        'send_to_discord': True,
-        'use_default_webhook': True,
-        'concept_manual_mode': False,
-        'essence_and_facets_output': None,
-        'concepts_output': None,
-        'artist_and_refined_concepts_output': None,
-        'medium_output': None,
-        'refined_medium_output': None,
-        'shuffled_review_output': None,
-        'proceed_concepts_clicked': False,
-        'proceed_artist_refined_clicked': False,
-        'proceed_mediums_clicked': False,
-        'proceed_refined_mediums_clicked': False,
-        'proceed_shuffled_reviews_clicked': False,
-        'complete_all_steps_clicked': False,
-        'image_model':'Poe-FLUX-pro',
-        'creativity_spectrum': None,
-        'style_axes': None
-    }
-
-    for key, value in default_values.items():
-        if key not in st.session_state:
-            st.session_state[key] = value
-
 def filter_models_by_context_length(models, min_total_tokens=25000, min_response_tokens=15000):
     filtered_models = []
     for model in models:

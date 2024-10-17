@@ -146,6 +146,7 @@ class LofnApp:
         #     models.extend(or_models)
         return models
 
+
     def get_available_image_models(self):
         models = []
         if Config.FAL_API_KEY:
@@ -177,7 +178,7 @@ class LofnApp:
 
     def run(self):
         # Initialize session state
-        initialize_session_state()
+        self.initialize_session_state()
 
         st.title("LOFN - The AI Artist")
 
@@ -286,6 +287,12 @@ class LofnApp:
                     )
                 st.session_state['webhook_url'] = webhook_url
            
+    def display_style_axes_and_creativity_spectrum(self):
+        if 'style_axes' in st.session_state and st.session_state['style_axes']:
+            display_style_axes(st.session_state['style_axes'])
+        if 'creativity_spectrum' in st.session_state and st.session_state['creativity_spectrum']:
+            display_creativity_spectrum(st.session_state['creativity_spectrum'])
+
 
     def render_main_container(self):
         # Main content area
@@ -321,13 +328,15 @@ class LofnApp:
             if user_input.strip() == "":
                 st.warning("Please provide a description of your idea.")
             else:
-                self.generate_concepts()
+                style_axes, creativity_spectrum = self.generate_concepts()
                 
 
 
         # Display concepts and proceed to prompt generation
         if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
+            self.display_style_axes_and_creativity_spectrum()
             self.display_concepts()
+
 
     def generate_concepts(self):
         try:
@@ -344,9 +353,11 @@ class LofnApp:
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
-            # Store the updated axes back into session state if needed
+            # Store the updated axes back into session state
             st.session_state['style_axes'] = style_axes
             st.session_state['creativity_spectrum'] = creativity_spectrum
+            
+            return style_axes, creativity_spectrum
         except Exception as e:
             st.error("An error occurred while generating concepts.")
             logger.exception("Error generating concepts: %s", e)
@@ -386,8 +397,8 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=st.session_state.get('style_axes', None),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum', None),
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
@@ -408,8 +419,8 @@ class LofnApp:
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
-                    style_axes=st.session_state.get('style_axes', None),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum', None),
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
@@ -442,15 +453,46 @@ class LofnApp:
                     model=self.model,
                     debug=self.debug,
                     image_model=self.image_model,
-                    style_axes=st.session_state.get('style_axes', None),
-                    creativity_spectrum=st.session_state.get('creativity_spectrum', None),
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
+                    OPENAI_API = Config.OPENAI_API
                 )
             st.success(f"Images generated for '{pair['concept']}'")
         except Exception as e:
             st.error(f"An error occurred while generating images for '{pair['concept']}'.")
             logger.exception("Error generating images: %s", e)
 
-    # Additional methods can be added here for further functionality
+    def initialize_session_state(self):
+        default_values = {
+            'concept_mediums': None,
+            'pairs_to_try': [0],
+            'button_clicked': False,
+            'webhook_url': Config.webhook_url,
+            'send_to_discord': True,
+            'use_default_webhook': True,
+            'concept_manual_mode': False,
+            'essence_and_facets_output': None,
+            'concepts_output': None,
+            'artist_and_refined_concepts_output': None,
+            'medium_output': None,
+            'refined_medium_output': None,
+            'shuffled_review_output': None,
+            'proceed_concepts_clicked': False,
+            'proceed_artist_refined_clicked': False,
+            'proceed_mediums_clicked': False,
+            'proceed_refined_mediums_clicked': False,
+            'proceed_shuffled_reviews_clicked': False,
+            'complete_all_steps_clicked': False,
+            'image_model':'Poe-FLUX-pro',
+            'creativity_spectrum': None,
+            'style_axes': None,
+            'input': '',
+        }
+
+        for key, value in default_values.items():
+            if key not in st.session_state:
+                st.session_state[key] = value
+        # Additional methods can be added here for further functionality
 
 def main():
     st.set_page_config(

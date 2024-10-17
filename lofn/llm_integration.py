@@ -887,13 +887,13 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
             # Step 1: Essence and Facets
             status.write("Generating Essence and Facets...")
             essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(chains, input, max_retries, debug, style_axes, creativity_spectrum, model)
-            if essence_and_facets:
-                if st.session_state.creativity_spectrum == None:
-                    display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
-                else:
-                    display_creativity_spectrum(st.session_state.creativity_spectrum)
-                display_facets(essence_and_facets["essence_and_facets"]["facets"])
-                display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
+            #if essence_and_facets:
+                #if st.session_state.creativity_spectrum == None:
+                    #display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
+                #else:
+                    #display_creativity_spectrum(st.session_state.creativity_spectrum)
+                #display_facets(essence_and_facets["essence_and_facets"]["facets"])
+                #display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
             
             # Step 2: Concepts
             status.write("Generating Concepts...")

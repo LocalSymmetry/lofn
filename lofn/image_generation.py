@@ -48,11 +48,11 @@ image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
-def generate_image(model: str, params: dict, debug = False):
+def generate_image(model: str, params: dict, OPENAI_API = Config.OPENAI_API, debug = False):
     # if model.startswith("runware:") or model.startswith("civitai:"):
     #     return generate_runware_image(params['prompt'], params)
     if model == "DALL-E 3":
-        return [generate_image_dalle3(params, debug = debug)]
+        return [generate_image_dalle3(params, OPENAI_API, debug = debug)]
     elif model == "Google Imagen 3":
           return generate_google_imagen_image(params, debug=debug)
     elif model.startswith("fal-ai/"):
@@ -219,8 +219,9 @@ async def collect_responses(response_generator):
         full_response += partial_response
     return full_response
 
-def generate_image_dalle3(params, debug = False):
+def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False):
     try:
+        openai.api_key = OPENAI_API
         response = openai.images.generate(
             model="dall-e-3",
             prompt=params['prompt'],
@@ -235,7 +236,7 @@ def generate_image_dalle3(params, debug = False):
         return None
 
 @st.cache_data(persist=True)
-def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum):
+def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API):
     st.write(f"Generating images using {image_model}...")
     
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
@@ -248,7 +249,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         params['prompt'] = prompt  # Override the prompt with the current one
         
         try:
-            results = generate_image(image_model, params, debug)
+            results = generate_image(image_model, params, OPENAI_API, debug)
             
             if results:
                 for i, result in enumerate(results):
