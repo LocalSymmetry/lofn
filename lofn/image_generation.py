@@ -667,6 +667,11 @@ def get_model_params(model: str):
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
         },
+        "fal-ai/stable-diffusion-v35-large": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
         "fal-ai/flux-realism": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
@@ -784,7 +789,7 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")

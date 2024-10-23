@@ -52,7 +52,8 @@ class LofnApp:
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
             models.extend([
-                "claude-3-5-sonnet-20240620", "claude-3-opus-20240229",
+                "claude-3-5-sonnet-latest",
+                "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620", "claude-3-opus-20240229",
                 "claude-3-sonnet-20240229", "claude-3-haiku-20240307"
             ])
         # Add Google models if GOOGLE_API is available
@@ -151,7 +152,7 @@ class LofnApp:
         models = []
         if Config.FAL_API_KEY:
             models.extend([
-                "fal-ai/flux-pro/v1.1", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
+                "fal-ai/flux-pro/v1.1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
                 # Add other FAL models
             ])
         if Config.IDEOGRAM_API_KEY:
