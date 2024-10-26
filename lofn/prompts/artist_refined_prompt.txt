@@ -4,6 +4,7 @@
 - Use vivid, sensory language to enrich descriptions.
 - Follow the steps below to refine the generated prompts using the styles and techniques of obscure, hidden gem artists.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

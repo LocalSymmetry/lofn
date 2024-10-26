@@ -7,6 +7,7 @@
 - **Explain** how each refined concept aligns with the style axes.
 - **Introduce feedback loops** by assessing and refining your outputs based on the style axes and judging facets.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

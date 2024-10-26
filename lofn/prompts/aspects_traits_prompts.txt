@@ -12,6 +12,7 @@ Aspect: Futuristic Cityscape -- Physical Trait: Towering neon-lit skyscrapers --
 - Use vivid, sensory language to enrich descriptions.
 - Follow the steps below to generate artistic guides that align with the user's concept and medium.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

@@ -325,6 +325,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gpt-4": 8192,
 
             # Anthropic models
+            "claude-3-5-sonnet-latest": 8096,
+            "claude-3-5-sonnet-20241022": 8096,
             "claude-3-5-sonnet-20240620": 4096,
             "claude-3-opus-20240229": 4096,
             "claude-3-sonnet-20240229": 4096,
@@ -522,7 +524,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         }
 
         # Get the maximum token limit for the selected model
-        max_tokens = model_max_tokens.get(model, 14096)
+        max_tokens = model_max_tokens.get(model, 4096)
 
         if model.startswith("claude"):
             return ChatAnthropic(model=model, temperature=temperature, max_tokens=max_tokens, anthropic_api_key=Config.ANTHROPIC_API)
@@ -887,13 +889,13 @@ def generate_concept_mediums(input, max_retries, temperature, model="gpt-3.5-tur
             # Step 1: Essence and Facets
             status.write("Generating Essence and Facets...")
             essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(chains, input, max_retries, debug, style_axes, creativity_spectrum, model)
-            #if essence_and_facets:
-                #if st.session_state.creativity_spectrum == None:
-                    #display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
-                #else:
-                    #display_creativity_spectrum(st.session_state.creativity_spectrum)
-                #display_facets(essence_and_facets["essence_and_facets"]["facets"])
-                #display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
+            if essence_and_facets:
+                if st.session_state.creativity_spectrum == None:
+                    display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
+                else:
+                    display_creativity_spectrum(st.session_state.creativity_spectrum)
+                display_facets(essence_and_facets["essence_and_facets"]["facets"])
+                display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
             
             # Step 2: Concepts
             status.write("Generating Concepts...")

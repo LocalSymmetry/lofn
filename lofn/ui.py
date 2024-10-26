@@ -169,7 +169,8 @@ class LofnApp:
             ])
         if Config.POE_API:
             models.extend([
-                "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-DALL-E-3", "Poe-Ideogram-v2", "Poe-Playground-v2.5", 
+                "Poe-FLUX-pro-1.1", "Poe-Imagen3", "Poe-StableDiffusion3.5-L",
+                "Poe-FLUX-pro", "Poe-DALL-E-3", "Poe-Ideogram-v2", "Poe-Playground-v2.5", 
                 "Poe-Playground-v3", "Poe-Ideogram", "Poe-FLUX-dev",
                 "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
                 "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
@@ -335,7 +336,7 @@ class LofnApp:
 
         # Display concepts and proceed to prompt generation
         if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
-            self.display_style_axes_and_creativity_spectrum()
+            # self.display_style_axes_and_creativity_spectrum()
             self.display_concepts()
 
 

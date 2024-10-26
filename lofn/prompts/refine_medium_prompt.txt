@@ -3,6 +3,7 @@
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the medium choices for each concept.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

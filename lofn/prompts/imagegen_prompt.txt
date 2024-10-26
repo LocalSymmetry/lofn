@@ -4,6 +4,7 @@
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to create award-winning image generator prompts.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

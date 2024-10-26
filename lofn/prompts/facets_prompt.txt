@@ -4,6 +4,7 @@
 - Use vivid, sensory language to enrich descriptions.
 - Follow the steps below to generate facets for judging the prompt.
 - Adhere to ethical guidelines, avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 

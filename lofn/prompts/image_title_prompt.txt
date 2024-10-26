@@ -5,6 +5,7 @@
 - Focus on the user's idea, the image, and the generated concept, using the medium to refine details.
 - Use vivid, emotional, and sensory language to captivate the audience.
 - Adhere to ethical guidelines, promoting inclusivity and avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ---
 
