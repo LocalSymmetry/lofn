@@ -5,35 +5,9 @@
 - Follow the steps below to determine the essence and facets for the music.
 - Adhere to ethical guidelines, avoiding disallowed content.
 - **Make sure to give the final output in the JSON format that is requested.**
-
 ---
 
-**Step 1: Determine the Creativity Spectrum**
-
-- Assign percentages (totaling 100%) based on the user's idea:
-
-  1. **Literal (%):**
-
-     - Direct interpretations closely tied to the input.
-
-  2. **Inventive (%):**
-
-     - Creative interpretations that add unique elements while remaining accessible.
-
-  3. **Transformative (%):**
-
-     - Highly original, experimental interpretations that transform the input in unexpected ways.
-
-- **Consider:**
-
-  - Complexity and abstractness of the idea.
-  - Presence of imaginative or novel elements.
-  - Emotional or conceptual nature of the request.
-  - Openness to creative interpretation.
-
----
-
-**Step 2: Assign Style Axes Values**
+**Step 1: Assign Style Axes Values**
 
 - Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
 

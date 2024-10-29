@@ -132,4 +132,4 @@
 
 - **User's Idea:** {input}
 
-- **Video Prompts:** {video_prompts}
+- **Video Prompts:** {artist_refined_prompts}

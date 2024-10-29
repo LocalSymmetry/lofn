@@ -851,7 +851,7 @@ def generate_concept_mediums(
         max_tokens = llm._identifying_params.get('max_tokens', 4096)
 
         # Select the appropriate prompts based on the medium
-        prompts = prompt_configs.get(medium, image_prompts)
+        prompts = prompt_configs.get(medium)
 
         # Build chains using the selected prompts
         if model[0] == "o":
@@ -932,13 +932,13 @@ def generate_concept_mediums(
             essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(
                 chains, input_text, max_retries, debug, style_axes, creativity_spectrum, model
             )
-            # if essence_and_facets:
-            #     if st.session_state.creativity_spectrum is None:
-            #         display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
-            #     else:
-            #         display_creativity_spectrum(st.session_state.creativity_spectrum)
-            #     display_facets(essence_and_facets["essence_and_facets"]["facets"])
-            #     display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
+            if essence_and_facets:
+                if st.session_state.creativity_spectrum is None:
+                    display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
+                else:
+                    display_creativity_spectrum(st.session_state.creativity_spectrum)
+                display_facets(essence_and_facets["essence_and_facets"]["facets"])
+                display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
             
             # Step 2: Concepts
             status.write("Generating Concepts...")
@@ -1056,48 +1056,6 @@ def generate_video_concept_mediums(
         medium='video'
     )
 
-@st.cache_data(persist=True)
-def generate_music_essence_and_facets(
-    input_text,
-    run_time,
-    max_retries,
-    temperature,
-    model="gpt-3.5-turbo-16k",
-    verbose=False,
-    debug=False
-):
-    try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
-    
-        if model[0] == "o":
-            chain = (
-                ChatPromptTemplate.from_messages([("human", music_essence_prompt)])
-                | llm
-            )
-        else:
-            chain = (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", music_essence_prompt)])
-                | llm
-            )
-    
-        output = run_chain_with_retries(
-            chain,
-            args_dict={"input": input_text, "run_time": run_time},
-            max_retries=max_retries,
-            model=model,
-            debug=debug
-        )
-    
-        parsed_output, error = parse_output(str(output), debug)
-        if parsed_output is not None:
-            st.session_state['music_essence_and_facets'] = parsed_output["essence_and_facets"]
-            return parsed_output["essence_and_facets"]
-        else:
-            st.error(f"Failed to parse music essence and facets: {error}")
-            return None
-    except Exception as e:
-        raise LofnError(f"Error generating music essence and facets: {str(e)}")
-
 def generate_music_prompts(
     input_text,
     run_time,
@@ -1123,21 +1081,23 @@ def generate_music_prompts(
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
 
+
+
         # Determine max_tokens based on model's capacity
         max_tokens = llm._identifying_params.get('max_tokens', 4096)
 
-        # Build the prompt
-        prompt = music_prompt_template.format(
-            input=input_text,
-            run_time=run_time
-        )
-        chain = (
-            ChatPromptTemplate.from_messages([("human", prompt)])
-            | llm
-        )
-
-        # Run the chain with retries
-        output = run_chain_with_retries(
+        if model[0] == "o":
+            chain = (
+                ChatPromptTemplate.from_messages([("human", music_essence_prompt)])
+                | llm
+            )
+        else:
+            chain = (
+                ChatPromptTemplate.from_messages([("system", concept_system), ("human", music_essence_prompt)])
+                | llm
+            )
+    
+        output_essence = run_chain_with_retries(
             chain,
             args_dict={"input": input_text, "run_time": run_time},
             max_retries=max_retries,
@@ -1145,11 +1105,30 @@ def generate_music_prompts(
             debug=debug
         )
 
+        gen_chain = (
+            ChatPromptTemplate.from_messages([("human", music_creation_prompt)])
+            | llm
+        )
+
+        # Run the chain with retries
+        gen_output = run_chain_with_retries(
+            gen_chain,
+            args_dict={
+                "input": input_text, 
+                "essence":output_essence["essence_and_facets"]["essence"], 
+                "facets":output_essence["essence_and_facets"]["facets"], 
+                "style_axes":output_essence["essence_and_facets"]["style_axes"],
+                "run_time": run_time},
+            max_retries=max_retries,
+            model=model,
+            debug=debug
+        )
+
         # Parse the output
-        parsed_output, error = parse_output(str(output), debug)
+        parsed_output, error = parse_output(str(gen_output), debug)
         if parsed_output is not None:
-            music_prompt = parsed_output.get('music_prompt', '')
-            lyrics_prompt = parsed_output.get('lyrics_prompt', '')
+            music_prompt = parsed_output['music_prompt']
+            lyrics_prompt = parsed_output['lyrics_prompt']
             return music_prompt, lyrics_prompt
         else:
             st.error(f"Failed to generate or parse music prompts: {error}")
@@ -1337,7 +1316,7 @@ def generate_video_prompts(
             selected_aesthetics = selected_aesthetics[:24]
 
         # Use video prompts
-        prompts = prompt_configs.get('video', video_prompts)
+        prompts = prompt_configs.get('video')
 
         # Build chains using the selected prompts
         if model[0] == "o":
@@ -1477,47 +1456,7 @@ def process_video_prompts(
         )
     return parsed_output
 
-@st.cache_data(persist=True)
-def generate_music_essence_and_facets(
-    input_text,
-    run_time,
-    max_retries,
-    temperature,
-    model="gpt-3.5-turbo-16k",
-    verbose=False,
-    debug=False
-):
-    try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
-    
-        if model[0] == "o":
-            chain = (
-                ChatPromptTemplate.from_messages([("human", music_essence_prompt)])
-                | llm
-            )
-        else:
-            chain = (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", music_essence_prompt)])
-                | llm
-            )
-    
-        output = run_chain_with_retries(
-            chain,
-            args_dict={"input": input_text, "run_time": run_time},
-            max_retries=max_retries,
-            model=model,
-            debug=debug
-        )
-    
-        parsed_output, error = parse_output(str(output), debug)
-        if parsed_output is not None:
-            st.session_state['music_essence_and_facets'] = parsed_output["essence_and_facets"]
-            return parsed_output["essence_and_facets"]
-        else:
-            st.error(f"Failed to parse music essence and facets: {error}")
-            return None
-    except Exception as e:
-        raise LofnError(f"Error generating music essence and facets: {str(e)}")
+
 
 def process_video_artist_refined_prompts(
     chains,
@@ -1592,60 +1531,4 @@ def process_video_generation_prompts(
             premessage=f'Generated Video Prompts for {concept} in {medium}:'
         )
     return parsed_output
-
-def generate_music_prompts(
-    input_text,
-    run_time,
-    max_retries,
-    temperature,
-    model,
-    debug=False
-):
-    """
-    Generates music prompts based on the user's input.
-
-    Parameters:
-        input_text (str): The user's idea or description.
-        run_time (float): Desired length of the song in minutes.
-        max_retries (int): Maximum number of retries for API calls.
-        temperature (float): Sampling temperature.
-        model (str): The model name to use.
-        debug (bool): If True, prints additional debug information.
-
-    Returns:
-        tuple: (music_prompt str, lyrics_prompt str)
-    """
-    try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
-
-        # Build the prompt
-        prompt = music_prompts['creation']  # Use the 'creation' prompt
-
-        chain = (
-            ChatPromptTemplate.from_messages([("human", prompt)])
-            | llm
-        )
-
-        # Run the chain with retries
-        output = run_chain_with_retries(
-            chain,
-            args_dict={"input": input_text, "run_time": run_time},
-            max_retries=max_retries,
-            model=model,
-            debug=debug
-        )
-
-        # Parse the output
-        parsed_output, error = parse_output(str(output), debug)
-        if parsed_output is not None:
-            music_prompt = parsed_output.get('music_prompt', '')
-            lyrics_prompt = parsed_output.get('lyrics_prompt', '')
-            return music_prompt, lyrics_prompt
-        else:
-            st.error(f"Failed to generate or parse music prompts: {error}")
-            return "", ""
-
-    except Exception as e:
-        logger.exception("Error generating music prompts: %s", e)
-        raise e
 

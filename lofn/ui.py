@@ -13,7 +13,6 @@ from image_generation import (
 from config import Config
 from helpers import *
 from llm_integration import *
-from music_generation import generate_music_prompts_ui
 
 logger = logging.getLogger(__name__)
 
@@ -291,9 +290,9 @@ class LofnApp:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
         # Display concepts and proceed to prompt generation
-        if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
-            self.display_style_axes_and_creativity_spectrum()
-            self.display_concepts()
+        # if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
+        #     self.display_style_axes_and_creativity_spectrum()
+        #     self.display_concepts()
 
     def generate_concepts(self):
         try:
@@ -452,9 +451,9 @@ class LofnApp:
                 self.generate_ui_video_concepts()
 
         # Display concepts and proceed to prompt generation
-        if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
-            self.display_style_axes_and_creativity_spectrum()
-            self.display_video_concepts()
+        # if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
+        #     self.display_style_axes_and_creativity_spectrum()
+        #     self.display_video_concepts()
 
     def render_video_sidebar(self):
         st.sidebar.header('Video Generation Settings')
@@ -502,7 +501,7 @@ class LofnApp:
 
         # Provide an example or guidance
         if not user_input:
-            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A cityscape where buildings transform as people walk by, reflecting the dynamic energy of its inhabitants.'")
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing an important quest.'")
 
         # Process Flow Control
         if st.button("Generate Video Concepts"):
@@ -511,10 +510,10 @@ class LofnApp:
             else:
                 style_axes, creativity_spectrum = self.generate_ui_video_concepts()
 
-        # Display concepts and proceed to prompt generation
-        if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
-            self.display_style_axes_and_creativity_spectrum()
-            self.display_video_concepts()
+        # # Display concepts and proceed to prompt generation
+        # if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
+        #     self.display_style_axes_and_creativity_spectrum()
+        #     self.display_video_concepts()
 
     def generate_ui_video_concepts(self):
         try:
@@ -616,6 +615,7 @@ class LofnApp:
             logger.exception("Error generating videos: %s", e)
 
     def render_music_generation(self):
+        self.render_music_sidebar()
         st.header("Generate Your Music Concept")
 
         # User input section
@@ -629,7 +629,7 @@ class LofnApp:
 
         # Provide an example or guidance
         if not user_input:
-            st.info("Tip: Include themes, emotions, specific elements, and desired run time length. For example, 'A heartfelt ballad about overcoming challenges, evoking emotions of resilience and hope, with a desired length of 4 minutes.'")
+            st.info("Tip: Include themes, emotions, specific elements, and desired run time length. For example, 'I want a folksy metal song about not being able to find your tire pressure gauge.'")
 
         # Process Flow Control
         if st.button("Generate Music Prompts"):
@@ -639,7 +639,7 @@ class LofnApp:
                 self.generate_music_prompts_ui()
 
         # Display generated prompts
-        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+        if 'music_prompt' != None and 'lyrics_prompt' != None:
             self.display_music_prompts()
 
     def render_music_sidebar(self):
@@ -713,6 +713,7 @@ class LofnApp:
 
     def initialize_session_state(self):
         default_values = {
+            'run_time': '3.0',
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
