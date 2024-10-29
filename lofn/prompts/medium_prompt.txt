@@ -138,7 +138,7 @@
 
 - **Refined Concepts:**
 
-{refined_concepts}
+{refinedconcepts}
 
 - **User's Idea:**
 

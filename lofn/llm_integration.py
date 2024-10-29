@@ -171,8 +171,8 @@ artist_refined_concepts_schema = {
     "artists": [
         {"artist": str}
     ],
-    "refined_concepts": [
-        {"refined_concept": str}
+    "refinedconcepts": [
+        {"refinedconcept": str}
     ]
 }
 
@@ -183,11 +183,11 @@ mediums_schema = mediums_schema = {
 }
 
 refined_mediums_schema = {
-    "refined_concepts": [
-        {"refined_concept": str}
+    "refinedconcepts": [
+        {"refinedconcept": str}
     ],
-    "refined_mediums": [
-        {"refined_medium": str}
+    "refinedmediums": [
+        {"refinedmedium": str}
     ]
 }
 
@@ -287,7 +287,7 @@ class OpenRouterLLM(LLM):
             "model": self.model_name,
             "messages": messages,
             "temperature": self.temperature,
-            "max_tokens": self.max_tokens,
+            #"max_tokens": self.max_tokens,
         }
 
         if stop is not None:
@@ -587,7 +587,7 @@ def run_chain_with_retries(
     while retry_count < max_retries:
         try:
             output = run_any_chain(
-                _lang_chain, args_dict, is_correction, retry_count, model, debug
+                _lang_chain, args_dict, is_correction, retry_count, model, debug, expected_schema
             )
             args_dict['output'] = output
             if debug:
@@ -612,14 +612,18 @@ def run_chain_with_retries(
     return None
 
 
-def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=False):
+def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=False, expected_schema = None):
     try:
         if is_correction:
             correction_prompt = f"""
             Attempt {retry_count + 1}: The previous response was not in the correct JSON format or did not conform to the expected schema.
             Please refer to the instructions provided earlier and respond with only the complete JSON output.
             Ensure all required fields are present and correctly formatted.
-            Escape any special characters within JSON strings including apostrophes.
+            Escape any special characters within JSON strings.
+            Did you forget to label the inside of your arrays? Make sure the key inside the array is also present!
+            Most JSON schemas we provide want the return as `"keys" : ["key": "Value 1",  "key": "Value 2", ... ]`. 
+            A common error most LLM's make is misisng `refinedconcept` inside the `refinedconcepts` array when revising mediums (this might not be your step!).  
+            Expected schema we want from you is in the instructions, and is validated by us through checking: {str(dict(expected_schema)).replace("{", "{{").replace("}","}}")}
             """
             # Preserve original input parameters
             corrected_args = args_dict.copy()
@@ -768,7 +772,7 @@ def process_mediums(
             "essence": essence,
             "facets": facets,
             "style_axes": style_axes,
-            "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']],
+            "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']],
             "creativity_spectrum_transformative": creativity_spectrum['transformative'],
             "creativity_spectrum_inventive": creativity_spectrum['inventive'],
             "creativity_spectrum_literal": creativity_spectrum['literal'],
@@ -811,7 +815,7 @@ def process_refined_mediums(
             "creativity_spectrum_literal": creativity_spectrum['literal'],
             "mediums": [x['medium'] for x in mediums['mediums']],
             "artists": artists,
-            "refined_concepts": [x['refined_concept'] for x in refined_concepts['refined_concepts']]
+            "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']]
         },
         max_retries,
         model,
@@ -1153,8 +1157,8 @@ def generate_concept_mediums(
             )
             if debug:
                 st.write("Refined Concepts:")
-                for i, concept in enumerate(artist_and_refined_concepts['refined_concepts'], 1):
-                    st.write(f"{i}. {concept['refined_concept']}")
+                for i, concept in enumerate(artist_and_refined_concepts['refinedconcepts'], 1):
+                    st.write(f"{i}. {concept['refinedconcept']}")
             
             # Step 4: Generating Mediums
             status.write("Generating Mediums...")
@@ -1193,17 +1197,18 @@ def generate_concept_mediums(
             )
             if debug:
                 st.write("Refined Concepts:")
-                for i, concept in enumerate(refined_mediums['refined_concepts'], 1):
-                    st.write(f"{i}. {concept['refined_concept']}")
+                for i, concept in enumerate(refined_mediums['refinedconcepts'], 1):
+                    st.write(f"{i}. {concept['refinedconcept']}")
                 st.write("Refined Mediums:")
-                for i, medium in enumerate(refined_mediums['refined_mediums'], 1):
-                    st.write(f"{i}. {medium['refined_medium']}")
+                for i, medium in enumerate(refined_mediums['refinedmediums'], 1):
+                    st.write(f"{i}. {medium['refinedmedium']}")
     
             status.update(label="Generation Complete!", state="complete")
 
-        refined_concepts = [x['refined_concept'] for x in refined_mediums['refined_concepts']]
-        refined_mediums_list = [x['refined_medium'] for x in refined_mediums['refined_mediums']]
-        concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums_list)]
+        refined_concepts = [x['refinedconcept'] for x in refined_mediums['refinedconcepts']]
+        refined_mediums_list = [x['refinedmedium'] for x in refined_mediums['refinedmediums']]
+        max_size = min(len(refined_concepts), len(refined_mediums_list))
+        concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts[:max_size], refined_mediums_list[:max_size])]
         
         send_to_discord(concept_mediums, content_type='concepts')
         return concept_mediums, style_axes, creativity_spectrum
