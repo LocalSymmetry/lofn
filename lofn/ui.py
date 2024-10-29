@@ -441,7 +441,7 @@ class LofnApp:
 
         # Guidance for the user
         if not user_input:
-            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing a dangerous and important quest.'")
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familiar completing a dangerous and important quest.'")
 
         # Process Flow Control
         if st.button("Generate Video Concepts"):
@@ -501,7 +501,7 @@ class LofnApp:
 
         # Provide an example or guidance
         if not user_input:
-            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing a dangerous and important quest.'")
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familiar completing a dangerous and important quest.'")
 
         # Process Flow Control
         if st.button("Generate Video Concepts"):

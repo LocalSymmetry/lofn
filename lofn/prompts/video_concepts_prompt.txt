@@ -83,6 +83,7 @@
     - Write the concept as a concise, vivid phrase.
     - Briefly explain how it aligns with the style axes, creativity spectrum, and emotional impact.
     - Describe and given proper nouns to any abstract concepts or entities. For example, instead of "car", say "2012 Kia Rondo"
+    - Make decisions! If there are multiple options - then choose the best one! For example, instead of "a scary monster", determine which type and instead be specific: "a gargantuan engraged kraken".
 
 - **3.2 Reflection and Refinement:**
 

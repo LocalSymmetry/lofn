@@ -58,7 +58,7 @@ def clean_json_string(json_string):
     else:
         return json_string
 
-def parse_output(output, debug=False):
+def parse_output(output, expected_schema, debug=False):
     try:
         if debug:
             st.write("Original output:")
@@ -75,36 +75,58 @@ def parse_output(output, debug=False):
             st.write(json_string)
 
         # Attempt to parse the cleaned JSON
-        try: 
+        try:
             parsed_json = json.loads(json_string)
-        except json.JSONDecodeError as e:
+        except json.JSONDecodeError:
             st.write("Error decoding JSON. Attempting automated repairs first.")
-            parsed_json = json.loads(repair_json(json_string))
+            repaired_json_string = repair_json(json_string)
+            parsed_json = json.loads(repaired_json_string)
+
         if debug:
             st.write("Successfully parsed JSON:")
             st.write(parsed_json)
+
+        # Validate the parsed JSON against the expected schema
+        if not validate_schema(parsed_json, expected_schema):
+            if debug:
+                st.write("Parsed JSON does not match the expected schema.")
+                st.write(f"Expected Schema: {expected_schema}")
+                st.write(f"Parsed JSON: {parsed_json}")
+            return None, "Parsed JSON does not match the expected schema."
+
         return parsed_json, None
-
-    except json.JSONDecodeError as e:
-        error_message = f"JSON parsing error: {str(e)}"
-        st.write(error_message)
-
-        if 'json_string' in locals():
-            st.write("Problematic JSON string:")
-            st.write(json_string)
-        else:
-            st.write("No JSON string was extracted.")
-        return None, error_message
 
     except Exception as e:
         error_message = f"JSON parsing error: {str(e)}"
-        print(error_message)
-        if 'json_string' in locals():
-            print("Problematic JSON string:")
-            print(json_string)
-        else:
-            print("No JSON string was extracted.")
+        st.write(error_message)
         return None, error_message
+
+def validate_schema(data, schema):
+    """
+    Recursively validate JSON data against the expected schema.
+    """
+    if isinstance(schema, dict):
+        if not isinstance(data, dict):
+            return False
+        for key, subschema in schema.items():
+            if key not in data:
+                return False
+            if not validate_schema(data[key], subschema):
+                return False
+    elif isinstance(schema, list):
+        if not isinstance(data, list):
+            return False
+        subschema = schema[0] if schema else None
+        for item in data:
+            if not validate_schema(item, subschema):
+                return False
+    elif isinstance(schema, tuple):
+        if not isinstance(data, schema):
+            return False
+    else:
+        if not isinstance(data, schema):
+            return False
+    return True
 
 def extract_image_url_from_response(response, debug):
     if debug:

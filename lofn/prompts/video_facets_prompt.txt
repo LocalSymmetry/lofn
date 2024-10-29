@@ -19,7 +19,7 @@
   - **Narrative Engagement:** How captivating and coherent is the story?
   - **Emotional Impact:** Does the video evoke the intended emotions?
   - **Visual Aesthetics:** How effective are the visual elements and cinematography?
-  - **Auditory Experience:** How well does sound design enhance the video?
+  - **Camera Movement:** How does the camera help convey the story?
   - **Originality and Creativity:** Is the concept fresh and innovative?
 
 - **Action:** Write down the facets as concise statements.

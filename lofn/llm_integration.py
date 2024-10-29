@@ -142,6 +142,105 @@ prompt_configs = {
     'music': music_prompts
 }
 
+essence_and_facets_schema = {
+    "essence_and_facets": {
+        "creativity_spectrum": {
+            "literal": (int, float),
+            "inventive": (int, float),
+            "transformative": (int, float)
+        },
+        "essence": str,
+        "facets": list,
+        "style_axes": dict  # We can further specify inner keys if needed
+    }
+}
+
+concepts_schema = {
+    "concepts": [
+        {"concept": str}
+    ]
+}
+
+mediums_schema = {
+    "mediums": [
+        {"medium": str}
+    ]
+}
+
+artist_refined_concepts_schema = {
+    "artists": [
+        {"artist": str}
+    ],
+    "refined_concepts": [
+        {"refined_concept": str}
+    ]
+}
+
+mediums_schema = mediums_schema = {
+    "mediums": [
+        {"medium": str}
+    ]
+}
+
+refined_mediums_schema = {
+    "refined_concepts": [
+        {"refined_concept": str}
+    ],
+    "refined_mediums": [
+        {"refined_medium": str}
+    ]
+}
+
+facets_schema = {
+    "facets": [str]
+}
+
+artistic_guides_schema = {
+    "artistic_guides": [
+        {"artistic_guide": str}
+    ]
+}
+
+image_gen_schema = {
+    "image_gen_prompts": [
+        {"image_gen_prompt": str}
+    ]
+}
+
+artist_refined_schema =  {
+    "artist_refined_prompts": [
+        {"artist_refined_prompt": str}
+    ]
+}
+
+revised_synthesized_schema = {
+    "revised_prompts": [
+        {"revised_prompt": str}
+    ],
+    "synthesized_prompts": [
+        {"synthesized_prompt": str}
+    ]
+}
+
+music_facets_schema = {
+    "essence_and_facets": {
+        "creativity_spectrum": {
+            "literal": (int, float),
+            "inventive": (int, float),
+            "transformative": (int, float)
+        },
+        "essence": str,
+        "facets": [str],
+        "style_axes": dict
+    }
+}
+
+music_gen_schema = {
+    "lyrics_prompt": str,
+    "music_prompt": str
+}
+
+
 @st.cache_data(persist=True)
 def fetch_openrouter_models():
     api_key = Config.OPEN_ROUTER_API_KEY
@@ -459,25 +558,29 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             return ChatOpenAI(
                 model=model,
                 openai_api_key=Config.OPENAI_API,
-                temperature=1,
-                max_tokens=max_tokens
+                temperature=1
             )
         else:
             raise LofnError(f"{model} not found!")
 
 
-def run_llm_chain(chains, chain_name, args_dict, max_retries, model = None, debug = None):
+def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
+                  debug=None, expected_schema=None):
     chain = chains[chain_name]
-    output = run_chain_with_retries(chain, max_retries=max_retries, args_dict=args_dict, is_correction=False, model=model, debug=debug)
-    
+    output = run_chain_with_retries(
+        chain, max_retries=max_retries, args_dict=args_dict, is_correction=False,
+        model=model, debug=debug, expected_schema=expected_schema
+    )
+
     if output is None:
         st.error(f"Failed to get valid JSON response after {max_retries} attempts.")
         return None
-    
+
     return output
 
 def run_chain_with_retries(
-    _lang_chain, max_retries, args_dict=None, is_correction=False, model=None, debug=False
+    _lang_chain, max_retries, args_dict=None, is_correction=False, model=None,
+    debug=False, expected_schema=None
 ):
     output = None
     retry_count = 0
@@ -490,19 +593,20 @@ def run_chain_with_retries(
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
 
-            # Parse the output
-            parsed_output, error = parse_output(str(output), debug)
+            # Parse the output, passing the expected schema
+            parsed_output, error = parse_output(str(output), expected_schema, debug)
             if parsed_output is not None:
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
             else:
-                st.write(f"Failed to parse JSON: {error}")
-                raise ValueError(f"Invalid JSON: {error}")
+                st.write(f"Failed to parse or validate JSON: {error}")
+                is_correction = True  # Use correction prompt in next iteration
+                retry_count += 1
         except Exception as e:
             st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
+            is_correction = True
             retry_count += 1
-            is_correction = True  # Use correction prompt in next iteration
     if retry_count >= max_retries:
         st.write("Max retries reached. Exiting.")
     return None
@@ -512,33 +616,25 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
     try:
         if is_correction:
             correction_prompt = f"""
-            Attempt {retry_count + 1}: The previous response was not in the correct JSON format or was incomplete.
+            Attempt {retry_count + 1}: The previous response was not in the correct JSON format or did not conform to the expected schema.
             Please refer to the instructions provided earlier and respond with only the complete JSON output.
-            You have confirmation on your plans. Escape any special characters within JSON strings including apostrophes. 
-            The last portion of your previous message is included.
+            Ensure all required fields are present and correctly formatted.
+            Escape any special characters within JSON strings including apostrophes.
             """
             # Preserve original input parameters
             corrected_args = args_dict.copy()
-            if ("Poe" in model) or ("OR-" in model):
-                corrected_args['input'] = (
-                    correction_prompt
-                    + "\n\nOriginal query: "
-                    + args_dict.get('input', '')
-                    + "\n\n End of last output - start from here: "
-                    + args_dict.get('output', '')[-400:]
-                )
-            else:
-                corrected_args['input'] = (
-                    correction_prompt
-                    + "\n\nOriginal query: "
-                    + args_dict.get('input', '')
-                    + "\n\n End of last output - start from here: "
-                    + args_dict.get('output', '')
-                )
+            corrected_args['input'] = (
+                correction_prompt
+                + "\n\nOriginal prompt:\n"
+                + args_dict.get('input', '')
+                + "\n\nPrevious response:\n"
+                + args_dict.get('output', '')
+            )
 
             if debug:
                 st.write(f"Attempt {retry_count + 1}: Using correction prompt")
                 st.write(f"Corrected input args: {corrected_args}")
+
             response = chain.invoke(corrected_args)
         else:
             if debug:
@@ -565,9 +661,13 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
 
 # The following functions are for generating image concepts and prompts
 def process_essence_and_facets(
-    chains, input_text, max_retries, debug=False, style_axes=None, creativity_spectrum=None, model=None):
+    chains, input_text, max_retries, debug=False,
+    style_axes=None, creativity_spectrum=None, model=None
+):
+    expected_schema = essence_and_facets_schema  # Defined earlier
     parsed_output = run_llm_chain(
-        chains, 'essence_and_facets', {"input": input_text}, max_retries, model, debug
+        chains, 'essence_and_facets', {"input": input_text}, max_retries,
+        model, debug, expected_schema=expected_schema
     )
     if parsed_output is None:
         return None, None, None
@@ -588,6 +688,7 @@ def process_essence_and_facets(
 def process_concepts(
     chains, input_text, essence, facets, max_retries, debug=False, style_axes=None, creativity_spectrum=None, model=None
 ):
+    expected_schema = concepts_schema
     parsed_output = run_llm_chain(
         chains,
         'concepts',
@@ -603,6 +704,7 @@ def process_concepts(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process concepts")
@@ -621,6 +723,7 @@ def process_artist_and_refined_concepts(
     creativity_spectrum=None,
     model=None
 ):
+    expected_schema = artist_refined_concepts_schema
     parsed_output = run_llm_chain(
         chains,
         'artist_and_refined_concepts',
@@ -637,6 +740,7 @@ def process_artist_and_refined_concepts(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process artist and refined concepts")
@@ -655,6 +759,7 @@ def process_mediums(
     creativity_spectrum=None,
     model=None
 ):
+    expected_schema = mediums_schema
     parsed_output = run_llm_chain(
         chains,
         'medium',
@@ -671,6 +776,7 @@ def process_mediums(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process mediums")
@@ -691,6 +797,7 @@ def process_refined_mediums(
     creativity_spectrum=None,
     model=None
 ):
+    expected_schema = refined_mediums_schema
     parsed_output = run_llm_chain(
         chains,
         'refine_medium',
@@ -709,6 +816,7 @@ def process_refined_mediums(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process refined mediums")
@@ -726,6 +834,7 @@ def process_facets(
     style_axes=None,
     model=None
 ):
+    expected_schema = facets_schema
     parsed_output = run_llm_chain(
         chains,
         'facets',
@@ -738,6 +847,7 @@ def process_facets(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process facets")
@@ -755,6 +865,7 @@ def process_artistic_guides(
     style_axes=None,
     model=None
 ):
+    expected_schema = artistic_guides_schema
     parsed_output = run_llm_chain(
         chains,
         'aspects_traits',
@@ -768,6 +879,7 @@ def process_artistic_guides(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process artistic guides")
@@ -786,6 +898,7 @@ def process_midjourney_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = image_gen_schema
     parsed_output = run_llm_chain(
         chains,
         'midjourney',
@@ -800,6 +913,7 @@ def process_midjourney_prompts(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process midjourney prompts")
@@ -823,6 +937,7 @@ def process_artist_refined_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = artist_refined_schema
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -837,6 +952,7 @@ def process_artist_refined_prompts(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process artist refined prompts")
@@ -859,6 +975,7 @@ def process_revised_synthesized_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = revised_synthesized_schema
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
@@ -873,6 +990,7 @@ def process_revised_synthesized_prompts(
         max_retries,
         model,
         debug,
+        expected_schema=expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process revised synthesized prompts")
@@ -1163,7 +1281,8 @@ def generate_music_prompts(
             args_dict={"input": input_text, "run_time": run_time},
             max_retries=max_retries,
             model=model,
-            debug=debug
+            debug=debug,
+            expected_schema = music_facets_schema
         )
 
         gen_chain = (
@@ -1182,7 +1301,8 @@ def generate_music_prompts(
                 "run_time": run_time},
             max_retries=max_retries,
             model=model,
-            debug=debug
+            debug=debug,
+            expected_schema = music_gen_schema
         )
 
         # Parse the output
@@ -1198,48 +1318,6 @@ def generate_music_prompts(
     except Exception as e:
         logger.exception("Error generating music prompts: %s", e)
         raise e
-
-
-def generate_runway_prompt(input, concept, medium, image, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug=False):
-    # If the selected model is "o1" or "Poe", use "gpt-4o-mini"
-    if model[0] in ['o', 'P']:
-        inner_model = 'gpt-4o-mini'
-    else: 
-        inner_model = model
-
-    llm = get_llm(inner_model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
-
-    runway_prompt_template = """
-    # Add your runway_prompt_template here - Removed for MM.
-    """ 
-
-    chain = (
-        ChatPromptTemplate.from_messages([("human", runway_prompt_template)])
-        | llm
-    )
-    
-    output = run_chain_with_retries(chain, args_dict={
-        "input": input,
-        "concept": concept,
-        "medium": medium,
-        "style_axes": style_axes,
-        "creativity_spectrum": creativity_spectrum,
-        "image": image,
-        "prompt": prompt
-    }, max_retries=max_retries, model=model, debug=debug)
-
-    if debug:
-        st.write("Raw output from Runway prompt generation:")
-        st.write(output)
-
-    # Parse the output
-    parsed_output, error = parse_output(str(output), debug)
-    
-    if parsed_output is not None and 'runway_prompt' in parsed_output:
-        return parsed_output
-    else:
-        st.error(f"Failed to generate or parse Runway prompt: {error}")
-        return {"runway_prompt": "Failed to generate Runway prompt"}
 
 @st.cache_data(persist=True)
 def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None):
@@ -1492,6 +1570,7 @@ def process_video_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = image_gen_schema
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -1506,7 +1585,9 @@ def process_video_prompts(
         max_retries,
         model,
         debug,
+        expected_schema
     )
+    
     if parsed_output is None:
         st.error(f"Failed to process video prompts")
         return None
@@ -1531,6 +1612,7 @@ def process_video_artist_refined_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = artist_refined_schema
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -1545,6 +1627,7 @@ def process_video_artist_refined_prompts(
         max_retries,
         model,
         debug,
+        expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process filmmaker refined prompts")
@@ -1568,6 +1651,7 @@ def process_video_generation_prompts(
     style_axes=None,
     model=None
 ):
+    expected_schema = image_gen_schema
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -1582,6 +1666,7 @@ def process_video_generation_prompts(
         max_retries,
         model,
         debug,
+        expected_schema
     )
     if parsed_output is None:
         st.error(f"Failed to process video prompts")
