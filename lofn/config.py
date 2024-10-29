@@ -15,3 +15,4 @@ class Config:
     FAL_API_KEY = os.environ.get('FAL_KEY', '')
     OPEN_ROUTER_API_KEY = os.environ.get('OPEN_ROUTER_API_KEY', '')
     GOOGLE_PROJECT_ID = os.getenv('GOOGLE_PROJECT_ID')
+    RUNWAYML_API_KEY = os.getenv("RUNWAYML_API_KEY", "")

@@ -1,27 +1,21 @@
 # ui.py
 
+import os
+import logging
+import random
+import pandas as pd
 import streamlit as st
-from config import Config
-from helpers import *
-from llm_integration import (
-    read_prompt,
-    get_llm,
-    generate_concept_mediums,
-    generate_prompts,
-    fetch_openrouter_models
-)
 from image_generation import (
     render_image_controls,
     get_model_params,
     generate_dalle_images,
 )
-import logging
+from config import Config
+from helpers import *
+from llm_integration import *
+from music_generation import generate_music_prompts_ui
 
 logger = logging.getLogger(__name__)
-import os
-import random
-import pandas as pd
-
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -34,11 +28,11 @@ class LofnApp:
         self.temperature = 0.7
         self.max_retries = 3
         self.debug = False
-        self.llm_client = None
-        self.image_generator = None
 
         # Build the model list dynamically
         self.available_models = self.get_available_models()
+        self.available_image_models = self.get_available_image_models()
+        self.initialize_session_state()
 
     def get_available_models(self):
         models = []
@@ -78,10 +72,7 @@ class LofnApp:
                 "Poe-Snowflake-Arctic-T", "Poe-RekaCore", "Poe-RekaFlash", "Poe-Command-R-Plus",
                 "Poe-GPT-3.5-Turbo", "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
                 "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T", "Poe-Claude-2",
-                "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-Instruct-7B-T",
-                "Poe-MythoMax-L2-13B", "Poe-Code-Llama-34b", "Poe-Code-Llama-13b", "Poe-Solar-Mini",
-                "Poe-GPT-3.5-Turbo-Instruct", "Poe-GPT-3.5-Turbo-Raw", "Poe-Claude-instant",
-                "Poe-Mixtral-8x7b-Groq", "Poe-Mistral-7B-v0.3-T", "Poe-Llama-3-70b-Groq", "Poe-Gemma-2-27b-T",
+                "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq", "Poe-Llama-3-8B-T", "Poe-Gemma-2-27b-T",
                 "Poe-Assistant", "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
                 "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro",
                 "Poe-Claude-3-Sonnet", "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus",
@@ -101,52 +92,10 @@ class LofnApp:
                 else:
                     print("No OpenRouter API key found. Skipping OpenRouter models.")
             except Exception as e:
-                st.error("An error occurred while get OpenRouter models.")
+                st.error("An error occurred while getting OpenRouter models.")
                 logger.exception("Error getting OpenRouter models: %s", e)
 
-        # Add OpenRouter models if OPEN_ROUTER_API_KEY is available
-        # if Config.OPEN_ROUTER_API_KEY:
-        #     # For simplicity, let's add a few example models; you can extend this list
-        #     or_models  = [
-        #         "OR-meta-llama/llama-3.2-3b-instruct",  "OR-meta-llama/llama-3.2-1b-instruct", 
-        #          "OR-meta-llama/llama-3.2-90b-vision-instruct",  "OR-meta-llama/llama-3.2-11b-vision-instruct",  
-        #          "OR-meta-llama/llama-3.1-405b",  "OR-meta-llama/llama-3.1-405b-instruct",  
-        #          "OR-meta-llama/llama-3.1-70b-instruct",  "OR-meta-llama/llama-3.1-8b-instruct",  
-        #          "OR-meta-llama/llama-guard-2-8b",  "OR-meta-llama/llama-3-70b-instruct",  
-        #          "OR-meta-llama/llama-3-8b-instruct",  "OR-openai/o1-mini-2024-09-12",  
-        #          "OR-openai/o1-mini",  "OR-openai/o1-preview-2024-09-12",  "OR-openai/o1-preview",  
-        #          "OR-openai/gpt-4o-mini-2024-07-18",  "OR-openai/gpt-4o-mini",  "OR-openai/gpt-4o-2024-08-06",  
-        #          "OR-openai/chatgpt-4o-latest",  "OR-openai/gpt-4",  "OR-openai/gpt-4-32k",  "OR-openai/gpt-4-turbo",  
-        #          "OR-openai/gpt-3.5-turbo",  "OR-openai/gpt-3.5-turbo-16k",  "OR-anthropic/claude-3.5-sonnet",  
-        #          "OR-anthropic/claude-3.5-sonnet",  "OR-anthropic/claude-3-haiku",  
-        #          "OR-anthropic/claude-3-sonnet", "OR-anthropic/claude-3-opus", "OR-anthropic/claude-instant-1.1",
-        #           "OR-anthropic/claude-1.2",  "OR-anthropic/claude-1",  "OR-google/gemini-pro-1.5-exp",  
-        #           "OR-google/gemini-flash-8b-1.5-exp",  "OR-google/gemini-flash-1.5-exp",  
-        #           "OR-google/gemini-pro-1.5",  "OR-google/gemini-pro-1.5-exp",  "OR-google/gemini-pro-vision",  
-        #           "OR-google/gemini-pro",  "OR-google/gemini-flash-1.5",  "OR-google/gemma-2-27b-it",  
-        #           "OR-google/gemma-2-9b-it",  "OR-qwen/qwen-2.5-72b-instruct",  "OR-qwen/qwen-2-vl-72b-instruct",  
-        #           "OR-qwen/qwen-2-vl-7b-instruct",  "OR-qwen/qwen-2-7b-instruct",  "OR-qwen/qwen-72b-chat",  
-        #           "OR-qwen/qwen-110b-chat",  "OR-qwen/qwen-2-72b-instruct",  "OR-qwen/qwen-2-7b-instruct",  
-        #           "OR-cohere/command-r-03-2024",  "OR-cohere/command-r-plus-04-2024",  "OR-cohere/command-r-plus-08-2024", 
-        #           "OR-cohere/command-r-08-2024",  "OR-cohere/command-r-plus",  "OR-cohere/command-r",  "OR-cohere/command",  
-        #           "OR-microsoft/phi-3.5-mini-128k-instruct",  "OR-microsoft/phi-3-mini-128k-instruct",  
-        #           "OR-microsoft/phi-3-mini-128k-instruct",  "OR-microsoft/phi-3-medium-128k-instruct",  
-        #           "OR-microsoft/phi-3-medium-128k-instruct",  "OR-microsoft/wizardlm-2-7b",  "OR-microsoft/wizardlm-2-8x22b",  
-        #           "OR-ai21/jamba-1-5-large",  "OR-ai21/jamba-1-5-mini",  "OR-ai21/jamba-instruct",  
-        #           "OR-perplexity/llama-3.1-sonar-huge-128k-online",  "OR-perplexity/llama-3.1-sonar-large-128k-online",  
-        #           "OR-perplexity/llama-3.1-sonar-large-128k-chat",  "OR-perplexity/llama-3.1-sonar-small-128k-online",  
-        #           "OR-perplexity/llama-3.1-sonar-small-128k-chat",  "OR-perplexity/llama-3-sonar-large-32k-online",  
-        #           "OR-perplexity/llama-3-sonar-large-32k-chat",  "OR-perplexity/llama-3-sonar-small-32k-online",  
-        #           "OR-perplexity/llama-3-sonar-small-32k-chat",  "OR-mistralai/pixtral-12b",  
-        #           "OR-mistralai/mistral-7b-instruct-v0.3",  "OR-mistralai/mistral-7b-instruct-v0.2",  
-        #           "OR-mistralai/mistral-7b-instruct", 
-        #           "OR-mistralai/mixtral-8x22b-instruct",  "OR-mistralai/mixtral-8x7b-instruct",  
-        #           "OR-mistralai/mixtral-8x7b",  "OR-mistralai/mistral-nemo", 
-        #           "OR-mistralai/mistral-large",  "OR-mistralai/mistral-medium",  
-        #           "OR-mistralai/mistral-small",  "OR-mistralai/mistral-tiny"]
-        #     models.extend(or_models)
         return models
-
 
     def get_available_image_models(self):
         models = []
@@ -178,17 +127,30 @@ class LofnApp:
             ])
         return models
 
+    def get_available_video_models(self):
+        models = []
+        if Config.RUNWAYML_API_KEY:
+            models.extend([
+                "RunwayML Gen-2",
+                # Add other video models if available
+            ])
+        else:
+            st.warning("No RunwayML API key found. Video generation models will not be available.")
+        return models
+
     def run(self):
-        # Initialize session state
-        self.initialize_session_state()
+        # Create tabs within the app
+        tabs = ["Image Generation", "Video Generation", "Music Generation"]
+        selected_tab = st.sidebar.selectbox("Select Mode", tabs)
 
-        st.title("LOFN - The AI Artist")
-
-        # Sidebar and UI elements
         self.render_sidebar()
 
-        # Main container logic
-        self.render_main_container()
+        if selected_tab == "Image Generation":
+            self.render_image_generation()
+        elif selected_tab == "Video Generation":
+            self.render_video_generation()
+        elif selected_tab == "Music Generation":
+            self.render_music_generation()
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
@@ -284,19 +246,15 @@ class LofnApp:
                     webhook_url = st.text_input(
                         "Discord Webhook URL",
                         value=Config.WEBHOOK_URL,
-                        placeholder=webhook_url_placeholder,
+                        placeholder="Enter your Discord webhook URL here",
                         help="Provide the webhook URL for your Discord channel.",
                     )
                 st.session_state['webhook_url'] = webhook_url
-           
-    def display_style_axes_and_creativity_spectrum(self):
-        if 'style_axes' in st.session_state and st.session_state['style_axes']:
-            display_style_axes(st.session_state['style_axes'])
-        if 'creativity_spectrum' in st.session_state and st.session_state['creativity_spectrum']:
-            display_creativity_spectrum(st.session_state['creativity_spectrum'])
 
+    def render_image_generation(self):
+        self.render_image_main_container()
 
-    def render_main_container(self):
+    def render_image_main_container(self):
         # Main content area
         st.header("Generate Your Art Concept")
 
@@ -331,14 +289,11 @@ class LofnApp:
                 st.warning("Please provide a description of your idea.")
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
-                
-
 
         # Display concepts and proceed to prompt generation
         if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
-            # self.display_style_axes_and_creativity_spectrum()
+            self.display_style_axes_and_creativity_spectrum()
             self.display_concepts()
-
 
     def generate_concepts(self):
         try:
@@ -358,11 +313,17 @@ class LofnApp:
             # Store the updated axes back into session state
             st.session_state['style_axes'] = style_axes
             st.session_state['creativity_spectrum'] = creativity_spectrum
-            
+
             return style_axes, creativity_spectrum
         except Exception as e:
             st.error("An error occurred while generating concepts.")
             logger.exception("Error generating concepts: %s", e)
+
+    def display_style_axes_and_creativity_spectrum(self):
+        if 'style_axes' in st.session_state and st.session_state['style_axes']:
+            display_style_axes(st.session_state['style_axes'])
+        if 'creativity_spectrum' in st.session_state and st.session_state['creativity_spectrum']:
+            display_creativity_spectrum(st.session_state['creativity_spectrum'])
 
     def display_concepts(self):
         st.subheader("Generated Concepts and Mediums")
@@ -391,7 +352,7 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
             with st.spinner(f"Generating prompts for '{pair['concept']}'..."):
-                prompts_df = generate_prompts(
+                prompts_df = generate_image_prompts(
                     st.session_state['input'],
                     pair['concept'],
                     pair['medium'],
@@ -413,10 +374,10 @@ class LofnApp:
         st.subheader(f"Generating Prompts for '{concept}' in '{medium}'")
         try:
             with st.spinner(f"Generating prompts for '{concept}'..."):
-                prompts_df = generate_prompts(
+                prompts_df = generate_image_prompts(
                     st.session_state['input'],
-                    pair['concept'],
-                    pair['medium'],
+                    concept,
+                    medium,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
@@ -434,8 +395,10 @@ class LofnApp:
     def display_prompts(self, prompts_df, pair):
         st.subheader(f"Prompts for '{pair['concept']}' in '{pair['medium']}'")
         for idx, row in prompts_df.iterrows():
-            st.markdown(f"**Prompt {idx+1}:** {row['Revised Prompts']}")
-            st.markdown(f"**Synthesized Prompt {idx+1}:** {row['Synthesized Prompts']}")
+            st.markdown(f"**Prompt {idx+1}:**")
+            st.code(row['Revised Prompts'], language='')
+            st.markdown(f"**Synthesized Prompt {idx+1}:**")
+            st.code(row['Synthesized Prompts'], language='')
             st.markdown("---")
 
         self.generate_images(prompts_df, pair)
@@ -443,7 +406,8 @@ class LofnApp:
     def generate_images(self, prompts_df, pair):
         st.subheader(f"Generating Images for '{pair['concept']}'")
         try:
-            params = get_model_params(self.image_model)
+            # Placeholder for model parameters
+            params = {}  # get_model_params(self.image_model)
             with st.spinner(f"Generating images for '{pair['concept']}'..."):
                 generate_dalle_images(
                     st.session_state['input'],
@@ -457,15 +421,303 @@ class LofnApp:
                     image_model=self.image_model,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
-                    OPENAI_API = Config.OPENAI_API
+                    OPENAI_API=Config.OPENAI_API
                 )
             st.success(f"Images generated for '{pair['concept']}'")
         except Exception as e:
             st.error(f"An error occurred while generating images for '{pair['concept']}'.")
             logger.exception("Error generating images: %s", e)
 
+    def render_video_generation(self):
+        st.header("Generate Your Art Video Concept")
+
+        # User input section
+        st.subheader("Describe Your Idea")
+        user_input = st.text_area(
+            "",
+            placeholder="Describe the essence of the art video you wish to generate.",
+            help="Provide a detailed description of your idea to get the best results.",
+        )
+        st.session_state['input'] = user_input
+
+        # Guidance for the user
+        if not user_input:
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A cityscape where buildings transform as people walk by, reflecting the dynamic energy of its inhabitants.'")
+
+        # Process Flow Control
+        if st.button("Generate Video Concepts"):
+            if user_input.strip() == "":
+                st.warning("Please provide a description of your idea.")
+            else:
+                self.generate_ui_video_concepts()
+
+        # Display concepts and proceed to prompt generation
+        if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
+            self.display_style_axes_and_creativity_spectrum()
+            self.display_video_concepts()
+
+    def render_video_sidebar(self):
+        st.sidebar.header('Video Generation Settings')
+
+        # Video Model Selection
+        available_video_models = self.get_available_video_models()
+        video_model = st.sidebar.selectbox(
+            "Select Video Model",
+            available_video_models,
+            help="Choose the video generation model.",
+        )
+
+        # Video Duration
+        video_duration = st.sidebar.slider(
+            "Video Duration (seconds)",
+            min_value=5,
+            max_value=60,
+            value=10,
+            help="Set the duration of the generated video.",
+        )
+
+        # Video Resolution
+        video_resolution = st.sidebar.selectbox(
+            "Video Resolution",
+            ["480p", "720p", "1080p"],
+            help="Select the resolution of the video.",
+        )
+
+        # Save settings to session state
+        st.session_state['video_model'] = video_model
+        st.session_state['video_duration'] = video_duration
+        st.session_state['video_resolution'] = video_resolution
+
+    def render_video_main_container(self):
+        st.header("Generate Your Art Video Concept")
+
+        # User input section
+        st.subheader("Describe Your Idea")
+        user_input = st.text_area(
+            "",
+            placeholder="Describe the essence of the art video you wish to generate.",
+            help="Provide a detailed description of your idea to get the best results.",
+        )
+        st.session_state['input'] = user_input
+
+        # Provide an example or guidance
+        if not user_input:
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A cityscape where buildings transform as people walk by, reflecting the dynamic energy of its inhabitants.'")
+
+        # Process Flow Control
+        if st.button("Generate Video Concepts"):
+            if user_input.strip() == "":
+                st.warning("Please provide a description of your idea.")
+            else:
+                style_axes, creativity_spectrum = self.generate_ui_video_concepts()
+
+        # Display concepts and proceed to prompt generation
+        if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
+            self.display_style_axes_and_creativity_spectrum()
+            self.display_video_concepts()
+
+    def generate_ui_video_concepts(self):
+        try:
+            st.session_state['video_concept_mediums'] = []
+            with st.spinner("Generating video concepts..."):
+                concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
+                    st.session_state['input'],
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=st.session_state.get('style_axes', None),
+                    creativity_spectrum=st.session_state.get('creativity_spectrum', None),
+                )
+            st.session_state['video_concept_mediums'] = concepts
+            st.success("Video concepts generated successfully!")
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity_spectrum
+        except Exception as e:
+            st.error("An error occurred while generating video concepts.")
+            logging.exception("Error generating video concepts: %s", e)
+
+    def display_video_concepts(self):
+        st.subheader("Generated Video Concepts and Mediums")
+
+        # Display concepts in a mini-dashboard
+        selected_pairs = create_mini_dashboard(st.session_state['video_concept_mediums'])
+
+        # Store selected pairs in session state
+        st.session_state['selected_video_pairs'] = selected_pairs
+
+        # Proceed to generate prompts for selected concepts
+        if st.button("Generate Video Prompts for Selected Concepts"):
+            if selected_pairs:
+                for idx in selected_pairs:
+                    pair = st.session_state['video_concept_mediums'][idx]
+                    self.generate_video_prompts_for_pair(pair)
+            else:
+                st.warning("Please select at least one concept to generate prompts.")
+
+        # Option to generate prompts for all concepts
+        if st.button("Generate Video Prompts for All Concepts"):
+            for pair in st.session_state['video_concept_mediums']:
+                self.generate_video_prompts_for_pair(pair)
+
+    def generate_video_prompts_for_pair(self, pair):
+        st.subheader(f"Generating Video Prompts for '{pair['concept']}' in '{pair['medium']}'")
+        try:
+            with st.spinner(f"Generating video prompts for '{pair['concept']}'..."):
+                prompts_df = generate_video_prompts(
+                    st.session_state['input'],
+                    pair['concept'],
+                    pair['medium'],
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
+                )
+            st.session_state['video_prompts_df'] = prompts_df
+            st.success(f"Video prompts generated for '{pair['concept']}'")
+            self.display_video_prompts(prompts_df, pair)
+        except Exception as e:
+            st.error(f"An error occurred while generating video prompts for '{pair['concept']}'.")
+            logger.exception("Error generating video prompts: %s", e)
+
+    def display_video_prompts(self, prompts_df, pair):
+        st.subheader(f"Video Prompts for '{pair['concept']}' in '{pair['medium']}'")
+        for idx, row in prompts_df.iterrows():
+            st.markdown(f"**Prompt {idx+1}:**")
+            st.code(row['Revised Prompts'], language='')
+            st.markdown(f"**Synthesized Prompt {idx+1}:**")
+            st.code(row['Synthesized Prompts'], language='')
+            st.markdown("---")
+        # Proceed to generate videos if applicable
+        # self.generate_videos(prompts_df, pair)
+
+    def generate_videos(self, prompts_df, pair):
+        st.subheader(f"Generating Videos for '{pair['concept']}'")
+        try:
+            with st.spinner(f"Generating videos for '{pair['concept']}'..."):
+                for idx, row in prompts_df.iterrows():
+                    video_prompt = row['Video Prompts']
+                    # video_url = generate_runway_video(
+                    #     video_prompt,
+                    #     Config.RUNWAYML_API_KEY,
+                    #     st.session_state['video_duration'],
+                    #     st.session_state['video_resolution']
+                    # )
+                    # if video_url:
+                    #     st.markdown(f"**Video {idx+1}:**")
+                    #     st.video(video_url)
+                    # else:
+                    #     st.warning(f"Video {idx+1} could not be generated.")
+            st.success(f"Videos generated for '{pair['concept']}'")
+        except Exception as e:
+            st.error(f"An error occurred while generating videos for '{pair['concept']}'.")
+            logger.exception("Error generating videos: %s", e)
+
+    def render_music_generation(self):
+        st.header("Generate Your Music Concept")
+
+        # User input section
+        st.subheader("Describe Your Song Idea")
+        user_input = st.text_area(
+            "",
+            placeholder="Describe the themes, emotions, and specific elements you want in your song.",
+            help="Provide a detailed description of your song idea.",
+        )
+        st.session_state['input'] = user_input
+
+        # Provide an example or guidance
+        if not user_input:
+            st.info("Tip: Include themes, emotions, specific elements, and desired run time length. For example, 'A heartfelt ballad about overcoming challenges, evoking emotions of resilience and hope, with a desired length of 4 minutes.'")
+
+        # Process Flow Control
+        if st.button("Generate Music Prompts"):
+            if user_input.strip() == "":
+                st.warning("Please provide a description of your song idea.")
+            else:
+                self.generate_music_prompts_ui()
+
+        # Display generated prompts
+        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+            self.display_music_prompts()
+
+    def render_music_sidebar(self):
+        st.sidebar.header('Music Generation Settings')
+
+        # Desired Run Time Length
+        run_time = st.sidebar.number_input(
+            "Desired Song Length (minutes)",
+            min_value=1.0,
+            max_value=10.0,
+            value=3.0,
+            step=0.5,
+            help="Set the desired length of the song.",
+        )
+        st.session_state['run_time'] = run_time
+
+    def render_music_main_container(self):
+        st.header("Generate Your Music Concept")
+
+        # User input section
+        st.subheader("Describe Your Song Idea")
+        user_input = st.text_area(
+            "",
+            placeholder="Describe the themes, emotions, and specific elements you want in your song.",
+            help="Provide a detailed description of your song idea.",
+        )
+        st.session_state['input'] = user_input
+
+        # Provide an example or guidance
+        if not user_input:
+            st.info("Tip: Include themes, emotions, specific elements, and desired run time length. For example, 'A heartfelt ballad about overcoming challenges, evoking emotions of resilience and hope, with a desired length of 4 minutes.'")
+
+        # Process Flow Control
+        if st.button("Generate Music Prompts"):
+            if user_input.strip() == "":
+                st.warning("Please provide a description of your song idea.")
+            else:
+                self.generate_music_prompts_ui()
+
+        # Display generated prompts
+        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+            self.display_music_prompts()
+
+    def generate_music_prompts_ui(self):
+        try:
+            with st.spinner("Generating music prompts..."):
+                music_prompt, lyrics_prompt = generate_music_prompts(
+                    st.session_state['input'],
+                    st.session_state['run_time'],
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                )
+            st.session_state['music_prompt'] = music_prompt
+            st.session_state['lyrics_prompt'] = lyrics_prompt
+            st.success("Music prompts generated successfully!")
+            self.display_music_prompts()
+        except Exception as e:
+            st.error("An error occurred while generating music prompts.")
+            logging.exception("Error generating music prompts: %s", e)
+
+    def display_music_prompts(self):
+        st.subheader("Generated Music Prompt")
+        st.code(st.session_state['music_prompt'], language='text')
+
+        st.subheader("Generated Lyrics Prompt")
+        st.code(st.session_state['lyrics_prompt'], language='text')
+
+        st.info("Copy the above prompts and paste them into Udio to generate your music.")
+
     def initialize_session_state(self):
         default_values = {
+            'selected_tab': 'Image Generation',
+            'video_concept_mediums': None,
+            'video_prompts_df': None,
+            'music_prompt': None,
+            'lyrics_prompt': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,
@@ -494,7 +746,6 @@ class LofnApp:
         for key, value in default_values.items():
             if key not in st.session_state:
                 st.session_state[key] = value
-        # Additional methods can be added here for further functionality
 
 def main():
     st.set_page_config(
@@ -503,12 +754,13 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded",
     )
+
     # Load custom CSS if available
     if os.path.exists("style.css"):
         with open("style.css") as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-    else:
-        logger.warning("style.css not found. Proceeding without custom styles.")
+
+    st.title("LOFN - The AI Artist")
 
     if 'app' not in st.session_state:
         st.session_state['app'] = LofnApp()

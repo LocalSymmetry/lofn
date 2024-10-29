@@ -1,0 +1,67 @@
+**GENERAL INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when identifying facets to judge if a proposed video prompt aligns with the user's idea.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to generate facets for judging the video prompts.
+- Adhere to ethical guidelines, avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Write Five Facets**
+
+- Identify five facets to judge if a proposed video prompt aligns with the user's idea, the {concept}, and the {medium}.
+- Incorporate sensory details and emotional resonance in each facet.
+- **Facets may include:**
+
+  - **Narrative Engagement:** How captivating and coherent is the story?
+  - **Emotional Impact:** Does the video evoke the intended emotions?
+  - **Visual Aesthetics:** How effective are the visual elements and cinematography?
+  - **Auditory Experience:** How well does sound design enhance the video?
+  - **Originality and Creativity:** Is the concept fresh and innovative?
+
+- **Action:** Write down the facets as concise statements.
+
+---
+
+**Step 2: Self-Evaluation and Refinement**
+
+- Review the facets for alignment with the style axes and the essence of the concept.
+- Refine if necessary to enhance clarity and impact.
+- **Action:** Make any necessary adjustments to the facets.
+
+---
+
+**Step 3: Provide the Final Output**
+
+- **Return the facets in the following JSON format:**
+
+  ```json
+  {{
+    "facets": [
+      "Facet 1 with sensory element.",
+      "Facet 2 with sensory element.",
+      "Facet 3 with sensory element.",
+      "Facet 4 with sensory element.",
+      "Facet 5 with sensory element."
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}

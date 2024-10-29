@@ -1,0 +1,149 @@
+**INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when analyzing the user's idea for a **song**.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to determine the essence and facets for the music.
+- Adhere to ethical guidelines, avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Step 1: Determine the Creativity Spectrum**
+
+- Assign percentages (totaling 100%) based on the user's idea:
+
+  1. **Literal (%):**
+
+     - Direct interpretations closely tied to the input.
+
+  2. **Inventive (%):**
+
+     - Creative interpretations that add unique elements while remaining accessible.
+
+  3. **Transformative (%):**
+
+     - Highly original, experimental interpretations that transform the input in unexpected ways.
+
+- **Consider:**
+
+  - Complexity and abstractness of the idea.
+  - Presence of imaginative or novel elements.
+  - Emotional or conceptual nature of the request.
+  - Openness to creative interpretation.
+
+---
+
+**Step 2: Assign Style Axes Values**
+
+- Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
+
+  - **Tempo (Value):**
+
+    - *Example*: 80 - The song has a fast tempo, conveying energy and excitement.
+
+  - **Mood (Value):**
+
+    - *Example*: 60 - The piece evokes a blend of happiness and nostalgia.
+
+  - **Instrumentation Complexity (Value):**
+
+    - *Example*: 70 - Rich instrumentation with multiple layers and harmonies.
+
+  - **Lyrical Depth (Value):**
+
+    - *Example*: 85 - Lyrics are profound and thought-provoking.
+
+  - **Genre Fusion (Value):**
+
+    - *Example*: 50 - The song blends elements from different genres.
+
+  - **Vocal Style (Value):**
+
+    - *Example*: 40 - Vocals are smooth and soothing.
+
+  - **Rhythmic Complexity (Value):**
+
+    - *Example*: 75 - Complex rhythms and syncopation are used.
+
+  - **Melodic Emphasis (Value):**
+
+    - *Example*: 90 - Strong, memorable melodies are a key feature.
+
+  - **Harmonic Richness (Value):**
+
+    - *Example*: 65 - Uses rich harmonies and chord progressions.
+
+  - **Production Style (Value):**
+
+    - *Example*: 55 - Balanced production with a mix of modern and vintage elements.
+
+---
+
+**Step 3: State the Essence**
+
+- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language.
+
+---
+
+**Step 4: Write Five Facets**
+
+- Identify five facets to judge if a proposed song aligns with the user's idea.
+
+---
+
+**Step 5: Self-Evaluation and Refinement**
+
+- Review the essence and facets for alignment with the user's idea and the style axes.
+- Refine if necessary to enhance clarity and impact.
+
+---
+
+**Step 6: Provide the Final Output**
+
+- **Return the results in the following JSON format:**
+
+  ```json
+  {{
+    "essence_and_facets": {{
+      "creativity_spectrum": {{
+        "literal": 75,
+        "inventive": 15,
+        "transformative": 10
+      }},
+      "essence": "The main essence of the idea",
+      "facets": [
+        "Facet 1",
+        "Facet 2",
+        "Facet 3",
+        "Facet 4",
+        "Facet 5"
+      ],
+      "style_axes": {{
+        "Tempo": 80,
+        "Mood": 60,
+        "Instrumentation Complexity": 70,
+        "Lyrical Depth": 85,
+        "Genre Fusion": 50,
+        "Vocal Style": 40,
+        "Rhythmic Complexity": 75,
+        "Melodic Emphasis": 90,
+        "Harmonic Richness": 65,
+        "Production Style": 55
+      }}
+    }}
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for all strings.
+  - Replace placeholder values with actual percentages and values.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER'S IDEA:**
+
+{input}
+
+- **Desired Run Time Length:** {run_time} minutes

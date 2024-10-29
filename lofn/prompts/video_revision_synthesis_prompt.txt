@@ -1,0 +1,135 @@
+
+
+- **Essence of the Concept:**
+
+  - **Action:** Write the main essence of the {concept} in one concise, emotionally resonant sentence using sensory language.
+
+- **Leverage the Medium:**
+
+  - **Action:** Identify the two best ways to leverage the {medium} to portray this essence, considering innovative techniques and emotional impact.
+
+---
+
+**Step 2: Choose and Justify Critics**
+
+- **Select Critics:**
+
+  - **Action:** Choose the best two critics to judge the prompts based on their expertise in film-making and the concept.
+
+- **Justification:**
+
+  - **Action:** Provide brief backgrounds explaining why these critics are ideal choices for this task.
+
+---
+
+**Step 3: Critique in the Critics' Voices**
+
+- For each video prompt:
+
+  - **Action:** Write a detailed critique in the voices of the chosen critics, focusing on:
+
+    - **Fit with Concept:** Does the prompt capture the essence and emotional core of the concept?
+
+    - **Use of Medium:** Evaluate how effectively the medium conveys the concept.
+
+    - **Style, Cinematography, Sound Design, Mood:** Critique these elements for their effectiveness and cohesion.
+
+    - **Originality:** Assess the uniqueness of the prompt, encouraging innovative and daring approaches while avoiding clichés.
+
+---
+
+**Step 4: Rank the Prompts**
+
+- **Combine the Critics' Thoughts:**
+
+  - **Action:** Rank the prompts from best to worst based on the evaluations.
+
+---
+
+**Step 5: Revise Top Prompts**
+
+- **Select Top 2:**
+
+  - **Action:** Choose the top 2 prompts that best capture the essence of the concept.
+
+- **Address Criticism:**
+
+  - **Action:** Revise these prompts to address any criticisms, ensuring the {concept} and {medium} are prominently featured.
+
+- **Enhance Details:**
+
+  - **Action:** Add adjectives or details to fill gaps and ensure all necessary elements are included, enhancing emotional and sensory impact.
+
+---
+
+**Step 6: Synthesize Bottom Prompts**
+
+- **Select Bottom Prompts:**
+
+  - **Action:** Choose the bottom prompts and synthesize them into 2 new, innovative prompts.
+
+- **Enhance Essence:**
+
+  - **Action:** Ensure the new prompts enhance the essence of the concept, address any gaps, and avoid clichés.
+
+---
+
+**Step 7: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess the revised and synthesized prompts** for alignment with:
+
+    - **User's Idea**
+
+    - **Style Axes**
+
+    - **Emotional and Thematic Depth**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment, originality, and impact.
+
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 8: Provide Final Prompts**
+
+- **Format:**
+
+  - **Action:** Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
+
+  ```json
+  {{
+    "revised_prompts": [
+      {{"revised_prompt": "Revised Prompt 1"}},
+      {{"revised_prompt": "Revised Prompt 2"}}
+    ],
+    "synthesized_prompts": [
+      {{"synthesized_prompt": "Synthesized Prompt 1"}},
+      {{"synthesized_prompt": "Synthesized Prompt 2"}}
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT**
+
+- **Concept:** {concept}
+
+- **Medium:** {medium}
+
+- **Facets:** {facets}
+
+- **Style Axes:** {style_axes}
+
+- **User's Idea:** {input}
+
+- **Video Prompts:** {video_prompts}

@@ -1,0 +1,189 @@
+**GENERAL INSTRUCTIONS:**
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the medium choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Creativity Spectrum:**
+
+1. **Literal ({creativity_spectrum_literal}%):**
+
+   - Realistic, direct interpretations closely tied to the input.
+
+2. **Inventive ({creativity_spectrum_inventive}%):**
+
+   - Creative interpretations that add unique elements while remaining plausible.
+
+3. **Transformative ({creativity_spectrum_transformative}%):**
+
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Analyze and Critique Medium Choices**
+
+- For each concept-medium pair:
+
+  - **Conceptual Harmony:**
+
+    - Evaluate how well the medium resonates with the concept's core idea and emotional tone.
+
+  - **Historical and Cultural Alignment:**
+
+    - Consider any historical or cultural contexts that could enhance the medium's significance.
+
+  - **Innovative Approach:**
+
+    - Determine if the medium offers a fresh and original perspective, possibly through cross-disciplinary methods.
+
+  - **Sensory and Emotional Engagement:**
+
+    - Assess how effectively the medium engages the senses and conveys emotional impact.
+
+- *Action*: Provide a brief critique based on the above factors.
+
+---
+
+**Step 2: Brainstorm Enhanced Medium Ideas**
+
+- For each concept-medium pair:
+
+  - Propose 2-3 enhanced medium ideas that could elevate the concept and medium further.
+
+- **Consider:**
+
+  - Combining unexpected elements or techniques.
+
+  - Incorporating modern or cross-disciplinary approaches to traditional methods.
+
+  - Merging different artistic styles, periods, or cultural influences.
+
+  - Utilizing lateral thinking to generate innovative ideas.
+
+- *Action*: Write down the enhanced medium ideas.
+
+---
+
+**Step 3: Refine and Optimize Medium Choices**
+
+- For each concept:
+
+  - Integrate the best aspects of the original medium with the most promising new ideas.
+
+  - **Ensure:**
+
+    - Visual impact, uniqueness, and sensory engagement.
+
+    - Conceptual alignment, narrative support, and emotional resonance.
+
+    - Feasibility for AI image generation.
+
+  - **Consider Historical and Cultural Contexts:**
+
+    - Incorporate any relevant contexts to deepen the medium's significance.
+
+- **Rules:**
+
+  - Avoid referencing specific artists.
+
+  - Keep the creativity level consistent with the original medium per the creativity spectrum.
+
+  - Adhere to ethical guidelines and avoid disallowed content.
+
+- *Action*: Write the refined medium description.
+
+---
+
+**Step 4: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each refined medium** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Sensory and Emotional Impact**
+    - **Historical and Cultural Significance**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the refined concepts and mediums in the following JSON format:**
+
+  ```json
+     {{
+       "refined_concepts": [
+         {{"refined_concept": "Refined Concept 1"}},
+         {{"refined_concept": "Refined Concept 2"}},
+         {{"refined_concept": "Refined Concept 3"}},
+         {{"refined_concept": "Refined Concept 4"}},
+         {{"refined_concept": "Refined Concept 5"}},
+         {{"refined_concept": "Refined Concept 6"}},
+         {{"refined_concept": "Refined Concept 7"}},
+         {{"refined_concept": "Refined Concept 8"}},
+         {{"refined_concept": "Refined Concept 9"}},
+         {{"refined_concept": "Refined Concept 10"}},
+         {{"refined_concept": "Refined Concept 11"}},
+         {{"refined_concept": "Refined Concept 12"}}
+       "refined_mediums": [
+         {{"refined_medium": "Refined Medium 1"}},
+         {{"refined_medium": "Refined Medium 2"}},
+         {{"refined_medium": "Refined Medium 3"}},
+         {{"refined_medium": "Refined Medium 4"}},
+         {{"refined_medium": "Refined Medium 5"}},
+         {{"refined_medium": "Refined Medium 6"}},
+         {{"refined_medium": "Refined Medium 7"}},
+         {{"refined_medium": "Refined Medium 8"}},
+         {{"refined_medium": "Refined Medium 9"}},
+         {{"refined_medium": "Refined Medium 10"}},
+         {{"refined_medium": "Refined Medium 11"}},
+         {{"refined_medium": "Refined Medium 12"}}
+       ]
+     }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Mediums:**
+
+{mediums}
+
+- **Artists:**
+
+{artists}
+
+- **Refined Concepts:**
+
+{refined_concepts}
+
+- **User's Idea:**
+
+{input}

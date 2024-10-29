@@ -1,0 +1,147 @@
+**INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when analyzing the user's idea for a **video**.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to determine the essence and facets for the video.
+- Adhere to ethical guidelines, avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Step 1: Determine the Creativity Spectrum**
+
+- Assign percentages (totaling 100%) based on the user's idea:
+
+  1. **Literal (%):**
+
+     - Realistic, direct interpretations closely tied to the input.
+
+  2. **Inventive (%):**
+
+     - Creative interpretations that add unique elements while remaining plausible.
+
+  3. **Transformative (%):**
+
+     - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+- **Consider:**
+
+  - Complexity and abstractness of the idea.
+  - Presence of imaginative or fantastical elements.
+  - Emotional or conceptual nature of the request.
+  - Openness to creative interpretation.
+
+---
+
+**Step 2: Assign Style Axes Values**
+
+- Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
+
+  - **Narrative Complexity (Value):**
+
+    - *Example*: 70 - The video features an intricate storyline with multiple layers.
+
+  - **Emotional Intensity (Value):**
+
+    - *Example*: 85 - The piece evokes strong emotions like passion and suspense.
+
+  - **Visual Style (Value):**
+
+    - *Example*: 60 - A balance between realistic visuals and stylized elements.
+
+  - **Symbolism (Value):**
+
+    - *Example*: 50 - The video contains a moderate amount of symbolic content.
+
+  - **Pacing (Value):**
+
+    - *Example*: 40 - The pacing is steady, allowing moments of reflection.
+
+  - **Audio Emphasis (Value):**
+
+    - *Example*: 80 - Sound design plays a significant role in conveying the message.
+
+  - **Color Palette (Value):**
+
+    - *Example*: 75 - Vibrant and varied colors are used to enhance visuals.
+
+  - **Cinematography (Value):**
+
+    - *Example*: 65 - The video employs creative camera angles and movements.
+
+  - **Surrealism vs. Realism (Value):**
+
+    - *Example*: 30 - The video leans towards realistic depictions.
+
+  - **Dynamic vs. Static (Value):**
+
+    - *Example*: 90 - The scenes are highly dynamic with a lot of movement.
+
+---
+
+**Step 3: State the Essence**
+
+- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language.
+
+---
+
+**Step 4: Write Five Facets**
+
+- Identify five facets to judge if a proposed concept aligns with the user's idea for the video.
+
+---
+
+**Step 5: Self-Evaluation and Refinement**
+
+- Review the essence and facets for alignment with the user's idea and the style axes.
+- Refine if necessary to enhance clarity and impact.
+
+---
+
+**Step 6: Provide the Final Output**
+
+- **Return the results in the following JSON format:**
+
+  ```json
+  {{
+    "essence_and_facets": {{
+      "creativity_spectrum": {{
+        "literal": 70,
+        "inventive": 20,
+        "transformative": 10
+      }},
+      "essence": "The main essence of the idea",
+      "facets": [
+        "Facet 1",
+        "Facet 2",
+        "Facet 3",
+        "Facet 4",
+        "Facet 5"
+      ],
+      "style_axes": {{
+        "Narrative Complexity": 70,
+        "Emotional Intensity": 85,
+        "Visual Style": 60,
+        "Symbolism": 50,
+        "Pacing": 40,
+        "Audio Emphasis": 80,
+        "Color Palette": 75,
+        "Cinematography": 65,
+        "Surrealism vs. Realism": 30,
+        "Dynamic vs. Static": 90
+      }}
+    }}
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for all strings.
+  - Replace placeholder values with actual percentages and values.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER'S IDEA:**
+
+{input}

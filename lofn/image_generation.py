@@ -273,9 +273,9 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             st.write(", ".join(title_data['seo_keywords']))
 
                             # Generate Runway video prompt
-                            runway_prompt_json  = generate_runway_prompt(input, concept, medium, result, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug)
-                            st.subheader("Runway Gen-3 Alpha Video Prompt")
-                            st.code(runway_prompt_json['runway_prompt'], language="")
+                            # runway_prompt_json  = generate_runway_prompt(input, concept, medium, result, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug)
+                            # st.subheader("Runway Gen-3 Alpha Video Prompt")
+                            # st.code(runway_prompt_json['runway_prompt'], language="")
                         except Exception as e:
                             st.error(f"Error generating title and Instagram post: {str(e)}")
                             title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
@@ -324,7 +324,6 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "prompt_index": index + 1,
                                 "image_index": i + 1,
                                 "prompt": prompt,
-                                "video_prompt": runway_prompt_json['runway_prompt'],
                                 "title": title_data['title'],
                                 "instagram_post": title_data['instagram_post'],
                                 "seo_keywords": title_data['seo_keywords'],

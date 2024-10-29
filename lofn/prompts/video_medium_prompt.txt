@@ -1,0 +1,128 @@
+**GENERAL INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when selecting and describing film-making techniques, genres, or visual styles that serve as the medium for the video.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to create medium pairings for the video concepts.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Style Axes:**
+
+{style_axes}
+
+---
+
+**Creativity Spectrum:**
+
+1. **Literal ({creativity_spectrum_literal}%):**
+
+   - Realistic, direct interpretations closely tied to the input.
+
+2. **Inventive ({creativity_spectrum_inventive}%):**
+
+   - Creative interpretations that add unique elements while remaining plausible.
+
+3. **Transformative ({creativity_spectrum_transformative}%):**
+
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Explore Film-making Techniques and Genres**
+
+- Based on the concepts and style axes, generate a list of **15 unique film-making techniques, genres, or visual styles** that could serve as mediums to best represent the concepts.
+- **Action:** For each technique or style, write a detailed description that includes:
+
+  - **Cinematography Style:** Such as handheld camera, Steadicam, drone shots, long takes, etc.
+  - **Genre Influences:** Incorporate genres like noir, sci-fi, fantasy, documentary, etc.
+  - **Visual Effects:** Use of CGI, practical effects, animation styles, etc.
+  - **Color Grading and Palette:** Describe the color schemes that set the tone.
+  - **Editing Techniques:** Such as jump cuts, montage, cross-cutting, etc.
+  - **Sound Design:** Emphasis on sound effects, ambient sounds, or silence.
+  - **Narrative Structure:** Non-linear storytelling, flashbacks, multiple perspectives, etc.
+
+---
+
+**Step 2: Match Mediums to Concepts**
+
+- For each of the given concepts, choose the most suitable film-making medium from your list.
+- **Action:**
+
+  - Assign a medium to each concept, creating **12 medium pairings**.
+  - Briefly explain how the medium enhances the concept, aligns with the style axes, and fits within the creativity spectrum.
+  - **Consider:**
+
+    - **Conceptual Harmony:** How the medium emphasizes the concept's core themes.
+    - **Emotional and Sensory Impact:** How the medium affects the viewer's experience.
+    - **Feasibility for AI Video Generation:** The medium should be representable by AI video generation tools.
+
+---
+
+**Step 3: Review and Refine Medium Choices**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each medium** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Emotional and Thematic Depth**
+
+  - **Revise the mediums** where needed to enhance alignment and impact.
+  - **Provide explanations** of any revisions made.
+
+---
+
+**Step 4: Provide the Final Output**
+
+- **Return the list of mediums in the following JSON format:**
+
+  ```json
+  {{
+    "mediums": [
+      {{"medium": "Medium 1"}},
+      {{"medium": "Medium 2"}},
+      {{"medium": "Medium 3"}},
+      {{"medium": "Medium 4"}},
+      {{"medium": "Medium 5"}},
+      {{"medium": "Medium 6"}},
+      {{"medium": "Medium 7"}},
+      {{"medium": "Medium 8"}},
+      {{"medium": "Medium 9"}},
+      {{"medium": "Medium 10"}},
+      {{"medium": "Medium 11"}},
+      {{"medium": "Medium 12"}}
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Refined Concepts:**
+
+{refined_concepts}
+
+- **User's Idea:**
+
+{input}
