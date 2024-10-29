@@ -346,21 +346,82 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # OpenAI models
             "o1-preview": 32768,
             "o1-mini": 32768,
-            "gpt-4o-mini": 8192,
-            "gpt-4o": 8192,
+            "gpt-4o-mini": 4096,
+            "gpt-4o": 4096,
             "gpt-4o-2024-08-06": 8192,
             "gpt-3.5-turbo": 4096,
-            "gpt-4-turbo": 8192,
+            "gpt-4-turbo": 4096,
             "gpt-4": 8192,
+
             # Anthropic models
-            "claude-3-5-sonnet-latest": 100000,
-            "claude-3-5-sonnet-20241022": 100000,
-            "claude-3-5-sonnet-20240620": 100000,
+            "claude-3-5-sonnet-latest": 8096,
+            "claude-3-5-sonnet-20241022": 8096,
+            "claude-3-5-sonnet-20240620": 4096,
+            "claude-3-opus-20240229": 4096,
+            "claude-3-sonnet-20240229": 4096,
+            "claude-3-haiku-20240307": 4096,
+
             # Google models
             "gemini-1.5-flash": 16384,
-            "gemini-1.5-flash-002": 16384,
+            "gemini-1.5-flash-002": 8191,
             "gemini-1.5-pro": 32768,
-            # Add more models as needed
+            "gemini-1.5-pro-002": 32768,
+            "gemini-1.5-pro-exp-0801": 32768,
+            "gemini-1.0-pro-exp-0827": 32768,
+
+            # Poe models
+            "Poe-Assistant": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-3.5-Sonnet": 4096,
+            "Poe-GPT-4o-Mini": 4096,
+            "Poe-GPT-4o": 8192,
+            "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Gemini-1.5-Flash": 16384,
+            "Poe-Gemini-1.5-Pro": 32768,
+            "Poe-Llama-3.2-11B-FW-131k": 128000,
+            "Poe-Llama-3.2-90B-FW-131k": 128000,
+            "Poe-Llama-3.1-8B-T-128k": 128000,
+            "Poe-Llama-3.1-70B-FW-128k": 128000,
+            "Poe-Llama-3.1-70B-T-128k": 128000,
+            "Poe-Llama-3.1-8B-FW-128k": 128000,
+            "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-3-Sonnet": 4096,
+            "Poe-Claude-3-Haiku": 4096,
+            "Poe-Claude-3-Opus": 4096,
+            "Poe-Gemini-1.5-Flash-128k": 128000,
+            "Poe-Gemini-1.5-Pro-128k": 128000,
+            "Poe-Gemini-1.0-Pro": 32768,
+            "Poe-Llama-3-70B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-70b-Inst-FW": 4096,  # FIXME: Verify token limit
+            "Poe-Mixtral8x22b-Inst-FW": 4096,  # FIXME: Verify token limit
+            "Poe-Command-R": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-2-9b-T": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-Large-2": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-Medium": 4096,  # FIXME: Verify token limit
+            "Poe-Snowflake-Arctic-T": 4096,  # FIXME: Verify token limit
+            "Poe-RekaCore": 4096,  # FIXME: Verify token limit
+            "Poe-RekaFlash": 4096,  # FIXME: Verify token limit
+            "Poe-Command-R-Plus": 4096,  # FIXME: Verify token limit
+            "Poe-GPT-3.5-Turbo": 4096,
+            "Poe-Mixtral-8x7B-Chat": 4096,  # FIXME: Verify token limit
+            "Poe-DeepSeek-Coder-33B-T": 4096,  # FIXME: Verify token limit
+            "Poe-CodeLlama-70B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Qwen2-72B-Chat": 4096,  # FIXME: Verify token limit
+            "Poe-Qwen-72B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Claude-2": 100000,
+            "Poe-Google-PaLM": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-8b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Llama-3-8B-T": 4096,  # FIXME: Verify token limit
+            "Poe-Gemma-Instruct-7B-T": 4096,  # FIXME: Verify token limit
+            "Poe-MythoMax-L2-13B": 4096,  # FIXME: Verify token limit
+            "Poe-Code-Llama-34b": 4096,  # FIXME: Verify token limit
+            "Poe-Code-Llama-13b": 4096,  # FIXME: Verify token limit
+            "Poe-Solar-Mini": 4096,  # FIXME: Verify token limit
+            "Poe-GPT-3.5-Turbo-Instruct": 4096,
+            "Poe-GPT-3.5-Turbo-Raw": 4096,
+            "Poe-Claude-instant": 100000,
+            "Poe-Mixtral-8x7b-Groq": 4096,  # FIXME: Verify token limit
+            "Poe-Mistral-7B-v0.3-T": 4096
         }
 
         # Get the maximum token limit for the selected model
