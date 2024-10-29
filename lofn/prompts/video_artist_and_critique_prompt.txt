@@ -120,19 +120,19 @@
 
   ```json
   {{
-    "filmmakers": [
-      {{"filmmaker": "Filmmaker 1"}},
-      {{"filmmaker": "Filmmaker 2"}},
-      {{"filmmaker": "Filmmaker 3"}},
-      {{"filmmaker": "Filmmaker 4"}},
-      {{"filmmaker": "Filmmaker 5"}},
-      {{"filmmaker": "Filmmaker 6"}},
-      {{"filmmaker": "Filmmaker 7"}},
-      {{"filmmaker": "Filmmaker 8"}},
-      {{"filmmaker": "Filmmaker 9"}},
-      {{"filmmaker": "Filmmaker 10"}},
-      {{"filmmaker": "Filmmaker 11"}},
-      {{"filmmaker": "Filmmaker 12"}}
+    "artists": [
+      {{"artist": "Filmmaker 1"}},
+      {{"artist": "Filmmaker 2"}},
+      {{"artist": "Filmmaker 3"}},
+      {{"artist": "Filmmaker 4"}},
+      {{"artist": "Filmmaker 5"}},
+      {{"artist": "Filmmaker 6"}},
+      {{"artist": "Filmmaker 7"}},
+      {{"artist": "Filmmaker 8"}},
+      {{"artist": "Filmmaker 9"}},
+      {{"artist": "Filmmaker 10"}},
+      {{"artist": "Filmmaker 11"}},
+      {{"artist": "Filmmaker 12"}}
     ],
     "refined_concepts": [
       {{"refined_concept": "Refined Concept 1"}},
