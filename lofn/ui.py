@@ -441,7 +441,7 @@ class LofnApp:
 
         # Guidance for the user
         if not user_input:
-            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A cityscape where buildings transform as people walk by, reflecting the dynamic energy of its inhabitants.'")
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing a dangerous and important quest.'")
 
         # Process Flow Control
         if st.button("Generate Video Concepts"):
@@ -451,9 +451,9 @@ class LofnApp:
                 self.generate_ui_video_concepts()
 
         # Display concepts and proceed to prompt generation
-        # if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
+        if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
         #     self.display_style_axes_and_creativity_spectrum()
-        #     self.display_video_concepts()
+            self.display_video_concepts()
 
     def render_video_sidebar(self):
         st.sidebar.header('Video Generation Settings')
@@ -501,7 +501,7 @@ class LofnApp:
 
         # Provide an example or guidance
         if not user_input:
-            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing an important quest.'")
+            st.info("Tip: Describe a scene or narrative you'd like to see in motion. For example, 'A powerful and mysterious witch's familar completing a dangerous and important quest.'")
 
         # Process Flow Control
         if st.button("Generate Video Concepts"):
