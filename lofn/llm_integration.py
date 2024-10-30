@@ -207,6 +207,12 @@ image_gen_schema = {
     ]
 }
 
+video_gen_schema = {
+    "video_prompts": [
+        {"video_prompt": str}
+    ]
+}
+
 artist_refined_schema =  {
     "artist_refined_prompts": [
         {"artist_refined_prompt": str}
@@ -1216,6 +1222,7 @@ def generate_concept_mediums(
             st.write(f"Full list: {concept_mediums}")
         send_to_discord(concept_mediums, content_type='concepts')
         return concept_mediums, style_axes, creativity_spectrum
+        
     except Exception as e:
         raise LofnError(f"Error in concept generation: {str(e)}")
 
@@ -1579,7 +1586,7 @@ def process_video_prompts(
     style_axes=None,
     model=None
 ):
-    expected_schema = image_gen_schema
+    expected_schema = video_gen_schema
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -1647,43 +1654,3 @@ def process_video_artist_refined_prompts(
             premessage=f'Filmmaker-Refined Prompts for {concept} in {medium}:'
         )
     return parsed_output
-
-def process_video_generation_prompts(
-    chains,
-    input_text,
-    concept,
-    medium,
-    facets,
-    artistic_guides,
-    max_retries,
-    debug=False,
-    style_axes=None,
-    model=None
-):
-    expected_schema = image_gen_schema
-    parsed_output = run_llm_chain(
-        chains,
-        'generation',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
-        },
-        max_retries,
-        model,
-        debug,
-        expected_schema
-    )
-    if parsed_output is None:
-        st.error(f"Failed to process video prompts")
-        return None
-    if parsed_output.get('video_prompts'):
-        send_to_discord(
-            [prompt['video_prompt'] for prompt in parsed_output['video_prompts']],
-            premessage=f'Generated Video Prompts for {concept} in {medium}:'
-        )
-    return parsed_output
-
