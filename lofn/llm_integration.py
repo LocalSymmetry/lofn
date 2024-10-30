@@ -287,7 +287,7 @@ class OpenRouterLLM(LLM):
             "model": self.model_name,
             "messages": messages,
             "temperature": self.temperature,
-            #"max_tokens": self.max_tokens,
+            "max_tokens": self.max_tokens,
         }
 
         if stop is not None:
@@ -1207,9 +1207,13 @@ def generate_concept_mediums(
 
         refined_concepts = [x['refinedconcept'] for x in refined_mediums['refinedconcepts']]
         refined_mediums_list = [x['refinedmedium'] for x in refined_mediums['refinedmediums']]
-        max_size = min(len(refined_concepts), len(refined_mediums_list))
-        concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts[:max_size], refined_mediums_list[:max_size])]
-        
+        pair_size = min(len(refined_concepts), len(refined_mediums_list))
+        refined_concepts = refined_concepts[:pair_size]
+        refined_mediums_list = refined_mediums_list[:pair_size]
+        concept_mediums = [{'concept': concept, 'medium': medium} for concept, medium in zip(refined_concepts, refined_mediums_list)]
+        if debug:
+            st.write(f"Pair size: {pair_size}")
+            st.write(f"Full list: {concept_mediums}")
         send_to_discord(concept_mediums, content_type='concepts')
         return concept_mediums, style_axes, creativity_spectrum
     except Exception as e:

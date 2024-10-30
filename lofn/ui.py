@@ -290,9 +290,9 @@ class LofnApp:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
         # Display concepts and proceed to prompt generation
-        # if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
-        #     self.display_style_axes_and_creativity_spectrum()
-        #     self.display_concepts()
+        if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
+            # self.display_style_axes_and_creativity_spectrum()
+            self.display_concepts()
 
     def generate_concepts(self):
         try:
