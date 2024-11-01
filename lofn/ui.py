@@ -100,7 +100,7 @@ class LofnApp:
         models = []
         if Config.FAL_API_KEY:
             models.extend([
-                "fal-ai/flux-pro/v1.1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
+                "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/stable-diffusion-v35-medium", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
                 # Add other FAL models
             ])
         if Config.IDEOGRAM_API_KEY:

@@ -379,12 +379,12 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         return json.dumps({"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []})
 
     try:
-        # If output is already a dict, convert it to JSON string
-        if isinstance(output, dict):
+        try:
+            # If output is a string, try to parse it as JSON and then convert back to string
+            parsed_output = json.loads(output)
+            return json.dumps(parsed_output)
+        except:
             return json.dumps(output)
-        # If output is a string, try to parse it as JSON and then convert back to string
-        parsed_output = json.loads(output)
-        return json.dumps(parsed_output)
     except json.JSONDecodeError:
         st.error("Failed to parse JSON output from title generation")
         return json.dumps({"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []})
@@ -666,7 +666,23 @@ def get_model_params(model: str):
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
         },
+        "fal-ai/omnigen-v1": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/recraft-v3": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "recraft_style": st.session_state.get(f"{model}_recraft_style")
+        },
         "fal-ai/stable-diffusion-v35-large": {
+            "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
+            "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
+        },
+        "fal-ai/stable-diffusion-v35-medium": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
@@ -788,7 +804,11 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-Imagen3", "Poe-StableDiffusion3.5-L", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
+    elif model in ["fal-ai/recraft-v3"]:
+        st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.selectbox("Generation Style", ["any", "realistic_image", "digital_illustration", "vector_illustration", "realistic_image/b_and_w", "realistic_image/hard_flash", "realistic_image/hdr", "realistic_image/natural_light", "realistic_image/studio_portrait", "realistic_image/enterprise", "realistic_image/motion_blur", "digital_illustration/pixel_art", "digital_illustration/hand_drawn", "digital_illustration/grain", "digital_illustration/infantile_sketch", "digital_illustration/2d_art_poster", "digital_illustration/handmade_3d", "digital_illustration/hand_drawn_outline", "digital_illustration/engraving_color", "digital_illustration/2d_art_poster_2", "vector_illustration/engraving", "vector_illustration/line_art", "vector_illustration/line_circuit", "vector_illustration/linocut"], key=f"{model}_recraft_style")
+        st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
+    elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism","fal-ai/stable-diffusion-v35-medium", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-Imagen3", "Poe-StableDiffusion3.5-L", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
         st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
@@ -879,14 +899,9 @@ def save_metadata(metadata):
     # Create a filename for the metadata
     metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10].replace('/','_')}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
-    # Ensure all data is JSON serializable
-    def json_serializable(obj):
-        if isinstance(obj, datetime):
-            return obj.isoformat()
-        raise TypeError(f"Type {type(obj)} not serializable")
 
     # Save the metadata as a JSON file
     with open(metadata_filename, 'w') as f:
-        json.dump(metadata, f, indent=2, default=json_serializable)
+        json.dump(metadata, f, indent=2)
     
     st.write(f"Metadata saved as {metadata_filename}")
