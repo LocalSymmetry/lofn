@@ -451,14 +451,14 @@ def generate_fal_image(model_name, params, debug=False):
             st.write(json.dumps(arguments, indent=2))
 
         # Add model-specific parameters
-        if "flux" in model_name or "omni" in model_name or "sdxl" in model_name:
+        if "flux" in model_name or "omni" in model_name or "sdxl" in model_name or "stable" in model_name:
             arguments.update({
                 "num_inference_steps": int(params.get('num_inference_steps', 28)),
                 "guidance_scale": float(params.get('guidance_scale', 3.5)),
                 "enable_safety_checker": params.get('enable_safety_checker', True),
             })
 
-        if "flux" in model_name or "Stable" in model_name or "SD3" in model_name or "stable in model_name":
+        if "flux" in model_name or "Stable" in model_name or "SD3" in model_name:
             arguments.update({"image_size": str(params.get('image_size', 'portrait_16_9'))})
         else:
             arguments.update({
@@ -481,10 +481,10 @@ def generate_fal_image(model_name, params, debug=False):
         if "aura-flow" in model_name:
             arguments["expand_prompt"] = params.get('expand_prompt', True)
 
-        if "recraft" in model_name:
+        if "omni" in model_name:
             arguments["output_format"] = "png"
 
-        if "omni" in model_name:
+        if "recraft" in model_name:
             arguments["style"] = params.get('style', 'any')
             arguments["enable_safety_checker"] = params.get('enable_safety_checker', True)
 
