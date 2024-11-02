@@ -34,6 +34,13 @@ from langchain_core.language_models.llms import LLM
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
 
+image_title_schema = {
+    "title": str,
+    "instagram_caption": str,
+    "instagram_hashtags": str,
+    "seo_keywords": str
+}
+
 prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
 
 prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
@@ -265,12 +272,10 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             
                             # Display Instagram post information
                             st.subheader("Instagram Post")
-                            st.write(f"Caption: {title_data['instagram_post']['caption']}")
-                            st.write("Hashtags:")
-                            st.write(", ".join(title_data['instagram_post']['hashtags']))
-                            
+                            st.write(f"Caption: {title_data['instagram_caption']}")
+                            st.write(f"Hashtags: {title_data['instagram_hashtags']}")
                             st.subheader("SEO Keywords")
-                            st.write(", ".join(title_data['seo_keywords']))
+                            st.write(title_data['seo_keywords'])
 
                             # Generate Runway video prompt
                             # runway_prompt_json  = generate_runway_prompt(input, concept, medium, result, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug)
@@ -278,7 +283,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             # st.code(runway_prompt_json['runway_prompt'], language="")
                         except Exception as e:
                             st.error(f"Error generating title and Instagram post: {str(e)}")
-                            title_data = {"title": "Untitled", "instagram_post": {"caption": "", "hashtags": []}, "seo_keywords": []}
+                            title_data = {"title": "Untitled", "instagram_caption": "", "instagram_hashtags": "", "seo_keywords": ""}
                     
                         # Save the image locally
                         try:
@@ -325,7 +330,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                                 "image_index": i + 1,
                                 "prompt": prompt,
                                 "title": title_data['title'],
-                                "instagram_post": title_data['instagram_post'],
+                                "instagram_post": title_data['instagram_caption'],
+                                "hashtags": title_data['instagram_hashtags'],
                                 "seo_keywords": title_data['seo_keywords'],
                                 "image_url": result,
                                 "image_model": image_model,
@@ -363,13 +369,18 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
         | llm
     )
     
-    output = run_chain_with_retries(chain, args_dict={
+    output = run_chain_with_retries(
+        chain, 
+        args_dict={
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.essence_and_facets_output['essence_and_facets']['facets'],
         "image": image
-    }, max_retries=max_retries, debug=debug)
+        },
+        max_retries=max_retries, 
+        debug=debug,
+        expected_schema = image_title_schema)
 
     if debug:
         st.write("Output from run_chain_with_retries:")
@@ -621,7 +632,7 @@ def get_model_params(model: str):
     }
 
     image_size = st.session_state[f"{model}_image_size"]
-    if model == "DALL-E 3" or ('flux' in model) or ('Flux' in model) or ('FLUX' in model) or ('Ideogram' in model) or ('Playground' in model):
+    if model == "DALL-E 3" or ('flux' in model) or ('omnigen' in model) or ('recraft' in model) or ('Flux' in model) or ('FLUX' in model) or ('Ideogram' in model) or ('Playground' in model):
         base_params["size"] = image_size
         base_params["image_size"] = image_size
     else:
@@ -675,7 +686,7 @@ def get_model_params(model: str):
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
-            "recraft_style": st.session_state.get(f"{model}_recraft_style")
+            "style": st.session_state.get(f"{model}_recraft_style")
         },
         "fal-ai/stable-diffusion-v35-large": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
@@ -899,9 +910,13 @@ def save_metadata(metadata):
     # Create a filename for the metadata
     metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10].replace('/','_')}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
     
+    def json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f"Type {type(obj)} not serializable")
 
     # Save the metadata as a JSON file
     with open(metadata_filename, 'w') as f:
-        json.dump(metadata, f, indent=2)
+        json.dump(metadata, f, indent=2, default=json_serializable)
     
     st.write(f"Metadata saved as {metadata_filename}")

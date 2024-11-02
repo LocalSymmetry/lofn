@@ -59,11 +59,9 @@
   ```json
   {{
     "title": "Captivating title here",
-    "instagram_post": {{
-      "caption": "Engaging caption here",
-      "hashtags": ["#Hashtag1", "#Hashtag2", "..."]
-    }},
-    "seo_keywords": ["Keyword1", "Keyword2", "..."]
+    "instagram_caption": "Engaging caption here",
+    "instagram_hashtags": "#Hashtag1 #Hashtag2 ...",
+    "seo_keywords": "Keyword1 Keyword2 ..."
   }}
   ```
 
