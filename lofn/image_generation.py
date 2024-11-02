@@ -451,7 +451,7 @@ def generate_fal_image(model_name, params, debug=False):
             st.write(json.dumps(arguments, indent=2))
 
         # Add model-specific parameters
-        if "flux" in model_name or "sdxl" in model_name:
+        if "flux" in model_name or "omni" in model_name or "sdxl" in model_name:
             arguments.update({
                 "num_inference_steps": int(params.get('num_inference_steps', 28)),
                 "guidance_scale": float(params.get('guidance_scale', 3.5)),
@@ -480,6 +480,13 @@ def generate_fal_image(model_name, params, debug=False):
 
         if "aura-flow" in model_name:
             arguments["expand_prompt"] = params.get('expand_prompt', True)
+
+        if "recraft" in model_name:
+            arguments["output_format"] = "png"
+
+        if "omni" in model_name:
+            arguments["style"] = params.get('style', 'any')
+            arguments["enable_safety_checker"] = params.get('enable_safety_checker', True)
 
         if debug:
             st.write("Final arguments for FAL:")
