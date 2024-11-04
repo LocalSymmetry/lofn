@@ -242,8 +242,8 @@ music_facets_schema = {
 }
 
 music_gen_schema = {
-    "lyrics_prompt": str,
-    "music_prompt": str
+    "music_prompt": str,
+    "lyrics_prompt": str
 }
 
 
@@ -431,7 +431,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Find the model in the list
         model_data = next((m for m in or_models if m['id'] == model_id), None)
         if model_data:
-            context_length = model_data.get('context_length', 32000)
+            context_length = min(model_data.get('context_length', 32000) ,42000)
             # Subtract estimated tokens for input prompts and retries
             max_tokens = context_length - 10000
             # Ensure max_tokens is not negative
@@ -1300,6 +1300,12 @@ def generate_music_prompts(
             debug=debug,
             expected_schema = music_facets_schema
         )
+        if st.session_state.creativity_spectrum is None:
+            display_creativity_spectrum(output_essence["essence_and_facets"]["creativity_spectrum"])
+        else:
+            display_creativity_spectrum(st.session_state.creativity_spectrum)
+        display_facets(output_essence["essence_and_facets"]["facets"])
+        display_style_axes(output_essence["essence_and_facets"]["style_axes"])
 
         gen_chain = (
             ChatPromptTemplate.from_messages([("human", music_creation_prompt)])
@@ -1307,7 +1313,7 @@ def generate_music_prompts(
         )
 
         # Run the chain with retries
-        gen_output = run_chain_with_retries(
+        parsed_output = run_chain_with_retries(
             gen_chain,
             args_dict={
                 "input": input_text, 
@@ -1320,9 +1326,13 @@ def generate_music_prompts(
             debug=debug,
             expected_schema = music_gen_schema
         )
-
+        if debug:
+            print(parsed_output)
         # Parse the output
-        parsed_output, error = parse_output(str(gen_output), debug)
+        # parsed_output, error = parse_output(str(gen_output), debug)
+        # if debug:
+        #     print(parsed_output)
+        #     print(error)
         if parsed_output is not None:
             music_prompt = parsed_output['music_prompt']
             lyrics_prompt = parsed_output['lyrics_prompt']

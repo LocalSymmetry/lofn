@@ -458,7 +458,7 @@ def generate_fal_image(model_name, params, debug=False):
                 "enable_safety_checker": params.get('enable_safety_checker', True),
             })
 
-        if "flux" in model_name or "Stable" in model_name or "SD3" in model_name:
+        if "flux" in model_name or "Stable" in model_name or "omni" in model_name or "recraft" in model_name or "SD3" in model_name:
             arguments.update({"image_size": str(params.get('image_size', 'portrait_16_9'))})
         else:
             arguments.update({
