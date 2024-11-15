@@ -451,14 +451,23 @@ def generate_fal_image(model_name, params, debug=False):
             st.write(json.dumps(arguments, indent=2))
 
         # Add model-specific parameters
-        if "flux" in model_name or "omni" in model_name or "sdxl" in model_name or "stable" in model_name:
+        if ("flux" in model_name and "ultra" not in model_name) or "omni" in model_name or "sdxl" in model_name or "stable" in model_name:
             arguments.update({
                 "num_inference_steps": int(params.get('num_inference_steps', 28)),
                 "guidance_scale": float(params.get('guidance_scale', 3.5)),
                 "enable_safety_checker": params.get('enable_safety_checker', True),
             })
 
-        if "flux" in model_name or "Stable" in model_name or "omni" in model_name or "recraft" in model_name or "SD3" in model_name:
+        if "ultra" in model_name:
+            arguments.update({
+                "aspect_ratio": params.get('aspect_ratio', "1:1"),
+                "safety_tolerance": int(params.get('safety_tolerance', 6)),
+                "raw_mode": params.get('raw_mode', False),
+                "enable_safety_checker": params.get('enable_safety_checker', True),
+            })
+
+
+        if ("flux" in model_name and "ultra" not in model_name) or "Stable" in model_name or "omni" in model_name or "recraft" in model_name or "SD3" in model_name:
             arguments.update({"image_size": str(params.get('image_size', 'portrait_16_9'))})
         else:
             arguments.update({
@@ -481,7 +490,7 @@ def generate_fal_image(model_name, params, debug=False):
         if "aura-flow" in model_name:
             arguments["expand_prompt"] = params.get('expand_prompt', True)
 
-        if "omni" in model_name:
+        if "omni" or "ultra" in model_name:
             arguments["output_format"] = "png"
 
         if "recraft" in model_name:
@@ -684,6 +693,12 @@ def get_model_params(model: str):
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True)
         },
+        "fal-ai/flux-pro/v1.1-ultra": {
+            "aspect_ratio": st.session_state.get(f"{model}_image_size", "1:1"),
+            "safety_tolerance": st.session_state.get(f"{model}_safety_tolerance", 1),
+            "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "raw_mode": st.session_state.get(f"{model}_raw_mode", True)
+        },
         "fal-ai/omnigen-v1": {
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
@@ -807,8 +822,8 @@ def render_image_controls(model: str):
         st.selectbox("Model", ["V_2", "V_2_TURBO", "V_1", "V_1_TURBO"], key=f"{model}_model")
         st.selectbox("Magic Prompt Option", ["OFF", "AUTO", "ON"], key=f"{model}_magic_prompt_option")
         st.selectbox("Aspect Ratio", [
-                "ASPECT_9_16", "ASPECT_1_1", "ASPECT_10_16", "ASPECT_16_10", "ASPECT_16_9",
-                "ASPECT_3_2", "ASPECT_2_3", "ASPECT_4_3", "ASPECT_3_4", "ASPECT_1_3", "ASPECT_3_1"
+                "ASPECT_9_16", "ASPECT_4_3", "ASPECT_3_4",  "ASPECT_1_1", "ASPECT_10_16", "ASPECT_16_10", "ASPECT_16_9",
+                "ASPECT_3_2", "ASPECT_2_3","ASPECT_1_3", "ASPECT_3_1"
             ], key=f"{model}_image_size")
         
         st.selectbox("Style Type", ["GENERAL", "REALISTIC", "DESIGN", "RENDER_3D", "ANIME"], key=f"{model}_style_type")
@@ -823,14 +838,19 @@ def render_image_controls(model: str):
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in ["fal-ai/recraft-v3"]:
-        st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["portrait_4_3", "portrait_16_9",  "square_hd", "square", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.selectbox("Generation Style", ["any", "realistic_image", "digital_illustration", "vector_illustration", "realistic_image/b_and_w", "realistic_image/hard_flash", "realistic_image/hdr", "realistic_image/natural_light", "realistic_image/studio_portrait", "realistic_image/enterprise", "realistic_image/motion_blur", "digital_illustration/pixel_art", "digital_illustration/hand_drawn", "digital_illustration/grain", "digital_illustration/infantile_sketch", "digital_illustration/2d_art_poster", "digital_illustration/handmade_3d", "digital_illustration/hand_drawn_outline", "digital_illustration/engraving_color", "digital_illustration/2d_art_poster_2", "vector_illustration/engraving", "vector_illustration/line_art", "vector_illustration/line_circuit", "vector_illustration/linocut"], key=f"{model}_recraft_style")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in ["fal-ai/flux/dev", "fal-ai/flux-realism","fal-ai/stable-diffusion-v35-medium", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-Imagen3", "Poe-StableDiffusion3.5-L", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
-        st.selectbox("Image Size", ["portrait_16_9",  "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
+        st.selectbox("Image Size", ["portrait_4_3", "portrait_16_9",  "square_hd", "square", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
+    elif model in ["fal-ai/flux-pro/v1.1-ultra"]:
+        st.selectbox("Aspect Ratio", ["3:4", "4:3", "1:1", "9:16", "16:9", "9:21", "21:9"], key=f"{model}_image_size")
+        st.checkbox("Enable Raw Mode", value=False, key=f"{model}_raw_mode")    
+        st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")    
+        st.number_input("Safety Tolerance", min_value=1, max_value=6, value=6, key=f"{model}_safety_tolerance")
     elif model in ["fal-ai/fast-sdxl", "fal-ai/playground-v25", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B", "Poe-SD3-Medium"]:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
         st.text_area("Negative Prompt", key=f"{model}_negative_prompt")

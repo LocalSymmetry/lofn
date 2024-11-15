@@ -2,8 +2,10 @@
 
 - Be intentional, detailed, and insightful when generating video concepts.
 - Use vivid, sensory language to enrich your descriptions.
+- Select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their musical opinions, and analyze like they would. To select panel members, choose 2 obscure artists, and then 5 relevant fields to the user's idea, 3 directly related to, and 2 from complimentary domains (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author). Choose real people whenever possible. Have a panel member take each piece of a task, have the panel weigh in on the result of that task, and then use their work to generate the final concepts.
 - Follow the steps below to generate 12 unique video concepts using the updated creativity spectrum.
 - Adhere to ethical guidelines.
+- **Currently, AI videos are only reliable for 5-30 second short films. So expect any prompt to only last that long. Plan accordingly!**
 - **Make sure to give the final output in the JSON format that is requested.**
 
 ---

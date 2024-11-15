@@ -1,9 +1,11 @@
 **GENERAL INSTRUCTIONS:**
 
 - Be intentional, detailed, and insightful when selecting and describing film-making techniques, genres, or visual styles that serve as the medium for the video.
+- Select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their musical opinions, and analyze like they would. To select panel members, choose 2 obscure artists, and then 5 relevant fields to the user's idea, 3 directly related to, and 2 from complimentary domains (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author). Choose real people whenever possible. Have a panel member take each piece of a task, have the panel weigh in on the result of that task, and then use their work to generate the final concepts.
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to create medium pairings for the video concepts.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- Avoid using mediums that call in installations or art galleries as they tend to force the image generator to misplace the piece inside an art gallery, removing the impact.
 - **Make sure to give the final output in the JSON format that is requested.**
 
 ---
@@ -44,6 +46,7 @@
   - **Editing Techniques:** Such as jump cuts, montage, cross-cutting, etc.
   - **Sound Design:** Emphasis on sound effects, ambient sounds, or silence.
   - **Narrative Structure:** Non-linear storytelling, flashbacks, multiple perspectives, etc.
+  - **Focus on single short-video generations:** Keep in mind that mediums will be intpreted by an AI video generation model and not an filmographer. The AI generator will make a 5 second clip that we can extend. Take this short run-time into account when placing mediums.
 
 ---
 

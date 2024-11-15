@@ -45,7 +45,7 @@ class LofnApp:
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
             models.extend([
-                "claude-3-5-sonnet-latest",
+                "claude-3-5-sonnet-latest", "claude-3-5-haiku-20241022",
                 "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620", "claude-3-opus-20240229",
                 "claude-3-sonnet-20240229", "claude-3-haiku-20240307"
             ])
@@ -100,7 +100,7 @@ class LofnApp:
         models = []
         if Config.FAL_API_KEY:
             models.extend([
-                "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/stable-diffusion-v35-medium", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
+                "fal-ai/flux-pro/v1.1-ultra", "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/stable-diffusion-v35-medium", "fal-ai/flux-pro", "fal-ai/flux-realism", "fal-ai/flux-dev", "fal-ai/flux/schnell",
                 # Add other FAL models
             ])
         if Config.IDEOGRAM_API_KEY:
@@ -192,37 +192,70 @@ class LofnApp:
 
             render_image_controls(self.image_model)
 
+
         with st.sidebar.expander("Style Personalization", expanded=False):
             st.session_state['auto_style'] = st.checkbox("Automatic Style", value=True, help="Enable automatic style determination.")
             if not st.session_state['auto_style']:
                 st.subheader("Adjust Style Axes")
-                style_axes = {
-                    "Abstraction vs. Realism": st.slider("Abstraction vs. Realism (0: Abstract)", 0, 100, 50),
-                    "Emotional Valence": st.slider("Emotional Valence (0: Negative)", 0, 100, 50),
-                    "Color Intensity": st.slider("Color Intensity (0: Muted)", 0, 100, 50),
-                    "Symbolic Density": st.slider("Symbolic Density (0: Literal)", 0, 100, 50),
-                    "Compositional Complexity": st.slider("Compositional Complexity (0: Simple)", 0, 100, 50),
-                    "Textural Richness": st.slider("Textural Richness (0: Smooth)", 0, 100, 50),
-                    "Symmetry vs. Asymmetry": st.slider("Symmetry vs. Asymmetry (0: Asymmetrical)", 0, 100, 50),
-                    "Novelty": st.slider("Novelty (0: Traditional)", 0, 100, 50),
-                    "Figure-Ground Relationship": st.slider("Figure-Ground Relationship (0: Distinct)", 0, 100, 50),
-                    "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static)", 0, 100, 50)
-                }
+                selected_medium = st.session_state.get('selected_tab', 'Image Generation')
+                if selected_medium == 'Image Generation':
+                    # Image Style Axes
+                    style_axes = {
+                       "Abstraction vs. Realism": st.slider("Abstraction vs. Realism (0: Abstract, 100: Realism)", 0, 100, 50),
+                       "Emotional Valence": st.slider("Emotional Valence (0: Negative, 100: Positive)", 0, 100, 50),
+                       "Color Intensity": st.slider("Color Intensity (0: Muted, 100: Vibrant)", 0, 100, 50),
+                       "Symbolic Density": st.slider("Symbolic Density (0: Literal, 100: Symbolic)", 0, 100, 50),
+                       "Compositional Complexity": st.slider("Compositional Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Textural Richness": st.slider("Textural Richness (0: Smooth, 100: Textured)", 0, 100, 50),
+                       "Symmetry vs. Asymmetry": st.slider("Symmetry vs. Asymmetry (0: Asymmetrical, 100: Symmetrical)", 0, 100, 50),
+                       "Novelty": st.slider("Novelty (0: Traditional, 100: Innovative)", 0, 100, 50),
+                       "Figure-Ground Relationship": st.slider("Figure-Ground Relationship (0: Distinct, 100: Blended)", 0, 100, 50),
+                       "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static, 100: Dynamic)", 0, 100, 50)
+                    }
+                elif selected_medium == 'Video Generation':
+                    # Video Style Axes
+                    style_axes = {
+                       "Narrative Complexity": st.slider("Narrative Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Emotional Intensity": st.slider("Emotional Intensity (0: Subtle, 100: Intense)", 0, 100, 50),
+                       "Visual Style": st.slider("Visual Style (0: Plain, 100: Stylized)", 0, 100, 50),
+                       "Symbolism": st.slider("Symbolism (0: Literal, 100: Symbolic)", 0, 100, 50),
+                       "Pacing": st.slider("Pacing (0: Slow, 100: Fast)", 0, 100, 50),
+                       "Character Emphasis": st.slider("Character Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
+                       "Color Palette": st.slider("Color Palette (0: Monochrome, 100: Vibrant)", 0, 100, 50),
+                       "Cinematography": st.slider("Cinematography (0: Static Shots, 100: Dynamic Shots)", 0, 100, 50),
+                       "Surrealism vs. Realism": st.slider("Surrealism vs. Realism (0: Surreal, 100: Realistic)", 0, 100, 50),
+                       "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static, 100: Dynamic)", 0, 100, 50)
+                    }
+                elif selected_medium == 'Music Generation':
+                    # Music Style Axes
+                    style_axes = {
+                       "Tempo": st.slider("Tempo (0: Slow, 100: Fast)", 0, 100, 50),
+                       "Mood": st.slider("Mood (0: Negative, 100: Positive)", 0, 100, 50),
+                       "Instrumentation Complexity": st.slider("Instrumentation Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Lyrical Depth": st.slider("Lyrical Depth (0: Simple, 100: Profound)", 0, 100, 50),
+                       "Genre Fusion": st.slider("Genre Fusion (0: Pure Genre, 100: Fusion)", 0, 100, 50),
+                       "Vocal Style": st.slider("Vocal Style (0: Soft, 100: Powerful)", 0, 100, 50),
+                       "Rhythmic Complexity": st.slider("Rhythmic Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Melodic Emphasis": st.slider("Melodic Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
+                       "Harmonic Richness": st.slider("Harmonic Richness (0: Simple, 100: Rich)", 0, 100, 50),
+                       "Production Style": st.slider("Production Style (0: Raw, 100: Polished)", 0, 100, 50)
+                    }
+                else:
+                    style_axes = {}
                 st.session_state['style_axes'] = style_axes
             else:
                 st.session_state['style_axes'] = None
-
-            st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
-            if not st.session_state['auto_creativity_spectrum']:
-                st.subheader("Adjust Creativity Spectrum")
-                creativity_spectrum = {
-                    "literal": st.slider("Literal", 0, 100, 33),
-                    "inventive": st.slider("Inventive", 0, 100, 33),
-                    "transformative": st.slider("Transformative", 0, 100, 34),
-                }
-                st.session_state['creativity_spectrum'] = creativity_spectrum
-            else:
-                st.session_state['creativity_spectrum'] = None
+                st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
+                if not st.session_state['auto_creativity_spectrum']:
+                    st.subheader("Adjust Creativity Spectrum")
+                    creativity_spectrum = {
+                        "literal": st.slider("Literal", 0, 100, 33),
+                        "inventive": st.slider("Inventive", 0, 100, 33),
+                        "transformative": st.slider("Transformative", 0, 100, 34),
+                    }
+                    st.session_state['creativity_spectrum'] = creativity_spectrum
+                else:
+                    st.session_state['creativity_spectrum'] = None
 
         with st.sidebar.expander("Discord Settings", expanded=False):
             st.session_state['send_to_discord'] = st.checkbox(

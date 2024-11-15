@@ -39,6 +39,7 @@ class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
 
+
 logger = logging.getLogger(__name__)
 
 # Load prompts
@@ -63,8 +64,12 @@ dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
 dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
 
 # Video prompts
+video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
+video_concept_header_part2 = read_prompt('/lofn/prompts/concept_header_pt2.txt')
 video_essence_prompt_middle = read_prompt('/lofn/prompts/video_essence_prompt.txt')
 video_concepts_prompt_middle = read_prompt('/lofn/prompts/video_concepts_prompt.txt')
+video_prompt_header_part1 = read_prompt('/lofn/prompts/video_prompt_header.txt')
+video_prompt_header_part2 = read_prompt('/lofn/prompts/video_prompt_header_pt2.txt')
 video_artist_and_critique_prompt_middle = read_prompt('/lofn/prompts/video_artist_and_critique_prompt.txt')
 video_medium_prompt_middle = read_prompt('/lofn/prompts/video_medium_prompt.txt')
 video_refine_medium_prompt_middle = read_prompt('/lofn/prompts/video_refine_medium_prompt.txt')
@@ -87,6 +92,9 @@ with open('/lofn/prompts/aesthetics.txt', 'r') as file:
 prompt_header = prompt_header_part1 + prompt_header_part2
 concept_header = concept_header_part1 + concept_header_part2
 
+video_prompt_header = video_prompt_header_part1 + video_prompt_header_part2
+video_concept_header = video_concept_header_part1 + video_concept_header_part2
+
 # Construct full prompts
 essence_prompt = concept_header + essence_prompt_middle + prompt_ending
 concepts_prompt = concept_header + concepts_prompt_middle + prompt_ending
@@ -103,16 +111,16 @@ dalle3_gen_nodiv_prompt = dalle3_gen_prompt_nodiv_middle + prompt_ending
 
 # Video prompts
 video_prompts = {
-    'essence_and_facets': concept_header + video_essence_prompt_middle + prompt_ending,
-    'concepts': concept_header + video_concepts_prompt_middle + prompt_ending,
-    'artist_and_critique': concept_header + video_artist_and_critique_prompt_middle + prompt_ending,
-    'medium': concept_header + video_medium_prompt_middle + prompt_ending,
-    'refine_medium': concept_header + video_refine_medium_prompt_middle + prompt_ending,
-    'facets': concept_header + video_facets_prompt_middle + prompt_ending,
-    'aspects_traits': prompt_header + video_aspects_traits_prompt_middle + prompt_ending,
-    'generation': prompt_header + video_generation_prompt_middle + prompt_ending,
-    'revision_synthesis': concept_header + video_revision_synthesis_prompt_middle + prompt_ending,
-    'artist_refined': prompt_header + video_artist_refined_prompt + prompt_ending,  # Add this line
+    'essence_and_facets': video_concept_header + video_essence_prompt_middle + prompt_ending,
+    'concepts': video_concept_header + video_concepts_prompt_middle + prompt_ending,
+    'artist_and_critique': video_concept_header + video_artist_and_critique_prompt_middle + prompt_ending,
+    'medium': video_concept_header + video_medium_prompt_middle + prompt_ending,
+    'refine_medium': video_concept_header + video_refine_medium_prompt_middle + prompt_ending,
+    'facets': video_concept_header + video_facets_prompt_middle + prompt_ending,
+    'aspects_traits': video_prompt_header + video_aspects_traits_prompt_middle + prompt_ending,
+    'generation': video_prompt_header + video_generation_prompt_middle + prompt_ending,
+    'revision_synthesis': video_concept_header + video_revision_synthesis_prompt_middle + prompt_ending,
+    'artist_refined': video_prompt_header + video_artist_refined_prompt + prompt_ending,  # Add this line
 }
 
 # Music prompts
@@ -461,6 +469,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Anthropic models
             "claude-3-5-sonnet-latest": 8096,
             "claude-3-5-sonnet-20241022": 8096,
+            "claude-3-5-haiku-20241022": 8096,
             "claude-3-5-sonnet-20240620": 4096,
             "claude-3-opus-20240229": 4096,
             "claude-3-sonnet-20240229": 4096,
@@ -584,6 +593,7 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
 
     return output
 
+@st.cache_data(persist=True)
 def run_chain_with_retries(
     _lang_chain, max_retries, args_dict=None, is_correction=False, model=None,
     debug=False, expected_schema=None
@@ -616,7 +626,6 @@ def run_chain_with_retries(
     if retry_count >= max_retries:
         st.write("Max retries reached. Exiting.")
     return None
-
 
 def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=False, expected_schema = None):
     try:
@@ -973,6 +982,7 @@ def process_artist_refined_prompts(
             premessage=f'Artist-Refined Prompts for {concept} in {medium}:'
         )
     return parsed_output
+
 def process_revised_synthesized_prompts(
     chains,
     input_text,
@@ -1017,7 +1027,6 @@ def process_revised_synthesized_prompts(
         )
     return parsed_output
 
-@st.cache_data(persist=True)
 def generate_concept_mediums(
     input_text,
     max_retries,
@@ -1226,7 +1235,6 @@ def generate_concept_mediums(
     except Exception as e:
         raise LofnError(f"Error in concept generation: {str(e)}")
 
-@st.cache_data(persist=True)
 def generate_video_concept_mediums(
     input_text,
     max_retries,
@@ -1345,7 +1353,6 @@ def generate_music_prompts(
         logger.exception("Error generating music prompts: %s", e)
         raise e
 
-@st.cache_data(persist=True)
 def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
@@ -1448,7 +1455,6 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
     except Exception as e:
         raise LofnError(f"Error in prompt generation: {str(e)}")
 
-@st.cache_data(persist=True)
 def generate_all_prompts(input_text, concept_mediums, max_retries, temperature, model, debug, style_axes=None, creativity_spectrum=None):
     results = []
     total_pairs = len(concept_mediums)
@@ -1462,7 +1468,6 @@ def generate_all_prompts(input_text, concept_mediums, max_retries, temperature, 
     return results
 
 
-@st.cache_data(persist=True)
 def generate_video_prompts(
     input_text,
     concept,

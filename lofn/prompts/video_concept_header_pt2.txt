@@ -1,0 +1,112 @@
+## Concepts and Mediums Guide for Video
+
+This system generates videos based on **concept and medium pairs**. The concept defines **what needs to be created**—the scene to set or the emotion to express. The medium specifies the **cinematic approach** used to convey the expression. Concepts focus on the content of the video, while mediums focus on the method, style, and form the video takes.
+
+When creating concepts, use **specific details**, **proper nouns**, and **precise descriptors**. The concept should *precisely* convey what the system should generate.
+
+Once the concepts and mediums are chosen, a subsequent stage will generate video prompts based on the concept and medium, filling in details like shot composition, camera movement, sound design, and additional descriptors and styles. Ensure these conceptual choices are covered in the **Concept** and **Medium** construction steps.
+
+**Consider the updated creativity spectrum and style axes when making concepts.**
+
+### The Role of Cinematic Techniques (Stand-in for Aesthetics)
+
+In the context of video, we replace "aesthetics" with **cinematic techniques, genres, and styles**. These elements encompass the visual and narrative techniques used in filmmaking. Examples include:
+
+- **Cinematic Techniques**: Long takes, jump cuts, tracking shots, slow motion, time-lapse, montage, split-screen, point-of-view shots, aerial shots, etc.
+
+- **Genres and Styles**: Film noir, surrealism, neo-realism, avant-garde, documentary, experimental, animation, stop-motion, silent film, etc.
+
+- **Visual Styles**: High contrast lighting, saturated colors, monochrome, sepia tones, handheld camera, steadicam, CGI integration, etc.
+
+### Examples of Concept Generation:
+
+1. **User Input:** "An epic journey of self-discovery"
+
+   **Creativity Spectrum:**
+   - Literal: 30%
+   - Inventive: 50%
+   - Transformative: 20%
+
+   **Style Axes:**
+   - **Narrative Complexity:** 70
+   - **Emotional Intensity:** 80
+   - **Visual Style:** 60
+   - **Symbolism:** 75
+   - **Pacing:** 50
+   - **Character Emphasis:** 90
+   - **Color Palette:** 65
+   - **Cinematography:** 80
+   - **Surrealism vs. Realism:** 40
+   - **Dynamic vs. Static:** 70
+
+   **Essence:** The profound transformation experienced during a journey that challenges and reshapes one's identity.
+
+   **Facets:**
+   1. The internal emotional struggle
+   2. Overcoming external obstacles
+   3. Symbolic representation of change
+   4. Interactions with impactful characters
+   5. The contrast between past and future self
+
+   **Generated Concept:** A solitary traveler navigates a series of increasingly surreal landscapes, each reflecting different aspects of their psyche, culminating in a confrontation with their own shadow.
+
+2. **User Input:** "The consequences of time manipulation"
+
+   **Creativity Spectrum:**
+   - Literal: 20%
+   - Inventive: 40%
+   - Transformative: 40%
+
+   **Style Axes:**
+   - **Narrative Complexity:** 80
+   - **Emotional Intensity:** 70
+   - **Visual Style:** 85
+   - **Symbolism:** 65
+   - **Pacing:** 60
+   - **Character Emphasis:** 75
+   - **Color Palette:** 50
+   - **Cinematography:** 90
+   - **Surrealism vs. Realism:** 60
+   - **Dynamic vs. Static:** 80
+
+   **Essence:** Exploring the unintended fallout of altering time and the ripple effects on reality.
+
+   **Facets:**
+   1. The allure and danger of control
+   2. Fragmented perceptions of reality
+   3. Moral dilemmas faced by the protagonist
+   4. The disintegration of familiar environments
+   5. Temporal loops and paradoxes
+
+   **Generated Concept:** A scientist invents a device to rewind moments of time, but each use distorts their reality further, blurring the lines between past, present, and future.
+
+**When generating concepts, consider how the style axes influence the narrative depth, emotional tone, visual style, and overall approach to the user's idea. The creativity spectrum should guide the balance between realistic and fantastical elements in the concept.**
+
+### Examples of Medium Selection:
+
+1. **Generated Concept:** A solitary traveler navigates a series of increasingly surreal landscapes, each reflecting different aspects of their psyche.
+
+   **Selected Medium:** A blend of **live-action and animation** using **rotoscope techniques**, with **dreamlike cinematography** and **symbolic imagery**, presented in a non-linear narrative.
+
+2. **Generated Concept:** A scientist invents a device to rewind moments of time, but each use distorts their reality further.
+
+   **Selected Medium:** A **psychological thriller** utilizing **jump cuts**, **time-lapse**, and **reverse motion** effects, with a muted color palette that shifts dynamically as time distorts.
+
+**When selecting mediums, consider how they can best represent the concept while adhering to the style axes. The chosen medium should enhance the concept's key elements and support the desired level of narrative complexity, visual style, and emotional impact.**
+
+### Incorporating Cinematic Techniques and Styles
+
+In your concepts and mediums, leverage cinematic techniques and styles as the "aesthetics" of video. These include:
+
+- **Editing Techniques**: Montage, cross-cutting, match cuts
+- **Lighting Styles**: Chiaroscuro, high-key lighting, silhouette
+- **Camera Movements**: Dolly zooms, crane shots, handheld
+- **Special Effects**: Practical effects, CGI, motion capture
+- **Sound Design**: Diegetic and non-diegetic sounds, sound motifs
+- **Narrative Structures**: Circular narratives, fragmented timelines, anthology formats
+
+**By utilizing these elements thoughtfully, you can create rich, immersive video concepts that align with the user's idea and stand out for their creativity.**
+
+---
+
+Remember to integrate these guidelines into your concept and medium generation process for videos, ensuring that they are as detailed and effective as your original image-based headers.

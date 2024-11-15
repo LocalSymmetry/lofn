@@ -57,9 +57,9 @@
 
     - *Example*: 40 - The pacing is steady, allowing moments of reflection.
 
-  - **Audio Emphasis (Value):**
+  - **Character Emphasis (Value):**
 
-    - *Example*: 80 - Sound design plays a significant role in conveying the message.
+    - *Example*: 80 - The protagonist is directly on screen for this scene.
 
   - **Color Palette (Value):**
 
