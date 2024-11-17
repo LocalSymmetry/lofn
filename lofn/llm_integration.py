@@ -482,6 +482,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-1.5-pro-002": 32768,
             "gemini-1.5-pro-exp-0801": 32768,
             "gemini-1.0-pro-exp-0827": 32768,
+            "gemini-exp-1114": 32768,
 
             # Poe models
             "Poe-Assistant": 4096,  # FIXME: Verify token limit
