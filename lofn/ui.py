@@ -39,8 +39,8 @@ class LofnApp:
         # Add OpenAI models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini",
-                "gpt-4o-2024-08-06", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
+                "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-2024-11-20",
+                "gpt-4o-2024-08-06", "chatgpt-4o-latest", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
             ])
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:

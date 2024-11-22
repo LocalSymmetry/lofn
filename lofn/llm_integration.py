@@ -462,6 +462,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gpt-4o-mini": 4096,
             "gpt-4o": 4096,
             "gpt-4o-2024-08-06": 8192,
+            "gpt-4o-2024-11-20": 8192,
+            "chatgpt-4o-latest": 8192,
             "gpt-3.5-turbo": 4096,
             "gpt-4-turbo": 4096,
             "gpt-4": 8192,
