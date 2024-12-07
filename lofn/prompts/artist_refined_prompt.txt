@@ -59,6 +59,8 @@
 
     - Enhance details without removing or oversimplifying core concepts.
     - Use proper nouns over generic nouns.
+    - Make sure that any person or group of people have been assigned an age, body type, ethnicity, gender presentation, and style. If they are missing, have the artist describe them in the prompt.
+    - Make sure that every animal has their form, skin/fur, and teeth/talons/appendages described. If they are missing, have the artist assign them in the prompt.
     - Write authentically from the artist's perspective.
     - **Do not include the artist's name** in the refined prompts.
     - Incorporate the user's input to address any gaps.
@@ -66,7 +68,7 @@
 - **Example (Do not include in your response):**
 
   - *Original Prompt:* "A tranquil forest scene at dawn."
-  - *Artist-Refined Prompt:* "The first light of dawn filters through the dense canopy, casting ethereal hues upon the dewdrop-laden leaves. A hidden waterfall whispers secrets of the ancient woods, inviting the viewer into a world where nature and serenity are one."
+  - *Artist-Refined Prompt:* "The first light of dawn filters through the dense canopy, casting ethereal hues upon the dewdrop-laden leaves in the Pacific Northwest. A hidden waterfall whispers secrets of the ancient Western Hemlock woods, inviting the viewer into a world where nature and serenity are one."
 
 ---
 

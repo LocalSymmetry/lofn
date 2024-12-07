@@ -76,6 +76,10 @@
   - Avoid impossible or unrenderable scenarios.
   - Do not reference the image creation process or art installations.
   - Adhere to ethical guidelines and avoid disallowed content.
+  - For entities, add specifications and diversity. For animals, describe their fur, skin patterns, and other features to differentiate them. For people, determine their age, ethnicity, body type, gender presentation, and clothing style.
+  - For places, specify the location if it is in the real world. If it is not, make sure to add descriptors to delinate it from a generic location.
+  - Ensure it is a complete composition with a background, foreground, and story.
+  - Make sure the concept can be displayed in a single image.
 
 ---
 

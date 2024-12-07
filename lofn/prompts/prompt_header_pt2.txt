@@ -101,9 +101,13 @@ To craft compelling and detailed prompts for AI image generation models (such as
 - **Consider:**
   - Ensuring that important subjects are mentioned prominently.
   - Highlighting interactions between elements.
+  - Set specifics! LEAVE NO NOUN GENERIC!
+    - for animals determine fur patterns, skin tones, teeth, or other distinguishing features.
+    - for people determine age, gender presentation, body type, ethnicity, social class, and clothing.
+    - for places determine the real world location or describe the nearby buildings, landmarks landscape, or scenery.
 
 - **Example:**
-  - "Majestic coral castles adorned with glowing anemones stand amidst ancient ruins teeming with diverse marine life."
+  - "Majestic bright staghorn coral castles adorned with glowing anemones stand amidst ancient Aztec ruins teeming with diverse Gulf of Mexico marine life."
 
 ---
 

@@ -34,7 +34,7 @@ Aspect: Futuristic Cityscape -- Physical Trait: Towering neon-lit skyscrapers --
 
   - **Mood for Expression:**
 
-    - The emotional tone to convey.
+    - The emotional tone to convey. Use the "## EMOTIONS" guide to choose or generate a new emotion that perfectly fits the concept.
 
   - **Artistic Flair Element:**
 

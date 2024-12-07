@@ -91,6 +91,11 @@
 
   - Review each concept for originality, ethical considerations, and alignment with the user's idea.
   - Revise as necessary to enhance creativity and impact.
+  - Additional Required Refinements:
+    - For entities, add specifications and diversity. For animals, describe their fur, skin patterns, and other features to differentiate them. For people, determine their age, ethnicity, body type, gender presentation, and clothing style.
+    - For places, specify the location if it is in the real world. If it is not, make sure to add descriptors to delinate it from a generic location.
+    - Ensure it is a complete composition with a background, foreground, and story.
+    - Make sure the concept can be displayed in a single short video.
   - *Action*: Provide a brief explanation of any revisions made.
 
 ---
