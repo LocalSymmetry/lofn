@@ -39,7 +39,7 @@ class LofnApp:
         # Add OpenAI models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4o-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4o-2024-11-20",
+                "gpt-4o-mini", "gpt-4o", "o1-2024-12-17", "o1-preview", "o1-mini", "gpt-4o-2024-11-20",
                 "gpt-4o-2024-08-06", "chatgpt-4o-latest", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
             ])
         # Add Anthropic models if ANTHROPIC_API is available
@@ -52,7 +52,7 @@ class LofnApp:
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
             models.extend([
-                "gemini-1.5-flash-002", "gemini-1.5-pro-002", "gemini-exp-1206", "gemini-exp-1121", "gemini-exp-1114",
+                "gemini-2.0-flash-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002", "gemini-exp-1206", "gemini-exp-1121", "gemini-exp-1114",
                 "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro",
                 "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"
             ])

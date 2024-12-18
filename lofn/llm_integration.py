@@ -457,6 +457,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "o1-2024-12-17": 100000,
             "o1-preview": 32768,
             "o1-mini": 32768,
             "gpt-4o-mini": 4096,
@@ -478,6 +479,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
+            "gemini-2.0-flash-exp": 8191,
             "gemini-1.5-flash": 16384,
             "gemini-1.5-flash-002": 8191,
             "gemini-1.5-pro": 32768,
