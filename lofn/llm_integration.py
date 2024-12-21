@@ -34,6 +34,9 @@ import random
 import numpy as np
 import pandas as pd
 import logging
+from langchain_core.callbacks.manager import CallbackManagerForLLMRun
+import openai  # For the advanced "o1" usage if needed
+from o1_integration import *
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -430,7 +433,19 @@ class PoeLLM(LLM):
         }
 
 
-def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False):
+def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False, reasoning_level="medium"):
+    """
+    Returns a language-model interface for Lofn based on the chosen `model`.
+    Also includes logic to handle the new 'o1' models with max_completion_tokens.
+    `reasoning_level` can be "low", "medium", or "high" to control how many tokens to let the model use.
+    """
+    if model.startswith("o1"):
+        return O1ChatOpenAI(
+            model_name=model,
+            openai_api_key=OPENAI_API,
+            reasoning_level=reasoning_level,
+            debug=debug
+        )
     # If the model is an OpenRouter model
     if model.startswith("OR-"):
         model_id = model[3:]  # Remove OR-.
@@ -1044,10 +1059,11 @@ def generate_concept_mediums(
     aesthetics=aesthetics,
     style_axes=None,
     creativity_spectrum=None,
-    medium='image'
+    medium='image',
+    reasoning_level="medium"
 ):
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         selected_aesthetics = random.sample(aesthetics, 100)
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
@@ -1251,7 +1267,8 @@ def generate_video_concept_mediums(
     debug=False,
     aesthetics=aesthetics,
     style_axes=None,
-    creativity_spectrum=None
+    creativity_spectrum=None,
+    reasoning_level="medium"
 ):
     return generate_concept_mediums(
         input_text,
@@ -1263,7 +1280,8 @@ def generate_video_concept_mediums(
         aesthetics,
         style_axes,
         creativity_spectrum,
-        medium='video'
+        medium='video',
+        reasoning_level=reasoning_level
     )
 
 def generate_music_prompts(
@@ -1272,7 +1290,8 @@ def generate_music_prompts(
     max_retries,
     temperature,
     model,
-    debug=False
+    debug=False,
+    reasoning_level="medium"
 ):
     """
     Generates music prompts based on the user's input.
@@ -1289,7 +1308,7 @@ def generate_music_prompts(
         tuple: (music_prompt str, lyrics_prompt str)
     """
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
 
 
 
@@ -1360,9 +1379,9 @@ def generate_music_prompts(
         logger.exception("Error generating music prompts: %s", e)
         raise e
 
-def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None):
+def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None, reasoning_level="medium"):
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
 
         # Build chains using the selected prompts
         if model[0] == "o":
@@ -1485,9 +1504,10 @@ def generate_video_prompts(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
+    reasoning_level="medium"
 ):
     try:
-        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug)
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         selected_aesthetics = random.sample(aesthetics, 100)
         if "Poe" in model:
             selected_aesthetics = selected_aesthetics[:24]
