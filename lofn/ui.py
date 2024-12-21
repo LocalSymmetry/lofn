@@ -450,7 +450,6 @@ class LofnApp:
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
                     OPENAI_API=Config.OPENAI_API,
-                    reasoning_level=st.session_state.get('reasoning_level','medium'),
                 )
             st.success(f"Images generated for '{pair['concept']}'")
         except Exception as e:
