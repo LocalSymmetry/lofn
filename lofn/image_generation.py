@@ -243,7 +243,7 @@ def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False)
         return None
 
 @st.cache_data(persist=True)
-def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API):
+def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium'):
     st.write(f"Generating images using {image_model}...")
     
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
@@ -266,7 +266,7 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                         
                         # Generate a title for the image
                         try:
-                            title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug)
+                            title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug, reasoning_level)
                             title_data = json.loads(title_data_json)
                             st.write(f"Generated title: {title_data['title']}")
                             
@@ -355,14 +355,14 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
     st.write(f"{image_model} image generation and video generation complete.")
 
 @st.cache_data(persist=True)
-def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False):
+def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False, reasoning_level = "medium"):
     # o1 takes forever.
     if model[0] in ['o', 'P']:
         inner_model = 'gpt-4o-mini'
     else:
         inner_model = model
 
-    llm = get_llm(inner_model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API)
+    llm = get_llm(inner_model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, reasoning_level = reasoning_level)
 
     chain = (
         ChatPromptTemplate.from_messages([("human", image_title_prompt)])
