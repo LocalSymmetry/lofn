@@ -472,6 +472,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "o1": 100000,
             "o1-2024-12-17": 100000,
             "o1-preview": 32768,
             "o1-mini": 32768,
@@ -506,6 +507,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-exp-1206": 1932768,
 
             # Poe models
+            "Poe-o1": 128000,
+            "Poe-o1-128k": 128000,
             "Poe-Assistant": 4096,  # FIXME: Verify token limit
             "Poe-Claude-3.5-Sonnet": 4096,
             "Poe-GPT-4o-Mini": 4096,

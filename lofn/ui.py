@@ -62,7 +62,7 @@ class LofnApp:
         # Add Poe models if POE_API is available
         if Config.POE_API:
             models.extend([
-                "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
+                "Poe-o1", "Poe-o1-128k", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
                 "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k",
                 "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
                 "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", 
@@ -121,7 +121,7 @@ class LofnApp:
             models.append("DALL-E 3")
         if Config.POE_API:
             models.extend([
-                "Poe-FLUX-pro-1.1", "Poe-Imagen3", "Poe-StableDiffusion3.5-L",
+                "Poe-FLUX-pro-1.1-ultra", "Poe-FLUX-pro-1.1", "Poe-Imagen3", "Poe-StableDiffusion3.5-L",
                 "Poe-FLUX-pro", "Poe-DALL-E-3", "Poe-Ideogram-v2",
                 "Poe-Playground-v2.5","Poe-Playground-v3", "Poe-Ideogram",
                 "Poe-FLUX-dev","Poe-FLUX-schnell","Poe-LivePortrait","Poe-StableDiffusion3",

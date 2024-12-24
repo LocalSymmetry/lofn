@@ -19,12 +19,12 @@ def _decide_max_completion_tokens(level: str) -> int:
     """
     lv = level.lower()
     if lv == "low":
-        return 12000
+        return 25000
     elif lv == "high":
-        return 30000
+        return 100000
     else:
         # treat 'medium' or anything else as default
-        return 20000
+        return 50000
 
 class O1ChatOpenAI(BaseChatModel):
     """
