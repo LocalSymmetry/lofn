@@ -91,7 +91,7 @@ class O1ChatOpenAI(BaseChatModel):
         **kwargs: Any
     ) -> ChatResult:
         # We'll pass max_completion_tokens plus any user overrides
-        final_kwargs = {"max_completion_tokens": self.max_completion_tokens}
+        final_kwargs = {"max_completion_tokens": self.max_completion_tokens, "reasoning_effort": self.reasoning_level}
         final_kwargs.update(kwargs)
 
         openai_messages = self._convert_langchain_messages(messages)
@@ -103,6 +103,7 @@ class O1ChatOpenAI(BaseChatModel):
                 print(f"[O1ChatOpenAI] Attempt; "
                       f"model={self.model_name}; "
                       f"max_completion_tokens={self.max_completion_tokens}; "
+                      f"reasoning_effort={self.reasoning_level}; "
                       f"kwargs={kwargs}")
 
             completion = self._client.chat.completions.create(
