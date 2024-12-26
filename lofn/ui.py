@@ -54,7 +54,7 @@ class LofnApp:
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
             models.extend([
-                "gemini-2.0-flash-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
+                "gemini-2.0-flash-exp", "gemini-2.0-flash-thinking-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
                 "gemini-exp-1206", "gemini-exp-1121", "gemini-exp-1114",
                 "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro",
                 "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"
