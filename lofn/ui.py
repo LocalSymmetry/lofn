@@ -105,7 +105,7 @@ class LofnApp:
         return models
 
     def get_available_image_models(self):
-        models = []
+        models = ["None"]  # Add None as first option
         if Config.FAL_API_KEY:
             models.extend([
                 "fal-ai/flux-pro/v1.1-ultra", "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3",
