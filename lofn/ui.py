@@ -38,7 +38,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4o-mini", "gpt-4o", "o1",
+                "gpt-4o-mini", "gpt-4o", "o3-mini", "o3-mini-2025-01-31", "o1",
                 "o1-2024-12-17", "o1-preview", "o1-mini",  
                 "gpt-4o-2024-11-20", "gpt-4o-2024-08-06", "chatgpt-4o-latest",
                 "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
@@ -62,7 +62,7 @@ class LofnApp:
         # Add Poe models if POE_API is available
         if Config.POE_API:
             models.extend([
-                "Poe-o1", "Poe-o1-128k", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
+                "Poe-o1", "Poe-o3-mini", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
                 "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k",
                 "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
                 "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", 
@@ -105,7 +105,7 @@ class LofnApp:
         return models
 
     def get_available_image_models(self):
-        models = ["None"]  # Add None as first option
+        models = []
         if Config.FAL_API_KEY:
             models.extend([
                 "fal-ai/flux-pro/v1.1-ultra", "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3",
@@ -163,7 +163,7 @@ class LofnApp:
                 help="Choose the language model for generating concepts and prompts."
             )
 
-            if self.model.startswith('o1'):
+            if self.model.startswith('o1') or self.model.startswith('o3'):
                 # Reasoning Level for o1
                 # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
                 st.session_state['reasoning_level'] = st.selectbox(

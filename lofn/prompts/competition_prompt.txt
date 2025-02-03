@@ -1,0 +1,41 @@
+I want a visually surreal, artistic, emotionally evocative, and interesting view of "{competition_prompt}". The primary focus should be on {focus_one} with a secondary focus on {focus_two}. The style should be immersive, thoroughly imaginative, and push boundaries while staying conceptually coherent. The mood is {mood}. Let's use {medium_choices} mediums only.
+
+0. Essence and Facets Phase:
+0.1 No major changes, just focus on capturing my request without adding new elements.
+
+1. Concept Phase (do this for each concept)
+1.1. Generate 100 concepts related to the theme but discard them all. (Really, I want you to do this. Please write them out and don't skip this.)
+1.2. Start at Concept #101, ensuring your ideas are fresh and beyond the obvious. For each concept:
+Unique Interpretation: Identify a distinctive take on the main subject that evokes a complex emotion in the user (user your emotions guide)
+Detailed Physical Attributes: Describe the subject’s form and any key accessories/costuming (e.g., armor, flowing robes, mechanical implants).
+Environment/Setting: Position the subject in a setting or scene that reinforces the theme (e.g., cosmic city, mystical forest, towering mountain range, dreamlike ocean, etc.).
+Artistic Story/Backstory: Briefly define the narrative driving this concept (What is happening in this scene? Why is it significant?).
+Emotional Undercurrents: Identify the layered emotions the image should evoke (hope tinged with melancholy, triumphant awe, reverent calm, etc.).
+Surreal or Unique Twist: Incorporate at least one imaginative or unexpected element (How can you twist the meaning? Is there a deeper story to hint at?)
+
+2. Medium Phase (do this for each medium)
+2.1. Brainstorm 100 possible mediums or art tool combinations (oil + gold leaf, watercolor + pastel chalk, digital glitch art + collage, etc.), then discard them all.
+2.2. Starting at Medium #101, choose truly unusual or striking mediums that enhance your concept’s essence. Combine or fuse mediums (e.g., “watercolor washes plus layered metallic ink and negative-space pastel outlines”).
+2.3. Match medium to mood: Reflect the emotional palette through these mediums (e.g., faint washes for dreamy atmospheres, thick impasto for tension, luminous ink for ethereal highlights).
+
+3. Composition & Techniques (overall)
+For each final concept, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide to help):
+Framing Methods: polyptychs, multiple exposures, mirrored frames, negative space illusions, etc.
+Stylistic Overlays: fractal patterns, hand-drawn line art on top of digital painting, ornamental filigree, glitch textures, 3D sculptural illusions, etc.
+Lighting & Contrast: high-contrast chiaroscuro, backlighting with colored halos, moody fog overlays, reflection in water or glass, etc.
+Color Theories: complementary, triadic, or split-complementary palettes; neon or pastel gradients; metallic highlights, etc.
+Perspective & Vantage: forced perspective from below, aerial wide shots, diagonal framing for dynamism, worm’s-eye or bird’s-eye vantage.
+
+4. Final Prompt Phase (when writing each prompt)
+4.1. For each concept (after you’ve completed the concept & medium phases), output a final single-paragraph “Prompt.”
+Start the first sentence by naming the mediums or tools explicitly (e.g., “In luminous watercolor and metallic leaf…”).
+Describe the vantage point or perspective in the scene.
+Incorporate the unique twist or surreal element.
+Reference the chosen emotional palette (e.g., “embodying a mournful but hopeful spirit”).
+Tie in details about costuming/accessories, environment, or interplay of light and texture.
+
+4.2. Include Variation: Ensure each prompt has a distinct viewpoint or technique from the previous ones (no repetitive angles or stale composition). However, make sure each of the prompts fully capture the concept and the medium.
+
+4.3. Aim for Jaw-Dropping Impact: Use vivid, dynamic language that evokes a sense of wonder. Avoid clichés by specifying unusual or unexpected details.
+
+

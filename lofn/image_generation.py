@@ -244,27 +244,6 @@ def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False)
 
 @st.cache_data(persist=True)
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium'):
-    if image_model == "None":
-        st.info("Image generation skipped - prompts are ready for copying")
-        # Save metadata without images
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        for index, prompt in enumerate(df_prompts['Revised Prompts']):
-            metadata = {
-                "timestamp": timestamp,
-                "style_axes": style_axes,
-                "creativity_spectrum": creativity_spectrum,
-                "concept": concept,
-                "medium": medium,
-                "prompt_type": "Revised",
-                "prompt_index": index + 1,
-                "prompt": prompt,
-                "image_model": "None",
-                "model": model,
-                "user_input": input
-            }
-            save_metadata(metadata)
-        return
-
     st.write(f"Generating images using {image_model}...")
     
     all_prompts = pd.concat([df_prompts['Revised Prompts'], df_prompts['Synthesized Prompts']])
@@ -813,8 +792,6 @@ def get_model_params(model: str):
     return params
 
 def render_image_controls(model: str):
-    if model == "None":
-        return
     if model.startswith("runware:") or model.startswith("civitai:"):
         st.selectbox("Image Size", ["512x512", "512x768", "512x1024", "768x512", "1024x512", "704x512", "896x512", "512x896", "512x704", "1024x1024", "1344x768", "768x1344", "640x960", "960x640"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=100, value=20, key=f"{model}_inference_steps")

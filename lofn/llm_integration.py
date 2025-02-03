@@ -439,7 +439,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
     Also includes logic to handle the new 'o1' models with max_completion_tokens.
     `reasoning_level` can be "low", "medium", or "high" to control how many tokens to let the model use.
     """
-    if model.startswith("o1"):
+    if model.startswith("o1") or model.startswith("o3"):
         return O1ChatOpenAI(
             model_name=model,
             openai_api_key=OPENAI_API,
@@ -474,6 +474,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # OpenAI models
             "o1": 100000,
             "o1-2024-12-17": 100000,
+            "o3-mini": 100000,
+            "o3-mini-2025-01-31": 100000,
             "o1-preview": 32768,
             "o1-mini": 32768,
             "gpt-4o-mini": 4096,
@@ -508,8 +510,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-exp-1206": 1932768,
 
             # Poe models
-            "Poe-o1": 128000,
-            "Poe-o1-128k": 128000,
+            "Poe-o1": 100000,
+            "Poe-o3-mini": 100000,
             "Poe-Assistant": 4096,  # FIXME: Verify token limit
             "Poe-Claude-3.5-Sonnet": 4096,
             "Poe-GPT-4o-Mini": 4096,
@@ -596,6 +598,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 openai_api_key=Config.OPENAI_API
             )
         elif model.startswith("o1"):
+            return ChatOpenAI(
+                model=model,
+                openai_api_key=Config.OPENAI_API,
+                temperature=1
+            )
+        elif model.startswith("o3"):
             return ChatOpenAI(
                 model=model,
                 openai_api_key=Config.OPENAI_API,
