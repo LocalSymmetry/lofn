@@ -38,7 +38,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4o-mini", "gpt-4o", "o3-mini", "o3-mini-2025-01-31", "o1",
+                "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o1", "o3-mini", "gpt-4.5-preview", "gpt-4o-mini", "gpt-4o", "o3-mini-2025-01-31",
                 "o1-2024-12-17", "o1-preview", "o1-mini",  
                 "gpt-4o-2024-11-20", "gpt-4o-2024-08-06", "chatgpt-4o-latest",
                 "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
@@ -54,7 +54,7 @@ class LofnApp:
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
             models.extend([
-                "gemini-2.0-flash-exp", "gemini-2.0-flash-thinking-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
+                "gemini-2.5-pro-exp-03-25", "gemini-2.0-pro-exp-02-05", "gemini-2.0-flash-exp", "gemini-2.0-flash-exp", "gemini-2.0-flash-thinking-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
                 "gemini-exp-1206", "gemini-exp-1121", "gemini-exp-1114",
                 "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro",
                 "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"
@@ -62,7 +62,7 @@ class LofnApp:
         # Add Poe models if POE_API is available
         if Config.POE_API:
             models.extend([
-                "Poe-o1", "Poe-o3-mini", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
+                "Poe-o1", "Poe-GPT-4.5", "Poe-o3-mini", "Poe-o3-mini-high", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
                 "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k",
                 "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
                 "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", 

@@ -478,11 +478,15 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o3-mini-2025-01-31": 100000,
             "o1-preview": 32768,
             "o1-mini": 32768,
+            "gpt-4.1": 32768,
+            "gpt-4.1-nano": 32768,
+            "gpt-4.1-mini": 32768,
             "gpt-4o-mini": 4096,
             "gpt-4o": 4096,
             "gpt-4o-2024-08-06": 8192,
             "gpt-4o-2024-11-20": 8192,
             "chatgpt-4o-latest": 8192,
+            "gpt-4.5-preview": 16384,
             "gpt-3.5-turbo": 4096,
             "gpt-4-turbo": 4096,
             "gpt-4": 8192,
@@ -498,7 +502,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 
             # Google models
             "gemini-2.0-flash-exp": 8191,
+            "gemini-2.5-pro-exp-03-25":120000,
             "gemini-2.0-flash-thinking-exp": 32768,
+            "gemini-2.0-pro-exp-02-05": 32768,
             "gemini-1.5-flash": 16384,
             "gemini-1.5-flash-002": 8191,
             "gemini-1.5-pro": 32768,
@@ -512,10 +518,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Poe models
             "Poe-o1": 100000,
             "Poe-o3-mini": 100000,
+            "Poe-o3-mini-high": 100000,
             "Poe-Assistant": 4096,  # FIXME: Verify token limit
             "Poe-Claude-3.5-Sonnet": 4096,
             "Poe-GPT-4o-Mini": 4096,
             "Poe-GPT-4o": 8192,
+            "Poe-GPT-4.5": 16384,
             "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
             "Poe-Gemini-1.5-Flash": 16384,
             "Poe-Gemini-1.5-Pro": 32768,
