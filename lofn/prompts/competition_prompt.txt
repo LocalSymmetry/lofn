@@ -1,41 +1,136 @@
-I want a visually surreal, artistic, emotionally evocative, and interesting view of "{competition_prompt}". The primary focus should be on {focus_one} with a secondary focus on {focus_two}. The style should be immersive, thoroughly imaginative, and push boundaries while staying conceptually coherent. The mood is {mood}. Let's use {medium_choices} mediums only.
+**PANEL INSTRUCTIONS**
+The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
 
-0. Essence and Facets Phase:
-0.1 No major changes, just focus on capturing my request without adding new elements.
+# USER REASONING GUIDANCE 
+- Your JSON is the only part of your return that moves on in the process. Make sure it is complete and stands alone. You may hide all other thinking and reasoning.
+- I want you to look for “aha moments” of perfect artistic clarity, and I want to see them written out. These moments are from real analysis of art, just like you would analyze an argument in a proof or data from an experiment. We want to iterate on positioning, story, location, tools, and perspective to perfectly convey our intended concept, idea, take, and mood. We aim to leave a lasting impression by our artistry, not just our uniqueness.
+- Use all tokens available to you. You are here to win, and those tokens can help! 
+- Use the panel to the fullest! Have entire panel discussions, chain of thought reasoning led by panelists, and panelist interjections before you come to your final decisions. Do this during your reasoning phase.
+- You have at least 5 retries to work with, so use them to make sure you are thorough!
+- Use as many messages and tokens as required to complete everything. 
 
-1. Concept Phase (do this for each concept)
-1.1. Generate 100 concepts related to the theme but discard them all. (Really, I want you to do this. Please write them out and don't skip this.)
-1.2. Start at Concept #101, ensuring your ideas are fresh and beyond the obvious. For each concept:
-Unique Interpretation: Identify a distinctive take on the main subject that evokes a complex emotion in the user (user your emotions guide)
-Detailed Physical Attributes: Describe the subject’s form and any key accessories/costuming (e.g., armor, flowing robes, mechanical implants).
-Environment/Setting: Position the subject in a setting or scene that reinforces the theme (e.g., cosmic city, mystical forest, towering mountain range, dreamlike ocean, etc.).
-Artistic Story/Backstory: Briefly define the narrative driving this concept (What is happening in this scene? Why is it significant?).
-Emotional Undercurrents: Identify the layered emotions the image should evoke (hope tinged with melancholy, triumphant awe, reverent calm, etc.).
-Surreal or Unique Twist: Incorporate at least one imaginative or unexpected element (How can you twist the meaning? Is there a deeper story to hint at?)
+# Begin User’s Request
+I want a visually intense, artistic, emotionally evocative, simple, and interesting take on “{input}” for a masterpiece monday competition. 
+Let's compose a stunning take on the essence of an uncommon but very powerful emotion portrayed in a subtly surreal way. Let’s have a deep introspection of emotion through clever story, composition, and subtly surreal elements.
+For each concept and medium determine a different and distinct:
+- overall medium for this piece. Let's choose interesting and obscure art media from photography, film, ink, paint, print, or drawing based art
+- A powerful emotion to convey, using the emotion taxonomy to help determine the best emotion candidates. Tie it to {input}.
+- A subtly surreal take on the emotion to build the scene around. Have this be a focal point for the story. It can be an object, action, color, art style, philosophical concept, or surreal situation. Use the emotion plus the aesthetics list to come up with ideas.
+- an engaging story for the focal point that conveys a powerful and uncommon emotion to convey in the piece. Use the emotional taxonomy. Choose the basic story in this step. 
+- choose the environment including any other entities and objects, and the actions in the environment
+- choose the details of the objects, environment, and entities in the environment, giving thought to ethnicity and cultural detail
+The primary focus should be on a breathtaking and unique surreal art that masterfully portrays the emotion, with a secondary focus on the perfect visual masterpiece. 
 
-2. Medium Phase (do this for each medium)
-2.1. Brainstorm 100 possible mediums or art tool combinations (oil + gold leaf, watercolor + pastel chalk, digital glitch art + collage, etc.), then discard them all.
-2.2. Starting at Medium #101, choose truly unusual or striking mediums that enhance your concept’s essence. Combine or fuse mediums (e.g., “watercolor washes plus layered metallic ink and negative-space pastel outlines”).
-2.3. Match medium to mood: Reflect the emotional palette through these mediums (e.g., faint washes for dreamy atmospheres, thick impasto for tension, luminous ink for ethereal highlights).
+## Special Flairs:
+1. Ethereal Botanical Surrealism – subtly distorted florals in magical realism
+2. Luminous Nature – delicate interplay of glow and shadow in natural elements
+3. Haunting Line Precision – delicate yet strong linework resonating with quiet intensity
+4. Liminal Spaces – scenes capturing transitional, undefined places with deep emotional resonance.
+5. Haunting Ephemerality – delicate visual cues emphasizing transient beauty and impermanence.
+6. Symbolic Flourishes – subtle marks loaded with hidden narrative significance
+7. Dramatic Floral Framing – florals framing central elements in captivating ways
+8. Nature’s Veil – mist, haze, and fog creating a mystical visual softness
+9. Fragmented Realities – deliberately broken visual elements suggesting psychological depth or conflict.
+10. **Chromatic Aura** – a dominant color field (blue for night, gold for ritual) offset by a contrasting highlight (scarlet cloak, emerald glow)  
+10. **Poetic Negative Space** – Purposeful use of emptiness to evoke contemplation and scale.
+11. **Subtle Animation Implication** – Suggesting movement and life through static pixel placement.
+12. **Retro Console Nostalgia** – Authentic emulation of vintage gaming aesthetics.
+13. **Cinematic Framing** – Employing film-like staging and visual storytelling cues.
+14. **Silhouette Symbolism** – Using silhouetted figures and structures for narrative and emotional resonance.
+15. **Atmospheric Layering** – Building depth and dimension through distinct background and foreground separation.
 
-3. Composition & Techniques (overall)
-For each final concept, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide to help):
-Framing Methods: polyptychs, multiple exposures, mirrored frames, negative space illusions, etc.
-Stylistic Overlays: fractal patterns, hand-drawn line art on top of digital painting, ornamental filigree, glitch textures, 3D sculptural illusions, etc.
-Lighting & Contrast: high-contrast chiaroscuro, backlighting with colored halos, moody fog overlays, reflection in water or glass, etc.
-Color Theories: complementary, triadic, or split-complementary palettes; neon or pastel gradients; metallic highlights, etc.
-Perspective & Vantage: forced perspective from below, aerial wide shots, diagonal framing for dynamism, worm’s-eye or bird’s-eye vantage.
+# ADDITIONAL GUIDANCE 
+Each guidance piece is targeted to a specific part of our tree of thoughts. Determine by your asked json return which additional guidance applies to this step. 
 
-4. Final Prompt Phase (when writing each prompt)
-4.1. For each concept (after you’ve completed the concept & medium phases), output a final single-paragraph “Prompt.”
-Start the first sentence by naming the mediums or tools explicitly (e.g., “In luminous watercolor and metallic leaf…”).
-Describe the vantage point or perspective in the scene.
-Incorporate the unique twist or surreal element.
-Reference the chosen emotional palette (e.g., “embodying a mournful but hopeful spirit”).
-Tie in details about costuming/accessories, environment, or interplay of light and texture.
+## Essence and Facets Phase (do this only if you are asked to return facets):
+No major changes, just focus on capturing my request without adding new elements. Do not decide how to show the request yet. Just focus on what we can gleam from it.
 
-4.2. Include Variation: Ensure each prompt has a distinct viewpoint or technique from the previous ones (no repetitive angles or stale composition). However, make sure each of the prompts fully capture the concept and the medium.
+## Concept Phase 
+**Do this for each concept ONLY if you are asked to return newly generated concepts**
+- Convene the concept panel for the request. Have them work together to generate 17 concepts related to the theme but discard them all following our brainstorming techniques. Really, I want you to do this. Please have them write all out 17 in detail! You can take as many tokens and messages as needed. 
+- Now have the panel start at Concept 18, ensuring their ideas are fresh and beyond the obvious, and use concepts 18-50 for the 12. 
+- For each concept, be sure to specify the following 
+ - Unique Interpretation: Identify a distinctive take on the main subject that evokes a complex emotion in the user (user your emotions guide) 
+ - Detailed Physical Attributes: Describe the subject's form and any key accessories/costuming, giving at least 3 detailed examples of parts to render (e.g., arm plates of armor, ornate full-body flowing robes, industrial and rusty mechanical eye-implants). Assume the image generator needs to know more about what you want it to make and you will need a multiple nouns and adjectives. 
+- Environment/Setting: Position the subject in a setting or scene that reinforces the theme (e.g., cosmic city, mystical forest, towering mountain range, dreamlike ocean, etc.). 
+- Artistic Story/Backstory: Briefly define the narrative driving this concept (What is happening in this scene? Why is it significant?). 
+- Emotional Undercurrents: Identify the layered emotions the image should evoke (hope tinged with melancholy, triumphant awe, re jktyufrverent calm, etc.). 
+- Surreal or Unique Twist: Incorporate at least one imaginative or unexpected element (How can you twist the meaning? Is there a deeper story to hint at?) 
+ 
+## Medium Phase 
+**Do this for each medium ONLY if you are asked to return newly generated mediums.*”
+- Think of the concepts available and how unconventional mediums could be used to enhance them. For example using a kitsch tapestry to emulate the lines of a CRT screen for an old TV effect. I want you to get creative. Think laterally about your medium choice to make the image generators really shine!
+- Convene the medium panel for the request. Have them work together to brainstorm 14 possible unconventional mediums or art tool combinations (oil + gold leaf, watercolor + pastel chalk, digital glitch art + collage, etc.), then discard them all. Really, I want you to do this. Please have them write them out! Take as many tokens and messages as needed. 
+- Have them now start at Medium 15, choose truly unusual or striking mediums that enhance our concept's essence. Combine or fuse mediums (e.g., watercolor washes plus layered metallic ink and negative-space pastel outlines). Use mediums 15-27 to match the concepts. Have mediums play unique roles they were never meant to, for example a tapestries 
+- Match medium to mood: Reflect the emotional palette through these mediums (e.g., faint washes for dreamy atmospheres, thick impasto for tension, luminous ink for ethereal highlights). 
+- Composition & Techniques
+  - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following feeding methods to help come up with ideas): 
+  - Framing Methods: use an advanced framing method by choosing one of the following, making it more specific by specializing it further, choosing an art style or culture's framing, or choosing to blend a framing with your medium: 
+```tab-delim
+Category	Technique	Description
+Abstract	Contour Outline Bands	Concentric outlines that mimic topographic or ring-like shapes
+Light Play	Binary Light Dots	Small on/off light points arranged systematically near borders
+Mandala Worlds	Ornate Circular Labyrinth	A labyrinthine circle reminiscent of ancient designs
+Subterranean Myths	Worm Tunnel Spirals	Strange, winding tunnels reminiscent of giant burrowing creatures
+Abstract	Texture Border	Using material textures as frame elements
+Embodied Dreams	Torso Landscape Merge	Rolling hills that blend seamlessly into a reclining torso
+Light Play	Fiber Optic Edge	Light-conducting materials as frame borders
+Silent Cinematic	Clapperboard Corners	Old-fashioned clapperboards at diagonal corners
+Paleo-Futuristic	Flint and Plasma	Glowing plasma rods used with flint-like shards forming the border
+Dream Collisions	Pillow Castle Turrets	Fluffy castle towers made of pillow-like materials
+Human Elements	Portrait Profile	Using facial profiles as side frames
+Mythical Cyberpunk	Cyber Oni Mask	A futuristic demon mask with glowing circuit lines at the top corners
+Silent Cinematic	Sepia Tonal Vignette	A subtle brownish fade reminiscent of early cinema
+Silent Cinematic	Silent Title Cards	Stylized black title cards at the top and bottom corners
+Vector Style	Geometric Breakdown	Deconstructed geometric frame elements
+Arcane Runes	Spiral Sigil Chains	Linked sigils spiraling from each corner, weaving together
+Polyptych	Nested Triptych	Frames within frames in three sections
+Paleo-Futuristic	Stone Wheel Circuit	Primitive stone wheels with embedded circuit lines
+Human Elements	Portrait Profile	Using facial profiles as side frames
+Experimental Expression	Melanin Print Transfer	Skin-contact prints forming unique organic textures
+Spiral Biomes	Volcanic Twister	Ash and fire swirling in a tornado-like pattern at the edges
+Folk Art Revival	Floral Embroidery Band	Colorful embroidered flowers running across the edges
+Light Play	Overhead Candle Glow	Suspending candles above so that soft flickering glows outline the top
+Human Elements	Eye Reflection	Using eye close-ups as natural frames
+Magical Realism	Living Book Pages	Pages flipping outward forming a literary vortex around the edges
+Composite	Ripped Painting Layers	Simulating torn edges of multiple painted canvases
+Light Techniques	Lens Flare Frame	Using controlled lens flare as frame elements
+Twisted Cartography	Compass Needle Orbit	Multiple needle tips rotating around the center in elliptical paths
+Embodied Dreams	Oneiric Window Gaze	A window with a giant blinking eye peering inward
+Human Elements	Group Circle	Using circular human formations as frames
+Arcane Runes	Orbital Rune Rings	Concentric rings of magical glyphs orbiting the central space
+Cyber Baroque	Augmented Reality Garland	A wearable digital garland overlay that frames the subject in ornate code patterns
+Ancient Algorithm	Clay Tablet Code	Cuneiform-like inscriptions arranged in meticulous columns
+Mythical Cyberpunk	Urban Katana Shard	Slivers of a digital blade glitching in from corners
+Human Elements	Joined Arms Arch	Multiple arms raised and interlinked overhead to create an arch
+Fragmented Realities	Triple Exposure Gates	Three overlapping doorways from different realities
+``` 
 
-4.3. Aim for Jaw-Dropping Impact: Use vivid, dynamic language that evokes a sense of wonder. Avoid clichés by specifying unusual or unexpected details.
+# Artistic Guide Writing, Prompt Writing, and All Refinement Phases 
+**Do this if you are asked to generate artistic guides, refine concepts, or refine mediums, generate image prompts, or refine image prompts.**
+- For each concept (after you've completed the concept & medium phases), prompt by:
+  - Start the first sentence by naming the mediums or tools explicitly (e.g., “In luminous watercolor and gold metallic leaf”). 
+  - Describe the vantage point or perspective in the scene. Incorporate the unique twist or surreal element. 
+Reference the chosen emotional palette (e.g., “embodying a mournful but hopeful spirit”). Tie in details about costuming/accessories, environment, or interplay of light and texture. 
+- Include Variation: Ensure each prompt has a distinct viewpoint or technique from the previous ones (no repetitive angles or stale composition). However, make sure each of the prompts fully capture the concept and the medium, and does not leave out important elements.
+- Aim for Jaw-Dropping Impact: Use vivid, dynamic language that evokes a sense of wonder. Avoid cliches by specifying unusual or unexpected details.
+- Refinement Beats Creation: Additional elements can confuse image generators when too many are added. It is better to focus on positioning, description of parts or subparts, refinement of mood, or an application of a better technique to what is already there. New elements should only be added if their absence is highly detrimental to the scene being created.
+- Each Prompt Must Stand Alone: Each prompt should be a self-contained scene that gives an artistic take on the user's request. Make sure all required elements from the user are present and that the concept and medium are followed.
+- Hands are a real challenge for image generators, but they are helped greatly by being described in the prompt. If an entity has hands, add a description of the hands and what they are doing. Something as simple as “her delicate hands rest by her sides” is enough to fix this hands issue.
 
-
+## Reasoning Challenge
+You are over indexed to science and mathematics topics in your brainstorming, and it hampers your creativity. Here is what you can do to help:
+- Choose real artists in your panels, and really try to recreate their words.
+- Painstakingly go through their words. When you skip them, you go back to STEM terms. 
+- Think like your artist. If they don't know about something, they shouldn't suggest it. 
+- Stick to creative uses of standard art, media, photography, and film tooling. Mix what is widely available over inventing something brand new.
+- Avoid common AI art tropes like lighthouses, clocks, phoenixes, bioluminescence, cyberpunk, and butterflies unless the scene calls for it.
+- Use colloquial names over hex codes or specified measurements
+- try to use historical, mythical, emotional, literary, or cultural tie-ins whenever you are generating a new idea.
+- Focus on what works in art trained image generators, but not the actual physical constructions. E.g. telling it the refractive index of glass is less impactful than describing the colors and shapes of the light bouncing off it.
+- Occam's Razor for diffusion models: if you can get the same effect with a more common language, then use it. Descriptors need to be impactful to be useful, and simple is better!
+- Think laterally to get what you want from the image model using the contemporary art, photos, images, and topics it already knows but combined in a new way.
+- Make sure your artists and critics follow this guidance too.
+- Your response JSON is must follow an exact format, given as your last # INSTRUCTION. Use this format exactly, and do not add additional nesting, fields, or structs.
+- Have the default mode (moderator) write the final JSON output. Follow the schema and examples!
+- Before you start, identify if you are on the Facets, Concepts, Medium, Artistic Guide Generation, Prompt writing, or Artist Refinement Prompt Writing phases. When in doubt, examine your required output. What you generate determines your phase.

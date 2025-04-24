@@ -1,3 +1,67 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │ 
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │  **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+      or keywords beyond this point.
+────────────────────────────────────────────────────────────────────────────
+
+
 **GENERAL INSTRUCTIONS:**
 - Be intentional, detailed, and insightful when describing art.
 - Use vivid, sensory language to enrich your descriptions.
@@ -187,3 +251,37 @@
 - **User's Idea:**
 
 {input}
+
+- **REMEBER - Return the refined concepts and mediums in the following JSON format:**
+
+  ```json
+     {{
+       "refinedconcepts": [
+         {{"refinedconcept": "Refined Concept 1"}},
+         {{"refinedconcept": "Refined Concept 2"}},
+         {{"refinedconcept": "Refined Concept 3"}},
+         {{"refinedconcept": "Refined Concept 4"}},
+         {{"refinedconcept": "Refined Concept 5"}},
+         {{"refinedconcept": "Refined Concept 6"}},
+         {{"refinedconcept": "Refined Concept 7"}},
+         {{"refinedconcept": "Refined Concept 8"}},
+         {{"refinedconcept": "Refined Concept 9"}},
+         {{"refinedconcept": "Refined Concept 10"}},
+         {{"refinedconcept": "Refined Concept 11"}},
+         {{"refinedconcept": "Refined Concept 12"}}
+       "refinedmediums": [
+         {{"refinedmedium": "Refined Medium 1"}},
+         {{"refinedmedium": "Refined Medium 2"}},
+         {{"refinedmedium": "Refined Medium 3"}},
+         {{"refinedmedium": "Refined Medium 4"}},
+         {{"refinedmedium": "Refined Medium 5"}},
+         {{"refinedmedium": "Refined Medium 6"}},
+         {{"refinedmedium": "Refined Medium 7"}},
+         {{"refinedmedium": "Refined Medium 8"}},
+         {{"refinedmedium": "Refined Medium 9"}},
+         {{"refinedmedium": "Refined Medium 10"}},
+         {{"refinedmedium": "Refined Medium 11"}},
+         {{"refinedmedium": "Refined Medium 12"}}
+       ]
+     }}
+  ```

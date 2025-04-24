@@ -439,7 +439,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
     Also includes logic to handle the new 'o1' models with max_completion_tokens.
     `reasoning_level` can be "low", "medium", or "high" to control how many tokens to let the model use.
     """
-    if model.startswith("o1") or model.startswith("o3"):
+    if model.startswith("o1") or model.startswith("o3") or model.startswith("o4"):
         return O1ChatOpenAI(
             model_name=model,
             openai_api_key=OPENAI_API,
@@ -475,9 +475,11 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o1": 100000,
             "o1-2024-12-17": 100000,
             "o3-mini": 100000,
+            "o4-mini": 100000,
             "o3-mini-2025-01-31": 100000,
             "o1-preview": 32768,
             "o1-mini": 32768,
+            "o3": 32768,
             "gpt-4.1": 32768,
             "gpt-4.1-nano": 32768,
             "gpt-4.1-mini": 32768,
@@ -612,6 +614,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 temperature=1
             )
         elif model.startswith("o3"):
+            return ChatOpenAI(
+                model=model,
+                openai_api_key=Config.OPENAI_API,
+                temperature=1
+            )
+        elif model.startswith("o4"):
             return ChatOpenAI(
                 model=model,
                 openai_api_key=Config.OPENAI_API,

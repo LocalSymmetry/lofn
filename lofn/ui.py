@@ -38,7 +38,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o1", "o3-mini", "gpt-4.5-preview", "gpt-4o-mini", "gpt-4o", "o3-mini-2025-01-31",
+                "gpt-4.1", "o4-mini", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o1", "o3-mini", "gpt-4.5-preview", "gpt-4o-mini", "gpt-4o", "o3-mini-2025-01-31",
                 "o1-2024-12-17", "o1-preview", "o1-mini",  
                 "gpt-4o-2024-11-20", "gpt-4o-2024-08-06", "chatgpt-4o-latest",
                 "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
@@ -163,7 +163,7 @@ class LofnApp:
                 help="Choose the language model for generating concepts and prompts."
             )
 
-            if self.model.startswith('o1') or self.model.startswith('o3'):
+            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
                 # Reasoning Level for o1
                 # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
                 st.session_state['reasoning_level'] = st.selectbox(
