@@ -2,7 +2,8 @@
 
 import streamlit as st
 import openai
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import asyncio
 import fastapi_poe as fp
 import requests
@@ -346,11 +347,11 @@ class GeminiLLM(LLM):
     max_tokens: int = 4096
     api_key: str
     generative_model: Any = None
+    thinking_budget: int = 24576
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        genai.configure(api_key=self.api_key)
-        self.generative_model = genai.GenerativeModel(self.model_name)
+        self.generative_model = genai.Client(api_key=self.api_key)
 
     def _call(
         self,
@@ -359,15 +360,24 @@ class GeminiLLM(LLM):
         run_manager: Optional[CallbackManagerForLLMRun] = None,
         **kwargs: Any,
     ) -> str:
-        generation_config = genai.types.GenerationConfig(
-            temperature=self.temperature,
-            max_output_tokens=self.max_tokens,
-            stop_sequences=stop or []
-        )
 
-        response = self.generative_model.generate_content(
-            prompt,
-            generation_config=generation_config
+        # Added for the release of the new gen-ai package
+        # if self.model_name.startswith('gemini-2.5-flash'):
+        #     generation_config = genai.types.GenerateContentConfig(
+        #         thinking_config=types.ThinkingConfig(thinking_budget=self.thinking_budget),
+        #         max_output_tokens=self.max_tokens,
+        #         stop_sequences=stop or []
+        #     )
+        # else:
+
+        response = self.generative_model.models.generate_content(
+            contents=prompt,
+            model=self.model_name,
+            config= genai.types.GenerateContentConfig(
+                max_output_tokens=self.max_tokens,
+                temperature=self.temperature,
+                stop_sequences=stop or []
+            )
         )
 
         return response.text
@@ -503,6 +513,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
+            "gemini-2.5-flash-preview-05-20": 120000,
             "gemini-2.0-flash-exp": 8191,
             "gemini-2.5-pro-exp-03-25":120000,
             "gemini-2.5-pro-preview-05-06":120000,
