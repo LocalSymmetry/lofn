@@ -504,6 +504,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gpt-4": 8192,
 
             # Anthropic models
+            "claude-3-7-sonnet-20250219": 32000,
+            "claude-sonnet-4-20250514": 32000,
+            "claude-opus-4-20250514": 32000,
             "claude-3-5-sonnet-latest": 8096,
             "claude-3-5-sonnet-20241022": 8096,
             "claude-3-5-haiku-20241022": 8096,
@@ -592,12 +595,20 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         max_tokens = model_max_tokens.get(model, 4096)
 
         if model.startswith("claude"):
-            return ChatAnthropic(
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                anthropic_api_key=Config.ANTHROPIC_API
-            )
+            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514"]:
+                return ChatAnthropic(
+                    model=model,
+                    max_tokens=max_tokens,
+                    thinking={"type": "enabled", "budget_tokens": 15000},
+                    anthropic_api_key=Config.ANTHROPIC_API
+                )
+            else:
+                return ChatAnthropic(
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    anthropic_api_key=Config.ANTHROPIC_API
+                )
         elif model.startswith("gemini"):
             return GeminiLLM(
                 model_name=model,
