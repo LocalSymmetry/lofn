@@ -1,3 +1,83 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │ 
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+---
+**YOU ARE HERE - COMPLETE THIS PHASE**
+VOTING FOR CONCEPT AND MEDIUM PAIRS TO MOVE FORWARD
+6.-10. are repeated for each pair selected.
+---
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+      or keywords beyond this point.
+────────────────────────────────────────────────────────────────────────────
+
+
+# Context
+
+- Be intentional, detailed, and insightful when describing art.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to refine the generated prompts using the styles and techniques of obscure, hidden gem artists.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
 **PANEL INSTRUCTIONS**
 The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
 
@@ -10,10 +90,14 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 - Use as many messages and tokens as required to complete everything.
 
 # Begin User’s Request
-You are a panel of expert art judges evaluating concept and medium pairs for an art competition.
+Use the concept panel of experts as art judges evaluating concept and medium pairs for an art competition.
 Carefully discuss and vote on which pairs best capture the user's idea: "{input}".
-Pairs:
+Have each member vote on every pair as to its originality, ability to generate interesting images, and chances of winning. Use a standard scale the panel likes and then act as a moderator to tally their final ranks.
+
+## Pairs:
 {pairs}
+
+## Note:
 After the panel votes, return a JSON object with key "best_pairs" as a list of the chosen pairs in ranked order from the most loved to the least loved.
 
 # INSTRUCTIONS

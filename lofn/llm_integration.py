@@ -34,6 +34,7 @@ import random
 import numpy as np
 import pandas as pd
 import logging
+from helpers import display_temporary_results, display_temporary_results_no_expander
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
 from o1_integration import *
@@ -1575,11 +1576,10 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
                     st.write(f"{i}. {guide['artistic_guide']}")
-            display_temporary_results(
-                "Artistic Guides",
-                [g['artistic_guide'] for g in artistic_guides['artistic_guides']],
-                expanded=False,
-            )
+            # display_temporary_results_no_expander(
+            #    "Artistic Guides",
+            #    [g['artistic_guide'] for g in artistic_guides['artistic_guides']]
+            # )
 
             # Step 3: Generate Image Prompts
             status.write("Generating Image Prompts...")

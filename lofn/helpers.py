@@ -329,6 +329,29 @@ def display_temporary_results(title, data, is_dataframe=False, expanded=True):
         else:
             st.write(data)
 
+def display_temporary_results_no_expander(title, data, is_dataframe=False):
+    """Display short-lived results in an expander.
+
+    Parameters
+    ----------
+    title : str
+        Title of the expander.
+    data : Any
+        Data to render inside the expander. Can be list, dict, or dataframe.
+    is_dataframe : bool, optional
+        If True, render the data as a dataframe.
+    """
+    if is_dataframe:
+        st.dataframe(data)
+    elif isinstance(data, list):
+        for item in data:
+            st.write(item)
+    elif isinstance(data, dict):
+        for key, value in data.items():
+            st.write(f"{key}: {value}")
+    else:
+        st.write(data)
+
 def truncate_prompt(prompt: Union[str, List[dict]], max_tokens: int = 3000) -> Union[str, List[dict]]:
     """
     Truncate a prompt string or a list of message dicts to a maximum number of tokens.

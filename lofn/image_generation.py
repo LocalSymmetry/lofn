@@ -241,6 +241,8 @@ def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False)
     except Exception as e:
         st.write(f"An error occurred while generating the image with DALL-E 3: {str(e)}")
         return None
+
+@st.cache_data(persist=True)
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium'):
     if image_model == "None":
         st.write("Image generation skipped.")

@@ -517,10 +517,10 @@ class LofnApp:
         except Exception as e:
             st.error("An error occurred while selecting best pairs.")
             logger.exception("Error selecting best pairs: %s", e)
-            best_pairs = pairs[:min(st.session_state.get('num_best_pairs', 3), len(pairs))]
 
         top_n = st.session_state.get('num_best_pairs', 3)
-        for pair in best_pairs[:top_n]:
+        gen_pairs = st.session_state.get('best_pairs', pairs)
+        for pair in gen_pairs[:top_n]:
             self.generate_prompts_for_pair(pair)
 
     def generate_images(self, prompts_df, pair):
@@ -746,7 +746,7 @@ class LofnApp:
             'proceed_refined_mediums_clicked': False,
             'proceed_shuffled_reviews_clicked': False,
             'complete_all_steps_clicked': False,
-            'image_model': 'Poe-FLUX-pro',
+            'image_model': 'None',
             'prompt_model': 'gpt-4.1',
             'competition_mode': False,
             'competition_text': '',
