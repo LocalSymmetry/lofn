@@ -165,9 +165,9 @@ class LofnApp:
             'Competition Mode', value=st.session_state.get('competition_mode', False)
         )
         if st.session_state['competition_mode']:
-            st.session_state['competition_text'] = st.sidebar.text_input(
-                'Competition Text', value=st.session_state.get('competition_text', '')
-            )
+            # Use the main input text as the competition text
+            st.session_state['competition_text'] = st.session_state.get('input', '')
+            st.sidebar.info('Competition mode uses the main input text.')
             panel_names = [p['name'] for p in PANEL_OPTIONS] + ['Custom']
             st.session_state['selected_panel'] = st.sidebar.selectbox(
                 'Panel Prompt', panel_names, index=panel_names.index(st.session_state.get('selected_panel', panel_names[0]))
@@ -361,7 +361,7 @@ class LofnApp:
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
@@ -377,7 +377,7 @@ class LofnApp:
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
                 meta_prompt = generate_meta_prompt(
-                    st.session_state.get('competition_text', ''),
+                    st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
