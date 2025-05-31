@@ -22,6 +22,7 @@ class LofnError(Exception):
 class LofnApp:
     def __init__(self):
         self.model = None
+        self.prompt_model = None
         self.image_model = None
         self.temperature = 0.7
         self.max_retries = 3
@@ -106,7 +107,7 @@ class LofnApp:
         return models
 
     def get_available_image_models(self):
-        models = []
+        models = ["None"]
         if Config.FAL_API_KEY:
             models.extend([
                 "fal-ai/flux-pro/v1.1-ultra", "fal-ai/flux-pro/v1.1", "fal-ai/recraft-v3",
@@ -156,6 +157,18 @@ class LofnApp:
     def render_sidebar(self):
         st.sidebar.header('Settings')
 
+        st.session_state['competition_mode'] = st.sidebar.checkbox(
+            'Competition Mode', value=st.session_state.get('competition_mode', False)
+        )
+        if st.session_state['competition_mode']:
+            st.session_state['competition_text'] = st.sidebar.text_input(
+                'Competition Text', value=st.session_state.get('competition_text', '')
+            )
+            st.session_state['num_best_pairs'] = st.sidebar.number_input(
+                'Top Pairs', min_value=1, max_value=10,
+                value=st.session_state.get('num_best_pairs', 3), step=1
+            )
+
         # Language Model Settings
         with st.sidebar.expander("Language Model Settings", expanded=True):
             self.model = st.selectbox(
@@ -163,6 +176,13 @@ class LofnApp:
                 self.available_models,
                 help="Choose the language model for generating concepts and prompts."
             )
+            self.prompt_model = st.selectbox(
+                "Prompt Generation Model",
+                self.available_models,
+                index=self.available_models.index(st.session_state.get('prompt_model', self.available_models[0])) if self.available_models else 0,
+                help="Model used for generating image prompts."
+            )
+            st.session_state['prompt_model'] = self.prompt_model
 
             if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
                 # Reasoning Level for o1
@@ -327,6 +347,12 @@ class LofnApp:
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
+        if st.session_state.get('competition_mode') and st.button("Run Competition"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your idea.")
+            else:
+                self.run_competition()
+
         # If we have concept_mediums, display them
         if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
             self.display_concepts()
@@ -334,10 +360,14 @@ class LofnApp:
     def generate_concepts(self):
         try:
             st.session_state['concept_mediums'] = []
+            input_text = st.session_state['input']
+            if st.session_state.get('competition_mode'):
+                template = read_prompt('/lofn/prompts/competition_prompt.txt')
+                input_text = template.replace('{input}', st.session_state.get('competition_text', input_text))
+            st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
-                # pass the new 'reasoning_level' from session to the generate_concept_mediums
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
-                    st.session_state['input'],
+                    input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
@@ -382,12 +412,12 @@ class LofnApp:
         try:
             with st.spinner(f"Generating prompts for '{pair['concept']}'..."):
                 prompts_df = generate_image_prompts(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     pair['concept'],
                     pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -405,12 +435,12 @@ class LofnApp:
         try:
             with st.spinner(f"Generating prompts for '{concept}'..."):
                 prompts_df = generate_image_prompts(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     concept,
                     medium,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -434,18 +464,28 @@ class LofnApp:
 
         self.generate_images(prompts_df, pair)
 
+    def run_competition(self):
+        self.generate_concepts()
+        selected = list(range(min(st.session_state.get('num_best_pairs', 3), len(st.session_state.get('concept_mediums', [])))))
+        for idx in selected:
+            pair = st.session_state['concept_mediums'][idx]
+            self.generate_prompts_for_pair(pair)
+
     def generate_images(self, prompts_df, pair):
         st.subheader(f"Generating Images for '{pair['concept']}'")
+        if self.image_model == "None":
+            st.info("Image generation skipped.")
+            return
         try:
             with st.spinner(f"Generating images for '{pair['concept']}'..."):
                 generate_dalle_images(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     pair['concept'],
                     pair['medium'],
                     prompts_df,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     image_model=self.image_model,
                     style_axes=st.session_state['style_axes'],
@@ -654,6 +694,11 @@ class LofnApp:
             'proceed_shuffled_reviews_clicked': False,
             'complete_all_steps_clicked': False,
             'image_model': 'Poe-FLUX-pro',
+            'prompt_model': 'gpt-4.1',
+            'competition_mode': False,
+            'competition_text': '',
+            'num_best_pairs': 3,
+            'prompt_input': '',
             'creativity_spectrum': None,
             'style_axes': None,
             'input': '',
