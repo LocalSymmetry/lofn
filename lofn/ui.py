@@ -202,6 +202,36 @@ class LofnApp:
             )
             render_image_controls(self.image_model)
 
+        with st.sidebar.expander("Competition Mode", expanded=False):
+            st.session_state['competition_mode'] = st.checkbox(
+                "Enable Competition Mode",
+                value=st.session_state.get('competition_mode', False)
+            )
+            if st.session_state['competition_mode']:
+                panel_names = list_panel_prompts()
+                panel_choice = st.selectbox(
+                    "Panel Preset",
+                    panel_names + ["Custom"],
+                    index=panel_names.index(st.session_state.get('panel_preset', 'default')) if st.session_state.get('panel_preset', 'default') in panel_names else 0
+                )
+                st.session_state['panel_preset'] = panel_choice
+                if panel_choice == "Custom":
+                    st.session_state['custom_flairs'] = st.text_area(
+                        "List of 15 Special Flairs",
+                        value=st.session_state.get('custom_flairs', ''),
+                        height=150
+                    )
+                    st.session_state['custom_concept_artists'] = st.text_area(
+                        "Six concept-panel artists",
+                        value=st.session_state.get('custom_concept_artists', ''),
+                        height=100
+                    )
+                    st.session_state['custom_medium_artists'] = st.text_area(
+                        "Six medium-panel artists",
+                        value=st.session_state.get('custom_medium_artists', ''),
+                        height=100
+                    )
+
         with st.sidebar.expander("Style Personalization", expanded=False):
             st.session_state['auto_style'] = st.checkbox("Automatic Style", value=True, help="Enable automatic style determination.")
             if not st.session_state['auto_style']:
@@ -336,6 +366,19 @@ class LofnApp:
             st.session_state['concept_mediums'] = []
             with st.spinner("Generating concepts..."):
                 # pass the new 'reasoning_level' from session to the generate_concept_mediums
+                panel_text = None
+                if st.session_state.get('competition_mode'):
+                    if st.session_state.get('panel_preset') != 'Custom':
+                        panel_text = load_panel_prompt(st.session_state.get('panel_preset', 'default'))
+                    else:
+                        panel_text = "\n".join([
+                            "## Special Flairs:",
+                            st.session_state.get('custom_flairs', ''),
+                            "## Concept Panel Artists:",
+                            st.session_state.get('custom_concept_artists', ''),
+                            "## Medium Panel Artists:",
+                            st.session_state.get('custom_medium_artists', '')
+                        ])
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
                     st.session_state['input'],
                     max_retries=self.max_retries,
@@ -345,6 +388,7 @@ class LofnApp:
                     style_axes=st.session_state.get('style_axes', None),
                     creativity_spectrum=st.session_state.get('creativity_spectrum', None),
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),  # For o1
+                    panel_text=panel_text,
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
@@ -658,6 +702,11 @@ class LofnApp:
             'style_axes': None,
             'input': '',
             'reasoning_level': 'medium',  # default reasoning if user doesn't set
+            'competition_mode': False,
+            'panel_preset': 'default',
+            'custom_flairs': '',
+            'custom_concept_artists': '',
+            'custom_medium_artists': '',
         }
 
         for key, value in default_values.items():

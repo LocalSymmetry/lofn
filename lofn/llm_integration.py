@@ -1111,7 +1111,8 @@ def generate_concept_mediums(
     style_axes=None,
     creativity_spectrum=None,
     medium='image',
-    reasoning_level="medium"
+    reasoning_level="medium",
+    panel_text=None
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
@@ -1123,7 +1124,19 @@ def generate_concept_mediums(
         max_tokens = llm._identifying_params.get('max_tokens', 4096)
 
         # Select the appropriate prompts based on the medium
-        prompts = prompt_configs.get(medium)
+        if panel_text:
+            panel_prompt_header = prompt_header_part1 + panel_text + prompt_header_part2
+            panel_concept_header = concept_header_part1 + panel_text + concept_header_part2
+            panel_prompts = {
+                'essence_and_facets': panel_concept_header + essence_prompt_middle + prompt_ending,
+                'concepts': panel_concept_header + concepts_prompt_middle + prompt_ending,
+                'artist_and_critique': panel_concept_header + artist_and_critique_prompt_middle + prompt_ending,
+                'medium': panel_concept_header + medium_prompt_middle + prompt_ending,
+                'refine_medium': panel_concept_header + refine_medium_prompt_middle + prompt_ending,
+            }
+            prompts = panel_prompts
+        else:
+            prompts = prompt_configs.get(medium)
 
         # Build chains using the selected prompts
         if model[0] == "o":
@@ -1319,7 +1332,8 @@ def generate_video_concept_mediums(
     aesthetics=aesthetics,
     style_axes=None,
     creativity_spectrum=None,
-    reasoning_level="medium"
+    reasoning_level="medium",
+    panel_text=None
 ):
     return generate_concept_mediums(
         input_text,
@@ -1332,7 +1346,8 @@ def generate_video_concept_mediums(
         style_axes,
         creativity_spectrum,
         medium='video',
-        reasoning_level=reasoning_level
+        reasoning_level=reasoning_level,
+        panel_text=panel_text
     )
 
 def generate_music_prompts(

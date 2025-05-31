@@ -12,6 +12,20 @@ import os
 from config import Config
 import plotly.graph_objects as go
 
+def list_panel_prompts(directory='/lofn/prompts/panels'):
+    """Return available panel prompt names without extension."""
+    if not os.path.isdir(directory):
+        return []
+    return sorted([os.path.splitext(f)[0] for f in os.listdir(directory) if f.endswith('.txt')])
+
+def load_panel_prompt(name, directory='/lofn/prompts/panels'):
+    """Load a panel prompt by name from the panels directory."""
+    path = os.path.join(directory, f'{name}.txt')
+    if os.path.exists(path):
+        with open(path, 'r') as f:
+            return f.read()
+    return ''
+
 def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
