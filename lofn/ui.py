@@ -161,6 +161,9 @@ class LofnApp:
     def render_sidebar(self):
         st.sidebar.header('Settings')
 
+        with st.sidebar.expander('Progress', expanded=True):
+            self.render_progress_dashboard()
+
         st.session_state['competition_mode'] = st.sidebar.checkbox(
             'Competition Mode', value=st.session_state.get('competition_mode', False)
         )
@@ -357,7 +360,7 @@ class LofnApp:
 
     def render_image_main_container(self):
         st.header("Generate Your Art Concept")
-        self.render_progress_dashboard()
+
 
         # The user’s idea. Tying it to session_state so it does not vanish
         st.subheader("Describe Your Idea")
@@ -549,7 +552,8 @@ class LofnApp:
             logger.exception("Error selecting best pairs: %s", e)
             best_pairs = pairs[:min(st.session_state.get('num_best_pairs', 3), len(pairs))]
 
-        for pair in best_pairs:
+        top_n = st.session_state.get('num_best_pairs', 3)
+        for pair in best_pairs[:top_n]:
             self.generate_prompts_for_pair(pair)
 
     def generate_images(self, prompts_df, pair):
