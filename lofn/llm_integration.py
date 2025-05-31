@@ -1491,8 +1491,7 @@ def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperatur
         pairs_json = json.dumps(pairs)
         args = {
             "input": input_text,
-            "pairs": pairs_json,
-            "num_best_pairs": num_best_pairs,
+            "pairs": pairs_json
         }
         parsed_output = run_llm_chain({'vote': chain}, 'vote', args, max_retries, model, debug, expected_schema=best_pairs_schema)
         return parsed_output.get('best_pairs', [])
