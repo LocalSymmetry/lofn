@@ -160,10 +160,6 @@ class LofnApp:
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
-
-        with st.sidebar.expander('Progress', expanded=True):
-            self.render_progress_dashboard()
-
         st.session_state['competition_mode'] = st.sidebar.checkbox(
             'Competition Mode', value=st.session_state.get('competition_mode', False)
         )
@@ -327,36 +323,6 @@ class LofnApp:
     def render_image_generation(self):
         self.render_image_main_container()
 
-    def render_progress_dashboard(self):
-        steps = ["Concepts", "Prompts", "Images"]
-        progress = st.session_state.get('progress_step', 0)
-        st.markdown("<div class='progress-dashboard'>", unsafe_allow_html=True)
-        st.progress(progress / len(steps))
-        cols = st.columns(len(steps))
-        for i, step in enumerate(steps):
-            label = f"Step {i+1}: {step}"
-            if progress > i:
-                cols[i].markdown(f"**{label}** :white_check_mark:")
-            elif progress == i:
-                cols[i].markdown(f"**{label}** :arrow_right:")
-            else:
-                cols[i].markdown(label)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        if st.session_state.get('style_axes'):
-            with st.expander("Style Axes", expanded=False):
-                display_style_axes(st.session_state['style_axes'])
-        if st.session_state.get('creativity_spectrum'):
-            with st.expander("Creativity Spectrum", expanded=False):
-                display_creativity_spectrum(st.session_state['creativity_spectrum'])
-        if st.session_state.get('essence_and_facets_output'):
-            facets = st.session_state['essence_and_facets_output'].get('essence_and_facets', {}).get('facets', [])
-            if facets:
-                with st.expander("Facets", expanded=False):
-                    display_facets(facets)
-        if st.session_state.get('prompts_df') is not None and not st.session_state['prompts_df'].empty:
-            with st.expander("Latest Prompt", expanded=False):
-                st.code(st.session_state['prompts_df'].iloc[0]['Revised Prompts'], language='')
 
     def render_image_main_container(self):
         st.header("Generate Your Art Concept")
