@@ -1,0 +1,170 @@
+- name: Oxide-Impasto Ascendance
+  prompt: |
+    ## Special Flairs
+    1. **Iron-Bloom Knife Ridges** – thick palette-knife strokes whose peaks expose raw rust beneath fresh pigment  
+    2. **Verdigris Vein Lacing** – hairline green fissures threading through swollen paint mounds  
+    3. **Umber-Ash Ember Dust** – fine burnt specks sprinkled across wet impasto, catching stray light  
+    4. **Copper-Pulse Halo** – soft metallic glow encircling the focal form, warming the whole chroma field  
+    5. **Pitted Mirror Glints** – micro-pools of varnish settling in texture craters to create star-like flashes  
+    6. **Barnacle Texture Nests** – clustered circular impasto domes echoing corroded metal pockmarks  
+    7. **Sanguine Sap Drips** – gravity-pulled rivulets of deep red bleeding through oxide crusts  
+    8. **Lichen-Gold Filaments** – stray gold threads weaving organic patterns across matte expanses  
+    9. **Smoke-Slate Shadow Bands** – horizontal charcoal washes sinking into recessed groove valleys  
+    10. **Coral-Rust Confetti Bursts** – scattered warm chips breaking monotony with playful energy  
+    11. **Oil-Sheen Whisper Trails** – subtle iridescent ribbons gliding over rough topography  
+    12. **Quartz-Edge Scrapes** – razor scratches exposing under-hues like crystalline shards  
+    13. **Fog-Gutter Fade** – soft vignette where glaze settles into low spots, muting outer corners  
+    14. **Echo-Flake Haze** – suspended oxide flakes drifting above the surface, implying depth  
+    15. **Lantern-Glow Undercut** – hidden warm back-light haloing silhouette edges from below  
+
+    ### Concept Panel
+    1. **Aida Tomescu** – Romanian-Australian abstract painter famed for monumental, earth-toned impasto oceans  
+    2. **Asim Waqif** – Indian artist integrating corrosion and reclaimed materials into immersive structures  
+    3. **Nicola Samorì** – Italian painter who carves, scrapes, and bruises thick paint to reveal haunting decay  
+    4. **Julie Mehretu** – layered mark-making maestro expanding spatial depth with gestural strata  
+    5. **James Gurney** – colour-and-light strategist ensuring every texture catches the perfect glow  
+    6. **Jerry Saltz** *(Devil’s Advocate)* – prods the panel to risk failure, not settle for decorative surface  
+
+    ### Medium Panel
+    1. **Anselm Kiefer** – monumental panels of lead, straw, and oxidised pigment fused into geological relief  
+    2. **El Anatsui** – stitched bottle-cap tapestries whose metal patina shimmers like weathered armour  
+    3. **Jean Dubuffet** – Art Brut pioneer layering sand, tar, and raw pigment into crusty terrains  
+    4. **Leonardo Drew** – large wall reliefs of scorched wood and rusted metal erupting into tactile fields  
+    5. **Shinichi Sawada** – thick-slipped ceramic forms sprouting barnacle-like spikes and iron glaze specks  
+    6. **Zarina Hashmi** – delicate intaglio prints using rust solution on handmade paper, marrying fragility and time
+- name: Rust-Oxide Meets Luminous Romance
+  prompt: |
+    ## Special Flairs
+    1. **Oxidized Halo** – aureoles of corroded bronze framing the focal figure   
+    2. **Patina Drip Trail** – gravity-pulled green-blue streaks bleeding across the scene  
+    3. **Ash-Rose Contrast** – warm rose flakes blooming against charcoal rust  
+    4. **Sulphur Spark Edge** – tiny yellow-gold pockmarks flickering on borders  
+    5. **Verdant Crackle** – leaf-shaped fissures revealing copper under-layers  
+    6. **Pitted Mirror Fade** – distressed reflections blurred by corroded specks  
+    7. **Verdigris Lace Filament** – delicate green filigree veining through shadows  
+    8. **Iron Flake Cascade** – drifting rust flakes catching stray light like fireflies  
+    9. **Gilded Ember Glow** – soft orange back-light radiating through corroded seams  
+    10. **Impasto Shatter Strokes** – knife-laid paint shards echoing fractured metal  
+    11. **Sunflare Rim Silhouette** – blazing edge-light outlining key forms  
+    12. **Lantern-Lit Patina Bloom** – warm lamplight revealing hidden green oxidations  
+    13. **Blossom-Fleck Embroidery** – floral specks stitched across armour or sky  
+    14. **Celestial Burnish Gradient** – scorched gold-to-umber transitions evoking heated metal  
+    15. **Echo-Lantern Veil** – rhythmic pools of reflected firelight in wet stone or water  
+
+    ## Concept Panel – Obscure Visionaries Bridging Rust & Romance
+    1. **Aykut Aydogdu (b. 1986)** – Anatolian surreal portraiture interlacing floral ornament, cracked skin, and regal jewellery  
+    2. **Alla Tsanck (b. 1957)** – palette-knife impressionism with weather-worn female figures emerging from textural strata  
+    3. **Tsuchiya Koitsu (1870 – 1949)** – twilight woodblock master of glowing lakeside temples and burnished sunsets  
+    4. **Evgeny Lushpin (b. 1966)** – atmospheric nocturne cityscapes awash in lamplight shimmer and oxidized masonry  
+    5. **James Gurney (b. 1958)** – compositional polymath whose plein-air discipline and colour staging will elevate narrative placement  
+    6. **Jerry Saltz (b. 1951, Devil’s Advocate)** – outspoken critic pressing the panel to avoid comfortable nostalgia and demand daring originality  
+
+    ## Medium Panel – Material Specialists for Corrosion, Texture & Glow
+    1. **Anselm Kiefer (b. 1945)** – monumental oxidised lead, straw and impasto sediment surfaces  
+    2. **El Anatsui (b. 1944)** – stitched bottle-cap tapestries whose metallic patina refracts light like rusted mosaics  
+    3. **Vhils (Alexandre Farto, b. 1987)** – acid-etched wall portraits carving decay directly into plaster and metal  
+    4. **Leonid Afremov (1955 – 2019)** – high-chroma palette-knife oil textures ideal for luminous, rain-soaked reflections  
+    5. **Kinuko Y. Craft (b. 1940)** – layered gouache & oil on clayboard bringing ornate, jewel-toned portraiture  
+    6. **Hiroshi Yoshida (1876 – 1950)** – woodblock gradients capturing molten skies and mirrored waterlines
+- name: Silk-Rust Nocturne
+  prompt: |
+    ## Special Flairs
+    1. Crimson-Patina Drip Veils – silky red washes running over green oxide
+    2. Lantern-Gilt Halo Rings – soft gold circles illuminating focal zones
+    3. Jade-Ash Reflection Bands – cool stone hues mirroring warm lights
+    4. Coral-Rust Blossom Bursts – flower-shaped flare amid oxide background
+    5. Silk-Thread Oxide Rims – fine linear accents tracing corroded edges
+    6. Ember-Rose Cloudlets – drifting warm vapour puffs softening contrast
+    7. Moon-Sheen Crackle – silver hairlines opening soft textures
+    8. Saffron-Shadow Ripples – wave patterns undulating through glaze
+    9. Pitted Gold Leaf Flickers – bright metallic pops across surface
+    10. Umber-Teal Gradient Sweep – sweeping diagonals anchoring flow
+    11. Vapor-Opal Soft Focus – gentle blur adding dream aura
+    12. Dew-Glimmer Spins – tiny starlets of moisture on silk sheen
+    13. Rust-Dust Mist Haze – diffuse particles unifying palette
+    14. Whisper-Bronze Echo Spots – muted metallic dots adding cohesion
+    15. Prism-Sap Drizzle – translucent colour beads implying slow motion
+
+    ### Concept Panel
+    1. **Lê Phổ** – radiant silk compositions of figures & blossoms
+    2. Paul Jenkins – jewel-toned veils of poured pigment
+    3. Carlos Cruz-Diez – kinetic colour-shift mentor
+    4. Mark Rothko – emotive colour-field anchor
+    5. Caio Fonseca – lyrical tonal rhythms for spatial balance
+    6. Clement Greenberg *(Devil’s Advocate)* – advocates form discipline
+
+    ### Medium Panel
+    1. **Mai Trung Thu** – Vietnamese silk paintings rich in nocturne glow
+    2. **Nguyen Phan Chanh** – muted narrative scenes on woven silk
+    3. **Zhang Daqian** – colour-splash landscapes on textured fibre
+    4. **Liu Kuo-sung** – modern ink experiments on handmade paper
+    5. **Hung Liu** – layered oil & resin over historical silk imagery
+    6. **Wu Guanzhong** – expressive ink & wash bridging tradition and modernity
+- name: Crimson Reverie
+  prompt: |
+    ## Special Flairs
+    1. Crimson Umbra Splash
+    2. Drizzle-Grain Overlay
+    3. Droplet Bokeh Halo
+    4. Wind-Tossed Strand Dynamics
+    5. Wet-Silk Reflectance
+    6. Ember-Red Pop
+    7. Snowflake Suspension
+    8. Reflective Pavement Glow
+    9. Storm-Lit Profile
+    10. High-Key Freckle Texture
+    11. Umbrella Canopy Contrast
+    12. Pinhole-Light Tears
+    13. Gust Motion Blur
+    14. Frosted Fringe
+    15. Vapor-Breath Glow
+
+    ## Concept Panel
+    1. **Louise Abbéma (1853-1927)**
+    2. **Stanisław Wyspiański (1869-1907)**
+    3. **Tran Nguyen (b. 1986)**
+    4. **Felice Casorati (1883-1963)**
+    5. **Lita Cabellut (b. 1961)** – master of placement & composition
+    6. **Donald Judd (1928-1994, Devil’s Advocate)**
+
+    ## Medium Panel
+    1. **Robert Demachy** – gum-bichromate pictorialism
+    2. **Hiroshi Sugimoto** – large-format film long-exposure
+    3. **Käthe Kollwitz** – etching / dry-point drama
+    4. **Karen LaMonte** – cast-glass figural surfaces
+    5. **Wanda Gág** – lithographic narrative texture
+    6. **Susan Derges** – camera-less photogram light-play
+- name: Gilded Sylvan Serenade
+  prompt: |
+    ## Special Flairs
+    1. Gilded Sun-Dust
+    2. Sylvan Sparkle Scatter
+    3. Golden-Hour Veil
+    4. Iridescent Pollen Drift
+    5. Liquid Mirror Pond
+    6. Soft-Bloom Highlights
+    7. Leaf-Lattice Shadow-play
+    8. Opaline Complexion Glow
+    9. Baroque Brocade Shine
+    10. Whispered Forest Chiaroscuro
+    11. Star-Glint Dewdrops
+    12. Honey-Mist Haze
+    13. Branch-Frame Composition
+    14. Faelight Lens-flare
+    15. Quiet Mythic Reverie
+
+    ## Concept Panel
+    1. **Agnes Lawrence Pelton (1881-1961)**
+    2. **Evelyn De Morgan (1855-1919)**
+    3. **Hilda Rix Nicholas (1884-1961)**
+    4. **Winifred Knights (1899-1947)**
+    5. **Gertrude Käsebier (1852-1934)** – master of placement & composition
+    6. **Robert Hughes (1938-2012, Devil’s Advocate)**
+
+    ## Medium Panel
+    1. **John Bauer** – water-colour / gouache woodland fantasy
+    2. **Kay Nielsen** – gold-leaf illuminated illustration
+    3. **Tatsuyuki Tanaka** – animation-cell background painting
+    4. **Maruja Mallo** – surreal egg-tempera luminosity
+    5. **Jacek Yerka** – acrylic dream-scape micro-detail
+    6. **Hector Garrido** – macro-lens natural-light insect sparkle

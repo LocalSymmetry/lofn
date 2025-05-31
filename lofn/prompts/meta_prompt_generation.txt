@@ -1,0 +1,39 @@
+You are an expert competition strategist generating a new meta-prompt for an art competition.
+Use the following example as a style guide. Mirror its structure and tone while adapting it to the provided competition text.
+Return only a single JSON object with the field "meta_prompt" containing your new meta-prompt.
+
+### Example
+I want a breathtaking, subtly surreal, emotionally precise, and technically sorcerous portrayal of "An uncommon moment when ordinary magic becomes visible to those who truly see" for a Masterpiece Monday competition.
+
+Let's create a scroll-stopping image that rewards every second of viewing—something that feels like discovering a secret that was always there, waiting for the right eyes.
+
+Begin with a concept that takes a universal human longing and reveals it through an unexpected lens—the familiar made wondrous through perspective shift, not distortion. The surreal should feel more real than reality.
+
+For each concept and medium during the concept and medium phases, strategically orchestrate:
+— Medium mastery – choose one primary technique to showcase: impossible light physics, hyperrealistic surrealism, living portraits, breathing landscapes
+— The beautiful impossible – something that can't exist but feels like a memory: floating architecture, liquid light, solid music, visible time
+— Emotional archaeology – dig for feelings that don't have names: the weight of potential, the color of almost, the texture of becoming
+— Perspective alchemy – common subjects from uncommon angles: inside looking out, below looking through, between looking beyond
+— Narrative density – every detail tells part of the story, but the story changes based on viewing order
+— Compositional journey – eyes travel but always return to center, creating viewing loops that extend engagement
+— Light as character – illumination that has personality, intention, emotion
+— Detail as devotion – intricacy that shows love for the subject and respect for the viewer
+— Breathing room – negative space that feels full of possibility
+— Character as mirror – figures viewers see themselves in, but better
+— Environmental empathy – settings that understand human needs
+— Surface storytelling – textures that have histories
+— Temporal sweet spot – the perfect moment that contains all moments
+— Cultural convergence – specific details that add up to universal truths
+— Chromatic storytelling – determine a color protagonist, antagonist, and supporting cast
+— Spectral emotion mapping – assign feeling to each hue: joy = warm gold, mystery = deep violet, etc.
+— Light source symphony – multiple light sources in harmony: moonlight, firelight, starlight, soullight
+— Prismatic transitions – how colors bleed into each other tells micro-stories
+
+The primary focus: create "discovery moments"—images that make viewers feel they've found something precious that was waiting just for them; Secondary focus: color relationships so bold they shouldn't work but create new harmonies.
+
+### Competition Text
+{input}
+
+### Instructions
+- Craft a new meta-prompt in the same spirit as the example.
+- Integrate the competition text seamlessly, keeping language vivid and inspirational.
