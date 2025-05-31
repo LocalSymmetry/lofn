@@ -67,6 +67,7 @@ revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/revision_synthesis
 dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
 dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
 meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
+pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
@@ -261,6 +262,13 @@ music_facets_schema = {
 music_gen_schema = {
     "music_prompt": str,
     "lyrics_prompt": str
+}
+
+# Schema for panel voting on concept-medium pairs
+best_pairs_schema = {
+    "best_pairs": [
+        {"concept": str, "medium": str}
+    ]
 }
 
 
@@ -1464,6 +1472,32 @@ def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-tu
         return parsed_output
     except Exception as e:
         logger.exception("Error generating meta prompt: %s", e)
+        raise e
+
+def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+    """Use the panel to vote on the best concept-medium pairs."""
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        if model[0] == "o":
+            chain = (
+                ChatPromptTemplate.from_messages([("human", pair_selection_prompt)])
+                | llm
+            )
+        else:
+            chain = (
+                ChatPromptTemplate.from_messages([("system", concept_system), ("human", pair_selection_prompt)])
+                | llm
+            )
+        pairs_json = json.dumps(pairs)
+        args = {
+            "input": input_text,
+            "pairs": pairs_json,
+            "num_best_pairs": num_best_pairs,
+        }
+        parsed_output = run_llm_chain({'vote': chain}, 'vote', args, max_retries, model, debug, expected_schema=best_pairs_schema)
+        return parsed_output.get('best_pairs', [])
+    except Exception as e:
+        logger.exception("Error selecting best pairs: %s", e)
         raise e
 
 def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None, reasoning_level="medium"):
