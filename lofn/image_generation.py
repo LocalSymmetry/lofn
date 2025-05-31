@@ -241,8 +241,6 @@ def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False)
     except Exception as e:
         st.write(f"An error occurred while generating the image with DALL-E 3: {str(e)}")
         return None
-
-@st.cache_data(persist=True)
 def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium'):
     if image_model == "None":
         st.write("Image generation skipped.")
@@ -266,20 +264,16 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                     try:
                         # Display the image
                         st.image(result, caption=f"Generated image {i+1} for {concept} in {medium}")
-                        st.text_area("Prompt", prompt, key=f"prompt_{index}_{i}")
+                        st.code(prompt, language='')
                         
                         # Generate a title for the image
                         try:
-                            title_data_json = generate_image_title(input, concept, medium, result, max_retries, temperature, model, debug, reasoning_level)
+                            title_data_json = generate_image_title(
+                                input, concept, medium, result, max_retries,
+                                temperature, model, debug, reasoning_level
+                            )
                             title_data = json.loads(title_data_json)
-                            st.write(f"Generated title: {title_data['title']}")
-                            
-                            # Display Instagram post information
-                            st.subheader("Instagram Post")
-                            st.write(f"Caption: {title_data['instagram_caption']}")
-                            st.write(f"Hashtags: {title_data['instagram_hashtags']}")
-                            st.subheader("SEO Keywords")
-                            st.write(title_data['seo_keywords'])
+                            st.code(json.dumps(title_data, indent=2), language='json')
 
                             # Generate Runway video prompt
                             # runway_prompt_json  = generate_runway_prompt(input, concept, medium, result, prompt, style_axes, creativity_spectrum, max_retries, temperature, model, debug)
@@ -358,7 +352,6 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
 
     st.write(f"{image_model} image generation and video generation complete.")
 
-@st.cache_data(persist=True)
 def generate_image_title(input, concept, medium, image, max_retries, temperature, model, debug=False, reasoning_level = "medium"):
     # o1 takes forever.
     if model[0] in ['o', 'P']:
