@@ -3,6 +3,7 @@ import logging
 import random
 import pandas as pd
 import streamlit as st
+import yaml
 
 from image_generation import (
     render_image_controls,
@@ -14,6 +15,9 @@ from helpers import *
 from llm_integration import *
 
 logger = logging.getLogger(__name__)
+
+with open('/lofn/prompts/panels.yaml', 'r') as f:
+    PANEL_OPTIONS = yaml.safe_load(f)
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -164,6 +168,16 @@ class LofnApp:
             st.session_state['competition_text'] = st.sidebar.text_input(
                 'Competition Text', value=st.session_state.get('competition_text', '')
             )
+            panel_names = [p['name'] for p in PANEL_OPTIONS] + ['Custom']
+            st.session_state['selected_panel'] = st.sidebar.selectbox(
+                'Panel Prompt', panel_names, index=panel_names.index(st.session_state.get('selected_panel', panel_names[0]))
+            )
+            if st.session_state['selected_panel'] == 'Custom':
+                st.session_state['custom_panel'] = st.sidebar.text_area(
+                    'Custom Panel Prompt', value=st.session_state.get('custom_panel', ''), height=150
+                )
+            else:
+                st.session_state['custom_panel'] = next(p['prompt'] for p in PANEL_OPTIONS if p['name'] == st.session_state['selected_panel'])
             st.session_state['num_best_pairs'] = st.sidebar.number_input(
                 'Top Pairs', min_value=1, max_value=10,
                 value=st.session_state.get('num_best_pairs', 3), step=1
@@ -362,8 +376,17 @@ class LofnApp:
             st.session_state['concept_mediums'] = []
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
-                template = read_prompt('/lofn/prompts/competition_prompt.txt')
-                input_text = template.replace('{input}', st.session_state.get('competition_text', input_text))
+                meta_prompt = generate_meta_prompt(
+                    st.session_state.get('competition_text', ''),
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                )
+                panel_text = st.session_state.get('custom_panel', '')
+                template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+                input_text = template.replace('{Meta-Prompt}', meta_prompt['meta_prompt']).replace('{Panel-prompt}', panel_text)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
@@ -697,6 +720,8 @@ class LofnApp:
             'prompt_model': 'gpt-4.1',
             'competition_mode': False,
             'competition_text': '',
+            'selected_panel': PANEL_OPTIONS[0]['name'],
+            'custom_panel': PANEL_OPTIONS[0]['prompt'],
             'num_best_pairs': 3,
             'prompt_input': '',
             'creativity_spectrum': None,

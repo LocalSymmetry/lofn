@@ -66,6 +66,7 @@ artist_refined_prompt_middle = read_prompt('/lofn/prompts/artist_refined_prompt.
 revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/revision_synthesis_prompt.txt')
 dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
 dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
+meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
@@ -152,6 +153,10 @@ prompt_configs = {
     'image': image_prompts,
     'video': video_prompts,
     'music': music_prompts
+}
+
+meta_prompt_schema = {
+    'meta_prompt': str
 }
 
 essence_and_facets_schema = {
@@ -1428,6 +1433,28 @@ def generate_music_prompts(
 
     except Exception as e:
         logger.exception("Error generating music prompts: %s", e)
+        raise e
+
+def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        if model[0] == "o":
+            chain = (
+                ChatPromptTemplate.from_messages([("human", meta_prompt_generation_prompt)])
+                | llm
+            )
+        else:
+            chain = (
+                ChatPromptTemplate.from_messages([("system", concept_system), ("human", meta_prompt_generation_prompt)])
+                | llm
+            )
+
+        parsed_output = run_llm_chain(
+            {'meta': chain}, 'meta', {'input': input_text}, max_retries, model, debug, expected_schema=meta_prompt_schema
+        )
+        return parsed_output
+    except Exception as e:
+        logger.exception("Error generating meta prompt: %s", e)
         raise e
 
 def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None, reasoning_level="medium"):
