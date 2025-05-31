@@ -186,9 +186,9 @@ class LofnApp:
         # Language Model Settings
         with st.sidebar.expander("Language Model Settings", expanded=True):
             self.model = st.selectbox(
-                "Select Language Model",
+                "Select Concept/Medium Model",
                 self.available_models,
-                help="Choose the language model for generating concepts and prompts."
+                help="Model used generating concepts and mediums."
             )
             self.prompt_model = st.selectbox(
                 "Prompt Generation Model",
