@@ -186,7 +186,8 @@ def get_step_name(process_name, step):
     }
     return steps[process_name][step]
 
-def display_creativity_spectrum(creativity_spectrum):
+def create_creativity_spectrum_chart(creativity_spectrum):
+    """Return a Plotly figure visualising the creativity spectrum."""
     labels = ['literal', 'inventive', 'transformative']
     values = [creativity_spectrum['literal'], creativity_spectrum['inventive'], creativity_spectrum['transformative']]
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # Blue, Orange, Green
@@ -194,52 +195,20 @@ def display_creativity_spectrum(creativity_spectrum):
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3, marker_colors=colors)])
     fig.update_layout(
         title_text="Creativity Spectrum",
-        height=300  # Adjust this value to change the height of the chart
+        height=300
     )
+    return fig
+
+def display_creativity_spectrum(creativity_spectrum):
+    """Display only the creativity spectrum chart."""
+    fig = create_creativity_spectrum_chart(creativity_spectrum)
     st.plotly_chart(fig, use_container_width=True)
 
 def display_style_axes(style_axes):
-    st.subheader("Style Axes")
-    
-    # Create the radar chart (as before)
+    """Display only the radar plot of style axes."""
     radar_fig = create_style_axes_chart(style_axes)
-    
-    if style_axes != None:
-        # Create a radial bar chart
-        axes = list(style_axes.keys())
-        values = list(style_axes.values())
-    else:
-        axes = ['None']
-        values = [100]
-    
-    radial_bar_fig = go.Figure()
-
-    radial_bar_fig.add_trace(go.Barpolar(
-        r=values,
-        theta=axes,
-        marker_color=values,
-        marker_cmin=0,
-        marker_cmax=100,
-        marker_colorscale="Viridis",
-        opacity=0.8
-    ))
-
-    radial_bar_fig.update_layout(
-        title_text="Style Axes (Lofn Determined)",
-        polar=dict(
-            radialaxis=dict(range=[0, 100], showticklabels=True, ticks=''),
-            angularaxis=dict(showticklabels=True, ticks='')
-        ),
-        height=500,
-        showlegend=False
-    )
-
-    # Display both charts side by side
-    col1, col2 = st.columns(2)
-    with col1:
-        st.plotly_chart(radar_fig, use_container_width=True, title_text="Style Axes (Used Values)")
-    with col2:
-        st.plotly_chart(radial_bar_fig, use_container_width=True)
+    radar_fig.update_layout(title_text="Style Axes (Used Values)", height=500)
+    st.plotly_chart(radar_fig, use_container_width=True)
 
 def display_facets(facets):
     st.subheader("Facets")
@@ -274,6 +243,17 @@ def create_style_axes_chart(style_axes):
     )
     
     return fig
+
+def display_creativity_and_style_axes(creativity_spectrum, style_axes):
+    """Display creativity spectrum and style axes charts side by side."""
+    col1, col2 = st.columns(2)
+    with col1:
+        fig_creativity = create_creativity_spectrum_chart(creativity_spectrum)
+        st.plotly_chart(fig_creativity, use_container_width=True)
+    with col2:
+        fig_style = create_style_axes_chart(style_axes)
+        fig_style.update_layout(title_text="Style Axes (Used Values)", height=500)
+        st.plotly_chart(fig_style, use_container_width=True)
 
 def display_generation_progress(step, total_steps, process_name):
     progress = st.progress(0)
@@ -323,8 +303,21 @@ def create_mini_dashboard(pairs):
                     st.markdown("---")
     return selected_pairs
 
-def display_temporary_results(title, data, is_dataframe=False):
-    with st.expander(title, expanded=True):
+def display_temporary_results(title, data, is_dataframe=False, expanded=True):
+    """Display short-lived results in an expander.
+
+    Parameters
+    ----------
+    title : str
+        Title of the expander.
+    data : Any
+        Data to render inside the expander. Can be list, dict, or dataframe.
+    is_dataframe : bool, optional
+        If True, render the data as a dataframe.
+    expanded : bool, optional
+        Whether the expander should be expanded initially.
+    """
+    with st.expander(title, expanded=expanded):
         if is_dataframe:
             st.dataframe(data)
         elif isinstance(data, list):

@@ -391,6 +391,7 @@ class LofnApp:
                 panel_text = st.session_state.get('custom_panel', '')
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
                 input_text = template.replace('{Meta-Prompt}', meta_prompt['meta_prompt']).replace('{Panel-prompt}', panel_text)
+                display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(

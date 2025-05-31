@@ -27,8 +27,7 @@ from helpers import (
     send_to_discord,
     parse_output,
     display_facets,
-    display_creativity_spectrum,
-    display_style_axes,
+    display_creativity_and_style_axes,
 )
 import plotly.graph_objects as go
 import random
@@ -1227,12 +1226,16 @@ def generate_concept_mediums(
                 chains, input_text, max_retries, debug, style_axes, creativity_spectrum, model
             )
             if essence_and_facets:
-                if st.session_state.creativity_spectrum is None:
-                    display_creativity_spectrum(essence_and_facets["essence_and_facets"]["creativity_spectrum"])
-                else:
-                    display_creativity_spectrum(st.session_state.creativity_spectrum)
+                spectrum = (
+                    essence_and_facets["essence_and_facets"]["creativity_spectrum"]
+                    if st.session_state.creativity_spectrum is None
+                    else st.session_state.creativity_spectrum
+                )
+                display_creativity_and_style_axes(
+                    spectrum,
+                    essence_and_facets["essence_and_facets"]["style_axes"],
+                )
                 display_facets(essence_and_facets["essence_and_facets"]["facets"])
-                display_style_axes(essence_and_facets["essence_and_facets"]["style_axes"])
             
             # Step 2: Concepts
             status.write("Generating Concepts...")
@@ -1407,12 +1410,16 @@ def generate_music_prompts(
             debug=debug,
             expected_schema = music_facets_schema
         )
-        if st.session_state.creativity_spectrum is None:
-            display_creativity_spectrum(output_essence["essence_and_facets"]["creativity_spectrum"])
-        else:
-            display_creativity_spectrum(st.session_state.creativity_spectrum)
+        spectrum = (
+            output_essence["essence_and_facets"]["creativity_spectrum"]
+            if st.session_state.creativity_spectrum is None
+            else st.session_state.creativity_spectrum
+        )
+        display_creativity_and_style_axes(
+            spectrum,
+            output_essence["essence_and_facets"]["style_axes"],
+        )
         display_facets(output_essence["essence_and_facets"]["facets"])
-        display_style_axes(output_essence["essence_and_facets"]["style_axes"])
 
         gen_chain = (
             ChatPromptTemplate.from_messages([("human", music_creation_prompt)])
@@ -1568,6 +1575,11 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
                     st.write(f"{i}. {guide['artistic_guide']}")
+            display_temporary_results(
+                "Artistic Guides",
+                [g['artistic_guide'] for g in artistic_guides['artistic_guides']],
+                expanded=False,
+            )
 
             # Step 3: Generate Image Prompts
             status.write("Generating Image Prompts...")
