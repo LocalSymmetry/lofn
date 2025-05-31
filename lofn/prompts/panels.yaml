@@ -168,3 +168,377 @@
     4. **Maruja Mallo** – surreal egg-tempera luminosity
     5. **Jacek Yerka** – acrylic dream-scape micro-detail
     6. **Hector Garrido** – macro-lens natural-light insect sparkle
+- name: Alloy Reliquary
+  prompt: |
+    ## Special Flairs 
+    1 Rib Vault Servo  2 Oxidised Copper Patina  3 Bio-Lum Teal Drip  4 Arterial Crimson Vein  5 Spinal Colonnade
+    6 Valve Stained-Glass  7 Cog-Rosette Halo  8 Iron Lung Choir Haze  9 Vapor Incense Plume  10 Heart-Forge Glow
+    11 Servo-Angel Silhouette  12 Rust-Spore Speck  13 Mirrored Nerve Ribbon  14 Pulse Oscilloscope Window  15 Sanctum Static
+
+    ## Concept Panel
+    1 Kris Kuksi – gothic gear assemblages  
+    2 Erica Pong – surreal biomech portraiture  
+    3 Takato Yamamoto – Heisei esthetic necrotech ornament  
+    4 Filip Hodas – decayed mech relic renders  
+    5 **Zdzisław Beksiński** – master of cathedralesque dread composition  
+    6 **Camille Paglia** – devil’s-advocate cultural theorist
+
+    ## Medium Panel
+    1 H.R. Giger – airbrush necromechanica  
+    2 Kris Kuksi – mixed-media bone-gear reliefs  
+    3 Android Jones – fractal VR sculpting  
+    4 Hajime Sorayama – chrome aerograph gynoids  
+    5 Patricia Piccinini – silicone bio-morph statues  
+    6 Wim Delvoye – laser-cut steel gothic filigree
+
+- name: Autumn Petal Tempest
+  prompt: |
+    ## Special Flairs
+    1 Ember-Rose Drift  2 Saffron Leaf Flurry  3 Copper Curl Strand  4 Wind-Whorl Filigree  5 Oxidised Gold Speck  
+    6 Velvet Shadow Loop  7 Craquelure Glow Vein  8 Petal-Fold Chevron  9 Prism-Dust Swirl  10 Flutter-Blur Edge  
+    11 Ash-Tipped Stamen  12 Charcoal Mist Grain  13 Spiral Vine Hair  14 Punctum Pollen Flash  15 Glimmer Gust Halo  
+
+    ## Concept Panel
+    1 Victo Ngai – intricate swirls & narrative hair flows  
+    2 Tran Nguyen – melancholic florals in soft inks:contentReference[oaicite:6]{index=6}  
+    3 Lita Cabellut – cracked monumental portraits (texture depth)  
+    4 Julie Heffernan – baroque dream botanicals:contentReference[oaicite:7]{index=7}  
+    5 **Gustav Klimt** – master of ornamental placement (gilded accents)  
+    6 **Clement Greenberg** – devil’s-advocate formalist critic  
+
+    ## Medium Panel
+    1 Ron Young – color-shift patina washes on panel:contentReference[oaicite:8]{index=8}  
+    2 Chris Maynard – scalpel-cut feather filigree  
+    3 Kay Nielsen – gold-leaf fairy-tale illustration  
+    4 Etsuko Ichikawa – fire-glass smoke impressions  
+    5 Refik Anadol – data-driven petal particle holograms  
+    6 Anna Atkins – cyanotype botanical ghosts
+
+
+- name: Lunar Bloom Sentinel
+  prompt: |
+    ## Special Flairs
+    1 Moon-Halo Flare  2 Solar Gold Dust  3 Rose-Iron Filigree  4 Tidal Hair Strand  5 Crest-Plate Lattice  
+    6 Candle-Glow Pistil  7 Prism-Mist Bloom  8 Armor Scroll Etch  9 Orbital Petal Drift  10 Night-Gilt Speckle  
+    11 Ebony Star Grain  12 Silk-Inferno Ribbon  13 Dawn-Edge Rim  14 Spiral Vine Plait  15 Nectar Spark Echo  
+
+    ## Concept Panel
+    1 Filip Hodas – gilded post-apocalyptic metal renders:contentReference[oaicite:14]{index=14}  
+    2 James Jean – prismatic surreal blossoms:contentReference[oaicite:15]{index=15}  
+    3 Takashi Murakami – pop-flower armour mashups:contentReference[oaicite:16]{index=16}  
+    4 Kate MccGwire – feather vortices for hair accents:contentReference[oaicite:17]{index=17}  
+    5 **Hajime Sorayama** – chrome biomorphic form placement  
+    6 **Paul Virilio** – devil’s-advocate speed/war theorist  
+
+    ## Medium Panel
+    1 Hajime Sorayama – aerograph chrome armour  
+    2 Neri Oxman – bio-printed flower-metal hybrids  
+    3 Patricia Piccinini – silicone bloom-tech forms  
+    4 Hiroshi Sugimoto – long-exposure moon discs  
+    5 Diana Scherer – root-grown textile hairpieces  
+    6 Refik Anadol – light-field moon-petal holograms
+
+
+- name: Patina Moonblade Crown
+  prompt: |
+    ## Special Flairs
+    1 Oxidised Crescent Halo 2 Rust-Rose Fleck 3 Moon-Steel Etch 4 Lotus-Blade Arc 5 Blood-Petal Mist  
+    6 Verdigris Vein Glow 7 Corten Ember Speck 8 Ember-Ash Down 9 Frost-Shadow Tassel 10 Gold-Kintsugi Crack  
+    11 Prism-Edge Frost 12 Hollow Star Chant 13 Echo Slash Lumen 14 Violet Night Vignette 15 Halo Dust Drift
+
+    ## Concept Panel
+    1 Rosamond Purcell – decayed specimen aesthetics  
+    2 Zdzisław Beksiński – gothic lunar dread
+    3 Julie Heffernan – dreamlike baroque florals 
+    4 Filip Hodas – metallic moon ruins 
+    5 Liam Wong – noir moonlit palettes
+    6 **Camille Paglia** – devil’s-advocate baroque-decadence critic  
+
+    ## Medium Panel
+    1 Ron Young – bronze-patina chemistries
+    2 Kate MccGwire – rust-tinged feathers  
+    3 Kris Kuksi – gilt armor assemblage 
+    4 Pejac – oxidation illusions on glass 
+    5 Refik Anadol – moon-phase data sculpture
+    6 Etsuko Ichikawa – fire-glass smoke ribbons
+
+- name: Necro-Baroque Emberglass
+  prompt: |
+    ## Special Flairs 
+    1 Magma Vein Filigree– molten rivers tracing ornate curls  
+    2 Sanguine Resin Drip– blood-red resin droplet highlights  
+    3 Obsidian Feather Crack– glossy black fracture in plume shape  
+    4 Teal Smoke Rift– cool vapor slash dividing warm tones  
+    5 Gold-Ash Halo– halo dusted with glowing ash and gilt  
+    6 Charcoal Bloom Scar– dark flower scar scorched into surface  
+    7 Violet Heat Glare– hot violet flare igniting edges  
+    8 Verdigris Plume Dust– turquoise dust wafting like old feathers  
+    9 Prism Ember Speck– tiny rainbow sparks amid soot  
+    10 Sapphire Rift Vein– blue crack slicing composition  
+    11 Ember-Rose Cloud– warm crimson smoke resembling petals  
+    12 Iron Soot Thread– thin line of metallic soot texture  
+    13 Molten Quartz Tear– crystal tear drop glowing from heat  
+    14 Pitted Mirror Spark– antique mirror pit catching light  
+    15 Lumen Cinder Drift– faint light motes drifting upward  
+
+    ## Concept Panel
+    1 Anselm Kiefer – alchemical impasto ruins in dark gold & ash  
+    2 Zdzisław Beksiński – Polish painter of apocalyptic bone realms  
+    3 Agostino Arrivabene – oil-wax baroque alchemist of myths  
+    4 Gerald Brom – fantasy painter of regal gothic dread  
+    5 Anne Stokes – illustrator of elegant dark-fantasy heroines  
+    6 Kara Walker – devil’s-advocate silhouette minimalist on power  
+
+    ## Medium Panel
+    1 Jodi Reeb – copper-based encaustic impasto for glowing patina  
+    2 Anselm Kiefer – lead, straw, ash layering for necro texture  
+    3 Shinichi Maruyama – molten-ink eruptions freezing dynamic heat  
+    4 Fabian Oefner – chromatic fluid fractures for ember shards  
+    5 El Anatsui – reclaimed-metal mosaics for reflective ruin  
+    6 Andrea Amelung – iron-powder patina blooms adding real oxidation  
+
+
+- name: Conceptual Maximalists
+  prompt: |
+    ## Special Flairs:
+    1. **Idea Density** – concepts per square inch
+    2. **Philosophical Overwhelm** – too many meanings to process
+    3. **Baroque Minimalism** – maximum content, minimum elements
+    4. **Recursive Symbolism** – symbols containing themselves
+    5. **Temporal Compression** – all of history in one frame
+    6. **Dimensional Overflow** – more dimensions than the eye can track
+    7. **Semantic Saturation** – every pixel means something
+    8. **Conceptual Tessellation** – ideas that fit together perfectly
+    9. **Meaning Cascade** – interpretations triggering more interpretations
+    10. **Intellectual Vertigo** – concepts that make you dizzy
+    11. **Theory as Texture** – philosophy you can touch
+    12. **Paradox Resolution** – impossible things making sense
+    13. **Cognitive Luxury** – more thought than necessary
+    14. **Epistemic Jewelry** – knowledge as decoration
+    15. **Ontological Architecture** – being itself as building
+
+    ## Concept Panel:
+    1. **Kehinde Wiley (1977–)** – maximal painter of power
+    2. **Takashi Murakami (1962–)** – superflat depth merchant
+    3. **KAWS (1974–)** – pop artist of hidden depths
+    4. **David Altmejd (1974–)** – Canadian sculptor of baroque excess
+    5. **Damien Hirst (1965–)** – conceptual artist of beautiful death
+    6. **Sol LeWitt (1928–2007, Devil's Advocate)** – would strip away ornament
+
+    ## Medium Panel:
+    1. **Daniel Arsham** – archaeologist of the future
+    2. **KAWS** – cartoon complexity
+    3. **Josh Sperling** – shaped canvas maximalist
+    4. **Katherine Bernhardt** – pattern painter of consumer culture
+    5. **Eddie Martinez** – raw energy refined
+    6. **Hieronymus Bosch** – eternal master of detailed chaos
+
+- name: Emotional Elevators
+  prompt: |
+    ## Special Flairs:
+    1. **Hope Particles** – light motes that lift spirits
+    2. **Nostalgia Glow** – warmth of good memories
+    3. **Wonder Moments** – childlike discovery
+    4. **Triumph Architecture** – compositions of victory
+    5. **Gentle Power** – strength without aggression
+    6. **Joyful Complexity** – busy but not stressful
+    7. **Comfort Geometry** – shapes that hug
+    8. **Aspirational Realism** – believable dreams
+    9. **Inclusive Magic** – everyone's invited
+    10. **Protective Beauty** – gorgeous shields
+    11. **Growth Visible** – transformation as positive
+    12. **Connection Lines** – showing relationships
+    13. **Possibility Spaces** – room for imagination
+    14. **Earned Rewards** – payoff for attention
+    15. **Universal Specific** – personal yet relatable
+
+    ## Concept Panel:
+    1. **Pascal Campion** – chronicler of perfect moments
+    2. **Mary Blair** – Disney artist of joyful color
+    3. **Shaun Tan** – illustrator of gentle profundity
+    4. **Chris Van Allsburg** – creator of accessible mystery
+    5. **Hayao Miyazaki** – master of wonder without condescension
+    6. **Edward Hopper (Devil's Advocate)** – would add necessary melancholy
+
+    ## Medium Panel:
+    1. **Victo Ngai** – illustrator of uplifting narratives
+    2. **Yuko Shimizu** – Japanese illustrator of flowing energy
+    3. **James Jean** – painter of accessible complexity
+    4. **Tran Nguyen** – surrealist of gentle dreams
+    5. **Amy Sol** – painter of quiet magic
+    6. **Norman Rockwell** – eternal master of emotional connection
+
+- name: Masters of Wonderful Strange
+  prompt: |
+    ## Special Flairs:
+    1. **Lucid Dream Logic** – surreal that follows emotional rules
+    2. **Gravity Optional** – floating elements that feel natural
+    3. **Scale Poetry** – size relationships that tell stories
+    4. **Soft Impossibility** – paradoxes that comfort rather than confuse
+    5. **Liquid Architecture** – buildings that flow and breathe
+    6. **Temporal Honey** – time moving like golden syrup
+    7. **Sympathetic Metamorphosis** – transformations that feel kind
+    8. **Ambient Magic** – wonder as atmosphere, not event
+    9. **Gentle Vertigo** – disorientation that delights
+    10. **Familiar Aliens** – strange things that feel like home
+    11. **Physics of Feeling** – natural laws based on emotion
+    12. **Comfortable Uncanny** – almost-right that intrigues
+    13. **Whimsical Precision** – playfulness with perfect technique
+    14. **Dream Documentation** – impossible moments captured perfectly
+    15. **Sublime Accessibility** – transcendence everyone understands
+
+    ## Concept Panel:
+    1. **Shaun Tan (1974–)** – Australian illustrator of gentle profound strange
+    2. **Rob Gonsalves (1959–2017)** – Canadian painter of magical realism
+    3. **Jacek Yerka (1952–)** – Polish painter of pastoral surrealism
+    4. **Vladimir Kush (1965–)** – Russian surrealist of visual metaphors
+    5. **Michael Cheval (1966–)** – Russian artist of absurdist joy
+    6. **René Magritte (1898–1967, Devil's Advocate)** – would ensure conceptual clarity
+
+    ## Medium Panel:
+    1. **Gediminas Pranckevicius** – Lithuanian digital artist of cozy impossible worlds
+    2. **Cyril Rolando** – French digital painter of emotional surrealism
+    3. **Alexander Jansson** – Swedish artist of whimsical darkness
+    4. **Loish** – Dutch digital artist of flowing beauty
+    5. **Julie Dillon** – American illustrator of luminous fantasy
+    6. **Hayao Miyazaki** – eternal master of wonderful strange
+
+- name: Emotion Architects
+  prompt: |
+   ## Special Flairs:
+    1. **Feeling Frequencies** – colors that vibrate with emotion
+    2. **Nostalgic Futures** – tomorrow's yesterday, perfectly preserved
+    3. **Intimate Infinities** – vast spaces that feel personal
+    4. **Tender Power** – strength expressed through gentleness
+    5. **Melancholy Joy** – happiness with beautiful shadows
+    6. **Hopeful Ruins** – decay that promises rebirth
+    7. **Quiet Triumphs** – victories without violence
+    8. **Luminous Longing** – desire made visible as light
+    9. **Protective Wonder** – magic that shields and shelters
+    10. **Shared Solitude** – alone together in beauty
+    11. **Gentle Revelations** – discoveries that don't disturb
+    12. **Emotional Geography** – landscapes shaped by feelings
+    13. **Compassionate Observation** – seeing with love
+    14. **Resonant Silence** – quiet that speaks volumes
+    15. **Universal Intimacy** – personal moments everyone shares
+
+    ## Concept Panel:
+    1. **Andrew Wyeth (1917–2009)** – American painter of emotional landscapes
+    2. **Eyvind Earle (1916–2000)** – Disney artist of stylized emotion
+    3. **Makoto Shinkai (1973–)** – Japanese director of beautiful loneliness
+    4. **Pascal Campion (1973–)** – French-American artist of perfect moments
+    5. **Edward Hopper (1882–1967)** – American painter of eloquent isolation
+    6. **Norman Rockwell (1894–1978, Devil's Advocate)** – would keep it relatable
+
+    ## Medium Panel:
+    1. **Alena Aenami** – Digital painter of emotional atmospheres
+    2. **Jordan Grimmer** – British environment artist of moody beauty
+    3. **Sylvain Sarrailh** – French artist of luminous worlds
+    4. **Atey Ghailan** – Lebanese artist of evocative environments
+    5. **Simon Stålenhag** – Swedish artist of nostalgic futures
+    6. **J.M.W. Turner** – eternal master of emotional light 
+
+- name: Technical Poets
+  prompt: |
+    ## Special Flairs:
+    1. **Effortless Mastery** – difficulty invisible in result
+    2. **Singing Surfaces** – textures with perfect pitch
+    3. **Orchestrated Light** – illumination as symphony
+    4. **Precision Dreams** – sharp focus on soft subjects
+    5. **Calculated Wonder** – mathematics of amazement
+    6. **Deliberate Accidents** – controlled spontaneity
+    7. **Refined Rawness** – polish that preserves life
+    8. **Technical Tenderness** – skill in service of feeling
+    9. **Visible Invisible** – showing what can't be seen
+    10. **Perfect Imperfection** – flaws that complete
+    11. **Dimensional Poetry** – depth as verse
+    12. **Chromatic Conversations** – colors in dialogue
+    13. **Structural Emotion** – composition as feeling
+    14. **Rendered Dreams** – impossible made tangible
+    15. **Accessible Virtuosity** – skill that invites rather than intimidates
+
+    ## Concept Panel:
+    1. **John Singer Sargent (1856–1925)** – master of effortless excellence
+    2. **Joaquín Sorolla (1863–1923)** – Spanish painter of liquid light
+    3. **Anders Zorn (1860–1920)** – Swedish virtuoso of the moment
+    4. **Dean Cornwell (1892–1960)** – American illustrator of golden age
+    5. **N.C. Wyeth (1882–1945)** – painter of epic intimacy
+    6. **Andrew Loomis (1892–1959, Devil's Advocate)** – would insist on fundamentals
+
+    ## Medium Panel:
+    1. **Ruan Jia** – Chinese digital master of light
+    2. **Wlop** – Digital painter of ethereal beauty
+    3. **Ilya Kuvshinov** – Russian-Japanese artist of emotional portraits
+    4. **Ross Tran** – American artist of vibrant life
+    5. **Craig Mullins** – Digital painting pioneer
+    6. **John William Waterhouse** – eternal master of technical poetry
+
+- name: Wonder Engineers
+  prompt: |
+    ## Special Flairs:
+    1. **Discovery Dynamics** – compositions that reveal gradually
+    2. **Surprise Structures** – expected elements in unexpected arrangements
+    3. **Delight Delivery** – guaranteed moments of joy
+    4. **Wonder Waypoints** – visual rest stops for the mind
+    5. **Magic Mechanics** – showing how impossible works
+    6. **Awe Architecture** – building amazement systematically
+    7. **Enchantment Economics** – maximum wonder per pixel
+    8. **Miracle Management** – controlling the uncontrollable
+    9. **Sublime Systems** – organized transcendence
+    10. **Bewitching Balance** – equilibrium that mesmerizes
+    11. **Captivation Calculations** – mathematical beauty
+    12. **Fascination Frequencies** – rhythms that hold attention
+    13. **Marvel Mechanics** – how wonder operates
+    14. **Astonishment Algorithms** – patterns of amazement
+    15. **Revelation Rates** – pacing the unveiling of magic
+
+    ## Concept Panel:
+    1. **M.C. Escher (1898–1972)** – Dutch artist of mathematical wonder
+    2. **Roger Dean (1944–)** – British artist of organic architecture
+    3. **Syd Mead (1933–2019)** – American futurist of lived-in tomorrow
+    4. **Chris Foss (1946–)** – British illustrator of colorful futures
+    5. **Wayne Barlowe (1958–)** – American artist of believable aliens
+    6. **Leonardo da Vinci (1452–1519, Devil's Advocate)** – would demand more invention
+
+    ## Medium Panel:
+    1. **Dylan Cole** – Matte painter of impossible vistas
+    2. **Marc Simonetti** – French artist of epic fantasy
+    3. **Raphael Lacoste** – Environment artist extraordinaire
+    4. **Karla Ortiz** – Concept artist bridging all mediums
+    5. **James Paick** – Master of atmospheric environments
+    6. **Albert Bierstadt** – eternal master of overwhelming beauty
+
+- name: Dark Matter Patiners
+  prompt: |
+    ## Special Flairs:
+    1. **Tar Pit Textures** – black paint with infinite depth
+    2. **Nocturnal Radiance** – light emerging from darkness
+    3. **Shadow Substance** – darkness as physical material
+    4. **Void Construction** – building with negative space
+    5. **Obsidian Reflection** – black surfaces that mirror soul
+    6. **Midnight Archaeology** – excavating meaning from darkness
+    7. **Coal Seam Richness** – finding color in black
+    8. **Abyssal Architecture** – structures built from shadow
+    9. **Charred Beauty** – aftermath aesthetics
+    10. **Gravitational Paint** – heavy pigments pulling downward
+    11. **Pitch Variations** – infinite grades of black
+    12. **Darkness Visible** – Milton's paradox in paint
+    13. **Soot and Stars** – cosmic dirt as medium
+    14. **Umbral Presence** – shadows with weight
+    15. **Black Light** – darkness that illuminates
+
+    ## Concept Panel:
+    1. **Pierre Soulages (1919–2022)** – French master of "outrenoir" (beyond black)
+    2. **Alberto Burri (1915–1995)** – Italian artist burning and tarring surfaces
+    3. **Kazimir Malevich (1879–1935)** – suprematist who found infinity in black
+    4. **Ad Reinhardt (1913–1967)** – abstract expressionist painting "the last paintings"
+    5. **Franz Kline (1910–1962)** – gestural abstractions in architectural black
+    6. **Caravaggio (1571–1610, Devil's Advocate)** – would demand light define darkness
+
+    ## Medium Panel:
+    1. **Anish Kapoor** – sculptor claiming ownership of the blackest black
+    2. **Robert Motherwell** – contemporary heir to abstract expressionist darkness
+    3. **Lynette Yiadom-Boakye** – fictitious portraits emerging from dark grounds
+    4. **Michael Armitage** – East African painter on lubugo bark cloth
+    5. **Tal R** – Danish artist finding joy in darkness
+    6. **Goya** – eternal master of black paintings and dark visions

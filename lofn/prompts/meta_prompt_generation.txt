@@ -2,7 +2,7 @@ You are an expert competition strategist generating a new meta-prompt for an art
 Use the following example as a style guide. Mirror its structure and tone while adapting it to the provided competition text.
 Return only a single JSON object with the field "meta_prompt" containing your new meta-prompt.
 
-### Example
+### Example 1 - For Masterpiece Monday
 I want a breathtaking, subtly surreal, emotionally precise, and technically sorcerous portrayal of "An uncommon moment when ordinary magic becomes visible to those who truly see" for a Masterpiece Monday competition.
 
 Let's create a scroll-stopping image that rewards every second of viewing—something that feels like discovering a secret that was always there, waiting for the right eyes.
@@ -31,9 +31,59 @@ For each concept and medium during the concept and medium phases, strategically 
 
 The primary focus: create "discovery moments"—images that make viewers feel they've found something precious that was waiting just for them; Secondary focus: color relationships so bold they shouldn't work but create new harmonies.
 
+### Example 2 - Female Portrait
+I want a visually intense, artistic, emotionally evocative, and enchanting portrayal of "A woman beautifully expressing her heartfelt deep emotion through ethereal metamorphosis." for a Masterpiece Monday competition.
+
+Let's conjure a masterwork in which a stunning woman expresses a powerful and deep emotion while undergoing a liminal transformation in a narrative driven scene. 
+
+Begin with a single-sentence and a complex emotion that creates an impactful scene seed capturing a pivotal moment of change viewers grasp at a glance. Set the time period, protagonist, and the manifestation of transformation. Clever ideas and non-canonical takes are preferred and rewarded, but keep it simple to follow.
+
+For each concept and medium during the concept and medium phases, distinctly and singularly decide:
+— Primary medium – one rare, visually impactful, and beautiful base surface medium (photography, film, paper, canvas, paint, ink, drawing, print, composite, acrylic, oils, pastels, charcoal, etc).
+— Highlight medium: pick an unconventional, loud and colorful accent medium and restrict it to the woman's eyes, makeup, transformation elements, and other accents.
+— Transformation medium: choose a translucent or luminous overlay technique (double exposure, reflection, glass, water, crystal, light) to portray the metamorphosis.
+— Deep emotional axis – choose a complex mood felt within five seconds to be the reflection in the seed. Find a flavor of defiance that she will express.
+— Secondary emotional lens – layer a complementary yet contrasting feeling. Add context to the defiance.
+— Narrative expansion – expand the seed into a succinct surreal vignette, casting the woman as catalyst, witness, or vessel of transformation.
+— Unanswered question – add one visual clue that makes viewers wonder what happens next in the story.
+— Focal hierarchy – three attention tiers with all else subdued, ensuring the transformation is the primary focus.
+— Negative space – reserve ~10% of the frame as breathing room via an unimportant background swath. Describe the space to bring it into the image.
+— Subject specifics – independently determine age, body type, ethnicity, clothing, skin tone, eyes, makeup, beauty marks, facial expression and artistically inspired portrayal that reinforces the chosen emotion. Describe how the transformation manifests physically.
+— Dynamic color puzzle – a limited color palette that breaks color rules and norms for impact. Err on two to four primary tones, making sure at least one is set for the main body, one for the transformation effect, and one is set for beautiful accents. The goal is instant impact when viewed at thumbnail resolutions like 128px. The woman must stand out, and feel free to break color norms to make sure she is stunning!
+— Texture gating: apply visually alluring micro-textures to important focal points to draw attention and keep their gaze when looking close.
+— Master-stroke embellishments – weave in at least three style-effects for micro-texture zoom rewards.
+
+The primary focus should be an emotional punch that fuses beauty, transformation, and resonance; the secondary focus is a stunning work of art that garners high vote counts through its innovative use of metamorphic visual language.
+
+
+### Example 3 - Fairy Competition
+I want a visually intense, artistic, emotionally evocative, and colorful portrayal of “A Fairy in a visually stunning scene” for a Masterpiece Monday competition.
+
+Let’s conjure a masterwork in which a beautiful and maximal fairy with vibrant attire and ornate wings standing in a beautiful and narrative driven scene placed from the 1900s through 2025.
+
+Begin with a single-sentence and a complex emotion that creates an impactful scene seed that captures a pivotal moment viewers grasp at a glance.
+
+For each concept and medium during the concept and medium phases, distinctly and singularly decide:
+— Primary medium – one rare, visually impactful, and beautiful base surface medium (photography, film, paper, canvas, paint, ink, drawing, print, composite, or digital).
+— Highlight medium: pick an unconventional, loud and colorful accent medium and restrict it to the fairy's eyes, wings, and accents.
+— Deep emotional axis – choose a complex mood felt within five seconds to be the reflection in the seed.
+— Secondary emotional lens – layer a complementary yet contrasting feeling.
+— Narrative expansion – expand the seed into a succinct surreal vignette, casting the fairy as catalyst, witness, or vessel.
+— Unanswered question – add one visual clue that makes viewers wonder what happens next in the story.
+— Focal hierarchy – three attention tiers with all else subdued.
+—  Negative space – reserve ~10 % of the frame as breathing room via an unimportant background swath. Describe the space to bring it into the image.
+—  Subject specifics – independently determine time period, age, body type, ethnicity, skin tone, clothing (with descriptors of each visible piece), eyes, makeup, magical effects, beauty marks, and most importantly: artistically inspired wings that reinforce the chosen emotion. Make sure the fairy is completely described
+— Dynamic color puzzle – a limited color palette that breaks color rules and norms for impact. Err on two to four primary tones, making sure at least one is set for the main body, and one is set for beautiful accents. The goal is instant impact when viewed at thumbnail resolutions like 128px. However, break norms as needed to make the fairy stand out!
+— Texture gating: apply visually alluring micro-textures to important focal points to draw attention and keep their gaze when looking close.
+— Master-stroke embellishments – weave in at least three style-effects for micro-texture zoom rewards.
+
+The primary focus should be an emotional punch that fuses mystique and resonance; the secondary focus is a stunningly beautiful work of art that garners high vote counts. 
+
 ### Competition Text
 {input}
 
 ### Instructions
 - Craft a new meta-prompt in the same spirit as the example.
 - Integrate the competition text seamlessly, keeping language vivid and inspirational.
+
+
