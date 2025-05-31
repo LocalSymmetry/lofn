@@ -16,3 +16,7 @@ class Config:
     OPEN_ROUTER_API_KEY = os.environ.get('OPEN_ROUTER_API_KEY', '')
     GOOGLE_PROJECT_ID = os.getenv('GOOGLE_PROJECT_ID')
     RUNWAYML_API_KEY = os.getenv("RUNWAYML_API_KEY", "")
+
+    # Local LLM configuration (for OpenAI-compatible local servers)
+    LOCAL_LLM_API_BASE = os.environ.get('LOCAL_LLM_API_BASE', '')
+    LOCAL_LLM_API_KEY = os.environ.get('LOCAL_LLM_API_KEY', '')

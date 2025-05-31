@@ -246,6 +246,21 @@ Lofn provides extensive image generation options:
 
    - In the Lofn UI, select OpenRouter models prefixed with `OR-` from the **Language Model** dropdown.
 
+### Using a Local LLM
+
+If you have a language model running locally that exposes an OpenAI-compatible API (for example via Ollama or a text-generation web UI), Lofn can connect to it.
+
+1. **Configure Lofn**:
+   - Add your local server's base URL to `config.yaml` (and an optional key if required):
+
+   ```yaml
+   LOCAL_LLM_API_BASE: "http://localhost:8000/v1"
+   LOCAL_LLM_API_KEY: ""
+   ```
+
+2. **Select the Local Model in the UI**:
+   - Choose a model name prefixed with `LOCAL-` (e.g., `LOCAL-llama3`). The name after `LOCAL-` is sent directly to your local server.
+
 ### Google Imagen 3 Integration
 
 **Google Imagen 3** is a state-of-the-art text-to-image model that produces photorealistic visuals with exceptional composition, sharpness, color accuracy, and resolution. Lofn integrates Google Imagen 3 for elevated image generation capabilities.
