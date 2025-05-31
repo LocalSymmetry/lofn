@@ -324,8 +324,40 @@ class LofnApp:
     def render_image_generation(self):
         self.render_image_main_container()
 
+    def render_progress_dashboard(self):
+        steps = ["Concepts", "Prompts", "Images"]
+        progress = st.session_state.get('progress_step', 0)
+        st.markdown("<div class='progress-dashboard'>", unsafe_allow_html=True)
+        st.progress(progress / len(steps))
+        cols = st.columns(len(steps))
+        for i, step in enumerate(steps):
+            label = f"Step {i+1}: {step}"
+            if progress > i:
+                cols[i].markdown(f"**{label}** :white_check_mark:")
+            elif progress == i:
+                cols[i].markdown(f"**{label}** :arrow_right:")
+            else:
+                cols[i].markdown(label)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        if st.session_state.get('style_axes'):
+            with st.expander("Style Axes", expanded=False):
+                display_style_axes(st.session_state['style_axes'])
+        if st.session_state.get('creativity_spectrum'):
+            with st.expander("Creativity Spectrum", expanded=False):
+                display_creativity_spectrum(st.session_state['creativity_spectrum'])
+        if st.session_state.get('essence_and_facets_output'):
+            facets = st.session_state['essence_and_facets_output'].get('essence_and_facets', {}).get('facets', [])
+            if facets:
+                with st.expander("Facets", expanded=False):
+                    display_facets(facets)
+        if st.session_state.get('prompts_df') is not None and not st.session_state['prompts_df'].empty:
+            with st.expander("Latest Prompt", expanded=False):
+                st.code(st.session_state['prompts_df'].iloc[0]['Revised Prompts'], language='')
+
     def render_image_main_container(self):
         st.header("Generate Your Art Concept")
+        self.render_progress_dashboard()
 
         # The user’s idea. Tying it to session_state so it does not vanish
         st.subheader("Describe Your Idea")
@@ -355,6 +387,7 @@ class LofnApp:
                     self.generate_prompts_for_manual_input(manual_concept, manual_medium)
 
         # Process Flow Control
+        st.markdown("<div class='sticky-action-bar'>", unsafe_allow_html=True)
         if st.button("Generate Concepts"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
@@ -366,6 +399,7 @@ class LofnApp:
                 st.warning("Please provide a description of your idea.")
             else:
                 self.run_competition()
+        st.markdown("</div>", unsafe_allow_html=True)
 
         # If we have concept_mediums, display them
         if 'concept_mediums' in st.session_state and st.session_state['concept_mediums']:
@@ -374,6 +408,7 @@ class LofnApp:
     def generate_concepts(self):
         try:
             st.session_state['concept_mediums'] = []
+            st.session_state['progress_step'] = 0
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
                 meta_prompt = generate_meta_prompt(
@@ -401,6 +436,7 @@ class LofnApp:
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
+            st.session_state['progress_step'] = 1
             # Store the updated axes back in session state
             st.session_state['style_axes'] = style_axes
             st.session_state['creativity_spectrum'] = creativity_spectrum
@@ -448,6 +484,7 @@ class LofnApp:
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
+            st.session_state['progress_step'] = 2
             self.display_prompts(prompts_df, pair)
         except Exception as e:
             st.error(f"An error occurred while generating prompts for '{pair['concept']}'.")
@@ -471,6 +508,7 @@ class LofnApp:
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
+            st.session_state['progress_step'] = 2
             self.display_prompts(prompts_df, {'concept': concept, 'medium': medium})
         except Exception as e:
             st.error(f"An error occurred while generating prompts for '{concept}'.")
@@ -517,6 +555,7 @@ class LofnApp:
                     reasoning_level=st.session_state['reasoning_level']
                 )
             st.success(f"Images generated for '{pair['concept']}'")
+            st.session_state['progress_step'] = 3
         except Exception as e:
             st.error(f"An error occurred while generating images for '{pair['concept']}'.")
             logger.exception("Error generating images: %s", e)
@@ -727,6 +766,7 @@ class LofnApp:
             'creativity_spectrum': None,
             'style_axes': None,
             'input': '',
+            'progress_step': 0,
             'reasoning_level': 'medium',  # default reasoning if user doesn't set
         }
 

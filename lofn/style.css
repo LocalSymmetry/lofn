@@ -64,3 +64,22 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Garamond", serif;
     color: #333333;
 }
+
+.progress-dashboard {
+    background-color: #FFFFFF;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 49;
+}
+
+.sticky-action-bar {
+    position: sticky;
+    bottom: 0;
+    background-color: #FFFFFF;
+    padding: 0.5rem;
+    border-top: 1px solid #E0E0E0;
+    z-index: 50;
+}
