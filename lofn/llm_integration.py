@@ -628,6 +628,15 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 temperature=temperature,
                 max_tokens=max_tokens
             )
+        elif model.startswith("LOCAL-"):
+            model_name = model[6:]
+            return ChatOpenAI(
+                model=model_name,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                openai_api_key=Config.LOCAL_LLM_API_KEY,
+                openai_api_base=Config.LOCAL_LLM_API_BASE,
+            )
         elif model.startswith("gpt"):
             return ChatOpenAI(
                 model=model,
