@@ -35,6 +35,7 @@ Lofn is an open-source advanced AI art generator that utilizes cutting-edge natu
 - **Advanced Image and Video Generation**: Supports multiple image models and integrates with Runway Gen-3 Alpha for video generation.
 - **Discord Integration**: Send generated prompts directly to a Discord channel for seamless use with platforms like Midjourney.
 - **Ethical AI Art Generation**: Incorporates guidelines to ensure ethically generated content respecting cultural sensitivities.
+- **Competition Mode**: Provides streamlined prompts and caption-only output for entering art contests.
 
 ## Installation
 
@@ -323,6 +324,20 @@ Lofn has received notable recognition in the AI art community:
   - !["The radiant sea" - Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)
 
   - !["The fluffiest kaiju" - Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)
+
+- **Multiple Awards on NightCafe**:
+  - [Beauty in Self-Discovery (1st Place)](https://creator.nightcafe.studio/creation/9pBTZqsb8mL68eICN0fQ/beauty-in-self-discovery)
+  - [Being Devoured by the Role (1st Place)](https://creator.nightcafe.studio/creation/sTCVSEvNHCLeH4we1flz/being-devoured-by-the-role)
+  - [Petals Kiss the Tide (1st Place)](https://creator.nightcafe.studio/creation/BkeXWbTdNBfbHwGDC5P1/petals-kiss-the-tide)
+  - [Enchanted Dark Fairy Perches on Crescent Moon (1st Place)](https://creator.nightcafe.studio/creation/3mkwi8o1LwmdgzbTS8xV/enchanted-dark-fairy-perches-on-crescent-moon)
+  - [Esteemed Opulance (2nd Place)](https://creator.nightcafe.studio/creation/5RudpALqturEp2yAPYRY/esteemed-opulance)
+  - [Constellation of Gilded Dreams (2nd Place)](https://creator.nightcafe.studio/creation/ezCIINKpwrzFFbIdZD7E/constellation-of-gilded-dreams)
+  - [Sylphlike Grace (2nd Place)](https://creator.nightcafe.studio/creation/Y2Xl5jpTw0O2tADlIoRa/sylphlike-grace)
+  - [A Flashy Tidecall (2nd Place)](https://creator.nightcafe.studio/creation/8BW9YKxCCn11YcFHk0jq/a-flashy-tidecall)
+  - [Whiskers at Midnight (2nd Place)](https://creator.nightcafe.studio/creation/UsZfT7VXVXH8xa3xtHxl/whiskers-at-midnight)
+  - [A Sinuous Presence (3rd Place)](https://creator.nightcafe.studio/creation/kOS5MuV0XknCcKPfc6Et/a-sinuous-presence)
+
+Follow Lofn at [LocalSymmetry on NightCafe](https://creator.nightcafe.studio/u/LocalSymmetry) for more competition entries.
 
 ## Examples
 

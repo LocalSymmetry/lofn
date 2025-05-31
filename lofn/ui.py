@@ -160,8 +160,6 @@ class LofnApp:
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
-
-
         st.session_state['competition_mode'] = st.sidebar.checkbox(
             'Competition Mode', value=st.session_state.get('competition_mode', False)
         )
