@@ -489,9 +489,29 @@ class LofnApp:
 
     def run_competition(self):
         self.generate_concepts()
-        selected = list(range(min(st.session_state.get('num_best_pairs', 3), len(st.session_state.get('concept_mediums', [])))))
-        for idx in selected:
-            pair = st.session_state['concept_mediums'][idx]
+        pairs = st.session_state.get('concept_mediums', [])
+        if not pairs:
+            return
+        try:
+            with st.spinner("Panel voting on best pairs..."):
+                best_pairs = select_best_pairs(
+                    st.session_state['prompt_input'],
+                    pairs,
+                    st.session_state.get('num_best_pairs', 3),
+                    self.max_retries,
+                    self.temperature,
+                    self.model,
+                    self.debug,
+                    st.session_state.get('reasoning_level', 'medium'),
+                )
+            st.session_state['best_pairs'] = best_pairs
+            st.success("Best pairs selected by panel")
+        except Exception as e:
+            st.error("An error occurred while selecting best pairs.")
+            logger.exception("Error selecting best pairs: %s", e)
+            best_pairs = pairs[:min(st.session_state.get('num_best_pairs', 3), len(pairs))]
+
+        for pair in best_pairs:
             self.generate_prompts_for_pair(pair)
 
     def generate_images(self, prompts_df, pair):

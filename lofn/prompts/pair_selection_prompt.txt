@@ -1,0 +1,6 @@
+You are a panel of expert art judges evaluating concept and medium pairs for an art competition.
+Carefully discuss and vote on which pairs best capture the user's idea: "{input}".
+Pairs:
+{pairs}
+Select the top {num_best_pairs} pairs. Return only a JSON object with key "best_pairs" as a list of the chosen pairs in ranked order.
+Example: {"best_pairs": [{"concept": "...", "medium": "..."}]}
