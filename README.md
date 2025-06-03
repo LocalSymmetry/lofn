@@ -36,6 +36,7 @@ Lofn is an open-source advanced AI art generator that utilizes cutting-edge natu
 - **Discord Integration**: Send generated prompts directly to a Discord channel for seamless use with platforms like Midjourney.
 - **Ethical AI Art Generation**: Incorporates guidelines to ensure ethically generated content respecting cultural sensitivities.
 - **Competition Mode**: Provides streamlined prompts and caption-only output for entering art contests.
+- **Self Voting**: Automatically ranks concept-medium pairs using an expert panel to pick the strongest ideas.
 
 ## Installation
 
@@ -144,6 +145,10 @@ Alternatively, you can use the provided `Dockerfile` and `entrypoint.sh` scripts
    - Optionally, generate video prompts compatible with Runway Gen-3 Alpha.
 
    ![Lofn UI 6](examples/lofn_ui_6.png)
+
+### Competition Mode and Self Voting
+
+When **Competition Mode** is enabled from the sidebar, Lofn creates a meta-prompt tailored for the contest text and convenes an expert panel. The panel self-votes on the generated concept and medium pairs, automatically ranking them from strongest to weakest. The top-ranked pairs are then used to generate prompts and images. Adjust the **Top Pairs** setting to control how many pairs advance or manually select favorites yourself.
 
 ## What Makes Lofn Unique
 
