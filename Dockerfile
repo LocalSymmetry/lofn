@@ -1,9 +1,9 @@
 # Lofn
 FROM python:3.10
 
-RUN pip install "openai<=1.58.1" "streamlit<=1.36.0" "anthropic<=0.31.0" "langchain-community<=0.3.8" "langchain-openai<=0.1.14" "langchain-anthropic<=0.1.19" "fastapi-poe" "modal" "langchain<=0.3.8"
+RUN pip install "openai<=1.58.1" "streamlit<=1.36.0" "anthropic<=0.51.0" "langchain-community<=0.3.8" "langchain-openai<=0.1.14" "langchain-anthropic<=0.3.13" "fastapi-poe" "modal" "langchain<=0.3.8"
 
-RUN pip install -qU  "defusedxml<=0.7.1" "plotly<=5.22.0" "json-repair<=0.25.3" "fal-client<=0.4.1" "google-generativeai<=0.7.2" "runware<=0.2.7" "google-cloud-aiplatform<=1.68.0"
+RUN pip install -qU  "defusedxml<=0.7.1" "plotly<=5.22.0" "json-repair<=0.25.3" "fal-client<=0.4.1" "google-genai<=1.19.0" "google-cloud-aiplatform<=1.68.0"
 
 EXPOSE 8501
 
