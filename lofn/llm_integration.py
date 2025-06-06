@@ -383,14 +383,27 @@ class GeminiLLM(LLM):
         #     )
         # else:
 
+        # Use thinking budget for Gemini 2.5 models that support it
+        if self.model_name.startswith("gemini-2.5-pro") or self.model_name.startswith("gemini-2.5-flash"):
+            generation_config = genai.types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(
+                    thinking_budget=self.thinking_budget
+                ),
+                max_output_tokens=self.max_tokens,
+                temperature=self.temperature,
+                stop_sequences=stop or [],
+            )
+        else:
+            generation_config = genai.types.GenerateContentConfig(
+                max_output_tokens=self.max_tokens,
+                temperature=self.temperature,
+                stop_sequences=stop or [],
+            )
+
         response = self.generative_model.models.generate_content(
             contents=prompt,
             model=self.model_name,
-            config= genai.types.GenerateContentConfig(
-                max_output_tokens=self.max_tokens,
-                temperature=self.temperature,
-                stop_sequences=stop or []
-            )
+            config=generation_config,
         )
 
         return response.text
@@ -533,6 +546,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-2.0-flash-exp": 8191,
             "gemini-2.5-pro-exp-03-25":120000,
             "gemini-2.5-pro-preview-05-06":120000,
+            "gemini-2.5-pro-preview-06-05":120000,
             "gemini-2.0-flash-thinking-exp": 32768,
             "gemini-2.0-pro-exp-02-05": 32768,
             "gemini-1.5-flash": 16384,
