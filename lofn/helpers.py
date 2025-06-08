@@ -13,6 +13,15 @@ import os
 from config import Config
 import plotly.graph_objects as go
 
+def set_style_axes(auto_style: bool, style_axes=None):
+    """Update st.session_state['style_axes'] respecting automatic mode."""
+    if auto_style:
+        if 'style_axes' not in st.session_state:
+            st.session_state['style_axes'] = None
+    else:
+        st.session_state['style_axes'] = style_axes
+    return st.session_state['style_axes']
+
 def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
