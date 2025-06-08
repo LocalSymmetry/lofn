@@ -86,9 +86,7 @@ def clean_json_string(json_string):
         return None
 
     json_string = json_string.strip()
-
-    # Remove newline characters that aren't inside quotes
-    json_string = remove_newlines_outside_quotes(json_string)
+    # Preserve newline characters to avoid corrupting valid JSON
 
     # Remove Markdown fences if they slipped through
     json_string = re.sub(r"^```(?:json)?", "", json_string, flags=re.IGNORECASE)
