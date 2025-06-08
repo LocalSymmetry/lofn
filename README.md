@@ -113,6 +113,7 @@ Alternatively, you can use the provided `Dockerfile` and `entrypoint.sh` scripts
    - **Image Generation Settings**: Choose the image model and adjust parameters such as image size, number of images, and more.
    - **Style Personalization**: Customize the style axes and creativity spectrum to influence the artistic output.
    - **Discord Integration**: Enable and configure if you wish to send prompts to a Discord channel.
+   - **Competition Mode**: Enabled by default for streamlined contest-ready prompts; toggle it off if not needed.
 
 3. **Generate Concepts**.
 
