@@ -44,3 +44,10 @@ def test_trailing_text_ignored():
     data, error = parse_output(output, {'foo': str})
     assert error is None
     assert data == {'foo': 'bar'}
+
+
+def test_curly_quotes_and_escapes_removed():
+    output = 'Intro {“foo”: “bar”, “num”: 3,\n"extra": 1}\nMore'
+    data, error = parse_output(output, {'foo': str, 'num': int, 'extra': int})
+    assert error is None
+    assert data == {'foo': 'bar', 'num': 3, 'extra': 1}
