@@ -71,22 +71,42 @@ def repair_json(json_string):
         st.write(f"Failed to repair JSON: {e}")
         return json_string
 
-def remove_newlines_outside_quotes(s: str) -> str:
-    """Remove newline and carriage return characters that are not within quotes."""
+def normalize_quotes(s: str) -> str:
+    """Replace curly quotes with straight quotes for valid JSON."""
+    replacements = {
+        "“": '"',
+        "”": '"',
+        "‘": "'",
+        "’": "'",
+        "«": '"',
+        "»": '"',
+    }
+    for old, new in replacements.items():
+        s = s.replace(old, new)
+    return s
+
+def remove_escapes_outside_quotes(s: str) -> str:
+    """Remove newline and tab escape sequences that appear outside quoted strings."""
     result = []
     in_quote = False
-    escape = False
-    for ch in s:
-        if ch == '"' and not escape:
+    i = 0
+    while i < len(s):
+        ch = s[i]
+        if ch == '"' and (i == 0 or s[i-1] != '\\'):
             in_quote = not in_quote
-        if ch == '\\' and not escape:
-            escape = True
-        else:
-            escape = False
-        if ch in ('\n', '\r') and not in_quote:
+            result.append(ch)
+            i += 1
+            continue
+        if not in_quote and ch == '\\' and i + 1 < len(s) and s[i+1] in 'nrt':
+            i += 2
+            continue
+        if not in_quote and ch in ('\n', '\r', '\t'):
+            i += 1
             continue
         result.append(ch)
+        i += 1
     return ''.join(result)
+
 
 def clean_json_string(json_string):
     """Lightly clean a JSON string extracted from a response."""
@@ -95,7 +115,12 @@ def clean_json_string(json_string):
         return None
 
     json_string = json_string.strip()
-    # Preserve newline characters to avoid corrupting valid JSON
+
+    # Normalize fancy quotes before further cleaning
+    json_string = normalize_quotes(json_string)
+
+    # Remove escape sequences and stray newlines outside of quotes
+    json_string = remove_escapes_outside_quotes(json_string)
 
     # Remove Markdown fences if they slipped through
     json_string = re.sub(r"^```(?:json)?", "", json_string, flags=re.IGNORECASE)
