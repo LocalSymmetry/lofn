@@ -396,7 +396,7 @@ class LofnApp:
             st.session_state['progress_step'] = 0
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
-                meta_prompt = generate_meta_prompt(
+                meta_prompt, frames_list = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -406,7 +406,11 @@ class LofnApp:
                 )
                 panel_text = st.session_state.get('custom_panel', '')
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
-                input_text = template.replace('{Meta-Prompt}', meta_prompt['meta_prompt']).replace('{Panel-prompt}', panel_text)
+                input_text = (
+                    template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
+                    .replace('{Panel-prompt}', panel_text)
+                    .replace('{frames_list}', frames_list)
+                )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
@@ -569,7 +573,7 @@ class LofnApp:
 
     def run_music_competition(self):
         try:
-            meta_prompt = generate_meta_prompt(
+            meta_prompt, frames_list = generate_meta_prompt(
                 st.session_state.get('input', ''),
                 max_retries=self.max_retries,
                 temperature=self.temperature,
@@ -579,7 +583,11 @@ class LofnApp:
             )
             panel_text = st.session_state.get('custom_panel', '')
             template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
-            input_text = template.replace('{Meta-Prompt}', meta_prompt['meta_prompt']).replace('{Panel-prompt}', panel_text)
+            input_text = (
+                template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
+                .replace('{Panel-prompt}', panel_text)
+                .replace('{frames_list}', frames_list)
+            )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
                 music_prompt, lyrics_prompt = generate_music_prompts(
