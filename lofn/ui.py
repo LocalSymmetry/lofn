@@ -523,6 +523,65 @@ class LofnApp:
         for pair in gen_pairs[:top_n]:
             self.generate_prompts_for_pair(pair)
 
+    def run_video_competition(self):
+        self.generate_ui_video_concepts()
+        pairs = st.session_state.get('video_concept_mediums', [])
+        if not pairs:
+            return
+        try:
+            with st.spinner("Panel voting on best pairs..."):
+                best_pairs = select_best_pairs(
+                    st.session_state['input'],
+                    pairs,
+                    st.session_state.get('num_best_pairs', 3),
+                    self.max_retries,
+                    self.temperature,
+                    self.model,
+                    self.debug,
+                    st.session_state.get('reasoning_level', 'medium'),
+                )
+            st.session_state['video_best_pairs'] = best_pairs
+            st.success("Best video pairs selected by panel")
+        except Exception as e:
+            st.error("An error occurred while selecting best video pairs.")
+            logger.exception("Error selecting video pairs: %s", e)
+
+        top_n = st.session_state.get('num_best_pairs', 3)
+        gen_pairs = st.session_state.get('video_best_pairs', pairs)
+        for pair in gen_pairs[:top_n]:
+            self.generate_video_prompts_for_pair(pair)
+
+    def run_music_competition(self):
+        try:
+            meta_prompt = generate_meta_prompt(
+                st.session_state.get('input', ''),
+                max_retries=self.max_retries,
+                temperature=self.temperature,
+                model=self.model,
+                debug=self.debug,
+                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+            )
+            panel_text = st.session_state.get('custom_panel', '')
+            template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+            input_text = template.replace('{Meta-Prompt}', meta_prompt['meta_prompt']).replace('{Panel-prompt}', panel_text)
+            display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            with st.spinner("Generating music prompts..."):
+                music_prompt, lyrics_prompt = generate_music_prompts(
+                    input_text,
+                    st.session_state['run_time'],
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                )
+            st.session_state['music_prompt'] = music_prompt
+            st.session_state['lyrics_prompt'] = lyrics_prompt
+            st.success("Music prompts generated successfully!")
+            self.display_music_prompts()
+        except Exception as e:
+            st.error("An error occurred during music competition mode.")
+            logger.exception("Error in music competition: %s", e)
+
     def generate_images(self, prompts_df, pair):
         st.subheader(f"Generating Images for '{pair['concept']}'")
         if self.image_model == "None":
@@ -570,6 +629,12 @@ class LofnApp:
                 st.warning("Please provide a description of your idea.")
             else:
                 self.generate_ui_video_concepts()
+
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_video_competition"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your idea.")
+            else:
+                self.run_video_competition()
 
         if 'video_concept_mediums' in st.session_state and st.session_state['video_concept_mediums']:
             self.display_video_concepts()
@@ -675,6 +740,12 @@ class LofnApp:
                 st.warning("Please provide a description of your song idea.")
             else:
                 self.generate_music_prompts_ui()
+
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_music_competition"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your song idea.")
+            else:
+                self.run_music_competition()
 
         if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
             self.display_music_prompts()

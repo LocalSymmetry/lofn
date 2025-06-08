@@ -32,10 +32,11 @@ Lofn is an open-source advanced AI art generator that utilizes cutting-edge natu
 - **Critic/Artist Refinement Methodology**: Allows iterative improvement of generated artwork.
 - **Style Personalization**: Customize your art with style axes and creativity spectrum adjustments.
 - **Extensive Language Model Support**: Choose from a wide range of language models, including GPT-4, Claude, Gemini, and more.
-- **Advanced Image and Video Generation**: Supports multiple image models and integrates with Runway Gen-3 Alpha for video generation.
+- **Advanced Image, Video, and Music Generation**: Supports multiple image models, integrates with Runway Gen-3 Alpha for video, and crafts detailed music prompts for Udio.
 - **Discord Integration**: Send generated prompts directly to a Discord channel for seamless use with platforms like Midjourney.
 - **Ethical AI Art Generation**: Incorporates guidelines to ensure ethically generated content respecting cultural sensitivities.
 - **Competition Mode**: Provides streamlined prompts and caption-only output for entering art contests.
+- **Phase Map Guidance**: All generation modes now include a visible "LOFN Master Phase Map" outlining each processing step.
 
 ## Installation
 
@@ -198,7 +199,7 @@ Lofn supports a wide range of language models, allowing you to select the one th
 
 This flexibility lets you leverage the strengths of different models for varied outputs. Each model may offer unique styles and nuances in the generated content.
 
-### Advanced Image and Video Generation Capabilities
+### Advanced Image, Video, and Music Generation Capabilities
 
 Lofn provides extensive image generation options:
 
@@ -217,6 +218,8 @@ Lofn provides extensive image generation options:
 - **Runway Gen-3 Alpha Integration**:
 
   Generate detailed prompts compatible with Runway's Gen-3 Alpha video generation model, enabling the creation of high-fidelity, cinematic videos based on your concepts.
+
+Music generation now mirrors the image workflow: the same panel system, creativity spectrum, and phase map guide the creation of Udio-ready music prompts and annotated lyrics.
 
 ### OpenRouter Integration
 
@@ -242,6 +245,13 @@ Lofn provides extensive image generation options:
    ```yaml
    OPEN_ROUTER_API_KEY: "your-openrouter-api-key"
    ```
+
+### Parity Across Modes
+
+Initially, image generation included numerous workflow enhancements such as the
+"LOFN Master Phase Map" and a competition mode for expert panel voting. Video and
+music generation now use the same structured guidance and can also run in
+competition mode, ensuring consistent quality regardless of the medium.
 
 3. **Select OpenRouter Models in Lofn**:
 
