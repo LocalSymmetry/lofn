@@ -17,23 +17,27 @@ def read_prompt(file_path):
         return file.read()
 
 
-def extract_json_from_text(output):
-    # Look for JSON within the 'text' field
-    text_pattern = r"'text':\s*'(.*?)\s*(?:(?<!\\)'\s*}|$)"
-    text_match = re.search(text_pattern, output, re.DOTALL)
-    if text_match:
-        text_content = text_match.group(1)
-        # Now look for JSON within the extracted text content
-        json_pattern = r'({.*})'
-        json_match = re.search(json_pattern, text_content, re.DOTALL)
-        if json_match:
-            return json_match.group(1)
-    # If not found in 'text' field, look for JSON in the entire output
-    json_pattern = r'({.*})'
-    json_match = re.search(json_pattern, output, re.DOTALL)
-    if json_match:
-        return json_match.group(1)
-    return None
+def extract_json_from_text(output: str) -> Union[str, None]:
+    """Extract a JSON object from a language model response."""
+
+    if output is None:
+        return None
+
+    output = output.strip()
+
+    # Look for a fenced code block first
+    block = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", output, re.IGNORECASE)
+    if block:
+        return block.group(1)
+
+    # Next try to pull JSON from a 'text' field that contains a JSON string
+    text_field = re.search(r"['\"]text['\"]:\s*['\"](\{[\s\S]*?\})['\"]", output)
+    if text_field:
+        return text_field.group(1)
+
+    # Fallback to the first JSON-looking snippet
+    match = re.search(r"\{[\s\S]*\}", output)
+    return match.group(0) if match else None
 
 def repair_json(json_string):
     try:
@@ -43,20 +47,24 @@ def repair_json(json_string):
         return json_string
 
 def clean_json_string(json_string):
+    """Lightly clean a JSON string extracted from a response."""
+
     if json_string is None:
         return None
-    # Remove newlines and extra backslashes
-    json_string = json_string.replace('\\n', '').replace('\\\\', '\\')
-    # Remove leading/trailing whitespace
+
     json_string = json_string.strip()
-    # Replace remaining escaped quotes and clean up any leftover single quotes or backslashes
-    json_string = json_string.replace('\\"', '"').replace("'", "").replace("\\", "'")
-    json_pattern = r'({.*})'
-    json_match = re.search(json_pattern, json_string, re.DOTALL)
-    if json_match:
-        return json_match.group(1)
-    else:
-        return json_string
+
+    # Remove Markdown fences if they slipped through
+    json_string = re.sub(r"^```(?:json)?", "", json_string, flags=re.IGNORECASE)
+    json_string = re.sub(r"```$", "", json_string)
+
+    # Keep only the content between the first opening and last closing brace
+    start = json_string.find("{")
+    end = json_string.rfind("}")
+    if start != -1 and end != -1 and start < end:
+        json_string = json_string[start:end + 1]
+
+    return json_string
 
 def parse_output(output, expected_schema, debug=False):
     try:
