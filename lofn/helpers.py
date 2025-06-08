@@ -6,6 +6,7 @@ import streamlit as st
 import requests
 import random
 import json_repair
+import csv
 from typing import Union, List
 from datetime import datetime
 import os
@@ -15,6 +16,21 @@ import plotly.graph_objects as go
 def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
+
+
+def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected artistic frames."""
+    with open('/lofn/prompts/frames.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        rows = list(reader)
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(rows, count)
+    frames = [
+        f"{row['Category']}{row['Technique']}{row['Description']}"
+        for row in sampled
+    ]
+    return "\n".join(frames)
 
 
 def extract_json_from_text(output: str) -> Union[str, None]:

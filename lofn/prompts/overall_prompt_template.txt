@@ -42,43 +42,7 @@ No major changes, just focus on capturing my request without adding new elements
   - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following feeding methods to help come up with ideas):
   - Framing Methods: use an advanced framing method by choosing one of the following, making it more specific by specializing it further, choosing an art style or culture's framing, or choosing to blend a framing with your medium:
 ```tab-delim
-CategoryTechniqueDescription
-AbstractContour Outline BandsConcentric outlines that mimic topographic or ring-like shapes
-Light PlayBinary Light DotsSmall on/off light points arranged systematically near borders
-Mandala WorldsOrnate Circular LabyrinthA labyrinthine circle reminiscent of ancient designs
-Subterranean MythsWorm Tunnel SpiralsStrange, winding tunnels reminiscent of giant burrowing creatures
-AbstractTexture BorderUsing material textures as frame elements
-Embodied DreamsTorso Landscape MergeRolling hills that blend seamlessly into a reclining torso
-Light PlayFiber Optic EdgeLight-conducting materials as frame borders
-Silent CinematicClapperboard CornersOld-fashioned clapperboards at diagonal corners
-Paleo-FuturisticFlint and PlasmaGlowing plasma rods used with flint-like shards forming the border
-Dream CollisionsPillow Castle TurretsFluffy castle towers made of pillow-like materials
-Human ElementsPortrait ProfileUsing facial profiles as side frames
-Mythical CyberpunkCyber Oni MaskA futuristic demon mask with glowing circuit lines at the top corners
-Silent CinematicSepia Tonal VignetteA subtle brownish fade reminiscent of early cinema
-Silent CinematicSilent Title CardsStylized black title cards at the top and bottom corners
-Vector StyleGeometric BreakdownDeconstructed geometric frame elements
-Arcane RunesSpiral Sigil ChainsLinked sigils spiraling from each corner, weaving together
-PolyptychNested TriptychFrames within frames in three sections
-Paleo-FuturisticStone Wheel CircuitPrimitive stone wheels with embedded circuit lines
-Human ElementsPortrait ProfileUsing facial profiles as side frames
-Experimental ExpressionMelanin Print TransferSkin-contact prints forming unique organic textures
-Spiral BiomesVolcanic TwisterAsh and fire swirling in a tornado-like pattern at the edges
-Folk Art RevivalFloral Embroidery BandColorful embroidered flowers running across the edges
-Light PlayOverhead Candle GlowSuspending candles above so that soft flickering glows outline the top
-Human ElementsEye ReflectionUsing eye close-ups as natural frames
-Magical RealismLiving Book PagesPages flipping outward forming a literary vortex around the edges
-CompositeRipped Painting LayersSimulating torn edges of multiple painted canvases
-Light TechniquesLens Flare FrameUsing controlled lens flare as frame elements
-Twisted CartographyCompass Needle OrbitMultiple needle tips rotating around the center in elliptical paths
-Embodied DreamsOneiric Window GazeA window with a giant blinking eye peering inward
-Human ElementsGroup CircleUsing circular human formations as frames
-Arcane RunesOrbital Rune RingsConcentric rings of magical glyphs orbiting the central space
-Cyber BaroqueAugmented Reality GarlandA wearable digital garland overlay that frames the subject in ornate code patterns
-Ancient AlgorithmClay Tablet CodeCuneiform-like inscriptions arranged in meticulous columns
-Mythical CyberpunkUrban Katana ShardSlivers of a digital blade glitching in from corners
-Human ElementsJoined Arms ArchMultiple arms raised and interlinked overhead to create an arch
-Fragmented RealitiesTriple Exposure GatesThree overlapping doorways from different realities
+{frames_list}
 ```
 
 # Artistic Guide Writing, Prompt Writing, and All Refinement Phases

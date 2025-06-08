@@ -28,6 +28,7 @@ from helpers import (
     parse_output,
     display_facets,
     display_creativity_and_style_axes,
+    sample_artistic_frames,
 )
 import plotly.graph_objects as go
 import random
@@ -1476,6 +1477,7 @@ def generate_music_prompts(
 
 def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
     try:
+        frames_list = sample_artistic_frames()
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
@@ -1489,9 +1491,9 @@ def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-tu
             )
 
         parsed_output = run_llm_chain(
-            {'meta': chain}, 'meta', {'input': input_text}, max_retries, model, debug, expected_schema=meta_prompt_schema
+            {'meta': chain}, 'meta', {'input': input_text, 'frames_list': frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
         )
-        return parsed_output
+        return parsed_output, frames_list
     except Exception as e:
         logger.exception("Error generating meta prompt: %s", e)
         raise e
