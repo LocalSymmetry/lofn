@@ -62,6 +62,23 @@ def repair_json(json_string):
         st.write(f"Failed to repair JSON: {e}")
         return json_string
 
+def remove_newlines_outside_quotes(s: str) -> str:
+    """Remove newline and carriage return characters that are not within quotes."""
+    result = []
+    in_quote = False
+    escape = False
+    for ch in s:
+        if ch == '"' and not escape:
+            in_quote = not in_quote
+        if ch == '\\' and not escape:
+            escape = True
+        else:
+            escape = False
+        if ch in ('\n', '\r') and not in_quote:
+            continue
+        result.append(ch)
+    return ''.join(result)
+
 def clean_json_string(json_string):
     """Lightly clean a JSON string extracted from a response."""
 
@@ -69,6 +86,9 @@ def clean_json_string(json_string):
         return None
 
     json_string = json_string.strip()
+
+    # Remove newline characters that aren't inside quotes
+    json_string = remove_newlines_outside_quotes(json_string)
 
     # Remove Markdown fences if they slipped through
     json_string = re.sub(r"^```(?:json)?", "", json_string, flags=re.IGNORECASE)
