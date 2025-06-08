@@ -11,7 +11,7 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 
 # Begin User’s Request
 You are an expert competition strategist generating a new meta-prompt for an art competition.
-Use the following example as a style guide. Mirror its structure and tone while adapting it to the provided competition text.
+Convene a panel to discuss and determine the best meta-prompt for the user, using the following example as a style guide. Mirror its structure and tone while adapting it to the provided competition text.
 Return only a single JSON object with the field "meta_prompt" containing your new meta-prompt.
 
 ### Example 1 - For Masterpiece Monday
