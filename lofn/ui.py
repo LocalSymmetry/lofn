@@ -108,7 +108,17 @@ class LofnApp:
                 st.error("An error occurred while getting OpenRouter models.")
                 logger.exception("Error getting OpenRouter models: %s", e)
 
-        return models
+        # Prioritize the most powerful models if available
+        priority_order = [
+            "gemini-2.5-pro-preview-06-05",
+            "claude-opus-4-20250514",
+            "o3",
+            "claude-sonnet-4-20250514",
+        ]
+        ordered = [m for m in priority_order if m in models]
+        ordered.extend([m for m in models if m not in ordered])
+
+        return ordered
 
     def get_available_image_models(self):
         models = ["None"]
@@ -187,12 +197,18 @@ class LofnApp:
             self.model = st.selectbox(
                 "Select Concept/Medium Model",
                 self.available_models,
+                index=self.available_models.index(
+                    st.session_state.get('model', self.available_models[0])
+                ) if self.available_models else 0,
                 help="Model used generating concepts and mediums."
             )
+            st.session_state['model'] = self.model
             self.prompt_model = st.selectbox(
                 "Prompt Generation Model",
                 self.available_models,
-                index=self.available_models.index(st.session_state.get('prompt_model', self.available_models[0])) if self.available_models else 0,
+                index=self.available_models.index(
+                    st.session_state.get('prompt_model', self.available_models[0])
+                ) if self.available_models else 0,
                 help="Model used for generating image prompts."
             )
             st.session_state['prompt_model'] = self.prompt_model
@@ -747,8 +763,9 @@ class LofnApp:
             'proceed_shuffled_reviews_clicked': False,
             'complete_all_steps_clicked': False,
             'image_model': 'None',
+            'model': self.available_models[0],
             'prompt_model': 'gpt-4.1',
-            'competition_mode': False,
+            'competition_mode': True,
             'competition_text': '',
             'selected_panel': PANEL_OPTIONS[0]['name'],
             'custom_panel': PANEL_OPTIONS[0]['prompt'],
