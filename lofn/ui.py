@@ -299,7 +299,8 @@ class LofnApp:
                     style_axes = {}
                 st.session_state['style_axes'] = style_axes
             else:
-                st.session_state['style_axes'] = None
+                if 'style_axes' not in st.session_state:
+                    st.session_state['style_axes'] = None
                 st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
                 if not st.session_state['auto_creativity_spectrum']:
                     st.subheader("Adjust Creativity Spectrum")
@@ -309,7 +310,7 @@ class LofnApp:
                         "transformative": st.slider("Transformative", 0, 100, 34),
                     }
                     st.session_state['creativity_spectrum'] = creativity_spectrum
-                else:
+                elif 'creativity_spectrum' not in st.session_state:
                     st.session_state['creativity_spectrum'] = None
 
         with st.sidebar.expander("Discord Settings", expanded=False):
