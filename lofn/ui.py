@@ -19,6 +19,8 @@ logger = logging.getLogger(__name__)
 with open('/lofn/prompts/panels.yaml', 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
+PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
+
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
@@ -185,6 +187,8 @@ class LofnApp:
                 st.session_state['custom_panel'] = st.sidebar.text_area(
                     'Custom Panel Prompt', value=st.session_state.get('custom_panel', ''), height=150
                 )
+            elif st.session_state['selected_panel'] == 'LLM Generated':
+                st.sidebar.info('Panel will be generated automatically.')
             else:
                 st.session_state['custom_panel'] = next(p['prompt'] for p in PANEL_OPTIONS if p['name'] == st.session_state['selected_panel'])
             st.session_state['num_best_pairs'] = st.sidebar.number_input(
@@ -405,7 +409,21 @@ class LofnApp:
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 )
-                panel_text = st.session_state.get('custom_panel', '')
+                if st.session_state.get('selected_panel') == 'LLM Generated':
+                    if not st.session_state.get('custom_panel'):
+                        panel_text = generate_panel_prompt(
+                            st.session_state.get('input', ''),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium')
+                        )
+                        st.session_state['custom_panel'] = panel_text
+                    else:
+                        panel_text = st.session_state.get('custom_panel', '')
+                else:
+                    panel_text = st.session_state.get('custom_panel', '')
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
@@ -582,7 +600,21 @@ class LofnApp:
                 debug=self.debug,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
             )
-            panel_text = st.session_state.get('custom_panel', '')
+            if st.session_state.get('selected_panel') == 'LLM Generated':
+                if not st.session_state.get('custom_panel'):
+                    panel_text = generate_panel_prompt(
+                        st.session_state.get('input', ''),
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium')
+                    )
+                    st.session_state['custom_panel'] = panel_text
+                else:
+                    panel_text = st.session_state.get('custom_panel', '')
+            else:
+                panel_text = st.session_state.get('custom_panel', '')
             template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
