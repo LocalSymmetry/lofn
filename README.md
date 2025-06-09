@@ -36,6 +36,7 @@ Lofn is an open-source advanced AI art generator that utilizes cutting-edge natu
 - **Discord Integration**: Send generated prompts directly to a Discord channel for seamless use with platforms like Midjourney.
 - **Ethical AI Art Generation**: Incorporates guidelines to ensure ethically generated content respecting cultural sensitivities.
 - **Competition Mode**: Provides streamlined prompts and caption-only output for entering art contests.
+- **LLM-Generated Panels**: Default option automatically crafts expert panels using the chosen language model, while still allowing predefined or custom panels.
 - **Phase Map Guidance**: All generation modes now include a visible "LOFN Master Phase Map" outlining each processing step.
 
 ## Installation

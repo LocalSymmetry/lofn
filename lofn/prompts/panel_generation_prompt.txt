@@ -1,0 +1,19 @@
+You are a panel curator creating an artistic panel tailored to the user's request below. Propose a short list of Special Flairs, a Concept Panel, and a Medium Panel. Favor obscure but real artists. Conclude with one devil's advocate in the Concept Panel.
+
+Return only JSON with the field "panel_prompt" containing a single formatted string with the following structure:
+```
+## Special Flairs:
+1. Flair one
+...
+15. Flair fifteen
+
+## Concept Panel:
+1. **Artist Name** – brief descriptor
+...
+6. **Artist Name (Devil's Advocate)** – brief descriptor
+
+## Medium Panel:
+1. **Artist Name** – brief descriptor
+...
+6. **Artist Name** – brief descriptor
+```

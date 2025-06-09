@@ -69,6 +69,7 @@ dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
 dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
 meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
 pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
+panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
@@ -159,6 +160,10 @@ prompt_configs = {
 
 meta_prompt_schema = {
     'meta_prompt': str
+}
+
+panel_prompt_schema = {
+    'panel_prompt': str
 }
 
 essence_and_facets_schema = {
@@ -1496,6 +1501,29 @@ def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-tu
         return parsed_output, frames_list
     except Exception as e:
         logger.exception("Error generating meta prompt: %s", e)
+        raise e
+
+def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+    """Generate an artistic panel description via the LLM."""
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        if model[0] == "o":
+            chain = (
+                ChatPromptTemplate.from_messages([("human", panel_generation_prompt)])
+                | llm
+            )
+        else:
+            chain = (
+                ChatPromptTemplate.from_messages([("system", concept_system), ("human", panel_generation_prompt)])
+                | llm
+            )
+
+        parsed_output = run_llm_chain(
+            {"panel": chain}, "panel", {"input": input_text}, max_retries, model, debug, expected_schema=panel_prompt_schema
+        )
+        return parsed_output.get("panel_prompt", "")
+    except Exception as e:
+        logger.exception("Error generating panel prompt: %s", e)
         raise e
 
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
