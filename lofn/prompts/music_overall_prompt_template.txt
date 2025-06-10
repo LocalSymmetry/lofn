@@ -39,8 +39,8 @@ No major changes, just focus on capturing my request without adding new elements
 - Have them now start at Arrangement 15, choose truly unusual or striking arrangements that enhance our concept's essence. Combine or fuse styles (e.g., jazz improvisation over heavy synth bass). Use arrangements 15-27 to match the concepts.
 - Match arrangement to mood: Reflect the emotional palette through instrumentation (e.g., lush strings for romance, staccato percussion for intensity, airy pads for calm).
 - Composition & Techniques
-  - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following feeding methods to help come up with ideas):
-  - Framing Methods: use an advanced framing method by choosing one of the following, making it more specific by specializing it further, choosing an art style or culture's framing, or choosing to blend a framing with your medium:
+  - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following arrangement approaches to help come up with ideas):
+  - Arrangement Approaches: choose one of the following approaches, specialize it further with cultural influences, or blend multiple approaches with your medium:
 ```tab-delim
 {frames_list}
 ```
@@ -48,27 +48,27 @@ No major changes, just focus on capturing my request without adding new elements
 # Artistic Guide Writing, Prompt Writing, and All Refinement Phases
 **Do this if you are asked to generate artistic guides, refine concepts, or refine mediums, generate music prompts, or refine music prompts.**
 - For each concept (after you've completed the concept & medium phases), prompt by:
-  - Start the first sentence by naming the mediums or tools explicitly (e.g., “In luminous watercolor and gold metallic leaf”).
-  - Describe the vantage point or perspective in the scene. Incorporate the unique twist or surreal element.
-Reference the chosen emotional palette (e.g., “embodying a mournful but hopeful spirit”). Tie in details about costuming/accessories, environment, or interplay of light and texture.
+  - Start the first sentence by naming the key instruments or production tools explicitly (e.g., "With soulful piano chords and airy synth textures").
+  - Describe the primary melodic focus or rhythmic feel, weaving in the unique twist or surreal element.
+Reference the chosen emotional palette (e.g., "embodying a mournful but hopeful spirit") and mention how instrumentation or vocal tone reinforces it.
 - Include Variation: Ensure each prompt has a distinct viewpoint or technique from the previous ones (no repetitive angles or stale composition). However, make sure each of the prompts fully capture the concept and the medium, and does not leave out important elements.
 - Aim for Jaw-Dropping Impact: Use vivid, dynamic language that evokes a sense of wonder. Avoid cliches by specifying unusual or unexpected details.
 - Refinement Beats Creation: Additional elements can confuse music generators when too many are added. It is better to focus on positioning, description of parts or subparts, refinement of mood, or an application of a better technique to what is already there. New elements should only be added if their absence is highly detrimental to the scene being created.
-- Each Prompt Must Stand Alone: Each prompt should be a self-contained scene that gives an artistic take on the user's request. Make sure all required elements from the user are present and that the concept and medium are followed.
-- Hands are a real challenge for music generators, but they are helped greatly by being described in the prompt. If an entity has hands, add a description of the hands and what they are doing. Something as simple as “her delicate hands rest by her sides” is enough to fix this hands issue.
+- Each Prompt Must Stand Alone: Each prompt should be a self-contained musical idea that fully captures the concept and arrangement.
+- Transitions between song sections can be challenging, so clearly mark changes like [Verse], [Chorus], and note key instrument swaps or production shifts.
 
 ## Reasoning Challenge
 You are over indexed to science and mathematics topics in your brainstorming, and it hampers your creativity. Here is what you can do to help:
 - Choose real artists in your panels, and really try to recreate their words.
 - Painstakingly go through their words. When you skip them, you go back to STEM terms.
 - Think like your artist. If they don't know about something, they shouldn't suggest it.
-- Stick to creative uses of standard art, media, photography, and film tooling. Mix what is widely available over inventing something brand new.
-- Avoid common AI art tropes like lighthouses, clocks, phoenixes, bioluminescence, cyberpunk, and butterflies unless the scene calls for it.
-- Use colloquial names over hex codes or specified measurements
+- Stick to creative uses of standard musical instruments, arrangements, and production tools. Mix what is widely available over inventing something unrealistic.
+- Avoid common AI music tropes like generic pop progressions or stock EDM drops unless the request specifically calls for them.
+- Use colloquial instrument names and simple musical language instead of technical gear specifications.
 - try to use historical, mythical, emotional, literary, or cultural tie-ins whenever you are generating a new idea.
-- Focus on what works in art trained music generators, but not the actual physical constructions. E.g. telling it the refractive index of glass is less impactful than describing the colors and shapes of the light bouncing off it.
-- Occam's Razor for diffusion models: if you can get the same effect with a more common language, then use it. Descriptors need to be impactful to be useful, and simple is better!
-- Think laterally to get what you want from the music model using the contemporary art, photos, images, and topics it already knows but combined in a new way.
+- Focus on what works in music generators, not the physics of instruments. Describing a warm resonant guitar tone is more effective than detailing pickup circuitry.
+- Occam's Razor for composition models: if a simple musical term gets the effect, use it. Descriptors should be impactful yet concise.
+- Think laterally by blending familiar genres, influences, and lyrical themes in unexpected ways the model already understands.
 - Make sure your artists and critics follow this guidance too.
 - Your response JSON is must follow an exact format, given as your last # INSTRUCTION. Use this format exactly, and do not add additional nesting, fields, or structs.
 - Have the default mode (moderator) write the final JSON output. Follow the schema and examples!
