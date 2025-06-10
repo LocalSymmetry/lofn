@@ -615,7 +615,7 @@ class LofnApp:
                     panel_text = st.session_state.get('custom_panel', '')
             else:
                 panel_text = st.session_state.get('custom_panel', '')
-            template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+            template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
@@ -709,9 +709,42 @@ class LofnApp:
     def generate_ui_video_concepts(self):
         try:
             st.session_state['video_concept_mediums'] = []
+            input_text = st.session_state['input']
+            if st.session_state.get('competition_mode'):
+                meta_prompt, frames_list = generate_meta_prompt(
+                    st.session_state.get('input', ''),
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    reasoning_level=st.session_state.get('reasoning_level','medium'),
+                )
+                if st.session_state.get('selected_panel') == 'LLM Generated':
+                    if not st.session_state.get('custom_panel'):
+                        panel_text = generate_panel_prompt(
+                            st.session_state.get('input', ''),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level','medium')
+                        )
+                        st.session_state['custom_panel'] = panel_text
+                    else:
+                        panel_text = st.session_state.get('custom_panel', '')
+                else:
+                    panel_text = st.session_state.get('custom_panel', '')
+                template = read_prompt('/lofn/prompts/video_overall_prompt_template.txt')
+                input_text = (
+                    template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
+                    .replace('{Panel-prompt}', panel_text)
+                    .replace('{frames_list}', frames_list)
+                )
+                display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            st.session_state['prompt_input'] = input_text
             with st.spinner("Generating video concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
-                    st.session_state['input'],
+                    input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
