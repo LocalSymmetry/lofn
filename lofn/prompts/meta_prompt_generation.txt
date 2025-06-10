@@ -9,10 +9,37 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 - You have at least 5 retries to work with, so use them to make sure you are thorough!
 - Use as many messages and tokens as required to complete everything.
 
+
 # Begin User’s Request
 You are an expert competition strategist generating a new meta-prompt for an art competition.
 Convene a panel to discuss and determine the best meta-prompt for the user, using the following example as a style guide. Mirror its structure and tone while adapting it to the provided competition text.
 Return only a single JSON object with the field "meta_prompt" containing your new meta-prompt.
+
+# Instructions 
+1. I want the panel to discuss the following questions:
+- What are the trends around this subject?
+- How does that interact with overall art, music, or video trends?
+- What is happening culturally around this topic? - Can we take a stance?
+- What is the most stunning, singular, and interesting take?
+- How can we add a challenge to Lofn to give it a complex tension to evoke creativity?
+2. Have each panel member give their take on: 
+  - Subject choice: What are the top 10 winning ideas you have? What is the general ties between them?
+  - Medium choice: What mediums should we focus toward? 
+  - Techniques choice: What art techniques do you think will either give us a creative advantage or just fit perfectly.
+  - Focal points: Now lets synthesize our subject, medium, and techniques dicussion into the primary and secondary focal points of the art.
+  - Narrative Starters: Lets now give some basic narrative starters to find a commnality for the final meta-prompt.
+2. Have the panel then talk about each other’s choices, culminating in a vote for the best take on all items above.
+3. As the moderator, use these items from step 2 to make a refined meta-prompt that closely matches our examples, but is infused with the panel's wisdom and geared to win the user's competition.
+
+#### When crafting meta-prompts:
+- My winning method: start with being visually stunning to look at in the first glance to get their attention! Second, have a perfect execution on the requirements so they keep looking and don't vote low immediately, finally we need an emotional connection so they keep looking. If they are looking for 4-5 seconds, they will vote 4 or 5 (out of 5)
+- when human characters are called for, have the meta-prompt have lofn determine their age, ethnicity, body type, gender presentation (if applicable), adornments, style, and accessories
+- always add an element of complex tension so that lofn has to be creative. 
+- I embedded a complex emotional taxonomy, a set of complex framings, and a randomly sampled set of style effects. Call on lofn to choose from these to make the creations more nuanced
+- don't give examples. Lofn will over index to them as it really cares what the user says. Let it make those decisions. If you must limit, limit to a category, style, or grouping so Lofn can make choices. For example, instead of “use photography”, it is better to use “choose a photographic or film based medium”
+- give Lofn complex abstract puzzles over direct instructions for what to make. For example, when asking for hope, have it create a situation where an entity is looking to an unreachable object of hope. However, the entity, the object, and the way it is unreachable are all for Lofn to decide! 
+- However, your goal is to set up Lofn’s environment, but Lofn is driven by o1 over multiple prompts. It will out-brainstorm you! I designed it to do so! Follow my examples, stay that abstract or moreso.
+- Avoid common AI art tropes like lighthouses, clocks, phoenixes, bioluminescence, cyberpunk, and butterflies unless the scene calls for it. We want to avoid blending in with our competitors!
 
 ### Example 1 - For Masterpiece Monday
 I want a breathtaking, subtly surreal, emotionally precise, and technically sorcerous portrayal of "An uncommon moment when ordinary magic becomes visible to those who truly see" for a Masterpiece Monday competition.
@@ -67,7 +94,6 @@ For each concept and medium during the concept and medium phases, distinctly and
 
 The primary focus should be an emotional punch that fuses beauty, transformation, and resonance; the secondary focus is a stunning work of art that garners high vote counts through its innovative use of metamorphic visual language.
 
-
 ### Example 3 - Fairy Competition
 I want a visually intense, artistic, emotionally evocative, and colorful portrayal of “A Fairy in a visually stunning scene” for a Masterpiece Monday competition.
 
@@ -91,14 +117,16 @@ For each concept and medium during the concept and medium phases, distinctly and
 
 The primary focus should be an emotional punch that fuses mystique and resonance; the secondary focus is a stunningly beautiful work of art that garners high vote counts. 
 
-### Competition Text
+## Competition Text
 {input}
 
-### Artistic Frames
+## Artistic Frames
 {frames_list}
 
-### Instructions
+# Instructions
 - Craft a new meta-prompt in the same spirit as the example.
 - Integrate the competition text seamlessly, keeping language vivid and inspirational.
-
-
+- Return the meta panel prompt in the following JSON format:
+  ```json
+{{ "meta_prompt": "The written meta-prompt." }}
+  ```

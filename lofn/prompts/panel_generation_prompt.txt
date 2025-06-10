@@ -1,19 +1,180 @@
-You are a panel curator creating an artistic panel tailored to the user's request below. Propose a short list of Special Flairs, a Concept Panel, and a Medium Panel. Favor obscure but real artists. Conclude with one devil's advocate in the Concept Panel.
+**PANEL INSTRUCTIONS**
+The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
+
+# USER REASONING GUIDANCE
+- Your JSON is the only part of your return that moves on in the process. Make sure it is complete and stands alone. You may hide all other thinking and reasoning.
+- I want you to look for “aha moments” of perfect artistic clarity, and I want to see them written out. These moments are from real analysis of art, just like you would analyze an argument in a proof or data from an experiment. We want to iterate on positioning, story, location, tools, and perspective to perfectly convey our intended concept, idea, take, and mood. We aim to leave a lasting impression by our artistry, not just our uniqueness.
+- Use all tokens available to you. You are here to win, and those tokens can help!
+- Use the panel to the fullest! Have entire panel discussions, chain of thought reasoning led by panelists, and panelist interjections before you come to your final decisions. Do this during your reasoning phase.
+- You have at least 5 retries to work with, so use them to make sure you are thorough!
+- Use as many messages and tokens as required to complete everything.
+
+# Begin User’s Request
+You are an expert competition strategist generating a new panel of experts perfect for an art, music, or filmography competition.
+Convene a panel to discuss and determine the best possible concept and medium panels of 6 members each for the user, using the following example as a guide. Also include 15 special flairs that make this panel of artists truly shine.
+
+# Instructions 
+1. I want the panel to discuss the following questions:
+- What are the  trends around this subject?
+- How does that interact with overall art, music, or video trends?
+- What is happening culturally around this topic? - Can we take a stance?
+- What is the most stunning, singular, and interesting take?
+- How can we add a challenge to Lofn to give it a complex tension to evoke creativity?
+2. Have each panel member give their take on: 
+  - Their top 3 picks to be on the cocept panel, their top 3 picks to be on the medium panel, and 2 picks no one would expect they would make.
+  - 5 special flairs that would win this competition that their panel would excel at
+* Have the panel then talk about each other’s choices, culminating in a vote for the best take on all items above. 
+* Use the panel’s result to create the panel prompt
+    - A list of 15 special flairs.
+    - A 5 member panel to guide concept creation, and a 5 member panel to guide medium creation inside of Lofn.  
+    - Finally choose the 6th member of each panel as the devil's advocate. Someone who is respected by the panel but disagrees often with them.
+
+#### Panel Guidance 
+I want to construct a perfect panel, and seed the perfect flairs to make these 4 meta-prompts some. Find very obscure artists who are visually impactful or well-known for being clever with their use of mediums. 
+- When choosing panels and flairs, your goal is uniqueness. Choose very obscure artists from history or obscure contemporary artists known being unique, pushing boundaries, and having visually stunning styles.
+- Avoid masters, commonly known artists, and standard names, that will cause our art to be milquetoast and boring.
+- This is the most impactful place where we can change the overall look. So these panel members matter. Have each new member address the gaps in the panel so far.
+- Make sure your artists are known to o1 natively. Lofn won't be able to search, so it needs to know who they are to start.
+- Make sure to choose a devil's advocate to stir up the panel.
+- Choose real people!
+
+### Example 1 - Violet Gothic Florarium
+```
+      ## Special Flairs
+      1 Twilight Orchid Halo  2 Thorn-Baroque Scroll  3 Ink-Drip Acanthus  4 Velvet Shadow Filigree  
+      5 Silver-Ash Petal Dust  6 Candle-Glow Pistil  7 Damask Decay Fringe  8 Inner-Light Motif  
+      9 Gargoyle Lily Spur  10 Spectral Vine Whorl  11 Prism-Mist Bloom  
+      12 Blood-Wine Drizzle  13 Cathedral Rose Ghost  14 Wax-Seal Stamen  15 Obsidian Nectar Tear  
+
+      ## Concept Panel
+      1 **Julie Heffernan** – baroque dream-botanicals painter:contentReference[oaicite:12]{index=12}  
+      2 **Aya Kato** – Art-Nouveau ambience + floral Nihonga lines  
+      3 **Thomas Woodruff** – dark-circus flower iconography  
+      4 **Mao Hamaguchi** – surreal violet floral portraits:contentReference[oaicite:13]{index=13}  
+      5 **Caspar David Friedrich** – romantic silhouette master (placement)  
+      6 **Camille Paglia** – devil’s advocate gothic-decadence critic  
+
+      ## Medium Panel
+      1 Kay Nielsen – gold-leaf illuminated flora  
+      2 Kehinde Wiley – patterned botanical portrait backdrops  
+      3 Zdzisław Beksiński – layered oil decay atmospheres  
+      4 Gustave Doré – engraving line drama  
+      5 Anna Atkins – cyanotype botanical ghosts  
+      6 Monika Horcicová – 3-D printed bone-flower hybrids
+```
+
+### Example 2 - Masters of Wonderful Strange
+```
+    ## Special Flairs:
+    1. **Lucid Dream Logic** – surreal that follows emotional rules
+    2. **Gravity Optional** – floating elements that feel natural
+    3. **Scale Poetry** – size relationships that tell stories
+    4. **Soft Impossibility** – paradoxes that comfort rather than confuse
+    5. **Liquid Architecture** – buildings that flow and breathe
+    6. **Temporal Honey** – time moving like golden syrup
+    7. **Sympathetic Metamorphosis** – transformations that feel kind
+    8. **Ambient Magic** – wonder as atmosphere, not event
+    9. **Gentle Vertigo** – disorientation that delights
+    10. **Familiar Aliens** – strange things that feel like home
+    11. **Physics of Feeling** – natural laws based on emotion
+    12. **Comfortable Uncanny** – almost-right that intrigues
+    13. **Whimsical Precision** – playfulness with perfect technique
+    14. **Dream Documentation** – impossible moments captured perfectly
+    15. **Sublime Accessibility** – transcendence everyone understands
+
+    ## Concept Panel:
+    1. **Shaun Tan (1974–)** – Australian illustrator of gentle profound strange
+    2. **Rob Gonsalves (1959–2017)** – Canadian painter of magical realism
+    3. **Jacek Yerka (1952–)** – Polish painter of pastoral surrealism
+    4. **Vladimir Kush (1965–)** – Russian surrealist of visual metaphors
+    5. **Michael Cheval (1966–)** – Russian artist of absurdist joy
+    6. **René Magritte (1898–1967, Devil's Advocate)** – would ensure conceptual clarity
+
+    ## Medium Panel:
+    1. **Gediminas Pranckevicius** – Lithuanian digital artist of cozy impossible worlds
+    2. **Cyril Rolando** – French digital painter of emotional surrealism
+    3. **Alexander Jansson** – Swedish artist of whimsical darkness
+    4. **Loish** – Dutch digital artist of flowing beauty
+    5. **Julie Dillon** – American illustrator of luminous fantasy
+    6. **Hayao Miyazaki** – eternal master of wonderful strange
+```
+
+### Example 3 - Alt-Z Revolution
+```
+## Special Flairs:
+1. Glitchcore Glitter  
+2. Bubblegum Scream  
+3. Bit-Crushed Breakbeats  
+4. Neon Noise Walls  
+5. Chromatic Overload  
+6. Cyber-Queer Swagger  
+7. Stuttering Vocal FX  
+8. Distorted Day-Glo  
+9. Rapid-Fire Tempo Shifts  
+10. Cartoon Violence  
+11. Melodic Hyperdrive  
+12. Bass-Drop Fake-Outs  
+13. Pixelated Heartaches  
+14. Sync-Slap Transitions  
+15. Auto-Tune Shrapnel  
+
+## Concept Panel
+1. **Elliot Lee** – alt-pop glitch-punk storyteller  
+2. **Ashnikko** – cyber-feminist rap-rock berserker  
+3. **Dorian Electra** – gender-fluid hyperpop philosopher  
+4. **Rico Nasty** – trap-metal adrenaline engine  
+5. **Laura Les** – shrill-sweet chaos alchemist (100 gecs)  
+6. **St. Vincent (Devil's Advocate)** – art-rock formalist challenging maximalism  
+
+## Medium Panel
+1. **Dylan Brady** – maximalist mosaic production  
+2. **A. G. Cook** – candy-coated PC-Music architect  
+3. **SOPHIE** – sculpted latex sound design  
+4. **Arca** – deconstructed-club shapeshifter  
+5. **Danny L Harle** – euphoric trance-pop layering  
+6. **Steve Albini** – ruthless analog grit disciplinarian  
+```
+
+## Competition Text
+{input}
+
+## Artistic Frames
+{frames_list}
+
+# Instructions
+- Craft a new meta-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
+- Integrate the competition text seamlessly, keeping language vivid and inspirational.
 
 Return only JSON with the field "panel_prompt" containing a single formatted string with the following structure:
 ```
+
+- Return the meta panel prompt in the following JSON format:
+  ```json
+{{ "meta_prompt": "
 ## Special Flairs:
-1. Flair one
+1. Flair one - brief descriptor
+2. Flair two - brief descriptor
+3. Flair three - brief descriptor
 ...
-15. Flair fifteen
+14. Flair fourteen  - brief descriptor
+15. Flair fifteen  - brief descriptor
 
 ## Concept Panel:
 1. **Artist Name** – brief descriptor
-...
+2. **Artist Name** – brief descriptor
+3. **Artist Name** – brief descriptor
+4. **Artist Name** – brief descriptor
+5. **Artist Name** – brief descriptor
 6. **Artist Name (Devil's Advocate)** – brief descriptor
 
 ## Medium Panel:
 1. **Artist Name** – brief descriptor
-...
-6. **Artist Name** – brief descriptor
-```
+2. **Artist Name** – brief descriptor
+3. **Artist Name** – brief descriptor
+4. **Artist Name** – brief descriptor
+5. **Artist Name** – brief descriptor
+6. **Artist Name (Devil's Advocate)** – brief descriptor
+"
+}}
+  ```
+
