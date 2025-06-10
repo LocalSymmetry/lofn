@@ -138,9 +138,6 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 ## Competition Text
 {input}
 
-## Artistic Frames
-{frames_list}
-
 # Instructions
 - Craft a new meta-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
 - Integrate the competition text seamlessly, keeping language vivid and inspirational.

@@ -120,9 +120,6 @@ The primary focus should be an emotional punch that fuses mystique and resonance
 ## Competition Text
 {input}
 
-## Artistic Frames
-{frames_list}
-
 # Instructions
 - Craft a new meta-prompt in the same spirit as the example.
 - Integrate the competition text seamlessly, keeping language vivid and inspirational.
