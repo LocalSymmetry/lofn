@@ -401,16 +401,9 @@ class LofnApp:
             st.session_state['progress_step'] = 0
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
-                meta_prompt, frames_list = generate_meta_prompt(
-                    st.session_state.get('input', ''),
-                    max_retries=self.max_retries,
-                    temperature=self.temperature,
-                    model=self.model,
-                    debug=self.debug,
-                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                )
+                panel_text = st.session_state.get('custom_panel', '')
                 if st.session_state.get('selected_panel') == 'LLM Generated':
-                    if not st.session_state.get('custom_panel'):
+                    if not panel_text:
                         panel_text = generate_panel_prompt(
                             st.session_state.get('input', ''),
                             self.max_retries,
@@ -420,10 +413,15 @@ class LofnApp:
                             st.session_state.get('reasoning_level', 'medium')
                         )
                         st.session_state['custom_panel'] = panel_text
-                    else:
-                        panel_text = st.session_state.get('custom_panel', '')
-                else:
-                    panel_text = st.session_state.get('custom_panel', '')
+                    display_temporary_results("Panel Prompt", panel_text, expanded=False)
+                meta_prompt, frames_list = generate_meta_prompt(
+                    st.session_state.get('input', ''),
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                )
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
@@ -592,16 +590,9 @@ class LofnApp:
 
     def run_music_competition(self):
         try:
-            meta_prompt, frames_list = generate_meta_prompt(
-                st.session_state.get('input', ''),
-                max_retries=self.max_retries,
-                temperature=self.temperature,
-                model=self.model,
-                debug=self.debug,
-                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-            )
+            panel_text = st.session_state.get('custom_panel', '')
             if st.session_state.get('selected_panel') == 'LLM Generated':
-                if not st.session_state.get('custom_panel'):
+                if not panel_text:
                     panel_text = generate_panel_prompt(
                         st.session_state.get('input', ''),
                         self.max_retries,
@@ -611,10 +602,15 @@ class LofnApp:
                         st.session_state.get('reasoning_level', 'medium')
                     )
                     st.session_state['custom_panel'] = panel_text
-                else:
-                    panel_text = st.session_state.get('custom_panel', '')
-            else:
-                panel_text = st.session_state.get('custom_panel', '')
+                display_temporary_results("Panel Prompt", panel_text, expanded=False)
+            meta_prompt, frames_list = generate_meta_prompt(
+                st.session_state.get('input', ''),
+                max_retries=self.max_retries,
+                temperature=self.temperature,
+                model=self.model,
+                debug=self.debug,
+                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+            )
             template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
@@ -719,8 +715,9 @@ class LofnApp:
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
                 )
+                panel_text = st.session_state.get('custom_panel', '')
                 if st.session_state.get('selected_panel') == 'LLM Generated':
-                    if not st.session_state.get('custom_panel'):
+                    if not panel_text:
                         panel_text = generate_panel_prompt(
                             st.session_state.get('input', ''),
                             self.max_retries,
@@ -730,10 +727,7 @@ class LofnApp:
                             st.session_state.get('reasoning_level','medium')
                         )
                         st.session_state['custom_panel'] = panel_text
-                    else:
-                        panel_text = st.session_state.get('custom_panel', '')
-                else:
-                    panel_text = st.session_state.get('custom_panel', '')
+                    display_temporary_results("Panel Prompt", panel_text, expanded=False)
                 template = read_prompt('/lofn/prompts/video_overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])

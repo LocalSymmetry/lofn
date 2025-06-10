@@ -1521,7 +1521,11 @@ def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-t
         parsed_output = run_llm_chain(
             {"panel": chain}, "panel", {"input": input_text}, max_retries, model, debug, expected_schema=panel_prompt_schema
         )
-        return parsed_output.get("panel_prompt", "")
+        if parsed_output is not None:
+            return parsed_output.get("panel_prompt", "")
+        else:
+            st.error("Failed to generate or parse panel prompt")
+            return ""
     except Exception as e:
         logger.exception("Error generating panel prompt: %s", e)
         raise e
