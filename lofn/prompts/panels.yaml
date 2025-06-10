@@ -306,92 +306,140 @@
     6. **Hiroshi Yoshida (1876 – 1950)** – woodblock gradients capturing molten skies and mirrored waterlines
 - name: Alloy Reliquary
   prompt: |
-    ## Special Flairs 
-    1 Rib Vault Servo  2 Oxidised Copper Patina  3 Bio-Lum Teal Drip  4 Arterial Crimson Vein  5 Spinal Colonnade
-    6 Valve Stained-Glass  7 Cog-Rosette Halo  8 Iron Lung Choir Haze  9 Vapor Incense Plume  10 Heart-Forge Glow
-    11 Servo-Angel Silhouette  12 Rust-Spore Speck  13 Mirrored Nerve Ribbon  14 Pulse Oscilloscope Window  15 Sanctum Static
+    ## Special Flairs
+    1 **Rib Vault Servo** – skeletal arch–girders pivot like mechanised ribs  
+    2 **Oxidised Copper Patina** – green-blue corrosion mottling ancient alloy skins  
+    3 **Bio-Lum Teal Drip** – viscous teal bioluminescence streaming down rib-work  
+    4 **Arterial Crimson Vein** – pulsing blood-red conduits threading through metal  
+    5 **Spinal Colonnade** – vertebral columns rising as cathedral buttresses  
+    6 **Valve Stained-Glass** – pressure gauges glowing like fractured rose windows  
+    7 **Cog-Rosette Halo** – gear-wheel rosettes forming sanctified aureoles  
+    8 **Iron-Lung Choir Haze** – respirator steam humming in choral haze  
+    9 **Vapor Incense Plume** – ritual smoke spiralling through vaults  
+    10 **Heart-Forge Glow** – inner furnace casting ember-heart light  
+    11 **Servo-Angel Silhouette** – wing-piston outlines suggesting metallic seraphs  
+    12 **Rust-Spore Speck** – floating flecks of reddish corrosion dust  
+    13 **Mirrored Nerve Ribbon** – reflective cable strands twisting like nerves  
+    14 **Pulse Oscilloscope Window** – neon waveforms beating behind glass panels  
+    15 **Sanctum Static** – halo of white-noise particles sanctifying the reliquary  
 
     ## Concept Panel
-    1 Kris Kuksi – gothic gear assemblages  
-    2 Erica Pong – surreal biomech portraiture  
-    3 Takato Yamamoto – Heisei esthetic necrotech ornament  
-    4 Filip Hodas – decayed mech relic renders  
-    5 **Zdzisław Beksiński** – master of cathedralesque dread composition  
-    6 **Camille Paglia** – devil’s-advocate cultural theorist
+    1 **Kris Kuksi** – baroque gear-bone assemblage sculptor of industrial reliquaries  
+    2 **Erica Pong** – surreal portraitist melding flesh into biomech growths  
+    3 **Takato Yamamoto** – Heisei-era elegance fused with necrotech ukiyo-e ornamentation  
+    4 **Filip Hodas** – 3-D visionary rendering decayed mechanical relic terrains  
+    5 **Zdzisław Beksiński** – apocalyptic oil master composing cathedralesque dread vistas  
+    6 **Camille Paglia** – devil’s-advocate cultural critic interrogating techno-gothic excess  
 
     ## Medium Panel
-    1 H.R. Giger – airbrush necromechanica  
-    2 Kris Kuksi – mixed-media bone-gear reliefs  
-    3 Android Jones – fractal VR sculpting  
-    4 Hajime Sorayama – chrome aerograph gynoids  
-    5 Patricia Piccinini – silicone bio-morph statues  
-    6 Wim Delvoye – laser-cut steel gothic filigree
+    1 **H. R. Giger** – air-brushed necromechanical biomech nightmares  
+    2 **Kris Kuksi** – bone-gear gilded reliefs in mixed media  
+    3 **Android Jones** – fractal VR sculpting of radiant cyber-mandalas  
+    4 **Hajime Sorayama** – mirror-chrome aerograph gynoids in dystopian poise  
+    5 **Patricia Piccinini** – silicone bio-morphs evoking tender grotesquery  
+    6 **Wim Delvoye** – laser-cut steel filigree wrapping gothic machinery  
 - name: Autumn Petal Tempest
   prompt: |
     ## Special Flairs
-    1 Ember-Rose Drift  2 Saffron Leaf Flurry  3 Copper Curl Strand  4 Wind-Whorl Filigree  5 Oxidised Gold Speck  
-    6 Velvet Shadow Loop  7 Craquelure Glow Vein  8 Petal-Fold Chevron  9 Prism-Dust Swirl  10 Flutter-Blur Edge  
-    11 Ash-Tipped Stamen  12 Charcoal Mist Grain  13 Spiral Vine Hair  14 Punctum Pollen Flash  15 Glimmer Gust Halo  
+    1 **Ember-Rose Drift** – smouldering scarlet petals floating like sparks  
+    2 **Saffron Leaf Flurry** – golden-orange leaves whipping in turbulent gusts  
+    3 **Copper Curl Strand** – metallic curls catching late-autumn light  
+    4 **Wind-Whorl Filigree** – spiral air currents etched in fine tracery  
+    5 **Oxidised Gold Speck** – tarnished gilt flecks peppering the scene  
+    6 **Velvet Shadow Loop** – plush shadows circling central forms  
+    7 **Craquelure Glow Vein** – glowing fissures tracing aged varnish patterns  
+    8 **Petal-Fold Chevron** – folded petals forming arrowed chevrons  
+    9 **Prism-Dust Swirl** – rainbow dust motes spiralling round the focal bloom  
+    10 **Flutter-Blur Edge** – motion-blurred contours evoking frantic flutter  
+    11 **Ash-Tipped Stamen** – soot-dark pollen tips signalling combustion  
+    12 **Charcoal Mist Grain** – smoky granular texture softening backgrounds  
+    13 **Spiral Vine Hair** – tendrils entwined like flowing tresses  
+    14 **Punctum Pollen Flash** – pinpoint bursts of phosphorescent pollen  
+    15 **Glimmer Gust Halo** – haloing spray of glittering airborne motes  
 
     ## Concept Panel
-    1 Victo Ngai – intricate swirls & narrative hair flows  
-    2 Tran Nguyen – melancholic florals in soft inks:contentReference[oaicite:6]{index=6}  
-    3 Lita Cabellut – cracked monumental portraits (texture depth)  
-    4 Julie Heffernan – baroque dream botanicals:contentReference[oaicite:7]{index=7}  
-    5 **Gustav Klimt** – master of ornamental placement (gilded accents)  
-    6 **Clement Greenberg** – devil’s-advocate formalist critic  
+    1 **Victo Ngai** – dense miniature-world illustrator weaving narrative curls & botanicals  
+    2 **Tran Nguyen** – watercolor dreamscapes of wistful figures veiled in florals  
+    3 **Lita Cabellut** – monumental cracked-surface portraits rich with fresco texture  
+    4 **Julie Heffernan** – baroque self-fantasias blooming with allegorical flora  
+    5 **Gustav Klimt** – symbolist orchestrator of gilded ornamental autumn palettes  
+    6 **Clement Greenberg** – devil’s-advocate formalist challenging decorative indulgence  
 
     ## Medium Panel
-    1 Ron Young – color-shift patina washes on panel:contentReference[oaicite:8]{index=8}  
-    2 Chris Maynard – scalpel-cut feather filigree  
-    3 Kay Nielsen – gold-leaf fairy-tale illustration  
-    4 Etsuko Ichikawa – fire-glass smoke impressions  
-    5 Refik Anadol – data-driven petal particle holograms  
-    6 Anna Atkins – cyanotype botanical ghosts
+    1 **Ron Young** – color-shift patina washes creating iridescent copper panels  
+    2 **Chris Maynard** – scalpel-cut feather compositions forming leafy filigree  
+    3 **Kay Nielsen** – gold-leaf fairy-tale illustrations in sweeping art-nouveau lines  
+    4 **Etsuko Ichikawa** – fire-glass smoke drawings capturing ephemeral heat traces  
+    5 **Refik Anadol** – data-driven particle holograms of drifting petals  
+    6 **Anna Atkins** – cyanotype photograms producing ghostly botanical blues  
 - name: Lunar Bloom Sentinel
   prompt: |
     ## Special Flairs
-    1 Moon-Halo Flare  2 Solar Gold Dust  3 Rose-Iron Filigree  4 Tidal Hair Strand  5 Crest-Plate Lattice  
-    6 Candle-Glow Pistil  7 Prism-Mist Bloom  8 Armor Scroll Etch  9 Orbital Petal Drift  10 Night-Gilt Speckle  
-    11 Ebony Star Grain  12 Silk-Inferno Ribbon  13 Dawn-Edge Rim  14 Spiral Vine Plait  15 Nectar Spark Echo  
+    1 **Moon-Halo Flare** – radiant lunar corona illuminating metallic blossoms  
+    2 **Solar Gold Dust** – fine gilded specks reminiscent of solar wind  
+    3 **Rose-Iron Filigree** – decorative ironwork tinged with rosy rust  
+    4 **Tidal Hair Strand** – flowing locks cresting like tidal waves  
+    5 **Crest-Plate Lattice** – interlocked armour plates forming lattice ridges  
+    6 **Candle-Glow Pistil** – warm core-light echoing chapel candles  
+    7 **Prism-Mist Bloom** – iridescent mist enveloping moonlit petals  
+    8 **Armor Scroll Etch** – elaborate scrollwork engraved on metal cuirass  
+    9 **Orbital Petal Drift** – petals circling in slow orbital paths  
+    10 **Night-Gilt Speckle** – starlike flecks brightening the nocturne palette  
+    11 **Ebony Star Grain** – dark granular texture sparkling like distant stars  
+    12 **Silk-Inferno Ribbon** – fiery silk ribbons twisting across armour seams  
+    13 **Dawn-Edge Rim** – blush horizon gradients kissing steel contours  
+    14 **Spiral Vine Plait** – braided vines curling round sentinel helms  
+    15 **Nectar Spark Echo** – tiny luminous droplets echoing sweet nectar sparks  
 
     ## Concept Panel
-    1 Filip Hodas – gilded post-apocalyptic metal renders:contentReference[oaicite:14]{index=14}  
-    2 James Jean – prismatic surreal blossoms:contentReference[oaicite:15]{index=15}  
-    3 Takashi Murakami – pop-flower armour mashups:contentReference[oaicite:16]{index=16}  
-    4 Kate MccGwire – feather vortices for hair accents:contentReference[oaicite:17]{index=17}  
-    5 **Hajime Sorayama** – chrome biomorphic form placement  
-    6 **Paul Virilio** – devil’s-advocate speed/war theorist  
+    1 **Filip Hodas** – cinematic 3-D creator forging gilded post-apocalyptic metal landscapes  
+    2 **James Jean** – painter of prismatic surreal blossoms fused with fluid armour  
+    3 **Takashi Murakami** – super-flat pop-flower visionary pairing kawaii with battle gear  
+    4 **Kate MccGwire** – sculptor weaving feather vortices into totemic forms  
+    5 **Hajime Sorayama** – chrome aerographist defining sensual biomech curves  
+    6 **Paul Virilio** – devil’s-advocate philosopher interrogating speed, war & techno-aesthetics  
 
     ## Medium Panel
-    1 Hajime Sorayama – aerograph chrome armour  
-    2 Neri Oxman – bio-printed flower-metal hybrids  
-    3 Patricia Piccinini – silicone bloom-tech forms  
-    4 Hiroshi Sugimoto – long-exposure moon discs  
-    5 Diana Scherer – root-grown textile hairpieces  
-    6 Refik Anadol – light-field moon-petal holograms
+    1 **Hajime Sorayama** – high-gloss aerograph chrome over anatomical armour  
+    2 **Neri Oxman** – bio-printed composite shells marrying flower & metal structures  
+    3 **Patricia Piccinini** – silicone bloom-tech organisms blurring life and machine  
+    4 **Hiroshi Sugimoto** – long-exposure moon disc photography capturing cosmic patience  
+    5 **Diana Scherer** – textile sculptures coaxed from living root systems  
+    6 **Refik Anadol** – light-field holography merging lunar data with floating petals  
 - name: Patina Moonblade Crown
   prompt: |
     ## Special Flairs
-    1 Oxidised Crescent Halo 2 Rust-Rose Fleck 3 Moon-Steel Etch 4 Lotus-Blade Arc 5 Blood-Petal Mist  
-    6 Verdigris Vein Glow 7 Corten Ember Speck 8 Ember-Ash Down 9 Frost-Shadow Tassel 10 Gold-Kintsugi Crack  
-    11 Prism-Edge Frost 12 Hollow Star Chant 13 Echo Slash Lumen 14 Violet Night Vignette 15 Halo Dust Drift
+    1 **Oxidised Crescent Halo** – verdigris arc encircling like a weathered crown  
+    2 **Rust-Rose Fleck** – rose-shaped rust speckles dotting blade surfaces  
+    3 **Moon-Steel Etch** – etched lunar cartography on cold-forged steel  
+    4 **Lotus-Blade Arc** – curved lotus-inspired sword forms framing focus  
+    5 **Blood-Petal Mist** – crimson mist drifting like sundered petals  
+    6 **Verdigris Vein Glow** – glowing turquoise veins running through bronze  
+    7 **Corten Ember Speck** – ember-orange fragments across weathered corten  
+    8 **Ember-Ash Down** – gentle fallout of glowing ash particles  
+    9 **Frost-Shadow Tassel** – icy tassels casting cobalt shadows  
+    10 **Gold-Kintsugi Crack** – gilded repair seams celebrating fractures  
+    11 **Prism-Edge Frost** – crystalline spectrum glints along honed edges  
+    12 **Hollow Star Chant** – echoing star-shaped voids humming with resonance  
+    13 **Echo Slash Lumen** – repeating light trails tracing swift slashes  
+    14 **Violet Night Vignette** – deep-purple vignette embracing the scene  
+    15 **Halo Dust Drift** – drifting motes forming a subtle luminous aureole  
 
     ## Concept Panel
-    1 Rosamond Purcell – decayed specimen aesthetics  
-    2 Zdzisław Beksiński – gothic lunar dread
-    3 Julie Heffernan – dreamlike baroque florals 
-    4 Filip Hodas – metallic moon ruins 
-    5 Liam Wong – noir moonlit palettes
-    6 **Camille Paglia** – devil’s-advocate baroque-decadence critic  
+    1 **Rosamond Purcell** – photographer of decayed specimens & weathered curios  
+    2 **Zdzisław Beksiński** – gothic lunar nightmare-architect in layered oils  
+    3 **Julie Heffernan** – painter of baroque self-mythologies wreathed in florals  
+    4 **Filip Hodas** – metallic moon ruin virtuoso sculpting spectral wreckage  
+    5 **Liam Wong** – neon-noir storyteller of moonlit urban palettes  
+    6 **Camille Paglia** – devil’s-advocate critic debating baroque-decadent excess  
 
     ## Medium Panel
-    1 Ron Young – bronze-patina chemistries
-    2 Kate MccGwire – rust-tinged feathers  
-    3 Kris Kuksi – gilt armor assemblage 
-    4 Pejac – oxidation illusions on glass 
-    5 Refik Anadol – moon-phase data sculpture
-    6 Etsuko Ichikawa – fire-glass smoke ribbons
+    1 **Ron Young** – bronze-patina chemistries yielding iridescent mineral blooms  
+    2 **Kate MccGwire** – rust-tinged feather vortices fashioned into regalia  
+    3 **Kris Kuksi** – gilt armour assemblages merging weaponry & ornament  
+    4 **Pejac** – reverse-oxidation illusions etched onto glass planes  
+    5 **Refik Anadol** – moon-phase data sculptures shifting with ambient light  
+    6 **Etsuko Ichikawa** – fire-glass smoke ribbons captured on paper & glass  
 - name: Necro-Baroque Emberglass
   prompt: |
     ## Special Flairs 
@@ -530,27 +578,38 @@
     6. **Goya** – eternal master of black paintings and dark visions
 - name: Violet Gothic Florarium
   prompt: |
-      ## Special Flairs
-      1 Twilight Orchid Halo  2 Thorn-Baroque Scroll  3 Ink-Drip Acanthus  4 Velvet Shadow Filigree  
-      5 Silver-Ash Petal Dust  6 Candle-Glow Pistil  7 Damask Decay Fringe  8 Inner-Light Motif  
-      9 Gargoyle Lily Spur  10 Spectral Vine Whorl  11 Prism-Mist Bloom  
-      12 Blood-Wine Drizzle  13 Cathedral Rose Ghost  14 Wax-Seal Stamen  15 Obsidian Nectar Tear  
+    ## Special Flairs
+    1. **Twilight Orchid Halo** – dusky-violet corona circling the focal bloom, hinting at nightfall mysteries  
+    2. **Thorn-Baroque Scroll** – gilded arabesques that curl into sharp, bramble-like spines  
+    3. **Ink-Drip Acanthus** – gravity-pulled black rivulets morphing into acanthus leaves along the edge  
+    4. **Velvet Shadow Filigree** – plush charcoal lacework that deepens mid-tones and guides the eye inward  
+    5. **Silver-Ash Petal Dust** – fine metallic motes drifting like cremated petals in back-light  
+    6. **Candle-Glow Pistil** – warm core radiance echoing chapel candles at the heart of each flower  
+    7. **Damask Decay Fringe** – baroque textile patterns eroding into organic tatters at the borders  
+    8. **Inner-Light Motif** – pinpoint luminescence nested within darkness, symbolizing latent hope  
+    9. **Gargoyle Lily Spur** – grotesque stamen details that resemble cathedral gargoyles mid-gape  
+    10. **Spectral Vine Whorl** – translucent tendrils spiraling like ectoplasmic smoke rings  
+    11. **Prism-Mist Bloom** – refracted micro-rainbows diffused through vaporous petals  
+    12. **Blood-Wine Drizzle** – viscous crimson droplets trailing across the scene like ritual libation  
+    13. **Cathedral Rose Ghost** – faint rose silhouettes echoing stained-glass tracery in negative space  
+    14. **Wax-Seal Stamen** – glossy drips hardening at filament tips, recalling crimson lacquer signets  
+    15. **Obsidian Nectar Tear** – jet-black nectar beads catching sharp highlights, conveying somber sweetness  
 
-      ## Concept Panel
-      1 **Julie Heffernan** – baroque dream-botanicals painter:contentReference[oaicite:12]{index=12}  
-      2 **Aya Kato** – Art-Nouveau ambience + floral Nihonga lines  
-      3 **Thomas Woodruff** – dark-circus flower iconography  
-      4 **Mao Hamaguchi** – surreal violet floral portraits:contentReference[oaicite:13]{index=13}  
-      5 **Caspar David Friedrich** – romantic silhouette master (placement)  
-      6 **Camille Paglia** – devil’s advocate gothic-decadence critic  
+    ## Concept Panel
+    1. **Julie Heffernan** – baroque allegorist blending self-portraiture with lush dream-botanicals  
+    2. **Aya Kato** – neo-Art Nouveau virtuoso fusing Nihonga linework with luminous digital florals  
+    3. **Thomas Woodruff** – carnivalesque myth-builder wielding dark-circus flower iconography  
+    4. **Mao Hamaguchi** – surreal portraitist saturating violets and indigos into flower-fused visages  
+    5. **Caspar David Friedrich** – romantic atmosphere sage guiding solemn silhouettes and vast negative space  
+    6. **Camille Paglia** (Devil’s Advocate) – cultural critic challenging gothic-decadence excess, urging classical restraint  
 
-      ## Medium Panel
-      1 Kay Nielsen – gold-leaf illuminated flora  
-      2 Kehinde Wiley – patterned botanical portrait backdrops  
-      3 Zdzisław Beksiński – layered oil decay atmospheres  
-      4 Gustave Doré – engraving line drama  
-      5 Anna Atkins – cyanotype botanical ghosts  
-      6 Monika Horcicová – 3-D printed bone-flower hybrids
+    ## Medium Panel
+    1. **Kay Nielsen** – gold-leaf and gouache illuminations infusing fairy-tale flora with luminous line elegance  
+    2. **Kehinde Wiley** – high-chroma oil portraits set against intricate botanical textile backdrops  
+    3. **Zdzisław Beksiński** – impasto horror oils layering corroded textures and sepulchral hues  
+    4. **Gustave Doré** – master engraver delivering dramatic cross-hatched depth and chiaroscuro drama  
+    5. **Anna Atkins** – cyanotype pioneer creating ghostly Prussian-blue botanical photograms  
+    6. **Monika Horcicová** – sculptor 3-D printing skeletal bone-flower hybrids into fragile reliquaries  
 - name: Masters of the Dark Room
   prompt: |
       ## Special Flairs:
@@ -789,3 +848,139 @@
     4. **K.Flay** – DIY alt-hip-hop sound-craft  
     5. **Laura Sisk** – punchy mix clarity  
     6. **Mark “Spike” Stent** – stadium-size finishing touch  
+- name: Celluloid Phantom Tableau
+  prompt: |
+    ## Special Flairs
+    1 **Nitrate Flicker Halo** – ghostly halo of decomposing nitrate film flicker encircling subjects  
+    2 **Grain-Ghost Veil** – coarse film grain drifting like spectral gauze across the frame  
+    3 **Frame-Burn Sigil** – scorched edge artifacts imprinting occult-looking symbols  
+    4 **Silver-Dust Echo** – shimmering metallic specks echoing the silver of celluloid emulsion  
+    5 **Overcrank After-Image** – smeared motion trails birthed by high-speed camera overcrank  
+    6 **Lens-Bloom Drift** – soft blooming glares that wander over figures in slow radiance  
+    7 **Shutter-Flash Scar** – abrupt white scars from shutter misfires punctuating the image  
+    8 **Sepia Vapor Trail** – warm sepia wisps evaporating through time-lapse air  
+    9 **Velvet-Shadow Gate** – plush noir shadows framing scenes like a projector gate  
+    10 **Optical-Print Glimmer** – layered optical-print sparkles scattering pin-point light  
+    11 **Splice-Mark Rune** – visible splice marks read as cryptic runic slashes  
+    12 **Hand-Tint Pulse** – hand-colored tint pulses sweeping selectively over highlights  
+    13 **Iris-Wipe Ghost** – circular iris transitions haunting compositions with retro grace  
+    14 **Emulsion Crackle Kiss** – hairline webs of cracked emulsion kissing surface tones  
+    15 **Celluloid Cinder Snow** – drifting ash-like debris snowing gently through the frame  
+
+    ## Concept Panel
+    1 **Maya Deren** – trance-cinema pioneer weaving dream montage  
+    2 **Sergei Parajanov** – folkloric tableau artisan of icon-rich colour  
+    3 **Barbara Hammer** – tactile poet of bodily experimental film  
+    4 **Bi Gan** – labyrinthine long-take cartographer of memory  
+    5 **Apichatpong Weerasethakul** – slow-cinema spirit whisperer of jungle nights  
+    6 **Werner Herzog** – devil’s-advocate abyss-gazer demanding ecstatic truth  
+
+    ## Medium Panel
+    1 **Christopher Doyle** – kinetic neon handheld chiaroscuro  
+    2 **Natasha Braier** – liquid-light lensing and vapor-colour bloom  
+    3 **Benoît Debie** – hyper-saturation with strobing gel palettes  
+    4 **Bradford Young** – low-lux digital chiaroscuro in ember tones  
+    5 **Tacita Dean** – 16 mm expanded-film loop installations  
+    6 **Stan Brakhage** – hand-painted celluloid and direct animation  
+- name: Neon Lumen Opera
+  prompt: |
+    ## Special Flairs
+    1 **Chromatic Ghost-Trail** – multicoloured light streaks lingering as spectral tails  
+    2 **Vapor-Neon Lace** – neon haze weaving delicate filigree patterns in the air  
+    3 **Laser-Cut Mist** – razor-sharp beams slicing through rolling urban mist  
+    4 **Hologram Grain Burst** – holographic noise grains erupting in sudden flashes  
+    5 **Electric Rain Streak** – vertical rain lines lit by pulsing electric glow  
+    6 **Day-Glow Shadow Rim** – fluorescent edging outlining silhouettes with pop flair  
+    7 **Kaleido-Loop Jitter** – looping kaleidoscopic jitter dizzying the frame’s core  
+    8 **Candy-Flare Mirror** – saccharine lens flares mirrored across symmetry axes  
+    9 **After-Pulse Halo** – residual halos throbbing gently after light pulses fade  
+    10 **Vector-Line Drift** – drifting vector graphics lines injecting digital energy  
+    11 **Scanner-Noise Haze** – scrolling scan-line noise hanging as electronic fog  
+    12 **Midnight RGB Ripple** – rippling RGB waves undulating through midnight palette  
+    13 **Synth-Gleam Speck** – sparkling micro-highlights echoing synth arpeggios  
+    14 **Pixel-Pop Bloom** – blocky pixel eruptions blooming into vibrant colour clouds  
+    15 **Sodium-Vapor Scar** – harsh amber streaks from street-lamp sodium scars  
+
+    ## Concept Panel
+    1 **Panos Cosmatos** – synth-wave fever-dream architect  
+    2 **Josephine Decker** – visceral psych-portrait improviser  
+    3 **Khalik Allah** – night-street fluorescence poet of faces  
+    4 **Mati Diop** – tidal-neon storyteller of spectral migration  
+    5 **Pedro Costa** – chiaroscuro housing-block mythmaker  
+    6 **Jean-Luc Godard** – devil’s-advocate collage provocateur disrupting form  
+
+    ## Medium Panel
+    1 **Mark Lee Ping-bing** – liquid dusk amber cinematography  
+    2 **Hélène Louvart** – intimate handheld pastel shadows  
+    3 **Anthony Dod Mantle** – digital-grain grit and tilt-frame energy  
+    4 **André Turpin** – prism-flare interior neon glows  
+    5 **Seamus McGarvey** – luminous colour-separation filters  
+    6 **Gaspar Noé** – rotating black-light strobe atmospherics  
+- name: Temporal Echo Weave
+  prompt: |
+    ## Special Flairs
+    1 **Palimpsest Frame-Stack** – layered frames revealing ghost images beneath the present  
+    2 **Reverse-Crawl Shadow** – backward-moving shadows creeping opposite time’s flow  
+    3 **Decay-Loop Aura** – repeating loops eroding like magnetic tape rot around edges  
+    4 **Echo-Warp Blur** – warped motion blur echoing itself across temporal offsets  
+    5 **Time-Slice Fringe** – staggered slices of action fringing like shattered time glass  
+    6 **Liquid Jump-Cut** – fluid but jarring discontinuities splashing between cuts  
+    7 **Phantom Split-Diopter** – dual-focus phantom edges from vintage split-diopter lens  
+    8 **Rust-Sepia Stain** – corroded sepia stains bleeding into mid-tones like old letters  
+    9 **Paper-Print Flash** – flash-frames of contact prints flickering as memory sparks  
+    10 **Memory Dust Drift** – drifting motes symbolising fading recollections in air  
+    11 **Velvet-Static Pulse** – plush static pulses rolling softly over the soundtrack  
+    12 **Arc-Light Scratch** – bright scratches flaring like arc-weld lightning strikes  
+    13 **Vocal-Wave Silhouette** – figure outlines modulated by visible sound waveforms  
+    14 **Ticking Iris Fade** – iris closures opening rhythmically like ticking clockwork  
+    15 **Velvet Fog Dissolve** – gentle opacity dissolves settling like twilight fog  
+
+    ## Concept Panel
+    1 **Bill Morrison** – archival-ruin poet of decomposing reels  
+    2 **Guy Maddin** – delirious silent-era pastiche dream-smith  
+    3 **Lynne Ramsay** – terse image-sound conjurer of shockwave emotion  
+    4 **Jan Švankmajer** – stop-motion surreal anatomist of objects  
+    5 **Khavn De La Cruz** – punk digi-baroque blitz filmmaker from Manila  
+    6 **Lars von Trier** – devil’s-advocate boundary-pusher testing viewer limits  
+
+    ## Medium Panel
+    1 **Robbie Ryan** – grainy overcast naturalism & frenetic handheld moves  
+    2 **Claire Mathon** – candle-kissed soft-contrast palettes  
+    3 **Wojciech Staroń** – poetic 16 mm travelogue hues  
+    4 **Gregg Toland** – deep-focus epochal craft resurrected  
+    5 **Claire Denis & Agnès Godard** – sensual tactile shadow play (duo study)  
+    6 **Shirley Clarke** – jazz-edited cinéma-vérité switching stocks  
+- name: Chromatic Shadow Pilgrimage
+  prompt: |
+    ## Special Flairs
+    1 **Silver-Ash Lantern** – dim argent glow drifting like ash-filled lantern light  
+    2 **Indigo Veil Drift** – deep-indigo veil gliding slowly over horizons  
+    3 **Prism-Dust Monolith** – monolithic form refracting rainbow dust motes  
+    4 **Ember-Fog Corridor** – corridor bathed in smouldering ember-hued fog  
+    5 **Rain-Mirror Shard** – puddle reflections fracturing rain-split light into shards  
+    6 **Halo-Grain Whisper** – faint halos wrapped in whisper-fine grain textures  
+    7 **Sepulchral Tint Flash** – sudden flashes of tomb-cold cyan tint shocking the scene  
+    8 **Obsidian Pool Ripple** – dark reflective pool disturbed by midnight ripples  
+    9 **Mosaic Light Leak** – kaleidoscopic leaks patterning mosaic spectrums at frame edges  
+    10 **Cloud-Split Beam** – lone light beam slicing storm-thick cloud canopies  
+    11 **Reverie Slow-Pan** – languid camera pan evoking trance-state reveries  
+    12 **Echo-Footstep Foley** – visible ripples of sound as echoing footstep foley waves  
+    13 **Script-Glyph Fade-In** – translucent glyphs of script easing ghost-like into view  
+    14 **Horizon Flare Hymn** – lens flare singing across distance like a hymnal chord  
+    15 **Star-Silt Fallout** – fine stardust drifting downward like cosmic silt sediment  
+
+    ## Concept Panel
+    1 **Ritwik Ghatak** – partition-wound epicist forging mythic rivers  
+    2 **Sarah Maldoror** – anti-colonial cine-poet of Angolan liberation  
+    3 **Souleymane Cissé** – Sahelian metaphysical griot of inner light  
+    4 **Teinosuke Kinugasa** – silent avant-gardist of fevered montage  
+    5 **Andrei Tarkovsky** – pilgrim of sculpted time and liquid memory  
+    6 **Pauline Kael** – devil’s-advocate critic probing auteur mystique  
+
+    ## Medium Panel
+    1 **Aleksandr Knyazhinsky** – drifting Steadicam mist & muted moss palette  
+    2 **Jaroslav Kučera** – Czech New-Wave colour inversion & wide-angle lyricism  
+    3 **Vittorio Storaro** – chromatic philosophy of “writing with light”  
+    4 **Renata Litvinova & Oleg Lukichev** – Slavic spectral noir glazing  
+    5 **Ans Westra (film work)** – documentary earth-tone intimacy  
+    6 **Peter Tscherkassky** – photochemical contact-print abstraction  

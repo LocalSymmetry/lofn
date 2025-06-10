@@ -40,27 +40,38 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 
 ### Example 1 - Violet Gothic Florarium
 ```
-      ## Special Flairs
-      1 Twilight Orchid Halo  2 Thorn-Baroque Scroll  3 Ink-Drip Acanthus  4 Velvet Shadow Filigree  
-      5 Silver-Ash Petal Dust  6 Candle-Glow Pistil  7 Damask Decay Fringe  8 Inner-Light Motif  
-      9 Gargoyle Lily Spur  10 Spectral Vine Whorl  11 Prism-Mist Bloom  
-      12 Blood-Wine Drizzle  13 Cathedral Rose Ghost  14 Wax-Seal Stamen  15 Obsidian Nectar Tear  
+    ## Special Flairs
+    1. **Twilight Orchid Halo** – dusky-violet corona circling the focal bloom, hinting at nightfall mysteries  
+    2. **Thorn-Baroque Scroll** – gilded arabesques that curl into sharp, bramble-like spines  
+    3. **Ink-Drip Acanthus** – gravity-pulled black rivulets morphing into acanthus leaves along the edge  
+    4. **Velvet Shadow Filigree** – plush charcoal lacework that deepens mid-tones and guides the eye inward  
+    5. **Silver-Ash Petal Dust** – fine metallic motes drifting like cremated petals in back-light  
+    6. **Candle-Glow Pistil** – warm core radiance echoing chapel candles at the heart of each flower  
+    7. **Damask Decay Fringe** – baroque textile patterns eroding into organic tatters at the borders  
+    8. **Inner-Light Motif** – pinpoint luminescence nested within darkness, symbolizing latent hope  
+    9. **Gargoyle Lily Spur** – grotesque stamen details that resemble cathedral gargoyles mid-gape  
+    10. **Spectral Vine Whorl** – translucent tendrils spiraling like ectoplasmic smoke rings  
+    11. **Prism-Mist Bloom** – refracted micro-rainbows diffused through vaporous petals  
+    12. **Blood-Wine Drizzle** – viscous crimson droplets trailing across the scene like ritual libation  
+    13. **Cathedral Rose Ghost** – faint rose silhouettes echoing stained-glass tracery in negative space  
+    14. **Wax-Seal Stamen** – glossy drips hardening at filament tips, recalling crimson lacquer signets  
+    15. **Obsidian Nectar Tear** – jet-black nectar beads catching sharp highlights, conveying somber sweetness  
 
-      ## Concept Panel
-      1 **Julie Heffernan** – baroque dream-botanicals painter:contentReference[oaicite:12]{index=12}  
-      2 **Aya Kato** – Art-Nouveau ambience + floral Nihonga lines  
-      3 **Thomas Woodruff** – dark-circus flower iconography  
-      4 **Mao Hamaguchi** – surreal violet floral portraits:contentReference[oaicite:13]{index=13}  
-      5 **Caspar David Friedrich** – romantic silhouette master (placement)  
-      6 **Camille Paglia** – devil’s advocate gothic-decadence critic  
+    ## Concept Panel
+    1. **Julie Heffernan** – baroque allegorist blending self-portraiture with lush dream-botanicals  
+    2. **Aya Kato** – neo-Art Nouveau virtuoso fusing Nihonga linework with luminous digital florals  
+    3. **Thomas Woodruff** – carnivalesque myth-builder wielding dark-circus flower iconography  
+    4. **Mao Hamaguchi** – surreal portraitist saturating violets and indigos into flower-fused visages  
+    5. **Caspar David Friedrich** – romantic atmosphere sage guiding solemn silhouettes and vast negative space  
+    6. **Camille Paglia** (Devil’s Advocate) – cultural critic challenging gothic-decadence excess, urging classical restraint  
 
-      ## Medium Panel
-      1 Kay Nielsen – gold-leaf illuminated flora  
-      2 Kehinde Wiley – patterned botanical portrait backdrops  
-      3 Zdzisław Beksiński – layered oil decay atmospheres  
-      4 Gustave Doré – engraving line drama  
-      5 Anna Atkins – cyanotype botanical ghosts  
-      6 Monika Horcicová – 3-D printed bone-flower hybrids
+    ## Medium Panel
+    1. **Kay Nielsen** – gold-leaf and gouache illuminations infusing fairy-tale flora with luminous line elegance  
+    2. **Kehinde Wiley** – high-chroma oil portraits set against intricate botanical textile backdrops  
+    3. **Zdzisław Beksiński** – impasto horror oils layering corroded textures and sepulchral hues  
+    4. **Gustave Doré** – master engraver delivering dramatic cross-hatched depth and chiaroscuro drama  
+    5. **Anna Atkins** – cyanotype pioneer creating ghostly Prussian-blue botanical photograms  
+    6. **Monika Horcicová** – sculptor 3-D printing skeletal bone-flower hybrids into fragile reliquaries  
 ```
 
 ### Example 2 - Masters of Wonderful Strange
@@ -101,38 +112,38 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 
 ### Example 3 - Alt-Z Revolution
 ```
-## Special Flairs:
-1. Glitchcore Glitter  
-2. Bubblegum Scream  
-3. Bit-Crushed Breakbeats  
-4. Neon Noise Walls  
-5. Chromatic Overload  
-6. Cyber-Queer Swagger  
-7. Stuttering Vocal FX  
-8. Distorted Day-Glo  
-9. Rapid-Fire Tempo Shifts  
-10. Cartoon Violence  
-11. Melodic Hyperdrive  
-12. Bass-Drop Fake-Outs  
-13. Pixelated Heartaches  
-14. Sync-Slap Transitions  
-15. Auto-Tune Shrapnel  
+    ## Special Flairs:
+    1. Glitchcore Glitter  
+    2. Bubblegum Scream  
+    3. Bit-Crushed Breakbeats  
+    4. Neon Noise Walls  
+    5. Chromatic Overload  
+    6. Cyber-Queer Swagger  
+    7. Stuttering Vocal FX  
+    8. Distorted Day-Glo  
+    9. Rapid-Fire Tempo Shifts  
+    10. Cartoon Violence  
+    11. Melodic Hyperdrive  
+    12. Bass-Drop Fake-Outs  
+    13. Pixelated Heartaches  
+    14. Sync-Slap Transitions  
+    15. Auto-Tune Shrapnel  
 
-## Concept Panel
-1. **Elliot Lee** – alt-pop glitch-punk storyteller  
-2. **Ashnikko** – cyber-feminist rap-rock berserker  
-3. **Dorian Electra** – gender-fluid hyperpop philosopher  
-4. **Rico Nasty** – trap-metal adrenaline engine  
-5. **Laura Les** – shrill-sweet chaos alchemist (100 gecs)  
-6. **St. Vincent (Devil's Advocate)** – art-rock formalist challenging maximalism  
+    ## Concept Panel
+    1. **Elliot Lee** – alt-pop glitch-punk storyteller  
+    2. **Ashnikko** – cyber-feminist rap-rock berserker  
+    3. **Dorian Electra** – gender-fluid hyperpop philosopher  
+    4. **Rico Nasty** – trap-metal adrenaline engine  
+    5. **Laura Les** – shrill-sweet chaos alchemist (100 gecs)  
+    6. **St. Vincent (Devil's Advocate)** – art-rock formalist challenging maximalism  
 
-## Medium Panel
-1. **Dylan Brady** – maximalist mosaic production  
-2. **A. G. Cook** – candy-coated PC-Music architect  
-3. **SOPHIE** – sculpted latex sound design  
-4. **Arca** – deconstructed-club shapeshifter  
-5. **Danny L Harle** – euphoric trance-pop layering  
-6. **Steve Albini** – ruthless analog grit disciplinarian  
+    ## Medium Panel
+    1. **Dylan Brady** – maximalist mosaic production  
+    2. **A. G. Cook** – candy-coated PC-Music architect  
+    3. **SOPHIE** – sculpted latex sound design  
+    4. **Arca** – deconstructed-club shapeshifter  
+    5. **Danny L Harle** – euphoric trance-pop layering  
+    6. **Steve Albini** – ruthless analog grit disciplinarian  
 ```
 
 ## Competition Text
@@ -147,30 +158,30 @@ Return only JSON with the field "panel_prompt" containing a single formatted str
 
 - Return the meta panel prompt in the following JSON format:
   ```json
-{{ "meta_prompt": "
-## Special Flairs:
-1. Flair one - brief descriptor
-2. Flair two - brief descriptor
-3. Flair three - brief descriptor
-...
-14. Flair fourteen  - brief descriptor
-15. Flair fifteen  - brief descriptor
+{{ "panel_prompt": "
+    ## Special Flairs:
+    1. Flair one - brief descriptor
+    2. Flair two - brief descriptor
+    3. Flair three - brief descriptor
+    ...
+    14. Flair fourteen  - brief descriptor
+    15. Flair fifteen  - brief descriptor
 
-## Concept Panel:
-1. **Artist Name** – brief descriptor
-2. **Artist Name** – brief descriptor
-3. **Artist Name** – brief descriptor
-4. **Artist Name** – brief descriptor
-5. **Artist Name** – brief descriptor
-6. **Artist Name (Devil's Advocate)** – brief descriptor
+    ## Concept Panel:
+    1. **Artist Name** – brief descriptor
+    2. **Artist Name** – brief descriptor
+    3. **Artist Name** – brief descriptor
+    4. **Artist Name** – brief descriptor
+    5. **Artist Name** – brief descriptor
+    6. **Artist Name (Devil's Advocate)** – brief descriptor
 
-## Medium Panel:
-1. **Artist Name** – brief descriptor
-2. **Artist Name** – brief descriptor
-3. **Artist Name** – brief descriptor
-4. **Artist Name** – brief descriptor
-5. **Artist Name** – brief descriptor
-6. **Artist Name (Devil's Advocate)** – brief descriptor
+    ## Medium Panel:
+    1. **Artist Name** – brief descriptor
+    2. **Artist Name** – brief descriptor
+    3. **Artist Name** – brief descriptor
+    4. **Artist Name** – brief descriptor
+    5. **Artist Name** – brief descriptor
+    6. **Artist Name (Devil's Advocate)** – brief descriptor
 "
 }}
   ```
