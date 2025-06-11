@@ -776,8 +776,14 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
                 st.write(f"Input args: {args_dict}")
             response = chain.invoke(args_dict)
 
-        if isinstance(response, dict) and 'text' in response:
-            full_response = response['text']
+        if isinstance(response, dict):
+            if 'text' in response:
+                full_response = response['text']
+            elif 'content' in response and isinstance(response['content'], list):
+                # Anthropic Claude models may return a list of content blocks
+                full_response = "".join(block.get('text', '') for block in response['content'])
+            else:
+                full_response = str(response)
         elif isinstance(response, str):
             full_response = response
         else:
