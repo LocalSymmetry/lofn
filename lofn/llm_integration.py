@@ -267,7 +267,8 @@ music_facets_schema = {
 
 music_gen_schema = {
     "music_prompt": str,
-    "lyrics_prompt": str
+    "lyrics_prompt": str,
+    "title": str
 }
 
 # Schema for panel voting on concept-medium pairs
@@ -1477,7 +1478,8 @@ def generate_music_prompts(
         if parsed_output is not None:
             music_prompt = parsed_output['music_prompt']
             lyrics_prompt = parsed_output['lyrics_prompt']
-            return music_prompt, lyrics_prompt
+            music_title = parsed_output['title']
+            return music_prompt, lyrics_prompt, music_title
         else:
             st.error(f"Failed to generate or parse music prompts: {error}")
             return "", ""

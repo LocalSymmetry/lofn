@@ -619,7 +619,7 @@ class LofnApp:
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt = generate_music_prompts(
+                music_title, music_prompt, lyrics_prompt = generate_music_prompts(
                     input_text,
                     st.session_state['run_time'],
                     max_retries=self.max_retries,
@@ -629,6 +629,7 @@ class LofnApp:
                 )
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
+            st.session_state['music_title'] = music_title
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -841,7 +842,7 @@ class LofnApp:
             "Desired Song Length (minutes)",
             min_value=1.0,
             max_value=10.0,
-            value=3.0,
+            value=2.0,
             step=0.5,
             help="Set the desired length of the song."
         )
@@ -850,7 +851,7 @@ class LofnApp:
     def generate_music_prompts_ui(self):
         try:
             with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt = generate_music_prompts(
+                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
                     st.session_state['input'],
                     st.session_state['run_time'],
                     max_retries=self.max_retries,
@@ -860,6 +861,7 @@ class LofnApp:
                 )
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
+            st.session_state['music_title'] = music_title
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -867,6 +869,9 @@ class LofnApp:
             logger.exception("Error generating music prompts: %s", e)
 
     def display_music_prompts(self):
+        st.subheader("Generated Song Title")
+        st.code(st.session_state['music_title'], language='text')
+
         st.subheader("Generated Music Prompt")
         st.code(st.session_state['music_prompt'], language='text')
 
@@ -880,6 +885,7 @@ class LofnApp:
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
+            'music_title': None,
             'music_prompt': None,
             'lyrics_prompt': None,
             'concept_mediums': None,
