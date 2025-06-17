@@ -35,6 +35,8 @@ import random
 import numpy as np
 import pandas as pd
 import logging
+import os
+from datetime import datetime
 from helpers import display_temporary_results, display_temporary_results_no_expander
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
@@ -1395,7 +1397,8 @@ def generate_music_prompts(
     temperature,
     model,
     debug=False,
-    reasoning_level="medium"
+    reasoning_level="medium",
+    attempts: int = 1,
 ):
     """
     Generates music prompts based on the user's input.
@@ -1409,7 +1412,8 @@ def generate_music_prompts(
         debug (bool): If True, prints additional debug information.
 
     Returns:
-        tuple: (music_prompt str, lyrics_prompt str)
+        list[dict]: A list of dictionaries with ``title``, ``music_prompt`` and
+        ``lyrics_prompt`` for each attempt.
     """
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
@@ -1454,39 +1458,70 @@ def generate_music_prompts(
             | llm
         )
 
-        # Run the chain with retries
-        parsed_output = run_chain_with_retries(
-            gen_chain,
-            args_dict={
-                "input": input_text, 
-                "essence":output_essence["essence_and_facets"]["essence"], 
-                "facets":output_essence["essence_and_facets"]["facets"], 
-                "style_axes":output_essence["essence_and_facets"]["style_axes"],
-                "run_time": run_time},
-            max_retries=max_retries,
-            model=model,
-            debug=debug,
-            expected_schema = music_gen_schema
-        )
-        if debug:
-            print(parsed_output)
-        # Parse the output
-        # parsed_output, error = parse_output(str(gen_output), debug)
-        # if debug:
-        #     print(parsed_output)
-        #     print(error)
-        if parsed_output is not None:
-            music_prompt = parsed_output['music_prompt']
-            lyrics_prompt = parsed_output['lyrics_prompt']
-            music_title = parsed_output['title']
-            return music_prompt, lyrics_prompt, music_title
-        else:
-            st.error(f"Failed to generate or parse music prompts: {error}")
-            return "", ""
+        results = []
+        for attempt in range(attempts):
+            parsed_output = run_chain_with_retries(
+                gen_chain,
+                args_dict={
+                    "input": input_text,
+                    "essence": output_essence["essence_and_facets"]["essence"],
+                    "facets": output_essence["essence_and_facets"]["facets"],
+                    "style_axes": output_essence["essence_and_facets"]["style_axes"],
+                    "run_time": run_time,
+                },
+                max_retries=max_retries,
+                model=model,
+                debug=debug,
+                expected_schema=music_gen_schema,
+            )
+            if debug:
+                print(parsed_output)
+            if parsed_output is not None:
+                music_prompt = parsed_output['music_prompt']
+                lyrics_prompt = parsed_output['lyrics_prompt']
+                music_title = parsed_output['title']
+                result = {
+                    'title': music_title,
+                    'music_prompt': music_prompt,
+                    'lyrics_prompt': lyrics_prompt,
+                }
+                results.append(result)
+                _save_music_artifacts(
+                    {
+                        'timestamp': datetime.now().strftime("%Y%m%d_%H%M%S"),
+                        'model': model,
+                        'user_input': input_text,
+                        'run_time': run_time,
+                        'attempt': attempt + 1,
+                        'essence': output_essence["essence_and_facets"]["essence"],
+                        'facets': output_essence["essence_and_facets"]["facets"],
+                        'style_axes': output_essence["essence_and_facets"]["style_axes"],
+                        'creativity_spectrum': output_essence["essence_and_facets"]["creativity_spectrum"],
+                        **result,
+                    }
+                )
+            else:
+                st.error("Failed to generate or parse music prompts")
+        return results
 
     except Exception as e:
         logger.exception("Error generating music prompts: %s", e)
         raise e
+
+def _save_music_artifacts(data: Dict[str, Any]) -> None:
+    """Persist generated music prompts and metadata under ``/music``."""
+    os.makedirs('/music', exist_ok=True)
+    filename = (
+        f"/music/{data['timestamp']}_{data['model'].replace('/', '_')}_"
+        f"attempt{data['attempt']}.json"
+    )
+    def _json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f"Type {type(obj)} not serializable")
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=2, default=_json_serializable)
+    st.write(f"Music prompts saved as {filename}")
 
 def generate_meta_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
     try:

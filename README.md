@@ -38,6 +38,7 @@ Lofn is an open-source advanced AI art generator that utilizes cutting-edge natu
 - **Competition Mode**: Provides streamlined prompts and caption-only output for entering art contests.
 - **LLM-Generated Panels**: Default option automatically crafts expert panels using the chosen language model, while still allowing predefined or custom panels.
 - **Phase Map Guidance**: All generation modes now include a visible "LOFN Master Phase Map" outlining each processing step.
+- **Music Artifacts Saved**: Generated music prompts are automatically stored under `/music`.
 
 ## Installation
 
@@ -74,7 +75,7 @@ To set up Lofn, follow these steps:
 5. **Run the Docker container**:
 
    ```bash
-   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata lofn
+   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata -v $(pwd)/music:/music lofn
    ```
 
 6. **Access the Lofn UI**:

@@ -619,17 +619,16 @@ class LofnApp:
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
-                music_title, music_prompt, lyrics_prompt = generate_music_prompts(
+                results = generate_music_prompts(
                     input_text,
                     st.session_state['run_time'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
+                    attempts=3,
                 )
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
+            st.session_state['music_results'] = results
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -832,7 +831,7 @@ class LofnApp:
             else:
                 self.run_music_competition()
 
-        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+        if st.session_state.get('music_results'):
             self.display_music_prompts()
 
     def render_music_sidebar(self):
@@ -851,17 +850,16 @@ class LofnApp:
     def generate_music_prompts_ui(self):
         try:
             with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
+                results = generate_music_prompts(
                     st.session_state['input'],
                     st.session_state['run_time'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
+                    attempts=3,
                 )
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
+            st.session_state['music_results'] = results
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -869,15 +867,14 @@ class LofnApp:
             logger.exception("Error generating music prompts: %s", e)
 
     def display_music_prompts(self):
-        st.subheader("Generated Song Title")
-        st.code(st.session_state['music_title'], language='text')
-
-        st.subheader("Generated Music Prompt")
-        st.code(st.session_state['music_prompt'], language='text')
-
-        st.subheader("Generated Lyrics Prompt")
-        st.code(st.session_state['lyrics_prompt'], language='text')
-        st.info("Copy the above prompts and paste them into Udio to generate your music.")
+        results = st.session_state.get('music_results', [])
+        for i, result in enumerate(results, 1):
+            st.subheader(f"Attempt {i}: {result['title']}")
+            st.code(result['music_prompt'], language='text')
+            st.code(result['lyrics_prompt'], language='text')
+            st.markdown('---')
+        if results:
+            st.info("Copy any of the above prompts into Udio to generate your music.")
 
     def initialize_session_state(self):
         default_values = {
@@ -888,6 +885,7 @@ class LofnApp:
             'music_title': None,
             'music_prompt': None,
             'lyrics_prompt': None,
+            'music_results': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,

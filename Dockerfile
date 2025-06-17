@@ -9,6 +9,7 @@ EXPOSE 8501
 
 RUN mkdir -p /images/
 RUN mkdir -p /metadata/
+RUN mkdir -p /music/
 
 # Use entrypoint script to set environment variables and run Streamlit
 COPY * /lofn/
