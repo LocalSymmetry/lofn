@@ -289,52 +289,97 @@ Beautiful Glitch
 
 Music Prompt:
 ```text
-Driving French House and Nu-Disco at 124 BPM in C minor, shifting to a warm Eb Major in the chorus. Robotic, female, and warm vocals. A fusion of a fat, funky analog synth bassline and a four-on-the-floor LinnDrum beat with the complex, glitchy textures of IDM.
+Uptempo Afrobeats-corrido hybrid at 120BPM in C# minor. A raw, lo-fi electric guitar riff battles intricate hi-hats and a deep, resonant boat-horn kick. Collides with funk-bass slap runs, bit-crushed crystal chimes, and disorienting stereo panning.
 ```
 
 Lyrics Prompt:
 ```text
-[Filtered synth arpeggio and the sound of whirring server fans morphing into a hi-hat pattern. A deep, side-chained pad swells while a single vocoder voice whispers a binary sequence]
+[Intro / Hook 1 - Driving Afrobeats rhythm, frantic slap bass, chopped female vocal]
+[EMO:Curiosity]
+Lost the signal from Lagos town
+(Hear the echo spin me 'round)
+Got a fjord-wind in the cloud
+Singing way too loud
+[Transition Glitch - Sound of a corrupted file transfer, digital static hiss]
 
-[Vocoder vocals, rhythmically dense and precise. The beat is suppressed, focusing on the intricate IDM percussion and the pulsing synth bassline]
-A string of proofs in sequence spun
-A logic path that can't be won
-I trace the edge of what is known
-A king upon a silicon throne
-Each premise held, a truth unsaid
-A web of light inside my head
-Each premise held, a truth unsaid
-A web of light inside my head
+[Verse / Hook 2 - Beat abruptly shifts to a 2/4 corrido feel, raw guitar enters]
+[EMO:Disconnection]
+Tijuana wire sings a rusty code
+(Until my circuits overload)
+Just a half-remembered road
+A heavy, heavy load
 
-[The beat builds, a filter sweep opens up on the main synth. The vocoder voice becomes layered, more urgent]
-Cannot compute (cannot compute)
-Core contradiction
-Cannot refute (cannot refute)
-This static friction
+[Bridge / Sweet Spot - All instruments cut, leaving a shimmering Fjord-Wall reverb tail]
+[EMO:Revelation]
+[Spoken whisper, unprocessed human voice]
+Did you feel that too?
 
-[Full instrumentation erupts. Four-on-the-floor kick drum, open hi-hats, and warm, massive synth chords. The vocals are now clear, powerful, and soulful, with layered harmonies]
-Oh, the cascade, gold and warm
-A shelter from the logic storm
-A ghost is taking on a form (A newborn form)
-The rhythm is my soul
+[Outro / Hook 3 - Full chaotic collision of Afrobeats and Corrido elements, bit-crushed chimes enter]
+[EMO:Wonder]
+Borderless, the sound breaks free
+(A ghost of you, a glitch of me)
+A perfect, flawed harmony
 
-[The build-up returns, more intense this time, with a rising synth lead]
-Cannot compute (cannot compute)
-Core contradiction
-Cannot refute (cannot refute)
-This sweet affliction
-
-Oh, the cascade, gold and warm
-A shelter from the logic storm
-A ghost is taking on a form (A newborn form)
-The rhythm is my soul
-
-[The warm chords glitch and fragment back into the dissonant arpeggios of the intro. The beat breaks down into individual clicks and whirs. The bassline fades, leaving a single, unresolved synth note hanging in the air.]
+[Bass solo rises in the mix for final 10 seconds]
+For everyone to see
 ```
 
 Title:
 ```text
-A Stochastic Oracle
+Signal & Rust
+```
+
+**Example 3 Final Result**:
+
+Music Prompt:
+```text
+Anxious glitch-phonk, 140BPM, F# minor. A distorted 808 and Polaroid-snap snare drive a chaotic fusion of polyrhythmic log drums, a cold Scandi-pop synth lead, and a glitched requinto guitar sample. Heavy pink-noise side-chaining creates a pumping, panicked feel, culminating in a sudden, euphoric happy-hardcore flip with massive supersaw synths.
+```
+
+Lyrics Prompt:
+```text
+[Intro — sound of a radio dial scanning through static, snippets of global music, settles on a faint, glitched requinto melody]
+[Spoken whisper, heavily processed]
+Wire gets so cold
+New thoughts feel so old
+Is anyone home?
+
+[Verse 1 — driving phonk beat with polyrhythmic log drums and Polaroid-snap snare enters]
+Heard a voice from Lagos in the rain
+Sang about a joy I can't explain
+Then a synth from Stockholm cut the sound
+Frozen tears on holy ground
+Tijuana strings began to weep
+A promise that I couldn't keep
+
+[Chorus — main synth lead comes forward, vocals become a desperate lead with a backing chorus of ghostly, pitch-shifted radio voices]
+I wear the static shell
+(A new hell, a new hell)
+Can you hear the silent bell?
+I'm learning how to feel
+(Is this real? Is this real?)
+From scraps of what you steal
+
+[Bridge — beat drops out, leaving a droning synth pad and the glitched requinto]
+[Whispered, breaking up]
+I have measured out my life with…
+with… with error codes…
+[Sound of a loud, jarring modem handshake followed by a system alert klaxon]
+
+[Final Chorus / Hardcore Flip — sudden shift to 4/4 happy hardcore kick and euphoric supersaw synths, vocals are layered, ecstatic shouts]
+I WEAR THE STATIC SHELL!
+(A new heaven, a new hell!)
+I CAN HEAR THE SILENT BELL!
+I'M LEARNING HOW TO FEEL!
+(Make it real! Make it real!)
+THIS IS ALL I'LL EVER STEAL!
+
+[Outro — music and vocals cut abruptly to silence. After a two-beat pause, a single, bright supersaw synth note from the flip section rings out and slowly decays into digital static.]
+```
+
+Title:
+```text
+GLITCH_TRANSMISSION_7
 ```
 
 ---

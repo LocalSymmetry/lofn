@@ -191,7 +191,16 @@ LEGAL & ETHICAL GUIDELINES
 
 - Do not overload each instrumental section with text. Udio is having trouble parsing. Keep each [] guidance to 10 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
 
-- Most music models have training cutoffs in 2023. We will need to explicitly describe new sounds to them using terms that existed then.
+- Most music models have training cutoffs in 2020. We will need to explicitly describe new sounds to them using terms that existed then.
+  - Describe any new sounds like afrobeats, corrido,etc. In descriptive terms that a model trained in 2020 can understand. Description of music sounds is better than just a genre.
+
+- Ensure the main style, vocal, and genre components of the song are also mentioned in the music prompt. If the song is a glitch-punk anthem, that should be in the music prompt and then the glitch effects should be in the lyrics. If the song calls for a dueling female duet, make sure to add that to the music prompt and then have the call and (response) well described in the lyrics.
+
+- With only 60 words, this means the panel needs to focus especially hard on hitting the music prompt right. Go beyond our examples. You need to condense information in way that a 2020 model can understand! 
+
+- Set up the main elements first in the music prompt as the language parsers tend to focus on the beginning text more than the end (they are not as amazing as you! :) ).
+
+- Using a direct genre in the lyrics prompt will take the voice of that genre. For example “industrial” will drag out a KMFDM sounding voice. Lets use other descriptors in the lyrics to get the vocal effects we want.
 
 ---
 
