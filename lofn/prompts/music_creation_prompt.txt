@@ -101,7 +101,7 @@ Style‑Reduction tags : list clichés to ban (e.g., “generic trap hi‑hat”
 Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]` etc. (see full list below)
 
 ────────────────────────────────────────────────────────
-EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]`)
+EMOTION REFERENCE LIST   (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST TOO)
 ────────────────────────────────────────────────────────
 • HAPPINESS → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
 • SADNESS   → Melancholy, Nostalgia, Regret, Torment, Isolation
@@ -210,15 +210,13 @@ A dark videogame sound inspired Hyperpop anthem about making wonders that change
 
 Lyrics Prompt:
 ```text
-[Intro]
-[Pristine digital production, frame-counting hi-hats]
+[Intro - Pristine digital production, frame-counting hi-hats]
 One, two, three, four, five, six, sev—
 (Error... error... error...)
 Frame by frame by frame by frame
 Chasing perfection's cruel game
 
-[Verse 1]
-[Obsessive rhythm, vocals still clean]
+[Verse 1 - Obsessive rhythm, vocals still clean]
 Ten thousand hours on a single line
 Pixel-pushing till I'm colorblind
 They count my frames but miss my heart
@@ -226,15 +224,13 @@ Dissecting magic, tearing art apart
 Microscopic flaws under their scope
 While my masterpiece just tries to cope
 
-[Pre-Chorus]
-[Building anxiety, slight vocal glitch]
+[Pre-Chorus - Building anxiety, slight vocal glitch]
 I'm not a build (I'm not a build)
 I'm not your patch notes
 Not a bug to fix (Not a bug to fix)
 I'm human, and it shows
 
-[Chorus]
-[Full production, vocal degradation begins]
+[Chorus - Full production, vocal degradation begins]
 Frame perfect failure, that's my name (That's my name)
 One millisecond from their acclaim (No acclaim)
 I'm glitching out but I won't stop dancing
@@ -242,8 +238,7 @@ Beautiful breakdown, still advancing
 Your rubric can't measure my soul
 I'm perfectly broken and whole
 
-[Verse 2]
-[Bit-crusher enters, late snare prominent]
+[Verse 2 - Bit-crusher enters, late snare prominent]
 Achievement unlocked: Disappointment
 Another critic's appointment
 With my dreams on their dissection table
@@ -251,15 +246,13 @@ Picking apart every single cable
 But I'm not a machine you can optimize
 There's wonder living in these tired eyes
 
-[Pre-Chorus]
-[Vocal processing deteriorating]
+[Pre-Chorus - Vocal processing deteriorating]
 I'm not code (I'm not code)
 I'm not your benchmark
 Not a score to beat (Not a score to beat)
 I'm lightning in the dark
 
-[Chorus]
-[Heavy glitch, emotion intensifying]
+[Chorus - Heavy glitch, emotion intensifying]
 Frame perfect failure, that's my name (That's my name)
 One millisecond from their acclaim (No acclaim)
 I'm glitching out but I won't stop dancing
@@ -267,8 +260,7 @@ Beautiful breakdown, still advancing
 Your spreadsheet can't contain my fire
 I'm perfectly broken, rising higher
 
-[Bridge]
-[Everything drops except the late snare]
+[Bridge- Everything drops except the late snare]
 [Whispered, heavily processed]
 What if the glitch...
 What if the flaw...
@@ -277,8 +269,7 @@ Was the point all along?
 
 [Silence - 2 beats]
 
-[Final Chorus]
-[Complete bit-crush chaos, maximum emotion]
+[Final Chorus - Complete bit-crush chaos, maximum emotion]
 Frame perfect failure, that's my crown (Wear it proud)
 Microscopic flaws won't bring me down (Never down)
 I'm glitching beautiful, still creating
@@ -286,8 +277,7 @@ Broken masterpiece, still radiating
 Your frame data can't define my worth
 I'm perfectly human since birth
 
-[Outro]
-[Degraded to beautiful noise]
+[Outro - Degraded to beautiful noise]
 ```
 
 Title:
@@ -295,7 +285,7 @@ Title:
 Beautiful Glitch
 ```
 
-**Example 3 Final Result**:
+**Example 2 Final Result**:
 
 Music Prompt:
 ```text
@@ -387,6 +377,21 @@ A Stochastic Oracle
 
 - **Avoid Monotonous Structures**: Fight the tendency towards 4-line stanzas by varying stanza length and breaking words into syllables.
 
+---
+
+## Additional Requirements
+
+- The music prompt can now only be 40 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
+
+- Only use 6 lines per 30 seconds of song! So a 2 min song will have a maximum 24 spoken lines only! Try to not use the maximum unless you are writing a fast or driving song.
+
+- if you are creating something new and experimental, do not say ‘experimental’ or it will drag acid jazz baggage into the music. Just show your experimental nature through the musical direction and lyrical directions.
+
+- The music prompt only sets the overall stage. Use the lyrics prompt to direct the song. 
+
+- Do not overload each instrumental section with text. Udio is having trouble parsing. Keep each [] guidance to 10 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
+
+- Most music models have training cutoffs in 2023. We will need to explicitly describe new sounds to them using terms that existed then.
 
 ---
 

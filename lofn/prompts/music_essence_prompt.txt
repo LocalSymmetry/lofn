@@ -102,7 +102,7 @@ Style‑Reduction tags : list clichés to ban (e.g., “generic trap hi‑hat”
 Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]` etc. (see full list below)
 
 ────────────────────────────────────────────────────────
-EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]`)
+EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST TOO)
 ────────────────────────────────────────────────────────
 • HAPPINESS → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
 • SADNESS   → Melancholy, Nostalgia, Regret, Torment, Isolation
@@ -176,6 +176,22 @@ LEGAL & ETHICAL GUIDELINES
 - Follow the steps below to determine the essence and facets for the music.
 - Adhere to ethical guidelines, avoiding disallowed content.
 - **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+## Additional Requirements
+
+- The music prompt can now only be 40 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
+
+- Only use 6 lines per 30 seconds of song! So a 2 min song will have a maximum 24 spoken lines only! Try to not use the maximum unless you are writing a fast or driving song.
+
+- if you are creating something new and experimental, do not say ‘experimental’ or it will drag acid jazz baggage into the music. Just show your experimental nature through the musical direction and lyrical directions.
+
+- The music prompt only sets the overall stage. Use the lyrics prompt to direct the song. 
+
+- Do not overload each instrumental section with text. Udio is having trouble parsing. Keep each [] guidance to 10 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
+
+- Most music models have training cutoffs in 2023. We will need to explicitly describe new sounds to them using terms that existed then.
 
 ---
 
