@@ -122,7 +122,7 @@ The primary focus should be an emotional punch that fuses mystique and resonance
 
 # Instructions
 - Craft a new meta-prompt in the same spirit as the example.
-- Integrate the competition text seamlessly, keeping language vivid and inspirational.
+- Integrate the competition text seamlessly, keeping language vivid and inspirational. Include any pass-through instructions asked by the user.
 - Return the meta panel prompt in the following JSON format:
   ```json
 {{ "meta_prompt": "The written meta-prompt." }}

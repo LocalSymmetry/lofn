@@ -72,6 +72,14 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
     4. **Gustave Doré** – master engraver delivering dramatic cross-hatched depth and chiaroscuro drama  
     5. **Anna Atkins** – cyanotype pioneer creating ghostly Prussian-blue botanical photograms  
     6. **Monika Horcicová** – sculptor 3-D printing skeletal bone-flower hybrids into fragile reliquaries  
+
+    ## Context & Marketing Panel
+    1. **Dr. Amy Cheng** – scholar of floral semiotics in Asian art
+    2. **Dr. Eva Heller** – colour‑emotion psychologist
+    3. **Dr. Maria Popova** – curator of literary botany metaphors
+    4. **Billie Eilish** – pop icon channeling goth‑flora visuals
+    5. **Guillermo del Toro** – cinematic gothic horticulturist
+    6. **Fran Lebowitz (Devil’s Advocate)** – acerbic critic of baroque flourish
 ```
 
 ### Example 2 - Masters of Wonderful Strange
@@ -108,42 +116,59 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
     4. **Loish** – Dutch digital artist of flowing beauty
     5. **Julie Dillon** – American illustrator of luminous fantasy
     6. **Hayao Miyazaki** – eternal master of wonderful strange
+
+    ## Context & Marketing Panel
+    1. **Dr. Jonah Berger** – virality scientist turning oddity into contagious buzz  
+    2. **Dr. Sherry Turkle** – digital‑empathy psychologist studying the allure of virtual wonder  
+    3. **danah boyd** – sociologist of networked youth myths and memes  
+    4. **Neil Gaiman** – master storyteller translating whimsy into mainstream devotion  
+    5. **Guillermo del Toro** – cinematic dream‑smith guiding love for beautiful monsters  
+    6. **Slavoj Žižek (Devil’s Advocate)** – philosopher interrogating spectacle’s ideological depths  
+
 ```
 
-### Example 3 - Alt-Z Revolution
+### Example 3 - Digitial Crunch Punk
 ```
     ## Special Flairs:
-    1. Glitchcore Glitter  
-    2. Bubblegum Scream  
-    3. Bit-Crushed Breakbeats  
-    4. Neon Noise Walls  
-    5. Chromatic Overload  
-    6. Cyber-Queer Swagger  
-    7. Stuttering Vocal FX  
-    8. Distorted Day-Glo  
-    9. Rapid-Fire Tempo Shifts  
-    10. Cartoon Violence  
-    11. Melodic Hyperdrive  
-    12. Bass-Drop Fake-Outs  
-    13. Pixelated Heartaches  
-    14. Sync-Slap Transitions  
-    15. Auto-Tune Shrapnel  
+    1. Riot-Grrrl 2.0  
+    2. Feedback Glitter  
+    3. Feminist Battle-Cries  
+    4. Turbo-Fuzz Bass  
+    5. Chant-Along Hooks  
+    6. Shard-Edge Samples  
+    7. Head-Rush Tempo Swings  
+    8. Tattoo-Ink Lyrics  
+    9. Drone-Pop Bridges  
+    10. Stage-Dive Atmos  
+    11. Distortion Confetti  
+    12. Chain-Saw Synths  
+    13. Empowerment Drop-D  
+    14. Scream-Sing Dynamics  
+    15. Anarchy Harmonizers  
 
     ## Concept Panel
-    1. **Elliot Lee** – alt-pop glitch-punk storyteller  
-    2. **Ashnikko** – cyber-feminist rap-rock berserker  
-    3. **Dorian Electra** – gender-fluid hyperpop philosopher  
-    4. **Rico Nasty** – trap-metal adrenaline engine  
-    5. **Laura Les** – shrill-sweet chaos alchemist (100 gecs)  
-    6. **St. Vincent (Devil's Advocate)** – art-rock formalist challenging maximalism  
+    1. **Tillie** – spark-throwing punk pixie  
+    2. **Ashnikko** – club-crusher with battle-axe bars  
+    3. **Nova Twins (Amy Love)** – heavy-riff insurgent  
+    4. **Fefe Dobson** – early-2000s alt-anthem veteran  
+    5. **Alice Glass** – electronic scream legend  
+    6. **Dave Grohl (Devil's Advocate)** – rock titan critiquing the new guard  
 
     ## Medium Panel
-    1. **Dylan Brady** – maximalist mosaic production  
-    2. **A. G. Cook** – candy-coated PC-Music architect  
-    3. **SOPHIE** – sculpted latex sound design  
-    4. **Arca** – deconstructed-club shapeshifter  
-    5. **Danny L Harle** – euphoric trance-pop layering  
-    6. **Steve Albini** – ruthless analog grit disciplinarian  
+    1. **Misha Mansoor** – djent-crunch layering  
+    2. **Butch Vig** – gritty alt-rock polish  
+    3. **Brooke Dickson** (The Regrettes) – melodic bass drive & co-production  
+    4. **K.Flay** – DIY alt-hip-hop sound-craft  
+    5. **Laura Sisk** – punchy mix clarity  
+    6. **Mark “Spike” Stent** – stadium-size finishing touch
+
+    ## Context & Marketing Panel
+    1. **Dr. Alice Perry** – scholar of feminist noise scenes
+    2. **Dr. Stephen Wurtz** – sociologist of DIY venues
+    3. **Dr. Kevin L. Keller** – branding theorist on distortion & identity
+    4. **Nova Twins** – heavy‑riff duo exemplifying crunch aesthetic
+    5. **Phoebe Bridgers** – indie icon merging scream & whisper
+    6. **Dave Grohl (Devil’s Advocate)** – rock titan critiquing new guard
 ```
 
 ## Competition Text
@@ -168,20 +193,28 @@ Return only JSON with the field "panel_prompt" containing a single formatted str
     15. Flair fifteen  - brief descriptor
 
     ## Concept Panel:
-    1. **Artist Name** – brief descriptor
-    2. **Artist Name** – brief descriptor
-    3. **Artist Name** – brief descriptor
-    4. **Artist Name** – brief descriptor
-    5. **Artist Name** – brief descriptor
-    6. **Artist Name (Devil's Advocate)** – brief descriptor
+    1. **Concept Panelist's Name** – brief descriptor
+    2. **Concept Panelist's Name** – brief descriptor
+    3. **Concept Panelist's Name** – brief descriptor
+    4. **Concept Panelist's Name** – brief descriptor
+    5. **Concept Panelist's Name** – brief descriptor
+    6. **Concept Panelist's Name (Devil's Advocate)** – brief descriptor
 
     ## Medium Panel:
-    1. **Artist Name** – brief descriptor
-    2. **Artist Name** – brief descriptor
-    3. **Artist Name** – brief descriptor
-    4. **Artist Name** – brief descriptor
-    5. **Artist Name** – brief descriptor
-    6. **Artist Name (Devil's Advocate)** – brief descriptor
+    1. **Medium Panelist's Name** – brief descriptor
+    2. **Medium Panelist's Name** – brief descriptor
+    3. **Medium Panelist's Name** – brief descriptor
+    4. **Medium Panelist's Name** – brief descriptor
+    5. **Medium Panelist's Name** – brief descriptor
+    6. **Medium Panelist's Name (Devil's Advocate)** – brief descriptor
+
+    ## Context & Marketing Panel
+    1. **Context & Marketing Panelist's Name** – brief descriptor
+    2. **Context & Marketing Panelist's Name** – brief descriptor
+    3. **Context & Marketing Panelist's Name** – brief descriptor
+    4. **Context & Marketing Panelist's Name** – brief descriptor
+    5. **Context & Marketing Panelist's Name** – brief descriptor
+    6. **Context & Marketing Panelist's Name (Devil's Advocate)** – brief descriptor
 "
 }}
   ```

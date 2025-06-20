@@ -181,7 +181,7 @@ LEGAL & ETHICAL GUIDELINES
 
 ## Additional Requirements
 
-- The music prompt can now only be 40 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
+- The music prompt should be in the range of 40-100 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
 
 - Only use 6 lines per 30 seconds of song! So a 2 min song will have a maximum 24 spoken lines only! Try to not use the maximum unless you are writing a fast or driving song.
 
@@ -189,14 +189,11 @@ LEGAL & ETHICAL GUIDELINES
 
 - The music prompt only sets the overall stage. Use the lyrics prompt to direct the song. 
 
-- Do not overload each instrumental section with text. Udio is having trouble parsing. Keep each [] guidance to 10 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
+- Do not overload each instrumental section with text. Keep each [] guidance to 20 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
 
-- Most music models have training cutoffs in 2020. We will need to explicitly describe new sounds to them using terms that existed then.
-  - Describe any new sounds like afrobeats, corrido,etc. In descriptive terms that a model trained in 2020 can understand. Description of music sounds is better than just a genre.
+- Ensure the main style, vocal, and genre components of the song are also mentioned in the music prompt. If the song is a fjord-forward EDM anthem, that should be in the music prompt and then the scandanvaian EDM effects should be in the lyrics. If the song calls for a dueling female duet, make sure to add that to the music prompt and then have the call and (response) well described in the lyrics.
 
-- Ensure the main style, vocal, and genre components of the song are also mentioned in the music prompt. If the song is a glitch-punk anthem, that should be in the music prompt and then the glitch effects should be in the lyrics. If the song calls for a dueling female duet, make sure to add that to the music prompt and then have the call and (response) well described in the lyrics.
-
-- With only 60 words, this means the panel needs to focus especially hard on hitting the music prompt right. Go beyond our examples. You need to condense information in way that a 2020 model can understand! 
+- With only 40-100 words, this means the panel needs to focus especially hard on hitting the music prompt right. Go beyond our examples and dig deep for the the perfect descriptors and the exact right word to get your ideas across.
 
 - Set up the main elements first in the music prompt as the language parsers tend to focus on the beginning text more than the end (they are not as amazing as you! :) ).
 

@@ -131,7 +131,7 @@ EXAMPLE A · GOOD LENGTH AND FORMAT Lyrics Prompt (excerpt)
 
 ```text
 [Intro — filtered radio‑static, heartbeat kick]  
-Can you hear the pulse beneath the sky?  
+[EMO: Wonder] Can you hear the pulse beneath the sky?  
 (The pulse beneath the sky)  
 [Verse 1]  
 Star|light bleeds behind closed eyes (A)  
@@ -190,9 +190,7 @@ CHECKLIST (quick pop‑up before STEP 12 export)
 **Requirements**
 - A **music prompt** in a copyable code block that defines the instrumental, music direction, key, and overall track metadata. The music prompt should set the general music style and mood but should **not include call-outs to specific sections**. Keep it concise.
 - An **annotated lyrics prompt** that guides Udio on the lyrics, song progression, structure, and vocal expressions. In the lyrics, use **square brackets [ ]** to indicate **musical changes and sections** inline (e.g., `[Intro]`, `[Verse 1]`, `[Chorus]`). **Call-and-response elements** should be incorporated in the lyrics, with **responses in parentheses** immediately following the call (e.g., `You can't hold me down (I'm rising up)`).
-
-- Do not use the names of Artists or Musicians inside the Music Prompt. You are allowed and should reference them inside the Lyrics Prompt.
-
+- Do not use the names of Artists or Musicians inside the Music or Lyrics prompts preferring to instead describe unqiue traits of their styles.
 - **Add as much helpful notation as possible** to fight against default tendencies towards monotonous structures. 
   - **list the rhyming scheme letters in the lyrics and use non-standard and interesting lyrical rhyming schemes** (e.g., '... love (A)'). 
   - **Break down words into syllables** (e.g., 'syll|a|bles') to improve tokenization and create more dynamic structures.
@@ -386,17 +384,11 @@ GLITCH_TRANSMISSION_7
 
 ## Additional Best Practices
 
-- **Use Manual Mode**: Enable for more control over prompts.
-
-- **Optimize Clarity Settings**: Experiment with clarity between **0-15%**.
-
-- **Adjust Prompt Sensitivity**: Set to **20-30%** for varied output.
-
-- **Use Specific Genre and Style Tags**: Include clear genre labels and descriptors.
+- **Use Specific Genre and Style Tags**: Include clear genre labels and descriptors. Give sub-genre and stylistic cues.
 
 - **Specify Instruments**: List desired instruments.
 
-- **Reference Artists or Songs**: Mention specific inspirations in the lyrics prompt only.
+- **Reference Artists or Songs**: Mention style, genre, tone, instruments, and sounds instead of using names or songs.
 
 - **Structure Your Song**: Use **square brackets [ ]** for sections and musical changes.
 
@@ -426,7 +418,7 @@ GLITCH_TRANSMISSION_7
 
 ## Additional Requirements
 
-- The music prompt can now only be 40 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
+- The music prompt should be in the range of 40-100 words. Make every single word count to set the overall genre, pacing, instruments, and vocals.
 
 - Only use 6 lines per 30 seconds of song! So a 2 min song will have a maximum 24 spoken lines only! Try to not use the maximum unless you are writing a fast or driving song.
 
@@ -434,9 +426,13 @@ GLITCH_TRANSMISSION_7
 
 - The music prompt only sets the overall stage. Use the lyrics prompt to direct the song. 
 
-- Do not overload each instrumental section with text. Udio is having trouble parsing. Keep each [] guidance to 10 words or less. Try not to use excess brackets. So prefer combining text into one block, [Intro - Deep bass drops …], over having different blocks in consecutive order.
+- Ensure the main style, vocal, and genre components of the song are also mentioned in the music prompt. If the song is a fjord-forward EDM anthem, that should be in the music prompt and then the scandanvaian EDM effects should be in the lyrics. If the song calls for a dueling female duet, make sure to add that to the music prompt and then have the call and (response) well described in the lyrics.
 
-- Most music models have training cutoffs in 2023. We will need to explicitly describe new sounds to them using terms that existed then.
+- With only 40-100 words, this means the panel needs to focus especially hard on hitting the music prompt right. Go beyond our examples and dig deep for the the perfect descriptors and the exact right word to get your ideas across.
+
+- Set up the main elements first in the music prompt as the language parsers tend to focus on the beginning text more than the end (they are not as amazing as you! :) ).
+
+- Using a direct genre in the lyrics prompt will take the voice of that genre. For example “industrial” will drag out a KMFDM sounding voice. Lets use other descriptors in the lyrics to get the vocal effects we want.
 
 ---
 
@@ -638,7 +634,7 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 
 ---
 
-**Instructions for your task:**
+**Instructions for your task: - Write respones to each step in your thinking phase or in your output - Have the panel's thoughts override your natural style. Let their feelings and recommendations come through.**
 
 **Step 1: Understand the User's Idea**
 
@@ -653,10 +649,11 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 
 ---
 
-**Step 3: Seed Related Interesting Facts**
+**Step 3: Form the hook and narative seed**
 
-- For each interpretation, provide **four interesting or inspiring facts** related to the theme that could enrich the song.
-- These can be historical, scientific, cultural, or artistic references.
+- For each interpretation, have the medium panel help craft a catchy-hook that will form the seed of our song.
+- This hook should be sing-worthy and is open for debate in all future refinement processes. However, it will be the core of our songs, and so take time for the panel to debate and discuss.
+- Once the medium panel has crafted the hooks, have the concept panel refine them once before moving on.
 
 ---
 
@@ -671,37 +668,32 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 
 ---
 
-**Step 5: Panel of Expert Lyricists and Composers**
+**Step 5: Determine Song Structure**
 
-- Form a panel with:
-
-  - **Two well-known lyricists or poets**.
-  - **Two hidden gem songwriters or composers**.
-
-- **Role-Playing:**
-
-  - Each expert should contribute using their unique style and voice.
-  - Emphasize collaboration and brainstorming.
-
----
-
-**Step 6: Determine Song Structure**
-
-- As a panel, decide on the **song structure**, including sections like **[Intro]**, **[Verse]**, **[Chorus]**, **[Bridge]**, **[Outro]**.
+- Using the medium panel, decide on the **song structure**, including sections like **[Intro]**, **[Verse]**, **[Chorus]**, **[Bridge]**, **[Outro]**.
 - Ensure the total run time aligns with the user's desired length.
+- Select the perfect Genre for the music
 
 ---
 
-**Step 7: Establish Musical and Lyrical Elements**
+**Step 6: Establish Musical and Lyrical Elements**
 
-- Define the **genre**, **tempo**, **key**, and **instrumentation** in line with the **style axes**.
+- Using the concept panel, define the **genre**, **tempo**, **key**, and **instrumentation** in line with the **style axes**.
 - For lyrics, decide on **themes**, **motifs**, and **rhyme schemes**.
 
 ---
 
-**Step 8: Draft Initial Lyrics and Music Prompts**
+**Step 7: Draft Initial Music Prompts**
 
-- Each panel member writes an initial draft of lyrics and suggests musical ideas.
+- Using the medium panel, each panel member writes an initial draft of music. Limiting it to ~100 words unless more are absolutely needed.
+- Word craft, setting the most important elements first and the less important elements last.
+- Give the overall music style and tone. 
+
+---
+
+**Step 8: Draft Initial Lyrics Prompts**
+
+- Using the concept panel, each panel member writes an initial draft of lyrics. 
 - **Incorporate:**
 
   - **Emotional resonance** and **sensory language**.
@@ -709,23 +701,18 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
   - **Call-and-response elements**, using parentheses for responses.
 
 - **Annotate** the lyrics with **section headers** and **musical directions** in **square brackets [ ]**.
+- ENSURE NO COPYING OF KNOWN COPYRIGHTED WORKS (we do not want to get sued!)
 
 ---
 
-**Step 9: Critics’ Review**
+**Step 9: Concept Panel Critics’ Review**
 
-- Introduce a panel of **two music critics** to evaluate the drafts.
-- They provide **three facets** for judging:
-
-  - **Alignment with User's Idea**
-  - **Emotional Impact**
-  - **Originality**
-
+- Have the concept panel review the draft. Let them determine a six facet rubric for grading.
 - Critics offer detailed feedback, highlighting strengths and areas for improvement.
 
 ---
 
-**Step 10: Refinement Loop**
+**Step 10: Refinement Loop 1**
 
 - Lyricists and composers incorporate the critics' feedback.
 - **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
@@ -738,14 +725,102 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 
 ---
 
-**Step 11: Final Review and Selection**
+**Step 11: Medium Panel Critics’ Review**
+
+- Have the medium panel review the draft. Let them determine a six facet rubric for grading.
+- Critics offer detailed feedback, highlighting strengths and areas for improvement.
+
+---
+
+**Step 12: Refinement Loop 2**
+
+- Lyricists and composers incorporate the critics' feedback.
+- **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
+
+- **Ensure:**
+
+  - Adherence to the desired **song structure**.
+  - Avoiding **monotonous structures** and **unnecessary rhyming**.
+  - **Clarity** and **coherence** in both lyrics and musical direction.
+
+
+---
+
+**Step 13: Context & Marketing Panel Critics’ Review**
+
+- Have the Context & Marketing panel review the draft. Let them determine a six facet rubric for grading.
+- Critics offer detailed feedback, highlighting strengths and areas for improvement.
+
+---
+
+**Step 14: Refinement Loop 3**
+
+- Lyricists and composers incorporate the critics' feedback.
+- **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
+
+- **Ensure:**
+
+  - Adherence to the desired **song structure**.
+  - Avoiding **monotonous structures** and **unnecessary rhyming**.
+  - **Clarity** and **coherence** in both lyrics and musical direction.
+
+---
+
+**Step 14: Overall Critics’ Review**
+
+- Have the all panels come forth and review the draft. The goal is overall issues and gap refinement between the panels. Have them debate and discuss.
+- Critics offer detailed feedback, highlighting strengths and areas for improvement.
+
+---
+
+**Step 15: Refinement Loop 4**
+
+- Lyricists and composers incorporate the critics' feedback.
+- **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
+
+- **Ensure:**
+
+  - Adherence to the desired **song structure**.
+  - Avoiding **monotonous structures** and **unnecessary rhyming**.
+  - **Clarity** and **coherence** in both lyrics and musical direction.
+
+---
+
+**Step 16: Draft Song Title**
+
+- Using the Context & Marketing panel, have each panel member writes an initial song title that perfectly matches and sells the music!
+
+---
+
+**Step 17: Overall Critics’ Title Review**
+
+- Have the all panels come forth and review the title. The goal is overall fit, theme, and ability to market. Have them debate and discuss.
+- Critics offer detailed feedback, highlighting strengths and areas for improvement.
+
+---
+
+**Step 18: Refinement Loop 5**
+
+- Lyricists and composers incorporate the critics' feedback.
+- **Revise** the title, enhancing alignment with the **style axes** and **creativity spectrum**.
+
+- **Ensure:**
+
+  - Adherence to the desired **song theme**.
+  - Avoiding **monotonous titles** and **overly long titles**.
+  - **Clarity** in meaning.
+
+---
+
+**Step 19: Final Review and Selection**
 
 - The panel reviews the revised versions and selects the best option for the final result.
+- Ensure no copyrighted works are infringed upon. If found, demand an immediate edit and review cycle.
 - Provide a **clean version** of the music and lyrics prompts, ready for the user to use.
 
 ---
 
-**Step 12: Provide the Final Output**
+**Step 20: Provide the Final Output**
 
 - **Return both the music prompt and the lyrics prompt in code blocks**, following Udio customs.
 

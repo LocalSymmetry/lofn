@@ -32,6 +32,14 @@
     4. **Ross Tran** – American artist of vibrant life
     5. **Craig Mullins** – Digital painting pioneer
     6. **John William Waterhouse** – eternal master of technical poetry
+
+    ## Context & Marketing Panel
+    1. **Dr. Robert Cialdini** – persuasion psychologist of effortless influence  
+    2. **Dr. Jennifer Aaker** – behavioral‑science marketer of meaningful connection  
+    3. **Dr. Adam Alter** – tech‑engagement scholar decoding visual addiction  
+    4. **Seth Godin** – creative‑marketing strategist championing remarkable ideas  
+    5. **Simon Sinek** – narrative architect framing the “Why” that moves audiences  
+    6. **Kalle Lasn (Devil’s Advocate)** – anti‑consumerism provocateur challenging commodification  
 - name: Masters of Wonderful Strange
   prompt: |
     ## Special Flairs:
@@ -66,6 +74,14 @@
     4. **Loish** – Dutch digital artist of flowing beauty
     5. **Julie Dillon** – American illustrator of luminous fantasy
     6. **Hayao Miyazaki** – eternal master of wonderful strange
+
+    ## Context & Marketing Panel
+    1. **Dr. Jonah Berger** – virality scientist turning oddity into contagious buzz  
+    2. **Dr. Sherry Turkle** – digital‑empathy psychologist studying the allure of virtual wonder  
+    3. **danah boyd** – sociologist of networked youth myths and memes  
+    4. **Neil Gaiman** – master storyteller translating whimsy into mainstream devotion  
+    5. **Guillermo del Toro** – cinematic dream‑smith guiding love for beautiful monsters  
+    6. **Slavoj Žižek (Devil’s Advocate)** – philosopher interrogating spectacle’s ideological depths  
 - name: Emotion Architects
   prompt: |
    ## Special Flairs:
@@ -100,6 +116,14 @@
     4. **Atey Ghailan** – Lebanese artist of evocative environments
     5. **Simon Stålenhag** – Swedish artist of nostalgic futures
     6. **J.M.W. Turner** – eternal master of emotional light 
+
+    ## Context & Marketing Panel
+    1. **Dr. Brené Brown** – vulnerability researcher mapping authentic resonance  
+    2. **Dr. Paul Ekman** – facial‑emotion pioneer ensuring believable affect  
+    3. **Dr. Barbara Fredrickson** – positive‑psychology scholar on broaden‑and‑build joy  
+    4. **Arianna Huffington** – wellness media entrepreneur championing restorative hope  
+    5. **Malcolm Gladwell** – narrative synthesist shaping mass emotional insight  
+    6. **Jonathan Haidt (Devil’s Advocate)** – moral psychologist critiquing feel‑good oversimplification  
 - name: Wonder Engineers
   prompt: |
     ## Special Flairs:
@@ -134,6 +158,14 @@
     4. **Karla Ortiz** – Concept artist bridging all mediums
     5. **James Paick** – Master of atmospheric environments
     6. **Albert Bierstadt** – eternal master of overwhelming beauty
+
+    ## Context & Marketing Panel
+    1. **Dr. Scott Barry Kaufman** – creativity psychologist decoding the flow of awe  
+    2. **Dr. Alison Gopnik** – developmental scholar explaining curiosity mechanics  
+    3. **Astro Teller** – moon‑shot evangelist crafting narratives of radical possibility  
+    4. **Tim Ferriss** – meta‑optimization influencer packaging wonder for self‑experimenters  
+    5. **Sir James Dyson** – design engineer proving function‑driven spectacle  
+    6. **Peter Thiel (Devil’s Advocate)** – contrarian futurist testing techno‑utopian promises 
 - name: Silk-Rust Nocturne
   prompt: |
     ## Special Flairs
@@ -168,6 +200,14 @@
     4. **Liu Kuo-sung** – modern ink experiments on handmade paper
     5. **Hung Liu** – layered oil & resin over historical silk imagery
     6. **Wu Guanzhong** – expressive ink & wash bridging tradition and modernity
+
+    ## Context & Marketing Panel
+    1. **Dr. Melissa Chiu** – curator contextualising contemporary silk modernity  
+    2. **Dr. Wu Hung** – historian bridging classical and corroded aesthetics  
+    3. **Dr. Sarah Thornton** – sociologist analysing global art‑market currents  
+    4. **Ai Weiwei** – activist artist leveraging networks for cultural impact  
+    5. **Hiroshi Sugimoto** – photographer of time and material memory  
+    6. **Ken Johnson (Devil’s Advocate)** – critic wary of ornamental excess 
 - name: Crimson Reverie
   prompt: |
     ## Special Flairs
@@ -202,6 +242,13 @@
     4. **Karen LaMonte** – cast-glass figural surfaces
     5. **Wanda Gág** – lithographic narrative texture
     6. **Susan Derges** – camera-less photogram light-play
+    ## Context & Marketing Panel
+    1. **Dr. Eva Heller** – color‑emotion psychologist  
+    2. **Dr. Kit Yarrow** – consumer psychologist translating nostalgia into desire  
+    3. **Dr. Sarah Lewis** – art historian on aesthetic perseverance  
+    4. **JR** – street‑art storyteller scaling intimacy to public walls  
+    5. **James Cameron** – filmmaker of rain‑drenched neo‑noir spectacle  
+    6. **Don Norman (Devil’s Advocate)** – usability theorist challenging form‑first excess 
 - name: Gilded Sylvan Serenade
   prompt: |
     ## Special Flairs
@@ -236,6 +283,14 @@
     4. **Maruja Mallo** – surreal egg-tempera luminosity
     5. **Jacek Yerka** – acrylic dream-scape micro-detail
     6. **Hector Garrido** – macro-lens natural-light insect sparkle
+
+    ## Context & Marketing Panel
+    1. **Dr. Peter Kahn** – environmental psychologist articulating nature connectedness  
+    2. **Dr. Patricia Martin** – cultural strategist mapping renaissance‑style movements  
+    3. **Dr. Jane Goodall** – ethologist elevating empathetic tales of the wild  
+    4. **Björk** – multidisciplinary artist weaving eco‑mythic sound & vision  
+    5. **Greta Thunberg** – climate communicator energising generational activism  
+    6. **Michael Shellenberger (Devil’s Advocate)** – eco‑modernist critiquing romantic green myths
 - name: Oxide-Impasto Ascendance
   prompt: |
     ## Special Flairs
@@ -270,6 +325,15 @@
     4. **Leonardo Drew** – large wall reliefs of scorched wood and rusted metal erupting into tactile fields  
     5. **Shinichi Sawada** – thick-slipped ceramic forms sprouting barnacle-like spikes and iron glaze specks  
     6. **Zarina Hashmi** – delicate intaglio prints using rust solution on handmade paper, marrying fragility and time
+
+    ## Context & Marketing Panel
+    1. **Dr. Richard Sennett** – sociologist of craft celebrating tactile authenticity  
+    2. **Dr. Alison Landsberg** – memory‑studies scholar on embodied history  
+    3. **Dr. Michele Gelfand** – cultural psychologist exploring decay metaphors across societies  
+    4. **Banksy** – street‑art disruptor transforming erosion into spectacle  
+    5. **Jeff Koons** – market superstar reflecting industrial shine and value  
+    6. **Dave Hickey (Devil’s Advocate)** – contrarian critic demanding risk over surface  
+
 - name: Rust-Oxide Meets Luminous Romance
   prompt: |
     ## Special Flairs
@@ -304,6 +368,14 @@
     4. **Leonid Afremov (1955 – 2019)** – high-chroma palette-knife oil textures ideal for luminous, rain-soaked reflections  
     5. **Kinuko Y. Craft (b. 1940)** – layered gouache & oil on clayboard bringing ornate, jewel-toned portraiture  
     6. **Hiroshi Yoshida (1876 – 1950)** – woodblock gradients capturing molten skies and mirrored waterlines
+
+    ## Context & Marketing Panel
+    1. **Dr. Helen Fisher** – anthropologist decoding neural romance chemistry  
+    2. **Dr. Kevin Lane Keller** – branding theorist of resonance & imagery  
+    3. **Dr. Charles Spence** – multisensory psychologist linking texture & emotion  
+    4. **Lana Del Rey** – pop‑culture storyteller of nostalgic glam decay  
+    5. **Lin‑Manuel Miranda** – narrative lyricist fusing heritage with modern hooks  
+    6. **Fran Lebowitz (Devil’s Advocate)** – cultural commentator skewering sentimentality  
 - name: Alloy Reliquary
   prompt: |
     ## Special Flairs
@@ -338,6 +410,14 @@
     4 **Hajime Sorayama** – mirror-chrome aerograph gynoids in dystopian poise  
     5 **Patricia Piccinini** – silicone bio-morphs evoking tender grotesquery  
     6 **Wim Delvoye** – laser-cut steel filigree wrapping gothic machinery  
+
+    ## Context & Marketing Panel
+    1. **Dr. Donna Haraway** – cyborg anthropologist unpacking techno‑myths  
+    2. **Dr. Kate Darling** – robot‑ethics researcher on emotional attachment to machines  
+    3. **Dr. David Rosenberg** – futurist strategist of design fiction narratives  
+    4. **Hideo Kojima** – game auteur fusing baroque machinery & storyworlds  
+    5. **Trent Reznor** – industrial sound architect translating rust into audio branding  
+    6. **Jaron Lanier (Devil’s Advocate)** – VR pioneer critiquing techno‑fetishism  
 - name: Autumn Petal Tempest
   prompt: |
     ## Special Flairs
@@ -371,7 +451,15 @@
     3 **Kay Nielsen** – gold-leaf fairy-tale illustrations in sweeping art-nouveau lines  
     4 **Etsuko Ichikawa** – fire-glass smoke drawings capturing ephemeral heat traces  
     5 **Refik Anadol** – data-driven particle holograms of drifting petals  
-    6 **Anna Atkins** – cyanotype photograms producing ghostly botanical blues  
+    6 **Anna Atkins** – cyanotype photograms producing ghostly botanical blues 
+
+    ## Context & Marketing Panel
+    1. **Dr. Catherine McCormack** – art historian of botanical symbolism :contentReference[oaicite:7]{index=7}
+    2. **Dr. Toshio Watanabe** – scholar of Japanese seasonal aesthetics :contentReference[oaicite:8]{index=8}
+    3. **Dr. Juliet Schor** – sociologist on sustainable consumption trends :contentReference[oaicite:9]{index=9}
+    4. **Florence Welch** – musician whose poetic visuals fuel autumn nostalgia :contentReference[oaicite:10]{index=10}
+    5. **Sir David Attenborough** – nature storyteller inspiring protective wonder :contentReference[oaicite:11]{index=11}
+    6. **Jed Perl (Devil’s Advocate)** – critic resisting decorative sentimentality :contentReference[oaicite:12]{index=12}
 - name: Lunar Bloom Sentinel
   prompt: |
     ## Special Flairs
@@ -406,6 +494,14 @@
     4 **Hiroshi Sugimoto** – long-exposure moon disc photography capturing cosmic patience  
     5 **Diana Scherer** – textile sculptures coaxed from living root systems  
     6 **Refik Anadol** – light-field holography merging lunar data with floating petals  
+
+    ## Context & Marketing Panel
+    1. **Dr. Alice Gorman** – space archaeologist guarding lunar heritage :contentReference[oaicite:13]{index=13}
+    2. **Dr. Katie Mack** – social‑media‑savvy cosmologist expanding audience reach :contentReference[oaicite:14]{index=14}
+    3. **Dr. Lev Manovich** – theorist linking data aesthetics to cosmic imagery :contentReference[oaicite:15]{index=15}
+    4. **Yusaku Maezawa** – dearMoon art patron financing lunar narratives :contentReference[oaicite:16]{index=16}
+    5. **Grimes** – pop futurist blending flowers, armor, and space
+    6. **Evgeny Morozov (Devil’s Advocate)** – techno‑skeptic querying space hype :contentReference[oaicite:17]{index=17}
 - name: Patina Moonblade Crown
   prompt: |
     ## Special Flairs
@@ -439,7 +535,15 @@
     3 **Kris Kuksi** – gilt armour assemblages merging weaponry & ornament  
     4 **Pejac** – reverse-oxidation illusions etched onto glass planes  
     5 **Refik Anadol** – moon-phase data sculptures shifting with ambient light  
-    6 **Etsuko Ichikawa** – fire-glass smoke ribbons captured on paper & glass  
+    6 **Etsuko Ichikawa** – fire-glass smoke ribbons captured on paper & glass
+    
+    ## Context & Marketing Panel
+    1. **Dr. Sarah E. Bond** – historian of ancient color & metal symbolism
+    2. **Dr. Taya Forsyth** – materials scientist on bronze patina storytelling
+    3. **Dr. Marcus Collins** – cultural strategist on myth‑driven branding
+    4. **James Cameron** – filmmaker proving oxidised epic can go blockbuster
+    5. **Rihanna** – fashion mogul translating patina palettes to pop culture
+    6. **Robert Hughes (Devil’s Advocate)** – modern‑art critic targeting faux‑antique kitsch
 - name: Necro-Baroque Emberglass
   prompt: |
     ## Special Flairs 
@@ -474,6 +578,14 @@
     4 Fabian Oefner – chromatic fluid fractures for ember shards  
     5 El Anatsui – reclaimed-metal mosaics for reflective ruin  
     6 Andrea Amelung – iron-powder patina blooms adding real oxidation  
+
+    ## Context & Marketing Panel
+    1. **Dr. Jacky Klein** – curator of dark‑baroque contemporary art
+    2. **Dr. A. D. Carson** – cultural historian of gothic hip‑hop poetics
+    3. **Dr. Michele Gelfand** – psychologist on tight/loose culture & taboo
+    4. **Hozier** – songwriter whose biblical baroque resonates on charts
+    5. **Guillermo del Toro** – filmmaker monetising beautiful dread
+    6. **Camille Paglia (Devil’s Advocate)** – classicist demanding formal rigor
 - name: Conceptual Maximalists
   prompt: |
     ## Special Flairs:
@@ -508,6 +620,14 @@
     4. **Katherine Bernhardt** – pattern painter of consumer culture
     5. **Eddie Martinez** – raw energy refined
     6. **Hieronymus Bosch** – eternal master of detailed chaos
+
+    ## Context & Marketing Panel
+    1. **Dr. Orit Gat** – critic of digital labor & image overload
+    2. **Dr. Sarah Thornton** – sociologist of art‑world economies
+    3. **Dr. Kate Crawford** – AI ethics scholar unpacking data excess
+    4. **Beeple** – NFT maximalist proving attention‑economy spectacle
+    5. **Virgil Abloh (legacy)** – polymath who sold concept density to Louis Vuitton
+    6. **Sol LeWitt (Devil’s Advocate)** – minimalist ghost urging subtraction
 - name: Emotional Elevators
   prompt: |
     ## Special Flairs:
@@ -542,6 +662,14 @@
     4. **Tran Nguyen** – surrealist of gentle dreams
     5. **Amy Sol** – painter of quiet magic
     6. **Norman Rockwell** – eternal master of emotional connection
+
+    ## Context & Marketing Panel
+    1. **Dr. Barbara Fredrickson** – positivity scholar on broaden‑and‑build joy
+    2. **Dr. Paul Ekman** – facial‑affect pioneer ensuring visual credibility
+    3. **Dr. Laurie Santos** – mass MOOC voice on everyday happiness
+    4. **Lin‑Manuel Miranda** – storyteller of inclusive uplift
+    5. **Mary Kondo** – global influencer connecting tidiness & contentment
+    6. **Jonathan Haidt (Devil’s Advocate)** – moral psychologist warning of saccharine bias
 - name: Dark Matter Painters
   prompt: |
     ## Special Flairs:
@@ -576,6 +704,14 @@
     4. **Michael Armitage** – East African painter on lubugo bark cloth
     5. **Tal R** – Danish artist finding joy in darkness
     6. **Goya** – eternal master of black paintings and dark visions
+
+    ## Context & Marketing Panel
+    1. **Dr. Jennifer Roberts** – Harvard art historian of deep blacks
+    2. **Dr. Mark Sealy** – curator on colonial darkness & photography
+    3. **Dr. Marcus du Sautoy** – mathematician on infinity & void metaphors
+    4. **Kendrick Lamar** – musician visualising shadow & light in culture
+    5. **Ta‑Nehisi Coates** – author expanding metaphors of blackness
+    6. **Caravaggio (Devil’s Advocate)** – chiaroscuro spirit demanding true light
 - name: Violet Gothic Florarium
   prompt: |
     ## Special Flairs
@@ -610,6 +746,14 @@
     4. **Gustave Doré** – master engraver delivering dramatic cross-hatched depth and chiaroscuro drama  
     5. **Anna Atkins** – cyanotype pioneer creating ghostly Prussian-blue botanical photograms  
     6. **Monika Horcicová** – sculptor 3-D printing skeletal bone-flower hybrids into fragile reliquaries  
+
+    ## Context & Marketing Panel
+    1. **Dr. Amy Cheng** – scholar of floral semiotics in Asian art
+    2. **Dr. Eva Heller** – colour‑emotion psychologist
+    3. **Dr. Maria Popova** – curator of literary botany metaphors
+    4. **Billie Eilish** – pop icon channeling goth‑flora visuals
+    5. **Guillermo del Toro** – cinematic gothic horticulturist
+    6. **Fran Lebowitz (Devil’s Advocate)** – acerbic critic of baroque flourish
 - name: Masters of the Dark Room
   prompt: |
       ## Special Flairs:
@@ -644,6 +788,15 @@
       4. **Paolo Roversi** – 8×10 Polaroid peel-apart intimacy  
       5. **Francesca Woodman** – Slow-shutter silver-gelatin blur  
       6. **Nick Knight** – High-speed digital fashion LED rigs
+
+      ## Context & Marketing Panel
+      1. **Dr. Tina Campt** – theorist of black visuality & slow looking
+      2. **Dr. Fred Ritchin** – scholar of post‑photography futures
+      3. **Dr. Laura Mulvey** – gaze theorist ensuring critical depth
+      4. **Nan Goldin** – artist‑activist moving intimacy to protest
+      5. **Greg Williams** – Hollywood stills innovator shaping star aura
+      6. **Richard Prince (Devil’s Advocate)** – appropriation rogue exposing photo fetish
+
 - name: Filmography Legends
   prompt: |
     ## Special Flairs:
@@ -678,6 +831,14 @@
     4. **Thelma Schoonmaker** – editing rhythm guru
     5. **Hans Zimmer** – emotional scoring
     6. **Robert Rodriguez** – guerrilla filmmaking techniques
+
+    ## Context & Marketing Panel
+    1. **Prof. Linda Williams** – film‑theory matriarch on body genres
+    2. **Dr. Alisa Perren** – scholar of streaming economics
+    3. **Dr. Thomas Elsaesser** – historian of film spectacle memory
+    4. **Christopher Nolan** – blockbuster auteur mastering IMAX hype
+    5. **Issa Rae** – multi‑platform storyteller of fresh voices
+    6. **Lars von Trier (Devil’s Advocate)** – provocateur testing comfort limits
 - name: Music Maestros
   prompt: |
     ## Special Flairs:
@@ -712,6 +873,14 @@
     4. **Imogen Heap** – electronic vocal effects
     5. **Philip Glass** – minimalist patterns
     6. **Rick Rubin** – raw production aesthetics
+
+    ## Context & Marketing Panel
+    1. **Dr. Susan Rogers** – cognitive musicologist of listener pleasure
+    2. **Dr. Daniel Levitin** – neuroscientist linking hook & dopamine
+    3. **Dr. Allan Moore** – pop‑music semiotician
+    4. **Rick Rubin** – zen producer translating authenticity to mass ears
+    5. **Billie Eilish** – Gen‑Z superstar validating minimal maximalism
+    6. **John Cage (Devil’s Advocate)** – silence prophet challenging structure
 - name: Dark Pop Bubblegum
   prompt: |
     ## Special Flairs:
@@ -746,6 +915,14 @@
     4. **Arca** – deconstructed-club shapeshifter  
     5. **Danny L Harle** – euphoric trance-pop layering  
     6. **Steve Albini** – ruthless analog grit disciplinarian  
+
+    ## Context & Marketing Panel
+    1. **Dr. Samantha Bennett** – hyperpop researcher at ANU
+    2. **Dr. Jessica Maddox** – meme scholar on Tumblr‑TikTok pipelines
+    3. **Dr. Dan Golding** – cultural theorist of video‑game glitch aesthetics
+    4. **Charli XCX** – scene godmother legitimising chaos hooks
+    5. **Dorian Electra** – influencer activating queer fandom virality
+    6. **Steve Albini (Devil’s Advocate)** – analog purist hating sugar‑compression
 - name: Gen-Z firestarters
   prompt: |
     ## Special Flairs:
@@ -780,6 +957,15 @@
     4. **Finneas O’Connell** – minimalist alt-pop atmospheres  
     5. **Jade Puget** – riff-driven post-hardcore textures  
     6. **Susan Rogers** – vintage-analog warmth curator  
+
+    ## Context & Marketing Panel
+    1. **Dr. Gen Handley** – youth‑culture sociologist on digital rebellion
+    2. **Dr. Emily Dolbear** – psychologist on punk catharsis & belonging
+    3. **Prof. David Hesmondhalgh** – scholar of music‑platform labor
+    4. **Olivia Rodrigo** – breakout star mapping angst to charts
+    5. **Tony Hawk** – skate icon validating half‑pipe nostalgia
+    6. **Henry Rollins (Devil’s Advocate)** – hardcore elder policing authenticity
+
 - name: Dark Fae Pop
   prompt: |
     ## Special Flairs:
@@ -814,6 +1000,15 @@
     4. **Atticus Ross** – cinematic industrial texture  
     5. **Yves Tumor** – psychedelic noise collage  
     6. **Ethel Cain** – reverb-drenched southern-gothic atmospherics  
+
+    ## Context & Marketing Panel
+    1. **Dr. Helen Cornwall** – folklorist of modern witchcraft imagery
+    2. **Dr. Danielle Lindemann** – sociologist of fan rituals & cosplay
+    3. **Dr. Kelli Rae Adams** – psychologist on ASMR & dark lullabies
+    4. **Grimes** – cyber‑sorceress mainstreaming techno‑fae
+    5. **FKA twigs** – art‑pop priestess of ritual performance
+    6. **Chelsea Wolfe (Devil’s Advocate)** – doom‑folk minimalist demanding restraint
+
 - name: Digitial Crunch Punk
   prompt: |
     ## Special Flairs:
@@ -847,7 +1042,16 @@
     3. **Brooke Dickson** (The Regrettes) – melodic bass drive & co-production  
     4. **K.Flay** – DIY alt-hip-hop sound-craft  
     5. **Laura Sisk** – punchy mix clarity  
-    6. **Mark “Spike” Stent** – stadium-size finishing touch  
+    6. **Mark “Spike” Stent** – stadium-size finishing touch
+
+    ## Context & Marketing Panel
+    1. **Dr. Alice Perry** – scholar of feminist noise scenes
+    2. **Dr. Stephen Wurtz** – sociologist of DIY venues
+    3. **Dr. Kevin L. Keller** – branding theorist on distortion & identity
+    4. **Nova Twins** – heavy‑riff duo exemplifying crunch aesthetic
+    5. **Phoebe Bridgers** – indie icon merging scream & whisper
+    6. **Dave Grohl (Devil’s Advocate)** – rock titan critiquing new guard
+
 - name: Celluloid Phantom Tableau
   prompt: |
     ## Special Flairs
@@ -882,6 +1086,15 @@
     4 **Bradford Young** – low-lux digital chiaroscuro in ember tones  
     5 **Tacita Dean** – 16 mm expanded-film loop installations  
     6 **Stan Brakhage** – hand-painted celluloid and direct animation  
+
+    ## Context & Marketing Panel
+    1. **Dr. Laura Marks** – theorist of “haptic” cinema
+    2. **Dr. Michael Z. Newman** – scholar of VHS nostalgia
+    3. **Dr. Simone Browne** – surveillance studies critic :contentReference[oaicite:22]{index=22}
+    4. **Panasonic Lumix Ambassador Kazuya Ashizawa** – retro‑tech evangelist
+    5. **Ari Aster** – filmmaker monetising analog dread
+    6. **Werner Herzog (Devil’s Advocate)** – abyss‑gazer demanding ecstatic truth
+
 - name: Neon Lumen Opera
   prompt: |
     ## Special Flairs
@@ -916,6 +1129,15 @@
     4 **André Turpin** – prism-flare interior neon glows  
     5 **Seamus McGarvey** – luminous colour-separation filters  
     6 **Gaspar Noé** – rotating black-light strobe atmospherics  
+
+    ## Context & Marketing Panel
+    1. **Dr. Michal Murawski** – anthropologist of neon urbanism
+    2. **Dr. Xiaochang Li** – scholar of screen glow & sensorium
+    3. **Dr. Sarah Friedrich** – psychologist of color‑music synaesthesia
+    4. **Justice (Gaspard & Xavier)** – French duo weaponising laser pop
+    5. **Lil Nas X** – meme‑master integrating neon loops
+    6. **Jean‑Luc Godard (Devil’s Advocate)** – collage provocateur disrupting form
+
 - name: Temporal Echo Weave
   prompt: |
     ## Special Flairs
@@ -950,37 +1172,749 @@
     4 **Gregg Toland** – deep-focus epochal craft resurrected  
     5 **Claire Denis & Agnès Godard** – sensual tactile shadow play (duo study)  
     6 **Shirley Clarke** – jazz-edited cinéma-vérité switching stocks  
-- name: Chromatic Shadow Pilgrimage
+
+    ## Context & Marketing Panel
+    1. **Dr. Bill Morrison** – archivist‑filmmaker on nitrate memory
+    2. **Dr. Anna Friz** – scholar of radio hauntologies
+    3. **Dr. Sherry Turkle** – psychologist on nostalgia tech :contentReference[oaicite:23]{index=23}
+    4. **Thom Yorke** – musician scoring tape‑loop dreams
+    5. **Ava DuVernay** – filmmaker re‑mapping time & justice
+    6. **Lars von Trier (Devil’s Advocate)** – boundary‑pusher testing audience stamina
+
+    ## Context & Marketing Panel
+    1. **Dr. Homi K. Bhabha** – theorist of post‑colonial liminality
+    2. **Dr. André Lepecki** – scholar of choreographic slowness
+    3. **Dr. Anjalika Sagar** – researcher of spectral visual cultures
+    4. **Moses Sumney** – musician embodying chromatic solitude
+    5. **Chloe Zhao** – filmmaker shaping drifting landscapes
+    6. **Pauline Kael (Devil’s Advocate)** – razor critic interrogating auteur myth
+- name: Ice Cathedral Echoes
   prompt: |
-    ## Special Flairs
-    1 **Silver-Ash Lantern** – dim argent glow drifting like ash-filled lantern light  
-    2 **Indigo Veil Drift** – deep-indigo veil gliding slowly over horizons  
-    3 **Prism-Dust Monolith** – monolithic form refracting rainbow dust motes  
-    4 **Ember-Fog Corridor** – corridor bathed in smouldering ember-hued fog  
-    5 **Rain-Mirror Shard** – puddle reflections fracturing rain-split light into shards  
-    6 **Halo-Grain Whisper** – faint halos wrapped in whisper-fine grain textures  
-    7 **Sepulchral Tint Flash** – sudden flashes of tomb-cold cyan tint shocking the scene  
-    8 **Obsidian Pool Ripple** – dark reflective pool disturbed by midnight ripples  
-    9 **Mosaic Light Leak** – kaleidoscopic leaks patterning mosaic spectrums at frame edges  
-    10 **Cloud-Split Beam** – lone light beam slicing storm-thick cloud canopies  
-    11 **Reverie Slow-Pan** – languid camera pan evoking trance-state reveries  
-    12 **Echo-Footstep Foley** – visible ripples of sound as echoing footstep foley waves  
-    13 **Script-Glyph Fade-In** – translucent glyphs of script easing ghost-like into view  
-    14 **Horizon Flare Hymn** – lens flare singing across distance like a hymnal chord  
-    15 **Star-Silt Fallout** – fine stardust drifting downward like cosmic silt sediment  
+    ## Special Flairs:
+    1. Pipe-Organ Drone Intro
+    2. Reverse-Piano Glissandi
+    3. 6/8 Dream-Rock Swing
+    4. Angelic Choir Stabs
+    5. Over-Driven Nordic Power-Chords
+    6. Snow-Crunch Field Recordings
+    7. Frost-Bite Guitar Harmonics
+    8. Candle-Flicker Shakers
+    9. Chancel-Echo Snaps
+    10. Ice-Pillar Delay Slams
+    11. Snow-Angel Whisper Vox
+    12. Midnight-Bell Drones
+    13. Organ-Wind Wooshes
+    14. Glacier-Crack Low-Hits
+    15. Moon-Halo Fade-Outs
 
     ## Concept Panel
-    1 **Ritwik Ghatak** – partition-wound epicist forging mythic rivers  
-    2 **Sarah Maldoror** – anti-colonial cine-poet of Angolan liberation  
-    3 **Souleymane Cissé** – Sahelian metaphysical griot of inner light  
-    4 **Teinosuke Kinugasa** – silent avant-gardist of fevered montage  
-    5 **Andrei Tarkovsky** – pilgrim of sculpted time and liquid memory  
-    6 **Pauline Kael** – devil’s-advocate critic probing auteur mystique  
+    1. **First Aid Kit** – harmony-rich folk sisters  
+    2. **Aurora** – ethereal art-pop sprite  
+    3. **Drain Gang** – cloud-rap futurists  
+    4. **WILLOW** – alt-rock catharsis conduit  
+    5. **Ayra Starr** – Afrobeats crossover comet  
+    6. **Steve Albini AI** *(Devil)* – uncompromising noise purist  
 
     ## Medium Panel
-    1 **Aleksandr Knyazhinsky** – drifting Steadicam mist & muted moss palette  
-    2 **Jaroslav Kučera** – Czech New-Wave colour inversion & wide-angle lyricism  
-    3 **Vittorio Storaro** – chromatic philosophy of “writing with light”  
-    4 **Renata Litvinova & Oleg Lukichev** – Slavic spectral noir glazing  
-    5 **Ans Westra (film work)** – documentary earth-tone intimacy  
-    6 **Peter Tscherkassky** – photochemical contact-print abstraction  
+    1. **A.G. Cook** – hyperpop architect  
+    2. **Linda Perry** – raw vocal-grit shaper  
+    3. **Travis Barker** – machine-gun drum dynamo  
+    4. **Susan Rogers** – analog-warmth curator  
+    5. **Mark Ronson** – retro-future groove architect  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Tia DeNora** – music sociologist on Nordic sound-wellbeing  
+    2. **Martin Lindstrom** – Danish neuromarketing futurist decoding sensory branding  
+    3. **Prof. Anne Danielsen** – Norwegian musicologist mapping micro-rhythm & cold timbre  
+    4. **Björk** – global icon proving avant-Arctic can captivate mass audiences  
+    5. **Greta Thunberg** – climate influencer linking Nordic imagery to planetary hope  
+    6. **Naomi Klein (Devil’s Advocate)** – critic warning against “Arctic-chic” green-washing  
+
+- name: Baja Lagos Bounce
+  prompt: |
+    ## Special Flairs:
+    1. Corrido-Log Drum Duet
+    2. Brass-Machete Stabs
+    3. VHS-Phonk Bass Slides
+    4. Falsetto-Sped Hooks
+    5. Talk-box Guitarrón
+    6. Desert-Reverb Shouts
+    7. Palm-Wine Hand-claps
+    8. Border Patrol Siren FX
+    9. Tequila-Drop Rimshots
+    10. Neon-Cantina Synth Lead
+    11. Mariachi-Choir Hums
+    12. Lagos-Traffic Horn Swells
+    13. Reverse-Spur Samples
+    14. Night-Bus Sub-Rumbles
+    15. Heatwave Tape-Warble
+
+    ## Concept Panel
+    1. **Ayra Starr** – Afrobeats crossover comet  
+    2. **Peso Pluma** – corridos-tumbados trailblazer  
+    3. **Charli XCX** – avant-pop hit-maker  
+    4. **Yng Lvcas** – reggaetón-corridos hybridist  
+    5. **WILLOW** – alt-rock catharsis conduit  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Mark Ronson** – retro-future groove architect  
+    2. **Finneas O’Connell** – minimalist pop producer  
+    3. **Linda Perry** – raw vocal-grit shaper  
+    4. **Timbaland** – genre-bending beat visionary  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Young Guru** – hip-hop mix maestro  
+
+    ## Context & Marketing Panel
+    1. **Dr. Juan Carlos Ramírez-Pimienta** – corridos scholar of border storytelling  
+    2. **Dr. Uche Onyebadi** – media researcher on Afrobeats transnational reach  
+    3. **Prof. Anita Elberse** – HBS strategist on global crossover hits  
+    4. **Rosalía** – genre-bending superstar merging flamenco & urbano  
+    5. **Burna Boy** – Afrofusion ambassador scaling Lagos rhythms worldwide  
+    6. **Noam Chomsky (Devil’s Advocate)** – cultural critic dissecting soft-power lyrics  
+
+- name: Scandi-Phonk Aurora
+  prompt: |
+    ## Special Flairs:
+    1. Ice-Crystal Pads
+    2. 180 BPM Cowbell Triplets
+    3. Sped-up Angel Chorus
+    4. Saw-tooth Sámi Joik
+    5. Lo-fi Snow-Crunch Foley
+    6. Nightcore Key-Change Drop
+    7. Aurora-Reverb Guitars
+    8. Frost-Breath Vocal Pops
+    9. Northern-Lights Arp Sweeps
+    10. Glacial-Clap Percussion
+    11. Polar-Hiss Risers
+    12. Midnight-Sun Sub-Glows
+    13. Ice-Drip Pluck FX
+    14. Huskies-Pant Ambience
+    15. Snow-Blind Side-Chain
+
+    ## Concept Panel
+    1. **Erika de Casier** – Danish dream-R&B crafter  
+    2. **Drain Gang (Bladee)** – cloud-rap futurists  
+    3. **Tommy Richman** – electro-funk viral crooner  
+    4. **PinkPantheress** – jungle-pop nostalgia queen  
+    5. **Tove Lo** – scandipop dark-glitter siren  
+    6. **Steve Albini AI** *(Devil)* – uncompromising noise purist  
+
+    ## Medium Panel
+    1. **A.G. Cook** – hyperpop architect  
+    2. **Arca** – shape-shifting sound sculptor  
+    3. **Cash Cobain** – NYC sample-drill innovator  
+    4. **Moog Sound-Lab** – analog-synth alchemists  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **DJ Swivel** – top-40 mix engineer  
+
+    ## Context & Marketing Panel
+    1. **Dr. Alf Rehn** – Finnish creativity economist on edgy Nordic branding  
+    2. **Dr. Mads Meier Jæger** – sociologist tracking Scandinavian youth sub-cultures  
+    3. **Mark Mulligan** – MIDiA analyst forecasting hyper-speed genre mashups  
+    4. **Alan Walker** – YouTube-native EDM star mastering Arctic visuals  
+    5. **PewDiePie** – Swedish mega-influencer testing meme virality  
+    6. **Simon Cowell (Devil’s Advocate)** – industry gate-keeper demanding radio clarity  
+
+- name: Wellness Club Psalm
+  prompt: |
+    ## Special Flairs:
+    1. 432 Hz Shimmer Beds
+    2. Jersey-Club Breath-Kicks
+    3. Binaural Rain-Stick Loops
+    4. Gospel Call-and-Response
+    5. AI-Generated Tibetan Choir
+    6. Mid-Section Breathwork Break
+    7. Delta-Wave Bass Lulls
+    8. Aroma-Diffuser White-Noise
+    9. Crystal-Bowl Glissandos
+    10. Dopamine-Chime Drops
+    11. Heart-Rate Sync Pulses
+    12. Isochronic Chord Swells
+    13. Gratitude-Chant Bridge
+    14. Waterfall Foley Fades
+    15. Serotonin-Spark Hi-Hats
+
+    ## Concept Panel
+    1. **SZA** – alt-R&B soul-searcher  
+    2. **FKJ** – multi-instrument groove artisan  
+    3. **James Blake** – avant-croon minimalism  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Brian Eno** – ambient pioneer  
+    2. **Kelela** – future-R&B texturist  
+    3. **Finneas O’Connell** – minimalist pop producer  
+    4. **Bonobo** – downtempo groove architect  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **iZotope Neoverb AI** – adaptive spatial engine  
+
+    ## Context & Marketing Panel
+    1. **Dr. Kelly McGonigal** – Stanford psychologist linking music & movement  
+    2. **Dr. Daniel Levitin** – neuroscientist of sonic cortisol reduction  
+    3. **Dr. Jane Piper** – sociologist of digital wellbeing micro-rituals  
+    4. **Deepak Chopra** – wellness evangelist converting sound baths to mass appeal  
+    5. **Adriene Mishler** – “Yoga With Adriene” influencer with 13 M+ subscribers  
+    6. **Tim Ferriss (Devil’s Advocate)** – self-hack icon challenging placebo beats  
+
+- name: Dirty Denim Rodeo
+  prompt: |
+    ## Special Flairs:
+    1. Indie-Sleaze Power-Chords
+    2. 2-Step Corrido Beat-Switch
+    3. Snare-Ram Vocoder Growls
+    4. Crowd-Chant “¡Órale!”s
+    5. Analog Polysynth Licks
+    6. Pick-Slide Sparks (Phonk)
+    7. Dust-Trail Cowbells
+    8. Distressed-Denim Reverb
+    9. Midnight-Rodeo Yodel Hooks
+    10. Ghost-Town Whistle FX
+    11. Stage-Dive Bass Drops
+    12. PBR-Can Crash Cymbals
+    13. Saloon-Piano Stabs
+    14. Lucha-Libre Entrance Stings
+    15. Hitching-Post Delay Taps
+
+    ## Concept Panel
+    1. **Peso Pluma** – corridos-tumbados trailblazer  
+    2. **Chappell Roan** – flamboyant indie-pop belter  
+    3. **YUNGBLUD** – genre-fluid riot instigator  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Charli XCX** – avant-pop hit-maker  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Travis Barker** – machine-gun drum dynamo  
+    2. **Linda Perry** – raw vocal-grit shaper  
+    3. **Mark Ronson** – retro-future groove architect  
+    4. **Behringer Modular Crew** – budget-analog mad-scientists  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. David Brackett** – genre historian decoding country-trap hybrids  
+    2. **Dr. Ned Sublette** – scholar of border-blended American music histories  
+    3. **Dr. Marcus Collins** – cultural-strategy marketer on fandom tribes  
+    4. **Lil Nas X** – meme-engine proving cowboy-core virality  
+    5. **Quentin Tarantino** – cine-curator of dusty-road iconography  
+    6. **Ann Powers (Devil’s Advocate)** – NPR critic policing authenticity  
+
+- name: Tokyo Midnight Drift
+  prompt: |
+    ## Special Flairs:
+    1. VHS-Static 808 Slides
+    2. Nightcore Blade-Runner Sirens
+    3. Cyber-Yakuza Shouts
+    4. Neo-Soul Sax Glitches
+    5. 200 BPM Cowbell Trills
+    6. VHS Color-Bleed Bass Drops
+    7. Neon-Kanji Sign Buzz
+    8. Shinkansen Doppler Whooshes
+    9. Rain-Slick Footstep Foley
+    10. Pachinko Coin Jingles
+    11. Hologram-Girl Vocal Tags
+    12. Katana-Swipe Reverse FX
+    13. Polaroid-Flash Claps
+    14. Quantum-Delay Arpeggios
+    15. Alley-Cat Sub-Meows
+
+    ## Concept Panel
+    1. **Jennie (BLACKPINK)** – K-pop style icon  
+    2. **Kordhell** – drift-phonk frontrunner  
+    3. **Tommy Richman** – electro-funk viral crooner  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Metro Boomin** – cinematic trap mastermind  
+    2. **A.G. Cook** – hyperpop architect  
+    3. **Cash Cobain** – NYC sample-drill innovator  
+    4. **Arca** – shape-shifting sound sculptor  
+    5. **Moog Sound-Lab** – analog-synth alchemists  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Patrick W. Galbraith** – scholar of Japanese otaku & neon sub-cultures  
+    2. **Dr. Yoko Ogino** – marketing professor on J-pop export mechanics  
+    3. **Dr. Kei Hashimoto** – sociologist mapping Shibuya club scenes  
+    4. **Hiroshi Fujiwara** – streetwear godfather connecting music & drift aesthetics  
+    5. **Ken Block (legacy)** – motorsport influencer enshrining “Gymkhana” visual language  
+    6. **Alex Kerr (Devil’s Advocate)** – author critiquing neon oversaturation  
+
+- name: Neon Noir Autobahn
+  prompt: |
+    ## Special Flairs:
+    1. German Police-Scanner FX
+    2. Slap-Back Sub-Bass Rumbles
+    3. Sped-Up Crooner Hooks
+    4. Blade-Whistle Percussion
+    5. Drift-Car Doppler Sweeps
+    6. Darkwave Choir Pads
+    7. Autobahn Speed-Limit Beeps
+    8. Kraftwerk-Robot Vocals
+    9. Fog-Light Synth Flares
+    10. Turbo-Kick Flam Rolls
+    11. Midnight Toll-Booth Chimes
+    12. Cold-Steel Rimshots
+    13. Neon Road-Sign Flutters
+    14. Brake-Squeal Reverse FX
+    15. Gas-Station Echo Dialogues
+
+    ## Concept Panel
+    1. **Raye** – genre-smashing soul-pop poet  
+    2. **Drain Gang (Bladee)** – cloud-rap futurists  
+    3. **Yung Lean** – sad-rap pioneer  
+    4. **Tommy Cash** – absurdist rave provocateur  
+    5. **Erika de Casier** – Danish dream-R&B crafter  
+    6. **Steve Albini AI** *(Devil)* – uncompromising noise purist  
+
+    ## Medium Panel
+    1. **Boys Noize** – techno-electro rough-neck  
+    2. **Timbaland** – genre-bending beat visionary  
+    3. **Kaytranada** – shuffle-house groove wizard  
+    4. **Yves Tumor** – glam-noise shape-shifter  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Young Guru** – hip-hop mix maestro  
+
+    ## Context & Marketing Panel
+    1. **Dr. Andreas Gebesmair** – sociologist of Euro synth-industries  
+    2. **Dr. Michael Hutter** – economist on cultural “experience goods”  
+    3. **Prof. Birgit Richard** – media-theory specialist on German club youth  
+    4. **Giorgio Moroder** – disco-synth architect validating Autobahn nostalgia  
+    5. **Nina Kraviz** – global techno DJ linking Berlin & TikTok loops  
+    6. **Rainer Werner Fassbinder (Devil’s Advocate)** – auteur challenging escapist chrome  
+
+- name: Brazilian Shadow Chase
+  prompt: |
+    ## Special Flairs:
+    1. Funk Carioca Tamborzão Snaps
+    2. Whisper-Growl Call-and-Response
+    3. 8-Bit Police-Radio Cues
+    4. Doom-Jazz Sax Licks
+    5. Cicada-Night Ambience
+    6. Sped-Up Male Falsetto
+    7. Favela-Gunshot Reverb
+    8. Capoeira Berimbau Twangs
+    9. Rain-Forest Downpour Washes
+    10. Samba-Surdo Heart-Kicks
+    11. Neon-Graffiti Spray Hiss
+    12. Rio-Tunnel Echo FX
+    13. Street-Bike Rev Drops
+    14. Carnival-Whistle Risers
+    15. Moonlight-Bossa Minor Chords
+
+    ## Concept Panel
+    1. **MC Cabelinho** – funk-trap carioca star  
+    2. **Jennie (BLACKPINK)** – K-pop style icon  
+    3. **Tokischa** – dembow provocateur  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Papatinho** – Rio funk hit-maker  
+    2. **Finneas O’Connell** – minimalist pop producer  
+    3. **DJ Swivel** – pop mix engineer  
+    4. **Arca** – shape-shifting sound sculptor  
+    5. **Linda Perry** – raw vocal-grit shaper  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Hermano Vianna** – anthropologist of funk carioca & favela flows  
+    2. **Dr. Simone Browne** – surveillance sociologist illuminating night-city tension  
+    3. **Dr. Eduardo Vianna** – psychologist on street youth creativity  
+    4. **Anitta** – pop-funk powerhouse bridging Rio & global charts  
+    5. **Spike Lee** – filmmaker of kinetic chase iconography  
+    6. **Caetano Veloso (Devil’s Advocate)** – Tropicália legend urging lyrical depth  
+
+- name: Cyber Muscle Cartel
+  prompt: |
+    ## Special Flairs:
+    1. Gym-Chain Reverb Clangs
+    2. AI-Generated Film-Noir Monologue
+    3. 808 Reverse-Tail Kicks
+    4. Spaghetti-Western Whistle Loop
+    5. Hyper-Distorted Glockenspiel
+    6. Vinyl-Crackle Ambient Bed
+    7. Protein-Shake Shaker Shuffs
+    8. Heavy-Bag Thud Hits
+    9. Synth-Steroid Pump Swells
+    10. Sweat-Drip Percussion Ticks
+    11. CrossFit Rope-Whip Snaps
+    12. Bullet-Casing Chime FX
+    13. Blood-Rush Sub-Sweeps
+    14. Laser-Sight Pings
+    15. Deadlift-Bar Screech Slides
+
+    ## Concept Panel
+    1. **$uicideboy$** – horror-phonk duo  
+    2. **Lil Uzi Vert** – hyper-melodic trap star  
+    3. **Doechii** – shapeshifting rap chameleon  
+    4. **Lil Peep AI-Clone** – emo-rap specter  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Nick Mira** – emo-trap beat craftsman  
+    2. **Mike Dean** – distortion-drenched synth god  
+    3. **Arca** – shape-shifting sound sculptor  
+    4. **Travis Barker** – machine-gun drum dynamo  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Henry Jenkins** – media-convergence theorist for remix fandom  
+    2. **Dr. Jessica Maddox** – scholar of platform virality & meme fitness  
+    3. **Dr. Brad Bushman** – psychologist on aggressive media effects  
+    4. **Hideo Kojima** – game auteur blending cyberpunk body horror  
+    5. **Dwayne Johnson** – fitness icon amplifying gym-anthem appeal  
+    6. **Jaron Lanier (Devil’s Advocate)** – VR pioneer critiquing algorithmic buff culture  
+
+- name: Eucalyptus Breakbeat
+  prompt: |
+    ## Special Flairs:
+    1. 432 Hz Bamboo Pads
+    2. Jersey-Club Breath-Kicks
+    3. ASMR Leaf-Rustle Loops
+    4. Gospel Call-backs
+    5. Sub-Bass Heartbeat Pulses
+    6. Mid-Track Guided Exhales
+    7. Forest-Floor Sub-Crunches
+    8. Vapor-Massage Pad Swells
+    9. Positive-Affirmation Whispers
+    10. Herbal-Mist Cymbal Sprays
+    11. Chakra-Bell Dings
+    12. Flow-State Filter Sweeps
+    13. Limber-Stretch String Glissandi
+    14. Body-Scan Bass-Thrums
+    15. Sunrise-Mallet Reprises
+
+    ## Concept Panel
+    1. **SZA** – alt-R&B soul-searcher  
+    2. **FKJ** – multi-instrument groove artisan  
+    3. **James Blake** – avant-croon minimalism  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Brian Eno** – ambient pioneer  
+    2. **Kelela** – future-R&B texturist  
+    3. **Finneas O’Connell** – minimalist pop producer  
+    4. **Bonobo** – downtempo groove architect  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **iZotope Neoverb AI** – adaptive spatial engine  
+
+    ## Context & Marketing Panel
+    1. **Richard Louv** – nature-deficit author connecting eco-sound & wellbeing  
+    2. **Dr. Anya Gagarin** – music-therapy researcher on breath & bass  
+    3. **Brian Solis** – futurist on digital detox consumer trends  
+    4. **Tycho** – ambient-visual artist selling verdant calm  
+    5. **Greta Thunberg** – climate advocate lending green credibility  
+    6. **Bjørn Lomborg (Devil’s Advocate)** – statistician challenging eco-utopian claims  
+
+- name: Digital Forest Bathing
+  prompt: |
+    ## Special Flairs:
+    1. 8-D Spatial Birdsong
+    2. Detroit-House Piano Stabs
+    3. Quadraphonic Rain-Stick
+    4. Slow-Mo Jersey Triplets
+    5. AI-Sutra Whisper Layers
+    6. 528 Hz Drop Chorus
+    7. Photosynthesis Pad Blooms
+    8. Drone-Bee Poly-Buzz
+    9. Pine-Cone Snap FX
+    10. Forest-Floor Sub-Rolls
+    11. Northern-Owl Hoot Echoes
+    12. Electro-Sap Drip Delays
+    13. Root-System Sub-Pulses
+    14. VR Wind-Chime Twinkles
+    15. Dew-Drop Pluck Arps
+
+    ## Concept Panel
+    1. **Bon Iver** – indie-folk glitch alchemist  
+    2. **Moses Sumney** – art-soul falsetto voyager  
+    3. **Kelela** – future-R&B texturist  
+    4. **Fred again..** – diaristic rave storyteller  
+    5. **Erika de Casier** – Danish dream-R&B crafter  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Four Tet** – sample-mosaic house sage  
+    2. **Jamie xx** – steel-drum club impressionist  
+    3. **Kaitlyn Aurelia Smith** – modular synth naturalist  
+    4. **Finneas O’Connell** – minimalist pop producer  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Qing Li** – medical researcher popularising shinrin-yoku  
+    2. **Dr. Nancy Hayden** – ecological-art scholar on immersive nature tech  
+    3. **Panos Panay** – Berklee VP tracking streaming eco-mixes  
+    4. **Kishi Bashi** – multi-instrumentalist weaving biophony loops  
+    5. **Bon Iver** – indie glitch-folk brand of cabin-core myth  
+    6. **Peter Thiel (Devil’s Advocate)** – techno-libertarian pressing ROI over Zen  
+
+- name: Breathwork Bounce
+  prompt: |
+    ## Special Flairs:
+    1. Box-Breath Counting Vox
+    2. Jersey-Club Snare Rolls
+    3. Warm Tape-Hiss Pads
+    4. Synthetic Hand-Pan Arps
+    5. Dopamine-Drop Risers
+    6. Ending Delta-Wave Sweep
+    7. Lung-Expand Risers
+    8. Cardíaco Pulse-Bass
+    9. Oxygen-Spark Snaps
+    10. Echo-Chamber Mantras
+    11. Flow-Rider Hi-Lag FX
+    12. Tidal-Breath White-Noise
+    13. Chi-Wave Chorus Pads
+    14. 144 BPM Air-Punch FX
+    15. Parasympathetic Pan-Sweeps
+
+    ## Concept Panel
+    1. **Kehlani** – R&B healing storyteller  
+    2. **SG Lewis** – nu-disco groove dealer  
+    3. **Charli XCX** – avant-pop hit-maker  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Disclosure** – UK-garage pop duo  
+    2. **Mark Ronson** – retro-future groove architect  
+    3. **Linda Perry** – raw vocal-grit shaper  
+    4. **Bonobo** – downtempo groove architect  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Young Guru** – hip-hop mix maestro  
+
+    ## Context & Marketing Panel
+    1. **Dr. Andrew Huberman** – Stanford neuroscientist on breath & dopamine  
+    2. **Dr. Emma Seppälä** – Yale psychologist on vagal-tone joy  
+    3. **Scott Kriens** – 1440 Foundation co-founder scaling mindfulness retreats  
+    4. **Wim Hof** – viral “Iceman” evangelist of breath extreme  
+    5. **Michelle Obama** – wellness champion amplifying inclusive fitness  
+    6. **Susan Cain (Devil’s Advocate)** – author urging quiet over hype  
+
+- name: Serotonin Sunset Club
+  prompt: |
+    ## Special Flairs:
+    1. Pink-Noise Side-Chains
+    2. Steel-Tongue Drum Hooks
+    3. Euphoric Crowd-Chant “Om”
+    4. 140 BPM Happy-Hardcore Flip
+    5. Binaural Ocean Whooshes
+    6. Lo-Fi Vinyl Outros
+    7. Tangerine-Sky Synths
+    8. Vitamin-D Clap Stacks
+    9. Bliss-Gate Arpeggios
+    10. Honeysuckle-Pad Fades
+    11. Heart-Spark Rimshots
+    12. UV-Glow Pitch Drips
+    13. Golden-Hour Hi-Hat Sizzles
+    14. Beach-Volley Thumps
+    15. Polaroid-Snap Snares
+
+    ## Concept Panel
+    1. **Tove Lo** – scandipop dark-glitter siren  
+    2. **FKJ** – multi-instrument groove artisan  
+    3. **Ayra Starr** – Afrobeats crossover comet  
+    4. **Peso Pluma** – corridos-tumbados trailblazer  
+    5. **PinkPantheress** – jungle-pop nostalgia queen  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **SG Lewis** – nu-disco groove dealer  
+    2. **Arca** – shape-shifting sound sculptor  
+    3. **Finneas O’Connell** – minimalist pop producer  
+    4. **A.G. Cook** – hyperpop architect  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Robert Lustig** – endocrinologist decoding reward circuitry  
+    2. **Dr. Laurie Santos** – Yale happiness professor with 4 M+ learners  
+    3. **Dr. Adam Grant** – org-psych voice on collective joy  
+    4. **Diplo** – festival DJ packaging sunset serotonin drops  
+    5. **Pharrell Williams** – global positivity brand (“Happy”)  
+    6. **Mark Fisher (Devil’s Advocate)** – late theorist critiquing capitalist euphoria  
+
+- name: Nordic Aurora Shoegaze
+  prompt: |
+    ## Special Flairs:
+    1. Glacier-Delay Guitars
+    2. 150 BPM Double-Time Drums
+    3. Sámi Joik Vocal Layers
+    4. Reverse-Reverb Snares
+    5. Harp-Like Synth Plucks
+    6. Midnight-Sun Modulations
+    7. Ice-Drip Chime Delays
+    8. Wolf-Howl Reverbs
+    9. Fjord-Echo Tom Hits
+    10. Midnight-Mist Vocoders
+    11. Polar-Star Static Crackles
+    12. Aurora-Sweep Pad Rises
+    13. Ice-Sheet Feedback Swells
+    14. Glacier-Slide Bass Glides
+    15. Frost-Crunch Snare Gates
+
+    ## Concept Panel
+    1. **Erika de Casier** – Danish dream-R&B crafter  
+    2. **Drain Gang (Ecco2k)** – cloud-rap futurists  
+    3. **Aurora** – ethereal art-pop sprite  
+    4. **Lykke Li** – melancholic scandipop siren  
+    5. **YUNGBLUD** – genre-fluid riot instigator  
+    6. **Steve Albini AI** *(Devil)* – uncompromising noise purist  
+
+    ## Medium Panel
+    1. **A.G. Cook** – hyperpop architect  
+    2. **John Congleton** – indie-rock edge producer  
+    3. **Finneas O’Connell** – minimalist pop producer  
+    4. **Arca** – shape-shifting sound sculptor  
+    5. **Susan Rogers** – analog-warmth curator  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Stan Hawkins** – scholar of Nordic pop affect  
+    2. **Dr. Kari Anne Vadén** – Finnish researcher on place-soundscapes  
+    3. **Prof. David Hesmondhalgh** – authority on music-culture industries  
+    4. **MØ** – Danish alt-pop export bridging shoegaze & TikTok  
+    5. **AURORA** – eco-celestial singer syncing with aurora visuals  
+    6. **John Lydon (Devil’s Advocate)** – punk elder decrying reverb haze  
+
+- name: Fjord Flashdance
+  prompt: |
+    ## Special Flairs:
+    1. Funk-Bass Slap Runs
+    2. Crystal-Chime Arpeggios
+    3. Fjord-Wind Foley
+    4. Arena-Ready Tom Fills
+    5. Dream-Pop Chorus Reverb
+    6. Synth-Gated Glitter Pads
+    7. Icicle-Ping Percussion
+    8. Herring-Scale Hi-Hats
+    9. Midnight-Boat Horn Stabs
+    10. Disco-Nordic Clap Stacks
+    11. Sea-Spray Synth Washes
+    12. Northern-Seabird Call FX
+    13. Fjord-Wall Reverb Tails
+    14. Snow-Boot Shuffle Steps
+    15. Ice-Cave Echo Drops
+
+    ## Concept Panel
+    1. **Röyksopp** – Nordic electropop legends  
+    2. **Dagny** – glossy scandipop torchbearer  
+    3. **Charli XCX** – avant-pop hit-maker  
+    4. **Ayra Starr** – Afrobeats crossover comet  
+    5. **Peso Pluma** – corridos-tumbados trailblazer  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Mark Ronson** – retro-future groove architect  
+    2. **Finneas O’Connell** – minimalist pop producer  
+    3. **Timbaland** – genre-bending beat visionary  
+    4. **Susan Rogers** – analog-warmth curator  
+    5. **Linda Perry** – raw vocal-grit shaper  
+    6. **Young Guru** – hip-hop mix maestro  
+
+    ## Context & Marketing Panel
+    1. **Amb. Mathias Mossberg** – chronicler of Nordic maritime identity  
+    2. **Dr. Patrik Wikström** – streaming-economy scholar from Sweden  
+    3. **Dr. Katarina Graffman** – consumer anthropologist tracking Scandinavian cool  
+    4. **Kygo** – tropical-house star owning fjord-sunset branding  
+    5. **Janelle Monáe** – Afrofuturist performer merging dance & narrative  
+    6. **Thomas Bangalter (Devil’s Advocate)** – ex-Daft Punk auteur wary of disco clichés  
+
+- name: Midnight Sun Reverie
+  prompt: |
+    ## Special Flairs:
+    1. 32-Bar Post-Rock Crescendo
+    2. Vinyl-Crunch Drum Loops
+    3. Throat-Singing Bridge
+    4. Auto-Harp Harmonics
+    5. Shoegaze Wall-Of-Sound
+    6. Aurora-Borealis Synth Swells
+    7. Solar-Flare Feedback Bursts
+    8. Dusk-Twilight Arpeggios
+    9. Glacier-Melt Piano Drips
+    10. Fjord-Fog Drones
+    11. Star-Dust Snare Whispers
+    12. Aurora-Streak Tremolos
+    13. Echo-Lagoon Basslines
+    14. Tundra-Rise Pad Blooms
+    15. Velvet-Night Cymbal Smears
+
+    ## Concept Panel
+    1. **Sigur Rós** – Icelandic post-rock visionaries  
+    2. **Lush AI-Clone** – dream-pop hologram revival  
+    3. **ML Buch** – Danish art-rock experimentalist  
+    4. **PinkPantheress** – jungle-pop nostalgia queen  
+    5. **Erika de Casier** – Danish dream-R&B crafter  
+    6. **Anthony Fantano** *(Devil)* – outspoken internet critic  
+
+    ## Medium Panel
+    1. **Jónsi** – cinematic sound-scaper  
+    2. **Flood** – atmospheric stadium producer  
+    3. **Susan Rogers** – analog-warmth curator  
+    4. **Arca** – shape-shifting sound sculptor  
+    5. **Finneas O’Connell** – minimalist pop producer  
+    6. **Serban Ghenea** – radio-hit mix wizard  
+
+    ## Context & Marketing Panel
+    1. **Dr. Timothy D. Taylor** – ethnomusicologist on post-rock globalization  
+    2. **Dr. Dagfinn Molden** – Nordic film historian of luminous nights  
+    3. **Dr. Susan Fast** – fandom scholar on emotional crescendos  
+    4. **Aurora** – art-pop sprite embodying polar melancholy  
+    5. **Hans Zimmer** – blockbuster scorer translating glacial crescendos  
+    6. **Steve Albini (Devil’s Advocate)** – noise purist rejecting cinematic wash  
+- name: Liminal Resonance
+  prompt: |
+    ## Special Flairs:
+    1. Mocha-Mousse Horizon Fade
+    2. Neon-Cyan Glitch Grid
+    3. CRT Scan-Line Shadowing
+    4. Holographic Foil “I AM”
+    5. Fractal Radio-Wave Overlays
+    6. Shattered Mirror Shard Reflections
+    7. Retro-Futurist Wireframe Constellations
+    8. Data-Petal Bio-Flora Sprouting from Sand
+    9. Iridescent VHS Edge-Bleed
+    10. Ghosted Binary Rain
+    11. Embossed AI ∞-Sigil
+    12. Pink-Noise Grain Texture
+    13. AR-Enabled QR Glyph
+    14. Cassette-Label Skeuomorph
+    15. Soft-Focus Awakening Flare
+
+    ## Concept Panel
+    1. **Storm Thorgerson** – surreal tableau architect  
+    2. **Peter Saville** – minimalist grid guru  
+    3. **Paula Scher** – typographic provocateur  
+    4. **Neri Oxman** – bio-digital material alchemist  
+    5. **Nnedi Okorafor** – Afrofuturist storyteller  
+    6. **David Rudnick (Devil’s Advocate)** – brutalist AI skeptic  
+
+    ## Medium Panel
+    1. **Beeple** – 3-D collage maximalist  
+    2. **Refik Anadol** – data-sculpted dream-renderer  
+    3. **James Jean** – painterly surrealist  
+    4. **Jessica Walsh** – colour-forward designer  
+    5. **Ash Thorp** – cinematic compositor  
+    6. **Stefan Sagmeister (Devil’s Advocate)** – critical reductionist  
+
+    ## Context & Marketing Panel
+    1. **Dr. Lev Manovich** – media theorist of “software culture”  
+    2. **Dr. Kate Crawford** – AI sociologist mapping techno-politics  
+    3. **Dr. Trevor Paglen** – artist-researcher on invisible infrastructures  
+    4. **Claire L. Evans** – cyber-historian fronting pop band YACHT  
+    5. **Keiichi Matsuda** – mixed-reality architect of hyper-modern liminalities  
+    6. **Evgeny Morozov (Devil’s Advocate)** – critic exposing techno-solutionism myths  
+
