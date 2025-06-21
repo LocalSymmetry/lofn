@@ -44,7 +44,8 @@ def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
 
 def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music genres."""
-    with open('/lofn/prompts/genres.txt', 'r') as file:
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'genres.txt')
+    with open(path, 'r') as file:
         genres = file.read().split(', ')
 
     count = random.randint(min_count, max_count)
@@ -498,3 +499,18 @@ def send_to_discord(content, content_type='prompts', premessage=''):
                     requests.post(st.session_state['webhook_url'], data=json.dumps(message), headers={"Content-Type": "application/json"})
     except Exception as e:
         st.write(f"An error occurred while sending to Discord: {str(e)}")
+
+def save_music_data(metadata):
+    """Save music prompts and metadata to the /music directory."""
+    os.makedirs('/music', exist_ok=True)
+    timestamp = metadata.get('timestamp')
+    if isinstance(timestamp, datetime):
+        timestamp_str = timestamp.strftime('%Y%m%d_%H%M%S')
+    else:
+        timestamp_str = str(timestamp)
+    title_slug = metadata.get('title', 'untitled')[:10].replace(' ', '_')
+    model = metadata.get('model', 'model')[:10].replace('/', '_')
+    filename = f"/music/{timestamp_str}_{model}_{title_slug}.json"
+    with open(filename, 'w') as f:
+        json.dump(metadata, f, indent=2, default=str)
+    st.write(f"Music metadata saved as {filename}")

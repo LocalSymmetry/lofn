@@ -1,6 +1,7 @@
 import os
 import logging
 import random
+from datetime import datetime
 import pandas as pd
 import streamlit as st
 import yaml
@@ -414,7 +415,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                meta_prompt, frames_list = generate_meta_prompt(
+                meta_prompt, frames_list, _ = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -603,7 +604,7 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            meta_prompt, genres_list = generate_meta_prompt(
+            meta_prompt, frames_list, genres_list = generate_meta_prompt(
                 st.session_state.get('input', ''),
                 max_retries=self.max_retries,
                 temperature=self.temperature,
@@ -617,6 +618,7 @@ class LofnApp:
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
                 .replace('{genres_list}', genres_list)
+                .replace('{frames_list}', frames_list)
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
@@ -631,6 +633,17 @@ class LofnApp:
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
             st.session_state['music_title'] = music_title
+            save_music_data({
+                'timestamp': datetime.utcnow(),
+                'title': music_title,
+                'music_prompt': music_prompt,
+                'lyrics_prompt': lyrics_prompt,
+                'run_time': st.session_state['run_time'],
+                'input': st.session_state['input'],
+                'model': self.model,
+                'style_axes': st.session_state.get('style_axes'),
+                'creativity_spectrum': st.session_state.get('creativity_spectrum'),
+            })
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -709,7 +722,7 @@ class LofnApp:
             st.session_state['video_concept_mediums'] = []
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
-                meta_prompt, frames_list = generate_meta_prompt(
+                meta_prompt, frames_list, _ = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -863,6 +876,17 @@ class LofnApp:
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
             st.session_state['music_title'] = music_title
+            save_music_data({
+                'timestamp': datetime.utcnow(),
+                'title': music_title,
+                'music_prompt': music_prompt,
+                'lyrics_prompt': lyrics_prompt,
+                'run_time': st.session_state['run_time'],
+                'input': st.session_state['input'],
+                'model': self.model,
+                'style_axes': st.session_state.get('style_axes'),
+                'creativity_spectrum': st.session_state.get('creativity_spectrum'),
+            })
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
