@@ -603,19 +603,20 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            meta_prompt, frames_list = generate_meta_prompt(
+            meta_prompt, genres_list = generate_meta_prompt(
                 st.session_state.get('input', ''),
                 max_retries=self.max_retries,
                 temperature=self.temperature,
                 model=self.model,
                 debug=self.debug,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                medium="music",
             )
             template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
-                .replace('{frames_list}', frames_list)
+                .replace('{genres_list}', genres_list)
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):

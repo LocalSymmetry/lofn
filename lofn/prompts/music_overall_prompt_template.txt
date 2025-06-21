@@ -44,7 +44,7 @@ No major changes, just focus on capturing my request without adding new elements
   - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following arrangement approaches to help come up with ideas):
   - Arrangement Approaches: choose one of the following approaches, specialize it further with cultural influences, or blend multiple approaches with your medium:
 ```tab-delim
-{frames_list}
+{genres_list}
 ```
 
 # Artistic Guide Writing, Prompt Writing, and All Refinement Phases

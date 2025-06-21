@@ -42,6 +42,16 @@ def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
     return "\n".join(frames)
 
 
+def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected music genres."""
+    with open('/lofn/prompts/genres.txt', 'r') as file:
+        genres = file.read().split(', ')
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(genres, count)
+    return "\n".join(sampled)
+
+
 def extract_json_from_text(output: str) -> Union[str, None]:
     """Extract a JSON object from a language model response."""
 
