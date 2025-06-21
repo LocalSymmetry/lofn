@@ -30,6 +30,7 @@ from helpers import (
     display_creativity_and_style_axes,
     sample_artistic_frames,
     sample_music_frames,
+    sample_music_genres,
 )
 import plotly.graph_objects as go
 import random
@@ -1501,8 +1502,10 @@ def generate_meta_prompt(
     try:
         if medium == "music":
             frames_list = sample_music_frames()
+            genres_list = sample_music_genres()
         else:
             frames_list = sample_artistic_frames()
+            genres_list = None
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
@@ -1515,11 +1518,20 @@ def generate_meta_prompt(
                 | llm
             )
 
-        key = 'genres_list' if medium == "music" else 'frames_list'
-        parsed_output = run_llm_chain(
-            {'meta': chain}, 'meta', {'input': input_text, key: frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
-        )
-        return parsed_output, frames_list
+        if medium == "music":
+            parsed_output = run_llm_chain(
+                {'meta': chain}, 'meta', {
+                    'input': input_text,
+                    'genres_list': genres_list,
+                    'frames_list': frames_list
+                }, max_retries, model, debug, expected_schema=meta_prompt_schema
+            )
+            return parsed_output, frames_list, genres_list
+        else:
+            parsed_output = run_llm_chain(
+                {'meta': chain}, 'meta', {'input': input_text, 'frames_list': frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
+            )
+            return parsed_output, frames_list
     except Exception as e:
         logger.exception("Error generating meta prompt: %s", e)
         raise e

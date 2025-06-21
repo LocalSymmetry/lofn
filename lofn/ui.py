@@ -9,7 +9,9 @@ from image_generation import (
     render_image_controls,
     get_model_params,
     generate_dalle_images,
+    save_music_metadata,
 )
+from datetime import datetime
 from config import Config
 from helpers import *
 from llm_integration import *
@@ -603,7 +605,7 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            meta_prompt, genres_list = generate_meta_prompt(
+            meta_prompt, frames_list, genres_list = generate_meta_prompt(
                 st.session_state.get('input', ''),
                 max_retries=self.max_retries,
                 temperature=self.temperature,
@@ -617,6 +619,7 @@ class LofnApp:
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
                 .replace('{genres_list}', genres_list)
+                .replace('{frames_list}', frames_list)
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
@@ -631,6 +634,17 @@ class LofnApp:
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
             st.session_state['music_title'] = music_title
+
+            metadata = {
+                'timestamp': datetime.now(),
+                'title': music_title,
+                'music_prompt': music_prompt,
+                'lyrics_prompt': lyrics_prompt,
+                'input_text': st.session_state.get('input', ''),
+                'competition': True,
+                'model': self.model,
+            }
+            save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -863,6 +877,16 @@ class LofnApp:
             st.session_state['music_prompt'] = music_prompt
             st.session_state['lyrics_prompt'] = lyrics_prompt
             st.session_state['music_title'] = music_title
+            metadata = {
+                'timestamp': datetime.now(),
+                'title': music_title,
+                'music_prompt': music_prompt,
+                'lyrics_prompt': lyrics_prompt,
+                'input_text': st.session_state['input'],
+                'competition': False,
+                'model': self.model,
+            }
+            save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:

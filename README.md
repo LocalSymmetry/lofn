@@ -74,7 +74,7 @@ To set up Lofn, follow these steps:
 5. **Run the Docker container**:
 
    ```bash
-   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata lofn
+   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata -v $(pwd)/music:/music lofn
    ```
 
 6. **Access the Lofn UI**:
