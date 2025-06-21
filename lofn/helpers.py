@@ -52,6 +52,22 @@ def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     return "\n".join(sampled)
 
 
+def sample_music_frames(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected music frames."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'music_frames.csv')
+    with open(path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        rows = list(reader)
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(rows, count)
+    frames = [
+        f"{row['Category']}{row['Technique']}{row['Description']}"
+        for row in sampled
+    ]
+    return "\n".join(frames)
+
+
 def extract_json_from_text(output: str) -> Union[str, None]:
     """Extract a JSON object from a language model response."""
 

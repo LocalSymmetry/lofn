@@ -29,7 +29,7 @@ from helpers import (
     display_facets,
     display_creativity_and_style_axes,
     sample_artistic_frames,
-    sample_music_genres,
+    sample_music_frames,
 )
 import plotly.graph_objects as go
 import random
@@ -1500,7 +1500,7 @@ def generate_meta_prompt(
 ):
     try:
         if medium == "music":
-            frames_list = sample_music_genres()
+            frames_list = sample_music_frames()
         else:
             frames_list = sample_artistic_frames()
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
