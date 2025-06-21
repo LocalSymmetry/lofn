@@ -944,5 +944,20 @@ def save_metadata(metadata):
     # Save the metadata as a JSON file
     with open(metadata_filename, 'w') as f:
         json.dump(metadata, f, indent=2, default=json_serializable)
-    
+
     st.write(f"Metadata saved as {metadata_filename}")
+
+
+def save_music_metadata(metadata):
+    os.makedirs('/music', exist_ok=True)
+    metadata_filename = f"/music/{metadata['timestamp']}_{metadata['title'][0:10]}.json"
+
+    def json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f'Type {type(obj)} not serializable')
+
+    with open(metadata_filename, 'w') as f:
+        json.dump(metadata, f, indent=2, default=json_serializable)
+
+    st.write(f"Music metadata saved as {metadata_filename}")

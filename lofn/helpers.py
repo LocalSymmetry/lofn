@@ -44,7 +44,8 @@ def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
 
 def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music genres."""
-    with open('/lofn/prompts/genres.txt', 'r') as file:
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'genres.txt')
+    with open(path, 'r') as file:
         genres = file.read().split(', ')
 
     count = random.randint(min_count, max_count)

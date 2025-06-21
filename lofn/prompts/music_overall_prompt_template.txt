@@ -47,6 +47,10 @@ No major changes, just focus on capturing my request without adding new elements
 {genres_list}
 ```
 
+```tab-delim
+{frames_list}
+```
+
 # Artistic Guide Writing, Prompt Writing, and All Refinement Phases
 **Do this if you are asked to generate artistic guides, refine concepts, or refine mediums, generate music prompts, or refine music prompts.**
 - For each concept (after you've completed the concept & medium phases), prompt by:
