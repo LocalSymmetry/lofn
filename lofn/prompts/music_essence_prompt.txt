@@ -589,5 +589,3 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 **USER'S IDEA:**
 
 {input}
-
-- **Desired Run Time Length:** {run_time} minutes
