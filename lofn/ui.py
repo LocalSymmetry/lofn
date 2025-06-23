@@ -625,7 +625,6 @@ class LofnApp:
             with st.spinner("Generating music prompts..."):
                 music_title, music_prompt, lyrics_prompt = generate_music_prompts(
                     input_text,
-                    st.session_state['run_time'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
@@ -821,7 +820,7 @@ class LofnApp:
             st.markdown("---")
 
     def render_music_generation(self):
-        self.render_music_sidebar()
+        # self.render_music_sidebar()
         st.header("Generate Your Music Concept")
 
         st.subheader("Describe Your Song Idea")
@@ -850,18 +849,18 @@ class LofnApp:
         if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
             self.display_music_prompts()
 
-    def render_music_sidebar(self):
-        st.sidebar.header('Music Generation Settings')
+    # def render_music_sidebar(self):
+    #     st.sidebar.header('Music Generation Settings')
 
-        run_time = st.sidebar.number_input(
-            "Desired Song Length (minutes)",
-            min_value=1.0,
-            max_value=10.0,
-            value=2.0,
-            step=0.5,
-            help="Set the desired length of the song."
-        )
-        st.session_state['run_time'] = run_time
+    #     run_time = st.sidebar.number_input(
+    #         "Desired Song Length (minutes)",
+    #         min_value=1.0,
+    #         max_value=10.0,
+    #         value=2.0,
+    #         step=0.5,
+    #         help="Set the desired length of the song."
+    #     )
+    #     st.session_state['run_time'] = run_time
 
     def generate_music_prompts_ui(self):
         try:

@@ -1,56 +1,389 @@
 Category,Technique,Description
-Rhythm,Syncopated Stabs,Short accents hitting off the beat
-Rhythm,Triplet Swing,Swing feel with triplet subdivisions
-Rhythm,Polyrhythmic Layer,Overlapping rhythms of different meters
-Rhythm,Handclap Pulse,Steady handclaps accenting beats
-Rhythm,Stutter Drum Break,Cut-up drum beat for glitchy feel
-Melody,Ascending Riff,Melody that climbs each repetition
-Melody,Descending Scale,Simple scale walk-down motif
-Melody,Call and Response,Two melodic phrases trading off
-Melody,Microtonal Bend,Pitch bending between notes
-Melody,Ostinato Loop,Short repeating melodic figure
-Harmony,Power Chord Drive,Chugging guitar power chords
-Harmony,Cluster Chords,Closely spaced dissonant chords
-Harmony,Modal Shift,Switching modes mid-phrase
-Harmony,Sus4 Resolve,Suspension resolving to major triad
-Harmony,Pedal Drone,Static bass note under chords
-Sound Design,Granular Texture,Fragments of sound reassembled
-Sound Design,Reverse Hit,Reversed sample leading into beat
-Sound Design,Filtered Sweep,Rising filter to accent sections
-Sound Design,Noise Burst,Sudden noise accent for impact
-Sound Design,Analog Warmth,Subtle tape saturation effect
-Dynamics,Gentle Crescendo,Slowly increasing volume
-Dynamics,Big Drop,Silence before strong chorus hit
-Dynamics,Soft Intro,Minimal instrumentation at start
-Dynamics,Layered Climax,Multiple tracks building at peak
-Dynamics,Fermata Hold,Dramatically holding final chord
-Production,Stereo Ping-Pong,Alternating left-right echoes
-Production,Lo-Fi Crunch,Bitcrushed texture for vintage feel
-Production,Sidechain Pump,Synth ducking with kick drum
-Production,Spatial Reverb,Large hall ambience
-Production,Vocoder Harmony,Pitched vocal layers with vocoder
-Experimental,Found Object Percussion,Using everyday objects as drums
-Experimental,Algorithmic Melody,Generative melody lines
-Experimental,Circuit Bent Synth,Glitched electronics
-Experimental,Odd Time Sig,Unusual time signatures
-Experimental,Prepared Piano,Altered piano strings for texture
-Ambient,Droning Pad,Long sustained synth pad
-Ambient,Nature Field Recording,Background ambience from nature
-Ambient,Slow Attack Strings,Gradual swell of string section
-Ambient,Tape Loop Warble,Looped tape with pitch wobble
-Ambient,Ethereal Choir,Wordless choral layers
-Percussion,Shaker Groove,Steady shaker accent
-Percussion,Tom Fill Swells,Rising tom fills between sections
-Percussion,Brush Snare,Soft snare hits with brushes
-Percussion,Body Percussion,Claps and stomps as rhythm
-Percussion,Metallic Hits,Percussive metal objects
-Vocal,Whisper Layer,Soft whispered doubles
-Vocal,Group Chant,Unified crowd vocals
-Vocal,Vocal Fry Ad-libs,Guttural textural additions
-Vocal,Harmony Stack,Multiple harmonies layered
-Vocal,Callout Shouts,Short shouted phrases
-Electronic,Sideband Modulation,Pitch-shifting effect
-Electronic,FM Bell Tone,Metallic synth patch
-Electronic,Chiptune Arp,Retro video game arpeggio
-Electronic,Bass Wobble,LFO-driven bass movement
-Electronic,Granular Stretch,Time-stretched sample
+Drums,Fluttering Hits,Thunderous rolls floating above clouds
+Afro‑House,Granular Flutters,Smeared harmonies suspending time
+Sound Design,Silver Riffs,Swirling atmospheres caressing the sub
+Avant‑Garde,Multiphonic Embers,Granular washes panning across space
+Blues,Laser Lines,Subtle pulses fizzing with energy
+Pop Hooks,Saturated Drops,Melodic spirals colliding in stereo
+Game OST,Pulsating Pulses,Glitch‑infused stutters caressing the sub
+Garage,Shimmering Bursts,Subtle pulses fracturing the groove
+Soul,Velvet Blasts,Rhythmic jolts pulsing under the melody
+Trap,Moonlit Spirals,Floating arpeggios fluttering in your ear
+Dancehall,Microtonal Themes,Silky slides panning across space
+Hip‑Hop,Pulsating Runs,Rapid sequences anchoring the verse
+Drum & Bass,Shimmering Glides,Side‑chain swells charging the drop
+Ska,Futuristic Claps,Silky slides charging the drop
+Sound Design,Quivering Themes,Tight motifs fracturing the groove
+Sampling,Retro Twists,Rapid sequences strobing with life
+Funk,Dynamic Sweeps,Evolving textures echoing in neon light
+Glitch,Spectral Sparks,Glitch‑infused stutters twisting reality
+World Fusion,Blooming Threads,Swirling atmospheres weaving through the mix
+Avant‑Garde,Chromatic Mirrors,Pitch‑bent chirps lighting up the chorus
+Shoegaze,Velvet Waves,Subtle pulses melting into harmony
+Techno,Side‑chain Pulses,Side‑chain swells shaking the floor
+Ambient,Celestial Echoes,Dreamlike sweeps floating above clouds
+Percussion,Thunderous Rolls,Heavy hits shaking the floor
+Jazz,Syncopated Stabs,Short accents hitting off the beat
+House,Layered Claps,Layered accents glimmering in reverb
+EDM,Resonant Blips,Rhythmic jolts triggering dopamine
+K‑Pop,Neon Shimmers,Sparkling clusters lighting up the chorus
+Latin,Bubbly Arps,Elastic grooves dancing around silence
+Reggaetón,Slapback Beats,Bouncy hooks cracking with nostalgia
+Indie Rock,Lo‑fi Slides,Silky slides melting into harmony
+Cinematic,Crescendo Bursts,Evolving textures suspending time
+Orchestral,Dynamic Swells,Evolving textures rising like a tide
+Electronic,Squelchy Drops,Gritty grooves shaking the floor
+Future Bass,Shimmering Waves,Sparkling clusters glimmering in reverb
+Dubstep,Growling Wobbles,Wobbly textures charging the drop
+Vaporwave,Retro Echoes,Lo‑fi sweeps painting the hook
+Lo‑Fi,Crackled Hits,Warm tremors caressing the sub
+Trap,Haunted Bells,Glitch‑infused stutters haunting the bridge
+Afrobeats,Sun‑Kissed Riffs,Groovy runs lighting up the chorus
+Soul,Silky Trills,Silky slides echoing in neon light
+Disco,Shimmering Strings,Sparkling clusters dancing around silence
+R&B,Velvet Hums,Warm tremors floating above clouds
+Choral,Heavenly Layers,Choral swells suspending time
+Opera,Dramatic Arcs,Evolving textures opening the portal
+Metal,Thunderous Chugs,Heavy hits cracking with nostalgia
+Punk,Sneaky Stabs,Short accents cutting through haze
+Grime,Grimy Slides,Gritty grooves anchoring the verse
+Drill,Rolling 808s,Thunderous rolls shaking the floor
+Deep House,Subterranean Pulses,Subtle pulses grounding the rhythm
+Afro‑House,Tribal Shakers,Tribal grooves dancing around silence
+World Fusion,Desert Echoes,Dreamlike sweeps floating above clouds
+Experimental,Fragmented Hits,Fragmented beats twisting reality
+Noise,Saturated Bursts,Harsh blasts colliding in stereo
+IDM,Micro‑Clicks,Glitch‑infused stutters weaving through the mix
+Glitch,Pixelated Flutters,Stuttered flutters spiralling endlessly
+Game OST,Chiptune Sprites,Bubbly runs triggering dopamine
+Chiptune,Bit‑crushed Blips,Bit‑crushed riffs crackling with nostalgia
+Folk,Bright Strums,Lush strums painting the hook
+Bluegrass,Speedy Plucks,Arpeggiated runs charging the drop
+Country,Twangy Slides,Lush slides grounding the rhythm
+Blues,Gritty Slides,Gritty grooves melting into harmony
+Jazz,Chromatic Swirls,Arpeggiated runs weaving through the mix
+Funk,Slap Bass Pops,Elastic grooves shaking the floor
+Disco,Mirror‑Ball Sparks,Sparkling clusters lighting up the chorus
+Soul,Velvet Rolls,Warm tremors caressing the sub
+Neo‑Soul,Silky Scoops,Silky slides floating above clouds
+Pop Hooks,Catchy Loops,Hypnotic loops triggering dopamine
+Hyperpop,Pitch‑Bent Shards,Pitch‑bent chirps cutting through haze
+Future Garage,Swung Snares,Swung snares dancing around silence
+Garage,Skippy Hats,Short accents triggering dopamine
+UK Bass,Wobbly Sub‑Drives,Wobbly textures shaking the floor
+Dub,Delay Trails,Side‑chain swells echoing in neon light
+Reggae,Offbeat Chops,Short accents hitting off the beat
+Dancehall,Firework Rolls,Thunderous rolls lighting up the chorus
+Cumbia,Accordion Pulses,Layered accents weaving through the mix
+Salsa,Clave Clicks,Short accents anchoring the verse
+Bossa Nova,Gentle Brush‑Hits,Soft pulses floating above clouds
+Tango,Dramatic Stabs,Short accents colliding in stereo
+Bollywood,Sitar Flutters,Crystalline riffs glimmering in reverb
+Ambient,Drone Waves,Evolving textures suspending time
+New Age,Healing Chimes,Crystalline echoes painting the hook
+Lo‑Fi,Raindrop Taps,Soft pulses raining across space
+Shoegaze,Reverb Clouds,Dreamlike sweeps melting into harmony
+Dream Pop,Starry Plucks,Shimmering clusters floating above clouds
+Indie Rock,Crunchy Riffs,Gritty grooves lighting up the chorus
+Post‑Rock,Slow‑Burn Crescendos,Evolving textures rising like a tide
+Math Rock,Angular Riffs,Syncopated runs twisting reality
+Prog,Complex Arps,Polyrhythmic runs stretching perception
+Krautrock,Motorik Beats,Pulsating pulses suspending time
+Noise,Distorted Walls,Harsh blasts shaking the floor
+Drone,Endless Hums,Evolving textures suspending time
+Industrial,Clanging Hits,Metallic hits cracking with nostalgia
+Hardstyle,Reverse Kicks,Thunderous rolls charging the drop
+Trance,Rolling Basslines,Pulsating pulses lifting the chorus
+Psytrance,Fractal Arps,Spiralling arpeggios opening the portal
+Electro Swing,Swingin’ Horns,Bouncy riffs dancing around silence
+Ska,Skank Guitars,Short accents anchoring the verse
+Skate Punk,Blazing Drums,Thunderous rolls shaking the floor
+Metal,Double‑Kick Blasts,Thunderous rolls melting into harmony
+Phonk,Cowbell Smacks,Sneaky hits triggering dopamine
+Jungle,Amen Break Flips,Rapid sequences colliding in stereo
+Drum & Bass,Reese Growls,Growling riffs cracking with nostalgia
+Dubstep,Screech Wobbles,Wobbly textures charging the drop
+Trap,Hi‑Hat Trills,Stuttered runs anchoring the verse
+Hip‑Hop,Boom‑Bap Snaps,Swinging snaps grounding the rhythm
+Grime,Bass Gunshots,Thunderous hits shaking the floor
+City Pop,Sunset Chords,Lush chords caressing the sub
+Vaporwave,Mall Muzak Loops,Lo‑fi loops floating above clouds
+Synthwave,Neon Leads,Shimmering leads glimmering in reverb
+Chiptune,8‑Bit Bursts,Glitch‑infused stutters painting the hook
+IDM,Odd‑Meter Glitches,Fragmented beats twisting reality
+Glitch,Stuttered Vox,Chopped vocals haunting the bridge
+Pop Hooks,Whistle Hooks,Catchy whistles triggering dopamine
+R&B,Smooth Slides,Silky slides melting into harmony
+Neo‑Soul,Escort Chords,Warm tremors glimmering in reverb
+Gospel,Hand‑Clap Praise,Layered claps lifting the chorus
+Opera,Aria Swells,Evolving textures rising like a tide
+Choral,Cathedral Echoes,Choral swells painting the hook
+Cinematic,Thunder Rolls,Rumbling rolls grounding the rhythm
+Game OST,Boss Drum Hits,Heavy hits cracking with nostalgia
+Sound Design,Granular Raindrops,Granular washes echoing in neon light
+FX,Laser Zaps,Short accents slicing through silence
+Spatial,360° Swirls,Swirling atmospheres suspending time
+Texture,Velvet Curtains,Lush textures caressing the sub
+Beats,Bouncy Kicks,Bouncy beats lighting up the chorus
+Loops,Psychedelic Spirals,Hypnotic loops twisting reality
+Sampling,Retro Cut‑Ups,Bit‑crushed riffs crackling with nostalgia
+Electronic,Spline Arps,Sparkling clusters spiralling endlessly
+Acoustic,Woodland Strums,Gentle strums floating above clouds
+Strings,Silver Tremolos,Fluttering riffs glimmering in reverb
+Brass,Golden Blasts,Powerful blasts shaking the floor
+Woodwinds,Airy Whispers,Soft pulses dancing around silence
+Piano,Glass Runs,Crystalline runs triggering dopamine
+Guitar,Slide Sighs,Liquid slides melting into harmony
+Basslines,Rubber Pops,Bouncy pops grounding the rhythm
+Percussion,Shaker Showers,Subtle pulses raining across space
+Rhythm,Ghost Notes,Ghosted hits haunting the bridge
+Melody,Cascade Lines,Melodic spirals glimmering in reverb
+Harmony,Cluster Chords,Dissonant clusters stretching perception
+Texture,Tape Warps,Lo‑fi sweeps cracking with nostalgia
+Timbre,Spectral Morphs,Morphing sweeps twisting reality
+Vocal,Whisper Layers,Airy echoes haunting the bridge
+Choir,Halo Swells,Heavenly swells suspending time
+Beatbox,Click Rolls,Stuttered clicks dancing around silence
+Scat,Syllable Flips,Rapid sequences triggering dopamine
+Spoken Word,Poetic Pauses,Subtle pulses grounding the rhythm
+FX,Reversed Cymbals,Reversed swells opening the portal
+Modular,Patch Chaos,Fragmented beats colliding in stereo
+Analog,Warm Saturations,Saturated waves caressing the sub
+Digital,Crystal Shards,Crystalline riffs painting the hook
+Hybrid,Organic Synths,Morphing sweeps weaving through the mix
+Lo‑Fi,Tape Hiss Clouds,Lo‑fi sweeps floating above clouds
+Hi‑Fi,Glossy Drops,Sparkling clusters lighting up the chorus
+Retro,Disco Strings,Lush strings dancing around silence
+Futuristic,Laser Basslines,Squelchy runs shaking the floor
+Classic,Piano Waltz,Soft pulses grounding the rhythm
+Tribal,Ceremonial Drums,Thunderous rolls echoing in neon light
+Cosmic,Stargaze Pads,Shimmering pads floating above clouds
+Subterranean,Earthquake Subs,Rumbling rolls shaking the floor
+Celestial,Starburst Chimes,Sparkling clusters lighting up the chorus
+Oceanic,Tidal Waves,Cascading sweeps rising like a tide
+Desert,Sandstorm Shakers,Rhythmic jolts dancing around silence
+Forest,Birdsong Flutters,Airy echoes glimmering in reverb
+Urban,Concrete Kicks,Heavy hits cracking with nostalgia
+Neon,City‑Light Flickers,Sparkling clusters painting the hook
+Sun‑Kissed,Golden Rays,Lush sweeps floating above clouds
+Moonlit,Silver Echoes,Dreamlike sweeps haunting the bridge
+Foggy,Mist Pads,Soft pulses suspending time
+Thunderous,Storm Rolls,Rumbling rolls triggering dopamine
+Quivering,Flutter Pops,Quivering pops dancing around silence
+Percolating,Bubble Beats,Bouncing beats triggering dopamine
+Sneaky,Shadow Notes,Short accents haunting the bridge
+Saucy,Sizzle Hats,Sparkling hats lighting up the chorus
+Bubbly,Soda Pops,Bouncy pops crackling with nostalgia
+Slinky,Smooth Slides,Silky slides glimmering in reverb
+Raindrop,Drip Arps,Plucked arps raining across space
+Heartbeat,Pulse Kicks,Rhythmic jolts grounding the rhythm
+Galaxy,Interstellar Sweeps,Shimmering sweeps opening the portal
+Magenta,Blossom Chords,Lush chords painting the hook
+Silver,Mirror Tones,Crystalline tones slicing through silence
+Metallic,Steel Rings,Harsh rings echoing in neon light
+Organic,Leaf Rustles,Subtle pulses fluttering in your ear
+Digital,Pixel Bursts,Glitch‑infused stutters colliding in stereo
+Analog,Tape Slaps,Lo‑fi hits crackling with nostalgia
+Vapor,Haze Pads,Dreamlike sweeps floating above clouds
+Neon,Liquid Synths,Sparkling sweeps lighting up the chorus
+Tribal,Drum Circles,Polyrhythmic rolls suspending time
+Classic,String Quartets,Lush harmonies painting the hook
+Microtonal,Orbital Chords,Dissonant clusters stretching perception
+Modular,Patch Ripples,Fragmented sweeps twisting reality
+Laser,Beam Kicks,Sharp kicks slicing through silence
+Stargazing,Comet Trails,Shimmering sweeps rising like a tide
+Foggy,Cloud Swells,Moody swells suspending time
+Sun‑Kissed,Heatwave Slides,Lush slides melting into harmony
+Moonlit,Midnight Bells,Crystalline bells haunting the bridge
+Quivering,Shiver Plucks,Fluttering plucks dancing around silence
+Groovy,Pocket Snares,Syncopated hits grounding the rhythm
+Saucy,Spice Riffs,Gritty riffs shaking the floor
+Sneaky,Ninja Kicks,Sharp kicks slicing through silence
+Bubbly,Soda Synths,Sparkling synths triggering dopamine
+Slinky,Elastic Lines,Flexible lines dancing around silence
+Raindrop,Pluviometric Hits,Dripping hits raining across space
+Heartbeat,Cardiac Pulses,Rhythmic jolts echoing in neon light
+Galaxy,Nebula Pads,Shimmering pads suspending time
+Cosmic,Quasar Sweeps,Evolving sweeps opening the portal
+Tribal,Conclave Chants,Choral swells suspending time
+Classic,Cathedral Pipes,Grand pipes shaking the floor
+Microtonal,Quantum Clusters,Dissonant clusters twisting reality
+Modular,Tangle Patches,Fragmented beats weaving through the mix
+Laser,Photon Blips,Crystalline blips slicing through silence
+Stargazing,Aurora Drifts,Shimmering drifts floating above clouds
+Foggy,Murky Bass,Rumbling bass shaking the floor
+Sun‑Kissed,Radiant Strums,Bright strums painting the hook
+Moonlit,Dusk Pads,Misty pads suspending time
+Quivering,Fret Slides,Quivering slides melting into harmony
+Groovy,Jive Kicks,Syncopated kicks dancing around silence
+Saucy,Flavor Hats,Sparkling hats lighting up the chorus
+Sneaky,Creep Notes,Short accents haunting the bridge
+Bubbly,Champagne Pops,Bouncy pops triggering dopamine
+Slinky,Lithe Lines,Flexible lines weaving through the mix
+Raindrop,Drizzle Hats,Soft hats raining across space
+Heartbeat,Thump Loops,Heavy loops grounding the rhythm
+Galaxy,Orbit Chimes,Shimmering chimes opening the portal
+Cosmic,Vacuum Drops,Harsh drops shaking the floor
+Tribal,Bonfire Beats,Rhythmic jolts crackling with nostalgia
+Classic,Baroque Runs,Lush runs painting the hook
+Microtonal,Spiral Notes,Dissonant spirals stretching perception
+Modular,Patch Sparks,Sparkling sparks twisting reality
+Laser,Pulse Zaps,Sharp zaps slicing through silence
+Stargazing,Constellation Clicks,Subtle clicks lighting up the chorus
+Foggy,Gloom Swells,Moody swells suspending time
+Sun‑Kissed,Coral Arps,Shimmering arps floating above clouds
+Moonlit,Lunar Echoes,Crystalline echoes haunting the bridge
+Quivering,Nervous Bells,Fluttering bells dancing around silence
+Groovy,Funky Slaps,Slap bass pops shaking the floor
+Saucy,Zest Riffs,Gritty riffs lighting up the chorus
+Sneaky,Shadow Hats,Soft hats haunting the bridge
+Bubbly,Sparkle Beats,Bouncy beats triggering dopamine
+Slinky,Glide Chords,Flexible chords melting into harmony
+Raindrop,Splash Hits,Dripping hits raining across space
+Heartbeat,Pulse Pads,Rhythmic pads caressing the sub
+Galaxy,Supernova Bursts,Harsh bursts opening the portal
+Cosmic,Gravity Drops,Heavy drops grounding the rhythm
+Tribal,Moon Drum Rolls,Thunderous rolls shaking the floor
+Classic,Renaissance Lutes,Lush lutes painting the hook
+Microtonal,Odd Orbit Chords,Dissonant chords stretching perception
+Modular,Sequence Flutters,Fragmented flutters weaving through the mix
+Laser,Scope Blips,Sharp blips slicing through silence
+Stargazing,Stellar Swirls,Shimmering swirls floating above clouds
+Foggy,Veil Pads,Moody pads suspending time
+Sun‑Kissed,Sunbeam Bells,Crystalline bells lighting up the chorus
+Moonlit,Nocturne Keys,Misty keys haunting the bridge
+Quivering,Tremble Arps,Quivering arps dancing around silence
+Groovy,Step Bass,Popping basslines shaking the floor
+Saucy,Smokin’ Slides,Bluesy slides cracking with nostalgia
+Sneaky,Whisper Hats,Subtle hats haunting the bridge
+Bubbly,Fizz Synths,Sparkling synths triggering dopamine
+Slinky,Coil Riffs,Flexible riffs weaving through the mix
+Raindrop,Pitter Claps,Soft claps raining across space
+Heartbeat,Vital Kicks,Heavy kicks grounding the rhythm
+Galaxy,Milky Pads,Shimmering pads suspending time
+Cosmic,Eclipse Sweeps,Evolving sweeps opening the portal
+Tribal,Earth Drum Thumps,Rumbling thumps shaking the floor
+Classic,Chapel Harps,Lush harps painting the hook
+Microtonal,Atom Licks,Dissonant licks twisting reality
+Modular,Patch Spirals,Fragmented spirals weaving through the mix
+Laser,Ray Pulses,Sharp pulses slicing through silence
+Stargazing,Horizon Pads,Shimmering pads floating above clouds
+Foggy,Shadow Thuds,Moody thuds suspending time
+Sun‑Kissed,Flare Hits,Shimmering hits lighting up the chorus
+Moonlit,Moonbeam Slides,Misty slides haunting the bridge
+Orchestral,Phantom Strings,Ethereal bows weaving through twilight
+Ambient,Crystal Resonance,Fractured light dancing in empty space
+Trap,Velvet Snares,Silk-wrapped hits cutting through smoke
+Jazz,Liquid Brass,Molten horns flowing like mercury
+Electronic,Prism Drops,Refracted beats splitting into color
+Shoegaze,Gossamer Walls,Transparent noise floating like mist
+Hip-Hop,Shadow Kicks,Dark pulses emerging from the void
+Techno,Pulse Fractals,Geometric rhythms expanding infinitely
+Dubstep,Gravity Wells,Warped bass bending space-time
+R&B,Honey Cascades,Sweet melodies dripping slowly down
+Cinematic,Storm Whispers,Gentle thunder rolling through dreams
+Folk,Dew-Drop Picking,Morning freshness on fingertips
+House,Mirror Disco,Reflective beats bouncing off chrome
+Funk,Rubber Soul,Elastic grooves stretching like taffy
+Ambient,Void Breathing,Empty spaces inhaling starlight
+Pop,Candy Sparkles,Sugar-coated hooks dissolving on tongue
+Metal,Obsidian Riffs,Sharp volcanic glass cutting silence
+Drum & Bass,Lightning Threads,Electric patterns weaving through storms
+Experimental,Quantum Bleeps,Probability waves collapsing into sound
+Soul,Velour Harmonies,Soft voices wrapping around hearts
+Reggae,Ocean Heartbeat,Tidal rhythms syncing with pulse
+Trap,Smoke Signals,Hazy messages floating upward
+Jazz,Midnight Oil,Smooth burns illuminating darkness
+Electronic,Neon Rainfall,Digital drops cascading down screens
+Shoegaze,Cloud Surfing,Riding reverb waves through atmosphere
+Hip-Hop,Concrete Poetry,Urban rhythms spelling out stories
+Techno,Machine Dreams,Synthetic consciousness awakening slowly
+Dubstep,Earthquake Tremors,Seismic wobbles shaking foundations
+R&B,Silk Road,Luxurious paths leading to emotion
+Cinematic,Dawn Chorus,First light singing through orchestras
+Folk,Campfire Echoes,Acoustic warmth circling around flames
+House,Strobe Garden,Light blooms pulsing in electronic soil
+Funk,Groove Magnets,Irresistible forces pulling bodies close
+Ambient,Star Whispers,Cosmic secrets floating on solar winds
+Pop,Rainbow Bridges,Colorful connections spanning sonic space
+Metal,Thunder Forged,Lightning-struck riffs hammered into shape
+Drum & Bass,Time Dilation,Rhythmic relativity bending perception
+Experimental,Glitch Butterflies,Beautiful errors fluttering through code
+Soul,Golden Thread,Precious connections binding hearts together
+Reggae,Island Time,Suspended moments swaying with palms
+Trap,Phantom Bass,Ghost frequencies haunting the low end
+Jazz,Smoke Rings,Circular improvisations drifting upward
+Electronic,Circuit Dreams,Digital visions flowing through processors
+Shoegaze,Weightless Drift,Gravity-free melodies floating in space
+Hip-Hop,Street Light Halos,Urban glow crowning midnight corners
+Techno,Pulse Rivers,Rhythmic currents flowing through cities
+Dubstep,Dimensional Tears,Reality rips revealing hidden frequencies
+R&B,Moonbeam Caress,Gentle light touching skin softly
+Cinematic,Epic Whispers,Grand stories told in hushed tones
+Folk,Wildflower Melodies,Natural beauty blooming in simple songs
+House,Disco Prisms,Dance floor light splitting into rainbows
+Funk,Magnetic Groove,Invisible forces pulling bodies together
+Ambient,Nebula Drift,Stellar dust floating through consciousness
+Pop,Stardust Hooks,Celestial catchiness sparkling in memory
+Metal,Volcanic Fury,Molten anger erupting from earth's core
+Drum & Bass,Photon Streams,Light-speed rhythms racing through darkness
+Experimental,Chaos Flowers,Beautiful disorder blooming unexpectedly
+Soul,Velvet Rivers,Smooth currents carrying emotions downstream
+Reggae,Sunset Meditation,Golden hour rhythms slowing time
+Trap,Crystal Fog,Transparent haze with hidden sharp edges
+Jazz,Blue Note Shadows,Melancholy darkness dancing with light
+Electronic,Digital Aurora,Synthetic northern lights painting sky
+Shoegaze,Dream Vapor,Sleep-infused mist rising from subconscious
+Hip-Hop,Pavement Poetry,Concrete verses carved into city streets
+Techno,Clockwork Hearts,Mechanical rhythms pumping synthetic blood
+Dubstep,Gravity Bombs,Massive drops creating sonic black holes
+R&B,Chocolate Melodies,Rich sweetness coating every note
+Cinematic,Mountain Echoes,Vast reverbs bouncing off peaks
+Folk,River Stone Picking,Smooth touches polished by time
+House,Kaleidoscope Beats,Shifting patterns hypnotizing dancers
+Funk,Groove Quicksand,Irresistible rhythms pulling listeners down
+Ambient,Galaxy Breath,Cosmic respiration expanding universe
+Pop,Glitter Explosions,Sparkly bursts of pure joy
+Metal,Storm Hammer,Thunder strikes forging sonic lightning
+Drum & Bass,Warp Speed,Time-stretching rhythms breaking barriers
+Experimental,Fractal Whispers,Self-similar secrets repeating infinitely
+Soul,Honey Moonlight,Sweet glow illuminating tender moments
+Reggae,Palm Tree Sway,Natural rhythms moving with trade winds
+Trap,Silk Trap,Luxurious snares catching beats in comfort
+Jazz,Smoke Jazz,Hazy improvisations curling through air
+Electronic,Neon Genesis,Digital birth glowing with electric life
+Shoegaze,Feather Fall,Weightless descent through layers of sound
+Hip-Hop,Urban Mythology,City legends told through rhythmic verse
+Techno,Robot Pulse,Artificial heartbeat synchronizing with machines
+Dubstep,Sonic Avalanche,Massive sound cascading down mountains
+R&B,Caramel Flows,Sweet streams moving with deliberate grace
+Cinematic,Thunder Valley,Dramatic echoes rolling through canyons
+Folk,Morning Dew Strums,Dawn freshness captured in guitar strings
+House,Disco DNA,Genetic dance code spiraling through generations
+Funk,Magnetic Field,Invisible groove forces attracting movement
+Ambient,Cosmic Lullaby,Universe singing itself to sleep
+Pop,Shooting Star Hooks,Brief brilliance streaking across memory
+Metal,Forge Fire,Blacksmith rhythms hammering sonic steel
+Drum & Bass,Electron Dance,Subatomic particles moving to rhythm
+Experimental,Beautiful Noise,Organized chaos creating unexpected harmony
+Soul,Velvet Midnight,Soft darkness wrapping around emotions
+Reggae,Lagoon Rhythm,Calm waters pulsing with hidden currents
+Trap,Diamond Dust,Precious particles sparkling in trap beats
+Jazz,Blue Smoke,Melancholy vapor rising from late-night clubs
+Electronic,Pixel Dreams,Digital visions rendered in sonic resolution
+Shoegaze,Cloud Walking,Steps taken on beds of reverb
+Hip-Hop,Graffiti Rhythms,Spray-painted beats decorating urban walls
+Techno,Gear Symphony,Mechanical orchestras synchronized perfectly
+Dubstep,Quantum Bass,Subatomic wobbles existing in multiple states
+R&B,Golden Honey,Precious sweetness flowing through melodies
+Cinematic,Wind Cathedral,Natural acoustics in vast open spaces
+Folk,Storyteller's Fire,Flames dancing to ancient narratives
+House,Strobe Poetry,Light verses written in flashing rhythms
+Funk,Gravity Groove,Planetary forces keeping dancers in orbit
+Ambient,Stellar Meditation,Deep space contemplation through sound
+Pop,Crystal Rainbows,Transparent color spectrums in musical form
+Metal,Lightning Forge,Electric strikes creating sonic weapons
+Drum & Bass,Time Machine,Rhythmic transport through temporal dimensions
+Experimental,Chaos Theory,Mathematical beauty hidden in disorder
+Soul,Midnight Velvet,Soft luxury wrapped around late-night emotions
+Reggae,Island Dreams,Tropical visions swaying with ocean rhythms

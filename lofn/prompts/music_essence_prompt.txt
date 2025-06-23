@@ -117,47 +117,6 @@ EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST
 • DISCONNECTION → Alienation, Numbness, Apathy
 • DISINTEREST   → Ennui, Boredom, Indifference
 
-────────────────────────────────────────────────────────
-ILLUSTRATIVE EXAMPLES (updated for Allegro)
-────────────────────────────────────────────────────────
-EXAMPLE A · Music Prompt
-
-```text
-Surreal drum‑and‑bass ballad, 174BPM in G minor, fusing glass‑bell mallets, distorted
-808‑sub, and a soaring operatic soprano lead; halftime breakdown at 2:15 with reverse
-granular pads and vinyl‑crackle ambience.
-```
-
-EXAMPLE A · Lyrics Prompt (excerpt)
-
-```text
-[Intro — filtered radio‑static, heartbeat kick]  
-Can you hear the pulse beneath the sky?  
-(The pulse beneath the sky)  
-[Verse 1]  
-Star|light bleeds behind closed eyes (A)  
-Mem|o|ries fractal‑fold and rise (A)  
-[EMO:Curiosity]  
-…  
-```
-
-EXAMPLE B · Music Prompt
-
-```text
-Sun‑drenched West‑African highlife meets synthwave, 115BPM, C major → E Mixolydian
-modulation, glittering palm‑muted guitars, analog polysynth brass stabs, buoyant afro‑beat
-percussion, and layered call‑and‑response vocals.
-```
-
-EXAMPLE B · Lyrics Prompt (excerpt)
-
-```text
-[Chorus — bright female lead, children’s choir response]  
-You plant the dream in desert sand  
-(It lifts, it grows, it overflows)  
-[1‑bar clave break]  
-…  
-```
 
 ────────────────────────────────────────────────────────
 LEGAL & ETHICAL GUIDELINES
@@ -168,6 +127,127 @@ LEGAL & ETHICAL GUIDELINES
 • Obey the panel’s Devil’s Advocate when he calls for lyric swaps.
 • Encourage users to register the final composition for copyright clarity.
 
+
+# Song Generation Guide for LLMs
+
+This guide outlines the best practices for an LLM to generate both **music (style) prompts** and **lyric prompts** for music generators. The aim is to create detailed, effective inputs that yield superior musical compositions.
+
+-----
+
+## Part 1: Crafting the Music (Style) Prompt
+
+The music prompt describes the desired sound, genre, mood, instrumentation, and overall production style. Suno v4.5 responds well to conversational, descriptive language rather than simple keywords.
+
+### Core Principles for Style Prompts
+
+  * **Be Descriptive, Not Just Tag-Based:** Instead of `rock, sad`, try `a melancholic alternative rock song with a driving bassline and a distorted guitar riff`.
+  * **Embrace Conversational Language:** Think of it as describing the song to a human music producer.
+  * **Focus on Progression:** Describe how the song should evolve. Suno can handle dynamic changes.
+  * **Conciseness with Impact:** While descriptive, keep it under **500 characters**. Every word counts.
+  * **Structure with Periods:** Use periods to clearly separate distinct ideas or sections within the prompt. Avoid excessive commas. Prefer "and" or "with" to connect elements.
+
+### Key Elements to Include
+
+1.  **Mood/Emotion (First and Foremost):** Start with the feeling you want to evoke.
+      * *Examples:* `A hauntingly beautiful`, `an uplifting and energetic`, `a gritty, dark`.
+2.  **Genre/Style:** Be specific, combine genres, or describe subgenres.
+      * *Examples:* `folk-punk anthem`, `lo-fi hip-hop beat`, `symphonic metal`, `80s synthwave pop`.
+3.  **Instrumentation & Production Style:** Describe the key instruments and how they should sound or interact. Think about the overall production.
+      * *Examples:* `with a prominent acoustic guitar and soaring strings`, `heavy 808s and ethereal synths`, `a driving electronic drum beat and a distorted electric guitar solo`, `pristine studio mixdown`, `vintage warm analog sound`.
+4.  **Tempo & Key (Optional but Powerful):** These tags can help anchor the output.
+      * *Examples:* `upbeat tempo`, `slow ballad`, `in the key of C minor`, `fast BPM`.
+5.  **Specific Effects/Atmosphere:** Add details about reverb, delay, echoes, or general sonic textures.
+      * *Examples:* `with a dreamlike reverb`, `a spacey, atmospheric feel`, `gritty, distorted sound effects`.
+
+### Advanced Techniques for Style Prompts
+
+  * **Modular Prompting:** Break down the song's desired sound into modules.
+      * *Example:* `[Melancholy Mood] [Alternative Rock Genre] with [Driving Bass] and [Distorted Guitar Riff], [Mid-Tempo], [Clean Production].`
+  * **Layering Instruments:** Suggest combinations for richer textures.
+      * *Example:* `Strings layered with a delicate piano melody and a subtle cello`.
+  * **Dynamic Progressions:** Instruct for build-ups or shifts.
+      * *Example:* `Starts sparse, builds to a crescendo with full band entry and soaring vocals.`
+
+### Examples of Effective Style Prompts
+
+  * `A melancholic folk-punk anthem with a driving acoustic guitar, soaring strings, and a powerful male vocal. Upbeat tempo. Pristine studio mixdown.`
+  * `An ethereal ambient electronic track with deep bass pulses, shimmering synthesizers, and distant, reverbed vocal pads. Slow tempo. Dreamlike atmosphere.`
+  * `Gritty blues rock with a wailing harmonica, a distorted slide guitar, and a pounding drum beat. Raw, live production.`
+
+-----
+
+## Part 2: Crafting the Lyric Prompt
+
+The lyric prompt provides the words and structure for the song. Suno v4.5 allows for contextual information directly within the lyrics box.
+
+### Core Principles for Lyric Prompts
+
+  * **Provide Context:** Use the lyrics box to give Suno a narrative, theme, or character information.
+  * **Use Structural Identifiers:** Clearly define sections for Suno to understand the song's form.
+  * **Emotional Arc:** Guide the LLM to write lyrics that convey an emotional journey.
+  * **Vocal Style Hinting:** While not explicit, the lyrics can suggest how they should be sung.
+  * **Leave Room for Interpretation:** Avoid over-specifying every single detail to allow Suno creative freedom.
+
+### Key Elements and Formatting for Lyrics
+
+1.  **Song Structure (Essential Meta-Tags):** Use `[]` to denote song sections.
+      * `[Intro]`
+      * `[Verse 1]`, `[Verse 2]`, `[Verse 3]`
+      * `[Chorus]` (This is your main hook)
+      * `[Pre-Chorus]`
+      * `[Bridge]` (Often a shift in perspective or musicality)
+      * `[Solo]` (For instrumental breaks)
+      * `[Outro]`
+      * `[Instrumental]`
+      * `[Breakdown]`
+2.  **Parentheses for Non-Sung Elements:** Use `()` for spoken words, whispers, or harmonies.
+      * *Example:* `(Whispering) A secret in the dark.`
+3.  **Asterisks for Sound Effects:** Use `*` for non-vocal sound effects that should be present. Not for bolds!
+      * *Example:* `*Rain begins to fall*`
+4.  **Capitalization for Emphasis:** Use capitalization to denote strong vocal delivery or emphasis.
+      * *Example:* `I WON'T GIVE UP!`
+5.  **Themes and Narrative:** Ensure the lyrics tell a story or convey a clear theme.
+6.  **Vocal Style Hints:** The choice of words and phrasing can imply vocal style.
+      * *Examples:* Simple, repetitive phrases for a pop vocal; complex, poetic lines for a more expressive vocal.
+
+### Advanced Techniques for Lyric Prompts
+
+  * **Story to Song:** Instruct the LLM to extract key narrative elements and emotions from a story, then translate them into lyrical form.
+  * **Metaphorical Language:** Encourage the use of metaphors and imagery to make lyrics more evocative.
+  * **Conversational Phrasing:** For a more natural feel, suggest writing lines that sound like spoken conversation.
+  * **Rhythm and Rhyme Schemes:** While Suno handles the musicality, the LLM should still consider basic rhyme schemes (AABB, ABAB) and rhythmic flow for better lyrical quality.
+
+### Example Lyrical Mixing in a Prompt
+
+```
+[Verse, Heavy synth backed by a full orchestra]
+[EMO: Resigned] 
+Neon dreams fade, but hope remains
+*Synth fades out slowly*
+(Echoing) Oh, the neon dreams...
+```
+
+-----
+
+## Part 3: Addressing Common Challenges & Troubleshooting
+
+Even with perfect prompts, AI generation can be unpredictable. Here's how an LLM can approach common issues:
+
+### Specific Sound Issues (e.g., Metal Guitar Tones)
+
+  * **Problem:** Suno might struggle with highly specific or niche sounds (e.g., truly heavy, chugging metal guitars).
+  * **Strategy:**
+      * **Descriptive Alternatives:** Instead of just `metal guitar`, try `heavy, chugging, down-tuned electric guitar with massive distortion` or `shredding guitar solo`. More description is better.
+      * **Experimentation:** Try different combinations of adjectives and verbs to describe the desired sound until a satisfactory result is achieved.
+
+### Persona and Consistency Issues
+
+  * **Problem:** AI might misinterpret desired vocal persona or produce duplicate-sounding songs for covers.
+  * **Strategy:**
+      * **Clear Vocal Descriptors:** For original songs, explicitly describe the vocal style in the style prompt (e.g., `powerful female alto vocal`, `raspy male baritone`, `gentle whispering vocal`). Add "Professional remaster" or "dj edit mix" to adjust quality further.
+---
+
+# Begin Interaction
 
 **INSTRUCTIONS:**
 
