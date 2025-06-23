@@ -1392,7 +1392,6 @@ def generate_video_concept_mediums(
 
 def generate_music_prompts(
     input_text,
-    run_time,
     max_retries,
     temperature,
     model,
@@ -1404,7 +1403,6 @@ def generate_music_prompts(
 
     Parameters:
         input_text (str): The user's idea or description.
-        run_time (float): Desired length of the song in minutes.
         max_retries (int): Maximum number of retries for API calls.
         temperature (float): Sampling temperature.
         model (str): The model name to use.
@@ -1434,7 +1432,7 @@ def generate_music_prompts(
     
         output_essence = run_chain_with_retries(
             chain,
-            args_dict={"input": input_text, "run_time": run_time},
+            args_dict={"input": input_text},
             max_retries=max_retries,
             model=model,
             debug=debug,
@@ -1463,8 +1461,7 @@ def generate_music_prompts(
                 "input": input_text, 
                 "essence":output_essence["essence_and_facets"]["essence"], 
                 "facets":output_essence["essence_and_facets"]["facets"], 
-                "style_axes":output_essence["essence_and_facets"]["style_axes"],
-                "run_time": run_time},
+                "style_axes":output_essence["essence_and_facets"]["style_axes"]},
             max_retries=max_retries,
             model=model,
             debug=debug,
