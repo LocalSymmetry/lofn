@@ -867,7 +867,6 @@ class LofnApp:
             with st.spinner("Generating music prompts..."):
                 music_prompt, lyrics_prompt, music_title = generate_music_prompts(
                     st.session_state['input'],
-                    st.session_state['run_time'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
@@ -905,7 +904,6 @@ class LofnApp:
 
     def initialize_session_state(self):
         default_values = {
-            'run_time': '3.0',
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
