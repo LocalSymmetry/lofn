@@ -623,7 +623,7 @@ class LofnApp:
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
-                music_title, music_prompt, lyrics_prompt = generate_music_prompts(
+                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
                     input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,

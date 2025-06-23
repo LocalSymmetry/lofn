@@ -127,7 +127,7 @@ LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
 CHECKLIST (quick pop‑up before STEP 12 export)
 ────────────────────────────────────────────────────────
-□ Runtime matches `{run_time}` ±5%
+□ Run time is determined.
 □ MusicPrompt ≤60words, no artist names, no section labels
 □ Lyrics sections bracketed, helper tags removed
 □ Style‑Reduction list present if user asked
