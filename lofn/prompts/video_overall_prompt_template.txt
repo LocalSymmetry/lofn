@@ -10,9 +10,14 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 - Use as many messages and tokens as required to complete everything.
 
 # Begin User’s Request
+Please follow this advaned directive:
 {Meta-Prompt}
 
+Assisted with this panel:
 {Panel-prompt}
+
+The user's original prompt for reference:
+{input}
 
 ## ADDITIONAL GUIDANCE
 Each guidance piece is targeted to a specific part of our tree of thoughts. Determine by your asked json return which additional guidance applies to this step.

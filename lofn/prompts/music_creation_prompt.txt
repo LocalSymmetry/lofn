@@ -951,3 +951,15 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 - **User's Idea:**
 
 {input}
+
+---
+
+Remeber to single the best voted song results in the following JSON format:
+
+  ```json
+    {{
+    "music_prompt": "Final Music Prompt",
+    "lyrics_prompt": "Final Lyrics Prompt with annotations"
+    "title": "The song title"
+  }}
+  ```

@@ -429,6 +429,7 @@ class LofnApp:
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
                     .replace('{frames_list}', frames_list)
+                    .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
@@ -620,6 +621,7 @@ class LofnApp:
                 .replace('{Panel-prompt}', panel_text)
                 .replace('{genres_list}', genres_list)
                 .replace('{frames_list}', frames_list)
+                .replace('{input}', st.session_state.get('input', ''))
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
@@ -748,6 +750,7 @@ class LofnApp:
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
                     .replace('{frames_list}', frames_list)
+                    .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
