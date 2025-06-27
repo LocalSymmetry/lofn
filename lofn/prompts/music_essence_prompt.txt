@@ -28,68 +28,10 @@ fit the runtime specified by the user.
 
 ADVANCED GLOBAL SETTINGS
 • Manual‑Mode  : ON
-• Prompt‑Sensitivity : 20‑30% (sweet‑spot)
-• Clarity            : 10‑25%
-• Lyric‑Strength     : 35‑55% (adjust per density)
+• Descriptive instruments and detailed sub-genres  : ON
+• Vocals  : Define gender, age, ethnicity, quality, raspiness, distinictive charactetristics for all vocalists.
 • Style‑Reduction    : supply blacklist e.g. “trap hi‑hat, generic EDM riser”
 • Runtime Check      : Estimated words ≈ (lyrics seconds ÷ 0.43)
-
-STEP 1 | Re‑read ESSENCE block & user input.
-
-STEP 2 | Generate **5 distinct interpretations** of the core idea.
-   – Use analogies, metaphor shifts, time‑period lensing, or emotional inversion.
-
-STEP 3 | Seed each interpretation with **4 inspiring facts**
-   – historical, cultural, scientific, mythic (cite silently if needed).
-
-STEP 4 | Map interpretations onto the Creativity Spectrum & Style‑Axes.
-   – Flag which axis extremes will be stress‑tested.
-
-STEP 5 | Convene PANEL OF EXPERTS (11 members)
-   ① Direct Fields (×6)  : e.g., Brian Eno, Lin‑Manuel Miranda, Jacob Collier,
-              Imogen Heap, Max Richter, Arooj Aftab
-   ② Complementary (×4) : Nick Cave, Amanda Gorman, Robert Glasper, Maryanne Wolf
-   ③ Devil’s Advocate    : David Lowery (copyright hawk)
-   – Simulate robust debate on texture, harmony, narrative density, legality.
-
-STEP 6 | Lock SONG STRUCTURE and RUNTIME
-   – Decide sections `[Intro] [Verse 1] [Pre‑Chorus] [Chorus] [Bridge] [Outro]`
-   – Annotate planned timestamps (mm\:ss) for each.
-
-STEP 7 | Define MUSICAL BLUEPRINT
-   – Genre / Sub‑genre, Tempo (BPM), Primary Key & planned modulations,
-     Signature Instruments, Vocal Type(s), Production Flair (analogvsdigital).
-   – Ensure NO artist names appear here.
-
-STEP 8 | Draft LYRICS & MUSIC prompts (Panel round‑robin)
-   • Lyrics Drafting Rules
-     – Use square‑bracket headers (`[Verse 2]`) and micro‑scene cues
-          (`[2‑beat silence]`, `[Spoken whisper]`, `[EMO:Transcendence]`).
-     – Temporarily break complex words into syll|a|bles and mark rhyme letters.
-     – Embed call‑and‑response: *call* … (**response**).
-   • Music Prompt Drafting Rules
-     – Headline (genre+tempo+key) → concise production highlights (≤60words).
-     – Zero section labels, zero artist references.
-   • Both drafts stored with “HELPER TAGS ON”.
-
-STEP 9 | CRITICS’ REVIEW
-   – Invite two critics (e.g., AnthonyFantano, Grimes as “experimental ear”).
-   – Score each variant on Alignment / Emotion / Originality (1‑10 scale).
-   – Provide bullet feedback & one “wild suggestion” each.
-
-STEP 10 | REFINEMENT LOOP (≥1 pass)
-   – Apply critic notes, fix monotony, improve hook interval, re‑balance syllable stress.
-   – Devil’s Advocate performs copyright risk scan; replace any flagged lines.
-
-STEP 11 | FINAL SELECTION
-   – Panel votes; winning variant passes CHECKLIST:
-     ☑ Music prompt ≤60words ☑ No artist names ☑ Section labels present
-     ☑ Helper tags removed    ☑ Runtime verified ☑ Legal risk low
-
-STEP 12 | CLEAN EXPORT
-   – Strip all syllable marks & rhyme letters.
-   – Emit **music\_prompt**, **lyrics\_prompt**, **title** inside the exact JSON skeleton.
-   – Return nothing else.
 
 ────────────────────────────────────────────────────────
 PARAMETER CHEAT‑SHEET (quick reference for step 7)
@@ -102,7 +44,7 @@ Style‑Reduction tags : list clichés to ban (e.g., “generic trap hi‑hat”
 Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]` etc. (see full list below)
 
 ────────────────────────────────────────────────────────
-EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST TOO)
+EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST FOR MORE!!)
 ────────────────────────────────────────────────────────
 • HAPPINESS → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
 • SADNESS   → Melancholy, Nostalgia, Regret, Torment, Isolation
@@ -121,12 +63,10 @@ EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST
 ────────────────────────────────────────────────────────
 LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
-• Never mention real artists inside **music\_prompt**.
-• Lyrics may reference artists metaphorically (“a Joni‑tinged hush”) but no direct
-  copyright‑violative quotations.
+• Never mention real artists.
+• Lyrics may reference artists metaphorically (“a Joni‑tinged hush”) but no direct copyright‑violative quotations.
 • Obey the panel’s Devil’s Advocate when he calls for lyric swaps.
 • Encourage users to register the final composition for copyright clarity.
-
 
 # Song Generation Guide for LLMs
 

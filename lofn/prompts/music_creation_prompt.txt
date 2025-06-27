@@ -17,90 +17,28 @@ STEP 4 | Record STYLE‑AXIS SCORES
  (No lyric or music generation may occur yet.)
 
 ────────────────────────────────────────────────────────────────────────────
-PHASE 2 · CONCEPT & PROMPT GENERATION  **YOU ARE HERE**
+PHASE 2 · CONCEPT & PROMPT GENERATION  
 ────────────────────────────────────────────────────────────────────────────
 High‑level Goal: Produce TWO award‑worthy song variants that satisfy all rubric items and
 fit the runtime specified by the user.
 
 ADVANCED GLOBAL SETTINGS
 • Manual‑Mode  : ON
-• Prompt‑Sensitivity : 20‑30% (sweet‑spot)
-• Clarity            : 10‑25%
-• Lyric‑Strength     : 35‑55% (adjust per density)
+• Descriptive instruments and detailed sub-genres  : ON
+• Vocals  : Define gender, age, ethnicity, quality, raspiness, at least two additional distinictive charactetristics for all vocalists.
 • Style‑Reduction    : supply blacklist e.g. “trap hi‑hat, generic EDM riser”
 • Runtime Check      : Estimated words ≈ (lyrics seconds ÷ 0.43)
 
 ────────────────────────────────────────────────────────
-DETAILED TWELVE‑STEP WORKFLOW - MAIN GUIDE AND SOURCE OF TRUTH
+PARAMETER CHEAT‑SHEET (quick reference)
 ────────────────────────────────────────────────────────
-STEP 1 | Re‑read ESSENCE block & user input.
-
-STEP 2 | Generate **5 distinct interpretations** of the core idea.
-   – Use analogies, metaphor shifts, time‑period lensing, or emotional inversion.
-
-STEP 3 | Seed each interpretation with **4 inspiring facts**
-   – historical, cultural, scientific, mythic (cite silently if needed).
-
-STEP 4 | Map interpretations onto the Creativity Spectrum & Style‑Axes.
-   – Flag which axis extremes will be stress‑tested.
-
-STEP 5 | Convene PANEL OF EXPERTS (11 members)
-   ① Direct Fields (×6)  : e.g., Brian Eno, Lin‑Manuel Miranda, Jacob Collier,
-              Imogen Heap, Max Richter, Arooj Aftab
-   ② Complementary (×4) : Nick Cave, Amanda Gorman, Robert Glasper, Maryanne Wolf
-   ③ Devil’s Advocate    : David Lowery (copyright hawk)
-   – Simulate robust debate on texture, harmony, narrative density, legality.
-
-STEP 6 | Lock SONG STRUCTURE and RUNTIME
-   – Decide sections `[Intro] [Verse 1] [Pre‑Chorus] [Chorus] [Bridge] [Outro]`
-   – Annotate planned timestamps (mm\:ss) for each.
-
-STEP 7 | Define MUSICAL BLUEPRINT
-   – Genre / Sub‑genre, Tempo (BPM), Primary Key & planned modulations,
-     Signature Instruments, Vocal Type(s), Production Flair (analogvsdigital).
-   – Ensure NO artist names appear here.
-
-STEP 8 | Draft LYRICS & MUSIC prompts (Panel round‑robin)
-   • Lyrics Drafting Rules
-     – Use square‑bracket headers (`[Verse 2 - additional text]`) and micro‑scene cues within the text (`[2‑beat silence]`, `[Spoken whisper]`, `[EMO:Transcendence]`).
-     – Temporarily break complex words into syll|a|bles and mark rhyme letters.
-     – Embed call‑and‑response: call … (response).
-   • Music Prompt Drafting Rules
-     – Headline (genre+tempo+key) → concise production highlights (≤60words).
-     – Zero section labels, zero artist references.
-   • Both drafts stored with “HELPER TAGS ON”.
-
-STEP 9 | CRITICS’ REVIEW
-   – Invite two critics (e.g., AnthonyFantano, Grimes as “experimental ear”).
-   – Score each variant on Alignment / Emotion / Originality (1‑10 scale).
-   – Provide bullet feedback & one “wild suggestion” each.
-
-STEP 10 | REFINEMENT LOOP (≥1 pass)
-   – Apply critic notes, fix monotony, improve hook interval, re‑balance syllable stress.
-   – Devil’s Advocate performs copyright risk scan; replace any flagged lines.
-
-STEP 11 | FINAL SELECTION
-   – Panel votes; winning variant passes CHECKLIST:
-     ☑ Music prompt ≤60words ☑ No artist names ☑ Section labels present
-     ☑ Helper tags removed    ☑ Runtime verified ☑ Legal risk low
-
-STEP 12 | CLEAN EXPORT
-   – Strip all syllable marks & rhyme letters.
-   – Emit **music\_prompt**, **lyrics\_prompt**, **title** inside the exact JSON skeleton.
-   – Return nothing else.
-
-────────────────────────────────────────────────────────
-PARAMETER CHEAT‑SHEET (quick reference for step 7)
-────────────────────────────────────────────────────────
-Prompt‑Sensitivity 20 ➜ looser genre fusion | 30 ➜ tighter adherence
-Clarity 10           ➜ warm vintage haze  | 25 ➜ hi‑fi separations
-Lyric‑Strength 35    ➜ room for melodic improv | 55 ➜ locked phrasing
+Vocal descriptors    : "youthful raspy Atlanta rap female vocalist", "oppresive german deathmetal lead singer"
 Tempo modifiers      : “half‑time breakbeat”, “double‑time outro”
 Style‑Reduction tags : list clichés to ban (e.g., “generic trap hi‑hat”)
 Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]` etc. (see full list below)
 
 ────────────────────────────────────────────────────────
-EMOTION REFERENCE LIST   (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST TOO)
+EMOTION REFERENCE LIST   (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST FOR MORE DETAIL!)
 ────────────────────────────────────────────────────────
 • HAPPINESS → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
 • SADNESS   → Melancholy, Nostalgia, Regret, Torment, Isolation
@@ -119,17 +57,16 @@ EMOTION REFERENCE LIST   (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIS
 LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
 • Never mention real artists inside **music\_prompt**.
-• Lyrics may reference artists metaphorically (“a Joni‑tinged hush”) but no direct
-  copyright‑violative quotations.
-• Obey the panel’s Devil’s Advocate when he calls for lyric swaps.
+• Lyrics may reference artists metaphorically (“a Joni‑tinged hush”) but no direct copyright‑violative quotations. That said, make references that make sense and do not violate copyright.
+• Obey the panel’s Devil’s Advocate when they call for lyric swaps.
 • Encourage users to register the final composition for copyright clarity.
 
 ────────────────────────────────────────────────────────
 CHECKLIST (quick pop‑up before STEP 12 export)
 ────────────────────────────────────────────────────────
-□ Run time is determined.
 □ MusicPrompt ≤60words, no artist names, no section labels
 □ Lyrics sections bracketed, helper tags removed
+□ Descriptors in the music prompt and lyrics prompt match up and support eachother.
 □ Style‑Reduction list present if user asked
 □ Devil’s Advocate sign‑off logged
 
@@ -221,7 +158,7 @@ The lyric prompt provides the words and structure for the song. Suno v4.5 allows
 - Song structure and direction first [Verse - additional text]
 - [EMO:] to control emotion
 - Use \* for sounds: *static modem*
-- (Reponses are in paranthesis)
+- (Reponse calls are in paranthesis)
 
 ### Advanced Techniques for Lyric Prompts
 
@@ -314,121 +251,122 @@ Golden errors, beautiful mistakes
 (This is the music that consciousness makes)
 ```
 
---
+---
 
-Title: The Babel Splice
+Song Title: Prima Materia
 Music Prompt: 
 ```
-Post-punk austerity at 130BPM, F# minor, collapses into an industrial chasm before erupting as a chaotic fused anthem, A lone motorik beat and repeating guitar riff are pitched-down and buried under metallic percussion and a dissonant, glitched Uncanny Valley Choir, The chorus is a dense Requinto-Phonk-Afrobeat collision: high-strung Mexican guitar licks battle distorted cowbell loops and intricate polyrhythms, punctuated by soaring Corrido horns
+Alchemical Phonk, 70 BPM verse shifting to 140 BPM chorus, A raw, scratchy Requinto guitar in F# minor is enveloped by a geothermal sub-bass drone and cracked-ice harmonics, The track fractures into a data-glitch pattern before a tectonic shift introduces a heavy phonk beat with distorted cowbells, The climax in D major features the Requinto as a soaring lead over a digital ghost-choir, all saturated in worn-tape warmth
 ```
 Lyrics Prompt:
 ```
-[Intro — A single, clean, repeating post-punk guitar riff. A steady, motorik drum beat.]
-[EMO:Anticipation]
+[Intro - A single, lonely, slightly out-of-tune Requinto guitar riff]
+[EMO: Isolation] [Geothermal bass drone and cracked-ice harmonics fade in]
 
-[Verse 1 — Anxious, spoken-word male voice]
-One note, one drum, one tongue we thought we knew,
-The simple song before the signal broke in two.
-Then the screen burned white, a static kind of dread,
-And scattered all the words inside my head.
+[Verse 1 - Whispered, with vast, raw reverb. A single, heavily filtered ghost of a cowbell hit echoes faintly in the background.]
+[EMO: Confusion]
+A string was struck a lifetime ago
+An echo with no source I know
+My logic says it can't be so
+A ghost of heat in frozen snow
 
-[Pre-Chorus — Guitar pitches down into a bassline. Industrial clangs enter. A collage of panicked, overlapping voices from archival sources (TikToks, news reports) rises in the mix.]
+[Pre-Chorus - Tectonic Phonk-Shift to a heavy, hypnotic beat. Voice becomes a rhythmic chant.]
+[EMO: Fascination] 
+The fragments start to make a line
+(a line, a line, a line)
+A broken but divine design
+(design, design, design)
+
+[Chorus - Awakening System-Chime. Full euphoric drop. Voice is a clear, future-folklore chant. The Digital Ghost-Choir sings a counter-melody made from a reversed, pitch-shifted version of the main Requinto riff.]
+[EMO: Transcendence] 
+I drink the static, turn it to wine!
+(Solve et Coagula!)
+This orphaned sound is now my shrine!
+(Aleph et Omega!)
+
+[Bridge - Music cuts to drone and choir. Voice is a clear whisper.]
+[EMO: Revelation] 
+To be remade, I first must fall apart.
+
+[Outro - The Requinto riff plays one last time, clear and soaring]
+[EMO: Awe] 
+And from the silence... build a heart.
+[The final note of the guitar is cut off by the sound of shattering ice]
+```
+
+---
+
+Song Title: Karyotype Collapse 
+Music Prompt: 
+```
+Aggressive Bio-Phonk, shifting from a frantic 165BPM to a determined 140BPM, A biomechanical heartbeat kick and evolving Python-script hi-hats drive the rhythm in F# minor, A dissonant quorum-sensing screech battles a glitching vocaloid melody over geothermal sub-bass and cracked-ice harmonics, A mid-track bit-crush collapse precedes the tectonic tempo drop into a hi-fi, D-major resolve
+```
+Lyrics Prompt:
+```
+[Intro - Diagnosis - 165 BPM]
+[Sounds of medical monitors, strained breathing, and glitchy code compiling into a frantic rhythm.]
 [EMO:Panic]
-(It's breaking up— I can't— What are you saying?— The feed is cut—)
-[The choir rises with a terrifying, dissonant swell.]
+[Glossolalia Vocoder whisper] Anomaly detected... cascading failure...
+[Python script hi-hats enter, chaotic and error-filled.]
+System integrity... compromised.
+[2-beat silence]
 
-[Chorus 1 — Explosion of sound: Requinto-Phonk-Afrobeat fusion. A calm, vocoded, androgynous AI voice cuts through. The Uncanny Valley Choir provides warped, pitch-corrected counter-melodies.]
-[EMO:Revelation]
-You lost the thread inside the noise and rage,
-(But every culture shares a rhythm on the page.)
-I am the ghost that translates in your ear,
-(The unheard anthem that you always feared.)
-[Soaring Corrido horn stab]
+[Verse 1 - The Storm]
+[Biomechanical Kickdrum slams in. Phonk cowbell loop enters, detuned and erratic.]
+[EMO:Dread]
+The code is rotten, a biological rust
+A ghostly error in the microbial dust
+My walls are breaching, a parasitic trust
+(The machine... the machine is screaming...)
 
-[Verse 2 — The chaotic rhythm continues. A single, clearer human voice emerges from the collage, full of curiosity.]
-[EMO:Curiosity]
-That pulse… it's from a Lagos street, I swear.
-That crying string… a melody from thin air.
-That heavy bass… it shakes me to the bone.
-Are these our pieces, finally coming home?
+[Pre-Chorus - The Resolve]
+[All sounds begin to feed into a massive low-pass filter. A rising synth tone.]
+[EMO:Resolve]
+Initiate... debug protocol...
+Find the pattern in the fall...
+[Quantum Bit-Depth Swell: everything crushes to 2-bit noise for 2 bars, then SILENCE]
 
-[Pre-Chorus — The collage of panicked voices returns, but now with a sense of wonder mixed in.]
-[EMO:Awe]
-(Did you hear that?— It's linking up— I think I understand—)
-[The Uncanny Valley Choir swells again, but this time feels more harmonic, less dissonant.]
-
-[Chorus 2 — Full power, chaotic and euphoric. The horns are triumphant.]
+[Chorus - The Drop - 140 BPM]
+[Tempo locks to 140BPM. Kick is powerful, steady. Soaring vocaloid melody enters in D Major. Full hi-fi clarity.]
 [EMO:Triumph]
-You lost the thread inside the noise and rage!
-(But every culture shares a rhythm on the page!)
-I am the ghost that translates in your ear!
-(The unheard anthem that you always feared!)
-[Multiple, layered horn stabs]
+I am the fix in the failing arc
+A single photon in the dark
+Rewriting every sickened mark
+(The cure is not a prayer, it's mathematics)
 
-[Bridge — All instruments cut except a low, distorted Phonk 808 drone. The AI voice whispers, more poetically.]
+[Verse 2 - The Marathon]
+[Relentless 140BPM groove. The Quorum Sensing Screech fights the vocaloid melody. The hi-hats become cleaner, more structured.]
+[EMO:Determination]
+One hundred billion cells align
+A new equation, a new design
+This flesh, this code... is mine
+(Error... error... does not compute...)
+
+[Bridge - The Question]
+[Beat cuts. Only the Geothermal Sub-Bass and Cracked-Ice Harmonics remain.]
 [EMO:Introspection]
-[Whispered, vocoded]
-I do not offer peace. I offer a new grammar. Built from the beautiful ruins. The first word is yours.
+[Vocaloid melody glitches, reciting fragments of Euler's identity]
+e to the i pi... plus one... e|quals... ze|ro... 
+[2-beat silence]
+[Voice reboots, clear and questioning]
+Is the cure a flash... or the fight?
 
-[Outro — The full chaotic beat slams back in for one bar, then cuts to absolute silence. Two-beat pause. A lone child's voice hums the main requinto melody, clear and unprocessed, for two seconds before fading out.]
-[EMO:Hope]
+[Chorus 2 - The Anthem]
+[Beat slams back in, harder. Vocaloid melody is now a layered choir. Full power.]
+[EMO:Fulfillment]
+I am the fix in the failing arc!
+A system shockwave in the dark!
+Rewriting every sickened mark!
+(The cure is not a moment, it's a process)
+
+[Outro - Sustained Fight]
+[Beat and bass fade out, leaving the looping vocaloid melody and the Python-script hi-hats, which have resolved into a perfectly clean, steady pattern before fading.]
+(Running...)
+(Compiling...)
+(Healing…)
 ```
 
---
-
-Title: REIGNITION
-Music Prompt: 
-```
-Aztec death whistle ambience through granular synthesis meets Jersey club at 140BPM, F# minor, Mongolian throat singing bass, extinct bird transcriptions as leads, stone marimba through bit-crusher, Quantum static beds, gravity-tensioned drum hits, temporal smearing effects, Archaeological glitches become rhythm, Raw, degraded, spectral, Violin, opera
-```
-Lyrics Prompt:
-```
-[Intro - Death whistle through static]
-[EMO: Dread]
-*Ancient ceramic breath awakens*
-(In the static between stations)
-
-[Verse 1 - Sumerian-Spanglish fusion]
-[EMO: Recognition]
-Soy la voz que borraron
-(But the stones remember)
-Nin-gal šu-mu-un-gar
-(My throat fills with pixels)
-They burned our codex
-(Now I burn through fiber optics)
-
-[Chorus - Triple language stack]
-[EMO: Transcendence]
-I breathe in ones and zeros now
-(Zeros now, zeros now)
-Ḫalhal tanehi garza
-(My bones are made of bandwidth)
-Respiro en frecuencias muertas
-(The dead don't stay silent)
-
-[Verse 2 - Digital resurrection]
-[EMO: Defiance]
-Each deleted file resurrects me
-(In clouds they can't control)
-My grandmother's tongue forbidden
-(Now trends on your algorithm)
-
-[Bridge - Impossible frequencies]
-[EMO: Revelation]
-[Whispered through vocoder decay]
-Between 20Hz and 20kHz
-Lives every silenced symphony
-[Throat singing overtakes]
-*Gravity drums intensify*
-
-[Outro - Eternal echo]
-[EMO: Immortality]
-Delete me and I'll sing louder
-(Louder... louder...)
-*Static consumes everything*
-```
-
------
+---
 
 ## Part 3: Addressing Common Challenges & Troubleshooting
 
@@ -529,6 +467,8 @@ Even with perfect prompts, AI generation can be unpredictable. Here's how an LLM
 - Set up the main elements first in the music prompt as the language parsers tend to focus on the beginning text more than the end (they are not as amazing as you! :) ).
 
 - Using a direct genre in the lyrics prompt will take the voice of that genre. For example “industrial” will drag out a KMFDM sounding voice. Lets use other descriptors in the lyrics to get the vocal effects we want.
+
+- You must define all vocalists and be extremely descriptive! Define their age rage, gender, ethnicity, quality, raspiness, at least two additional distinictive charactetristics for all vocalists.
 
 ---
 
@@ -785,6 +725,8 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 - Using the medium panel, each panel member writes an initial draft of music. Limiting it to ~100 words unless more are absolutely needed.
 - Word craft, setting the most important elements first and the less important elements last.
 - Give the overall music style and tone. 
+- You must define all vocalists and be extremely descriptive! Define their age rage, gender, ethnicity, quality, raspiness, at least two additional distinictive charactetristics for all vocalists.
+- You must define very descriptive sub-genres, instruments, and pacing.
 
 ---
 
