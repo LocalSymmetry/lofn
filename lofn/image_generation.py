@@ -961,3 +961,21 @@ def save_music_metadata(metadata):
         json.dump(metadata, f, indent=2, default=json_serializable)
 
     st.write(f"Music metadata saved as {metadata_filename}")
+
+
+def save_video_metadata(metadata):
+    """Persist video prompt metadata to disk."""
+    os.makedirs('/videos', exist_ok=True)
+    metadata_filename = (
+        f"/videos/{metadata['timestamp']}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}.json"
+    )
+
+    def json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f'Type {type(obj)} not serializable')
+
+    with open(metadata_filename, 'w') as f:
+        json.dump(metadata, f, indent=2, default=json_serializable)
+
+    st.write(f"Video metadata saved as {metadata_filename}")

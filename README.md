@@ -74,7 +74,7 @@ To set up Lofn, follow these steps:
 5. **Run the Docker container**:
 
    ```bash
-   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata -v $(pwd)/music:/music lofn
+   docker run -p 8501:8501 -v $(pwd)/images:/images -v $(pwd)/metadata:/metadata -v $(pwd)/music:/music -v $(pwd)/videos:/videos lofn
    ```
 
 6. **Access the Lofn UI**:
@@ -139,12 +139,15 @@ Alternatively, you can use the provided `Dockerfile` and `entrypoint.sh` scripts
 
    Lofn can generate images directly if you have configured the image generation settings accordingly. The images will be displayed in the UI and saved to your specified output directory.
 
+   Video prompts generated in this mode will also be saved to the `/videos` directory for later use.
+
    ![Lofn UI 5](examples/lofn_ui_5.png)
 
 7. **Review Generated Content**.
 
    - View the generated images, titles, Instagram captions, and SEO keywords.
    - Optionally, generate video prompts compatible with Runway Gen-3 Alpha.
+   - Video prompt metadata saved alongside any generated clips in the `/videos` directory.
 
    ![Lofn UI 6](examples/lofn_ui_6.png)
 
