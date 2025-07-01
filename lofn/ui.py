@@ -10,6 +10,7 @@ from image_generation import (
     get_model_params,
     generate_dalle_images,
     save_music_metadata,
+    save_video_metadata,
 )
 from datetime import datetime
 from config import Config
@@ -808,6 +809,16 @@ class LofnApp:
                 )
             st.session_state['video_prompts_df'] = prompts_df
             st.success(f"Video prompts generated for '{pair['concept']}'")
+            metadata = {
+                'timestamp': datetime.now(),
+                'concept': pair['concept'],
+                'medium': pair['medium'],
+                'prompts': prompts_df.to_dict(orient='list'),
+                'input_text': st.session_state.get('input', ''),
+                'competition': st.session_state.get('competition_mode', False),
+                'model': self.model,
+            }
+            save_video_metadata(metadata)
             self.display_video_prompts(prompts_df, pair)
         except Exception as e:
             st.error(f"An error occurred while generating video prompts for '{pair['concept']}'.")

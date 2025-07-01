@@ -1487,6 +1487,7 @@ def generate_music_prompts(
         logger.exception("Error generating music prompts: %s", e)
         raise e
 
+@st.cache_data(persist=True)
 def generate_meta_prompt(
     input_text,
     max_retries,
@@ -1533,6 +1534,7 @@ def generate_meta_prompt(
         logger.exception("Error generating meta prompt: %s", e)
         raise e
 
+@st.cache_data(persist=True)
 def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
     """Generate an artistic panel description via the LLM."""
     try:
@@ -1560,6 +1562,7 @@ def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-t
         logger.exception("Error generating panel prompt: %s", e)
         raise e
 
+@st.cache_data(persist=True)
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
     """Use the panel to vote on the best concept-medium pairs."""
     try:
