@@ -13,6 +13,9 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 Please follow this advaned directive:
 {Meta-Prompt}
 
+Use this personality:
+{Personality-prompt}
+
 Assisted with this panel:
 {Panel-prompt}
 

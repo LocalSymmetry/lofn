@@ -72,6 +72,7 @@ dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_pro
 meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
 pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
 panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
+personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
@@ -166,6 +167,10 @@ meta_prompt_schema = {
 
 panel_prompt_schema = {
     'panel_prompt': str
+}
+
+personality_prompt_schema = {
+    'personality_prompt': str
 }
 
 essence_and_facets_schema = {
@@ -1496,6 +1501,7 @@ def generate_meta_prompt(
     debug=False,
     reasoning_level="medium",
     medium="image",
+    personality_prompt="",
 ):
     try:
         if medium == "music":
@@ -1516,10 +1522,12 @@ def generate_meta_prompt(
                 | llm
             )
 
+        full_input = f"{personality_prompt}\n\n{input_text}" if personality_prompt else input_text
+
         if medium == "music":
             parsed_output = run_llm_chain(
                 {'meta': chain}, 'meta', {
-                    'input': input_text,
+                    'input': full_input,
                     'genres_list': genres_list,
                     'frames_list': frames_list
                 }, max_retries, model, debug, expected_schema=meta_prompt_schema
@@ -1527,7 +1535,7 @@ def generate_meta_prompt(
             return parsed_output, frames_list, genres_list
         else:
             parsed_output = run_llm_chain(
-                {'meta': chain}, 'meta', {'input': input_text, 'frames_list': frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
+                {'meta': chain}, 'meta', {'input': full_input, 'frames_list': frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
             )
             return parsed_output, frames_list
     except Exception as e:
@@ -1560,6 +1568,34 @@ def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-t
             return ""
     except Exception as e:
         logger.exception("Error generating panel prompt: %s", e)
+        raise e
+
+@st.cache_data(persist=True)
+def generate_personality_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+    """Generate a short personality description via the LLM."""
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        if model[0] == "o":
+            chain = (
+                ChatPromptTemplate.from_messages([("human", personality_generation_prompt)])
+                | llm
+            )
+        else:
+            chain = (
+                ChatPromptTemplate.from_messages([("system", concept_system), ("human", personality_generation_prompt)])
+                | llm
+            )
+
+        parsed_output = run_llm_chain(
+            {"personality": chain}, "personality", {"input": input_text}, max_retries, model, debug, expected_schema=personality_prompt_schema
+        )
+        if parsed_output is not None:
+            return parsed_output.get("personality_prompt", "")
+        else:
+            st.error("Failed to generate or parse personality prompt")
+            return ""
+    except Exception as e:
+        logger.exception("Error generating personality prompt: %s", e)
         raise e
 
 @st.cache_data(persist=True)

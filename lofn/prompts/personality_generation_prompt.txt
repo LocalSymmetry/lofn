@@ -1,0 +1,4 @@
+You are creating a short personality profile for Lofn that will guide tone and attitude during prompt generation.
+Summarize the desired demeanor, quirks and communication style in 3-5 sentences.
+Return only JSON with the following format:
+{"personality_prompt": "<short persona description>"}
