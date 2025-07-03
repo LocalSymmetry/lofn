@@ -4066,3 +4066,861 @@
     4. **Pitchfork Art Columnist** – critiques psych‑nostalgia trends  
     5. **Adobe Capture PM** – pushing mobile collage workflows  
     6. **Sol LeWitt ghost (Devil)** – minimal conceptualist scoffing at maximal layers
+- name: Nocturnal Street Reverie
+  prompt: |
+    ## Special Flairs:
+    1. Sodium‑Vapor Bloom – hazy amber halos
+    2. 4 fps Stutter Portraits – ghost‑walk cadence
+    3. Hand‑Crank Time‑Ramp – tactile speed shifts
+    4. Infra‑Red Skin Glow – heat‑map intimacy
+    5. Corner‑Store Neon Flares – pop‑color bursts
+    6. Window‑Reflection Layers – double‑life frames
+    7. Static Long Stares – meditative holds
+    8. Slow‑Push Macro Drifts – creeping detail
+    9. Jazz‑Cut Jump Dissolves – improvisational edits
+    10. Ghost‑Dialogue Subs – haunt‑text overlays
+    11. Rain‑Sheen Asphalt – mirror pavement shine
+    12. Alley‑Cat Eye‑Light – micro‑catch spark
+    13. Lens‑Wipe Sleeve Swish – in‑scene cleaning cut
+    14. Fremont Hum Bed – city‑hum under‑score
+    15. Glitched Streetlamp Flicker – narrative cue flash
+
+    ## Concept Panel
+    1. **Khalik Allah** – Harlem night‑poet
+    2. **Jessica Beshir** – mezcal‑haze diarist
+    3. **Mati Diop** – trance socialist
+    4. **Ian Pons Jewell** – surreal MV auteur
+    5. **Céline Sciamma** – intimacy master
+    6. **Larry Clark** *(Devil)* – raw realism provoker
+
+    ## Medium Panel
+    1. **Claire Mathon** – velvet low‑light DP
+    2. **Shabier Kirchner** – roaming rig artist
+    3. **Ari Wegner** – contrast tactician
+    4. **Nicolás Pellicer** – optical printer glitcher
+    5. **Joi McMillon** – lyrical editor
+    6. **Walter Murch** *(Devil)* – montage purist
+
+    ## Context & Marketing Panel
+    1. **Joshua Oppenheimer** – doc mentor
+    2. **Ben Nicholson** – night‑cinema critic
+    3. **Tiffany LaShae** – TikTok #StreetNight curator
+    4. **Dea Motorjane** – MUBI editor
+    5. **Alamo “Graveyard Shift”** programmer
+    6. **Anthony Lane** *(Devil)* – NYer contrarian
+
+- name: Infrared Desert Mirage
+  prompt: |
+    ## Special Flairs:
+    1. 720 nm IR Palette – false‑color dunes
+    2. Heat‑Haze Warp – liquid horizon
+    3. Mirror‑Board Flare – searing bounce
+    4. Drone Spiral Orbit – vertigo reveal
+    5. Time‑Lapse Sand Flow – dune rivers
+    6. Shadow Echo Double‑Ex – spectral twins
+    7. Electro‑Cumbia Burst – sonic mirage
+    8. Nomad POV Track – footstep cadence
+    9. Wind‑Mic Rattle – grain percussion
+    10. Solar‑Eclipse J‑Cut – cosmic reset
+    11. Mirage Split‑Focus – dual depth
+    12. Skeleton Shrub Silhouettes – graphic plant forms
+    13. Quartz Lens Flare – crystal streak
+    14. Scorpion Macro Insert – tension beat
+    15. Dusk‑to‑Thermal Dissolve – nightvision fade
+
+    ## Concept Panel
+    1. **Lois Patiño** – landscape mystic
+    2. **Salomé Jashi** – uprooted‑tree chronicler
+    3. **Sofia Alfonso** – Atacama essayist
+    4. **Zar Amir** – Iranian desert poet
+    5. **Yaara Bou Melhem** – eco storyteller
+    6. **Werner Herzog** *(Devil)* – abyss gazer
+
+    ## Medium Panel
+    1. **Ben Fordesman** – IR sensor tinkerer
+    2. **Hélène Louvart** – dune sculptor DP
+    3. **Élodie Ichter** – heat‑cut editor
+    4. **Juliette Welfling** – doc cutter
+    5. **Spectral Labs** – camera mod crew
+    6. **John Seale** *(Devil)* – classic epicist
+
+    ## Context & Marketing Panel
+    1. **Sheffield DocFest** curator
+    2. **Minyoung Jin** – Nowness Earth editor
+    3. **Imogen Carter** – Guardian enviro desk
+    4. **Emanuele Crialese** – festival juror
+    5. **TikTok @EcoAesthetics** host
+    6. **Armond White** *(Devil)* – contrarian
+
+- name: Drone‑Ballet Symphony
+  prompt: |
+    ## Special Flairs:
+    1. Swarm Formations – aerial choreography
+    2. 3‑Axis Barrel Roll – spinning reveal
+    3. Mirror‑Lake Echo – symmetric surface
+    4. LUT Sunrise Pastel – candy dawn
+    5. 96 fps Mist Burst – slow droplet arcs
+    6. Doppler Audio Swell – passing whoosh
+    7. GPS Calligraphy Path – sky writing
+    8. Shadow Top‑Down Dance – ground ballet
+    9. Reverse‑Orbit Whip – snap turn
+    10. Crescendo‑Tilt Reveal – orchestral rise
+    11. Drone‑to‑FPV Handoff – speed spike
+    12. Diagonal Dive Cut – gravity jolt
+    13. Night‑LED Halo – light crown
+    14. LIDAR Height Map – depth grid
+    15. Swirl‑Exit Fade – spiral blackout
+
+    ## Concept Panel
+    1. **Tobias Glawe** – sky choreographer
+    2. **Xiong Yi** – calligraphy pilot
+    3. **Steven Dunikoski** – FPV maestro
+    4. **Zarina Kodzaeva** – cliff flyer
+    5. **Karim Iliya** – marine drone poet
+    6. **Christopher Nolan** *(Devil)* – IMAX stickler
+
+    ## Medium Panel
+    1. **Freefly Alta X** – heavy‑lift team
+    2. **Betty Zhang** – colour flight DI
+    3. **Thomas Goupille** – sync editor
+    4. **Lydia Bovet** – LIDAR mapper
+    5. **Michael Tyler** – 360 ambisonics
+    6. **Roger Deakins** *(Devil)* – ground purist
+
+    ## Context & Marketing Panel
+    1. **GoPro Challenge** curator
+    2. **Drone Film Fest** founder
+    3. **DJI Studios** lead
+    4. **Rolling Stone** tech columnist
+    5. **@DroneDancers** TikTok host
+    6. **Werner Herzog** *(Devil)* – sky skeptic
+
+- name: VHS Analog Horror
+  prompt: |
+    ## Special Flairs:
+    1. Tape‑Drag Bleed – smear terror
+    2. CRT Phosphor Bloom – haunted glow
+    3. Glitch‑Static Jumps – jump scare pixel
+    4. Night‑Vision Grain – eerie green
+    5. Tracking‑Error Wipe – tearing cut
+    6. Whisper Noise Floor – subliminal dread
+    7. DIY Mini Sets – handmade uncanny
+    8. Overcrank Flash – blinding burst
+    9. Rewind‑Shudder – temporal shock
+    10. Shelf‑Label Font – retro meta
+    11. RF Snow Over‑Lay – decay texture
+    12. Camcorder Zoom‑Chop – sudden push
+    13. Timecode Burn‑In – diegetic stamp
+    14. Bleach‑Bypass Grade – desat menace
+    15. Spirit‑Box Audio – EVP hiss
+
+    ## Concept Panel
+    1. **Chris LaMartina** – found‑footage king
+    2. **Mónica Bartik** – glitch witch
+    3. **Riley Stearns** – deadpan dread
+    4. **Jane Schoenbrun** – net‑horror diarist
+    5. **Macon Blair** – genre bender
+    6. **John Carpenter** *(Devil)* – slasher legend
+
+    ## Medium Panel
+    1. **Magnolia Tapes** – SVHS stock
+    2. **Elliot Hamill** – CRT DP
+    3. **Brandon Cronenberg** – analog editor
+    4. **Sofia Subercaseaux** – scratch colorist
+    5. **Katie Byrne** – Foley cruncher
+    6. **Walter Murch** *(Devil)* – clean‑sound lobby
+
+    ## Context & Marketing Panel
+    1. **Shudder FF Files** curator
+    2. **Brooklyn Horror** programmer
+    3. **Joe Bob Briggs** – cult host
+    4. **r/AnalogHorror** mods
+    5. **@HauntedTapes** TikTok archivist
+    6. **Richard Brody** *(Devil)* – 4K snob
+
+- name: Oneiric Long‑Take
+  prompt: |
+    ## Special Flairs:
+    1. 12‑Min Steadicam – dream drift
+    2. Seamless Stitch Dissolve – hidden cut
+    3. Mirror‑Portal Pass – meta move
+    4. Hidden Bloom Keys – soft gleam
+    5. Whisper‑Cue Blocking – silent signal
+    6. Clock‑Shift Temp – time slip
+    7. Diegetic Crossfade – world‑sound blend
+    8. Dream‑Lag Blur – haze motion
+    9. Invisible Crane Handoff – float swap
+    10. Pulse‑Lens Breath – micro pump
+    11. Corridor Echo Mix – depth audio
+    12. Diopter Split‑Focus – layered reality
+    13. Candle‑Flicker Exposure – mystic spark
+    14. Reverse‑Step Reveal – backward entry
+    15. Shadow Curtain Close – fade veil
+
+    ## Concept Panel
+    1. **Bi Gan** – trance maestro
+    2. **Bianca Stigter** – memory walker
+    3. **Bi Yue** – midnight glider
+    4. **Fion Lin** – Taipei drifter
+    5. **Pedro Costa** – sepulchral realist
+    6. **Alfonso Cuarón** *(Devil)* – one‑take hawk
+
+    ## Medium Panel
+    1. **Mark Lee Ping‑bing** – dusk DP
+    2. **Patrick Blossier** – stitch op
+    3. **Kim Sang‑don** – focus whisperer
+    4. **Dato Mikhelidze** – blur shader
+    5. **Gord McClellan** – real‑time mixer
+    6. **Tom Cross** *(Devil)* – cut booster
+
+    ## Context & Marketing Panel
+    1. **Cannes UCR** selector
+    2. **Letterboxd Slow‑Cinema** curator
+    3. **Cal Newport** – longform essayist
+    4. **BBC Reel** editor
+    5. **Locarno Critics** academy
+    6. **Kim Kardashian** *(Devil)* – impatience voice
+
+- name: Split‑Screen Kinetics
+  prompt: |
+    ## Special Flairs:
+    1. Triptych Timelines – parallel drama
+    2. Smash‑Zoom Sync – shock unify
+    3. Colour Quadrants – mood code
+    4. Match‑Cut Panel Swap – fluid jump
+    5. Multi‑Voice Subs – chorus text
+    6. Speed‑Ramp Cross – tempo jolt
+    7. Graphic‑Match Motion – echo flow
+    8. Ripple‑Sync Beds – wave audio
+    9. Motion‑Vector Glue – seam vanish
+    10. Frame‑Exit Entrance – portal gag
+    11. Clock‑Overlay Grid – temporal map
+    12. Emoji Reaction Layer – social pulse
+    13. Hand‑Off Object – cross‑panel toss
+    14. Split‑RGB Drift – chroma bleed
+    15. Panel Collapse Finale – merge climax
+
+    ## Concept Panel
+    1. **Mike Figgis** – Timecode pioneer
+    2. **Khalil Joseph** – tableauist
+    3. **Josephine Decker** – sensory fracturer
+    4. **Zia Anger** – live editor
+    5. **Paweł Kantor** – kinetic cutter
+    6. **Peter Greenaway** *(Devil)* – maximalist
+
+    ## Medium Panel
+    1. **Midge Costin** – multi‑channel sound
+    2. **Suki Medencevic** – multi‑cam DP
+    3. **Anna Thorvaldsdottir** – polyrhythm scorer
+    4. **Julia Bloch** – flow editor
+    5. **Dylan Coppersmith** – live switcher
+    6. **Thelma Schoonmaker** *(Devil)* – single‑frame champ
+
+    ## Context & Marketing Panel
+    1. **SXSW VR** curator
+    2. **Vimeo Staff‑Pick** gate
+    3. **TikTok @SplitScreenEdits** host
+    4. **Film Comment** columnist
+    5. **A24 Social** team
+    6. **David Fincher** *(Devil)* – coverage zealot
+
+- name: Data‑Glitch Memory
+  prompt: |
+    ## Special Flairs:
+    1. Pixel‑Bleed Streak – smear data
+    2. AI‑Upscale Smear – dream mush
+    3. JPEG Block Dissolve – mosaic fade
+    4. Archive Flicker – history pulse
+    5. MIDI Flash Frame – audio cue
+    6. Datamosh Punch – frame clash
+    7. CRT Curl Warp – edge bow
+    8. Packet‑Loss Pit – mute gap
+    9. Binary Rain – code shower
+    10. DB Caption Crawl – metadata parade
+    11. VHS Ghost Overlay – layer haunt
+    12. Time‑Stamp Drift – clock slip
+    13. Palette Out‑Of‑Gamut – neon spike
+    14. Kernel Panic Cut – abrupt freeze
+    15. Bit‑Depth Crush – posterize shock
+
+    ## Concept Panel
+    1. **Rosa Menkman** – glitch oracle
+    2. **Sabrina Ratté** – digital ruinist
+    3. **James Gibson** – packet storyteller
+    4. **Korakrit Arunanondchai** – memory shaman
+    5. **Pinar Yoldas** – data ecologist
+    6. **Hito Steyerl** *(Devil)* – res skeptic
+
+    ## Medium Panel
+    1. **Datamosh Lab** – code hackers
+    2. **OpenCV Visioneers** – neural upscalers
+    3. **FFglitch Collective** – CLI FX
+    4. **Camille Henrot** – screen assembler
+    5. **Dedo Weigert** – ghost lens maker
+    6. **Ken Burns** *(Devil)* – archive purist
+
+    ## Context & Marketing Panel
+    1. **ISEA Post‑Digital** curator
+    2. **Rhizome** editors
+    3. **VICE Motherboard** glitch writer
+    4. **TikTok @DatamoshArt** host
+    5. **MUBI Notebook** experimental desk
+    6. **Jonathan Rosenbaum** *(Devil)* – narrative guard
+
+- name: 360 Mirror Reality
+  prompt: |
+    ## Special Flairs:
+    1. Dual‑Sphere Portal – wrap world
+    2. Interactive POV Swing – viewer agency
+    3. Liquid‑Chrome Reflect – surreal mirror
+    4. Audience Re‑frame – hand pan
+    5. Spatial Doppler FX – swoosh pass
+    6. Reverse‑Warp Mirrorball – inside‑out world
+    7. Z‑Depth Fog – depth veil
+    8. Time‑Jump Tag – chrono link
+    9. Ambisonic Whisper – ear trail
+    10. Parallax Freeze – stereo lock
+    11. Tilt‑Shift Zoom – dollhouse warp
+    12. Haptic Rumble Cue – body feedback
+    13. Stereoscopic Bloom – eye pop
+    14. Re‑projected Memory Overlay – flashback layer
+    15. Portal Close‑In – iris collapse
+
+    ## Concept Panel
+    1. **Charlotte Mikkelborg** – VR doc pioneer
+    2. **Nonny de la Peña** – VR journalism
+    3. **Paisley Smith** – empathy diarist
+    4. **Emblematic Group** – volumetric team
+    5. **Angel M. Soto** – barrio poet
+    6. **James Cameron** *(Devil)* – 360 skeptic
+
+    ## Medium Panel
+    1. **Radiant Images** – 360 rigs
+    2. **FX Gears** – realtime stitch
+    3. **Targo VR** – interactive editors
+    4. **Dear Reality** – ambisonic lab
+    5. **WebXR Devs** – browser coders
+    6. **Walter Murch** *(Devil)* – flat loyalist
+
+    ## Context & Marketing Panel
+    1. **Tribeca Immersive** selector
+    2. **Oculus TV** programmers
+    3. **TikTok @360Experiment** host
+    4. **UploadVR** news desk
+    5. **The Verge** VR column
+    6. **Roger Ebert Estate** *(Devil)* – frame fans
+
+- name: Handheld Intimacy
+  prompt: |
+    ## Special Flairs:
+    1. 16 mm Shoulder Flutter – body tremor
+    2. Breathing Auto‑Focus – pulse rack
+    3. Natural‑Light Overcrank – sun shimmer
+    4. Micro‑Boom Rustle – cloth sound
+    5. Glide‑to‑Shake – emotion surge
+    6. Actor Cam‑Swap – POV share
+    7. Diaphragm Colour Drift – breathing hue
+    8. Whisper Room‑Tone – hush bed
+    9. Skin Highlight Push – warmth spike
+    10. Paragraph Jump‑Cut – thought leap
+    11. Lens‑Wipe Sleeve – casual clean
+    12. Street‑Noise Fade – realism in
+    13. Window Light Cross – patch glow
+    14. Hand‑Tremor Zoom – anxious push
+    15. Heartbeat Bass‑Boost – sub pulse
+
+    ## Concept Panel
+    1. **Kirsten Johnson** – diary essayist
+    2. **Eliza Hittman** – tactile realist
+    3. **Janicza Bravo** – chaos crafter
+    4. **Dina Amer** – frontline hybridist
+    5. **A. Madsen Minax** – trans diarist
+    6. **Lars von Trier** *(Devil)* – Dogme judge
+
+    ## Medium Panel
+    1. **16mm Co‑op** – film rental
+    2. **Rachel Morrison** – grain DP
+    3. **Mary Cybol** – intimacy coach
+    4. **Joi McMillon** – soft editor
+    5. **Skywalker Indie Pod** – rustle foley
+    6. **Michael Bay** *(Devil)* – anti‑shake
+
+    ## Context & Marketing Panel
+    1. **True/False Fest** curator
+    2. **Letterboxd #Diary** list
+    3. **NPR Embedded** desk
+    4. **TikTok @16mmVibes** host
+    5. **Criterion Channel** buyers
+    6. **Piers Morgan** *(Devil)* – critic
+- name: Ink‑in‑Water Macro Ballet
+  prompt: |
+    ## Special Flairs:
+    1. 240 fps Ink Clouds – silky plumes
+    2. Dichroic Gel Back‑Lights – twin hues
+    3. Macro Probe Swirls – tunnel glide
+    4. Mirror‑Tank Symmetry – Rorschach glow
+    5. Newton‑Ring Fringes – rainbow halos
+    6. Sub‑Woofer Agitations – bass ripples
+    7. UV‑Reactive Dye Pops – neon burst
+    8. Breath‑Bubble Triggers – micro orbs
+    9. Phantom Shutter‑Rips – slit warp
+    10. Rorschach Split‑Screens – twin reveal
+    11. Reverse‑Fill Drain – ink rewind
+    12. Iris‑Aperture Pulse – vignette beat
+    13. Frosted Glass Diffuse – dream veil
+    14. Oil‑Film Prism – kaleido flare
+    15. Capillary Climb Cut – tide rise
+
+    ## Concept Panel
+    1. **Roman De Giuli** – fluid macro poet
+    2. **Thomas Blanchard** – paint dancer
+    3. **Nitin Das** – mindful ink lens
+    4. **Joanna Loughlin** – science dye choreo
+    5. **Alexey Yurkov** – colour‑tank sculptor
+    6. **Terrence Malick** *(Devil)* – asks “where are people?”
+
+    ## Medium Panel
+    1. **Phantom Flex 4K** crew – high‑speed cams
+    2. **Laowa Probe Lab** – ultra‑macro optics
+    3. **Resolve “Fluid LUT”** team – tone artists
+    4. **Dolby Vision Colour** lab – HDR finish
+    5. **Benjamin Bernstein** – hydro gaffer
+    6. **Darius Khondji** *(Devil)* – film‑grain zealot
+
+    ## Context & Marketing Panel
+    1. **TED‑Ed “Hidden Science”** producer
+    2. **Vimeo Staff Pick Lab** curator
+    3. **@OddlySatisfying** IG host
+    4. **Adobe Stock “Ink Motion”** team
+    5. **ShortsTV Experimental** programmer
+    6. **Werner Herzog** *(Devil)* – “too pretty”
+
+- name: Infra‑Biometric Surveillance
+  prompt: |
+    ## Special Flairs:
+    1. Thermal‑Face Split – dual tones
+    2. LIDAR Point Clouds – wire ghosts
+    3. Depth‑Error Trails – echo bodies
+    4. Edge‑Detect Veins – neon nerves
+    5. Face‑Box Algorithms – HUD frames
+    6. CCTV Time‑Crawl – diegetic stamp
+    7. Glitch‑Mask Swaps – ID scramble
+    8. Latency Blink Deletes – skip eyes
+    9. Fail‑Box Flares – reject flash
+    10. Silent‑Mode Cut – mute dread
+    11. Drone‑Spot Overlay – top scan
+    12. Gait‑Track Grid – walk map
+    13. Packet‑Sniff Noise – data hiss
+    14. Infra‑Flash Pop – reveal bite
+    15. Exit‑Poll Pixelate – privacy veil
+
+    ## Concept Panel
+    1. **Laura Poitras** – surveillance essayist
+    2. **Xu Bing** – AI film provocateur
+    3. **Tiffany Sia** – CCTV diarist
+    4. **Assia Boundaoui** – watch‑doc voice
+    5. **Nadav Lapid** – paranoid formalist
+    6. **Michael Haneke** *(Devil)* – voyeur theorist
+
+    ## Medium Panel
+    1. **FLIR Systems** – thermal cams
+    2. **Intel RealSense** lab – depth R&D
+    3. **OpenCV Ghost‑Edge** devs – filters
+    4. **Blackmagic CCTV Pipeline** – capture rig
+    5. **DaVinci Neural‑Colour** unit – grade
+    6. **Roger Deakins** *(Devil)* – overlay hater
+
+    ## Context & Marketing Panel
+    1. **IDFA DocLab** selector
+    2. **MIT “Doc Edge”** curator
+    3. **@SurveillanceSpotlight** IG
+    4. **Intercept Visuals** desk
+    5. **VICE Motherboard** privacy writer
+    6. **Peter Thiel** *(Devil)* – pro‑watch
+
+- name: XR Volumetric Flow
+  prompt: |
+    ## Special Flairs:
+    1. Kinect‑Mesh Dancers – voxel ghosts
+    2. Photogram Melt‑Cuts – space blend
+    3. Light‑Field Parallax – depth swing
+    4. Shader Cloth Trails – particle silk
+    5. Depth‑Fog Breath – z‑haze
+    6. Ray‑March Waves – code surf
+    7. Colour Echo Shift – hue wake
+    8. 120 fps Body Warp – liquid limbs
+    9. Holobox Portal – volumetric gate
+    10. VCap Particle Dissolve – exit dust
+    11. Mo‑Cap Ripple – motion bleed
+    12. Audio‑Reactive Morph – beat morph
+    13. Spline‑Ribbon Spin – ribbon vortex
+    14. Realtime Occlu‑Mask – live hide
+    15. Latent‑Space Blur – dream fog
+
+    ## Concept Panel
+    1. **Blanca Li** – VR dance‑opera
+    2. **Richie Meier** – volumetric pioneer
+    3. **Tsai Ming‑liang** – slow‑body poet
+    4. **Francois Chaignaud** – queer mover
+    5. **Hana Kim** – shader choreo
+    6. **Ridley Scott** *(Devil)* – story first
+
+    ## Medium Panel
+    1. **Microsoft VolCap** studio
+    2. **Arcturus HoloEdit** team – post
+    3. **Unity VFX Graph** squad
+    4. **Ncam AR Trackers** crew
+    5. **Dolby Atmos Music Lab** – spatial mix
+    6. **Kenneth Branagh** *(Devil)* – theatre purist
+
+    ## Context & Marketing Panel
+    1. **SXSW XR Expo** curator
+    2. **TikTok @VolumetricDance** host
+    3. **Forbes “Metaverse Arts”** writer
+    4. **Road‑to‑VR** editor
+    5. **Adobe MAX Immersive** chair
+    6. **David Cronenberg** *(Devil)* – body‑horror lens
+
+- name: Stop‑Motion Junk Sculptures
+  prompt: |
+    ## Special Flairs:
+    1. 12 fps Scrap‑Puppet – clank walk
+    2. Time‑Lapse Rig Reset – jump jerk
+    3. Rust‑Fleck Macro – gritty close
+    4. CRT Back‑Projection – retro plate
+    5. Clay‑Metal Morph – texture melt
+    6. Match‑Flame Wipe – burn cut
+    7. VHS Flutter Overlay – decay haze
+    8. Paper‑Dust Atmos – particle drift
+    9. Gear‑Turn Clicks – mech foley
+    10. Final‑Frame Smash – cathartic end
+    11. Magnetic Wire Float – levitate prop
+    12. Split‑Skin Replacement – swap gag
+    13. Bolt‑On Eyelight – glint spark
+    14. Dust‑Print Title – grime text
+    15. Reverse Debris Build – construct loop
+
+    ## Concept Panel
+    1. **Jorge Riera** – scrapyard animator
+    2. **Anna Mantzaris** – felt‑junk hybridist
+    3. **Neil Blomkamp** – DIY surrealist
+    4. **Takahide Horie** – micro‑mecha artist
+    5. **Céline Desrumaux** – tactile designer
+    6. **Henry Selick** *(Devil)* – puppet czar
+
+    ## Medium Panel
+    1. **Bolex StopMo Club** – film cams
+    2. **Dragonframe Devs** – capture soft
+    3. **Laika Armatures** – joint tech
+    4. **MPC Miniatures** – texture shop
+    5. **Skywalker Foley Junk** – click team
+    6. **Pixar Story Trust** *(Devil)* – CG push
+
+    ## Context & Marketing Panel
+    1. **Annecy Off‑Limits** selector
+    2. **@StopMoShorts** X host
+    3. **NOWNESS Handmade** producer
+    4. **TikTok #ScrapAnimation** trend
+    5. **Fantoche Fest** programmer
+    6. **Jeff Koons** *(Devil)* – shiny critic
+
+- name: Macro Food Cosmos
+  prompt: |
+    ## Special Flairs:
+    1. Probe‑Lens Tide Pan – planet food
+    2. Sauce Impact Splash – nebula burst
+    3. Polar Sugar Crystals – star field
+    4. 8K Texture Scan – lunar terrain
+    5. Nitro Mist Swirl – comet tail
+    6. Sauté Flash‑Frame – flare spark
+    7. Ferment Time‑Crawl – life grow
+    8. RGB Under‑Glow – horizon light
+    9. Crunch‑Burst SFX – asteroid hit
+    10. Solarised Spice Dust – cosmic fog
+    11. Lensing Oil Rings – gas giant
+    12. Bubble‑Burst Reverse – nova pop
+    13. Ice‑Shard Shatter – meteor break
+    14. Fizz‑Trail Orbit – ring swirl
+    15. Dark‑Field Vinegar – void drift
+
+    ## Concept Panel
+    1. **David Ma** – food homage
+    2. **Janice Poon** – edible design
+    3. **Sophie Blanc** – macro DP
+    4. **Ben Walters** – edible VFX
+    5. **Khal Tung** – gastro‑physics
+    6. **Gordon Ramsay** *(Devil)* – plate critic
+
+    ## Medium Panel
+    1. **Phantom Flex‑4K** lab – slow‑mo
+    2. **Probe Lens Co‑Lab** – optics
+    3. **Sennheiser ASMR** studio
+    4. **Chef’s Table Colour** house
+    5. **Adobe “Food LUT”** devs
+    6. **Roger Deakins** *(Devil)* – “too clinical”
+
+    ## Context & Marketing Panel
+    1. **Netflix “Tasty Shorts”** buyer
+    2. **BuzzFeed Food** lead
+    3. **TikTok #FoodMacro** curator
+    4. **Bon Appétit Video** editor
+    5. **Cannes Lions Ent.** juror
+    6. **Pete Wells** *(Devil)* – NYT critic
+
+- name: Neon Underworld MV
+  prompt: |
+    ## Special Flairs:
+    1. RGB‑Shift Trails – cyber ghosts
+    2. Blade‑Runner Rain – neon drip
+    3. Laser‑Grid Ceiling – rave cage
+    4. 200 fps Hair Shards – glam slow
+    5. Cyan‑Magenta Smoke – dual fog
+    6. Mirror Dutch Tilt – fractal edge
+    7. Hologram Lyric Overlay – text pop
+    8. Drum‑Flash Exposures – beat strobe
+    9. Infra‑Spark Embers – fireflies
+    10. Auto‑Focus Hunt – light pulse
+    11. 360 Barrel Roll – vertigo spin
+    12. Nano‑LED Jewelry – micro lights
+    13. Synthwave Grid Fade – retro plane
+    14. Turbo Lens Whip – snap pan
+    15. Black‑Ice Floor – wet reflect
+
+    ## Concept Panel
+    1. **Tanu Muino** – pop maximalist
+    2. **Hiro Murai** – surreal sage
+    3. **Axel Morin** – noir craftsman
+    4. **BQ** – cyber aesthetic
+    5. **Emma Westenberg** – gritty glam
+    6. **David Fincher** *(Devil)* – MV legend
+
+    ## Medium Panel
+    1. **ARRI Alexa 35** demo
+    2. **Panavision Neon Glass** dept.
+    3. **GradeKU Colour** house
+    4. **Strobe VFX** team
+    5. **Dolby Atmos MV** mix
+    6. **Christopher Doyle** *(Devil)* – chaos demand
+
+    ## Context & Marketing Panel
+    1. **YouTube “NeonFlow”** list
+    2. **Billboard MV** scout
+    3. **TikTok “Neon MV”** host
+    4. **NME Video** editor
+    5. **Spotify Canvas** lead
+    6. **Pitchfork** *(Devil)* – hype guard
+
+- name: Liquid Lens Kaleidoscope
+  prompt: |
+    ## Special Flairs:
+    1. Oil‑Water Swirl – amoeba colour
+    2. Tri‑Mirror Kscope – fractal slice
+    3. Warp Zoom‑Pull – rush warp
+    4. Fluid‑Lens Refract – bend world
+    5. Bokeh Helix – DNA blur
+    6. RGB Bloom Ghost – neon after
+    7. Spin‑Cam Centrifuge – orbit view
+    8. Music‑Fractal Cuts – beat sync
+    9. Op‑Art Plane Shift – flip grid
+    10. End‑Swirl Fade – vortex exit
+    11. Beat‑Pulse Ripple – bass ring
+    12. Colour‑Split Edge – prism cut
+    13. Lens‑Whack Flash – light leak
+    14. Wave‑Glass Distort – melt frame
+    15. Ink‑Wick Trail – drag streak
+
+    ## Concept Panel
+    1. **Kojiro Shishido** – op‑video dreamer
+    2. **Max Nova** – VJ pioneer
+    3. **Natalia Stuyk** – glitch artist
+    4. **Yoshi Sodeoka** – feedback wizard
+    5. **Stacie Ant** – liquid researcher
+    6. **Michel Gondry** *(Devil)* – playful critic
+
+    ## Medium Panel
+    1. **Panasonic Varicam LT** lab
+    2. **Colorkraft AI Kaleido** LUTs
+    3. **Resolume Arena** VJ team
+    4. **Laowa 24 mm Probe** crew
+    5. **DaVinci Fusion Liquid** nodes
+    6. **Hoyte van Hoytema** *(Devil)* – realism guard
+
+    ## Context & Marketing Panel
+    1. **Coachella VJ** curator
+    2. **Boiler Room Visuals** booker
+    3. **TikTok @LiquidLensArt** host
+    4. **VICE “Psychedelic Video”** writer
+    5. **Adobe MAX Motion** chair
+    6. **Jonathan Glazer** *(Devil)* – minimalist
+
+- name: Miniature Tilt‑Shift City Symphony
+  prompt: |
+    ## Special Flairs:
+    1. 6 h Cloud Stack – toy sky
+    2. Tilt‑Shift Shallow – mini world
+    3. Glass‑Tower Reflect – mirror slice
+    4. Toy‑Car Motion Blur – speed hint
+    5. LED Pixel Trails – neon lanes
+    6. Drone‑Mini Morph – scale trick
+    7. Clock‑Match Cut – time pulse
+    8. Urban Foley Rhythm – city beat
+    9. Gradient Day‑Cycle – colour arc
+    10. Subway‑Bass Sync – rumble tone
+    11. Crane‑Down Reveal – vert drop
+    12. Rain‑Drop Bokeh – pearl lights
+    13. Skyline Silhouette Flash – dusk pop
+    14. Grid‑Overlay Map – data sheet
+    15. Finale Light‑Sweep – glow wash
+
+    ## Concept Panel
+    1. **Sam O’Hare** – tilt‑shift pioneer
+    2. **Jamie Scott** – timelapse sculptor
+    3. **Isabel Seiffert** – urban rhymer
+    4. **Richard Kirk** – micro‑metro DP
+    5. **Niles Heise** – morph coder
+    6. **Godfrey Reggio** *(Devil)* – macro sage
+
+    ## Medium Panel
+    1. **MocoLab Motion‑Ctrl** rigs
+    2. **DJI Inspire 3** team
+    3. **PhaseOne XT‑150** crew
+    4. **Adobe “Holy‑Grail”** script
+    5. **Dolby Atmos City** mix
+    6. **Werner Herzog** *(Devil)* – anti aerial
+
+    ## Context & Marketing Panel
+    1. **NatGeo Short Film** editor
+    2. **TED Cities** lead
+    3. **TikTok #MiniCity** curator
+    4. **Vimeo “CitySymphony”** list
+    5. **Sony Alpha Ambassadors** team
+    6. **Robert Moses** *(Devil)* – car czar
+
+- name: AI Style‑Transfer Collage
+  prompt: |
+    ## Special Flairs:
+    1. Real‑Time Diffuse – live dream
+    2. Texture Migrate – morph skin
+    3. Anime‑Film Blend – toon fade
+    4. GAN Edge Warp – melt lines
+    5. Frame Hallucination – in‑between
+    6. Prompt Flash‑Cut – text burst
+    7. CLIP Palette Shift – hue jump
+    8. Latent Crossfade – space glide
+    9. Dream‑Over Reveal – wake layer
+    10. Prompt‑Drop End – glitch void
+    11. Stroke‑Rate Sync – beat draw
+    12. Dual Domain Mix – style twin
+    13. Mo‑Diff Walk – motion diffusion
+    14. Mask‑Brush Live – paint swap
+    15. Karras Noise Bloom – detail pop
+
+    ## Concept Panel
+    1. **Sam Mule** – AI MV director
+    2. **Sougwen Chung** – co‑creation artist
+    3. **Joan Heemskerk** – net‑meta hacker
+    4. **Memo Akten** – ethics poet
+    5. **Refik Anadol** – data painter
+    6. **James Bridle** *(Devil)* – AI critic
+
+    ## Medium Panel
+    1. **Runway Gen‑2** devs
+    2. **Stable Diffusion** core
+    3. **Disco Diffusion “SmoothCam”** mod
+    4. **Topaz Flow AI** interp
+    5. **DaVinci ML Nodes** team
+    6. **Steve Albini AI** *(Devil)* – anti algorithm
+
+    ## Context & Marketing Panel
+    1. **SXSW “AI & Film”** chair
+    2. **TikTok @AICollage** host
+    3. **Ars Technica AI Video** desk
+    4. **Adobe MAX “Firefly”** stage
+    5. **MIT Tech Review** reporter
+    6. **Charlie Brooker** *(Devil)* – dystopia
+
+- name: Shadow Puppet VR
+  prompt: |
+    ## Special Flairs:
+    1. Depth Shadow Cast – 3‑D veil
+    2. 6‑DoF Strings – marionette path
+    3. Hand‑Track Cue – gesture hook
+    4. VolCap Silhouette Tint – aura edge
+    5. Paper‑Cut Parallax – layer shift
+    6. Moon‑Gate Circle – portal ring
+    7. Clay‑Lamp Flicker – warm pulse
+    8. Spatial Whisper – ear ghost
+    9. Breath‑Sync Idle – life hint
+    10. Branch Choice – narrative fork
+    11. Puppet Pop‑Out – depth jump
+    12. Ink Splash Transition – scene wash
+    13. Sky‑Cloth Fade – curtain glide
+    14. Haptic Pulse Beat – touch cue
+    15. Final Lantern Close – fade candle
+
+    ## Concept Panel
+    1. **Miwa Matreyek** – shadow VR fantasist
+    2. **Kawaguchi Yumi** – paper innovator
+    3. **Adong Ogwang** – Ugandan puppets
+    4. **Sean Tulloch** – lamplight coder
+    5. **Jenny Zhang** – hand‑track choreo
+    6. **Julie Taymor** *(Devil)* – puppet czar
+
+    ## Medium Panel
+    1. **Oculus Hand Track** team
+    2. **Unity “Puppet” Timeline** tool
+    3. **Notch Shadow Nodes** devs
+    4. **Analog Shadows FolkLab**
+    5. **Sennheiser AMBEO VR** mix
+    6. **Robert Wilson** *(Devil)* – slow theatre
+
+    ## Context & Marketing Panel
+    1. **Venice VR Expanded** selector
+    2. **TikTok #ShadowVR** host
+    3. **UNESCO Heritage Media** desk
+    4. **BroadwayWorld “Digital”** writer
+    5. **Meta Quest Blog** showcase
+    6. **WSJ** *(Devil)* – ROI hawk
+
+- name: Archaeological Light Painting
+  prompt: |
+    ## Special Flairs:
+    1. Steel‑Wool Orbs – spark halos
+    2. 10‑min Bulb Trace – comet arcs
+    3. UV Strata Graffiti – layer reveal
+    4. Drone Torch Glyph – sky rune
+    5. LIDAR‑Ground Blend – depth skin
+    6. Flash‑Bang Exposure – ruin flare
+    7. Luminescent Sand – glow dust
+    8. Negative Ghost Wall – past echo
+    9. Cave Reverb Ambience – deep tone
+    10. Torch Snuff Cut – abrupt dark
+    11. Star Align Overlay – cosmic link
+    12. Infra‑Echo Map – heat ghost
+    13. Laser Grid Sweep – plane scan
+    14. Glyph Time‑Lapse – write light
+    15. Final Drone Pull‑Out – epic exit
+
+    ## Concept Panel
+    1. **Reuben Wu** – drone glyph artist
+    2. **JR** – guerrilla muralist
+    3. **Macarena Ruiz‑Tagle** – archaeo video
+    4. **Elif Boyacioglu** – cave recorder
+    5. **Felix Rost** – UV tracer
+    6. **Ken Burns** *(Devil)* – historian
+
+    ## Medium Panel
+    1. **PhaseOne IQ4** sensor crew
+    2. **DJI Mavic Thermal** team
+    3. **Astro “StarTrace”** interval group
+    4. **CaptureOne Copper LUT** lab
+    5. **Adobe Audition Cave IR** unit
+    6. **Werner Herzog** *(Devil)* – anti drone
+
+    ## Context & Marketing Panel
+    1. **NatGeo Explorers** video desk
+    2. **IG @LightPaintingWorld** curator
+    3. **TikTok #AstroLightPaint** trend
+    4. **Smithsonian Folklife** media
+    5. **Adobe “NightScape”** challenge
+    6. **Fox News** *(Devil)* – vandalism angle
