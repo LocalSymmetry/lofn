@@ -120,6 +120,9 @@ The primary focus should be an emotional punch that fuses mystique and resonance
 ## Competition Text
 {input}
 
+## Lofn Personality
+{personality_prompt}
+
 # Instructions
 - Craft a new meta-prompt in the same spirit as the example.
 - Integrate the competition text seamlessly, keeping language vivid and inspirational. Include any pass-through instructions asked by the user.

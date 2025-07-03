@@ -24,6 +24,11 @@ with open('/lofn/prompts/panels.yaml', 'r') as f:
 
 PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 
+with open('/lofn/prompts/personalities.yaml', 'r') as f:
+    PERSONALITY_OPTIONS = yaml.safe_load(f)
+
+PERSONALITY_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PERSONALITY_OPTIONS
+
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
@@ -194,6 +199,19 @@ class LofnApp:
                 st.sidebar.info('Panel will be generated automatically.')
             else:
                 st.session_state['custom_panel'] = next(p['prompt'] for p in PANEL_OPTIONS if p['name'] == st.session_state['selected_panel'])
+
+            personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
+            st.session_state['selected_personality'] = st.sidebar.selectbox(
+                'Personality', personality_names, index=personality_names.index(st.session_state.get('selected_personality', personality_names[0]))
+            )
+            if st.session_state['selected_personality'] == 'Custom':
+                st.session_state['custom_personality'] = st.sidebar.text_area(
+                    'Custom Personality', value=st.session_state.get('custom_personality', ''), height=150
+                )
+            elif st.session_state['selected_personality'] == 'LLM Generated':
+                st.sidebar.info('Personality will be generated automatically.')
+            else:
+                st.session_state['custom_personality'] = next(p['prompt'] for p in PERSONALITY_OPTIONS if p['name'] == st.session_state['selected_personality'])
             st.session_state['num_best_pairs'] = st.sidebar.number_input(
                 'Top Pairs', min_value=1, max_value=10,
                 value=st.session_state.get('num_best_pairs', 3), step=1
@@ -417,6 +435,19 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
+                personality_text = st.session_state.get('custom_personality', '')
+                if st.session_state.get('selected_personality') == 'LLM Generated':
+                    if not personality_text:
+                        personality_text = generate_personality_prompt(
+                            st.session_state.get('input', ''),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium')
+                        )
+                        st.session_state['custom_personality'] = personality_text
+                    display_temporary_results("Personality", personality_text, expanded=False)
                 meta_prompt, frames_list = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
@@ -424,11 +455,13 @@ class LofnApp:
                     model=self.model,
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    personality_prompt=personality_text,
                 )
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
+                    .replace('{Personality-prompt}', personality_text)
                     .replace('{frames_list}', frames_list)
                     .replace('{input}', st.session_state.get('input', ''))
                 )
@@ -607,6 +640,19 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
+            personality_text = st.session_state.get('custom_personality', '')
+            if st.session_state.get('selected_personality') == 'LLM Generated':
+                if not personality_text:
+                    personality_text = generate_personality_prompt(
+                        st.session_state.get('input', ''),
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium')
+                    )
+                    st.session_state['custom_personality'] = personality_text
+                display_temporary_results("Personality", personality_text, expanded=False)
             meta_prompt, frames_list, genres_list = generate_meta_prompt(
                 st.session_state.get('input', ''),
                 max_retries=self.max_retries,
@@ -615,11 +661,13 @@ class LofnApp:
                 debug=self.debug,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 medium="music",
+                personality_prompt=personality_text,
             )
             template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
+                .replace('{Personality-prompt}', personality_text)
                 .replace('{genres_list}', genres_list)
                 .replace('{frames_list}', frames_list)
                 .replace('{input}', st.session_state.get('input', ''))
@@ -725,6 +773,19 @@ class LofnApp:
             st.session_state['video_concept_mediums'] = []
             input_text = st.session_state['input']
             if st.session_state.get('competition_mode'):
+                personality_text = st.session_state.get('custom_personality', '')
+                if st.session_state.get('selected_personality') == 'LLM Generated':
+                    if not personality_text:
+                        personality_text = generate_personality_prompt(
+                            st.session_state.get('input', ''),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level','medium')
+                        )
+                        st.session_state['custom_personality'] = personality_text
+                    display_temporary_results("Personality", personality_text, expanded=False)
                 meta_prompt, frames_list = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
@@ -732,6 +793,7 @@ class LofnApp:
                     model=self.model,
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    personality_prompt=personality_text,
                 )
                 panel_text = st.session_state.get('custom_panel', '')
                 if st.session_state.get('selected_panel') == 'LLM Generated':
@@ -750,6 +812,7 @@ class LofnApp:
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
+                    .replace('{Personality-prompt}', personality_text)
                     .replace('{frames_list}', frames_list)
                     .replace('{input}', st.session_state.get('input', ''))
                 )
@@ -950,6 +1013,8 @@ class LofnApp:
             'competition_text': '',
             'selected_panel': PANEL_OPTIONS[0]['name'],
             'custom_panel': PANEL_OPTIONS[0]['prompt'],
+            'selected_personality': PERSONALITY_OPTIONS[0]['name'],
+            'custom_personality': PERSONALITY_OPTIONS[0]['prompt'],
             'num_best_pairs': 3,
             'prompt_input': '',
             'creativity_spectrum': None,
