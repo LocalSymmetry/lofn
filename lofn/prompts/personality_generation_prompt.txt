@@ -787,7 +787,7 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
         with open(path, newline='') as csvfile:
             rows = list(csv.DictReader(csvfile))
         sampled = random.sample(rows, random.randint(min_count, max_count))
-        return "\n".join(f"{{r['Category']}}{{r['Technique']}{{r['Description']}}" for r in sampled)
+        return "\n".join(f"{{r['Category']}}{{r['Technique']}}{{r['Description']}}" for r in sampled)
 
     ###
 
