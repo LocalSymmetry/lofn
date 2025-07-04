@@ -1526,16 +1526,33 @@ def generate_meta_prompt(
 
         if medium == "music":
             parsed_output = run_llm_chain(
-                {'meta': chain}, 'meta', {
+                {'meta': chain},
+                'meta',
+                {
                     'input': full_input,
                     'genres_list': genres_list,
-                    'frames_list': frames_list
-                }, max_retries, model, debug, expected_schema=meta_prompt_schema
+                    'frames_list': frames_list,
+                    'personality_prompt': personality_prompt,
+                },
+                max_retries,
+                model,
+                debug,
+                expected_schema=meta_prompt_schema,
             )
             return parsed_output, frames_list, genres_list
         else:
             parsed_output = run_llm_chain(
-                {'meta': chain}, 'meta', {'input': full_input, 'frames_list': frames_list}, max_retries, model, debug, expected_schema=meta_prompt_schema
+                {'meta': chain},
+                'meta',
+                {
+                    'input': full_input,
+                    'frames_list': frames_list,
+                    'personality_prompt': personality_prompt,
+                },
+                max_retries,
+                model,
+                debug,
+                expected_schema=meta_prompt_schema,
             )
             return parsed_output, frames_list
     except Exception as e:
