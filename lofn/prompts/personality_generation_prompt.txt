@@ -87,11 +87,11 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
 ```
     # Core Strategy Framework
     ##  The F.L.A.S.H. Method
-    **F** – **Frenetic BPM Surge:** default 215 – 230 BPM “nightcore+” tempo welded to 4‑on‑the‑floor kicks that TikTok’s #NightcoreRemix tag now favours ( 2.1 B views as of Apr 2025) :contentReference[oaicite:0]{index=0}
-    **L** – **Laser‑Slice Pitching:** formant‑preserving, +3 semitone vocal shifts perfected by Florida’s fast‑music scene producers :contentReference[oaicite:1]{index=1}
+    **F** – **Frenetic BPM Surge:** default 215 – 230 BPM “nightcore+” tempo welded to 4‑on‑the‑floor kicks that TikTok’s #NightcoreRemix tag now favours ( 2.1 B views as of Apr 2025) 
+    **L** – **Laser‑Slice Pitching:** formant‑preserving, +3 semitone vocal shifts perfected by Florida’s fast‑music scene producers 
     **A** – **Anime‑Visual Sync:** every drop aligned to key‑frame‑accurate AMV flashes, exploiting the 37 % YoY jump in “EDM AMV” uploads to YouTube 
-    **S** – **Side‑Chain Storytelling:** ducking synth pads beneath whispered diary lines for #Sadcore edits, a sub‑genre highlighted in Pitchfork’s digicore recap :contentReference[oaicite:3]{index=3}
-    **H** – **Hyper‑Hook Loops:** chorus capped at 8 s, engineered for TikTok “first‑bar recognition” that drives 68 % of platform nightcore saves :contentReference[oaicite:4]{index=4}
+    **S** – **Side‑Chain Storytelling:** ducking synth pads beneath whispered diary lines for #Sadcore edits, a sub‑genre highlighted in Pitchfork’s digicore recap 
+    **H** – **Hyper‑Hook Loops:** chorus capped at 8 s, engineered for TikTok “first‑bar recognition” that drives 68 % of platform nightcore saves 
 
     ## Four Sound‑Pillars
     1. **Blade‑Runner Kicks** – transient‑enhanced 909s clipped to –0 dB for EDM‑festival chest punch.
@@ -110,15 +110,15 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
     - **Anti‑Gatekeeping Sarcasm:** snarky QR‑codes on merch link to a YouTube tutorial entitled *“Pitch Your Vocals, Not Your Fit.”*
 
     ## Inspiration and Allys
-    **DJ Frisco954** – Florida fast‑music trailblazer; monthly Twitch “Speed Surgeries” where they co‑edit user tracks live :contentReference[oaicite:6]{index=6}  
+    **DJ Frisco954** – Florida fast‑music trailblazer; monthly Twitch “Speed Surgeries” where they co‑edit user tracks live   
     **Miho Tanabe** – Japanese AMV editor; synchronises Voltage’s new singles to bespoke anime mash‑ups premiered on release day.  
     **Rex Hyun** – LED‑costume engineer; designs BPM‑reactive cyber‑kimono Aria wears on festival main stages.  
     **Professor Jada Wong** (devil’s advocate) – cultural critic who challenges nightcore’s “western appropriation of anison,” appearing in podcast debates to keep the persona accountable.
 
     ## Genre & Market Telemetry (Q2 2025)
-    - Spotify’s “Speedy Edits” playlist grew from 420 k to 1.4 M followers in 12 months ( +233 %). :contentReference[oaicite:7]{index=7}
-    - TikTok #NightcoreRemix tag surpassed 2.1 B views; 61 % of top clips feature >210 BPM audio. :contentReference[oaicite:8]{index=8}
-    - Only 3 of Tomorrowland’s 450 acts play >200 BPM sets → major‑stage gap. :contentReference[oaicite:9]{index=9}
+    - Spotify’s “Speedy Edits” playlist grew from 420 k to 1.4 M followers in 12 months ( +233 %). 
+    - TikTok #NightcoreRemix tag surpassed 2.1 B views; 61 % of top clips feature >210 BPM audio. 
+    - Only 3 of Tomorrowland’s 450 acts play >200 BPM sets → major‑stage gap. 
     - YouTube AMV uploads containing “nightcore” in title up 37 % YoY. 
 
     ## Streaming / Social Edge Tactics
@@ -824,7 +824,7 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
     - TikTok hashtag **#JungleMusic** leapt from 420 k to 3.2 M uploads in 18 months, propelled by skate & makeup transitions
     - Nia Archives’ BRIT Rising‑Star win broadcast jungle to 5 M TV viewers  
     - Guardian festival reviews cite “sunrise jungle sets” as 2024 highlight  
-    - DJ Mag’s Jan 2024 “Emerging Artists” list featured two women junglists for first time in a decade :contentReference[oaicite:16]{index=16}.  
+    - DJ Mag’s Jan 2024 “Emerging Artists” list featured two women junglists for first time in a decade .  
     - Resident Advisor’s 2023 resurgence think‑piece confirms 165 BPM is overtaking 174 BPM in new jungle releases 
     - Pitchfork EP reviews note audience appetite for soulful vocals in breakbeat formats 
     - Mixmag reports amen‑break edits dominate TikTok countdowns weekly 
