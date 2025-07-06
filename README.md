@@ -72,15 +72,13 @@
 | **Petals Kiss the Tide** | *Flowers* | 🥇 1st | 1 910 | [MoEhHHLb](https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B) |
 | **Being Devoured by the Role** | *Female Portraits* | 🥇 1st | 673 | [lKMuiIeK](https://creator.nightcafe.studio/game/lKMuiIeKUa4Sn7af7nkl) |
 | **Can’t Figure the Way Forward** | *No Theme (Uploads)* | 🥇 1st | 869 | [a4ww4P3K](https://creator.nightcafe.studio/game/a4ww4P3KM7btbaqnJrJI) |
-| **Enchanted Dark Fairy Perches on Crescent Moon** | *Crescent Fae* | 🥇 1st | 673 † | [mL9iwog1](https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq) |
+| **Enchanted Dark Fairy Perches on Crescent Moon** | *Crescent Fae* | 🥇 1st | 459 | [mL9iwog1](https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq) |
 | **Stylish Attire** | *Stylish Attire* | 🥈 Runner‑up | — | [BDkppU9l](https://creator.nightcafe.studio/game/BDkppU9lkL0sxHQX5liS) |
 | **Green** | *Green* | 🥈 2nd | 348 | [1J5idcZk](https://creator.nightcafe.studio/game/1J5idcZkzrEEp2FjfzIT) |
 | **Dangerous Bap Target** | *Biomechanical Creature* | 🥈 2nd | 430 | [6H3ljL30](https://creator.nightcafe.studio/game/6H3ljL30lbz01wV89HMt) |
 | **Constellation of Gilded Dreams** | *Gilded Dreams* | 🥈 2nd | — | [ZoeZJBLN](https://creator.nightcafe.studio/game/ZoeZJBLNsAGggNDa1Uf5) |
 | **Esteemed Opulance** | *Opulence* | 🥈 2nd | — | [rW6e9QTP](https://creator.nightcafe.studio/game/rW6e9QTPlzYrbTbMTBpw) |
 | **Mosaic Sea** | *Radiant Sea* | 🥉 3rd | 512 | [q7X2vFvy](https://creator.nightcafe.studio/game/q7X2vFvy3tWrrOpPWh5V) |
-
-† Field size for *Crescent Fae* pulled from NightCafe’s results page (673 entries).
 
 ---
 
