@@ -25,10 +25,71 @@
 
 ---
 
-## 🏆 Award Highlights  <sup>(select wins, 2024‑25)</sup>
+## 🏆 Awards Showcase (2024 – 25)
 
-| Year | Competition | Placement | Link |
-| coming!
+<!-- ----------  CAROUSEL  ---------- -->
+<div align="center">
+
+<a href="https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B">
+  <img src="examples/community-challenge-MoEhHHLblSgdMV18sV8B%20(1).png"  width="260" alt="Petals Kiss the Tide – 1st / 1 910">
+</a>
+<a href="https://creator.nightcafe.studio/game/lKMuiIeKUa4Sn7af7nkl">
+  <img src="examples/community-challenge-lKMuiIeKUa4Sn7af7nkl%20(2).png"  width="260" alt="Being Devoured by the Role – 1st / 673">
+</a>
+<a href="https://creator.nightcafe.studio/game/a4ww4P3KM7btbaqnJrJI">
+  <img src="examples/community-challenge-a4ww4P3KM7btbaqnJrJI%20(1).png"  width="260" alt="Can’t Figure the Way Forward – 1st / 869">
+</a>
+<a href="https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq">
+  <img src="examples/community-challenge-mL9iwog1D2W5iVfZvIMq%20(1).png"  width="260" alt="Enchanted Dark Fairy – 1st / 673">
+</a>
+<a href="https://creator.nightcafe.studio/game/BDkppU9lkL0sxHQX5liS">
+  <img src="examples/community-challenge-BDkppU9lkL0sxHQX5liS%20(1).png"  width="260" alt="Stylish Attire – Runner‑up">
+</a>
+<a href="https://creator.nightcafe.studio/game/1J5idcZkzrEEp2FjfzIT">
+  <img src="examples/community-challenge-1J5idcZkzrEEp2FjfzIT.png"       width="260" alt="Green – 2nd / 348">
+</a>
+<a href="https://creator.nightcafe.studio/game/6H3ljL30lbz01wV89HMt">
+  <img src="examples/community-challenge-6H3ljL30lbz01wV89HMt.png"       width="260" alt="Dangerous Bap Target – 2nd / 430">
+</a>
+<a href="https://creator.nightcafe.studio/game/ZoeZJBLNsAGggNDa1Uf5">
+  <img src="examples/community-challenge-ZoeZJBLNsAGggNDa1Uf5.png"       width="260" alt="Constellation of Gilded Dreams – 2nd">
+</a>
+<a href="https://creator.nightcafe.studio/game/rW6e9QTPlzYrbTbMTBpw">
+  <img src="examples/community-challenge-rW6e9QTPlzYrbTbMTBpw.png"       width="260" alt="Esteemed Opulance – 2nd">
+</a>
+<a href="https://creator.nightcafe.studio/game/q7X2vFvy3tWrrOpPWh5V">
+  <img src="examples/community-challenge-q7X2vFvy3tWrrOpPWh5V.png"       width="260" alt="Mosaic Sea – 3rd / 512">
+</a>
+
+</div>
+
+> *Full‑resolution PNGs are in `/examples`, each named `community‑challenge‑<id>.png`.*
+
+### Detailed Placements
+
+| Title | Challenge | Placement | Field Size | NightCafe Link |
+| :--- | :--- | :---: | :---: | :--- |
+| **Petals Kiss the Tide** | *Flowers* | 🥇 1st | 1 910 | [MoEhHHLb](https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B) |
+| **Being Devoured by the Role** | *Female Portraits* | 🥇 1st | 673 | [lKMuiIeK](https://creator.nightcafe.studio/game/lKMuiIeKUa4Sn7af7nkl) |
+| **Can’t Figure the Way Forward** | *No Theme (Uploads)* | 🥇 1st | 869 | [a4ww4P3K](https://creator.nightcafe.studio/game/a4ww4P3KM7btbaqnJrJI) |
+| **Enchanted Dark Fairy Perches on Crescent Moon** | *Crescent Fae* | 🥇 1st | 673 † | [mL9iwog1](https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq) |
+| **Stylish Attire** | *Stylish Attire* | 🥈 Runner‑up | — | [BDkppU9l](https://creator.nightcafe.studio/game/BDkppU9lkL0sxHQX5liS) |
+| **Green** | *Green* | 🥈 2nd | 348 | [1J5idcZk](https://creator.nightcafe.studio/game/1J5idcZkzrEEp2FjfzIT) |
+| **Dangerous Bap Target** | *Biomechanical Creature* | 🥈 2nd | 430 | [6H3ljL30](https://creator.nightcafe.studio/game/6H3ljL30lbz01wV89HMt) |
+| **Constellation of Gilded Dreams** | *Gilded Dreams* | 🥈 2nd | — | [ZoeZJBLN](https://creator.nightcafe.studio/game/ZoeZJBLNsAGggNDa1Uf5) |
+| **Esteemed Opulance** | *Opulence* | 🥈 2nd | — | [rW6e9QTP](https://creator.nightcafe.studio/game/rW6e9QTPlzYrbTbMTBpw) |
+| **Mosaic Sea** | *Radiant Sea* | 🥉 3rd | 512 | [q7X2vFvy](https://creator.nightcafe.studio/game/q7X2vFvy3tWrrOpPWh5V) |
+
+† Field size for *Crescent Fae* pulled from NightCafe’s results page (673 entries).
+
+---
+
+### Other Notable Victories
+
+* 🥇 **Whirl Daily Art Competition** – first place (*“Only This and Nothing More”*).  
+* 🥈 **Whirl Discord Art Challenge** – second place (*“A Victorian Chrononaut”*).
+
+> *Whirl images live in `/examples` (`Only this...jpeg`, `2nd_A Victorian Chrononaut...png`).*
 
 ---
 
