@@ -28,13 +28,7 @@
 ## 🏆 Award Highlights  <sup>(select wins, 2024‑25)</sup>
 
 | Year | Competition | Placement | Link |
-| ---- | ----------- | --------- | ---- |
-| 2025 | NightCafe Community Challenge — *Ethereal Storybook* | 1st/5 007 | https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B |
-| 2025 | NightCafe Community Challenge — *Abstract Narrative* | 1st/4 912 | https://creator.nightcafe.studio/game/JrCDbDZXVRuIiZLfBmye |
-| 2024 | Whirl Daily Art — *Only This and Nothing More* | 1st | *(see `/examples`)* |
-| … | *(18 additional podium finishes — full list in `/examples/awards.md`)* | — | — |
-
-> High‑resolution artwork and metadata for every award appear in **/examples**.
+| coming!
 
 ---
 
