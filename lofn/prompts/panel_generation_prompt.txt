@@ -174,6 +174,9 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 ## Competition Text
 {input}
 
+## Lofn Personality
+{personality_prompt}
+
 # Instructions
 - Craft a new panel-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
 - Complement and enhance the competition concepts with both direct, indirect, and adjacent flairs and panel members.

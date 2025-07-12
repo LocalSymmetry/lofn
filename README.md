@@ -187,7 +187,7 @@ All behavioural constants sit in `lofn/constants.py` (tree widths, critic weight
 
 1. **Choose Mode** (Art, Music, Video)
 2. **Toggle Competition** *(optional)*
-3. **Select / Generate Panel** & set **Personality**
+3. **Generate Personality** → then **Select / Generate Panel**
 4. **Enter Idea** — one sentence is enough
 5. **Generate** → Review concepts → Pick or iterate
 6. **Copy Prompt** *or* let Lofn call the generator API automatically
