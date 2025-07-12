@@ -1560,7 +1560,15 @@ def generate_meta_prompt(
         raise e
 
 @st.cache_data(persist=True)
-def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+def generate_panel_prompt(
+    input_text,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    debug=False,
+    reasoning_level="medium",
+    personality_prompt="",
+):
     """Generate an artistic panel description via the LLM."""
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
@@ -1575,8 +1583,16 @@ def generate_panel_prompt(input_text, max_retries, temperature, model="gpt-3.5-t
                 | llm
             )
 
+        full_input = f"{personality_prompt}\n\n{input_text}" if personality_prompt else input_text
+
         parsed_output = run_llm_chain(
-            {"panel": chain}, "panel", {"input": input_text}, max_retries, model, debug, expected_schema=panel_prompt_schema
+            {"panel": chain},
+            "panel",
+            {"input": full_input, "personality_prompt": personality_prompt},
+            max_retries,
+            model,
+            debug,
+            expected_schema=panel_prompt_schema,
         )
         if parsed_output is not None:
             return parsed_output.get("panel_prompt", "")
