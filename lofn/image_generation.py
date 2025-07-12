@@ -941,6 +941,17 @@ def save_metadata(metadata):
             return obj.isoformat()
         raise TypeError(f"Type {type(obj)} not serializable")
 
+    metadata['input_settings'] = get_input_settings()
+    panel = st.session_state.get('custom_panel')
+    if panel:
+        metadata['panel_prompt'] = panel
+    personality = st.session_state.get('custom_personality')
+    if personality:
+        metadata['personality_prompt'] = personality
+    meta_prompt = st.session_state.get('meta_prompt')
+    if meta_prompt:
+        metadata['meta_prompt'] = meta_prompt
+
     # Save the metadata as a JSON file
     with open(metadata_filename, 'w') as f:
         json.dump(metadata, f, indent=2, default=json_serializable)
@@ -956,6 +967,17 @@ def save_music_metadata(metadata):
         if isinstance(obj, datetime):
             return obj.isoformat()
         raise TypeError(f'Type {type(obj)} not serializable')
+
+    metadata['input_settings'] = get_input_settings()
+    panel = st.session_state.get('custom_panel')
+    if panel:
+        metadata['panel_prompt'] = panel
+    personality = st.session_state.get('custom_personality')
+    if personality:
+        metadata['personality_prompt'] = personality
+    meta_prompt = st.session_state.get('meta_prompt')
+    if meta_prompt:
+        metadata['meta_prompt'] = meta_prompt
 
     with open(metadata_filename, 'w') as f:
         json.dump(metadata, f, indent=2, default=json_serializable)
@@ -974,6 +996,17 @@ def save_video_metadata(metadata):
         if isinstance(obj, datetime):
             return obj.isoformat()
         raise TypeError(f'Type {type(obj)} not serializable')
+
+    metadata['input_settings'] = get_input_settings()
+    panel = st.session_state.get('custom_panel')
+    if panel:
+        metadata['panel_prompt'] = panel
+    personality = st.session_state.get('custom_personality')
+    if personality:
+        metadata['personality_prompt'] = personality
+    meta_prompt = st.session_state.get('meta_prompt')
+    if meta_prompt:
+        metadata['meta_prompt'] = meta_prompt
 
     with open(metadata_filename, 'w') as f:
         json.dump(metadata, f, indent=2, default=json_serializable)

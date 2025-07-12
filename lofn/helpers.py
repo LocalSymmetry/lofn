@@ -482,6 +482,19 @@ def truncate_prompt(prompt: Union[str, List[dict]], max_tokens: int = 3000) -> U
                 break
         return truncated_prompt
 
+def get_input_settings() -> dict:
+    """Return a JSON-serializable copy of ``st.session_state``."""
+    allowed_types = (int, float, str, bool, list, dict, type(None))
+    settings = {}
+    for key, value in st.session_state.items():
+        if isinstance(value, allowed_types):
+            try:
+                json.dumps(value)
+            except TypeError:
+                continue
+            settings[key] = value
+    return settings
+
 def send_to_discord(content, content_type='prompts', premessage=''):
     try:
         if st.session_state['send_to_discord']:

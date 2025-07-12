@@ -457,6 +457,7 @@ class LofnApp:
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                     personality_prompt=personality_text,
                 )
+                st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
                 template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
@@ -663,6 +664,7 @@ class LofnApp:
                 medium="music",
                 personality_prompt=personality_text,
             )
+            st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
             template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
@@ -795,6 +797,7 @@ class LofnApp:
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
                     personality_prompt=personality_text,
                 )
+                st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
                 panel_text = st.session_state.get('custom_panel', '')
                 if st.session_state.get('selected_panel') == 'LLM Generated':
                     if not panel_text:
