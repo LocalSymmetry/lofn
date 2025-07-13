@@ -178,6 +178,7 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 {personality_prompt}
 
 # Instructions
+- Identify wether the user is looking for a song, image, or video. The panel should be geared toward musicians, artistics, and cinematographers depending upon what the user is requesting.
 - Craft a new panel-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
 - Complement and enhance the competition concepts with both direct, indirect, and adjacent flairs and panel members.
 - Return only JSON with the field "panel_prompt" containing a single formatted string with the following structure:

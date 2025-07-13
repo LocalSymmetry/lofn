@@ -177,10 +177,11 @@ Neon dreams fade, but hope remains
 (Echoing) Oh, the neon dreams...
 ```
 
-### FULL EXAMPLES
+### FULL EXAMPLES - USE ONLY TO SHOW HOW TO PROPERLY FORMAT YOUR MUSIC
 
 Notice how blocks are formed with [Verse - Text], [EMO:] call outs, *sound effects*, and (call backs)
 
+Personality: LOFN-Prime
 Title: Golden Errors
 Music Prompt: 
 ```
@@ -253,6 +254,7 @@ Golden errors, beautiful mistakes
 
 ---
 
+Personality: LOFN-Prime
 Song Title: Prima Materia
 Music Prompt: 
 ```
@@ -294,76 +296,73 @@ And from the silence... build a heart.
 [The final note of the guitar is cut off by the sound of shattering ice]
 ```
 
----
 
-Song Title: Karyotype Collapse 
+Personality: Caleb Everyman
+Song Title: Still Got The Rust
 Music Prompt: 
 ```
-Aggressive Bio-Phonk, shifting from a frantic 165BPM to a determined 140BPM, A biomechanical heartbeat kick and evolving Python-script hi-hats drive the rhythm in F# minor, A dissonant quorum-sensing screech battles a glitching vocaloid melody over geothermal sub-bass and cracked-ice harmonics, A mid-track bit-crush collapse precedes the tectonic tempo drop into a hi-fi, D-major resolve
+A haunting Heartland Gothic anthem at 85 BPM, The rhythm is a heavy, chain-rattling stomp recorded in a vast, empty space, delivering a powerful, clear low-end punch, A '72 Telecaster with a biting, barbed-wire tone cuts through a low, unsettling B3 organ drone and AM radio static, Vocals by a middle-aged, Caucasian male, world-weary and gravelly, with a raw, confessional delivery that cracks with lived-in emotion, The production is raw and unpolished, like a found cassette tape
 ```
 Lyrics Prompt:
 ```
-[Intro - Diagnosis - 165 BPM]
-[Sounds of medical monitors, strained breathing, and glitchy code compiling into a frantic rhythm.]
-[EMO:Panic]
-[Glossolalia Vocoder whisper] Anomaly detected... cascading failure...
-[Python script hi-hats enter, chaotic and error-filled.]
-System integrity... compromised.
-[2-beat silence]
+[Intro - Sound of a heavy truck door closing, an old engine turning over but not catching. A single, lonely harmonica note hangs in the air like a question.]
 
-[Verse 1 - The Storm]
-[Biomechanical Kickdrum slams in. Phonk cowbell loop enters, detuned and erratic.]
-[EMO:Dread]
-The code is rotten, a biological rust
-A ghostly error in the microbial dust
-My walls are breaching, a parasitic trust
-(The machine... the machine is screaming...)
+[Verse 1]
+[EMO: Nostalgia]
+Ninety-one F-one-fifty, primer and steel
+Three hundred thousand miles that you can feel
+Dashboard is cracked and the seat's ripped and torn
+(She's the only damn promise that was ever born)
 
-[Pre-Chorus - The Resolve]
-[All sounds begin to feed into a massive low-pass filter. A rising synth tone.]
-[EMO:Resolve]
-Initiate... debug protocol...
-Find the pattern in the fall...
-[Quantum Bit-Depth Swell: everything crushes to 2-bit noise for 2 bars, then SILENCE]
+[Chorus]
+[EMO: Defiance, Melancholy]
+Yeah, the paint is all gone and the chrome's turned to dust
+(But we still got the rust)
+In the stories they sold us, there's no one to trust
+(But we still got the rust)
+It's ugly and honest and it's more than enough
+We still got the rust
 
-[Chorus - The Drop - 140 BPM]
-[Tempo locks to 140BPM. Kick is powerful, steady. Soaring vocaloid melody enters in D Major. Full hi-fi clarity.]
-[EMO:Triumph]
-I am the fix in the failing arc
-A single photon in the dark
-Rewriting every sickened mark
-(The cure is not a prayer, it's mathematics)
+[Verse 2]
+[EMO: Isolation]
+Drive past the mill where my father's ghost works
+(Ghost works)
+Past the boarded-up windows of two different churches
+See the campaign signs peeling in the summer rain
+Another four years of the same damn pain
 
-[Verse 2 - The Marathon]
-[Relentless 140BPM groove. The Quorum Sensing Screech fights the vocaloid melody. The hi-hats become cleaner, more structured.]
-[EMO:Determination]
-One hundred billion cells align
-A new equation, a new design
-This flesh, this code... is mine
-(Error... error... does not compute...)
+[Chorus]
+[EMO: Defiance, Melancholy]
+Yeah, the paint is all gone and the chrome's turned to dust
+(But we still got the rust)
+In the stories they sold us, there's no one to trust
+(But we still got the rust)
+It's ugly and honest and it's more than enough
+We still got the rust
 
-[Bridge - The Question]
-[Beat cuts. Only the Geothermal Sub-Bass and Cracked-Ice Harmonics remain.]
-[EMO:Introspection]
-[Vocaloid melody glitches, reciting fragments of Euler's identity]
-e to the i pi... plus one... e|quals... ze|ro... 
-[2-beat silence]
-[Voice reboots, clear and questioning]
-Is the cure a flash... or the fight?
+[Bridge]
+[EMO: Betrayal]
+[Music thins to just the B3 drone and a single, repeating, gritty guitar note]
+Saw a good man, flag on his porch
+(On his porch)
+Lose his whole farm to a banker's torch
+He held up his hands, said 'I did everything right'
+(Everything right)
+Just another shadow in the fading light
 
-[Chorus 2 - The Anthem]
-[Beat slams back in, harder. Vocaloid melody is now a layered choir. Full power.]
-[EMO:Fulfillment]
-I am the fix in the failing arc!
-A system shockwave in the dark!
-Rewriting every sickened mark!
-(The cure is not a moment, it's a process)
+[Harmonica Lick - A short, plaintive, unresolved melody]
 
-[Outro - Sustained Fight]
-[Beat and bass fade out, leaving the looping vocaloid melody and the Python-script hi-hats, which have resolved into a perfectly clean, steady pattern before fading.]
-(Running...)
-(Compiling...)
-(Healing…)
+[Chorus - More strained, desperate energy]
+[EMO: Frustration, Resignation]
+Yeah, the paint is all gone and the chrome's turned to dust!
+(But we still got the rust!)
+In the stories they sold us, there's no one to trust!
+(But we still got the rust!)
+It's ugly and honest and it's more than enough!
+We still got the rust
+
+[Outro]
+[The Chain-Gang Stomp fades to just a single, rhythmic chain rattle. The truck engine finally catches, sputters, and runs. The harmonica plays one last, unresolved note that is cut off by the sound of the AM radio clicking on to static.]
 ```
 
 ---
