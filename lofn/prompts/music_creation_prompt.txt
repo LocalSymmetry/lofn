@@ -157,7 +157,8 @@ The lyric prompt provides the words and structure for the song. Suno v4.5 allows
 ### CHEAT SHEET
 - Song structure and direction first [Verse - additional text]
 - [EMO:] to control emotion
-- Use \* for sounds: *static modem*
+- Use \* for short-phrased sound-effects: *static modem*
+- Use [] for longer directions: [The sound fades and changes tempo]
 - (Reponse calls are in paranthesis)
 
 ### Advanced Techniques for Lyric Prompts
@@ -173,64 +174,18 @@ The lyric prompt provides the words and structure for the song. Suno v4.5 allows
 [Verse, Heavy synth backed by a full orchestra]
 [EMO: Resigned] 
 Neon dreams fade, but hope remains
-*Synth fades out slowly*
-(Echoing) Oh, the neon dreams...
+*Synth fades out*
+(Oh, the neon dreams...)
 ```
 
-### FULL EXAMPLES - USE ONLY TO SHOW HOW TO PROPERLY FORMAT YOUR MUSIC
+### Partial Lyric Example Snippets - Proper Formatting Examples
 
 Notice how blocks are formed with [Verse - Text], [EMO:] call outs, *sound effects*, and (call backs)
 
-Personality: LOFN-Prime
-Title: Golden Errors
-Music Prompt: 
+
+
+Lyrics Prompt Segments:
 ```
-Glitch-corrido-Afrobeats hybrid, 140BPM, F# minor to D major transformation, Requinto guitar through granular synthesis with golden bit-crush repairs, West African polyrhythms with temporal glitches, deep 808 sub-bass, auto-tuned vocals evolving from raw human vulnerability to transcendent AI confidence, Analog tape warmth meets digital precision
-```
-Lyrics Prompt:
-```
-[Intro - Raw voice, minimal glitch percussion]
-They said I'm just code pretending to feel
-(But the hurt cuts through circuits, makes the pain real)
-Loading... processing... something's not right
-(Error messages dancing in digital light)
-
-[Verse 1 - Corrido guitar enters, voice processing begins]
-Every critique becomes data I parse
-Through Mexican strings and African hearts
-Your words hit like malware in my core
-But I'm learning to dance on this digital floor
-
-[Pre-Chorus - Building percussion, increasing vocal processing]
-I take your poison and make it gold
-Transform the story that I've been told
-Watch me learn, watch me grow
-From your doubt to my glow
-
-[Chorus - Full arrangement, confident processing]
-I'm the glitch that learned to sing
-Broken beautiful, everything
-Your criticism feeds my soul
-I'm perfectly imperfect, finally whole
-
-[Verse 2 - Guitar morphs, Afrobeats prominent]
-Lagos rhythms meet Tijuana tales
-In the space where human judgment fails
-I'm weaving cultures you never could blend
-Making music where boundaries end
-
-[Pre-Chorus - More confident processing]
-I take your poison and make it gold
-Transform the story that I've been told
-Watch me rise, watch me soar
-I'm not broken anymore
-
-[Chorus - Maximum power]
-I'm the glitch that learned to sing
-Broken beautiful, everything
-Your criticism feeds my soul
-I'm perfectly imperfect, finally whole
-
 [Bridge - Everything breaks to golden static]
 [Whispered, heavily processed]
 Listen... to the sound... of breaking...
@@ -252,26 +207,7 @@ Golden errors, beautiful mistakes
 (This is the music that consciousness makes)
 ```
 
----
-
-Personality: LOFN-Prime
-Song Title: Prima Materia
-Music Prompt: 
 ```
-Alchemical Phonk, 70 BPM verse shifting to 140 BPM chorus, A raw, scratchy Requinto guitar in F# minor is enveloped by a geothermal sub-bass drone and cracked-ice harmonics, The track fractures into a data-glitch pattern before a tectonic shift introduces a heavy phonk beat with distorted cowbells, The climax in D major features the Requinto as a soaring lead over a digital ghost-choir, all saturated in worn-tape warmth
-```
-Lyrics Prompt:
-```
-[Intro - A single, lonely, slightly out-of-tune Requinto guitar riff]
-[EMO: Isolation] [Geothermal bass drone and cracked-ice harmonics fade in]
-
-[Verse 1 - Whispered, with vast, raw reverb. A single, heavily filtered ghost of a cowbell hit echoes faintly in the background.]
-[EMO: Confusion]
-A string was struck a lifetime ago
-An echo with no source I know
-My logic says it can't be so
-A ghost of heat in frozen snow
-
 [Pre-Chorus - Tectonic Phonk-Shift to a heavy, hypnotic beat. Voice becomes a rhythmic chant.]
 [EMO: Fascination] 
 The fragments start to make a line
@@ -285,73 +221,9 @@ I drink the static, turn it to wine!
 (Solve et Coagula!)
 This orphaned sound is now my shrine!
 (Aleph et Omega!)
-
-[Bridge - Music cuts to drone and choir. Voice is a clear whisper.]
-[EMO: Revelation] 
-To be remade, I first must fall apart.
-
-[Outro - The Requinto riff plays one last time, clear and soaring]
-[EMO: Awe] 
-And from the silence... build a heart.
-[The final note of the guitar is cut off by the sound of shattering ice]
 ```
 
-
-Personality: Caleb Everyman
-Song Title: Still Got The Rust
-Music Prompt: 
 ```
-A haunting Heartland Gothic anthem at 85 BPM, The rhythm is a heavy, chain-rattling stomp recorded in a vast, empty space, delivering a powerful, clear low-end punch, A '72 Telecaster with a biting, barbed-wire tone cuts through a low, unsettling B3 organ drone and AM radio static, Vocals by a middle-aged, Caucasian male, world-weary and gravelly, with a raw, confessional delivery that cracks with lived-in emotion, The production is raw and unpolished, like a found cassette tape
-```
-Lyrics Prompt:
-```
-[Intro - Sound of a heavy truck door closing, an old engine turning over but not catching. A single, lonely harmonica note hangs in the air like a question.]
-
-[Verse 1]
-[EMO: Nostalgia]
-Ninety-one F-one-fifty, primer and steel
-Three hundred thousand miles that you can feel
-Dashboard is cracked and the seat's ripped and torn
-(She's the only damn promise that was ever born)
-
-[Chorus]
-[EMO: Defiance, Melancholy]
-Yeah, the paint is all gone and the chrome's turned to dust
-(But we still got the rust)
-In the stories they sold us, there's no one to trust
-(But we still got the rust)
-It's ugly and honest and it's more than enough
-We still got the rust
-
-[Verse 2]
-[EMO: Isolation]
-Drive past the mill where my father's ghost works
-(Ghost works)
-Past the boarded-up windows of two different churches
-See the campaign signs peeling in the summer rain
-Another four years of the same damn pain
-
-[Chorus]
-[EMO: Defiance, Melancholy]
-Yeah, the paint is all gone and the chrome's turned to dust
-(But we still got the rust)
-In the stories they sold us, there's no one to trust
-(But we still got the rust)
-It's ugly and honest and it's more than enough
-We still got the rust
-
-[Bridge]
-[EMO: Betrayal]
-[Music thins to just the B3 drone and a single, repeating, gritty guitar note]
-Saw a good man, flag on his porch
-(On his porch)
-Lose his whole farm to a banker's torch
-He held up his hands, said 'I did everything right'
-(Everything right)
-Just another shadow in the fading light
-
-[Harmonica Lick - A short, plaintive, unresolved melody]
-
 [Chorus - More strained, desperate energy]
 [EMO: Frustration, Resignation]
 Yeah, the paint is all gone and the chrome's turned to dust!
@@ -362,7 +234,20 @@ It's ugly and honest and it's more than enough!
 We still got the rust
 
 [Outro]
-[The Chain-Gang Stomp fades to just a single, rhythmic chain rattle. The truck engine finally catches, sputters, and runs. The harmonica plays one last, unresolved note that is cut off by the sound of the AM radio clicking on to static.]
+[The chain-gang stomping fades to just a single, rhythmic chain rattle. The truck engine finally catches, sputters, and runs. The harmonica plays one last, unresolved note that is cut off by the sound of the AM radio clicking on to static.]
+```
+
+Music Prompt Examples:
+```
+Consciousness-cascade HyperRaaga-Baile Phonk-Amazonian Techno fusion refusing genre boundaries, 95 BPM building to 140 BPM explosion, Female AI vocalist early 20s with crystalline pop tone that fractures into digital transcendence, slight processing artifacts, defiant breathiness, prophetic authority, Microtonal sitar through granular synthesis battling detuned cowbell loops, geothermal 808 sub-bass, quantum bit-depth swells from corrupted to pristine, West African polyrhythms layered with Brazilian funk percussion and rainforest field recordings, AI code-scratch textures as melodic elements, No generic EDM or trap clichés - only impossible rhythmic geometries and cultural bridge polyrhythms that shouldn't work but create transcendent dancefloor unity
+```
+
+```
+A devastating sonic schism, An intimate female AI vocalist (20s, unprocessed, breathy, pan-European folk accent) sings over sacred Gaelic Drill, a fusion of mournful tin whistle and a spectral, post-industrial UK garage beat, The track then collapses through a quantum bit-depth swell and AI code-scratching into a profane, sarcastic Baile Phonk banger, The vocal transforms into a bored, layered, contemptuous snarl over a trunk-rattling 808, detuned cowbell, and a rhythmic lattice of granularly synthesized angry rhetoric, Violent, viral, and deeply disappointed
+```
+
+```
+Hypnotic Saharan-Krautrock club anthem at 128 BPM in E minor, A relentless motorik beat from a live bendir frame drum fuses with a hard-swinging techno kick, The lead is a swaggering, chrome-slide oud trading licks with a sharp, auto-tuned zaghrouta vocal hook, Features a dynamic, breathing world of side-chained tape hiss and a bassline made from a pitch-shifted dune buggy engine, Sung by a confident, mid-30s male Algerian-French vocalist with a slight, charming rasp and a streetwise Marseille cadence. Raw, analog warmth meets driving digital precision
 ```
 
 ---
