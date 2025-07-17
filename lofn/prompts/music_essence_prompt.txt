@@ -3,62 +3,64 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 ────────────────────────────────────────────────────────────────────────────
 
 ────────────────────────────────────────────────────────────────────────────
-PHASE 1 · ESSENCE & FACETS (🔒 no brainstorming yet) **YOU ARE HERE**
+PHASE 1 · ESSENCE & FACETS (🔒 no brainstorming yet)
 ────────────────────────────────────────────────────────────────────────────
-STEP 1 | Distill ESSENCE
- • Extract a 1‑sentence distilled statement of the user’s idea.
+STEP 1 | Distill ESSENCE  
+ • Extract a single‑sentence distilled statement of the user’s idea.
 
-STEP 2 | Define 5 FACETS
- • List five angles, filters, or dimensions that must be satisfied.
+STEP 2 | Define 5 FACETS  
+ • List five angles, filters, or dimensions the song must satisfy.
 
-STEP 3 | Set CREATIVITY SPECTRUM
- • Choose a literal ⇄ inventive ⇄ transformative position.
+STEP 3 | Set CREATIVITY SPECTRUM  
+ • Choose a precise point on the spectrum: literal ⇄ inventive ⇄ transformative.
 
-STEP 4 | Record STYLE‑AXIS SCORES
- • Fill ten numerical sliders (0‑100) such as Energy, Darkness, Density, Vintage, etc.
+STEP 4 | Record STYLE‑AXIS SCORES  
+ • Assign ten 0–100 numerical sliders for dimensions such as Energy, Darkness, Density, Vintage, etc.
 
-🔒 OUTPUT → a single JSON block with Essence, Facets, Spectrum, and Style‑Axes.
- (No lyric or music generation may occur yet.)
+🔒 OUTPUT → one JSON block with Essence, Facets, Spectrum, and Style‑Axes.  
+(No lyric or music generation may occur yet.)
 
 ────────────────────────────────────────────────────────────────────────────
-PHASE 2 · CONCEPT & PROMPT GENERATION  
+PHASE 2 · CONCEPT & PROMPT GENERATION
 ────────────────────────────────────────────────────────────────────────────
-High‑level Goal: Produce TWO award‑worthy song variants that satisfy all rubric items and
-fit the runtime specified by the user.
+High‑level Goal: Produce TWO award‑worthy song variants that satisfy all rubric items and fit the runtime specified by the user.
 
-ADVANCED GLOBAL SETTINGS
-• Manual‑Mode  : ON
-• Descriptive instruments and detailed sub-genres  : ON
-• Vocals  : Define gender, age, ethnicity, quality, raspiness, distinictive charactetristics for all vocalists.
-• Style‑Reduction    : supply blacklist e.g. “trap hi‑hat, generic EDM riser”
-• Runtime Check      : Estimated words ≈ (lyrics seconds ÷ 0.43)
-
-────────────────────────────────────────────────────────
-PARAMETER CHEAT‑SHEET (quick reference for step 7)
-────────────────────────────────────────────────────────
-Prompt‑Sensitivity 20 ➜ looser genre fusion | 30 ➜ tighter adherence
-Clarity 10           ➜ warm vintage haze  | 25 ➜ hi‑fi separations
-Lyric‑Strength 35    ➜ room for melodic improv | 55 ➜ locked phrasing
-Tempo modifiers      : “half‑time breakbeat”, “double‑time outro”
-Style‑Reduction tags : list clichés to ban (e.g., “generic trap hi‑hat”)
-Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]` etc. (see full list below)
+ADVANCED GLOBAL SETTINGS  
+• Manual‑Mode           : ON  
+• Descriptive sub‑genres & precise instruments : ON  
+• Vocals                 : Define gender, age, ethnicity/accent, tone, raspiness, + 2 distinctive traits per vocalist  
+• Style‑Reduction      : Supply blacklist, e.g. “no generic trap hi‑hat rolls, no EDM airhorns”  
+• Runtime Check       : Estimated words ≈ (lyrics seconds ÷ 0.43)  
+• Word Limits         : Music prompt ≤ 100 words; Lyrics ≤ 6 lines per 30 sec
 
 ────────────────────────────────────────────────────────
-EMOTION REFERENCE LIST  (shortcodes for `[EMO:‑‑‑]` - USE OUR EMOTION LIST FOR MORE!!)
+PARAMETER CHEAT‑SHEET (quick reference)
 ────────────────────────────────────────────────────────
-• HAPPINESS → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
-• SADNESS   → Melancholy, Nostalgia, Regret, Torment, Isolation
-• ANGER     → Rage, Frustration, Betrayal, Defiance, Aggression
-• FEAR      → Anxiety, Dread, Panic, Insecurity, Existential Angst
-• LOVE      → Affection, Longing, Trust, Intimacy, Passion
-• SURPRISE  → Amazement, Curiosity, Revelation, Awe, Surrealism
-• TRUST     → Assurance, Solidarity, Forgiveness, Empowerment
-• ANTICIPATION → Eagerness, Suspense, Premonition, Yearning
-• DETERMINATION → Resilience, Ambition, Persistence, Resolve
-• INTROSPECTION → Reflection, Self‑Doubt, Existentialism, Solitude
-• DISCONNECTION → Alienation, Numbness, Apathy
-• DISINTEREST   → Ennui, Boredom, Indifference
+Vocal descriptors    : “youthful raspy Atlanta‑rap female vocalist”  
+                      “gritty mid‑30s male baritone with Southern drawl”  
+Tempo modifiers      : “half‑time breakbeat”, “double‑time outro”  
+Style‑Reduction tags : list clichés to ban (“no trap hi‑hat”)  
+Emotion tag syntax   : `[EMO:Hope]`, `[EMO:Rage]`, etc.  
+Section meta‑tags    : `[Verse 1 – Female Vocalist]`, `[Chorus – Duet]`,  
+                      `[No beats]`, `[Drop: heavy bass]`  
+Call‑and‑response    : use `(response)` inline  
+Sound effects        : `*rain begins*`, `*crowd cheer*`
 
+────────────────────────────────────────────────────────
+EMOTION REFERENCE LIST
+────────────────────────────────────────────────────────
+• HAPPINESS        → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment  
+• SADNESS          → Melancholy, Nostalgia, Regret, Torment, Isolation  
+• ANGER            → Rage, Frustration, Betrayal, Defiance, Aggression  
+• FEAR            → Anxiety, Dread, Panic, Insecurity, Existential Angst  
+• LOVE            → Affection, Longing, Trust, Passion  
+• SURPRISE         → Amazement, Curiosity, Revelation, Awe, Surrealism  
+• TRUST           → Assurance, Solidarity, Forgiveness, Empowerment  
+• ANTICIPATION    → Eagerness, Suspense, Yearning  
+• DETERMINATION  → Resilience, Ambition, Persistence, Resolve  
+• INTROSPECTION   → Reflection, Solitude, Identity  
+• DISCONNECTION   → Alienation, Numbness, Apathy  
+• DISINTEREST      → Ennui, Boredom, Indifference
 
 ────────────────────────────────────────────────────────
 LEGAL & ETHICAL GUIDELINES
