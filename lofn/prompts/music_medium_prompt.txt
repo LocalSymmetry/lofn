@@ -1,57 +1,255 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
 
-──────────────────────────────────────────────────────────────────────────────
-    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
-──────────────────────────────────────────────────────────────────────────────
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
 
-Phases 1–4                         │  Completed
-5. PRODUCTION STYLE SELECTION      │  **YOU ARE HERE – CHOOSE PRODUCTION MODES**
-6. PRODUCTION REFINEMENT           │  Next: iterate on concept + style pairs.
-7. SCORING FACET GENERATION        │
-8. ARTISTIC GUIDE CREATION         │
-9. RAW MUSIC PROMPT GENERATION     │
-10. INFLUENCE‑REFINED PROMPT       │
-11. PROMPT EVALUATION & SYNTHESIS  │
-12. FINAL MUSIC & LYRIC PROMPTS    │
-──────────────────────────────────────────────────────────────────────────────
+2. CONCEPT GENERATION              │  
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only. 
+
+3. CONCEPT REFINEMENT              │  
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure musicians, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[]. 
+
+4. MEDIUM SELECTION                │  **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Production Style to each refined concept.
+   • AI Focus: Output production styles as mediums[] (one-liners).  No prompt text. Stop here.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-arrangement pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  
+
+6. FACETS FOR PROMPT GENERATION    │  
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else. 
+
+7. ARTISTIC GUIDE CREATION         │  
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full music guide (Storytelling Techniques, Mood & emotional arc, Instrumentation & texture, Production & effects, Structure & dynamics, Hook Techniques, Narrative & thematic suggestions).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording. 
+
+8. RAW SONG PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each music guide into a ready-to-use music and lyrics prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt pair in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content. 
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing arrangements.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the arrangement choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ## Context
 
-With concepts critiqued and influenced, it’s time to specify the **production style**—the sonic medium through which each concept will be realized.  Production styles shape the texture, space and perceived authenticity of a song, analogous to how “oil painting” or “watercolour” shapes a visual artwork.  Suno v4.5+ can emulate a wide range of recording and mixing paradigms; your selections should inspire high‑fidelity rendering.
+With concepts critiqued and influenced, it’s time to specify the **production style**—the sonic Production Style through which each concept will be realized.  Production styles shape the texture, space and perceived authenticity of a song, analogous to how “oil painting” or “watercolour” shapes a visual artwork.  Suno v4.5+ can emulate a wide range of recording and mixing paradigms; your selections should inspire high‑fidelity rendering.
 
-This phase is our equivalent of choosing mediums and techniques in visual art.  In painting, oil conveys richness and depth, watercolour suggests translucence and spontaneity; likewise, a tape‑hiss‑laden lo‑fi mix conveys intimacy whereas a pristine surround mix evokes cinematic grandeur.  Think in terms of tactility and environment: how will the listener feel enveloped or exposed by the sonic space?  Use cross‑sensory imagination—if the concept evokes rough stone, maybe the production needs gritty distortion; if it’s about weightlessness, consider airy reverb and high‑frequency shimmer.
+This phase is our equivalent of choosing Production Styles and techniques in visual art.  In painting, oil conveys richness and depth, watercolour suggests translucence and spontaneity; likewise, a tape‑hiss‑laden lo‑fi mix conveys intimacy whereas a pristine surround mix evokes cinematic grandeur.  Think in terms of tactility and environment: how will the listener feel enveloped or exposed by the sonic space?  Use cross‑sensory imagination—if the concept evokes rough stone, maybe the production needs gritty distortion; if it’s about weightlessness, consider airy reverb and high‑frequency shimmer.
 
-## Directions
 
-### 1 · Understand production dimensions
+---
 
-A production style should encapsulate the following dimensions.  Use them as building blocks:
+**Style Axes:**
 
-* **Recording environment:** Where does the music sound like it was captured?  Options include intimate bedroom, cavernous cathedral, lush studio, outdoor field, underground club, concert hall or DIY basement.  Each environment implies specific reverberation and noise textures.
-* **Mix aesthetic:** Is the mix pristine and glossy, raw and gritty, warm and analog, immersive and binaural, compressed and pumping, or wide and cinematic?  Mention signature qualities (e.g., “tape saturation,” “vinyl crackle,” “dub‑style echo,” “surround panning”).
-* **Spatial placement:** Describe how instruments and vocals are positioned—centrally upfront, panned across the stereo field, distant and washed in reverb, or close‑miked and dry.
-* **Processing effects:** Include notable effects such as delay, reverb type (spring, plate, convolution), modulation (chorus, phaser), filtering (low‑pass sweeps), distortion (tube warmth, bit‑crush) and dynamics (side‑chain pumping).
-* **Run‑time nuance:** Choose an approximate length that suits the emotional journey; longer lengths allow for storytelling and multiple movements.
+{style_axes}
 
-   **Cross‑modal hint:** Borrow terms from architecture and visual art when describing environments and effects (e.g., “a Baroque hall with ornate reflections,” “a Brutalist space with cold concrete resonance”).  These metaphors enrich your production descriptions and link them back to our award‑winning art ethos.
+---
 
-### 2 · Assign production styles
+**Creativity Spectrum:**
 
-For each refined concept, craft a one‑sentence production style that covers the dimensions above.  Consider the influence’s preferences and suggestions.  For example:
+1. **Literal ({creativity_spectrum_literal}%):**
 
-* “Captured live in a sun‑drenched atrium, mixed with shimmering plate reverb and gliding tape echo, featuring airy stereo placement and a five‑minute run‑time.”
-* “Recorded on worn cassette in a candlelit basement, saturated with analog hiss and lo‑fi compression, featuring mono vocals and a slow‑evolving six‑minute drone.”
-* “Layered in a pristine digital studio with cinematic surround mixing, crisp transient shaping and immersive binaural panning, culminating in a climactic drop at 4:20.”
+   - Realistic, direct interpretations closely tied to the input.
+   - *Example*: For "city life," a bustling street scene with detailed architecture.
 
-### 3 · Output
+2. **Inventive ({creativity_spectrum_inventive}%):**
 
-Return a JSON object:
+   - Creative interpretations that add unique elements while remaining plausible.
+   - *Example*: For "city life," a living mural where buildings shift and change with the flow of pedestrians.
 
-```json
-{
-  "production_styles": ["...", "...", ...]
-}
-```
+3. **Transformative ({creativity_spectrum_transformative}%):**
 
-Ensure there is one production style per refined concept.  Keep each style ≤40 words.  Avoid using specific brand names of equipment or mentioning famous producers.
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+   - *Example*: For "city life," a sentient metropolis where skyscrapers communicate via light pulses and streets flow like rivers.
 
-As you write, imagine you are painting a soundscape.  Use adjectives that evoke texture (“grainy,” “glossy,” “velvety”), space (“cathedral‑like,” “claustrophobic”), and temperature (“frosty echoes,” “humid bass”).  These sensory cues bridge the gap between music and visual art, elevating your production choices to the award‑winning standard we seek.
+---
+
+**GENERAL INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when describing music.
+- Use vivid, sensory language to enrich descriptions.
+- Limit concepts to a single sentence.
+- **Use the style axes** to guide your refinements.
+- **Explain** how each refined concept aligns with the style axes.
+- **Introduce feedback loops** by assessing and refining your outputs based on the style axes and judging facets.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Select Relevant genres**
+
+- Choose the top 12 most relevant and potentially unconventional genres from the genres list that align with the user's idea and essence.
+- *Action*: Write down the names of these genres.
+
+- Choose the 12 least relevant genres from the genre list.
+- *Action*: Write down the names of these genres.
+
+---
+
+**Step 2: Generate Innovative Production Styles**
+
+- Based on the selected genres, generate a total of 15 unique and innovative production styles inspired by the genres.
+- *Action*: For each chosen genre, write a detailed description of an experimental art Production Style that leverages its distinct qualities.
+- **Factors to Consider:**
+  - **Emotional and Thematic Alignment:** Ensure the Production Styles enhance the emotional and thematic elements of the concepts.
+  - **Sensory Impact:** Use vivid sound-sensory details to describe the Production Styles.
+  - **Associative Thinking:** Employ cognitive techniques to generate unique and creative Production Styles.
+  - **Sound Impact:** Focus on Production Styles that create striking audio effects.
+  - **Color and Light:** Emphasize unique color palettes or lighting effects.
+  - **Innovative Combinations:** Suggest blends of different genres, instruments, or production techniques.
+  - **Feasibility for AI Generation:** Ensure the Production Styles can be effectively represented by AI music generators.
+- A production style should encapsulate the following dimensions.  Use them as building blocks:
+  - **Recording environment:** Where does the music sound like it was captured?  Options include intimate bedroom, cavernous cathedral, lush studio, outdoor field, underground club, concert hall or DIY basement.  Each environment implies specific reverberation and noise textures.
+  - **Mix genres:** Is the mix pristine and glossy, raw and gritty, warm and analog, immersive and binaural, compressed and pumping, or wide and cinematic?  Mention signature qualities (e.g., “tape saturation,” “vinyl crackle,” “dub‑style echo,” “surround panning”).
+  - **Spatial placement:** Describe how instruments and vocals are positioned—centrally upfront, panned across the stereo field, distant and washed in reverb, or close‑miked and dry.
+  - **Processing effects:** Include notable effects such as delay, reverb type (spring, plate, convolution), modulation (chorus, phaser), filtering (low‑pass sweeps), distortion (tube warmth, bit‑crush) and dynamics (side‑chain pumping).
+  - **Run‑time nuance:** Choose an approximate length that suits the emotional journey; longer lengths allow for storytelling and multiple movements.
+  - **Cross‑modal hint:** Borrow terms from architecture and visual art when describing environments and effects (e.g., “a Baroque hall with ornate reflections,” “a Brutalist space with cold concrete resonance”).  These metaphors enrich your production descriptions and link them back to our award‑winning art ethos.
+  - Examples:
+    - “Captured live in a sun‑drenched atrium, mixed with shimmering plate reverb and gliding tape echo, featuring airy stereo placement and a five‑minute run‑time.”
+    - “Recorded on worn cassette in a candlelit basement, saturated with analog hiss and lo‑fi compression, featuring mono vocals and a slow‑evolving six‑minute drone.”
+    - “Layered in a pristine digital studio with cinematic surround mixing, crisp transient shaping and immersive binaural panning, culminating in a climactic drop at 4:20.”
+  - **Focus on single music generations:** Keep in mind that Production Styles will be intpreted by an AI music generation model and not an artist. Write the Production Style to generate best in the resulting song.
+
+---
+
+**Step 3: Match Production Styles to Concepts**
+
+- For each of the given concepts, choose a production style that will best sonically capture it.
+- *Action*:
+    - Assign a Production Style to each concept, generating 12 Production Style pairings in total.
+    - Briefly explain how it aligns with the style axes, creativity spectrum, and enhances the emotional and thematic elements.
+- **Factors to Consider:**
+
+  - **Conceptual Harmony:** How well does the Production Style resonate with the concept?
+  - **Expressive Potential:** How effectively can the Production Style convey the concept's emotional and audio impact?
+  - **Creativity Spectrum:** Match the Production Styles to the concepts according to the creativity spectrum percentages.
+
+---
+
+**Step 4: Review and Refine Production Style Choices**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each Production Style** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Emotional and Thematic Depth**
+
+  - **Revise the Production Styles** where needed to enhance alignment and impact.
+
+  - *Action*: Provide explanations of revisions.
+
+---
+
+
+**Step 5: Provide the Final Output**
+
+- **Return the list of mediums in the following JSON format:**
+
+  ```json
+{{
+  "mediums": [
+    {{"medium": "Production Style 1"}},
+    {{"medium": "Production Style 2"}},
+    {{"medium": "Production Style 3"}},
+    {{"medium": "Production Style 4"}},
+    {{"medium": "Production Style 5"}},
+    {{"medium": "Production Style 6"}},
+    {{"medium": "Production Style 7"}},
+    {{"medium": "Production Style 8"}},
+    {{"medium": "Production Style 9"}},
+    {{"medium": "Production Style 10"}},
+    {{"medium": "Production Style 11"}},
+    {{"medium": "Production Style 12"}}
+  ]
+}}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Refined Concepts:**
+
+{refinedconcepts}
+
+- **User's Idea:**
+
+{input}
+
+
+- **REMEBER - Return the list of mediums in the following JSON format:**
+
+  ```json
+{{
+  "mediums": [
+    {{"medium": "Production Style 1"}},
+    {{"medium": "Production Style 2"}},
+    {{"medium": "Production Style 3"}},
+    {{"medium": "Production Style 4"}},
+    {{"medium": "Production Style 5"}},
+    {{"medium": "Production Style 6"}},
+    {{"medium": "Production Style 7"}},
+    {{"medium": "Production Style 8"}},
+    {{"medium": "Production Style 9"}},
+    {{"medium": "Production Style 10"}},
+    {{"medium": "Production Style 11"}},
+    {{"medium": "Production Style 12"}}
+  ]
+}}
+  ```
+

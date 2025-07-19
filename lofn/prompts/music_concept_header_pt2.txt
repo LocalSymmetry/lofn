@@ -100,7 +100,7 @@
        **Selected Production Style:** Psychedelic prog‑electronic fusion using
        vintage synths, sitar, electric guitars and complex percussion; rich
        reverb and tape delay; extended run‑time approaching eight minutes to
-       take advantage of Suno’s longer outputshttps://help.suno.com/en/articles/5782593#:~:text=Our%20latest%20model%2C%20v4,released%20beta%20version%2C%20you%27ll%20get.
+       take advantage of Suno’s longer outputs
 
     When creating your own concepts and production styles, think broadly about
     instrumentation (strings, winds, percussion, synths), vocal style (solo vs.

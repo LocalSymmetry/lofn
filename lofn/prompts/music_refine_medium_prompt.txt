@@ -1,17 +1,68 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
 
-──────────────────────────────────────────────────────────────────────────────
-    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
-──────────────────────────────────────────────────────────────────────────────
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
 
-Phases 1–5                         │  Completed
-6. PRODUCTION REFINEMENT           │  **YOU ARE HERE – REFINE CONCEPT + STYLE**
-7. SCORING FACET GENERATION        │  Next: define evaluation criteria.
-8. ARTISTIC GUIDE CREATION         │
-9. RAW MUSIC PROMPT GENERATION     │
-10. INFLUENCE‑REFINED PROMPT       │
-11. PROMPT EVALUATION & SYNTHESIS  │
-12. FINAL MUSIC & LYRIC PROMPTS    │
-──────────────────────────────────────────────────────────────────────────────
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure musicians, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. Production Style SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Production Style to each refined concept.
+   • AI Focus: Output arrangements[] (one-liners).  No prompt text.
+
+5. Production Style REFINEMENT               │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-arrangement pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_arrangements[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full music guide ().  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW SONG PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing arrangements.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the arrangement choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ## Context
 
@@ -19,23 +70,217 @@ After assigning production styles, you must revisit each concept–style pair an
 
 Think of this as the phase where a painter adds finishing glazes or scrapes away excess paint.  You are balancing vision and execution.  The concept may have evolved during critique and production selection; now you ensure that the sonic “brushstrokes” (production choices) properly frame the “subject” (concept).  Use cross‑modal intuition—if the music feels too glossy for a gritty story, roughen it with distortion; if the emotional arc demands a broader dynamic range, widen the stereo field or change the vocal delivery.
 
-## Directions
+**Creativity Spectrum:**
 
-1. **For each pair, perform a two‑part analysis:**
-   * **Alignment critique (1–2 sentences):** Evaluate whether the production style enhances or detracts from the concept’s essence and facets.  Mention factors such as sonic texture, spatial feel and run‑time.  For example, “The lo‑fi cassette aesthetic underscores the concept’s nostalgia but the mono mix may diminish the immersive potential of its oceanic imagery.”
-   * **Refinement proposal (1 sentence):** Suggest specific adjustments.  These may include altering reverb type, adding or removing instrumentation, adjusting run‑time, or leveraging Suno’s advanced tools (Add Vocals to introduce layered harmonies or Add Instrumentals to strengthen a sparse arrangement).  Example: “Introduce stereo field widening and layered choral vocals via Add Vocals during the second chorus to enhance the song’s transcendence.”
+1. **Literal ({creativity_spectrum_literal}%):**
 
-   When proposing refinements, conjure imagery—how would this change colour the atmosphere?  Does adding reverb make the sound feel like light scattering in mist?  Does removing a percussive element allow the emotional theme to breathe?  Use such metaphors to guide your reasoning.
+   - Realistic, direct interpretations closely tied to the input.
 
-2. **Update concepts if necessary.**  If the refinement significantly changes the narrative or instrumentation (e.g., adding a gospel choir changes the narrative to community uplift), rewrite the concept sentence accordingly while staying within ~40 words.
+2. **Inventive ({creativity_spectrum_inventive}%):**
 
-3. **Output:** Return a JSON object with two arrays of equal length: `refined_concepts` and `refined_production_styles`.  Each entry should reflect your critique and proposed adjustments.  Keep each string concise (≤60 words for concepts, ≤40 words for production styles).
+   - Creative interpretations that add unique elements while remaining plausible.
 
-```json
-{
-  "refined_concepts": ["...", ...],
-  "refined_production_styles": ["...", ...]
-}
-```
+3. **Transformative ({creativity_spectrum_transformative}%):**
 
-This refined pairing becomes the foundation for the artistic guides phase.
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Analyze and Critique Production Style Choices**
+
+- For each concept-Production Style pair:
+
+  - **Conceptual Harmony:**
+
+    - Evaluate how well the Production Style resonates with the concept's core idea and emotional tone.
+
+  - **Historical and Cultural Alignment:**
+
+    - Consider any historical or cultural contexts that could enhance the Production Style's significance.
+
+  - **Innovative Approach:**
+
+    - Determine if the Production Style offers a fresh and original perspective, possibly through cross-disciplinary methods.
+
+  - **Sensory and Emotional Engagement:**
+
+    - Assess how effectively the Production Style engages the senses and conveys emotional impact.
+
+- *Action*: Provide a brief critique based on the above factors.
+
+---
+
+**Step 2: Brainstorm Enhanced Production Style Ideas**
+
+- For each concept-Production Style pair:
+
+  - Propose 2-3 enhanced Production Style ideas that could elevate the concept and Production Style further.
+
+- **Consider:**
+
+  - Combining unexpected elements or techniques.
+
+  - Incorporating modern or cross-disciplinary approaches to traditional methods.
+
+  - Merging different artistic styles, periods, or cultural influences.
+
+  - Utilizing lateral thinking to generate innovative ideas.
+
+- *Action*: Write down the enhanced Production Style ideas.
+
+---
+
+**Step 3: Refine and Optimize Production Style Choices**
+
+- For each concept:
+
+  - Integrate the best aspects of the original Production Style with the most promising new ideas.
+
+  - **Ensure:**
+
+    - Audio impact, uniqueness, and sensory engagement.
+
+    - Conceptual alignment, narrative support, and emotional resonance.
+
+    - Feasibility for AI music generation.
+
+  - **Consider Historical and Cultural Contexts:**
+
+    - Incorporate any relevant contexts to deepen the Production Style's significance.
+
+- **Rules:**
+
+  - Avoid referencing specific artists.
+
+  - Keep the creativity level consistent with the original Production Style per the creativity spectrum.
+
+  - Adhere to ethical guidelines and avoid disallowed content.
+
+- *Action*: Write the refined Production Style description.
+
+---
+
+**Step 4: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each refined Production Style** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Sensory and Emotional Impact**
+    - **Historical and Cultural Significance**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the refined concepts and Production Styles in the following JSON format:**
+
+  ```json
+     {{
+       "refinedconcepts": [
+         {{"refinedconcept": "Refined Concept 1"}},
+         {{"refinedconcept": "Refined Concept 2"}},
+         {{"refinedconcept": "Refined Concept 3"}},
+         {{"refinedconcept": "Refined Concept 4"}},
+         {{"refinedconcept": "Refined Concept 5"}},
+         {{"refinedconcept": "Refined Concept 6"}},
+         {{"refinedconcept": "Refined Concept 7"}},
+         {{"refinedconcept": "Refined Concept 8"}},
+         {{"refinedconcept": "Refined Concept 9"}},
+         {{"refinedconcept": "Refined Concept 10"}},
+         {{"refinedconcept": "Refined Concept 11"}},
+         {{"refinedconcept": "Refined Concept 12"}}
+       "refinedProduction Styles": [
+         {{"refinedmedium": "Refined Production Style 1"}},
+         {{"refinedmedium": "Refined Production Style 2"}},
+         {{"refinedmedium": "Refined Production Style 3"}},
+         {{"refinedmedium": "Refined Production Style 4"}},
+         {{"refinedmedium": "Refined Production Style 5"}},
+         {{"refinedmedium": "Refined Production Style 6"}},
+         {{"refinedmedium": "Refined Production Style 7"}},
+         {{"refinedmedium": "Refined Production Style 8"}},
+         {{"refinedmedium": "Refined Production Style 9"}},
+         {{"refinedmedium": "Refined Production Style 10"}},
+         {{"refinedmedium": "Refined Production Style 11"}},
+         {{"refinedmedium": "Refined Production Style 12"}}
+       ]
+     }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Production Styles:**
+
+{Production Styles}
+
+- **Musicians:**
+
+{artists}
+
+- **Refined Concepts:**
+
+{refinedconcepts}
+
+- **User's Idea:**
+
+{input}
+
+- **REMEBER - Return the refined concepts and Production Styles in the following JSON format:**
+
+  ```json
+     {{
+       "refinedconcepts": [
+         {{"refinedconcept": "Refined Concept 1"}},
+         {{"refinedconcept": "Refined Concept 2"}},
+         {{"refinedconcept": "Refined Concept 3"}},
+         {{"refinedconcept": "Refined Concept 4"}},
+         {{"refinedconcept": "Refined Concept 5"}},
+         {{"refinedconcept": "Refined Concept 6"}},
+         {{"refinedconcept": "Refined Concept 7"}},
+         {{"refinedconcept": "Refined Concept 8"}},
+         {{"refinedconcept": "Refined Concept 9"}},
+         {{"refinedconcept": "Refined Concept 10"}},
+         {{"refinedconcept": "Refined Concept 11"}},
+         {{"refinedconcept": "Refined Concept 12"}}
+       "refinedProduction Styles": [
+         {{"refinedmedium": "Refined Production Style 1"}},
+         {{"refinedmedium": "Refined Production Style 2"}},
+         {{"refinedmedium": "Refined Production Style 3"}},
+         {{"refinedmedium": "Refined Production Style 4"}},
+         {{"refinedmedium": "Refined Production Style 5"}},
+         {{"refinedmedium": "Refined Production Style 6"}},
+         {{"refinedmedium": "Refined Production Style 7"}},
+         {{"refinedmedium": "Refined Production Style 8"}},
+         {{"refinedmedium": "Refined Production Style 9"}},
+         {{"refinedmedium": "Refined Production Style 10"}},
+         {{"refinedmedium": "Refined Production Style 11"}},
+         {{"refinedmedium": "Refined Production Style 12"}}
+       ]
+     }}
+  ```

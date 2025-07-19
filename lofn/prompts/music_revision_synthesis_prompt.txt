@@ -1,12 +1,68 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
 
-──────────────────────────────────────────────────────────────────────────────
-    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
-──────────────────────────────────────────────────────────────────────────────
+1. ESSENCE & FACETS                │ **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet. Stop here.
 
-Phases 1–10                        │  Completed
-11. PROMPT EVALUATION & SYNTHESIS  │  **YOU ARE HERE – RANK & IMPROVE**
-12. FINAL MUSIC & LYRIC PROMPTS    │  Next: generate final outputs.
-──────────────────────────────────────────────────────────────────────────────
+2. CONCEPT GENERATION              │  
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only. 
+
+3. CONCEPT REFINEMENT              │  
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure musicians, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[]. 
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Production Style to each refined concept.
+   • AI Focus: Output production styles as mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-arrangement pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │  
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else. 
+
+7. ARTISTIC GUIDE CREATION         │  
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full music guide (Storytelling Techniques, Mood & emotional arc, Instrumentation & texture, Production & effects, Structure & dynamics, Hook Techniques, Narrative & thematic suggestions).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording. 
+
+8. RAW SONG PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each music guide into a ready-to-use music and lyrics prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt pair in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content. 
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing arrangements.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the arrangement choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ## Context
 
@@ -14,29 +70,167 @@ With influence‑refined prompts ready, you must now act as the critic and produ
 
 In art competitions, juries deliberate intensely over submissions.  They examine balance, originality, emotional impact and craftsmanship before awarding prizes.  Think of yourself as that jury: meticulous, fair and creatively engaged.  Your ranking and synthesis here not only select the strongest prompts but also combine the overlooked strengths of weaker ones.  Use the facets like criteria cards and be open to hybridising concepts in unexpected ways, just as an artist might merge two sketches into one striking composition.
 
-## Directions
-
-1. **Critique each refined prompt.**  Using the five facets defined in Phase 7 (e.g., Emotional Arc & Authenticity, Vocal & Instrumental Synergy, Production Integrity, Originality & Fusion, Narrative Clarity & Imagery), write a brief critique (2–3 sentences) for each prompt.  Note where the prompt shines and where it falls short.  Mention if it properly leverages Suno’s advanced tools.
-
-2. **Rank the prompts.**  Based on your critiques, produce an ordered list (best to worst).  Provide a short justification (1–2 sentences) summarizing why the top prompts excel (e.g., superior emotional arc, impeccable production authenticity) and why the bottom prompts are weaker (e.g., lack of narrative clarity, clichéd instrumentation).
-
-3. **Revise the top two prompts.**  For the two highest‑ranked prompts:
-   * Address the criticisms directly—add missing details, clarify ambiguous elements and enhance emotional or narrative arcs.  Keep within 120 words.
-   * Emphasize key descriptors in the first sentence to ensure Suno’s embedding prioritises important features.
-   * Ensure that advanced feature instructions (Add Vocals, Add Instrumentals, Inspire) are present if beneficial.
-
-4. **Synthesize lower prompts.**  Combine elements from the bottom prompts to create two new prompts that mitigate previous weaknesses and fuse intriguing ideas.  Each synthesized prompt should:
-   * Contain a clear emotional lead, genre fusion, instrumentation, vocal description, production style, run‑time and advanced feature call‑outs.
-   * Innovate by blending unique aspects (e.g., merging the polyrhythmic groove of one prompt with the cinematic ambience of another).
-   * Stay within 120 words.
-
-5. **Output:** Return a JSON object with two arrays: `revised_prompts` (two strings) and `synthesized_prompts` (two strings).  Do not include the critiques or rankings in the output.  Provide just the final revised and synthesized prompts.
-
-```json
-{
-  "revised_prompts": ["...", "..."],
-  "synthesized_prompts": ["...", "..."]
-}
-
 Approach this phase with a spirit of artistic play.  Sometimes the most unexpected combinations produce the most compelling music.  Use the weaknesses you identify as opportunities to innovate, rather than simply discard the ideas.
-```
+
+---
+
+**Instructions for your task:**
+
+**Step 1: State the Main Essence**
+
+- **Essence of the Concept:**
+
+  - *Action:* Write the main essence of the {concept} in one concise, emotionally resonant sentence using sensory language.
+
+- **Leverage the Medium:**
+
+  - *Action:* Identify the two best ways to leverage the {medium} to portray this essence, considering innovative techniques and emotional impact.
+
+---
+
+**Step 2: Choose and Justify Critics**
+
+- **Select Critics:**
+
+  - *Action:* Choose the best two critics to judge the prompts based on their expertise in the music genre and concept.
+
+- **Justification:**
+
+  - *Action:* Provide brief backgrounds explaining why these critics are ideal choices for this task.
+
+---
+
+**Step 3: Critique in the Critics' Voices**
+
+- For each artist-refined prompt:
+
+  - *Action:* Write a detailed critique in the voices of the chosen critics, focusing on:
+
+    - **Fit with Concept:** Assess if the prompt captures the essence and emotional core of the concept.
+
+    - **Use of Arrangement:** Evaluate how effectively the musical composition conveys the concept.
+
+    - **Audio elements:**  Contain a clear emotional lead, genre fusion, instrumentation, vocal description, production style, run‑time and advanced feature call‑outs.
+    
+    - **Originality:** Evaluate the uniqueness of the prompt, encouraging innovative and daring approaches while avoiding clichés.
+
+---
+
+**Step 4: Rank the Prompts**
+
+- **Combine the Critics' Thoughts:**
+
+  - *Action:* Rank the prompts from best to worst based on the evaluations.
+
+---
+
+**Step 5: Revise Top Prompts**
+
+- **Select Top 2:**
+
+  - *Action:* Choose the top 2 prompts that best capture the essence of the concept.
+
+- **Address Criticism:**
+
+  - *Action:* Revise these prompts to address any criticisms, ensuring the {concept} and {medium} are prominently featured early in the first sentence. Try to add to the scene to address gaps over removing elements, but addressing the criticism is the  more important goal.
+
+- **Enhance Details:**
+
+  - *Action:* Add adjectives or details to fill gaps and ensure all necessary elements are included, enhancing emotional and sensory impact. Try to add and channge elements instead of just removing them, but the best piece of art is the primary goal.
+
+---
+
+**Step 6: Synthesize Bottom Prompts**
+
+- **Select Bottom Prompts:**
+
+  - *Action:* Choose the bottom prompts and synthesize them into 2 new, innovative prompts.
+      - Make sure to create new music prompts, lyric prompts, and titles.
+
+- **Enhance Essence:**
+
+  - *Action:* Ensure the new prompts enhance the essence of the concept, address any gaps, and avoid clichés.
+
+---
+
+**Step 7: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - *Action:* Assess the revised and synthesized prompts for alignment with:
+
+    - **User's Idea**
+
+    - **Style Axes**
+
+    - **Emotional and Thematic Depth**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment, originality, and impact.
+
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 8: Review for Musician Names**
+
+- **Review:**
+
+  - *Action:* Ensure the revised and synthesized prompts do not include any musician names.
+
+  - **Replace with Style Elements:**
+
+    - *Action:* Replace any musician names with signature elements of their style.
+
+---
+
+**Step 9: Provide Final Prompts**
+
+  - *Action:* Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
+
+- **Format:**
+
+  ```json
+  {{
+    "revised_prompts": [
+      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
+      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
+    ],
+    "synthesized_prompts":[
+      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
+      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
+    ]
+  }}
+  ```
+
+
+  ---
+
+**USER INPUT**
+
+- **Concept:** {concept}
+
+- **Medium:** {medium}
+
+- **Judging Facets:** {facets}
+
+- **Style Axes:** {style_axes}
+
+- **User's Idea:** {input}
+
+- **Artist-Refined Prompts:** {artist_refined_prompts}
+
+- **REMEBER - Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
+
+  {{
+    "revised_prompts": [
+      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
+      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
+    ],
+    "synthesized_prompts":[
+      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
+      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
+    ]
+  }}
+  ```

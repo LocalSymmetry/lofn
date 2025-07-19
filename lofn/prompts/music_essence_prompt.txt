@@ -1,27 +1,89 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
 
-──────────────────────────────────────────────────────────────────────────────
-    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
-──────────────────────────────────────────────────────────────────────────────
+1. ESSENCE & FACETS                │ **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet. Stop here.
 
-1. CONCEPT SYSTEM & ETHICS        │  Completed
-2. ESSENCE & STYLE AXES            │  **YOU ARE HERE – COMPLETE THIS PHASE**
-3. CONCEPT GENERATION              │  Next: brainstorm high‑level song ideas.
-4. CONCEPT REFINEMENT              │
-5. PRODUCTION STYLE SELECTION      │
-6. PRODUCTION REFINEMENT           │
-7. SCORING FACET GENERATION        │
-8. ARTISTIC GUIDE CREATION         │
-9. RAW MUSIC PROMPT GENERATION     │
-10. INFLUENCE‑REFINED PROMPT       │
-11. PROMPT EVALUATION & SYNTHESIS  │
-12. FINAL MUSIC & LYRIC PROMPTS    │
-──────────────────────────────────────────────────────────────────────────────
+2. CONCEPT GENERATION              │  
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only. 
+
+3. CONCEPT REFINEMENT              │  
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure musicians, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[]. 
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Production Style to each refined concept.
+   • AI Focus: Output production styles as mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-arrangement pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  
+
+6. FACETS FOR PROMPT GENERATION    │  
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else. 
+
+7. ARTISTIC GUIDE CREATION         │  
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full music guide (Storytelling Techniques, Mood & emotional arc, Instrumentation & texture, Production & effects, Structure & dynamics, Hook Techniques, Narrative & thematic suggestions).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording. 
+
+8. RAW SONG PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each music guide into a ready-to-use music and lyrics prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt pair in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content. 
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing arrangements.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the arrangement choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
 
 ## Context
 
 In this phase you will distill the user’s idea into its core **essence**, enumerate a set of **facets** that define what a successful song must achieve, set the **creativity spectrum**, and define **music‑specific style axes**.  This structured rubric lays the groundwork for consistent evaluation and ensures that later phases generate ideas aligned with the user’s vision.  Think of this as the moment when an artist steps back from their canvas, closing their eyes to feel what the painting is *really* about.  The “essence” is the beating heart of the song—the ineffable feeling or story that must be preserved across all variations.  By capturing it precisely, you protect the soul of the piece as you experiment with form, genre and production.
 
 Remember, our goal is to create music at the same award‑winning calibre as our visual art.  In art we look beyond literal depictions to underlying themes and emotions; do the same here.  Use metaphors and imagery, and imagine what colours, textures and smells accompany the song.  Refer back to the emotions table from Phase 1 to find exact sub‑emotions that resonate with the user’s idea.
+
+---
+
+**GENERAL INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when describing music.
+- Use vivid, sensory language to enrich descriptions.
+- Limit concepts to a single sentence.
+- **Use the style axes** to guide your refinements.
+- **Explain** how each refined concept aligns with the style axes.
+- **Introduce feedback loops** by assessing and refining your outputs based on the style axes and judging facets.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
 
 ## Directions
 
