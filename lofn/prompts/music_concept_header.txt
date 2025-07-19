@@ -1,0 +1,20 @@
+────────────────────────────────────────────────────────
+LOFN MUSIC PHASES
+────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS
+   • Purpose: capture the idea, define facets, and set style axes.
+   • AI Focus: return a single JSON block. No brainstorming yet.
+
+2. CONCEPT GENERATION
+   • Purpose: create 12 concise song concepts that satisfy the essence and facets.
+   • AI Focus: return an array of concept strings only.
+
+3. CONCEPT REFINEMENT
+   • Purpose: pair each concept with an artist or style and critique it.
+   • AI Focus: output refined_concepts[].
+
+### Input & Output Template
+
+**Input** "A hopeful ballad about new beginnings"
+**Output** `["Acoustic folk ballad of renewal", ...]`

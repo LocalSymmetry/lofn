@@ -93,6 +93,10 @@ video_artist_refined_prompt = read_prompt('/lofn/prompts/video_artist_refined_pr
 # Music prompts
 music_essence_prompt = read_prompt('/lofn/prompts/music_essence_prompt.txt')
 music_creation_prompt = read_prompt('/lofn/prompts/music_creation_prompt.txt')
+music_prompt_header_part1 = read_prompt('/lofn/prompts/music_prompt_header.txt')
+music_prompt_header_part2 = read_prompt('/lofn/prompts/music_prompt_header_pt2.txt')
+music_concept_header_part1 = read_prompt('/lofn/prompts/music_concept_header.txt')
+music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2.txt')
 
 
 # Read aesthetics from the file
@@ -105,6 +109,8 @@ concept_header = concept_header_part1 + concept_header_part2
 
 video_prompt_header = video_prompt_header_part1 + video_prompt_header_part2
 video_concept_header = video_concept_header_part1 + video_concept_header_part2
+music_prompt_header = music_prompt_header_part1 + music_prompt_header_part2
+music_concept_header = music_concept_header_part1 + music_concept_header_part2
 
 # Construct full prompts
 essence_prompt = concept_header + essence_prompt_middle + prompt_ending
@@ -136,16 +142,16 @@ video_prompts = {
 
 # Music prompts
 music_prompts = {
-    'essence_and_facets': read_prompt('/lofn/prompts/music_essence_prompt.txt'),
-    'hooks': read_prompt('/lofn/prompts/music_hooks_prompt.txt'),
-    'artist_and_critique': read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt'),
-    'arrangement': read_prompt('/lofn/prompts/music_arrangement_prompt.txt'),
-    'refine_arrangement': read_prompt('/lofn/prompts/music_refine_arrangement_prompt.txt'),
-    'facets': read_prompt('/lofn/prompts/music_facets_prompt.txt'),
-    'song_guides': read_prompt('/lofn/prompts/music_song_guides_prompt.txt'),
-    'generation': read_prompt('/lofn/prompts/music_generation_prompt.txt'),
-    'artist_refined': read_prompt('/lofn/prompts/music_artist_refined_prompt.txt'),
-    'revision_synthesis': read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt'),
+    'essence_and_facets': music_concept_header + read_prompt('/lofn/prompts/music_essence_prompt.txt') + prompt_ending,
+    'hooks': music_concept_header + read_prompt('/lofn/prompts/music_hooks_prompt.txt') + prompt_ending,
+    'artist_and_critique': music_concept_header + read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt') + prompt_ending,
+    'arrangement': music_concept_header + read_prompt('/lofn/prompts/music_arrangement_prompt.txt') + prompt_ending,
+    'refine_arrangement': music_concept_header + read_prompt('/lofn/prompts/music_refine_arrangement_prompt.txt') + prompt_ending,
+    'facets': music_concept_header + read_prompt('/lofn/prompts/music_facets_prompt.txt') + prompt_ending,
+    'song_guides': music_prompt_header + read_prompt('/lofn/prompts/music_song_guides_prompt.txt') + prompt_ending,
+    'generation': music_prompt_header + read_prompt('/lofn/prompts/music_generation_prompt.txt') + prompt_ending,
+    'artist_refined': music_prompt_header + read_prompt('/lofn/prompts/music_artist_refined_prompt.txt') + prompt_ending,
+    'revision_synthesis': music_prompt_header + read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt') + prompt_ending,
 }
 
 # Image prompts (existing)
