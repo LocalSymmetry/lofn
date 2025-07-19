@@ -41,10 +41,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
      lighting, palette, tools, story cue).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW IMAGE PROMPT GENERATION     │ 
+8. RAW SONG PROMPT GENERATION     │ 
    ─────────────────────────────────┤
-   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
-     DALL·E prompt.
+   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
    • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
 
 9. ARTIST-REFINED PROMPT           │  **YOU ARE HERE - COMPLETE THIS PHASE** 
@@ -57,7 +56,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
 **INSTRUCTIONS:**
 
 - Be intentional, detailed, and insightful when describing songs.

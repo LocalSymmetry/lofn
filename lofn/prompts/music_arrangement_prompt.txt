@@ -41,11 +41,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
      lighting, palette, tools, story cue).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW IMAGE PROMPT GENERATION     │ 
+8. RAW SONG PROMPT GENERATION     │ 
    ─────────────────────────────────┤
-   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
-     DALL·E prompt.
-   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
 
 9. ARTIST-REFINED PROMPT           │ 
    ─────────────────────────────────┤
@@ -57,7 +55,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
 **GENERAL INSTRUCTIONS:**
 
 - Be intentional, detailed, and insightful when selecting and describing music genres and arrangement styles, genres, or production styles that serve as the arrangement for the song.
@@ -65,7 +63,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to create arrangement pairings for the song concepts.
 - Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
-- Avoid using arrangements that call in installations or art galleries as they tend to force the image generator to misplace the piece inside an art gallery, removing the impact.
+ - Avoid using arrangements that rely on elaborate stage visuals, as they may distract the music generator from the composition.
 - **Make sure to give the final output in the JSON format that is requested.**
 
 ---
@@ -94,25 +92,25 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 **Instructions for your task:**
 
-**Step 1: Explore Film-making Techniques and Genres**
+**Step 1: Explore Music Production Techniques and Genres**
 
 - Based on the concepts and style axes, generate a list of **15 unique music genres and arrangement styles, genres, or production styles** that could serve as arrangements to best represent the concepts.
 - **Action:** For each technique or style, write a detailed description that includes:
 
   - **Production Style:** Such as tempo changes, layered instrumentation, complex rhythms, key modulations, etc.
-  - **Genre Influences:** Incorporate genres like noir, sci-fi, fantasy, documentary, etc.
-  - **Sound Design and Effects:** Use of CGI, practical effects, animation styles, etc.
+  - **Genre Influences:** Incorporate influences like jazz, hip-hop, classical, electronic, world, etc.
+  - **Sound Design and Effects:** Use of reverb, distortion, sampling, automation, etc.
   - **Instrumentation Palette:** Describe the timbres and textures that set the tone.
   - **Rhythmic Techniques:** Such as syncopation, polyrhythm, modulation, etc.
   - **Sound Design:** Emphasis on sound effects, ambient sounds, or silence.
-  - **Song Structure:** Non-linear storytelling, flashbacks, multiple perspectives, etc.
-  - **Focus on single short-song generations:** Keep in mind that arrangements will be intpreted by an AI music generation model and not an musician. The AI generator will make a 5 second clip that we can extend. Take this short run-time into account when placing arrangements.
+  - **Song Structure:** Verse-chorus forms, breakdowns, tempo shifts, etc.
+  - **Focus on single short-song generations:** Keep in mind that arrangements will be interpreted by an AI music generation model rather than a human performer. The AI generator will make a 5-second clip that we can extend. Take this short run-time into account when placing arrangements.
 
 ---
 
 **Step 2: Match Arrangements to Concepts**
 
-- For each of the given concepts, choose the most suitable film-making arrangement from your list.
+ - For each of the given concepts, choose the most suitable musical arrangement from your list.
 - **Action:**
 
   - Assign a arrangement to each concept, creating **12 arrangement pairings**.

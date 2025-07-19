@@ -41,10 +41,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
      lighting, palette, tools, story cue).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW IMAGE PROMPT GENERATION     │ 
+8. RAW SONG PROMPT GENERATION     │ 
    ─────────────────────────────────┤
-   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
-     DALL·E prompt.
+   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
    • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
 
 9. ARTIST-REFINED PROMPT           │ 
@@ -57,20 +56,20 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
 ### Enhanced Instructions for Creating Artistic Guides for AI Song Generation
 
 #### Examples of Artistic Guides:
 
-- **Aspect:** A bustling futuristic cityscape
-  - **Key Sections:** Drone fly-throughs between towering skyscrapers; a street chase sequence; neon-lit night markets.
-  - **Visual Style:** Cyberpunk aesthetic with high-contrast lighting.
+- **Aspect:** A pulsing futuristic dance floor
+  - **Key Sections:** Upbeat verses with shimmering synth chords; an anthemic chorus; a spacious breakdown.
+  - **Musical Style:** Cyberpunk-inspired synthwave with heavy bass and glitchy leads.
   - **Mood:** Energetic and intense.
-  - **Cinematography:** Dynamic camera movements with fast zooms and pans.
-  - **Sound Design:** Electronic synths with heavy bass; ambient city noises.
-  - **Color Palette:** Neon blues, pinks, and purples.
-  - **Editing Techniques:** Quick cuts and seamless transitions.
-  - **Special Effects:** Holographic projections and light trails.
+  - **Arrangement:** Dynamic tempo shifts with stuttered transitions.
+  - **Sound Design:** Saturated synths, distorted bass, and ambient crowd noise.
+  - **Tonal Palette:** Neon-like pads in blues and purples.
+  - **Mixing Techniques:** Quick filter sweeps and rhythmic automation.
+  - **Special Effects:** Reversed reverbs and granular glitches.
 
 ### Instructions for Creating Detailed and Imaginative Artistic Guides
 
@@ -98,25 +97,25 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     - The emotional atmosphere to convey throughout the song.
 
   - **Musical Style and Effects:**
-    - Details on cinematography, visual effects, and animation styles.
+    - Details on instrumentation, production effects, and mixing style.
 
   - **Vocal Techniques:**
-    - Camera angles, movements, and shot compositions.
+    - Vocal delivery styles, harmonies, and layering.
 
   - **Rhythm and Melody:**
     - Types of sounds, music genre, or specific auditory elements.
 
   - **Instrumentation and Tone:**
-    - Specific colors and lighting setups to enhance the visuals.
+    - Specific instrument tones and production treatments to enhance the mood.
 
   - **Narrative Elements:**
     - Brief description of the storyline or message.
 
   - **Lyric Structure:**
-    - Description of pacing, transitions, and editing techniques.
+    - Description of pacing, transitions, and rhyme schemes.
 
   - **Special Effects and Innovations:**
-    - Innovative visual effects or technologies to incorporate.
+    - Innovative sound design or production techniques to incorporate.
 
 - **Action:** Write each artistic guide as a detailed text string, incorporating sensory imagery and emotional depth.
 
