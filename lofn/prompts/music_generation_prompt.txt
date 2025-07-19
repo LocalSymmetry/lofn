@@ -702,7 +702,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 
   ```json
   {{
-    "song_prompts": [
+    "music_prompts": [
       {{"music_prompt": "Music Prompt 1", "lyrics_prompt": "Lyrics Prompt 1", "title":"Song 1 Title"}},
       {{"music_prompt": "Music Prompt 2", "lyrics_prompt": "Lyrics Prompt 2", "title":"Song 2 Title"}},
       {{"music_prompt": "Music Prompt 3", "lyrics_prompt": "Lyrics Prompt 3", "title":"Song 3 Title"}},
