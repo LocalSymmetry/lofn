@@ -137,7 +137,15 @@ video_prompts = {
 # Music prompts
 music_prompts = {
     'essence_and_facets': read_prompt('/lofn/prompts/music_essence_prompt.txt'),
-    'creation': read_prompt('/lofn/prompts/music_creation_prompt.txt'),
+    'hooks': read_prompt('/lofn/prompts/music_hooks_prompt.txt'),
+    'artist_and_critique': read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt'),
+    'arrangement': read_prompt('/lofn/prompts/music_arrangement_prompt.txt'),
+    'refine_arrangement': read_prompt('/lofn/prompts/music_refine_arrangement_prompt.txt'),
+    'facets': read_prompt('/lofn/prompts/music_facets_prompt.txt'),
+    'song_guides': read_prompt('/lofn/prompts/music_song_guides_prompt.txt'),
+    'generation': read_prompt('/lofn/prompts/music_generation_prompt.txt'),
+    'artist_refined': read_prompt('/lofn/prompts/music_artist_refined_prompt.txt'),
+    'revision_synthesis': read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt'),
 }
 
 # Image prompts (existing)
@@ -276,6 +284,49 @@ music_gen_schema = {
     "music_prompt": str,
     "lyrics_prompt": str,
     "title": str
+}
+
+# New schemas for the expanded music pipeline
+hooks_schema = {
+    "hooks": [
+        {"hook": str}
+    ]
+}
+
+artist_refined_hooks_schema = {
+    "artists": [
+        {"artist": str}
+    ],
+    "refinedhooks": [
+        {"refinedhook": str}
+    ]
+}
+
+arrangements_schema = {
+    "arrangements": [
+        {"arrangement": str}
+    ]
+}
+
+refined_arrangements_schema = {
+    "refinedhooks": [
+        {"refinedhook": str}
+    ],
+    "refinedarrangements": [
+        {"refinedarrangement": str}
+    ]
+}
+
+song_guides_schema = {
+    "song_guides": [
+        {"song_guide": str}
+    ]
+}
+
+music_generation_schema = {
+    "music_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str}
+    ]
 }
 
 # Schema for panel voting on concept-medium pairs
@@ -1395,7 +1446,33 @@ def generate_video_concept_mediums(
         reasoning_level=reasoning_level
     )
 
-def generate_music_prompts(
+def generate_music_hook_arrangements(
+    input_text,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    verbose=False,
+    debug=False,
+    aesthetics=aesthetics,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium",
+):
+    return generate_concept_mediums(
+        input_text,
+        max_retries,
+        temperature,
+        model,
+        verbose,
+        debug,
+        aesthetics,
+        style_axes,
+        creativity_spectrum,
+        medium='music',
+        reasoning_level=reasoning_level
+    )
+
+def generate_simple_music_prompts(
     input_text,
     max_retries,
     temperature,
@@ -1898,6 +1975,93 @@ def generate_video_prompts(
     except Exception as e:
         raise LofnError(f"Error in video prompt generation: {str(e)}")
 
+def generate_music_prompts(
+    input_text,
+    hook,
+    arrangement,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium"
+):
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        prompts = prompt_configs.get('music')
+
+        if model[0] == "o":
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("human", prompts['facets'])])
+                    | llm
+                ),
+                'song_guides': (
+                    ChatPromptTemplate.from_messages([("human", prompts['song_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+        else:
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", prompts['facets'])])
+                    | llm
+                ),
+                'song_guides': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['song_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+
+        with st.status(f"Generating Music Prompts for {hook} in {arrangement}...", expanded=True) as status:
+            status.write("Generating Facets...")
+            facets = process_facets(chains, input_text, hook, arrangement, max_retries, debug, style_axes, model)
+            display_facets(facets['facets'])
+
+            status.write("Creating Song Guides...")
+            guides = process_song_guides(chains, input_text, hook, arrangement, facets, max_retries, debug, style_axes, model)
+
+            status.write("Generating Music Prompts...")
+            music_prompts = process_music_generation_prompts(chains, input_text, hook, arrangement, facets, guides, max_retries, debug, style_axes, model)
+
+            status.write("Refining Prompts...")
+            artist_refined = process_music_artist_refined_prompts(chains, input_text, hook, arrangement, facets, music_prompts, max_retries, debug, style_axes, model)
+
+            status.write("Synthesizing Final Prompts...")
+            final_output = process_music_revision_synthesis(chains, input_text, hook, arrangement, facets, artist_refined, max_retries, debug, style_axes, model)
+
+            status.update(label="Music Prompt Generation Complete!", state="complete")
+
+        return final_output['music_prompt'], final_output['lyrics_prompt'], final_output['title']
+
+    except Exception as e:
+        raise LofnError(f"Error in music prompt generation: {str(e)}")
+
 def process_video_prompts(
     chains,
     input_text,
@@ -1977,4 +2141,293 @@ def process_video_artist_refined_prompts(
             [prompt['artist_refined_prompt'] for prompt in parsed_output['artist_refined_prompts']],
             premessage=f'Filmmaker-Refined Prompts for {concept} in {medium}:'
         )
+    return parsed_output
+
+
+# === Music Processing Functions ===
+def process_hooks(
+    chains,
+    input_text,
+    essence,
+    facets,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    model=None
+):
+    expected_schema = hooks_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'hooks',
+        {
+            "input": input_text,
+            "essence": essence,
+            "facets": facets,
+            "style_axes": style_axes,
+            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+            "creativity_spectrum_literal": creativity_spectrum['literal'],
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process hooks")
+        return None
+    return parsed_output
+
+
+def process_artist_and_refined_hooks(
+    chains,
+    input_text,
+    essence,
+    facets,
+    hooks,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    model=None
+):
+    expected_schema = artist_refined_hooks_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'artist_and_critique',
+        {
+            "input": input_text,
+            "essence": essence,
+            "facets": facets,
+            "style_axes": style_axes,
+            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+            "creativity_spectrum_literal": creativity_spectrum['literal'],
+            "hooks": [x['hook'] for x in hooks['hooks']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process artist and refined hooks")
+        return None
+    return parsed_output
+
+
+def process_arrangements(
+    chains,
+    input_text,
+    essence,
+    facets,
+    refined_hooks,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    model=None
+):
+    expected_schema = arrangements_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'arrangement',
+        {
+            "input": input_text,
+            "essence": essence,
+            "facets": facets,
+            "style_axes": style_axes,
+            "refinedhooks": [x['refinedhook'] for x in refined_hooks['refinedhooks']],
+            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+            "creativity_spectrum_literal": creativity_spectrum['literal'],
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process arrangements")
+        return None
+    return parsed_output
+
+
+def process_refined_arrangements(
+    chains,
+    input_text,
+    essence,
+    facets,
+    arrangements,
+    artists,
+    refined_hooks,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    model=None
+):
+    expected_schema = refined_arrangements_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'refine_arrangement',
+        {
+            "input": input_text,
+            "essence": essence,
+            "facets": facets,
+            "style_axes": style_axes,
+            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+            "creativity_spectrum_literal": creativity_spectrum['literal'],
+            "arrangements": [x['arrangement'] for x in arrangements['arrangements']],
+            "artists": artists,
+            "refinedhooks": [x['refinedhook'] for x in refined_hooks['refinedhooks']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process refined arrangements")
+        return None
+    return parsed_output
+
+
+def process_song_guides(
+    chains,
+    input_text,
+    hook,
+    arrangement,
+    facets,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = song_guides_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'song_guides',
+        {
+            "input": input_text,
+            "concept": hook,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process song guides")
+        return None
+    return parsed_output
+
+
+def process_music_generation_prompts(
+    chains,
+    input_text,
+    hook,
+    arrangement,
+    facets,
+    song_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = music_generation_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'generation',
+        {
+            "input": input_text,
+            "concept": hook,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process music prompts")
+        return None
+    return parsed_output
+
+
+def process_music_artist_refined_prompts(
+    chains,
+    input_text,
+    hook,
+    arrangement,
+    facets,
+    music_prompts,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = artist_refined_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'artist_refined',
+        {
+            "input": input_text,
+            "concept": hook,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "music_gen_prompts": [x['music_prompt'] for x in music_prompts['music_prompts']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process musician refined prompts")
+        return None
+    return parsed_output
+
+
+def process_music_revision_synthesis(
+    chains,
+    input_text,
+    hook,
+    arrangement,
+    facets,
+    artist_refined_prompts,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = music_gen_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'revision_synthesis',
+        {
+            "input": input_text,
+            "concept": hook,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process revised music prompts")
+        return None
     return parsed_output

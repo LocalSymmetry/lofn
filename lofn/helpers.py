@@ -399,8 +399,10 @@ def create_mini_dashboard(pairs):
                 with row[j]:
                     st.markdown(f"**Pair {i+j+1}**")
                     with st.expander("View Details", expanded=True):
-                        st.markdown(f"**Concept:** {pair['concept']}")
-                        st.markdown(f"**Medium:** {pair['medium']}")
+                        concept_key = 'concept' if 'concept' in pair else 'hook'
+                        medium_key = 'medium' if 'medium' in pair else 'arrangement'
+                        st.markdown(f"**Concept:** {pair.get(concept_key)}")
+                        st.markdown(f"**Medium:** {pair.get(medium_key)}")
                     if st.checkbox(f"Select Pair {i+j+1}", key=f"pair_{i+j}"):
                         selected_pairs.append(i+j)
                     st.markdown("---")
