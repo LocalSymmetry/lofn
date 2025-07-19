@@ -117,6 +117,7 @@
 7. [Model Coverage](#model-coverage)  
 8. [Ethics & Provenance](#ethics--provenance)  
 9. [FAQ](#faq) &nbsp;&nbsp;•&nbsp; [Contributing](#contributing) &nbsp;&nbsp;•&nbsp; [License](#license)
+10. [MCP Server](#mcp-server)
 
 ---
 
@@ -193,6 +194,13 @@ All behavioural constants sit in `lofn/constants.py` (tree widths, critic weight
 6. **Copy Prompt** *or* let Lofn call the generator API automatically
 
 Raw prompts, images, audio and video are auto‑saved in `/images`, `/music`, `/videos`, with human‑readable JSON metadata for provenance.
+
+## MCP Server
+
+Run the minimal API server:
+```bash
+uvicorn mcp_server:app --reload
+```
 
 ---
 
