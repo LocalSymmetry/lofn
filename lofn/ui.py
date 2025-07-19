@@ -678,7 +678,8 @@ class LofnApp:
                 .replace('{input}', st.session_state.get('input', ''))
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
-            with st.spinner("Generating music prompts..."):
+
+            with st.spinner("Generating music concepts..."):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
@@ -689,12 +690,43 @@ class LofnApp:
                     creativity_spectrum=None,
                     reasoning_level=st.session_state.get('reasoning_level', 'medium')
                 )
-                if concept_mediums:
-                    first = concept_mediums[0]
+
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity
+            st.session_state['music_concept_mediums'] = concept_mediums
+
+            pairs = concept_mediums
+            if pairs:
+                try:
+                    with st.spinner("Panel voting on best pairs..."):
+                        best_pairs = select_best_pairs(
+                            input_text,
+                            pairs,
+                            st.session_state.get('num_best_pairs', 3),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium'),
+                        )
+                    st.session_state['music_best_pairs'] = best_pairs
+                    st.success("Best music pairs selected by panel")
+                except Exception as e:
+                    st.error("An error occurred while selecting best music pairs.")
+                    logger.exception("Error selecting music pairs: %s", e)
+                    best_pairs = pairs
+            else:
+                best_pairs = []
+
+            prompts_combined = {'revised_prompts': [], 'synthesized_prompts': []}
+            top_n = st.session_state.get('num_best_pairs', 3)
+            gen_pairs = best_pairs if best_pairs else pairs
+            for pair in gen_pairs[:top_n]:
+                with st.spinner(f"Generating music prompts for '{pair['concept']}'..."):
                     song_prompts = generate_music_prompts(
                         input_text,
-                        first['concept'],
-                        first['medium'],
+                        pair['concept'],
+                        pair['medium'],
                         max_retries=self.max_retries,
                         temperature=self.temperature,
                         model=self.model,
@@ -703,23 +735,22 @@ class LofnApp:
                         creativity_spectrum=creativity,
                         reasoning_level=st.session_state.get('reasoning_level', 'medium')
                     )
-                else:
-                    song_prompts = {'revised_prompts': [], 'synthesized_prompts': []}
-                st.session_state['style_axes'] = style_axes
-                st.session_state['creativity_spectrum'] = creativity
-            st.session_state['song_prompts'] = song_prompts
+                prompts_combined['revised_prompts'].extend(song_prompts.get('revised_prompts', []))
+                prompts_combined['synthesized_prompts'].extend(song_prompts.get('synthesized_prompts', []))
+                for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
+                    metadata = {
+                        'timestamp': datetime.now(),
+                        'title': prompt['title'],
+                        'music_prompt': prompt['music_prompt'],
+                        'lyrics_prompt': prompt['lyrics_prompt'],
+                        'input_text': st.session_state.get('input', ''),
+                        'competition': True,
+                        'model': self.model,
+                    }
+                    save_music_metadata(metadata)
 
-            for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
-                metadata = {
-                    'timestamp': datetime.now(),
-                    'title': prompt['title'],
-                    'music_prompt': prompt['music_prompt'],
-                    'lyrics_prompt': prompt['lyrics_prompt'],
-                    'input_text': st.session_state.get('input', ''),
-                    'competition': True,
-                    'model': self.model,
-                }
-                save_music_metadata(metadata)
+            st.session_state['song_prompts'] = prompts_combined
+
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -1043,6 +1074,8 @@ class LofnApp:
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
+            'music_concept_mediums': None,
+            'music_best_pairs': None,
             'song_prompts': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
