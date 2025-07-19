@@ -202,6 +202,28 @@ Run the minimal API server:
 uvicorn mcp_server:app --reload
 ```
 
+### Endpoints
+
+| Method | Path | Description |
+| ------ | ---- | ----------- |
+| `POST` | `/music/genres` | Sample music genres |
+| `POST` | `/music/frames` | Sample music frames |
+| `POST` | `/image/concepts` | Generate image concept/medium pairs |
+| `POST` | `/video/concepts` | Generate video concept/medium pairs |
+| `POST` | `/image/prompts` | Generate image prompts |
+| `POST` | `/video/prompts` | Generate video prompts |
+| `POST` | `/music/prompts` | Generate music prompts |
+| `POST` | `/image/competition` | Full image competition flow |
+| `POST` | `/video/competition` | Full video competition flow |
+| `POST` | `/music/competition` | Full music competition flow |
+| `GET` | `/models` | List available language models |
+| `GET` | `/image/models` | List available image models |
+| `GET` | `/video/models` | List available video models |
+| `GET` | `/personalities` | Names from `personalities.yaml` |
+| `GET` | `/panels` | Names from `panels.yaml` |
+| `GET` | `/prompts` | List internal prompt files |
+| `GET` | `/prompt/{name}` | Fetch a prompt file |
+
 ---
 
 ## 🔍 Concept → Prompt Pipeline
