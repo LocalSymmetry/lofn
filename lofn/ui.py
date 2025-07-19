@@ -27,6 +27,13 @@ PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 with open('/lofn/prompts/personalities.yaml', 'r') as f:
     PERSONALITY_OPTIONS = yaml.safe_load(f)
 
+# Merge in user-defined personalities if the optional file exists
+custom_personality_path = '/lofn/prompts/custom_personalities.yaml'
+if os.path.exists(custom_personality_path):
+    with open(custom_personality_path, 'r') as f:
+        custom_personalities = yaml.safe_load(f) or []
+        PERSONALITY_OPTIONS.extend(custom_personalities)
+
 PERSONALITY_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PERSONALITY_OPTIONS
 
 class LofnError(Exception):
