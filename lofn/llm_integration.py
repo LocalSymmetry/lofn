@@ -292,28 +292,6 @@ music_gen_schema = {
     "title": str
 }
 
-# New schemas for multi-song workflows
-song_prompts_schema = {
-    "song_prompts": [
-        {"music_prompt": str, "lyrics_prompt": str, "title": str}
-    ]
-}
-
-musician_refined_schema = {
-    "musician_refined_prompts": [
-        {"music_prompt": str, "lyrics_prompt": str, "title": str}
-    ]
-}
-
-final_music_schema = {
-    "revised_prompts": [
-        {"music_prompt": str, "lyrics_prompt": str, "title": str}
-    ],
-    "synthesized_prompts": [
-        {"music_prompt": str, "lyrics_prompt": str, "title": str}
-    ]
-}
-
 
 song_guides_schema = {
     "song_guides": [
@@ -321,6 +299,11 @@ song_guides_schema = {
     ]
 }
 
+music_generation_schema = {
+    "music_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
 
 # Schema for panel voting on concept-medium pairs
 best_pairs_schema = {
@@ -2050,7 +2033,7 @@ def generate_music_prompts(
 
             status.update(label="Music Prompt Generation Complete!", state="complete")
 
-        return final_output
+        return final_output['music_prompt'], final_output['lyrics_prompt'], final_output['title']
 
     except Exception as e:
         raise LofnError(f"Error in music prompt generation: {str(e)}")
@@ -2109,7 +2092,7 @@ def process_video_artist_refined_prompts(
     style_axes=None,
     model=None
 ):
-    expected_schema = musician_refined_schema
+    expected_schema = artist_refined_schema
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -2185,7 +2168,7 @@ def process_music_generation_prompts(
     style_axes=None,
     model=None
 ):
-    expected_schema = song_prompts_schema
+    expected_schema = music_generation_schema
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -2230,7 +2213,7 @@ def process_music_artist_refined_prompts(
             "medium": arrangement,
             "facets": facets['facets'],
             "style_axes": style_axes,
-            "song_prompts": music_prompts['song_prompts']
+            "song_prompts": music_prompts
         },
         max_retries,
         model,
@@ -2255,7 +2238,7 @@ def process_music_revision_synthesis(
     style_axes=None,
     model=None
 ):
-    expected_schema = final_music_schema
+    expected_schema = music_gen_schema
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
@@ -2265,7 +2248,7 @@ def process_music_revision_synthesis(
             "medium": arrangement,
             "facets": facets['facets'],
             "style_axes": style_axes,
-            "artist_refined_prompts": artist_refined_prompts['musician_refined_prompts']
+            "artist_refined_prompts": artist_refined_prompts['artist_refined_prompts']
         },
         max_retries,
         model,

@@ -237,7 +237,7 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
 
 - **Production Styles:**
 
-{Production Styles}
+{mediums}
 
 - **Musicians:**
 
@@ -268,7 +268,7 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
          {{"refinedconcept": "Refined Concept 10"}},
          {{"refinedconcept": "Refined Concept 11"}},
          {{"refinedconcept": "Refined Concept 12"}}
-       "refinedProduction Styles": [
+       "refinedmediums": [
          {{"refinedmedium": "Refined Production Style 1"}},
          {{"refinedmedium": "Refined Production Style 2"}},
          {{"refinedmedium": "Refined Production Style 3"}},
