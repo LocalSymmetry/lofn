@@ -304,6 +304,8 @@ PART 3 · COMMON FAILURE MODES & FIXES (quick desk‑ref)
 | **Genre drift** | jazz horns in trap song | reiterate core genre at start of each progression sentence + blacklist horns. |
 | **Generic filler drums** | trap hats, airhorns | explicit Style‑Reduction: `no generic trap hats, no airhorn`. |
 | **Flat dynamics** | song never builds | add progression verbs + “[No beats]” drop + “[massive bass‑drop]” tag. |
+| **Voiced song directions** | the generator sings the music directions in verse | don't put more than 5 words in a * * tag. Use [ ] tags instead. |
+
 
 
 ────────────────────────────────────────────────────────

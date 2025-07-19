@@ -691,7 +691,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 - **Style Axes:** {style_axes}
 - **Artistic Guides:**
 
-{artistic_guides}
+{song_guides}
 
 - **User's Idea:**
 
