@@ -1,1 +1,170 @@
-TEMPLATE MUSIC GENERATION PROMPT
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new song section content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+**INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when crafting prompts for AI song generation.
+- Use vivid, sensory language to describe song sections, moods, and transitions.
+- Follow the steps below to create compelling and award-winning music prompts.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Style Axes:**
+
+{style_axes}
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Describe Key Elements**
+
+- For each artistic guide:
+
+  - Identify critical song sections or sequences that represent the {concept} in the {medium}.
+  - Use cognitive techniques like music metaphors and analogies to enhance creativity.
+  - Include:
+
+    - **Opening Section:** A powerful opening that captures immediate attention.
+    - **Key Audio Moments:** Descriptions of pivotal music moments.
+    - **Emotional Peaks:** Points in the song where emotions intensify.
+    - **Transitions and Flow:** How song sections transition and the pacing.
+    - **Closing Section:** A memorable ending that leaves a lasting impression.
+
+---
+
+**Step 2: Write the Song Prompts**
+
+- For each artistic guide, craft a concise yet detailed music prompt suitable for AI song generation.
+- Briefly explain how it aligns with the style axes, creativity spectrum, and enhances emotional and thematic elements.
+
+- **Ensure:**
+
+  - The {medium} and the {concept} are explicitly stated.
+  - Sections are feasible for AI to render.
+  - Use proper nouns and unique descriptors where appropriate.
+  - The prompt is precise, descriptive, and vivid.
+
+- **Remember:**
+
+  - Honor the original concept but be daring and creative.
+  - Avoid impossible or unrenderable scenarios.
+  - Do not reference the song creation process.
+  - Adhere to ethical guidelines and avoid disallowed content.
+
+---
+
+**Step 3: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each prompt** for alignment with:
+
+    - **User's Idea**
+    - **Style Axes**
+    - **Emotional and Thematic Depth**
+    - **Feasibility for AI Generation**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment, creativity, and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 4: Provide the Final Output**
+
+- **Return the prompts in the following JSON format:**
+
+  ```json
+  {{
+    "song_prompts": [
+      {{"song_prompt": "Song Prompt 1"}},
+      {{"song_prompt": "Song Prompt 2"}},
+      {{"song_prompt": "Song Prompt 3"}},
+      {{"song_prompt": "Song Prompt 4"}},
+      {{"song_prompt": "Song Prompt 5"}},
+      {{"song_prompt": "Song Prompt 6"}}
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Artistic Guides:**
+
+{artistic_guides}
+
+- **User's Idea:**
+
+{input}

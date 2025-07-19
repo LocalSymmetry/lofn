@@ -1,1 +1,24 @@
-TEMPLATE MUSIC HOOKS PROMPT
+**Hook Generation Guide**
+
+Use this template to craft memorable vocal hooks and riffs for each song concept.
+
+1. **Keep it Short and Catchy** – aim for 4 to 8 syllables per hook.
+2. **Start with a Strong Verb or Image** – grab attention immediately.
+3. **Match the Emotion and Genre** – the hook should reflect the song's mood and style.
+4. **Consider Call and Response** – short echoes or answers can add energy.
+5. **Repeat Key Words** – repetition helps make the hook unforgettable.
+
+### Input & Output Template
+
+**Input**
+```
+{concept}
+{genre}
+```
+
+**Output**
+```json
+{
+  "hook": "<catchy phrase>"
+}
+```
