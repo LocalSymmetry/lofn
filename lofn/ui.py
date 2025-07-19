@@ -679,27 +679,26 @@ class LofnApp:
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
+                song_prompts = generate_music_prompts(
                     input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
                 )
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
+            st.session_state['song_prompts'] = song_prompts
 
-            metadata = {
-                'timestamp': datetime.now(),
-                'title': music_title,
-                'music_prompt': music_prompt,
-                'lyrics_prompt': lyrics_prompt,
-                'input_text': st.session_state.get('input', ''),
-                'competition': True,
-                'model': self.model,
-            }
-            save_music_metadata(metadata)
+            for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
+                metadata = {
+                    'timestamp': datetime.now(),
+                    'title': prompt['title'],
+                    'music_prompt': prompt['music_prompt'],
+                    'lyrics_prompt': prompt['lyrics_prompt'],
+                    'input_text': st.session_state.get('input', ''),
+                    'competition': True,
+                    'model': self.model,
+                }
+                save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -930,7 +929,7 @@ class LofnApp:
             else:
                 self.run_music_competition()
 
-        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+        if st.session_state.get('song_prompts'):
             self.display_music_prompts()
 
     # def render_music_sidebar(self):
@@ -961,7 +960,7 @@ class LofnApp:
                 )
                 if concept_mediums:
                     first = concept_mediums[0]
-                    music_prompt, lyrics_prompt, music_title = generate_music_prompts(
+                    song_prompts = generate_music_prompts(
                         st.session_state['input'],
                         first['concept'],
                         first['medium'],
@@ -974,20 +973,19 @@ class LofnApp:
                         reasoning_level=st.session_state.get('reasoning_level','medium')
                     )
                 else:
-                    music_prompt = lyrics_prompt = music_title = ""
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
-            metadata = {
-                'timestamp': datetime.now(),
-                'title': music_title,
-                'music_prompt': music_prompt,
-                'lyrics_prompt': lyrics_prompt,
-                'input_text': st.session_state['input'],
-                'competition': False,
-                'model': self.model,
-            }
-            save_music_metadata(metadata)
+                    song_prompts = {'revised_prompts': [], 'synthesized_prompts': []}
+            st.session_state['song_prompts'] = song_prompts
+            for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
+                metadata = {
+                    'timestamp': datetime.now(),
+                    'title': prompt['title'],
+                    'music_prompt': prompt['music_prompt'],
+                    'lyrics_prompt': prompt['lyrics_prompt'],
+                    'input_text': st.session_state['input'],
+                    'competition': False,
+                    'model': self.model,
+                }
+                save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
         except Exception as e:
@@ -995,24 +993,36 @@ class LofnApp:
             logger.exception("Error generating music prompts: %s", e)
 
     def display_music_prompts(self):
-        st.subheader("Generated Song Title")
-        st.code(st.session_state['music_title'], language='text')
+        song_prompts = st.session_state.get('song_prompts')
+        if not song_prompts:
+            return
 
-        st.subheader("Generated Music Prompt")
-        st.code(st.session_state['music_prompt'], language='text')
+        st.subheader("Revised Prompts")
+        for prompt in song_prompts.get('revised_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
 
-        st.subheader("Generated Lyrics Prompt")
-        st.code(st.session_state['lyrics_prompt'], language='text')
-        st.info("Copy the above prompts and paste them into Udio to generate your music.")
+        st.subheader("Synthesized Prompts")
+        for prompt in song_prompts.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
+
+        st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
 
     def initialize_session_state(self):
         default_values = {
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
-            'music_title': None,
-            'music_prompt': None,
-            'lyrics_prompt': None,
+            'song_prompts': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,
