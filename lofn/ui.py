@@ -949,7 +949,7 @@ class LofnApp:
     def generate_music_prompts_ui(self):
         try:
             with st.spinner("Generating music prompts..."):
-                hooks, style_axes, creativity = generate_music_hook_arrangements(
+                concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     st.session_state['input'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -959,12 +959,12 @@ class LofnApp:
                     creativity_spectrum=None,
                     reasoning_level=st.session_state.get('reasoning_level','medium')
                 )
-                if hooks:
-                    first = hooks[0]
+                if concept_mediums:
+                    first = concept_mediums[0]
                     music_prompt, lyrics_prompt, music_title = generate_music_prompts(
                         st.session_state['input'],
-                        first['hook'],
-                        first['arrangement'],
+                        first['concept'],
+                        first['medium'],
                         max_retries=self.max_retries,
                         temperature=self.temperature,
                         model=self.model,
