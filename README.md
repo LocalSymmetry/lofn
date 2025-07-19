@@ -241,6 +241,10 @@ A thematic setting that provides a consistent creator persona that lasts between
 
 Leave empty for LLM‑generated defaults or curate for brand consistency.
 
+Custom personas can also be loaded from `lofn/prompts/custom_personalities.yaml`.
+Copy the provided `custom_personalities.yaml.example` file to this location and
+add your own entries to have them appear in the sidebar.
+
 ---
 
 ## 👥 Panels
