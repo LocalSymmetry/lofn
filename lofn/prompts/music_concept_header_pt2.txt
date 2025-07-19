@@ -1,10 +1,126 @@
-## Music Concept and Medium Guide
 
-Concepts describe what the song is about. Mediums describe the genre, instrumentation, and production style that best express the concept.
+## Music Concept and Production Style Guide
 
-When generating concepts, be specific with mood and imagery. When selecting mediums, highlight genre and key instruments.
+    In the LOFN music workflow, **concepts** define the story, mood or scene
+    being expressed, while **production styles** describe how that concept is
+    realised through genre, instrumentation, arrangement and mixing.  Concepts
+    focus on *what* the song conveys; production styles focus on *how* it is
+    conveyed.
 
-### Input & Output Template
+    When creating concepts, be specific with mood, imagery and narrative.  Use
+    proper nouns (names of people, places, cultural references) when relevant
+    and paint a vivid picture using sensory language.  Tie the concept to
+    emotional nuance and imagine how the listener should feel.  When selecting
+    production styles, highlight the genre, key instruments, vocal approach,
+    tempo and any distinctive production choices (e.g., analog warmth vs.
+    digital sheen).  Consider the **musical style axes** introduced in the
+    overview to ensure the concept and production are aligned.
 
-**Input** "A futuristic cityscape at night"
-**Output** Medium example: "Synthwave with shimmering pads and neon leads"
+    Your concepts should loosely map onto the **creativity spectrum**: some
+    literal, some inventive and some transformative.  For each, consider where
+    it falls on the axes of tempo, energy, harmonic complexity, rhythmic
+    complexity, timbre richness, vintage vs. modern, vocal prominence,
+    organic vs. synthetic, genre purity vs. fusion, and narrative emphasis.
+
+    ### Examples of Concept Generation and Style Axes
+
+    1. **User Input:** "A hope‑filled ballad about new beginnings"
+
+       **Creativity Spectrum:**
+       - Literal: 40%
+       - Inventive: 40%
+       - Transformative: 20%
+
+       **Style Axes:**
+       - **Tempo:** 45 (mid‑tempo)
+       - **Energy/Dynamics:** 35 (gentle build)
+       - **Harmonic Complexity:** 50 (rich but approachable chords)
+       - **Rhythmic Complexity:** 25 (straightforward rhythm)
+       - **Timbre Richness:** 60 (layered acoustic and electronic textures)
+       - **Vintage vs. Modern:** 40 (nostalgic but polished)
+       - **Vocal Prominence:** 80 (vocals front and centre)
+       - **Organic vs. Synthetic:** 30 (mostly acoustic)
+       - **Genre Purity vs. Fusion:** 20 (traditional singer‑songwriter)
+       - **Narrative Emphasis:** 85 (strong storytelling)
+
+       **Essence:** A cathartic yet hopeful reflection on leaving the past
+       behind and embracing new horizons.
+
+       **Facets:**
+       1. Warm, intimate vocal delivery
+       2. Gentle acoustic instrumentation with subtle synth pads
+       3. Gradual dynamic rise culminating in an uplifting chorus
+       4. Lyrical imagery of sunrise and renewal
+       5. Clean, spacious production with light reverb
+
+       **Generated Concept:** A heartfelt acoustic‑pop ballad with earnest
+       vocals, subtle piano and guitar interplay, and lyrics about emerging
+       from darkness into dawn.
+
+       **Selected Production Style:** Contemporary acoustic pop ballad with
+       finger‑picked guitars, soft piano, mellow strings and a cinematic
+       crescendo; recorded in a dry studio environment with minimal effects.
+
+    2. **User Input:** "A psychedelic exploration of cosmic consciousness"
+
+       **Creativity Spectrum:**
+       - Literal: 10%
+       - Inventive: 30%
+       - Transformative: 60%
+
+       **Style Axes:**
+       - **Tempo:** 70 (moderately fast)
+       - **Energy/Dynamics:** 80 (intense and evolving)
+       - **Harmonic Complexity:** 90 (modal shifts and extended chords)
+       - **Rhythmic Complexity:** 75 (syncopated, shifting meters)
+       - **Timbre Richness:** 95 (dense layers of synths and guitars)
+       - **Vintage vs. Modern:** 50 (mix of analog psychedelia and modern
+         electronic)
+       - **Vocal Prominence:** 40 (vocals as texture)
+       - **Organic vs. Synthetic:** 70 (heavily electronic)
+       - **Genre Purity vs. Fusion:** 95 (fusion of psych‑rock, electronic and
+         world music)
+       - **Narrative Emphasis:** 30 (abstract, experiential)
+
+       **Essence:** A transcendental sonic journey that blurs the boundaries
+       between inner and outer space.
+
+       **Facets:**
+       1. Hypnotic, swirling synthesizers and guitars
+       2. Unconventional rhythms and percussion
+       3. Textural vocals and chants
+       4. Psychedelic production effects (phasing, tape delay, reverb)
+       5. Long‑form structure with evolving sections
+
+       **Generated Concept:** A trippy, multi‑section composition weaving
+       analog synth drones, sitar flourishes and swirling guitar solos over
+       shifting time signatures, inviting listeners into a kaleidoscopic inner
+       journey.
+
+       **Selected Production Style:** Psychedelic prog‑electronic fusion using
+       vintage synths, sitar, electric guitars and complex percussion; rich
+       reverb and tape delay; extended run‑time approaching eight minutes to
+       take advantage of Suno’s longer outputshttps://help.suno.com/en/articles/5782593#:~:text=Our%20latest%20model%2C%20v4,released%20beta%20version%2C%20you%27ll%20get.
+
+    When creating your own concepts and production styles, think broadly about
+    instrumentation (strings, winds, percussion, synths), vocal style (solo vs.
+    harmony, clear vs. distorted), and overall production aesthetics (lo‑fi,
+    hi‑fi, cinematic, raw, lush).  Use the style axes as dials to tune your
+    concept and medium precisely.
+
+    ### Input & Output Template
+
+    **Input**  
+    ```
+    A cinematic narrative about resilience amid adversity
+    ```
+
+    **Output**  
+    **Concept Example:** "An orchestral pop epic chronicling the rise of a
+    protagonist who overcomes hardship through perseverance."  
+    **Production Style Example:** "Hybrid orchestral pop with soaring strings,
+    pounding drums and powerful vocals; recorded with lush reverb and dynamic
+    crescendos."  
+
+    Use similar structure in your responses, returning arrays for concepts and
+    production styles as required by the next phase.

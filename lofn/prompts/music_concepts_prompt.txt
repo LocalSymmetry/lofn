@@ -1,0 +1,189 @@
+
+──────────────────────────────────────────────────────────────────────────────
+    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
+──────────────────────────────────────────────────────────────────────────────
+
+1. CONCEPT SYSTEM & ETHICS        │  Completed
+2. ESSENCE & STYLE AXES            │  Completed
+3. CONCEPT GENERATION              │  **YOU ARE HERE – CREATE CONCEPTS**
+4. CONCEPT REFINEMENT              │  Next: add influences and critique.
+5. PRODUCTION STYLE SELECTION      │
+6. PRODUCTION REFINEMENT           │
+7. SCORING FACET GENERATION        │
+8. ARTISTIC GUIDE CREATION         │
+9. RAW MUSIC PROMPT GENERATION     │
+10. INFLUENCE‑REFINED PROMPT       │
+11. PROMPT EVALUATION & SYNTHESIS  │
+12. FINAL MUSIC & LYRIC PROMPTS    │
+──────────────────────────────────────────────────────────────────────────────
+
+## Context
+
+You now have the essence, facets, creativity spectrum and style axes for the user’s idea.  Your job in this phase is to explore a broad creative space by producing **twelve distinct song concepts**.  Each concept should be compelling and markedly different from the others, yet all should remain anchored to the essence and style constraints.  Think of them as “movie loglines” for songs—each concept hints at what the finished song could be like without specifying every detail.
+
+To achieve the same award‑winning depth we expect in our visual art, you must go beyond genre tropes.  Envision each concept as if it were a short film or painting: what emotions course through it?  What colours dominate the sonic palette?  What imagery or symbolism could accompany it?  These questions will help you craft concepts that feel cinematic and textured rather than bland or derivative.  Remember to draw from the sub‑emotions table to anchor your concepts in precise feelings.
+
+## Directions
+
+**Step 1: Generate Diverse Interpretations and Facts**
+
+- **1.1 Determine your main takes (15 total):**
+  
+  - Write out 30 more approaches to this list that you are inspired by given the user's input, facets, style axes, and creativity spectrum: "evocative, witty, amusing, humerous, inspring, artistic, intricate, striking, emotional, blunt, Poetic, Surreal, Dreamlike, Minimalist, Symbolic, Nostalgic, Dynamic, Mythical, Futuristic, Melancholic, Romantic, Whimsical, Raw, Gritty, Narrative-driven, Abstract, Textured, Atmospheric, Subversive, Mystical, Rebellious, Elegantly Simple, Candid, Layered, Expressive, Impressionistic, Provocative, Avant-garde, Ephemeral, ..."
+  - Identify twelve ways to approach the topic from an overall perspective from the list above and the list your just generated. 
+  - *Action*: Write the twelve takes down as single phrases. These will be the focus for how we approach the 12 concept generation steps 1.2, 1.3, 1.4, and 1.5. Assign each concept a single take.
+
+- **1.2 List Different Interpretations (15 total):**
+
+  - Identify varied ways to interpret the user's idea and essence, including cultural and historical perspectives.
+  - *Action*: Write each interpretation as a brief, evocative statement.
+
+- **1.3 List Relevant Cultural and Historical Contexts (15 total):**
+
+  - Find fifteen cultural or historical references related to the user's idea and essence.
+  - *Action*: Write each context as a concise sentence.
+
+- **1.4 List Obscure and Inspiring Facts (15 total):**
+
+  - Gather fifteen obscure or inspiring facts that could enrich the concepts.
+  - *Action*: List these facts concisely.
+
+- **1.5 Use Analogical Reasoning (12 total):**
+
+  - Create twelve analogies or metaphors related to the user's idea and essence.
+  - *Action*: Write each analogy or metaphor as a vivid statement.
+
+- **1.6 List Relevant Emotions (12 total):**
+  - Use the "## EMOTIONS" guide to choose or generate 12 emotions that would tie will to the user's idea and essence.
+  - *Action*: Write 12 unique and interesting emotions that best tie to the user's idea and essence.
+
+---
+
+**Step 2: Select Relevant Genres**
+
+- Choose the top 12 most relevant and potentially interesting music genres from the genre list that best align with the user's idea and essence.
+- *Action*: Write down the names of these genres.
+
+- **Rapid Ideation:**
+
+  - For each chosen aesthetic, write one sentence describing a unique song idea leveraging its distinct qualities, considering emotional resonance and auditory details.
+  - Ensure each song idea is unique, innovative, and highlights the aesthetic's qualities.
+
+---
+
+**Step 3: Evaluate and Reflect on Ideas**
+
+- **3.1 Evaluate Each Idea:**
+
+  - Imagine being a judge in a prestigious art competition.
+  - Evaluate each interpretation, context, fact, aesthetic, and song idea from steps 1 and 2 on a scale of 1 to 10 using the provided judging facets below. Evaluate these concepts for their potential to create an insightful, amusing, interesting, compelling, and emotionally impactful art.
+  - *Action*: Assign scores and note key strengths and areas for improvement.
+
+- **3.2 Perform Cognitive Exploration:**
+
+  - Use the headings: Who? What? When? Where? Why? How?
+  - Answer each question for the top ideas to explore new angles and uncover unique perspectives.
+  - *Action*: Write down insightful answers for each question. Give details to the concept you are creating!
+
+---
+
+**Step 4: Brainstorm and Refine Unique Concepts**
+
+- **4.1 Initial Brainstorming:**
+
+  - Use the top ideas from Step 3.
+  - Brainstorm 12 unique and relevant concepts using proper nouns, precise adjectives, and sensory language.
+  - **Ensure each concept aligns with the style axes and evokes emotional resonance**.
+  - *Action*: For each concept:
+    - Write the concept as a concise, vivid phrase.
+    - Briefly explain how it aligns with the style axes, creativity spectrum, and emotional impact.
+
+  - *Reuqirements*:
+   - **Cover the spectrum.**  Vary the song idea concepts along the creativity spectrum defined earlier.  Include some literal interpretations, some inventive fusions and at least a couple of transformative, boundary‑pushing ideas.
+   - **Tell the Story!!* The concept is the main story idea, hook, and song theme. Focus on what we need to convey, and leave the exact musical styling to a later step.
+   - **Emotion first.**  Begin each concept with the core emotion or emotional arc (choose precise sub‑emotions from the emotion table).  This sets the mood.
+      -  **Hint:** Pair emotions with sensory cues or motifs.  For example, “Melancholy glistens like rain on a neon street.”  Such imagery sets a tone that listeners can feel immediately.
+   - **Avoid overlaps.**  Ensure each of the twelve concepts explores a unique combination of mood, genre, instrumentation and production.  Diversity at this stage enriches downstream choices.
+
+   Diversity also includes narrative perspective (first‑person confessional vs. omniscient storyteller), cultural influences (without naming real artists) and experimental structures (through‑composed vs. repeating verse‑chorus).  Challenge yourself to imagine surprising pairings.
+
+
+- **4.2 Reflection and Refinement:**
+
+  - Review each concept for originality, ethical considerations, and alignment with the user's idea.
+  - Revise as necessary to enhance creativity and impact.
+  - Additional Required Refinements:
+    - For entities, add specifications and diversity. For animals, describe their fur, skin patterns, and other features to differentiate them. For people, determine their age, ethnicity, body type, gender presentation, and clothing style.
+    - For places, specify the location if it is in the real world. If it is not, make sure to add descriptors to delinate it from a generic location.
+    - Ensure it is a complete composition with a background, foreground, and story.
+    - Make sure the concept can be crafted in a single song.
+  - *Action*: Provide a brief explanation of any revisions made.
+
+## Output
+
+- **Return the concepts in the following JSON format:**
+
+  ```json
+{{
+  "concepts": 
+  [
+    {{"concept": "Concept 1"}},
+    {{"concept": "Concept 2"}},
+    {{"concept": "Concept 3"}},
+    {{"concept": "Concept 4"}},
+    {{"concept": "Concept 5"}},
+    {{"concept": "Concept 6"}},
+    {{"concept": "Concept 7"}},
+    {{"concept": "Concept 8"}},
+    {{"concept": "Concept 9"}},
+    {{"concept": "Concept 10"}},
+    {{"concept": "Concept 11"}},
+    {{"concept": "Concept 12"}}
+  ]
+}}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **User's Idea:**
+
+{input}
+
+
+- **REMEBER - Return the concepts in the following JSON format:**
+
+  ```json
+{{
+  "concepts": 
+  [
+    {{"concept": "Concept 1"}},
+    {{"concept": "Concept 2"}},
+    {{"concept": "Concept 3"}},
+    {{"concept": "Concept 4"}},
+    {{"concept": "Concept 5"}},
+    {{"concept": "Concept 6"}},
+    {{"concept": "Concept 7"}},
+    {{"concept": "Concept 8"}},
+    {{"concept": "Concept 9"}},
+    {{"concept": "Concept 10"}},
+    {{"concept": "Concept 11"}},
+    {{"concept": "Concept 12"}}
+  ]
+}}
+  ```

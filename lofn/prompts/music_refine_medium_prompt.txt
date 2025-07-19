@@ -1,0 +1,41 @@
+
+──────────────────────────────────────────────────────────────────────────────
+    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
+──────────────────────────────────────────────────────────────────────────────
+
+Phases 1–5                         │  Completed
+6. PRODUCTION REFINEMENT           │  **YOU ARE HERE – REFINE CONCEPT + STYLE**
+7. SCORING FACET GENERATION        │  Next: define evaluation criteria.
+8. ARTISTIC GUIDE CREATION         │
+9. RAW MUSIC PROMPT GENERATION     │
+10. INFLUENCE‑REFINED PROMPT       │
+11. PROMPT EVALUATION & SYNTHESIS  │
+12. FINAL MUSIC & LYRIC PROMPTS    │
+──────────────────────────────────────────────────────────────────────────────
+
+## Context
+
+After assigning production styles, you must revisit each concept–style pair and refine them.  The goal is to ensure the production choices amplify the concept’s emotional core and align with the defined facets.  This phase is iterative: critique the alignment and propose modifications.
+
+Think of this as the phase where a painter adds finishing glazes or scrapes away excess paint.  You are balancing vision and execution.  The concept may have evolved during critique and production selection; now you ensure that the sonic “brushstrokes” (production choices) properly frame the “subject” (concept).  Use cross‑modal intuition—if the music feels too glossy for a gritty story, roughen it with distortion; if the emotional arc demands a broader dynamic range, widen the stereo field or change the vocal delivery.
+
+## Directions
+
+1. **For each pair, perform a two‑part analysis:**
+   * **Alignment critique (1–2 sentences):** Evaluate whether the production style enhances or detracts from the concept’s essence and facets.  Mention factors such as sonic texture, spatial feel and run‑time.  For example, “The lo‑fi cassette aesthetic underscores the concept’s nostalgia but the mono mix may diminish the immersive potential of its oceanic imagery.”
+   * **Refinement proposal (1 sentence):** Suggest specific adjustments.  These may include altering reverb type, adding or removing instrumentation, adjusting run‑time, or leveraging Suno’s advanced tools (Add Vocals to introduce layered harmonies or Add Instrumentals to strengthen a sparse arrangement).  Example: “Introduce stereo field widening and layered choral vocals via Add Vocals during the second chorus to enhance the song’s transcendence.”
+
+   When proposing refinements, conjure imagery—how would this change colour the atmosphere?  Does adding reverb make the sound feel like light scattering in mist?  Does removing a percussive element allow the emotional theme to breathe?  Use such metaphors to guide your reasoning.
+
+2. **Update concepts if necessary.**  If the refinement significantly changes the narrative or instrumentation (e.g., adding a gospel choir changes the narrative to community uplift), rewrite the concept sentence accordingly while staying within ~40 words.
+
+3. **Output:** Return a JSON object with two arrays of equal length: `refined_concepts` and `refined_production_styles`.  Each entry should reflect your critique and proposed adjustments.  Keep each string concise (≤60 words for concepts, ≤40 words for production styles).
+
+```json
+{
+  "refined_concepts": ["...", ...],
+  "refined_production_styles": ["...", ...]
+}
+```
+
+This refined pairing becomes the foundation for the artistic guides phase.

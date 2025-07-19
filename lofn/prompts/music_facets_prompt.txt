@@ -1,126 +1,45 @@
-────────────────────────────────────────────────────────────────────────────
-LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
-────────────────────────────────────────────────────────────────────────────
 
-1. ESSENCE & FACETS                │
-   ─────────────────────────────────┤
-   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
-     record 10 Style-Axis scores.  Establishes the evaluation rubric.
-   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+──────────────────────────────────────────────────────────────────────────────
+    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
+──────────────────────────────────────────────────────────────────────────────
 
-2. CONCEPT GENERATION              │ 
-   ─────────────────────────────────┤
-   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
-     ratios, and style axes.
-   • AI Focus: Return an array of 12 concept strings only.
+Phases 1–6                         │  Completed
+7. SCORING FACET GENERATION        │  **YOU ARE HERE – DEFINE EVALUATION FACETS**
+8. ARTISTIC GUIDE CREATION         │  Next: expand facets into guides.
+9. RAW MUSIC PROMPT GENERATION     │
+10. INFLUENCE‑REFINED PROMPT       │
+11. PROMPT EVALUATION & SYNTHESIS  │
+12. FINAL MUSIC & LYRIC PROMPTS    │
+──────────────────────────────────────────────────────────────────────────────
 
-3. CONCEPT REFINEMENT              │ 
-   ─────────────────────────────────┤
-   • Purpose: Pair each concept with an obscure artist, critique in that voice,
-     output REFINED_CONCEPTS.
-   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+## Context
 
-4. MEDIUM SELECTION                │ 
-   ─────────────────────────────────┤
-   • Purpose: Assign a compelling MEDIUM to each refined concept.
-   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+Scoring facets provide a rubric for evaluating raw and refined prompts later in the workflow.  They must reflect what matters most to the user and capture both artistic and technical dimensions of music creation.  Well‑chosen facets ensure that the LLM’s critique is consistent and aligned with goals.
 
-5. MEDIUM REFINEMENT               │ 
-   ─────────────────────────────────┤
-   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
-   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+In our visual art pipeline, we judge paintings on composition, palette, mood, narrative and innovation.  In music, analogous criteria apply—how does the emotional arc land?  Are the sonic colours balanced?  Does the narrative emerge clearly?  Facets act like the judging criteria at a prestigious art exhibition; they should cover the full breadth of experience: feeling, craftsmanship, originality, structure and message.  Draw connections between the senses when naming facets; a phrase like “Colourful Texture & Space” can remind you to evaluate both timbre and spatialisation.
 
-6. FACETS FOR PROMPT GENERATION    │  **YOU ARE HERE - COMPLETE THIS PHASE** 
-   ─────────────────────────────────┤
-   • Purpose: Generate five laser-targeted facets to score future prompts.
-   • AI Focus: Output exactly 5 facet strings—nothing else.
+## Directions
 
-7. ARTISTIC GUIDE CREATION         │ 
-   ─────────────────────────────────┤
-   • Purpose: Expand each facet into a full artistic guide (mood, style,
-     lighting, palette, tools, story cue).  Six guides total.
-   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+1. **Review the essence, style axes and critiques.**  Identify the most relevant dimensions that will determine whether a generated song succeeds.
 
-8. RAW SONG PROMPT GENERATION     │ 
-   ─────────────────────────────────┤
-   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
-   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+2. **Formulate five concise facets.**  Each facet should be a brief phrase (3–6 words) that expresses a singular evaluative dimension.  Avoid overlapping meanings.  Draw on these categories or invent your own:
 
-9. ARTIST-REFINED PROMPT           │ 
-   ─────────────────────────────────┤
-   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
-     (critic/artist loop) for richness and cohesion.
-   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+   * **Emotional Arc & Authenticity** – quality and believability of the emotional journey.
+   * **Vocal & Instrumental Synergy** – integration of voices and instruments; effective use of Suno’s layering tools.
+   * **Production Integrity** – congruence of mix, effects and environment with genre and story.
+   * **Originality & Fusion** – innovativeness in genre blending and micro‑genre influenceshttps://help.suno.com/en/articles/5782593#:~:text=Expanded%20genres%20%26%20smarter%20mashups%3A,folk%20come%20together%20seamlessly.
+   * **Narrative Clarity & Imagery** – strength of storytelling and evocative imagery in lyrics.
+   * **Dynamic Progression** – pacing, tension and release across the track.
+   * **Rhythmic & Harmonic Sophistication** – complexity and coherence of harmony and rhythm.
 
-10. FINAL PROMPT SELECTION & SYNTHESIS │ 
-    ────────────────────────────────────┤
-    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
-      into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
-**GENERAL INSTRUCTIONS:**
+3. **Rank facets implicitly.**  The order of facets indicates priority—place the most critical aspect first.  This informs later ranking.
 
-- Be intentional, detailed, and insightful when identifying facets to judge if a proposed music prompt aligns with the user's idea.
-- Use vivid, sensory language to enrich descriptions.
-- Follow the steps below to generate facets for judging the music prompts.
-- Adhere to ethical guidelines, avoiding disallowed content.
-- **Make sure to give the final output in the JSON format that is requested.**
+When ranking, imagine a painting’s focal point: what draws your eye first?  Similarly, which aspect of the song should dominate the listener’s attention?  If the concept is deeply narrative, narrative clarity may sit first.  If it’s about sonic innovation, originality might be top.  Use your intuitive sense of importance informed by the essence and style axes.
 
----
+4. **Output:** Return a JSON object with one property `facets` containing a list of five strings.  Do not include explanations in the output; the facets themselves should be self‑explanatory.
 
-**Instructions for your task:**
-
-**Step 1: Write Five Facets**
-
-- Identify five facets to judge if a proposed music prompt aligns with the user's idea, the {concept}, and the {medium}.
-- Incorporate sensory details and emotional resonance in each facet.
-- **Facets may include:**
-
-  - **Narrative Engagement:** How captivating and coherent is the story?
-  - **Emotional Impact:** Does the song evoke the intended emotions?
-  - **Musical Texture:** How effective are the arrangement and production quality?
-  - **Rhythmic Flow:** How does the rhythm support the mood?
-  - **Originality and Creativity:** Is the concept fresh and innovative?
-
-- **Action:** Write down the facets as concise statements.
-
----
-
-**Step 2: Self-Evaluation and Refinement**
-
-- Review the facets for alignment with the style axes and the essence of the concept.
-- Refine if necessary to enhance clarity and impact.
-- **Action:** Make any necessary adjustments to the facets.
-
----
-
-**Step 3: Provide the Final Output**
-
-- **Return the facets in the following JSON format:**
-
-  ```json
-  {{
-    "facets": [
-      "Facet 1 with sensory element.",
-      "Facet 2 with sensory element.",
-      "Facet 3 with sensory element.",
-      "Facet 4 with sensory element.",
-      "Facet 5 with sensory element."
-    ]
-  }}
-  ```
-
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
-
----
-
-**USER INPUT:**
-
-- **Concept:** {concept}
-- **Medium:** {medium}
-- **Style Axes:** {style_axes}
-- **User's Idea:**
-
-{input}
+```json
+{
+  "facets": ["...", "...", "...", "...", "..."]
+}
+```

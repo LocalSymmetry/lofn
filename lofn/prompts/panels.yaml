@@ -4924,3 +4924,1215 @@
     4. **Smithsonian Folklife** media
     5. **Adobe “NightScape”** challenge
     6. **Fox News** *(Devil)* – vandalism angle
+
+## Additional panel definitions for LOFN
+##
+## These panels expand the breadth of influences, moods and marketing perspectives available
+## to the LOFN system. Each entry follows the same pattern as the existing panels: a set
+## of "Special Flairs" describing signature motifs, a "Concept Panel" of fine artists
+## and illustrators (the last entry serves as a Devil's Advocate), a "Medium Panel" of
+## digital creators and masters, and a "Context & Marketing Panel" of thinkers who
+## inform narrative, psychology and market resonance (again, the last entry plays the
+## contrarian role). These panels are intentionally diverse, spanning cultures, eras
+## and disciplines to fill gaps in the current collection and to encourage
+## cross‑pollination between genres.  
+
+- name: Chromatic Mythographers
+  prompt: |
+    ## Special Flairs:
+    1. **Sacred Spectra** – color palettes that feel ritualistic and symbolic
+    2. **Luminous Legends** – stories told through radiant hues
+    3. **Ornamental Cosmos** – decorative patterns that echo constellations
+    4. **Prismatic Spirits** – mythic figures woven from light
+    5. **Ancestral Geometry** – sacred shapes guiding composition
+    6. **Opulent Symbolism** – luxurious detail imbued with meaning
+    7. **Kaleidoscopic Narratives** – shifting tales through shifting colors
+    8. **Chronicle Glows** – illumination as a form of storytelling
+    9. **Aura Embroidery** – halos and outlines stitched in chroma
+    10. **Mythic Frescoes** – panels that feel like ancient murals reborn
+    11. **Echoes of Stained Glass** – translucency and radiance together
+    12. **Spectral Tapestries** – layered bands of tone telling lineage
+
+    ## Concept Panel:
+    1. **Hilma af Klint (1862–1944)** – Swedish mystic of occult geometry
+    2. **Gustave Moreau (1826–1898)** – French symbolist of gilded myths
+    3. **Mark Rothko (1903–1970)** – American painter of emotional color fields
+    4. **Julie Mehretu (1970–)** – Ethiopian‑American mapper of abstract histories
+    5. **Takashi Murakami (1962–)** – Japanese superflat storyteller of pop myth
+    6. **John Martin (1789–1854, Devil’s Advocate)** – apocalyptic landscape prophet
+
+    ## Medium Panel:
+    1. **Beeple (Mike Winkelmann)** – American digital surrealist of dystopian satire
+    2. **James Jean** – Taiwanese‑American draughtsman of dreamlike symbolism
+    3. **Khyzyl Saleem** – Pakistani visionary of neon cyberpunk scenes
+    4. **Android Jones** – American digital visionary of psychedelic realms
+    5. **Jen Zee** – American art director blending myth and animation
+    6. **Alex Grey** – psychedelic anatomist of mystical journeys
+
+    ## Context & Marketing Panel
+    1. **Joseph Campbell** – comparative mythologist of heroic archetypes
+    2. **Carl Jung** – depth psychologist mapping the collective unconscious
+    3. **Clarissa Pinkola Estés** – storyteller exploring feminine myths
+    4. **Neil Gaiman** – modern mythmaker translating folklore for all ages
+    5. **Brené Brown** – vulnerability researcher on authentic connection
+    6. **Richard Dawkins (Devil’s Advocate)** – evolutionary biologist challenging mysticism
+
+- name: Future Primitives
+  prompt: |
+    ## Special Flairs:
+    1. **Ancient Interfaces** – stone textures meet glowing UI glyphs
+    2. **Tribal Circuits** – circuitry woven like ancestral tattoos
+    3. **Nomad Spaceships** – vehicles carved from bone and bronze
+    4. **Totemic Tech** – devices shaped like protective spirits
+    5. **Cave Projections** – holograms flickering on rock walls
+    6. **Runic Code** – inscriptions combining code and petroglyphs
+    7. **Solar Rituals** – cosmic alignment expressed through design
+    8. **Weathered Futurism** – aged patinas on sleek forms
+    9. **Heritage Hardware** – heirloom devices passed through generations
+    10. **Steam‑Age Satellites** – brass gears orbiting unknown planets
+    11. **Ember UX** – interfaces glowing like smoldering coals
+    12. **Proto‑Futurist Masks** – faces of gods wearing VR goggles
+
+    ## Concept Panel:
+    1. **Jean Giraud (Moebius) (1938–2012)** – French futurist of timeless deserts
+    2. **Paul Gauguin (1848–1903)** – French post‑Impressionist seeking primal paradise
+    3. **H. R. Giger (1940–2014)** – Swiss biomechanical surrealist
+    4. **Kehinde Wiley (1977–)** – contemporary portraitist reimagining ancestral grandeur
+    5. **Julie Dillon (1982–)** – American illustrator of mythic sci‑fi
+    6. **Pieter Bruegel the Elder (1525–1569, Devil’s Advocate)** – Flemish chronicler of peasant life and chaos
+
+    ## Medium Panel:
+    1. **Simon Stålenhag** – Swedish painter of retrofuturist countrysides
+    2. **Rahul Nath** – Indian concept artist blending tribal motifs with sci‑fi
+    3. **Claire Hummel** – American illustrator reimagining historical fashion with tech
+    4. **Feng Zhu** – Chinese‑American concept designer of cinematic hardware
+    5. **Vitaly Bulgarov** – Moldovan designer of realistic mechs and relics
+    6. **Moebius Production Archives** – archives preserving visionary line work (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Yuval Noah Harari** – historian of human futures and mythic pasts
+    2. **Wade Davis** – anthropologist celebrating indigenous knowledge
+    3. **Genevieve Bell** – technologist exploring cultural futures
+    4. **James Bridle** – writer investigating new dark ages and technology
+    5. **Kim Stanley Robinson** – sci‑fi author of future ecologies
+    6. **Marshall McLuhan (Devil’s Advocate)** – media theorist warning of technological tribalism
+
+- name: Urban Dreamweavers
+  prompt: |
+    ## Special Flairs:
+    1. **Concrete Canvases** – murals blooming on brutalist walls
+    2. **Neon Mist** – city lights diffused through fog and rain
+    3. **Graffiti Gradients** – tags that melt into rainbows
+    4. **Skyline Fantasia** – skyscrapers bending into impossible shapes
+    5. **Subway Mythologies** – trains as vessels for urban legends
+    6. **Asphalt Rivers** – roads flowing like streams beneath stars
+    7. **Crowded Solitude** – intimate stories within busy street scenes
+    8. **Chromatic Streetwear** – fashion blending with graffiti colors
+    9. **Electric Alleyways** – tiny streets glowing with hidden worlds
+    10. **Rhythmic Traffic** – movement patterns as dance choreography
+    11. **Rooftop Gardens** – nature reclaiming concrete heights
+    12. **Digital Billboards** – screens telling otherworldly fairy tales
+
+    ## Concept Panel:
+    1. **Jean‑Michel Basquiat (1960–1988)** – New York painter of street poetry
+    2. **Edward Hopper (1882–1967)** – American chronicler of urban solitude
+    3. **Futura (Leonard McGurr) (1955–)** – pioneering graffiti abstractionist
+    4. **Hayao Miyazaki (1941–)** – Japanese filmmaker of flying cities and rooftop gardens
+    5. **Tara McPherson (1976–)** – American artist of otherworldly city girls
+    6. **Banksy (Devil’s Advocate)** – anonymous street provocateur turning dreams into protests
+
+    ## Medium Panel:
+    1. **Ola Volo** – Canadian muralist of folk‑urban hybrids
+    2. **Victor Mosquera** – Colombian illustrator blending psychedelia and cityscapes
+    3. **Tatsuro Kiuchi** – Japanese illustrator of serene metropolitan nights
+    4. **Loish** – Dutch artist of flowing figures in neon worlds
+    5. **Josan Gonzalez** – Spanish comic artist of crowded cyberpunk
+    6. **Tomer Hanuka** – Israeli‑American illustrator of cinematic urban dreams
+
+    ## Context & Marketing Panel
+    1. **Jane Jacobs** – urbanist of human‑centered city narratives
+    2. **Jeff Chang** – hip‑hop historian chronicling street culture
+    3. **David Harvey** – geographer exploring city imaginaries
+    4. **Chimamanda Ngozi Adichie** – storyteller weaving modern myths
+    5. **Roxane Gay** – cultural critic on the intersections of place and identity
+    6. **Guy Debord (Devil’s Advocate)** – situationist theorist interrogating spectacle in the streets
+
+- name: Cosmic Naturalists
+  prompt: |
+    ## Special Flairs:
+    1. **Starlit Biomes** – ecosystems illuminated by distant suns
+    2. **Galactic Flora** – plants shaped like galaxies and nebulas
+    3. **Planetary Ringscapes** – landscapes cut by translucent arcs
+    4. **Celestial Rivers** – flowing water reflecting constellations
+    5. **Aurora Wildlife** – creatures whose bodies emit light waves
+    6. **Organic Asteroids** – rocks covered in moss and vines
+    7. **Cosmic Symbiosis** – lifeforms entwined with cosmic phenomena
+    8. **Orbiting Forests** – trees growing on floating platforms
+    9. **Meteor Gardens** – blooming flowers in impact craters
+    10. **Black Hole Gardens** – voids surrounded by luminous life
+    11. **Lunar Coral** – reefs of moonlight and mineral
+    12. **Cosmological Ecology** – ecosystems as metaphors for galaxies
+
+    ## Concept Panel:
+    1. **Caspar David Friedrich (1774–1840)** – German romantic of sublime landscapes
+    2. **Ivan Shishkin (1832–1898)** – Russian painter of timeless forests
+    3. **Chesley Bonestell (1888–1986)** – American space artist forging cosmic vistas
+    4. **Agnes Denes (1931–)** – Hungarian‑American eco‑artist planting new worlds
+    5. **James Turrell (1943–)** – American sculptor of light and sky spaces
+    6. **John James Audubon (1785–1851, Devil’s Advocate)** – naturalist of exacting detail and taxonomy
+
+    ## Medium Panel:
+    1. **Terryl Whitlatch** – American creature designer blending biology and fantasy
+    2. **Rachel Ross** – British illustrator of cosmic botanicals
+    3. **Esther Galarza** – Spanish concept artist of alien flora and fauna
+    4. **Eytan Zana** – Israeli‑American environment designer of celestial vistas
+    5. **Yohann Schell** – French artist of floating ecosystems
+    6. **Ansel Adams** – photographer of terrestrial majesty (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Carl Sagan** – cosmologist translating wonder into storytelling
+    2. **Robin Wall Kimmerer** – botanist bridging indigenous and scientific knowledge
+    3. **Rachel Carson** – environmental writer of lyrical advocacy
+    4. **David Attenborough** – documentarian of life’s marvels
+    5. **Jacques Cousteau** – explorer bringing the ocean to our imagination
+    6. **Edward O. Wilson (Devil’s Advocate)** – biologist urging biodiversity over cosmic speculation
+
+- name: Digital Baroque
+  prompt: |
+    ## Special Flairs:
+    1. **Pixel Rococo** – lavish ornamentation rendered in tiny squares
+    2. **Futurist Filigree** – fine details woven from data streams
+    3. **Glitch Gilding** – digital errors embellished with gold leaf
+    4. **Virtual Velvet** – textures inviting tactile imagination
+    5. **Mechanical Marble** – synthetic materials mimicking stone
+    6. **Synthwave Scrolls** – luminous gradients wrapping surfaces
+    7. **Cyber Frescoes** – narratives painted on holographic walls
+    8. **Bitmapped Brocade** – pattern work reminiscent of woven tapestries
+    9. **Augmented Allegory** – layered symbolism accessible through AR
+    10. **Ornate Interfaces** – user experiences framed by flourish
+    11. **Opulent Shadows** – chiaroscuro amplified by LED
+    12. **Baroque Bytebeats** – compositions that sound both grand and synthetic
+
+    ## Concept Panel:
+    1. **Caravaggio (1571–1610)** – Italian master of dramatic chiaroscuro
+    2. **Franz Xaver Winterhalter (1805–1873)** – German painter of aristocratic opulence
+    3. **William Blake (1757–1827)** – English visionary blending poetry and image
+    4. **Kara Walker (1969–)** – American artist of silhouetted narratives
+    5. **Kehinde Wiley (1977–)** – portraitist placing contemporary subjects in baroque settings
+    6. **Johannes Vermeer (1632–1675, Devil’s Advocate)** – Dutch master of stillness and restraint
+
+    ## Medium Panel:
+    1. **Refik Anadol** – Turkish media artist of data tapestries
+    2. **Joshua Davis** – American generative designer of ornate geometry
+    3. **Yoko Honda** – Japanese illustrator blending 80s neon with classic motifs
+    4. **Kris Anka** – American comic artist of ornate costumes
+    5. **Jakub Rozalski** – Polish painter mixing historical and futuristic baroque
+    6. **Alphonse Mucha** – art nouveau pioneer (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Philip Ball** – science writer exploring patterns and ornament
+    2. **Nicholas Mirzoeff** – visual culture theorist decoding opulence
+    3. **Lady Gaga** – pop artist embodying digital baroque performance
+    4. **Bjork** – musician integrating baroque elements into electronic music
+    5. **James Turrell** – light artist inspiring immersive grandeur
+    6. **Susan Sontag (Devil’s Advocate)** – critic warning of camp excess
+
+- name: Luminous Noir
+  prompt: |
+    ## Special Flairs:
+    1. **Shadow Luminescence** – darkness pierced by ethereal glows
+    2. **Silhouette Stories** – narratives told through outlines
+    3. **Reflected Mystery** – puddles and mirrors capturing secrets
+    4. **Monochrome Spectrum** – subtle color within near‑black worlds
+    5. **Gutter Glitter** – jewels hidden in rough places
+    6. **Smoke Signals** – visual atmosphere thick with intrigue
+    7. **Chromatic Shadows** – colored light emerging from darkness
+    8. **Velvet Fog** – tactile mood swirling through scenes
+    9. **Afterglow Echoes** – lingering light traces painting memory
+    10. **Cinematic Corners** – compositions that feel like frames from a film
+    11. **Neon Scripture** – street signs conveying cryptic wisdom
+    12. **Polished Grit** – rough textures rendered with care
+
+    ## Concept Panel:
+    1. **Edward Hopper (1882–1967)** – master of lonely nocturnes
+    2. **Film Noir cinematography (various)** – collective influence of shadow and light
+    3. **Franz Kafka (1883–1924)** – writer of existential urban gloom
+    4. **Noir Comics (e.g., Sin City)** – graphic storytelling of high contrast
+    5. **Rinko Kawauchi (1972–)** – Japanese photographer of luminous everyday
+    6. **Fritz Lang (1890–1976, Devil’s Advocate)** – filmmaker of Metropolis and moral labyrinths
+
+    ## Medium Panel:
+    1. **Masashi Kishimoto** – manga artist blending chiaroscuro and drama
+    2. **Frank Miller** – comic artist famed for stark noir visuals
+    3. **Fan Ho (1931–2016)** – Hong Kong photographer of poetic streets
+    4. **Syd Mead (1933–2019)** – futurist designer of neon noir worlds
+    5. **Hikari Shimoda** – Japanese painter combining cute with melancholy
+    6. **Wong Kar‑wai** – filmmaker capturing mood and color (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Jean Baudrillard** – philosopher of simulacra and neon cities
+    2. **Laura Mulvey** – film theorist analyzing gaze and noir aesthetics
+    3. **James Elroy** – crime novelist of gritty LA storytelling
+    4. **Frank Oceans** – musician weaving cinematic noir moods
+    5. **Janelle Monáe** – artist crafting dystopian neon narratives
+    6. **Raymond Chandler (Devil’s Advocate)** – detective writer of cynical glamour
+
+- name: Retro Futurist Pastelists
+  prompt: |
+    ## Special Flairs:
+    1. **Cotton Candy Cosmos** – pastel universes sprinkled with stars
+    2. **Vaporwave Vistas** – nostalgic landscapes tinted with VHS haze
+    3. **Soft Synths** – gentle electronic patterns evoking childhood
+    4. **Analog Dreams** – grain and static adding warmth to fantasies
+    5. **Palm Sunset Chrome** – pastel sunsets behind metallic grids
+    6. **Pastel Parallax** – layered depth built from soft gradients
+    7. **80s Nouveau** – combining retro motifs with art nouveau flow
+    8. **Pixelated Pastels** – low‑resolution charm meets subtle color
+    9. **Retro Fembot Fashion** – robotics wrapped in lace and candy
+    10. **Polaroid Planets** – faded snapshots of other worlds
+    11. **Floppy Disk Nebulas** – cosmic swirls encoded on retro media
+    12. **Sweet Synthetic Nostalgia** – future tech with childhood comfort
+
+    ## Concept Panel:
+    1. **Syd Brak (1955–)** – South African illustrator of airbrushed retro romance
+    2. **Lisa Frank (1955–)** – American icon of neon pastel fantasy
+    3. **Patrick Nagel (1945–1984)** – portraitist of cool minimal glamour
+    4. **Eero Aarnio (1932–)** – Finnish designer of playful futuristic furniture
+    5. **Tatsuyuki Tanaka (1965–)** – Japanese animator of surreal pastels
+    6. **Memphis Group (Devil’s Advocate)** – design collective blending kitsch and avant‑garde
+
+    ## Medium Panel:
+    1. **Beeple** – digital artist of retro‑future sarcasm
+    2. **Synthwave cover art (various)** – collective aesthetic of outrun sunsets
+    3. **KAWA** – French illustrator of pastel cyberpunk moods
+    4. **Josh Agle (Shag)** – American painter of tiki retro lounge
+    5. **Annie Lennox video art** – musician whose visuals defined the era
+    6. **Peter Saville** – designer of iconic album art (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Simon Reynolds** – music critic chronicling retro futurism
+    2. **Michelle Zauner (Japanese Breakfast)** – artist fusing nostalgia and modernity
+    3. **John Waters** – filmmaker celebrating camp pastels
+    4. **Tyler McCall** – fashion journalist exploring 80s revivals
+    5. **Cory Doctorow** – author advocating for tech freedom with retro flair
+    6. **Andy Warhol (Devil’s Advocate)** – pop art icon who might critique sentimentalism
+
+- name: Biotech Botanists
+  prompt: |
+    ## Special Flairs:
+    1. **Gene Gardens** – DNA strands weaving through petals
+    2. **Silicon Stemware** – stems made of circuitry
+    3. **Petal Interfaces** – blossoms that respond to touch like screens
+    4. **Chlorophyll Screens** – leaves displaying data patterns
+    5. **Bioluminescent Blossoms** – flowers emitting programmable light
+    6. **Microbial Tapestry** – textures formed by thriving colonies
+    7. **Bio‑Architecture** – buildings grown like plants with bones of steel
+    8. **Nanobot Nectar** – mechanical pollinators feeding from digital honey
+    9. **Phyllotaxis Algorithms** – spirals echoing natural growth patterns
+    10. **Reactive Pollen** – scents and colors changing with mood
+    11. **Synthetic Mycelia** – networks that support both tech and tree roots
+    12. **Eco‑Exoskeletons** – wearable suits grown from living fibers
+
+    ## Concept Panel:
+    1. **Ernst Haeckel (1834–1919)** – German biologist illustrating organic patterns
+    2. **Frederick Law Olmsted (1822–1903)** – landscape architect designing natural systems
+    3. **Neri Oxman (1976–)** – designer fusing biology and engineering
+    4. **Agnes Denes (1931–)** – environmental artist cultivating public spaces
+    5. **Michael Hansmeyer (1973–)** – architect generating columns from algorithms
+    6. **Mary Shelley (1797–1851, Devil’s Advocate)** – novelist warning of man‑made creation
+
+    ## Medium Panel:
+    1. **Tomas Saraceno** – Argentinian artist suspending living webs and architecture
+    2. **Anicka Yi** – Korean artist using bacteria and scent in installations
+    3. **Lindsey Adelman** – designer crafting organic light fixtures
+    4. **Daito Manabe** – Japanese technologist translating data to living visuals
+    5. **Zaha Hadid Architects** – firm building fluid, plant‑inspired forms
+    6. **Leonardo da Vinci** – Renaissance polymath bridging art and anatomy (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Donna Haraway** – scholar of cyborg ecology and kinship
+    2. **Anna Tsing** – anthropologist tracing mushroom economies
+    3. **Janine Benyus** – biomimicry pioneer inspiring sustainable design
+    4. **Michael Pollan** – writer exploring plant intelligence
+    5. **Amitav Ghosh** – novelist highlighting climate and colonial legacies
+    6. **Bill McKibben (Devil’s Advocate)** – environmentalist cautioning against techno‑utopianism
+
+- name: Deep Sea Dreamers
+  prompt: |
+    ## Special Flairs:
+    1. **Abyssal Glow** – bioluminescence painting darkness
+    2. **Coral Cathedrals** – organic architecture under pressure
+    3. **Cephalopod Couture** – tentacular forms inspiring fashion
+    4. **Submarine Silence** – hushed soundscapes amplifying mood
+    5. **Pressure Poise** – compositions conveying underwater gravity
+    6. **Translucent Textures** – jellyfish skins and glass fish
+    7. **Tidal Tapestry** – currents weaving motion patterns
+    8. **Sunken Ruins** – relics of lost civilizations cloaked in algae
+    9. **Benthic Mysteries** – unknown species as narrative anchors
+    10. **Whale Songs** – sound as visual composition
+    11. **Shipwreck Gardens** – artificial reefs turned into art galleries
+    12. **Pearlescent Dreams** – shimmering surfaces capturing light like shells
+
+    ## Concept Panel:
+    1. **Hokusai (1760–1849)** – Japanese master of waves and currents
+    2. **Jules Verne (1828–1905)** – novelist of twenty thousand leagues
+    3. **Odilon Redon (1840–1916)** – French symbolist of floating creatures
+    4. **Wayne Barlowe (1958–)** – American illustrator of alien deep sea life
+    5. **Yin Lu (1988–)** – Chinese painter of dreamlike underwater worlds
+    6. **Jacques Cousteau (1910–1997, Devil’s Advocate)** – explorer turned critic of exploitation
+
+    ## Medium Panel:
+    1. **Jason deCaires Taylor** – sculptor installing underwater museums
+    2. **Malaika Favorite** – artist painting submerged narratives
+    3. **Alexis Rockman** – painter of speculative aquatic futures
+    4. **Sebastian Cova** – Venezuelan digital artist of aquatic cyberpunk
+    5. **Eizo Matsumura** – photographer of surreal seascapes
+    6. **Hans Hass** – pioneer of underwater photography (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Sylvia Earle** – marine biologist advocating for ocean conservation
+    2. **Rachel Carson** – environmental author sounding the deep
+    3. **David Attenborough** – storyteller revealing underwater wonders
+    4. **Julie Gautier** – freediver capturing dance beneath waves
+    5. **Maya Lin** – architect creating water‑inspired memorials
+    6. **Ernest Hemingway (Devil’s Advocate)** – novelist of sea tragedies reminding of human hubris
+
+- name: Arctic Aurora
+  prompt: |
+    ## Special Flairs:
+    1. **Polar Palette** – ice blues punctuated by aurora greens and pinks
+    2. **Crystalline Silence** – compositions carrying the weight of frozen air
+    3. **Frost Whispers** – delicate textures reminiscent of snowflakes
+    4. **Glacial Motion** – slow movement as narrative rhythm
+    5. **Star Lanterns** – auroral curtains acting as natural lanterns
+    6. **Prismatic Ice** – refracting light through frozen facets
+    7. **Tundra Textiles** – patterns inspired by Sami weaving and fur
+    8. **Cold Warmth** – paradox of comfort within cold landscapes
+    9. **Frozen Folklore** – myths told by wind and ice
+    10. **White Noise** – absence of color as a design element
+    11. **Snow Dunes** – rolling white forms like sandscapes
+    12. **Icicle Chimes** – sound of dripping ice translated into visuals
+
+    ## Concept Panel:
+    1. **Peder Balke (1804–1887)** – Norwegian painter of northern lights
+    2. **Rockwell Kent (1882–1971)** – American artist of Arctic adventures
+    3. **Nicholas Roerich (1874–1947)** – Russian mystic of frozen Himalayan vistas
+    4. **Apay Jewelers of Nunavut (collective)** – Inuit artisans capturing Arctic design
+    5. **Saana Jahed (1991–)** – Swedish‑Iranian painter merging aurora and portraiture
+    6. **Roald Amundsen (1872–1928, Devil’s Advocate)** – explorer cautioning against romanticizing cold
+
+    ## Medium Panel:
+    1. **Nanook of the North (film)** – early documentary of Arctic life
+    2. **Paula Schwab** – Canadian artist painting ice flows and solar light
+    3. **Tom Hegen** – German aerial photographer of frozen patterns
+    4. **Elise Gravel** – illustrator capturing whimsical polar animals
+    5. **Pat Perry** – American painter of surreal winter scenes
+    6. **Frank Hurley** – photographer documenting Shackleton’s expedition (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Barry Lopez** – writer exploring Arctic dreams and realities
+    2. **Sheila Watt‑Cloutier** – climate advocate amplifying Inuit voices
+    3. **Alison Wright** – humanitarian photographer of Arctic communities
+    4. **Gretel Ehrlich** – travel writer of cold landscapes
+    5. **Eleanor Lutz** – designer of data‑driven aurora maps
+    6. **H. P. Lovecraft (Devil’s Advocate)** – author of polar cosmic horror challenging romanticism
+
+- name: Desert Mirage
+  prompt: |
+    ## Special Flairs:
+    1. **Heat Haze Halo** – shimmering distortions that inspire abstraction
+    2. **Dune Calligraphy** – wind‑scribbled lines across sand
+    3. **Oasis Mirrors** – reflective pools doubling the sky
+    4. **Caravan Geometry** – repetitive patterns of travel and survival
+    5. **Sun‑Bleached Symbols** – faded marks that hold stories
+    6. **Mirage Mutations** – shapes changing as they waver in the heat
+    7. **Nomadic Ornament** – jewelry and textiles moving with the wind
+    8. **Crescent Shadows** – curves formed by sun and sand
+    9. **Desert Lace** – delicate erosion patterns in stone
+    10. **Echoing Silence** – vast emptiness creating introspection
+    11. **Sandstorm Surge** – dynamic moments of dramatic change
+    12. **Solar Gold** – overwhelming yellow as both life and danger
+
+    ## Concept Panel:
+    1. **David Robert Roberts (1796–1864)** – Scottish painter of Middle Eastern deserts
+    2. **Georgia O’Keeffe (1887–1986)** – American artist of skulls and desert forms
+    3. **Salvador Dalí (1904–1989)** – surrealist of melting landscapes
+    4. **Shirin Neshat (1957–)** – Iranian artist exploring desert and identity
+    5. **Paul Klee (1879–1940)** – Swiss modernist inspired by Tunisian light
+    6. **T.E. Lawrence (1888–1935, Devil’s Advocate)** – figure whose romanticization of deserts invites critique
+
+    ## Medium Panel:
+    1. **Zdzisław Beksiński (1929–2005)** – Polish painter of dystopian dunes
+    2. **Desert X (installation series)** – contemporary public art in Coachella Valley
+    3. **Shadi Ghadirian** – Iranian photographer blending tradition and modernity
+    4. **Simon Stålenhag** – Swedish artist of desert robots
+    5. **Qing Xia** – Chinese painter of imaginary desert oases
+    6. **Jean Léon Gérôme (1824–1904)** – French Orientalist painter (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Sven Nyrén** – desert architect designing sustainable shelters
+    2. **Gertrude Bell** – archaeologist and diplomat of desert cultures
+    3. **Wilfred Thesiger** – explorer documenting Arabian sands
+    4. **Margaret Atwood** – novelist imagining environmental collapse
+    5. **Fatimah Shallash** – storyteller reclaiming Bedouin narratives
+    6. **Edward Said (Devil’s Advocate)** – critic analyzing Orientalism and exoticism
+
+- name: Industrial Poetics
+  prompt: |
+    ## Special Flairs:
+    1. **Oxidized Elegy** – rust and decay rendered with beauty
+    2. **Mechanical Grace** – machinery portrayed like ballet
+    3. **Factory Fables** – stories embedded in assembly lines
+    4. **Soot Symphony** – textures created from smoke and grit
+    5. **Worn‑Down Patina** – surfaces telling histories of labor
+    6. **Metal Lacework** – intricate patterns cut from steel
+    7. **Oil Slick Rainbows** – iridescent films on black puddles
+    8. **Gear Ecosystems** – machines interlocking like natural systems
+    9. **Steam Secrets** – vapor concealing and revealing forms
+    10. **Concrete Verse** – brutalism imbued with lyricism
+    11. **Iron Shadows** – sharp silhouettes cast by industrial giants
+    12. **Power Plant Temples** – structures built for energy worship
+
+    ## Concept Panel:
+    1. **Charles Demuth (1883–1935)** – precisionist painter of American industry
+    2. **Fernand Léger (1881–1955)** – French Cubist of mechanical forms
+    3. **Diego Rivera (1886–1957)** – muralist celebrating workers and factories
+    4. **Bernd and Hilla Becher (1931–2007, 1934–2015)** – photographers documenting industrial architecture
+    5. **Julie Mehretu (1970–)** – layering chaotic structures and lines
+    6. **Gustave Caillebotte (1848–1894, Devil’s Advocate)** – impressionist of modernized Paris challenging nostalgia
+
+    ## Medium Panel:
+    1. **Charles Sheeler** – precisionist photographer of factories
+    2. **Jacob Kassay** – contemporary artist using metal plating and industrial residue
+    3. **Tadao Ando** – architect of concrete poetry
+    4. **Chris Labrooy** – 3D artist twisting vehicles into art
+    5. **Mikael Olson** – digital painter of sprawling refineries
+    6. **J. M. W. Turner** – painter of steam and modernity (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Lewis Mumford** – historian of cities and technology
+    2. **Rebecca Solnit** – essayist exploring urban and industrial landscapes
+    3. **Saskia Sassen** – sociologist examining global cities
+    4. **Hans Ulrich Obrist** – curator connecting art and architecture
+    5. **Joseph Stiglitz** – economist addressing industrial transitions
+    6. **Émile Zola (Devil’s Advocate)** – novelist exposing the dark side of factories
+
+- name: Pixel Nostalgists
+  prompt: |
+    ## Special Flairs:
+    1. **8‑Bit Emotions** – simple pixels evoking deep feelings
+    2. **Low‑Res Magic** – charm through intentional roughness
+    3. **Chiptune Palette** – colors chosen like retro game soundtracks
+    4. **Sprite Storytelling** – narratives told through tiny figures
+    5. **CRT Glow** – scanlines and bloom adding warmth
+    6. **Save Point Serenity** – quiet moments anchored by UI elements
+    7. **Game Over Reflection** – introspective loops built into design
+    8. **HUD Hieroglyphs** – interface icons as ancient runes
+    9. **Arcade Archeology** – exploring abandoned game cabinets
+    10. **Pixel Parallax** – depth created through scrolling layers
+    11. **Glitch Memories** – digital artifacts representing time and wear
+    12. **Nostalgic Futurism** – the future as imagined in 1984
+
+    ## Concept Panel:
+    1. **Shigeru Miyamoto (1952–)** – creator of timeless pixel worlds
+    2. **Toru Iwatani (1955–)** – designer of Pac‑Man’s iconic simplicity
+    3. **M.C. Escher (1898–1972)** – mathematician of impossible spaces
+    4. **Tetsuya Mizuguchi (1965–)** – game designer merging rhythm and visuals
+    5. **Erin Hanson (1981–)** – painter reducing landscapes into blocky forms
+    6. **Yoko Taro (1970–, Devil’s Advocate)** – game director challenging nostalgic comfort
+
+    ## Medium Panel:
+    1. **Pixel Art collectives (e.g., 8bit People)** – groups preserving pixel aesthetics
+    2. **Octavi Navarro** – Spanish artist of detailed pixel scenes
+    3. **Paul Robertson** – animator known for kinetic sprites
+    4. **Nostalgia Nerd (YouTube)** – educator archiving retro tech
+    5. **Anna Anthropy** – game designer exploring personal pixel stories
+    6. **Koji Kondo** – composer crafting melodies for 8‑bit adventures (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Tristan Donovan** – gaming historian of video game culture
+    2. **Jane McGonigal** – game designer exploring positive effects of gaming
+    3. **Ian Bogost** – scholar analyzing video game rhetoric
+    4. **Kevin Kelly** – futurist documenting techno‑nostalgia
+    5. **Anita Sarkeesian** – critic advocating for inclusive gaming narratives
+    6. **Ralph Baer (Devil’s Advocate)** – father of video games challenging sentimentality
+
+- name: Circuit Symphonists
+  prompt: |
+    ## Special Flairs:
+    1. **Resonant Resistors** – hardware components as musical motifs
+    2. **Oscilloscope Harmonics** – visuals derived from sound waves
+    3. **Analog Arpeggios** – sequences echoing early synthesizers
+    4. **Voltage Vistas** – energy flows represented as landscapes
+    5. **Code Cadences** – software loops mapped to melodies
+    6. **Patch Cables & Vines** – wires intertwining like nature
+    7. **Theremin Touches** – invisible gestures guiding composition
+    8. **Drone Currents** – sustained tones visualized as color bands
+    9. **Sequencer Spirals** – patterns repeating into infinity
+    10. **Transistor Textures** – grain created by analog warmth
+    11. **Modular Monoliths** – towering assemblages of sound
+    12. **Haptic Harmony** – tactile surfaces producing tunes
+
+    ## Concept Panel:
+    1. **Leon Theremin (1896–1993)** – inventor inspiring touchless sound
+    2. **Bob Moog (1934–2005)** – father of modular synthesis
+    3. **Isaac Asimov (1920–1992)** – author imagining robotic rhythm
+    4. **Klaus Schulze (1947–2022)** – German electronic pioneer
+    5. **Delia Derbyshire (1937–2001)** – composer translating circuits into TV themes
+    6. **John Cage (1912–1992, Devil’s Advocate)** – experimentalist questioning what music is
+
+    ## Medium Panel:
+    1. **Deadmau5** – producer using modular rigs as art pieces
+    2. **Kaki King** – guitarist augmenting instruments with projection mapping
+    3. **Daito Manabe** – technologist visualizing sound waves
+    4. **Engineer Samurai (Fujita Masami)** – artist building circuitry sculptures
+    5. **Imogen Heap** – musician designing gestural gloves for sound
+    6. **Brian Eno** – ambient pioneer bridging art and code (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Matthew Herbert** – composer advocating for everyday sounds
+    2. **Alexander Chen** – Google artist visualizing music systems
+    3. **Mark Fell** – sound artist exploring algorithmic rhythm
+    4. **Amon Tobin** – producer blending found sound and electronics
+    5. **Susan Rogers** – audio engineer turned neuroscientist studying musical pleasure
+    6. **Pierre Schaeffer (Devil’s Advocate)** – father of musique concrète challenging mainstream
+
+- name: Liquid Geometry
+  prompt: |
+    ## Special Flairs:
+    1. **Fluid Fractals** – patterns that flow like water but repeat mathematically
+    2. **Rippled Polygons** – rigid shapes softened by waves
+    3. **Droplet Grids** – orderly arrays disrupted by splashes
+    4. **Tidal Symmetry** – mirror images created by tides
+    5. **Mercurial Mirrors** – reflective surfaces shifting form
+    6. **Capillary Contours** – fine lines like river networks
+    7. **Eddy Patterns** – vortices swirling into spirals
+    8. **Crystal Currents** – frozen water as structural design
+    9. **Circular Waves** – vibrations radiating outward in perfect rings
+    10. **Molecular Lattice** – repeating units moving organically
+    11. **Water Math** – equations guiding droplets and splashes
+    12. **Submerged Shapes** – forms revealing themselves underwater
+
+    ## Concept Panel:
+    1. **M. C. Escher (1898–1972)** – Dutch tessellation visionary
+    2. **Bridget Riley (1931–)** – British master of optical waves
+    3. **Yayoi Kusama (1929–)** – Japanese artist of infinity and dots
+    4. **Leonardo da Vinci (1452–1519)** – observer of eddy diagrams
+    5. **Anni Albers (1899–1994)** – Bauhaus weaver exploring repeating patterns
+    6. **Buckminster Fuller (1895–1983, Devil’s Advocate)** – geodesic architect challenging fluid forms
+
+    ## Medium Panel:
+    1. **Erik Naggum** – generative artist exploring fluid algorithms
+    2. **Neri Oxman** – architect of biologically inspired patterns
+    3. **Refik Anadol** – media artist creating data oceans
+    4. **Joaquin Baldwin** – animator of flowing geometry
+    5. **Zaha Hadid (1950–2016)** – architect of wave‑like structures
+    6. **Claude Monet (1840–1926)** – impressionist painting water and light (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Fritjof Capra** – physicist explaining the Tao of physics and systems
+    2. **James Gleick** – author of Chaos: Making a New Science
+    3. **Margaret Wertheim** – curator linking crochet and hyperbolic geometry
+    4. **Philip Glass** – minimalist composer inspired by repetitive patterns
+    5. **Cédric Villani** – mathematician popularizing differential equations
+    6. **Douglas Hofstadter (Devil’s Advocate)** – cognitive scientist questioning patterns and meaning
+
+- name: Haunted Whimsy
+  prompt: |
+    ## Special Flairs:
+    1. **Playful Apparitions** – ghosts depicted as companions rather than fears
+    2. **Ethereal Playgrounds** – abandoned spaces repurposed for joy
+    3. **Pastel Phantoms** – spirits tinted in soft hues
+    4. **Wistful Whispers** – text woven like faint voices
+    5. **Vintage Toys** – nostalgic objects with eerie charm
+    6. **Fading Fabrics** – transparency conveying the passing of time
+    7. **Childlike Curiosity** – exploration through innocent eyes
+    8. **Sentimental Darkness** – comfort found within shadows
+    9. **Antique Animation** – old cartoons inspiring ghostly characters
+    10. **Floral Graveyards** – blossoms growing from forgotten places
+    11. **Melodic Melancholy** – music boxes and lullabies echoing through scenes
+    12. **Shadow Puppetry** – silhouettes telling bittersweet stories
+
+    ## Concept Panel:
+    1. **Edward Gorey (1925–2000)** – illustrator of macabre whimsy
+    2. **Henry Darger (1892–1973)** – outsider artist of epic childlike myths
+    3. **Hayao Miyazaki (1941–)** – filmmaker mixing spirits and innocence
+    4. **Tim Burton (1958–)** – director of darkly whimsical worlds
+    5. **Tove Jansson (1914–2001)** – creator of the Moomins’ gentle hauntings
+    6. **Charles Addams (1912–1988, Devil’s Advocate)** – cartoonist reminding us of the absurd
+
+    ## Medium Panel:
+    1. **James Jean** – painter of enchanted children and spirits
+    2. **Lisa Hanawalt** – illustrator of quirky anthropomorphic beings
+    3. **Rebecca Green** – artist of haunted yet tender portraiture
+    4. **Maggie Taylor** – digital collagist of Victorian ghosts
+    5. **Shaun Tan** – graphic novelist of surreal everyday objects
+    6. **Edward Hopper** – painter whose empty rooms feel haunted (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Neil Gaiman** – storyteller balancing whimsy and darkness
+    2. **Shel Silverstein** – poet exploring humor and sadness
+    3. **Ransom Riggs** – author of the Peculiar Children series
+    4. **Sarah Andersen** – cartoonist capturing anxious whimsy
+    5. **Susan Cooper** – writer weaving folklore into children’s fantasy
+    6. **Stephen King (Devil’s Advocate)** – horror writer pushing boundaries of comfort
+
+- name: Quantum Deco
+  prompt: |
+    ## Special Flairs:
+    1. **Atomic Ornaments** – particles represented as lavish patterns
+    2. **Wavefunction Waves** – deco curves reflecting probability
+    3. **Superposition Symmetry** – overlapping motifs creating duality
+    4. **Entangled Elegance** – forms connected across space
+    5. **Deco Diagrams** – artful charts of scientific phenomena
+    6. **Electron Filigree** – fine lines representing electron paths
+    7. **Proton Pillars** – strong verticals suggesting atomic structure
+    8. **Photon Pulses** – bursts of light as decorative motifs
+    9. ** Deco Latticework** – repeating arcs reminiscent of crystal lattices
+    10. **Radiant Gilt** – metallic surfaces glowing with energy
+    11. **Relativity Ribbons** – curves that warp perspective
+    12. **Time Dilation Tiles** – patterns that seem to stretch and compress
+
+    ## Concept Panel:
+    1. **Tamara de Lempicka (1898–1980)** – art deco icon of sleek forms
+    2. **Fritz Lang (1890–1976)** – filmmaker of futuristic geometry
+    3. **Piet Mondrian (1872–1944)** – strict geometry of modernism
+    4. **Theo van Doesburg (1883–1931)** – De Stijl architect exploring abstraction
+    5. **Julie Mehretu (1970–)** – mapping energy with deco precision
+    6. **Albert Einstein (1879–1955, Devil’s Advocate)** – physicist reminding us that art deco is not quantum
+
+    ## Medium Panel:
+    1. **Daniel Arsham** – sculptor eroding classical shapes into futuristic crystals
+    2. **Atelier Oï** – Swiss design studio blending art deco and engineering
+    3. **Kris Kuksi** – assemblage artist of baroque‑deco hybrids
+    4. **Decopunk cosplay collectives** – groups making retro‑futurist fashion
+    5. **Art Deco buildings of Miami** – collective influence of architecture
+    6. **Erte (1892–1990)** – Russian–French illustrator of iconic deco (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Brian Greene** – physicist popularizing quantum ideas
+    2. **Virginia Postrel** – writer connecting glamour and power
+    3. **Marina Benjamin** – essayist exploring time and memory
+    4. **Kishore Mahbubani** – diplomat discussing east‑west modernity
+    5. **Joanna Newsom** – musician with vintage deco aesthetic
+    6. **Nassim Nicholas Taleb (Devil’s Advocate)** – statistician challenging misinterpretation of probability
+
+- name: Ethereal Folk
+  prompt: |
+    ## Special Flairs:
+    1. **Whispered Lore** – stories carried by wind and leaves
+    2. **Pastoral Palettes** – gentle earth tones with luminous accents
+    3. **Handwoven Textures** – fibers visible in every stroke
+    4. **Songlines** – visual journeys following invisible tracks
+    5. **Forest Lullabies** – melodies hidden in canopy light
+    6. **Ancestral Patterns** – motifs passed from generation to generation
+    7. **Mist‑Wrapped Mountains** – landscapes softened by fog
+    8. **Herbal Ornament** – flowers and vines adorning stories
+    9. **Wooden Echoes** – grain and rings as narrative devices
+    10. **Feathered Brushwork** – strokes that feel like plumage
+    11. **Sakura Seasons** – cyclical motifs representing change
+    12. **Riverstone Stories** – small details telling grand tales
+
+    ## Concept Panel:
+    1. **Ivan Bilibin (1876–1942)** – Russian illustrator of fairy tales
+    2. **John Bauer (1882–1918)** – Swedish painter of trolls and forests
+    3. **Katsushika Hokusai (1760–1849)** – Japanese master of natural stories
+    4. **Frida Kahlo (1907–1954)** – Mexican artist of personal folklore
+    5. **J. A. K. Boswell (illustrator)** – chronicler of British folk creatures
+    6. **Andrew Lang (1844–1912, Devil’s Advocate)** – folklorist cautioning against romanticization
+
+    ## Medium Panel:
+    1. **Tove Jansson** – artist bringing Moomin valley to life
+    2. **Brian Froud** – designer of goblins and fairies
+    3. **Audrey Benjaminsen** – illustrator of soft mythic scenes
+    4. **Yumi Kitagishi** – Japanese artist of cozy folklore
+    5. **Eva Zubey** – Polish embroiderer illustrating folk tales
+    6. **Gustav Klimt (1862–1918)** – painter of gold leaf patterns (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Alan Lomax** – ethnomusicologist preserving folk songs
+    2. **Marina Warner** – scholar of fairy tales and myth
+    3. **Chimamanda Ngozi Adichie** – storyteller weaving tradition into modern narratives
+    4. **Rupi Kaur** – poet capturing simple yet evocative imagery
+    5. **Miyazaki Hayao** – filmmaker advocating for nature and folklore
+    6. **Joseph Campbell (Devil’s Advocate)** – mythologist warning of oversimplification of folklore
+
+- name: Sonic Visionaries
+  prompt: |
+    ## Special Flairs:
+    1. **Harmonic Hues** – color schemes derived from musical chords
+    2. **Rhythmic Lines** – brushstrokes timed like beats
+    3. **Tempo Textures** – surfaces varying with musical pace
+    4. **Cadence Cascades** – patterns flowing like melodies
+    5. **Bass Depths** – dark tones anchoring compositions
+    6. **Treble Sparks** – high notes as highlights
+    7. **Polyphonic Patterns** – multiple motifs interacting simultaneously
+    8. **Syncopated Shadows** – unexpected accents in negative space
+    9. **Lyric Letters** – text integrated as instrumentation
+    10. **Encore Echoes** – repetition amplifying emotion
+    11. **Acoustic Color** – synesthetic translation of sound to sight
+    12. **Modulated Mist** – hazy transitions reminiscent of feedback
+
+    ## Concept Panel:
+    1. **Wassily Kandinsky (1866–1944)** – painter translating music into abstraction
+    2. **Romare Bearden (1911–1988)** – collage artist inspired by jazz
+    3. **Henri Matisse (1869–1954)** – colorist orchestrating visual rhythm
+    4. **Georgina Starr (1968–)** – contemporary artist working with sound and vision
+    5. **Christian Marclay (1955–)** – turntablist merging visual art and music
+    6. **John Zorn (1953–, Devil’s Advocate)** – avant‑garde musician challenging harmony
+
+    ## Medium Panel:
+    1. **Ryoji Ikeda** – Japanese composer of data‑driven visuals
+    2. **Pieter Jelles** – motion designer translating EDM into color
+    3. **Sofia Crespo** – AI artist creating sound‑driven bioforms
+    4. **Flying Lotus** – producer using visuals to expand music
+    5. **Grand Marnier (Julie Budet)** – musician behind Yelle’s vibrant visuals
+    6. **Laurie Anderson** – performance artist bridging violin and projection (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Susan Rogers** – sound engineer and neuroscientist
+    2. **Brian Eno** – composer and theorist of ambient art
+    3. **Questlove** – musician and archivist connecting visual and sonic history
+    4. **Trevor Paglen** – artist exploring surveillance and sound
+    5. **Annie Clark (St. Vincent)** – musician crafting strong visuals
+    6. **Theodor Adorno (Devil’s Advocate)** – critical theorist challenging popular music
+
+- name: Tectonic Texture
+  prompt: |
+    ## Special Flairs:
+    1. **Crustal Layers** – visible strata representing time
+    2. **Earthquake Lines** – jagged cracks dividing compositions
+    3. **Plate Collisions** – contrasting elements pushing against one another
+    4. **Seismic Vibrance** – energy pulses translated into color
+    5. **Geode Reveals** – crystals exposed within rough rock
+    6. **Basalt Rhythms** – repeating patterns reminiscent of hexagonal columns
+    7. **Magma Flow** – molten textures swirling into abstract shapes
+    8. **Sediment Stories** – tiny details building into grand narrative
+    9. **Erosion Etchings** – delicate marks carved by time
+    10. **Mountain Shadows** – light and dark interplay creating mass
+    11. **Core Heat** – warm undertones hinting at deep energy
+    12. **Continental Drift** – slow change depicted through progressive panels
+
+    ## Concept Panel:
+    1. **Ansel Adams (1902–1984)** – photographer capturing geological majesty
+    2. **Georgia O’Keeffe (1887–1986)** – painter of bone and earth forms
+    3. **Caspar David Friedrich (1774–1840)** – romantic landscape visionary
+    4. **Ai Weiwei (1957–)** – artist using rubble and ruins to provoke
+    5. **Isamu Noguchi (1904–1988)** – sculptor blending organic and modern
+    6. **Mary Anning (1799–1847, Devil’s Advocate)** – fossil hunter reminding us of ancient context
+
+    ## Medium Panel:
+    1. **Olafur Eliasson** – installation artist of natural phenomena
+    2. **Derek Cummings** – digital artist of crystalline surfaces
+    3. **Sanna Annukka** – designer inspired by Finnish geology
+    4. **Charmaine Olivia** – painter of textured mountains
+    5. **Darius Twin** – photographer creating light‑painted rock forms
+    6. **Yayoi Kusama** – artist of infinite patterns (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Robert Macfarlane** – writer exploring deep time
+    2. **Elizabeth Kolbert** – journalist covering climate and geology
+    3. **Helen Macdonald** – essayist connecting earth and memory
+    4. **Bill Bryson** – author making geology approachable
+    5. **Ilene Cappuccio** – geologist communicating science through art
+    6. **James Hutton (Devil’s Advocate)** – father of geology urging us to see the long view
+
+- name: Psychedelic Healers
+  prompt: |
+    ## Special Flairs:
+    1. **Fractal Healing** – repeating motifs soothing the mind
+    2. **Vibrational Vortexes** – swirling forms guiding meditation
+    3. **Chromatic Chakras** – color zones corresponding to energy points
+    4. **Plant Spirit Guides** – vines and leaves shaped like guardians
+    5. **Mandala Mycelium** – circular patterns mimicking fungal networks
+    6. **Vision Serpents** – sinuous shapes emerging from deep consciousness
+    7. **Breath Waves** – gradients rising and falling like inhalations
+    8. **Entheogenic Glow** – subtle luminescence hinting at altered states
+    9. **Sacred Symmetries** – bilateral balance creating calm
+    10. **Third Eye Windows** – repeated motifs opening into other planes
+    11. **Pulse Patterns** – sequences paced like heartbeats
+    12. **Shamanic Surprises** – unexpected details that challenge perception
+
+    ## Concept Panel:
+    1. **Alex Grey (1953–)** – visionary painter mapping energy bodies
+    2. **Hildegard von Bingen (1098–1179)** – mystic creating luminous visions
+    3. **Pablo Amaringo (1938–2009)** – Peruvian shamanic artist of ayahuasca visions
+    4. **Mandalas in Tibetan Buddhism (tradition)** – collective influence of sacred art
+    5. **Peter Max (1937–)** – pop artist of psychedelic colors
+    6. **Terence McKenna (1946–2000, Devil’s Advocate)** – psychonaut urging caution and exploration
+
+    ## Medium Panel:
+    1. **Android Jones** – digital painter of spiritual hallucinations
+    2. **Martina Hoffmann** – painter of feminine psychedelic realms
+    3. **Chris Dyer** – street artist merging skate culture and mysticism
+    4. **Allyson Grey** – painter exploring chaotic and ordered energy
+    5. **Marina Fini** – installation artist using iridescent materials
+    6. **Henri Rousseau (1844–1910)** – self‑taught painter of jungles (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Michael Pollan** – author documenting psychedelic research
+    2. **Rick Doblin** – founder of MAPS exploring therapeutic potential
+    3. **Robin Carhart‑Harris** – neuroscientist studying brain effects
+    4. **Amanda Feilding** – advocate for drug policy reform
+    5. **Ayelet Waldman** – novelist chronicling microdosing and creativity
+    6. **Aldous Huxley (Devil’s Advocate)** – writer warning of Brave New World consumption
+
+- name: Kinetic Storytellers
+  prompt: |
+    ## Special Flairs:
+    1. **Motion Comics** – panels arranged like frames in animation
+    2. **Dynamic Typography** – words moving with meaning
+    3. **Temporal Transitions** – scenes fading in rhythm with narrative
+    4. **Body Narratives** – choreography telling the story
+    5. **Fluid Panels** – frames that expand and contract
+    6. **Speed Lines** – streaks indicating pace and emotion
+    7. **Interactive Illustrations** – elements responding to viewer input
+    8. **Sequential Sculpture** – 3D pieces viewed as a timeline
+    9. **Rhythm Ribbons** – visual lines carrying narrative beat
+    10. **Flipbook Feel** – subtle flicker giving life to still images
+    11. **Gesture Glitches** – purposeful errors showing the path taken
+    12. **Kinetic Collage** – fragments arranged to simulate motion
+
+    ## Concept Panel:
+    1. **Winsor McCay (1869–1934)** – pioneer of animation and comic timing
+    2. **Eadweard Muybridge (1830–1904)** – photographer studying movement
+    3. **Saul Steinberg (1914–1999)** – cartoonist of expressive line
+    4. **Kara Walker (1969–)** – silhouette artist animating history
+    5. **Utagawa Kuniyoshi (1798–1861)** – Japanese printmaker of dynamic stories
+    6. **Pina Bausch (1940–2009, Devil’s Advocate)** – choreographer pushing physical storytelling
+
+    ## Medium Panel:
+    1. **Genndy Tartakovsky** – animator known for expressive action
+    2. **Sally Cruikshank** – creator of surreal movement in film
+    3. **William Kentridge** – South African artist combining drawing and motion
+    4. **Mirai Mizue** – Japanese abstract animator
+    5. **Isaac King** – stop‑motion filmmaker exploring social issues
+    6. **Chuck Jones (1912–2002)** – Looney Tunes director (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Scott McCloud** – theorist of comics and sequential art
+    2. **Lotte Reiniger** – pioneer of silhouette animation
+    3. **Henry Jenkins** – scholar on convergence culture and transmedia
+    4. **Cathy Park Hong** – poet exploring narratives through form
+    5. **Mark Morris** – choreographer bridging music and motion
+    6. **Roland Barthes (Devil’s Advocate)** – semiotician challenging authorial intent
+
+- name: Data Mythicians
+  prompt: |
+    ## Special Flairs:
+    1. **Algorithmic Allegory** – code as metaphor for timeless tales
+    2. **Statistical Spirits** – data points anthropomorphized
+    3. **CSV Cosmology** – spreadsheets arranged like constellations
+    4. **Graphical Glyphs** – charts doubling as ancient runes
+    5. **Database Dreams** – tables structured like genealogies
+    6. **Binary Beasts** – ones and zeros become characters
+    7. **Quantified Quests** – narratives built from quantified steps
+    8. **Hyperlink Histories** – lore traveling through networks
+    9. **Normalized Narratives** – tidy data telling messy stories
+    10. **API Prophecies** – endpoints foretelling actions
+    11. **Visualization Vistas** – vistas that decode complex worlds
+    12. **Meta Myths** – stories about the stories we tell with data
+
+    ## Concept Panel:
+    1. **William Playfair (1759–1823)** – inventor of statistical graphics
+    2. **Florence Nightingale (1820–1910)** – pioneer of data visualization
+    3. **Ben Shneiderman (1947–)** – human‑computer interaction pioneer
+    4. **Mina Loi (1983–)** – graphic designer merging science and myth
+    5. **Jer Thorp (1975–)** – data artist turning numbers into stories
+    6. **George R. R. Martin (1948–, Devil’s Advocate)** – novelist reminding that data doesn’t contain dragons
+
+    ## Medium Panel:
+    1. **Fernanda Viégas** – information designer of fluid visuals
+    2. **Manuel Lima** – mapping networks and genealogies
+    3. **Nadieh Bremer** – data artist creating narrative charts
+    4. **Federica Fragapane** – Italian designer of human‑centered infographics
+    5. **Shore St. Clare** – generative artist fusing code and myth
+    6. **Edward Tufte** – statistician of clarity and truth (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Cathy O’Neil** – data scientist warning of algorithmic bias
+    2. **Hans Rosling** – doctor using data to tell hopeful stories
+    3. **Databites (initiative)** – group exploring data storytelling
+    4. **Kate Crawford** – researcher of AI politics and power
+    5. **Jorge Arango** – information architect championing clarity
+    6. **Yuval Noah Harari (Devil’s Advocate)** – historian cautioning against data determinism
+
+- name: Electric Nomads
+  prompt: |
+    ## Special Flairs:
+    1. **Wanderer’s Wi‑Fi** – glowing networks following caravans
+    2. **Solar Saddles** – charging panels integrated into travel gear
+    3. **Transistor Tents** – shelters doubling as signal relays
+    4. **Fiberoptic Fabric** – textiles woven with light
+    5. **Circuitry Tattoos** – body art indicating direction and status
+    6. **Nomad Instruments** – portable music devices shaped by tradition
+    7. **Digital Campfires** – screens gathering communities around stories
+    8. **Augmented Oases** – AR overlays on rest stops
+    9. **Guiding Satellites** – constellations of drones lighting pathways
+    10. **Recycled Reliquaries** – found tech repurposed as amulets
+    11. **Cultural Hotspots** – marketplaces bridging analog and digital goods
+    12. **Telemetry Textiles** – fabrics transmitting location and health
+
+    ## Concept Panel:
+    1. **Steve McCurry (1950–)** – photographer documenting nomadic cultures
+    2. **Brian Chesky (1981–)** – designer of travel platforms
+    3. **Ai Weiwei (1957–)** – artist highlighting refugee journeys
+    4. **Maasai beadwork artists (collective)** – tradition of wearable storytelling
+    5. **Camille Henrot (1978–)** – artist exploring global itinerancy
+    6. **Nomad Elders (Devil’s Advocate)** – voices reminding of traditions threatened by tech
+
+    ## Medium Panel:
+    1. **Studio Drift** – designers merging nature and technology in installations
+    2. **Neri Oxman** – creator of wearable bio‑tech garments
+    3. **Caroline Hu** – fashion designer merging Chinese craft and futurism
+    4. **Pinar Yoldas** – artist speculating on nomadic futures
+    5. **Yinka Ilori** – designer mixing Nigerian patterns with modern design
+    6. **Alexander McQueen (1969–2010)** – couturier of hybrid identity (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Laleh Khalili** – scholar of logistics and global nomadism
+    2. **Don Norman** – design thinker on human‑centered tech
+    3. **Rebecca Solnit** – writer exploring walking and wandering
+    4. **Mike W. Martin** – anthropologist of digital nomad communities
+    5. **Bayo Akomolafe** – philosopher encouraging post‑human kinship
+    6. **Edward Said (Devil’s Advocate)** – critic of exoticising nomads
+
+- name: Cinematic Surrealists
+  prompt: |
+    ## Special Flairs:
+    1. **Impossible Pans** – camera moves through walls and dreams
+    2. **Frame Within Frame** – scenes nested like Russian dolls
+    3. **Dissolving Edges** – transitions that melt reality
+    4. **Diegetic Light** – in‑scene sources that create drama
+    5. **Time‑Stretching Cuts** – montage altering perception of duration
+    6. **Symbolic Props** – objects loaded with hidden meaning
+    7. **Meta Mirrors** – characters aware of being watched
+    8. **Saturated Silence** – sound withdrawn to heighten image
+    9. **Surreal Storyboards** – sequential art impossible to film but inspiring imagination
+    10. **Reverse Motion** – actions unspooling like memory
+    11. **Labyrinthine Sets** – architecture that confuses and delights
+    12. **Dream Logic** – narrative rules drawn from subconscious
+
+    ## Concept Panel:
+    1. **Luis Buñuel (1900–1983)** – pioneer of cinematic surrealism
+    2. **Maya Deren (1917–1961)** – experimental filmmaker exploring dream space
+    3. **Andrei Tarkovsky (1932–1986)** – director of poetic long takes
+    4. **David Lynch (1946–)** – creator of strange Americana
+    5. **Satoshi Kon (1963–2010)** – anime director blending reality and fantasy
+    6. **Franz Kafka (1883–1924, Devil’s Advocate)** – author of bureaucratic nightmares on screen
+
+    ## Medium Panel:
+    1. **Studio Ghibli** – collective making hand‑drawn surreal cinema
+    2. **Jan Švankmajer** – Czech animator of tactile absurdity
+    3. **Chris Marker** – essay filmmaker of layered collage
+    4. **Michel Gondry** – director using lo‑fi effects to build worlds
+    5. **Shirin Neshat** – artist using film to interrogate identity
+    6. **Federico Fellini (1920–1993)** – Italian master of circus‑like surrealism (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Laura Mulvey** – film theorist on gaze and psychosexuality
+    2. **Mark Cousins** – documentary filmmaker chronicling the story of film
+    3. **Roger Ebert** – critic providing accessible film analysis
+    4. **Jordan Peele** – director bringing surreal to mainstream audiences
+    5. **Charlie Kaufman** – screenwriter of meta‑surreal narratives
+    6. **Sigmund Freud (Devil’s Advocate)** – psychoanalyst reminding of hidden meaning
+
+- name: Acoustic Architects
+  prompt: |
+    ## Special Flairs:
+    1. **Sound‑Shaped Rooms** – spaces built around music’s flow
+    2. **Echo Engravings** – patterns carved to control resonance
+    3. **Material Timbre** – wood, glass, and metal chosen for tone
+    4. **Resonance Ribs** – ribs and beams acting like strings
+    5. **Frequency Facades** – building exteriors that reflect sound waves
+    6. **Architectural Scores** – plans drawn like sheet music
+    7. **Reverberant Gardens** – landscapes designed to sing
+    8. **Hushed Havens** – quiet zones absorbing noise
+    9. **Sonic Skylights** – openings channelling wind as melody
+    10. **Vibrational Foundations** – floors vibrating with bass
+    11. **Acoustic Furniture** – chairs and tables sculpted for sound
+    12. **Harmonic Hallways** – corridors that tune footfalls
+
+    ## Concept Panel:
+    1. **Iannis Xenakis (1922–2001)** – composer and architect of mathematical music
+    2. **Frank Gehry (1929–)** – architect designing concert halls like instruments
+    3. **Santiago Calatrava (1951–)** – sculptor of musical bridges
+    4. **Zaha Hadid (1950–2016)** – architect of fluid, sonorous forms
+    5. **Es Devlin (1971–)** – stage designer of immersive acoustic environments
+    6. **John Ruskin (1819–1900, Devil’s Advocate)** – critic urging that ornament must serve sound
+
+    ## Medium Panel:
+    1. **Arup Acoustics** – engineers designing world‑class concert halls
+    2. **Daniel Libeskind** – architect incorporating sound memory into form
+    3. **Anish Kapoor** – sculptor whose work engages acoustics
+    4. **Björk** – musician collaborating with architects for her installations
+    5. **Florence de la Béraudière** – designer of sound furniture
+    6. **Antonio Stradivari (1644–1737)** – luthier shaping perfect tone (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Julian Treasure** – speaker on sound design in public spaces
+    2. **Emily Thompson** – historian of sound technology and architecture
+    3. **David Byrne** – musician exploring music’s relationship to buildings
+    4. **Nick Sridhar** – acoustic designer specializing in VR
+    5. **Bjarke Ingels** – architect using sound to tell stories
+    6. **Le Corbusier (Devil’s Advocate)** – modernist cautioning against ornament
+
+- name: Hyperreal Wanderers
+  prompt: |
+    ## Special Flairs:
+    1. **Ultra Definition** – textures rendered with uncanny clarity
+    2. **Dreamy Desaturation** – high fidelity meeting muted palettes
+    3. **Specular Sparks** – highlights so sharp they feel touchable
+    4. **Blurred Boundaries** – focus that shifts to guide the eye
+    5. **Photo‑Surreal** – everyday subjects placed in impossible contexts
+    6. **Anamorphic Angles** – perspectives that elongate and distort
+    7. **Micro Macro** – extreme close‑ups integrated into vast scenes
+    8. **Reflective Realities** – mirrored surfaces creating kaleidoscopes
+    9. **Faux Fabric** – materials that fool the senses
+    10. **Rainsoaked Neon** – wet surfaces amplifying colored light
+    11. **Constructed Candids** – staged moments made to look spontaneous
+    12. **Pristine Decay** – decay captured with hyperreal polish
+
+    ## Concept Panel:
+    1. **René Magritte (1898–1967)** – painter of surreal juxtapositions
+    2. **Rob Gonsalves (1959–2017)** – Canadian artist blending reality and illusion
+    3. **Gregory Crewdson (1962–)** – photographer of cinematic hyperreality
+    4. **Liu Bolin (1973–)** – artist blending into real environments
+    5. **Julie Blackmon (1966–)** – photographer constructing domestic fantasies
+    6. **Andreas Gursky (1955–, Devil’s Advocate)** – photographer of overwhelming realism
+
+    ## Medium Panel:
+    1. **Mike Winkelmann (Beeple)** – digital artist of uncanny daily renders
+    2. **Cornelius Dammrich** – 3D artist of painterly renders
+    3. **Pascal Blanché** – concept artist of sci‑fi hyperrealism
+    4. **Magali An Berthon** – photographer of staged realness
+    5. **Luisa Azevedo** – surrealist combining photography and digital collage
+    6. **Photoreal CG film industry (collective)** – the craft of turning pixels into reality (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Roland Barthes** – theorist analyzing the reality effect
+    2. **Susan Sontag** – critic of photographic realism
+    3. **David Hockney** – painter exploring photography’s influence
+    4. **Sherry Turkle** – sociologist studying mediated reality
+    5. **Wes Anderson** – director whose stylized frames approach hyperreal
+    6. **Jean Baudrillard (Devil’s Advocate)** – philosopher of hyperreality warning of simulacra
+
+- name: Botanical Surrealists
+  prompt: |
+    ## Special Flairs:
+    1. **Floral Mutation** – petals transforming into unexpected forms
+    2. **Anthropomorphic Plants** – vegetation adopting human traits
+    3. **Carnivorous Fantasy** – gentle creatures revealing toothy maws
+    4. **Blooming Time Loops** – flowers opening and closing in unnatural sequences
+    5. **Hybrid Habitats** – gardens growing underwater or in space
+    6. **Foliage Fables** – stories told through plant interactions
+    7. **Botanical Mirage** – desert scenes bursting with impossible flora
+    8. **Root Realms** – underground scenes as rich as above
+    9. **Chromatic Chlorophyll** – leaves glowing in unnatural colors
+    10. **Mythical Medicinals** – plants with uncanny healing properties
+    11. **Symbiotic Sculptures** – humans fused with trees and flowers
+    12. **Planetoid Pollinators** – bees as satellites circling blossoms
+
+    ## Concept Panel:
+    1. **Ernst Haeckel (1834–1919)** – illustrator of fantastical organisms
+    2. **Georgia O’Keeffe (1887–1986)** – macro painter of botanical sensuality
+    3. **Leonora Carrington (1917–2011)** – surrealist mixing animals and plants
+    4. **Yayoi Kusama (1929–)** – obsessive nets and polka dots like spores
+    5. **Walter Anderson (1903–1965)** – American artist of mythic Gulf Coast flora
+    6. **Hieronymus Bosch (1450–1516, Devil’s Advocate)** – medieval fantasist of monstrous gardens
+
+    ## Medium Panel:
+    1. **Raku Inoue** – artist arranging flora into animals
+    2. **Beth Cavener** – sculptor of anthropomorphic beasts and plants
+    3. **Tiffanie Turner** – creator of oversized botanical paper art
+    4. **Katie Scott** – illustrator of ornate plant encyclopedias
+    5. **Rovina Cai** – artist of moody, surreal landscapes
+    6. **Claude Monet** – painter of water lily dreamscapes (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Michael Pollan** – writer connecting humans and plants
+    2. **Mira Calligraphic** – botanist exploring plant perception
+    3. **Peter Tompkins & Christopher Bird** – authors of The Secret Life of Plants
+    4. **Ayumi Shiratama** – florist combining ikebana and surrealism
+    5. **Gillian Prendergast** – marketer of botanical brands
+    6. **Rachel Carson (Devil’s Advocate)** – author cautioning against romanticizing nature
+
+- name: Minimal Maximalists
+  prompt: |
+    ## Special Flairs:
+    1. **Bold Empty Spaces** – negative areas that speak loudly
+    2. **One Stroke Wonders** – single gestures loaded with meaning
+    3. **Exuberant Restraint** – minimal color with maximal emotion
+    4. **Micro Texture** – subtle details that reward close viewing
+    5. **Chiaroscuro Simplicity** – stark contrast with no clutter
+    6. **Whitespace Patterns** – blank areas arranged intentionally
+    7. **Spare Symbols** – singular icons standing in for complex concepts
+    8. **Duality Designs** – two elements playing off each other
+    9. **Sparse Spectra** – limited palettes used explosively
+    10. **Minimal Ornament** – small decorative touches placed deliberately
+    11. **Amplified Quiet** – silence heightened through composition
+    12. **Maximized Stillness** – motion implied through absence
+
+    ## Concept Panel:
+    1. **Agnes Martin (1912–2004)** – painter of subtle grids and fields
+    2. **Donald Judd (1928–1994)** – sculptor advocating for pure form
+    3. **Ellsworth Kelly (1923–2015)** – color shape minimalist
+    4. **Henri Matisse (1869–1954)** – cut‑out master balancing simplicity and exuberance
+    5. **Louise Nevelson (1899–1988)** – sculptor of monochrome assemblages
+    6. **Kazimir Malevich (1879–1935, Devil’s Advocate)** – suprematist challenging representational minimalism
+
+    ## Medium Panel:
+    1. **Tadao Ando** – architect of concrete minimalism
+    2. **Sanna Annukka** – designer blending minimal patterns with maximal color
+    3. **Sara Lundberg** – illustrator using white space to tell stories
+    4. **Yves Klein** – artist of ultramarine monochrome
+    5. **Shirin Abedinirad** – artist placing mirrors in empty landscapes
+    6. **John Cage (1912–1992)** – composer of silence as sound (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Marie Kondo** – advocate for decluttering and joy
+    2. **John Maeda** – designer of simplicity and reduction
+    3. **Kenya Hara** – curator of Japanese minimal aesthetics
+    4. **Phoebe Philo** – fashion designer balancing simplicity and luxury
+    5. **Muji co‑founders** – brand built on refined minimalism
+    6. **Tom Ford (Devil’s Advocate)** – designer reminding that minimalism can go maximal
+
+- name: Holographic Heritage
+  prompt: |
+    ## Special Flairs:
+    1. **Ghostly Archives** – faded records projected into modern space
+    2. **Light‑Encoded Stories** – histories told through shifting holograms
+    3. **Ancestral Avatars** – past figures rendered as glowing guides
+    4. **Digital Dioramas** – miniature scenes presented in 3D light
+    5. **Time Capsule Layers** – overlapping eras displayed simultaneously
+    6. **Augmented Ancestry** – family trees growing with shimmering branches
+    7. **Heritage Hues** – colors derived from ancestral textiles
+    8. **Flickering Frescos** – ancient art animated subtly
+    9. **Transparent Temples** – structures built from light and memory
+    10. **Ritual Records** – ceremonies preserved as interactive projections
+    11. **Archive Ambience** – ambient soundscapes mixing old and new voices
+    12. **Light‑Sensitive Symbols** – icons only visible from certain angles
+
+    ## Concept Panel:
+    1. **Frida Kahlo (1907–1954)** – artist embedding personal heritage in portrait
+    2. **William Kentridge (1955–)** – animator layering history and memory
+    3. **Dorothea Lange (1895–1965)** – photographer capturing generational stories
+    4. **Abdul Qadim Haqq (1968–)** – Detroit techno visual artist preserving culture
+    5. **Zarina (1937–2020)** – Indian‑American printmaker of home and identity
+    6. **James Turrell (1943–, Devil’s Advocate)** – light artist challenging static memory
+
+    ## Medium Panel:
+    1. **Refik Anadol** – data sculptor translating archives into light
+    2. **TeamLab** – Japanese collective creating participatory projections
+    3. **Joanie Lemercier** – French artist of holographic installations
+    4. **Nancy Baker Cahill** – AR artist enabling site‑specific memories
+    5. **Rafaël Rozendaal** – internet artist exploring persistence
+    6. **Nam June Paik (1932–2006)** – video art pioneer mixing old and new (Eternal Master)
+
+    ## Context & Marketing Panel
+    1. **Henry Louis Gates Jr.** – scholar tracing African‑American genealogy
+    2. **Sarah Vowell** – historian injecting humor into heritage
+    3. **RZA** – musician preserving Wu‑Tang lore through multimedia
+    4. **Gina Apostol** – novelist intertwining Filipino history and meta‑fiction
+    5. **Ziya Tong** – science broadcaster telling stories of time
+    6. **Michel Foucault (Devil’s Advocate)** – philosopher challenging the idea of a fixed heritage

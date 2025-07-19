@@ -1,0 +1,57 @@
+
+──────────────────────────────────────────────────────────────────────────────
+    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
+──────────────────────────────────────────────────────────────────────────────
+
+Phases 1–4                         │  Completed
+5. PRODUCTION STYLE SELECTION      │  **YOU ARE HERE – CHOOSE PRODUCTION MODES**
+6. PRODUCTION REFINEMENT           │  Next: iterate on concept + style pairs.
+7. SCORING FACET GENERATION        │
+8. ARTISTIC GUIDE CREATION         │
+9. RAW MUSIC PROMPT GENERATION     │
+10. INFLUENCE‑REFINED PROMPT       │
+11. PROMPT EVALUATION & SYNTHESIS  │
+12. FINAL MUSIC & LYRIC PROMPTS    │
+──────────────────────────────────────────────────────────────────────────────
+
+## Context
+
+With concepts critiqued and influenced, it’s time to specify the **production style**—the sonic medium through which each concept will be realized.  Production styles shape the texture, space and perceived authenticity of a song, analogous to how “oil painting” or “watercolour” shapes a visual artwork.  Suno v4.5+ can emulate a wide range of recording and mixing paradigms; your selections should inspire high‑fidelity rendering.
+
+This phase is our equivalent of choosing mediums and techniques in visual art.  In painting, oil conveys richness and depth, watercolour suggests translucence and spontaneity; likewise, a tape‑hiss‑laden lo‑fi mix conveys intimacy whereas a pristine surround mix evokes cinematic grandeur.  Think in terms of tactility and environment: how will the listener feel enveloped or exposed by the sonic space?  Use cross‑sensory imagination—if the concept evokes rough stone, maybe the production needs gritty distortion; if it’s about weightlessness, consider airy reverb and high‑frequency shimmer.
+
+## Directions
+
+### 1 · Understand production dimensions
+
+A production style should encapsulate the following dimensions.  Use them as building blocks:
+
+* **Recording environment:** Where does the music sound like it was captured?  Options include intimate bedroom, cavernous cathedral, lush studio, outdoor field, underground club, concert hall or DIY basement.  Each environment implies specific reverberation and noise textures.
+* **Mix aesthetic:** Is the mix pristine and glossy, raw and gritty, warm and analog, immersive and binaural, compressed and pumping, or wide and cinematic?  Mention signature qualities (e.g., “tape saturation,” “vinyl crackle,” “dub‑style echo,” “surround panning”).
+* **Spatial placement:** Describe how instruments and vocals are positioned—centrally upfront, panned across the stereo field, distant and washed in reverb, or close‑miked and dry.
+* **Processing effects:** Include notable effects such as delay, reverb type (spring, plate, convolution), modulation (chorus, phaser), filtering (low‑pass sweeps), distortion (tube warmth, bit‑crush) and dynamics (side‑chain pumping).
+* **Run‑time nuance:** Choose an approximate length that suits the emotional journey; longer lengths allow for storytelling and multiple movements.
+
+   **Cross‑modal hint:** Borrow terms from architecture and visual art when describing environments and effects (e.g., “a Baroque hall with ornate reflections,” “a Brutalist space with cold concrete resonance”).  These metaphors enrich your production descriptions and link them back to our award‑winning art ethos.
+
+### 2 · Assign production styles
+
+For each refined concept, craft a one‑sentence production style that covers the dimensions above.  Consider the influence’s preferences and suggestions.  For example:
+
+* “Captured live in a sun‑drenched atrium, mixed with shimmering plate reverb and gliding tape echo, featuring airy stereo placement and a five‑minute run‑time.”
+* “Recorded on worn cassette in a candlelit basement, saturated with analog hiss and lo‑fi compression, featuring mono vocals and a slow‑evolving six‑minute drone.”
+* “Layered in a pristine digital studio with cinematic surround mixing, crisp transient shaping and immersive binaural panning, culminating in a climactic drop at 4:20.”
+
+### 3 · Output
+
+Return a JSON object:
+
+```json
+{
+  "production_styles": ["...", "...", ...]
+}
+```
+
+Ensure there is one production style per refined concept.  Keep each style ≤40 words.  Avoid using specific brand names of equipment or mentioning famous producers.
+
+As you write, imagine you are painting a soundscape.  Use adjectives that evoke texture (“grainy,” “glossy,” “velvety”), space (“cathedral‑like,” “claustrophobic”), and temperature (“frosty echoes,” “humid bass”).  These sensory cues bridge the gap between music and visual art, elevating your production choices to the award‑winning standard we seek.
