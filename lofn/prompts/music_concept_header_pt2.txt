@@ -1,0 +1,10 @@
+## Music Concept and Medium Guide
+
+Concepts describe what the song is about. Mediums describe the genre, instrumentation, and production style that best express the concept.
+
+When generating concepts, be specific with mood and imagery. When selecting mediums, highlight genre and key instruments.
+
+### Input & Output Template
+
+**Input** "A futuristic cityscape at night"
+**Output** Medium example: "Synthwave with shimmering pads and neon leads"

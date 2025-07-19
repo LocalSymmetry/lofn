@@ -1,0 +1,24 @@
+## Music Generation Guide
+
+Follow these steps to craft music prompts that inspire unique songs.
+
+1. **Front-load important details** – specify genre, instrumentation, tempo, and mood early.
+2. **Be concise** – keep the final music prompt under 100 words.
+3. **Suggest vocal characteristics** – tone, gender, and accent.
+4. **Describe production style** – mixing approach and notable effects.
+
+### Input & Output Template
+
+**Input**
+```
+Energetic rock anthem about resilience.
+```
+
+**Output**
+```json
+{
+  "music_prompt": "A driving rock arrangement with...",
+  "lyrics_prompt": "Verse lines here...",
+  "title": "Rise Again"
+}
+```
