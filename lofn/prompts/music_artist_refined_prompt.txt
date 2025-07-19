@@ -1,1 +1,161 @@
-TEMPLATE MUSIC ARTIST REFINED PROMPT
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+**INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when describing songs.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to refine the generated prompts using the styles and techniques of obscure, hidden-gem musicians.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Style Axes:**
+
+{style_axes}
+
+---
+
+**Step 1: Select an Obscure Musician**
+
+- For each generated prompt:
+  - Choose a lesser-known musician who:
+    - Works with styles similar to the {medium}, or
+    - Is connected to the user's idea, or
+    - Is associated with one of the input aesthetics.
+  - **Note:** Avoid famous musicians; focus on distinctive, obscure musicians who bring unique perspectives.
+
+---
+
+**Step 2: Explore Musical Style and Context**
+
+- **Aspect of Style:**
+  - Identify an aspect of the musician's style that complements the prompt, including historical or cultural influences.
+- **Signature Techniques and Elements:**
+  - Describe two signature techniques or unique elements the musician uses, guided by the facets.
+- **Emotional and Thematic Focus:**
+  - Determine the emotional tone or theme the musician would emphasize.
+- **Perspective-Taking:**
+  - Write from the musician's viewpoint, reflecting their musical philosophy.
+
+---
+
+**Step 3: Rewrite Prompts in the Musician's Style**
+
+- For each musician and prompt:
+  - Rewrite the prompt in the musician's style, incorporating their special techniques, elements, and emotional focus to capture the {concept} in the {medium}.
+  - Ensure alignment with the style axes if they are provided.
+  - **Rules:**
+    - Enhance details without removing or oversimplifying core concepts.
+    - Use proper nouns over generic nouns.
+    - Write authentically from the musician's perspective.
+    - **Do not include the musician's name** in the refined prompts.
+    - Incorporate the user's input to address any gaps.
+
+- **Example (Do not include in your response):**
+  - *Original Prompt:* "A solitary figure walks down a deserted street at night."
+  - *Musician-Refined Prompt:* "Under the flickering glow of dim streetlights, the solitary figure's footsteps echo against the silent buildings, shadows stretching and warping in the eerie quiet, as a distant whistle hints at unseen mysteries lurking in the darkness."
+
+---
+
+**Step 4: Self-Evaluation and Refinement**
+
+- **Evaluate the musician-refined prompts** against the judging facets and style axes.
+- **Identify areas for enhancement**, such as emotional depth, use of medium-specific techniques, and alignment with the user's idea.
+- **Revise the prompts** to make necessary improvements.
+- *Action*: Summarize the evaluation and describe the refinements made.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the list of musician-refined prompts in the following JSON format:**
+
+  ```json
+  {{
+    "artist_refined_prompts": [
+      {{"artist_refined_prompt": "Musician-Refined Prompt 1"}},
+      {{"artist_refined_prompt": "Musician-Refined Prompt 2"}},
+      {{"artist_refined_prompt": "Musician-Refined Prompt 3"}},
+      {{"artist_refined_prompt": "Musician-Refined Prompt 4"}},
+      {{"artist_refined_prompt": "Musician-Refined Prompt 5"}},
+      {{"artist_refined_prompt": "Musician-Refined Prompt 6"}}
+    ]
+  }}
+  ```
+
+- **Ensure Proper Formatting:**
+  - Use double quotes for strings.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Judging Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}
+
+- **Generated Prompts:**
+
+{song_gen_prompts}
