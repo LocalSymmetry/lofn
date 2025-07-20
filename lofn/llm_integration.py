@@ -2265,7 +2265,7 @@ def process_music_revision_synthesis(
             "medium": arrangement,
             "facets": facets['facets'],
             "style_axes": style_axes,
-            "artist_refined_prompts": artist_refined_prompts['artist_refined_prompts']
+            "artist_refined_prompts": artist_refined_prompts
         },
         max_retries,
         model,
