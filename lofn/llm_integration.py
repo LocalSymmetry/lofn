@@ -305,6 +305,23 @@ music_generation_schema = {
     ]
 }
 
+# Schema for artist-refined music prompts
+music_artist_refined_schema = {
+    "musician_refined_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
+
+# Schema for final music prompt revisions and synthesis
+music_revised_synthesized_schema = {
+    "revised_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ],
+    "synthesized_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
+
 # Schema for panel voting on concept-medium pairs
 best_pairs_schema = {
     "best_pairs": [
@@ -2033,7 +2050,7 @@ def generate_music_prompts(
 
             status.update(label="Music Prompt Generation Complete!", state="complete")
 
-        return final_output['music_prompt'], final_output['lyrics_prompt'], final_output['title']
+        return final_output
 
     except Exception as e:
         raise LofnError(f"Error in music prompt generation: {str(e)}")
@@ -2203,7 +2220,7 @@ def process_music_artist_refined_prompts(
     style_axes=None,
     model=None
 ):
-    expected_schema = artist_refined_schema
+    expected_schema = music_artist_refined_schema
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -2238,7 +2255,7 @@ def process_music_revision_synthesis(
     style_axes=None,
     model=None
 ):
-    expected_schema = music_gen_schema
+    expected_schema = music_revised_synthesized_schema
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
