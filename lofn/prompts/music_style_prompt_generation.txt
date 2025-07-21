@@ -1,0 +1,44 @@
+
+──────────────────────────────────────────────────────────────────────────────
+    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
+──────────────────────────────────────────────────────────────────────────────
+
+Phases 1–8                         │  Completed
+9. RAW MUSIC PROMPT GENERATION     │  **YOU ARE HERE – WRITE STYLE PROMPTS**
+10. INFLUENCE‑REFINED PROMPT       │  Next: infuse influencer flair.
+11. PROMPT EVALUATION & SYNTHESIS  │
+12. FINAL MUSIC & LYRIC PROMPTS    │
+──────────────────────────────────────────────────────────────────────────────
+
+## Context
+
+You will now convert the rich artistic guides into concise **style prompts** that can be entered into Suno v4.5+’s Style input box.  These prompts instruct Suno’s model to produce music with specific mood, genre, instrumentation and production qualities.  Suno’s improved prompt adherence means the order and wording you use directly impact outputhttps://help.suno.com/en/articles/5782593#:~:text=Better%20prompt%20adherence%3A%20Your%20words,imagine%20is%20what%20you%20hear, so craft each sentence with care.
+
+This is akin to writing the caption that accompanies a painting in a gallery: short enough to be read quickly, but rich enough to convey the artist’s intention.  Your style prompts must encapsulate the synaesthetic world of the guide in a tight, well‑ordered paragraph.  Use language that suggests colour, temperature and movement to evoke the mood beyond mere genre labels.
+
+## Directions
+
+1. **One prompt per guide.**  Create one style prompt for each of the six guides.  Keep each prompt to 50–120 words—long enough to convey nuance but concise enough to avoid clutter.
+
+2. **Order matters.**  Follow this structure:
+   1. **Emotion & setting:** Start with the dominant emotion and, if relevant, the setting or scene (e.g., “A hauntingly wistful piece set against the rustle of autumn leaves”).
+   2. **Genre & fusion:** Name the primary genre and any secondary genre or micro‑style.  Use descriptive labels (“cavernous dub‑techno meets chamber folk”).
+   3. **Instrumentation & texture:** List key instruments and briefly describe their sonic qualities (e.g., “plucked harp with shimmering granular pads and crackling found‑sound percussion”).  Use “with” or “and” rather than long comma lists.
+   4. **Vocals:** If vocals are present, define them in detail: gender, age, accent, tone (warm, raspy, airy) and two distinctive traits (e.g., “gentle Celtic lilt” or “playful yodel flips”).  If purely instrumental, state “instrumental”.
+   5. **Production style:** Describe recording environment and mix aesthetic (e.g., “recorded live in a cavernous hall, drenched in plate reverb and analog tape saturation”).
+   6. **Run‑time & dynamics:** Give an approximate length and outline dynamic progression or tempo shifts (e.g., “lasting seven minutes, starting with a sparse intro, building to a climactic chorus at four minutes, then dissolving into echoes”).
+   7. **Advanced features:** Indicate where to use **Add Vocals** or **Add Instrumentals** and whether to leverage **Inspire** with a playlist (e.g., “optionally use Add Vocals to add whispering choirs, and Inspire with a playlist of rainy‑night jazz ballads”).
+
+3. **Language style.**  Use full sentences separated by periods.  Avoid hashtags, abbreviations, negative directives (“no hi‑hats”), and references to real songs or artists.  Use descriptive verbs and adjectives that evoke sensation (“swirling”, “crackling”, “soaring”).
+
+   **Cross‑sensory cues:** Include at least one adjective borrowed from another sense (e.g., “silvery melodies,” “velvet bass line,” “sun‑bleached guitar tones”) to help the model align with the multi‑sensory experience we aim for in award‑winning art.
+
+4. **Output:** Return a JSON object with one property `style_prompts` containing six strings.  Each string should be its own prompt.
+
+```json
+{
+  "style_prompts": ["...", "...", ...]
+}
+
+Treat these prompts as polished, ready‑to‑use instructions.  The clarity and sensory richness you infuse here will directly influence the quality of the generated music.
+```

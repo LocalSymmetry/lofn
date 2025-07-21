@@ -1,0 +1,101 @@
+
+## Music Generation Guide (Suno v4.5+)
+
+  This guide provides detailed instructions for crafting **music prompts** and
+  **lyrics prompts** that will inspire unique songs using Suno v4.5+.  Do
+  not copy the examples verbatim; instead, adapt the structure and level of
+  detail to suit your own concepts and production styles.
+
+  ### Prompt Structuring Guidelines
+
+  - **Front‑Load Critical Elements**: Begin with the genre, tempo, primary
+    instruments and mood.  Lead with the most important information so the
+    model prioritises it.
+  - **Keep It Concise**: The music prompt should be 50–120 words and the
+    lyrics prompt 30–100 words.  Focus on essential details and avoid
+    filler.
+  - **Be Specific**: Name instruments, vocal characteristics, production
+    techniques and song structure explicitly.  Avoid generic terms like
+    “beautiful” or “nice” – instead, describe why they are beautiful or how
+    they make the listener feel.
+  - **Use Synaesthetic Metaphors**: Describe sounds using cross‑sensory
+    language (e.g., “guitar tone dripping like honey,” “vocals as airy as
+    morning fog”) to paint a vivid picture.
+  - **Leverage Suno Features**: Indicate where to use **Add Vocals** or
+    **Add Instrumentals**, specify song length (up to 8 minutes) and use
+    **Inspire** when you want the model to improvise off a generated idea.
+
+  ---
+
+  ### Step‑by‑Step Instructions for Crafting Music Prompts
+
+  **Step 1: Identify Key Elements**
+    - List at least five crucial musical components: genre and sub‑genre,
+      primary instruments, tempo (BPM), mood/emotion, and run‑time.  Include
+      any unique instruments (e.g., duduk, Moog synthesizer) or vocal
+      techniques (e.g., ethereal falsetto, spoken‑word verse).
+
+  **Step 2: Define the Arrangement and Structure**
+    - Outline the song’s sections (intro, verse, pre‑chorus, chorus, bridge,
+      instrumental solo, outro) and the dynamic arc (e.g., “quiet verses
+      build into a soaring chorus, followed by a stripped‑down bridge”).  If
+      you plan to use Suno’s layering tools, note which sections will be
+      instrumental and which will have vocals.
+
+  **Step 3: Describe Instrumentation and Production**
+    - Specify how each instrument sounds and interacts.  Mention playing
+      techniques (e.g., finger‑picked guitar vs. strummed, syncopated drum
+      groove vs. straight 4/4), timbres (warm, crisp, fuzzy), and the
+      production style (lo‑fi tape saturation, glossy studio mix, live room
+      ambience).  Include effects like reverb, delay, distortion, chorus or
+      granular textures.
+
+  **Step 4: Characterize the Vocals**
+    - If vocals are present, describe gender presentation, tone (soft,
+      raspy, soulful), accent or dialect, range and delivery style (spoken,
+      sung, whispered, belted).  Mention backing vocals, harmonies and call‑
+      and‑response patterns.  Suggest whether to use the **Add Vocals** tool
+      for layering after generating the instrumental.
+
+  **Step 5: Establish Mood and Emotional Arc**
+    - Specify the emotions you want to evoke at each stage.  Use precise
+      descriptors (serene, brooding, triumphant, bittersweet) and pair them
+      with synaesthetic imagery (“piano chords glow with amber warmth”).
+      Indicate how the mood shifts throughout the song.
+
+  **Step 6: Integrate Musical Style Axes**
+    - Mention where your prompt sits on the style axes: tempo (e.g., “slow
+      60 BPM”), energy/dynamics (“gradual crescendo to a climactic finish”);
+      harmonic complexity (“simple minor progression” or “complex jazz
+      chord voicings”), rhythmic complexity (“laid‑back swing” or “off‑beat
+      polyrhythms”), timbre richness, vintage vs. modern production,
+      vocal prominence, organic vs. synthetic instrumentation, genre fusion
+      and narrative emphasis.  These cues guide the model to match your
+      desired sonic palette.
+
+  **Step 7: Address Run‑Time and Suno Tools**
+    - State the desired length (e.g., 2:30 for a radio‑friendly track or
+      6:45 for a progressive piece).  Suggest using **Add Instrumentals** to
+      extend instrumental sections or **Add Vocals** to experiment with
+      different vocal takes.  Use **Inspire** to generate variations or
+      explore new directions based on your prompt.
+
+  **Step 8: Write the Music Prompt**
+    - Combine the elements from previous steps into a coherent paragraph.
+      Start with the genre and instrumentation, then describe structure,
+      production style, emotions and any special instructions.  Use
+      evocative metaphors and avoid redundant details.  Keep it under
+      120 words.
+
+  **Step 9: Craft the Lyrics Prompt**
+    - Identify the narrative arc, point of view (first‑person, third‑
+      person, omniscient), rhyme scheme (e.g., AABB, ABCB), and number of
+      lines.  Specify the emotional journey and any symbolic imagery.  For
+      example, instruct the writer to include recurring motifs (sunrise,
+      rivers, stars) or call‑and‑response refrains.  Keep it under
+      100 words.
+
+  **Step 10: Title the Song**
+    - Choose a title that encapsulates the essence and mood of the song.
+      Use evocative phrases, novel compound words, or cultural references.
+      Ensure it hints at the story without giving too much away.

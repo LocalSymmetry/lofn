@@ -685,30 +685,55 @@ class LofnApp:
                 .replace('{input}', st.session_state.get('input', ''))
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
-            with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
+
+            with st.spinner("Generating music concepts..."):
+                concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
+                    style_axes=None,
+                    creativity_spectrum=None,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium')
                 )
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
 
-            metadata = {
-                'timestamp': datetime.now(),
-                'title': music_title,
-                'music_prompt': music_prompt,
-                'lyrics_prompt': lyrics_prompt,
-                'input_text': st.session_state.get('input', ''),
-                'competition': True,
-                'model': self.model,
-            }
-            save_music_metadata(metadata)
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity
+            st.session_state['music_concept_mediums'] = concept_mediums
+
+            pairs = concept_mediums
+            if pairs:
+                try:
+                    with st.spinner("Panel voting on best pairs..."):
+                        best_pairs = select_best_pairs(
+                            input_text,
+                            pairs,
+                            st.session_state.get('num_best_pairs', 3),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium'),
+                        )
+                    st.session_state['music_best_pairs'] = best_pairs
+                    st.success("Best music pairs selected by panel")
+                except Exception as e:
+                    st.error("An error occurred while selecting best music pairs.")
+                    logger.exception("Error selecting music pairs: %s", e)
+                    best_pairs = pairs
+            else:
+                best_pairs = []
+
+            st.session_state['song_prompts'] = {'revised_prompts': [], 'synthesized_prompts': []}
+            top_n = st.session_state.get('num_best_pairs', 3)
+            gen_pairs = best_pairs if best_pairs else pairs
+            for pair in gen_pairs[:top_n]:
+                self.generate_music_prompts_for_pair(pair)
+
             st.success("Music prompts generated successfully!")
-            self.display_music_prompts()
+            if st.session_state.get('music_concept_mediums'):
+                self.display_music_concepts()
         except Exception as e:
             st.error("An error occurred during music competition mode.")
             logger.exception("Error in music competition: %s", e)
@@ -910,6 +935,82 @@ class LofnApp:
             st.code(row['Synthesized Prompts'], language='')
             st.markdown("---")
 
+    def display_music_concepts(self):
+        st.subheader("Generated Music Concepts and Mediums")
+        selected_pairs = create_mini_dashboard(st.session_state['music_concept_mediums'])
+        st.session_state['selected_music_pairs'] = selected_pairs
+
+        if st.button("Generate Music Prompts for Selected Concepts"):
+            if selected_pairs:
+                for idx in selected_pairs:
+                    pair = st.session_state['music_concept_mediums'][idx]
+                    self.generate_music_prompts_for_pair(pair)
+            else:
+                st.warning("Please select at least one concept to generate prompts.")
+
+        if st.button("Generate Music Prompts for All Concepts"):
+            for pair in st.session_state['music_concept_mediums']:
+                self.generate_music_prompts_for_pair(pair)
+
+    def generate_music_prompts_for_pair(self, pair):
+        st.subheader(f"Generating Music Prompts for '{pair['concept']}' in '{pair['medium']}'")
+        try:
+            with st.spinner(f"Generating music prompts for '{pair['concept']}'..."):
+                song_prompts = generate_music_prompts(
+                    st.session_state['input'],
+                    pair['concept'],
+                    pair['medium'],
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
+                    reasoning_level=st.session_state.get('reasoning_level','medium')
+                )
+            st.success(f"Music prompts generated for '{pair['concept']}'")
+
+            if 'song_prompts' not in st.session_state or st.session_state['song_prompts'] is None:
+                st.session_state['song_prompts'] = {'revised_prompts': [], 'synthesized_prompts': []}
+
+            st.session_state['song_prompts']['revised_prompts'].extend(song_prompts.get('revised_prompts', []))
+            st.session_state['song_prompts']['synthesized_prompts'].extend(song_prompts.get('synthesized_prompts', []))
+
+            for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
+                metadata = {
+                    'timestamp': datetime.now(),
+                    'title': prompt['title'],
+                    'music_prompt': prompt['music_prompt'],
+                    'lyrics_prompt': prompt['lyrics_prompt'],
+                    'input_text': st.session_state.get('input', ''),
+                    'competition': st.session_state.get('competition_mode', False),
+                    'model': self.model,
+                }
+                save_music_metadata(metadata)
+
+            self.display_music_prompts_for_pair(song_prompts, pair)
+        except Exception as e:
+            st.error(f"An error occurred while generating music prompts for '{pair['concept']}'.")
+            logger.exception("Error generating music prompts: %s", e)
+
+    def display_music_prompts_for_pair(self, song_prompts, pair):
+        st.subheader(f"Music Prompts for '{pair['concept']}' in '{pair['medium']}'")
+        for prompt in song_prompts.get('revised_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
+
+        for prompt in song_prompts.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
+
     def render_music_generation(self):
         # self.render_music_sidebar()
         st.header("Generate Your Music Concept")
@@ -937,7 +1038,10 @@ class LofnApp:
             else:
                 self.run_music_competition()
 
-        if 'music_prompt' in st.session_state and 'lyrics_prompt' in st.session_state:
+        if st.session_state.get('music_concept_mediums'):
+            self.display_music_concepts()
+
+        if st.session_state.get('song_prompts'):
             self.display_music_prompts()
 
     # def render_music_sidebar(self):
@@ -956,51 +1060,90 @@ class LofnApp:
     def generate_music_prompts_ui(self):
         try:
             with st.spinner("Generating music prompts..."):
-                music_prompt, lyrics_prompt, music_title = generate_music_prompts(
+                concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     st.session_state['input'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
                     debug=self.debug,
+                    style_axes=None,
+                    creativity_spectrum=None,
+                    reasoning_level=st.session_state.get('reasoning_level','medium')
                 )
-            st.session_state['music_prompt'] = music_prompt
-            st.session_state['lyrics_prompt'] = lyrics_prompt
-            st.session_state['music_title'] = music_title
-            metadata = {
-                'timestamp': datetime.now(),
-                'title': music_title,
-                'music_prompt': music_prompt,
-                'lyrics_prompt': lyrics_prompt,
-                'input_text': st.session_state['input'],
-                'competition': False,
-                'model': self.model,
-            }
-            save_music_metadata(metadata)
+
+                st.session_state['music_concept_mediums'] = concept_mediums
+                st.session_state['style_axes'] = style_axes
+                st.session_state['creativity_spectrum'] = creativity
+
+                if concept_mediums:
+                    first = concept_mediums[0]
+                    song_prompts = generate_music_prompts(
+                        st.session_state['input'],
+                        first['concept'],
+                        first['medium'],
+                        max_retries=self.max_retries,
+                        temperature=self.temperature,
+                        model=self.model,
+                        debug=self.debug,
+                        style_axes=style_axes,
+                        creativity_spectrum=creativity,
+                        reasoning_level=st.session_state.get('reasoning_level','medium')
+                    )
+                else:
+                    song_prompts = {'revised_prompts': [], 'synthesized_prompts': []}
+            st.session_state['song_prompts'] = song_prompts
+            for prompt in song_prompts.get('revised_prompts', []) + song_prompts.get('synthesized_prompts', []):
+                metadata = {
+                    'timestamp': datetime.now(),
+                    'title': prompt['title'],
+                    'music_prompt': prompt['music_prompt'],
+                    'lyrics_prompt': prompt['lyrics_prompt'],
+                    'input_text': st.session_state['input'],
+                    'competition': False,
+                    'model': self.model,
+                }
+                save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
             self.display_music_prompts()
+            if st.session_state.get('music_concept_mediums'):
+                self.display_music_concepts()
         except Exception as e:
             st.error("An error occurred while generating music prompts.")
             logger.exception("Error generating music prompts: %s", e)
 
     def display_music_prompts(self):
-        st.subheader("Generated Song Title")
-        st.code(st.session_state['music_title'], language='text')
+        song_prompts = st.session_state.get('song_prompts')
+        if not song_prompts:
+            return
 
-        st.subheader("Generated Music Prompt")
-        st.code(st.session_state['music_prompt'], language='text')
+        st.subheader("Revised Prompts")
+        for prompt in song_prompts.get('revised_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
 
-        st.subheader("Generated Lyrics Prompt")
-        st.code(st.session_state['lyrics_prompt'], language='text')
-        st.info("Copy the above prompts and paste them into Udio to generate your music.")
+        st.subheader("Synthesized Prompts")
+        for prompt in song_prompts.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Music Prompt**")
+            st.code(prompt['music_prompt'], language='text')
+            st.markdown("**Lyrics Prompt**")
+            st.code(prompt['lyrics_prompt'], language='text')
+            st.markdown('---')
+
+        st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
 
     def initialize_session_state(self):
         default_values = {
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
             'video_prompts_df': None,
-            'music_title': None,
-            'music_prompt': None,
-            'lyrics_prompt': None,
+            'music_concept_mediums': None,
+            'music_best_pairs': None,
+            'song_prompts': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,

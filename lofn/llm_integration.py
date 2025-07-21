@@ -93,6 +93,10 @@ video_artist_refined_prompt = read_prompt('/lofn/prompts/video_artist_refined_pr
 # Music prompts
 music_essence_prompt = read_prompt('/lofn/prompts/music_essence_prompt.txt')
 music_creation_prompt = read_prompt('/lofn/prompts/music_creation_prompt.txt')
+music_prompt_header_part1 = read_prompt('/lofn/prompts/music_prompt_header.txt')
+music_prompt_header_part2 = read_prompt('/lofn/prompts/music_prompt_header_pt2.txt')
+music_concept_header_part1 = read_prompt('/lofn/prompts/music_concept_header.txt')
+music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2.txt')
 
 
 # Read aesthetics from the file
@@ -105,6 +109,8 @@ concept_header = concept_header_part1 + concept_header_part2
 
 video_prompt_header = video_prompt_header_part1 + video_prompt_header_part2
 video_concept_header = video_concept_header_part1 + video_concept_header_part2
+music_prompt_header = music_prompt_header_part1 + music_prompt_header_part2
+music_concept_header = music_concept_header_part1 + music_concept_header_part2
 
 # Construct full prompts
 essence_prompt = concept_header + essence_prompt_middle + prompt_ending
@@ -136,8 +142,16 @@ video_prompts = {
 
 # Music prompts
 music_prompts = {
-    'essence_and_facets': read_prompt('/lofn/prompts/music_essence_prompt.txt'),
-    'creation': read_prompt('/lofn/prompts/music_creation_prompt.txt'),
+    'essence_and_facets': music_concept_header + read_prompt('/lofn/prompts/music_essence_prompt.txt') + prompt_ending,
+    'concepts': music_concept_header + read_prompt('/lofn/prompts/music_concepts_prompt.txt') + prompt_ending,
+    'artist_and_critique': music_concept_header + read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt') + prompt_ending,
+    'medium': music_concept_header + read_prompt('/lofn/prompts/music_medium_prompt.txt') + prompt_ending,
+    'refine_medium': music_concept_header + read_prompt('/lofn/prompts/music_refine_medium_prompt.txt') + prompt_ending,
+    'facets': music_concept_header + read_prompt('/lofn/prompts/music_facets_prompt.txt') + prompt_ending,
+    'song_guides': music_prompt_header + read_prompt('/lofn/prompts/music_song_guides_prompt.txt') + prompt_ending,
+    'generation': music_prompt_header + read_prompt('/lofn/prompts/music_generation_prompt.txt') + prompt_ending,
+    'artist_refined': music_prompt_header + read_prompt('/lofn/prompts/music_artist_refined_prompt.txt') + prompt_ending,
+    'revision_synthesis': music_prompt_header + read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt') + prompt_ending,
 }
 
 # Image prompts (existing)
@@ -276,6 +290,36 @@ music_gen_schema = {
     "music_prompt": str,
     "lyrics_prompt": str,
     "title": str
+}
+
+
+song_guides_schema = {
+    "song_guides": [
+        {"song_guide": str}
+    ]
+}
+
+music_generation_schema = {
+    "music_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
+
+# Schema for artist-refined music prompts
+music_artist_refined_schema = {
+    "musician_refined_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
+
+# Schema for final music prompt revisions and synthesis
+music_revised_synthesized_schema = {
+    "revised_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ],
+    "synthesized_prompts": [
+        {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
 }
 
 # Schema for panel voting on concept-medium pairs
@@ -1395,7 +1439,33 @@ def generate_video_concept_mediums(
         reasoning_level=reasoning_level
     )
 
-def generate_music_prompts(
+def generate_music_concept_mediums(
+    input_text,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    verbose=False,
+    debug=False,
+    aesthetics=aesthetics,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium",
+):
+    return generate_concept_mediums(
+        input_text,
+        max_retries,
+        temperature,
+        model,
+        verbose,
+        debug,
+        aesthetics,
+        style_axes,
+        creativity_spectrum,
+        medium='music',
+        reasoning_level=reasoning_level
+    )
+
+def generate_simple_music_prompts(
     input_text,
     max_retries,
     temperature,
@@ -1898,6 +1968,93 @@ def generate_video_prompts(
     except Exception as e:
         raise LofnError(f"Error in video prompt generation: {str(e)}")
 
+def generate_music_prompts(
+    input_text,
+    concept,
+    arrangement,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium"
+):
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        prompts = prompt_configs.get('music')
+
+        if model[0] == "o":
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("human", prompts['facets'])])
+                    | llm
+                ),
+                'song_guides': (
+                    ChatPromptTemplate.from_messages([("human", prompts['song_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+        else:
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", prompts['facets'])])
+                    | llm
+                ),
+                'song_guides': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['song_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+
+        with st.status(f"Generating Music Prompts for {concept} in {arrangement}...", expanded=True) as status:
+            status.write("Generating Facets...")
+            facets = process_facets(chains, input_text, concept, arrangement, max_retries, debug, style_axes, model)
+            display_facets(facets['facets'])
+
+            status.write("Creating Song Guides...")
+            guides = process_song_guides(chains, input_text, concept, arrangement, facets, max_retries, debug, style_axes, model)
+
+            status.write("Generating Music Prompts...")
+            music_prompts = process_music_generation_prompts(chains, input_text, concept, arrangement, facets, guides, max_retries, debug, style_axes, model)
+
+            status.write("Refining Prompts...")
+            artist_refined = process_music_artist_refined_prompts(chains, input_text, concept, arrangement, facets, music_prompts, max_retries, debug, style_axes, model)
+
+            status.write("Synthesizing Final Prompts...")
+            final_output = process_music_revision_synthesis(chains, input_text, concept, arrangement, facets, artist_refined, max_retries, debug, style_axes, model)
+
+            status.update(label="Music Prompt Generation Complete!", state="complete")
+
+        return final_output
+
+    except Exception as e:
+        raise LofnError(f"Error in music prompt generation: {str(e)}")
+
 def process_video_prompts(
     chains,
     input_text,
@@ -1977,4 +2134,145 @@ def process_video_artist_refined_prompts(
             [prompt['artist_refined_prompt'] for prompt in parsed_output['artist_refined_prompts']],
             premessage=f'Filmmaker-Refined Prompts for {concept} in {medium}:'
         )
+    return parsed_output
+
+
+# === Music Processing Functions ===
+
+
+def process_song_guides(
+    chains,
+    input_text,
+    concept,
+    arrangement,
+    facets,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = song_guides_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'song_guides',
+        {
+            "input": input_text,
+            "concept": concept,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process song guides")
+        return None
+    return parsed_output
+
+
+def process_music_generation_prompts(
+    chains,
+    input_text,
+    concept,
+    arrangement,
+    facets,
+    song_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = music_generation_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'generation',
+        {
+            "input": input_text,
+            "concept": concept,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process music prompts")
+        return None
+    return parsed_output
+
+
+def process_music_artist_refined_prompts(
+    chains,
+    input_text,
+    concept,
+    arrangement,
+    facets,
+    music_prompts,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = music_artist_refined_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'artist_refined',
+        {
+            "input": input_text,
+            "concept": concept,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "song_prompts": music_prompts
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process musician refined prompts")
+        return None
+    return parsed_output
+
+
+def process_music_revision_synthesis(
+    chains,
+    input_text,
+    concept,
+    arrangement,
+    facets,
+    artist_refined_prompts,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None
+):
+    expected_schema = music_revised_synthesized_schema
+    parsed_output = run_llm_chain(
+        chains,
+        'revision_synthesis',
+        {
+            "input": input_text,
+            "concept": concept,
+            "medium": arrangement,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "artist_refined_prompts": artist_refined_prompts
+        },
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process revised music prompts")
+        return None
     return parsed_output

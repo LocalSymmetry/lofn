@@ -46,7 +46,7 @@ def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music genres."""
     path = os.path.join(os.path.dirname(__file__), 'prompts', 'genres.txt')
     with open(path, 'r') as file:
-        genres = file.read().split(', ')
+        genres = [line.strip() for line in file.readlines() if line.strip()]
 
     count = random.randint(min_count, max_count)
     sampled = random.sample(genres, count)
@@ -57,7 +57,7 @@ def sample_music_frames(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music frames."""
     path = os.path.join(os.path.dirname(__file__), 'prompts', 'music_frames.csv')
     with open(path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+        reader = csv.DictReader(row for row in csvfile if row.strip())
         rows = list(reader)
 
     count = random.randint(min_count, max_count)
@@ -399,8 +399,10 @@ def create_mini_dashboard(pairs):
                 with row[j]:
                     st.markdown(f"**Pair {i+j+1}**")
                     with st.expander("View Details", expanded=True):
-                        st.markdown(f"**Concept:** {pair['concept']}")
-                        st.markdown(f"**Medium:** {pair['medium']}")
+                        concept_key = 'concept' if 'concept' in pair else 'hook'
+                        medium_key = 'medium' if 'medium' in pair else 'arrangement'
+                        st.markdown(f"**Concept:** {pair.get(concept_key)}")
+                        st.markdown(f"**Medium:** {pair.get(medium_key)}")
                     if st.checkbox(f"Select Pair {i+j+1}", key=f"pair_{i+j}"):
                         selected_pairs.append(i+j)
                     st.markdown("---")
