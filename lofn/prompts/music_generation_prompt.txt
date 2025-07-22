@@ -689,7 +689,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 - **Medium:** {medium}
 - **Judging Facets:** {facets}
 - **Style Axes:** {style_axes}
-- **Artistic Guides:**
+- **Song Guides:**
 
 {song_guides}
 

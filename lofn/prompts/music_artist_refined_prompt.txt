@@ -240,6 +240,9 @@ Think of this step as putting on a costume or stepping into a character’s shoe
 
 {song_prompts}
 
+- **Song Guides (use for inspiration, but make changes if it better suits the overall song):**
+
+{song_guides}
 
 - **REMEBER - Return the list of musician-refined prompts in the following JSON format:**
 

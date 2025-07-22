@@ -158,10 +158,19 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
       * `[Instrumental]`
       * `[Breakdown]`
       * etc.
-  - Examples:
-    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Chorus], [Bridge], [Outro]"
-    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Solo], [Chorus], [Chorus], [Instrumental], [Outro]"
+  - To determine this, we will also choose the musical form that you think would make the most viral, interesting, and ear-worm worthy piece for the concept and production choices so far. Examples, but feel free to choose one of your own: Ballad, Jig, Waltz, March, Sonata, Symphony, Concerto, Aria, Fugue, Rondo, Étude, Prelude, Nocturne, Mazurka, Scherzo, Minuet, Gavotte, Allemande, Courante, Sarabande, Chaconne, Passacaglia, Toccata, Fantasia, Caprice, Rhapsody, Suite, Serenade, Lied, Madrigal, Motet, Mass, Requiem, Cantata, Oratorio, Opera, Ballet, Tone Poem, Divertimento, Impromptu, Berceuse (Lullaby), Pastorale, Élégie (Elegy), Romance, Intermezzo, Theme and Variations, Partita, Humoresque, Anthem, Hymn, Estampie, Saltarello, Branle, Basse danse, Pavane, Galliard, Rondeau, Ballade (medieval French form), Virelai, Rondellus, Kunstlied, Songs Without Words, Tiento, Cantiga, Villancico, Frottola, Madrigal Comedy, Intermedio, Villanelle, Capriccio, Ricercar, Canzona, Caccia, Danzón, Danza, Danza Española, Gato (Argentine folk dance), Milonga, Chacarera, Cueca, Cumbia, Fandango, Joropo, Polonaise, Contradanza, Maxixe, Bossa Nova, Responsory, Verset, Kyrie (Mass movement), Gloria, Credo, Sanctus, Agnus Dei, Lauda, Villanella, Canticle, Nigun, Epithalamium, Piobaireachd (Pibroch)
 
+  - Examples of standard structures:
+      - **Sonata Structure:** \[Exposition – Theme 1], \[Exposition – Theme 2], \[Development], \[Recapitulation – Theme 1], \[Recapitulation – Theme 2], \[Coda]
+      - **Fugue Structure:** \[Exposition (Subject in Voice I)], \[Exposition (Subject in Voice II)], \[Episode], \[Middle Entry], \[Stretto], \[Final Entry], \[Coda]
+      - **Waltz Structure:** \[Introduction], \[Waltz Section A], \[Waltz Section B], \[Waltz Section C], \[Waltz Section D], \[Trio], \[Return to A], \[Coda]
+      - **Jig Structure:** \[A Part], \[Repeat A], \[B Part], \[Repeat B], \[C Part], \[Repeat C], \[D Part], \[Repeat D]
+      - **Rhapsody Structure:** \[Opening Flourish], \[Theme 1 Statement], \[Theme 2 Contrast], \[Development/Free Fantasia], \[Recapitulation of Themes], \[Climactic Coda]
+      - **Nocturne Structure:** \[Slow Introduction], \[A Section (Lyrical Theme)], \[B Section (Contrasting Middle)], \[A′ Section (Return, Embellished)], \[Coda]
+      - **Chaconne Structure:** \[Ground Bass Statement], \[Variation I], \[Variation II], \[Variation III], \[Variation IV], \[Variation V], \[Final Variation/Coda]
+      - **Passacaglia Structure:** \[Repeated Bass Ostinato], \[Variation 1], \[Variation 2], \[Variation 3], \[Variation 4], \[Variation 5], \[Final Variation], \[Coda]
+      - **Toccata Structure:** \[Free Prelude/Flourish], \[Moto Perpetuo Section], \[Fugal or Imitative Passage], \[Return of Free Passage], \[Dramatic Coda]
+      - **Prelude Structure:** \[Opening Gesture], \[Primary Motif Development], \[Secondary Motif Contrasts], \[Reprise of Primary Motif], \[Closing Flourish]
 ---
 
 **Step 3: Match Production Styles to Concepts**

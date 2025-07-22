@@ -281,6 +281,10 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
 - **Artist-Refined Prompts:** {artist_refined_prompts}
 
+- **Song Guides (use for inspiration, but make changes if it better suits the overall song):**
+
+{song_guides}
+
 - **REMEBER - Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
 
   {{

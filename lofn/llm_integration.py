@@ -2043,10 +2043,10 @@ def generate_music_prompts(
             music_prompts = process_music_generation_prompts(chains, input_text, concept, arrangement, facets, guides, max_retries, debug, style_axes, model)
 
             status.write("Refining Prompts...")
-            artist_refined = process_music_artist_refined_prompts(chains, input_text, concept, arrangement, facets, music_prompts, max_retries, debug, style_axes, model)
+            artist_refined = process_music_artist_refined_prompts(chains, input_text, concept, arrangement, facets, music_prompts, guides, max_retries, debug, style_axes, model)
 
             status.write("Synthesizing Final Prompts...")
-            final_output = process_music_revision_synthesis(chains, input_text, concept, arrangement, facets, artist_refined, max_retries, debug, style_axes, model)
+            final_output = process_music_revision_synthesis(chains, input_text, concept, arrangement, facets, artist_refined, guides, max_retries, debug, style_axes, model)
 
             status.update(label="Music Prompt Generation Complete!", state="complete")
 
@@ -2215,6 +2215,7 @@ def process_music_artist_refined_prompts(
     arrangement,
     facets,
     music_prompts,
+    song_guides,
     max_retries,
     debug=False,
     style_axes=None,
@@ -2230,7 +2231,8 @@ def process_music_artist_refined_prompts(
             "medium": arrangement,
             "facets": facets['facets'],
             "style_axes": style_axes,
-            "song_prompts": music_prompts
+            "song_prompts": music_prompts,
+            "song_guides": song_guides
         },
         max_retries,
         model,
@@ -2250,6 +2252,7 @@ def process_music_revision_synthesis(
     arrangement,
     facets,
     artist_refined_prompts,
+    song_guides,
     max_retries,
     debug=False,
     style_axes=None,
@@ -2265,7 +2268,8 @@ def process_music_revision_synthesis(
             "medium": arrangement,
             "facets": facets['facets'],
             "style_axes": style_axes,
-            "artist_refined_prompts": artist_refined_prompts
+            "artist_refined_prompts": artist_refined_prompts,
+            "song_guides": song_guides
         },
         max_retries,
         model,
