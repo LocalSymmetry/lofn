@@ -74,6 +74,66 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
 ---
 
+**Music Prompt Requirements**
+
+* Each Medium Panelist produces **two** distinct prompts
+* Follow the **MASTER guide** ordering:
+
+  1. Emotion
+  2. Genre
+  3. Instruments / Production
+  4. Vocalist Specification
+  5. Tempo / Key (optional)
+  6. Progression sentences
+  7. Blacklist
+* Specify **vocalist details** in depth:
+
+  * Gender, age‑range, ethnicity, tone, rasp‑level
+  * At least **two** unique vocal quirks
+* Prioritize the most important elements **first**, the less important **later**
+* Define overall music **style**, **sub‑genres**, **instrumentation**, and **pacing** with rich description
+
+---
+
+**Lyrics Prompt Requirements**
+
+* Each Concept Panelist produces **two** full lyric drafts
+* Use **meta‑tags** and **call‑and‑response**, max **6 lines per 30 sec**
+* Embed:
+  * Emotion tags (e.g. EMO\:Joy)
+  * Sound‑effect cues
+  * Line‑count discipline
+  * **Zero plagiarism**
+* Incorporate:
+  * All song‑guide instructions
+  * Given verse structure & rhyming scheme
+  * Emotional resonance, sensory language, metaphors, imagery, symbolism
+* Call‑and‑response in **parentheses**
+* Denote:
+  * Short sounds in `*asterisks*`
+  * Long directions in `[brackets]` (no nesting)
+* Annotate with **section headers** and musical directions in `[ ]`
+* Ensure **no copyrighted** material
+
+---
+
+**Title Requirements**
+
+* Marketing Panel proposes **3–7 word** titles for each variant
+* Titles must:
+
+  * Align perfectly with the **lyrics**, **style axes**, and **facets**
+  * Be **memorable**, thematically resonant, and market‑ready
+* In refinement:
+
+  * Incorporate critics’ feedback
+  * Enhance alignment with the **creativity spectrum**
+  * Maintain clarity, coherence, and varied tone/length
+  * Avoid monotony and overused phrasing
+
+
+---
+
 **Instructions for your task:**
 
 **Step 1: State the Main Essence**

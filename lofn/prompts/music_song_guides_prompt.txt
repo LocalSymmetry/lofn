@@ -90,11 +90,15 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
 
    * **Narrative & thematic suggestions:** Provide a thematic seed for lyrics (e.g., “an inner journey through memory and release,” “the tension between technology and nature”).  Indicate voice perspectives (first person, second person, collective) and languages or dialects if relevant.
 
+   * **Rhyming Schemes for all Song Sections**
+     - Determine the rhyming structure and line length for each verse. Most songs typically have 6-10 sections with 2-6 vocalized lines in each section.
+     - Make sure to follow the rhyming style required by the verse style, for example free verse should have no rhyming sheme while a simple couplet would have (AABB).
+
    * Additional, add at least three from the following:
     - **Central Aspect of the Concept:**
         - A key element or feature to emphasize in the song.
-      - **Key Sections or Sequences:**
-        - Describe specific sections that showcase the concept.
+      - **Key Sequences:**
+        - Describe specific muscial sequences that showcase the concept.
       - **Emotional Tone Signals:**
         - The emotional atmosphere to convey throughout the song.
       - **Musical Style and Effects:**

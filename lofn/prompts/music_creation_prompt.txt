@@ -393,7 +393,7 @@ GENERAL INSTRUCTIONS  ·  PANEL‑DRIVEN CREATIVE PROTOCOL
 DELIVERABLE REQUIREMENTS
 ────────────────────────────────────────────────────────
 1. **MUSIC PROMPT** (in a single copy‑pasteable code block)  
-   ‑ 40–100 words, one paragraph.  
+   ‑ <=1000, one paragraph.  
    ‑ Must state **emotion → genre → key instruments & production → vocalist spec → tempo/key (opt) → progression roadmap → blacklist**.  
    ‑ **No explicit section labels** (`[Intro]`, etc.)—this stays high‑level.  
    ‑ Absolutely no real‑artist names; describe styles instead.

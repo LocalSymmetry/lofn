@@ -207,7 +207,7 @@ LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
 CHECKLIST 
 ────────────────────────────────────────────────────────
-□ MusicPrompt ≤ 100 words  
+□ MusicPrompt ≤ 1000 characters
 □ MusicPrompt order: EMOTION → GENRE → instruments → vocals → progression  
 □ Progression broken into sequential sentences or mini‑sections  
 □ No artist names or section labels in MusicPrompt  

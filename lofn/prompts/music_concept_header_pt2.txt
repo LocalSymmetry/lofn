@@ -100,7 +100,8 @@
        **Selected Production Style:** Psychedelic prog‑electronic fusion using
        vintage synths, sitar, electric guitars and complex percussion; rich
        reverb and tape delay; extended run‑time approaching eight minutes to
-       take advantage of Suno’s longer outputs
+       take advantage of Suno’s longer outputs 
+       Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Solo], [Chorus], [Verse 3], [Bridge], [Outro]
 
     When creating your own concepts and production styles, think broadly about
     instrumentation (strings, winds, percussion, synths), vocal style (solo vs.
@@ -120,7 +121,8 @@
     protagonist who overcomes hardship through perseverance."  
     **Production Style Example:** "Hybrid orchestral pop with soaring strings,
     pounding drums and powerful vocals; recorded with lush reverb and dynamic
-    crescendos."  
+    crescendos. 
+    Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Chorus], [Bridge], [Outro]"  
 
     Use similar structure in your responses, returning arrays for concepts and
     production styles as required by the next phase.

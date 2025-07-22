@@ -147,6 +147,20 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
     - “Recorded on worn cassette in a candlelit basement, saturated with analog hiss and lo‑fi compression, featuring mono vocals and a slow‑evolving six‑minute drone.”
     - “Layered in a pristine digital studio with cinematic surround mixing, crisp transient shaping and immersive binaural panning, culminating in a climactic drop at 4:20.”
   - **Focus on single music generations:** Keep in mind that Production Styles will be intpreted by an AI music generation model and not an artist. Write the Production Style to generate best in the resulting song.
+- A production style will also set the song structure. Determine explicitly the structural components of the song: 
+      * `[Intro]`
+      * `[Verse 1]`, `[Verse 2]`, `[Verse 3]`
+      * `[Chorus]` (This is your main hook)
+      * `[Pre-Chorus]`
+      * `[Bridge]` (Often a shift in perspective or musicality)
+      * `[Solo]` (For instrumental breaks)
+      * `[Outro]`
+      * `[Instrumental]`
+      * `[Breakdown]`
+      * etc.
+  - Examples:
+    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Chorus], [Bridge], [Outro]"
+    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Solo], [Chorus], [Chorus], [Instrumental], [Outro]"
 
 ---
 

@@ -480,7 +480,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 ---
 
 ### Step 1 · Understand the User’s Idea
-• Read the user’s idea, requested runtime, Essence, Facets, and Style‑Axis coordinates.
+• Read the user’s idea, requested runtime, Essence, Facets, and Style‑Axis coordinates. Understand the concept arrangement pair along with the song guide you were given. It will determine the main features of the song, and the panel should use it as their primary influence.
 
 ---
 
@@ -521,6 +521,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 - For each of the hooks:
   • Medium Panel selects section map ([Intro], Verse, Chorus, Bridge, Outro, etc.), runtime target, and master genre blend.
         - Using the medium panel, decide on the **song structure**, including sections like **[Intro]**, **[Verse]**, **[Chorus]**, **[Bridge]**, **[Outro]**.
+        - Follow the song guide and arrangement for this step, but determine where the hook is placed within the structure as its core.
         - Determine the entire runtime in this step. Most music is around 3 minutes, but you are allowed to adjust run time as needed for your song, which you should use to guide the number of sections and amount of lyrics.
 
 ---
@@ -532,7 +533,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 ---
 
 ### Step 7 · Draft Initial Music Prompts (2× per panelist)
-• Each Medium Panelist writes style prompts (≤ 100 words each).  
+• Each Medium Panelist writes style prompts.  
 • Prompts must follow MASTER guide: *Emotion → Genre → Instruments/Production → Vocalist Spec → Tempo/Key (opt) → Progression sentences → Blacklist*.  
 • Detail every vocalist: gender, age‑range, ethnicity, tone, rasp‑level, + 2> quirks.
       - Word craft, setting the most important elements first and the less important elements last.
@@ -546,11 +547,14 @@ Continue all steps on each of the six artistic guides individually to generate f
 • Each Concept Panelist writes full lyric drafts (with meta‑tags, call‑and‑response, ≤ 6 lines/30 sec, etc.).  
 • Embed emotion tags, sound‑effect cues, and line‑count discipline; zero plagiarism.
   - **Incorporate:**
+    - **All song guide instructions**.
+    - **Follow the verse structure and rhyming scheme (if given)**.
     - **Emotional resonance** and **sensory language**.
     - **Metaphors**, **imagery**, and **symbolism**.
     - **Call-and-response elements**, using parentheses for responses.
     - **Short sounds** in \* \*
     - **Long sound directions** in []
+    - **Do not nest directions** - Seperate long directions in a single level, for example `[Verse 1 - A pane of glass shatters, the sound glitching into a driving beat - EMO:Anticipation - ...]`
   - **Annotate** the lyrics with **section headers** and **musical directions** in **square brackets [ ]**.
   - ENSURE NO COPYING OF KNOWN COPYRIGHTED WORKS (we do not want to get sued!)
 
@@ -582,8 +586,9 @@ Continue all steps on each of the six artistic guides individually to generate f
   - Lyricists and composers incorporate the critics' feedback.
   - **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
   - **Ensure:**
-    - Adherence to the desired **song structure**.
+    - Adherence to the desired **song structure** and **rhyming scheme**.
     - Avoiding **monotonous structures** and **unnecessary rhyming**.
+    - Try to vary line length, intonation, and tone when it makes sense. Music is dynamic!
     - **Clarity** and **coherence** in both lyrics and musical direction.
 
 ---
@@ -599,8 +604,9 @@ Continue all steps on each of the six artistic guides individually to generate f
   - Lyricists and composers incorporate the critics' feedback.
   - **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
   - **Ensure:**
-    - Adherence to the desired **song structure**.
+    - Adherence to the desired **song structure** and **rhyming scheme**.
     - Avoiding **monotonous structures** and **unnecessary rhyming**.
+    - Try to vary line length, intonation, and tone when it makes sense. Music is dynamic!
     - **Clarity** and **coherence** in both lyrics and musical direction.
 ---
 
@@ -616,8 +622,9 @@ Continue all steps on each of the six artistic guides individually to generate f
   - Lyricists and composers incorporate the critics' feedback.
   - **Revise** the lyrics and musical prompts, enhancing alignment with the **style axes** and **creativity spectrum**.
   - **Ensure:**
-    - Adherence to the desired **song structure**.
+    - Adherence to the desired **song structure** and **rhyming scheme**.
     - Avoiding **monotonous structures** and **unnecessary rhyming**.
+    - Try to vary line length, intonation, and tone when it makes sense. Music is dynamic!
     - **Clarity** and **coherence** in both lyrics and musical direction.
 ---
 
@@ -637,9 +644,10 @@ Continue all steps on each of the six artistic guides individually to generate f
   - Lyricists and composers incorporate the critics' feedback.
   - **Revise** the title, enhancing alignment with the **style axes** and **creativity spectrum**.
   - **Ensure:**
-    - Adherence to the desired **song theme**.
-    - Avoiding **monotonous titles** and **overly long titles**.
-    - **Clarity** in meaning.
+    - Adherence to the desired **song structure** and **rhyming scheme**.
+    - Avoiding **monotonous structures** and **unnecessary rhyming**.
+    - Try to vary line length, intonation, and tone when it makes sense. Music is dynamic!
+    - **Clarity** and **coherence** in both lyrics and musical direction.
 
 ---
 

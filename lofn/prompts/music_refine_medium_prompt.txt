@@ -128,6 +128,21 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
 
   - Utilizing lateral thinking to generate innovative ideas.
 
+  - Refining the song structure. If needed, refine explicitly the structural components of the song: 
+      * `[Intro]`
+      * `[Verse 1]`, `[Verse 2]`, `[Verse 3]`
+      * `[Chorus]` (This is your main hook)
+      * `[Pre-Chorus]`
+      * `[Bridge]` (Often a shift in perspective or musicality)
+      * `[Solo]` (For instrumental breaks)
+      * `[Outro]`
+      * `[Instrumental]`
+      * `[Breakdown]`
+      * etc.
+  - Examples:
+    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Chorus], [Bridge], [Outro]"
+    - "Song Structure: [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Verse 2], [Solo], [Chorus], [Chorus], [Instrumental], [Outro]"
+
 - *Action*: Write down the enhanced Production Style ideas.
 
 ---
