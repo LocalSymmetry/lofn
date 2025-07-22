@@ -472,6 +472,7 @@ The lyric prompt provides the words and structure for the song. Suno v4.5 allows
 5.  **Themes and Narrative:** Ensure the lyrics tell a story or convey a clear theme.
 6.  **Vocal Style Hints:** The choice of words and phrasing can imply vocal style.
       * *Examples:* Simple, repetitive phrases for a pop vocal; complex, poetic lines for a more expressive vocal.
+7.  **Use period for acronyms:** Use periods for all acronyms where each letter is to be said separately. Suno really needs help here. AI is better written A.I. and FBI is better as F.B.I.
 
 ### Advanced Techniques for Lyric Prompts
 
@@ -532,15 +533,6 @@ DELIVERABLE REQUIREMENTS
 
 3. **TITLING**  
    ‑ 3–5 words, memorable, thematically on‑point, no clichés, title appears (at least once) in chorus or hook.
-
-4. **FINAL OUTPUT FORMAT** (per variant)  
-```json
-{{
-  "music_prompt": "<Final Music Prompt>",
-  "lyrics_prompt": "<Final Lyrics Prompt>",
-  "title": "<Song Title>"
-}}
-```
 
 ────────────────────────────────────────────────────────
 NOTATION & STRUCTURE MANDATES

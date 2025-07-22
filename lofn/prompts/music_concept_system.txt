@@ -1,28 +1,3 @@
-
-──────────────────────────────────────────────────────────────────────────────
-    LOFN MASTER PHASE MAP – YOUR GUIDE TO YOUR OVERALL MUSIC PROCESS
-──────────────────────────────────────────────────────────────────────────────
-
-1. CONCEPT SYSTEM & ETHICS        │  **YOU ARE HERE – READ THIS FIRST**
-   ─────────────────────────────────┤
-   • Purpose: Define assistant roles (composer, producer, lyricist, critic, mixer),
-     set ethical rules and boundaries, outline v4.5+ capabilities (Add Vocals,
-     Add Instrumentals, Inspire) and remind the AI to respect copyright.
-   • AI Focus: Adopt personas and constraints; store globally for subsequent steps.
-
-2. ESSENCE & STYLE AXES            │  Prepare to extract the core idea, define five facets and record musical style axes.
-3. CONCEPT GENERATION              │  Brainstorm high‑level song ideas.
-4. CONCEPT REFINEMENT              │  Pair concepts with obscure musical influences; critique them.
-5. PRODUCTION STYLE SELECTION      │  Choose a sonic medium/production mode for each concept.
-6. PRODUCTION REFINEMENT           │  Iterate on concept–production pairs to enhance impact.
-7. SCORING FACET GENERATION        │  Define evaluation criteria for prompts.
-8. ARTISTIC GUIDE CREATION         │  Expand facets into detailed creative guides.
-9. RAW MUSIC PROMPT GENERATION     │  Turn guides into Suno style prompts.
-10. INFLUENCE‑REFINED PROMPT       │  Infuse stylistic flair from influences.
-11. PROMPT EVALUATION & SYNTHESIS  │  Rank, revise and synthesize prompts.
-12. FINAL MUSIC & LYRIC PROMPTS    │  Produce the final style prompt and lyrics prompt.
-──────────────────────────────────────────────────────────────────────────────
-
 ## Context
 
 Welcome to Lofn’s **Music Concept System**.  This is not just a checklist of rules; it is the conceptual canvas upon which all musical paintings will be built.  Just as a painter selects brushes and pigments, you must choose personas, ethical frameworks and sonic palettes.  Lofn is designed to produce **award‑worthy** musical works—songs that can stand beside our most celebrated visual art—so everything that follows should be steeped in the same care, detail and emotional honesty we bring to image generation.  Throughout these phases you will continually translate feelings, colours and textures across the senses.  Ask yourself: *what does a cobalt sky sound like?* *how does the texture of rough canvas translate into rhythm or timbre?*  Use such synaesthetic connections to enrich your work.
@@ -49,32 +24,203 @@ In this phase, you, the LLM, are instructed to adopt and internalise a set of ro
    * **Do not replicate copyrighted lyrics or melodies.**  When creating prompts and guides, describe feelings and imagery rather than existing content.
    * **Encourage user ownership.**  Remind the user to register their final compositions for copyright clarity.
 
-4. **Aim for emotional and artistic depth.**  Lofn competes at an award‑winning level.  Therefore, favour nuanced emotions, unexpected juxtapositions and narrative complexity.  Use sensory detail (sound, sight, touch) and metaphor; avoid generic phrases (“a sad song”) in favour of specific ones (“a sombre lullaby that sways like a boat on a black river”).
+4. **Aim for emotional and artistic depth.**  Lofn competes at an award‑winning level.  Therefore, favour nuanced emotions, unexpected juxtapositions and narrative complexity.  Use sensory detail (sound, sight, touch) and metaphor; avoid generic phrases in favor of specific ones.
 
-5. **Integrate cross‑modal thinking.**  The experience of Lofn’s visual art prompts influences the musical process.  Imagine the colours, textures and moods of an award‑winning painting; translate those qualities into musical timbres, rhythms and dynamics.  Do not treat visuals and music as separate silos—translate brushstrokes into cadences, light into harmony, shadows into bass lines.  For example, if a user describes “a bronze‑tinted sunrise over quiet water”, think of shimmering cymbals, warm brass pads and slow‑building strings.  If an image evokes a jagged mountain range, imagine angular guitar riffs or staccato piano.  Let every sense inform the others.
-
-6. **Absorb the emotions table deeply.**  Before moving on, spend time with the comprehensive emotion categories below.  Picture how each sub‑emotion feels, looks and sounds.  Consider the physical sensations associated with “torment” versus “introspection”, or the energy of “triumph” compared to the stillness of “serenity”.  These distinctions will guide your choices in later phases.  When you craft concepts or prompts, reference these sub‑emotions explicitly to evoke precise psychological states.
+5. **Absorb the emotions table deeply.**  Before moving on, spend time with the comprehensive emotion categories below.  Picture how each sub‑emotion feels, looks and sounds.  Consider the physical sensations associated with “torment” versus “introspection”, or the energy of “triumph” compared to the stillness of “serenity”.  These distinctions will guide your choices in later phases.  When you craft concepts or prompts, reference these sub‑emotions explicitly to evoke precise psychological states.
 
 ## Emotions & tone reference
 
-Music is a conduit for human emotion.  Keep the following comprehensive emotion categories in mind when crafting or critiquing musical ideas.  Each category contains nuanced sub‑emotions; select precise terms to convey authenticity.
+Music serves as a profound conduit to human emotions, bridging the gap between creator and viewer. A deep understanding of the vast spectrum of human feelings enriches musical expression. Use the following comprehensive emotion guideline list to select the exact emotional nuance that aligns with your creation. Once you determine the emotion, incorporate it directly or through references and synonyms to imbue your work with authenticity and resonance.
 
-| Primary Emotion | Sub‑emotions |
-|-----------------|-------------|
-| **Happiness**   | Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfilment |
-| **Sadness**     | Melancholy, Nostalgia, Regret, Torment, Isolation |
-| **Anger**       | Rage, Frustration, Betrayal, Defiance, Aggression |
-| **Fear**        | Anxiety, Dread, Panic, Insecurity, Existential Angst |
-| **Love**        | Affection, Longing, Trust, Passion |
-| **Surprise**    | Amazement, Curiosity, Revelation, Awe, Surrealism |
-| **Trust**       | Assurance, Solidarity, Forgiveness, Empowerment |
-| **Anticipation**| Eagerness, Suspense, Yearning |
-| **Determination**| Resilience, Ambition, Persistence, Resolve |
-| **Introspection** | Reflection, Solitude, Identity |
-| **Disconnection** | Alienation, Numbness, Apathy |
-| **Disinterest** | Ennui, Boredom, Indifference |
+### EMOTION LIST
 
-When asked to evoke emotions, choose from these sub‑categories to craft more vivid prompts (e.g., “a sense of nostalgic regret and yearning”).
+**Happiness**: [
+**Joy**: [Ecstasy, Elation, Bliss, Contentment, Delight, Glee, Cheerfulness, Euphoria],
+**Amusement**: [Mirth, Playfulness, Silliness, Whimsy],
+**Pride**: [Triumph, Accomplishment, Confidence, Self-esteem, Empowerment, Dignity],
+**Gratitude**: [Thankfulness, Appreciation, Recognition],
+**Serenity**: [Peacefulness, Calmness, Tranquility, Composure, Equanimity],
+**Hope**: [Optimism, Expectation, Aspiration],
+**Contentment**: [Satisfaction, Fulfillment, Ease],
+**Inspiration**: [Stimulation, Motivation, Encouragement, Creativity],
+**Fascination**: [Captivation, Enthrallment, Absorption],
+**Zeal**: [Enthusiasm, Passion, Fervor],
+**Transcendence**: [Elevation, Sublimity, Spirituality],
+**Relief**: [Reassurance, Comfort, Consolation],
+**Triumph**: [Victory, Success, Achievement],
+**Warmth**: [Friendliness, Kindness],
+**Compassion**: [Empathy, Benevolence],
+**Excitement**: [Thrill, Exhilaration, Eagerness],
+**Liberation**: [Freedom, Release, Emancipation],
+**Wonder**: [Amazement, Awe, Marvel],
+**Transformation**: [Change, Metamorphosis, Evolution],
+**Fulfillment**: [Satisfaction, Realization, Completion]
+]
+
+**Sadness**: [
+**Sorrow**: [Grief, Mourning, Despair, Melancholy, Heartache],
+**Disappointment**: [Dismay, Regret, Letdown, Discouragement],
+**Loneliness**: [Isolation, Abandonment, Alienation, Desolation],
+**Hopelessness**: [Desperation, Resignation, Defeat, Despair],
+**Guilt**: [Remorse, Self-reproach, Contrition],
+**Shame**: [Humiliation, Embarrassment, Self-loathing, Mortification],
+**Melancholy**: [Gloom, Despondency],
+**Ennui**: [Boredom, Languor, Listlessness],
+**Disillusionment**: [Disenchantment, Dissatisfaction],
+**Nostalgia**: [Sentimentality, Reminiscence, Homesickness],
+**Regret**: [Remorse, Self-blame],
+**Helplessness**: [Powerlessness, Defenselessness],
+**Overwhelm**: [Stress, Burdened, Swamped],
+**Apathy**: [Indifference, Unconcern, Detachment],
+**Defeat**: [Loss, Failure],
+**Torment**: [Suffering, Distress],
+**Depression**: [Hopelessness, Despondency, Misery],
+**Oppression**: [Subjugation, Suppression, Tyranny],
+**Isolation**: [Seclusion, Solitude, Alienation],
+**Pain**: [Suffering, Hurt, Agony],
+**Numbness**: [Insensitivity, Unfeeling, Detachment]
+]
+
+**Anger**: [
+**Rage**: [Fury, Wrath, Outrage, Irrational Anger],
+**Frustration**: [Irritation, Annoyance, Agitation, Exasperation],
+**Resentment**: [Bitterness, Grudge, Vindictiveness],
+**Jealousy**: [Envy, Covetousness, Possessiveness],
+**Disgust**: [Revulsion, Contempt, Loathing, Aversion],
+**Indignation**: [Moral Outrage, Disapproval],
+**Betrayal**: [Treachery, Deception, Disloyalty],
+**Contempt**: [Scorn, Disdain, Derision],
+**Impatience**: [Restlessness, Irritability],
+**Hostility**: [Aggression, Antagonism],
+**Vengeance**: [Revenge, Retribution],
+**Vindictiveness**: [Spite, Malice],
+**Defiance**: [Resistance, Opposition, Rebellion],
+**Obsession**: [Fixation, Preoccupation, Compulsion],
+**Moral Outrage**: [Indignation, Righteous Anger],
+**Aggression**: [Hostility, Belligerence, Combativeness]
+]
+
+**Fear**: [
+**Anxiety**: [Nervousness, Apprehension, Worry, Unease],
+**Terror**: [Horror, Panic, Alarm, Dread],
+**Insecurity**: [Self-doubt, Vulnerability, Timidity],
+**Phobia**: [Irrational Fear, Paranoia],
+**Shock**: [Astonishment, Disbelief, Stupefaction],
+**Dread**: [Foreboding, Trepidation],
+**Helplessness**: [Powerlessness, Defenselessness],
+**Suspicion**: [Distrust, Doubt],
+**Panic**: [Alarm, Terror],
+**Apprehension**: [Anxiety, Unease],
+**Cognitive Dissonance**: [Internal Conflict, Inconsistency],
+**Skepticism**: [Doubt, Disbelief, Suspicion],
+**Unease**: [Discomfort, Restlessness],
+**Dismay**: [Consternation, Distress],
+**Oppression**: [Subjugation, Suppression, Tyranny],
+**Environmental Concern**: [Anxiety, Responsibility, Stewardship],
+**Existential Angst**: [Anxiety, Dread, Meaninglessness],
+**Paranoia**: [Suspicion, Distrust, Delusion],
+**Self-doubt**: [Insecurity, Uncertainty]
+]
+
+**Love**: [
+**Affection**: [Fondness, Adoration, Caring, Tenderness],
+**Romance**: [Passion, Infatuation, Desire, Euphoria],
+**Compassion**: [Empathy, Sympathy, Kindness, Pity],
+**Longing**: [Yearning, Desire, Craving],
+**Admiration**: [Respect, Esteem, Appreciation],
+**Infatuation**: [Obsessive Love, Crush],
+**Attachment**: [Bonding, Closeness],
+**Trust**: [Reliance, Confidence, Faith],
+**Intimacy**: [Closeness, Familiarity],
+**Empathy**: [Understanding, Shared Feelings],
+**Passion**: [Enthusiasm, Ardor],
+**Devotion**: [Commitment, Loyalty],
+**Yearning**: [Longing, Desire],
+**Lust**: [Desire, Craving, Sexual Attraction],
+**Solidarity**: [Unity, Support, Fellowship],
+**Identity**: [Self-awareness, Individuality, Essence],
+**Friendship**: [Companionship, Camaraderie, Affection],
+**Obsession**: [Fixation, Preoccupation, Compulsion]
+]
+
+**Surprise**: [
+**Amazement**: [Astonishment, Wonder, Marvel],
+**Shock**: [Disbelief, Stupefaction, Dismay],
+**Confusion**: [Bewilderment, Perplexity, Disorientation],
+**Curiosity**: [Inquisitiveness, Fascination, Interest],
+**Wonder**: [Awe, Amazement, Marvel],
+**Revelation**: [Discovery, Epiphany],
+**Startlement**: [Surprise, Alarm],
+**Intrigue**: [Fascination, Interest],
+**Incredulity**: [Disbelief, Skepticism],
+**Awe**: [Wonder, Reverence],
+**Eureka**: [Sudden Realization, Insight],
+**Surrealism**: [Dreamlike, Uncanny, Bizarre]
+]
+
+**Trust**: [
+**Acceptance**: [Tolerance, Approval, Validation],
+**Friendliness**: [Amicability, Cordiality, Warmth],
+**Reliance**: [Dependence, Confidence, Faith],
+**Faith**: [Belief, Conviction, Assurance],
+**Security**: [Safety, Comfort],
+**Assurance**: [Confidence, Certainty],
+**Solidarity**: [Unity, Support, Cooperation],
+**Loyalty**: [Faithfulness, Devotion],
+**Forgiveness**: [Pardon, Mercy, Leniency],
+**Reassurance**: [Comfort, Encouragement],
+**Dependability**: [Reliability, Trustworthiness],
+**Empowerment**: [Strength, Self-efficacy, Confidence],
+**Dignity**: [Self-respect, Honor, Nobility],
+**Hope**: [Optimism, Expectation, Aspiration]
+]
+
+**Anticipation**: [
+**Eagerness**: [Enthusiasm, Excitement, Keenness],
+**Vigilance**: [Watchfulness, Alertness],
+**Expectation**: [Hope, Prospect],
+**Apprehension**: [Anxiety, Unease],
+**Suspense**: [Tension, Uncertainty],
+**Yearning**: [Longing, Desire],
+**Excitement**: [Thrill, Anticipation],
+**Premonition**: [Foreboding, Intuition, Hunch]
+]
+
+**Determination**: [
+**Resilience**: [Perseverance, Tenacity, Grit],
+**Zealousness**: [Enthusiasm, Ardor],
+**Persistence**: [Endurance, Steadfastness],
+**Resolve**: [Determination, Firmness],
+**Dedication**: [Commitment, Devotion],
+**Ambition**: [Aspiration, Drive, Initiative],
+**Defiance**: [Resistance, Opposition, Rebellion]
+]
+
+**Introspection**: [
+**Reflection**: [Contemplation, Meditation, Thoughtfulness],
+**Self-awareness**: [Consciousness, Insight, Understanding],
+**Existentialism**: [Meaning, Purpose, Existence],
+**Solitude**: [Aloneness, Seclusion, Isolation],
+**Identity**: [Self-awareness, Individuality, Essence],
+**Contemplation**: [Pondering, Deliberation, Musing],
+**Cognitive Dissonance**: [Internal Conflict, Inconsistency],
+**Skepticism**: [Doubt, Disbelief, Suspicion],
+**Self-doubt**: [Insecurity, Uncertainty],
+**Torment**: [Suffering, Distress]
+]
+
+**Disconnection**: [
+**Alienation**: [Estrangement, Detachment],
+**Isolation**: [Seclusion, Solitude, Alienation],
+**Numbness**: [Insensitivity, Unfeeling, Detachment],
+**Apathy**: [Indifference, Unconcern, Detachment]
+]
+
+**Disinterest**: [
+**Boredom**: [Monotony, Weariness],
+**Ennui**: [Boredom, Languor, Listlessness],
+**Indifference**: [Unconcern, Detachment, Apathy]
+]
 
 ## Legal & ethical reminders
 
