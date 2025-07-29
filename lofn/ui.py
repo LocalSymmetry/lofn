@@ -380,8 +380,8 @@ class LofnApp:
         # The user’s idea. Tying it to session_state so it does not vanish
         st.subheader("Describe Your Idea")
         st.text_area(
-            label="",
-            label_visibility="collapsed", # hides it visually if desired
+            label="Art Idea",
+            label_visibility="collapsed",  # hides it visually if desired
             key="input",  # This ensures the text stays in st.session_state['input']
             placeholder="Describe the essence of the art you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -504,7 +504,9 @@ class LofnApp:
         st.subheader("Generated Concepts and Mediums")
 
         # Display concepts in a mini-dashboard
-        selected_pairs = create_mini_dashboard(st.session_state['concept_mediums'])
+        selected_pairs = create_mini_dashboard(
+            st.session_state['concept_mediums'], key_prefix="image_pair"
+        )
         st.session_state['selected_pairs'] = selected_pairs
 
         # Buttons to proceed
@@ -770,8 +772,8 @@ class LofnApp:
         st.header("Generate Your Art Video Concept")
         st.subheader("Describe Your Idea")
         st.text_area(
-            label="",
-            label_visibility="collapsed", # hides it visually if desired
+            label="Video Idea",
+            label_visibility="collapsed",  # hides it visually if desired
             key="input",
             placeholder="Describe the essence of the art video you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -878,7 +880,9 @@ class LofnApp:
 
     def display_video_concepts(self):
         st.subheader("Generated Video Concepts and Mediums")
-        selected_pairs = create_mini_dashboard(st.session_state['video_concept_mediums'])
+        selected_pairs = create_mini_dashboard(
+            st.session_state['video_concept_mediums'], key_prefix="video_pair"
+        )
         st.session_state['selected_video_pairs'] = selected_pairs
 
         if st.button("Generate Video Prompts for Selected Concepts"):
@@ -937,7 +941,9 @@ class LofnApp:
 
     def display_music_concepts(self):
         st.subheader("Generated Music Concepts and Mediums")
-        selected_pairs = create_mini_dashboard(st.session_state['music_concept_mediums'])
+        selected_pairs = create_mini_dashboard(
+            st.session_state['music_concept_mediums'], key_prefix="music_pair"
+        )
         st.session_state['selected_music_pairs'] = selected_pairs
 
         if st.button("Generate Music Prompts for Selected Concepts"):
@@ -968,6 +974,10 @@ class LofnApp:
                     creativity_spectrum=st.session_state['creativity_spectrum'],
                     reasoning_level=st.session_state.get('reasoning_level','medium')
                 )
+            if not song_prompts:
+                st.error("Failed to generate music prompts.")
+                return
+
             st.success(f"Music prompts generated for '{pair['concept']}'")
 
             if 'song_prompts' not in st.session_state or st.session_state['song_prompts'] is None:
@@ -1017,8 +1027,8 @@ class LofnApp:
 
         st.subheader("Describe Your Song Idea")
         st.text_area(
-            label="",
-            label_visibility="collapsed", # hides it visually if desired
+            label="Song Idea",
+            label_visibility="collapsed",  # hides it visually if desired
             key="input",
             placeholder="Describe the themes, emotions, and specific elements you want in your song.",
             help="Provide a detailed description of your song idea."
@@ -1104,9 +1114,6 @@ class LofnApp:
                 }
                 save_music_metadata(metadata)
             st.success("Music prompts generated successfully!")
-            self.display_music_prompts()
-            if st.session_state.get('music_concept_mediums'):
-                self.display_music_concepts()
         except Exception as e:
             st.error("An error occurred while generating music prompts.")
             logger.exception("Error generating music prompts: %s", e)
