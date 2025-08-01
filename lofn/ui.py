@@ -36,6 +36,18 @@ if os.path.exists(custom_personality_path):
 
 PERSONALITY_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PERSONALITY_OPTIONS
 
+DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
+
+
+def load_model_defaults():
+    """Load default model priority lists from YAML."""
+    try:
+        with open(DEFAULT_MODEL_CONFIG_PATH, 'r') as f:
+            return yaml.safe_load(f) or {}
+    except Exception as e:
+        logger.warning("Could not load model defaults: %s", e)
+        return {}
+
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
@@ -52,6 +64,7 @@ class LofnApp:
         # Build the model lists
         self.available_models = self.get_available_models()
         self.available_image_models = self.get_available_image_models()
+        self.model_priority = load_model_defaults()
         self.initialize_session_state()
 
     def get_available_models(self):
@@ -155,10 +168,37 @@ class LofnApp:
             st.warning("No RunwayML API key found. Video generation models will not be available.")
         return models
 
+    def get_defaults_for_mode(self, mode_name: str):
+        """Return default concept/medium and prompt models for a mode."""
+        mapping = {
+            'Image Generation': 'art',
+            'Video Generation': 'video',
+            'Music Generation': 'music',
+        }
+        mode_key = mapping.get(mode_name, 'art')
+        defaults = self.model_priority.get(mode_key, {})
+        cm_list = defaults.get('concept_medium', [])
+        prompt_list = defaults.get('prompt', [])
+        model = next((m for m in cm_list if m in self.available_models), None)
+        prompt_model = next((m for m in prompt_list if m in self.available_models), None)
+        if model is None:
+            model = self.available_models[0] if self.available_models else None
+        if prompt_model is None:
+            if 'gpt-4.1' in self.available_models:
+                prompt_model = 'gpt-4.1'
+            else:
+                prompt_model = self.available_models[0] if self.available_models else None
+        return model, prompt_model
     def run(self):
         # Create tabs within the app
         tabs = ["Image Generation", "Video Generation", "Music Generation"]
-        selected_tab = st.sidebar.selectbox("Select Mode", tabs)
+        current_tab = st.session_state.get('selected_tab', tabs[0])
+        selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
+        if selected_tab != current_tab:
+            model, prompt_model = self.get_defaults_for_mode(selected_tab)
+            st.session_state['model'] = model
+            st.session_state['prompt_model'] = prompt_model
+        st.session_state['selected_tab'] = selected_tab
 
         self.render_sidebar()
 
@@ -1128,6 +1168,7 @@ class LofnApp:
         st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
 
     def initialize_session_state(self):
+        cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
         default_values = {
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
@@ -1155,8 +1196,8 @@ class LofnApp:
             'proceed_shuffled_reviews_clicked': False,
             'complete_all_steps_clicked': False,
             'image_model': 'None',
-            'model': self.available_models[0],
-            'prompt_model': 'gpt-4.1',
+            'model': cm_model,
+            'prompt_model': prompt_model,
             'competition_mode': True,
             'competition_text': '',
             'selected_panel': PANEL_OPTIONS[0]['name'],
