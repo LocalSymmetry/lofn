@@ -60,10 +60,8 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-4.1", "o4-mini", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o1", "o3-mini", "gpt-4.5-preview", "gpt-4o-mini", "gpt-4o", "o3-mini-2025-01-31",
-                "o1-2024-12-17", "o1-preview", "o1-mini",  
-                "gpt-4o-2024-11-20", "gpt-4o-2024-08-06", "chatgpt-4o-latest",
-                "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4"
+                "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
+                "o3", "o3-pro", "o4-mini"
             ])
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
@@ -77,36 +75,22 @@ class LofnApp:
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
             models.extend([
-                "gemini-2.5-pro-preview-05-06", "gemini-2.5-pro-preview-06-05", "gemini-2.5-flash-preview-05-20", "gemini-2.5-pro-exp-03-25", "gemini-2.0-pro-exp-02-05", "gemini-2.0-flash-exp", "gemini-2.0-flash-exp", "gemini-2.0-flash-thinking-exp", "gemini-1.5-flash-002", "gemini-1.5-pro-002",
-                "gemini-exp-1206", "gemini-exp-1121", "gemini-exp-1114",
-                "gemini-1.5-flash", "gemini-1.5-pro", "gemini-1.0-pro",
-                "gemini-1.5-pro-exp-0827", "gemini-1.5-pro-exp-0801"
+                "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
+                "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
+                "gemini-1.5-pro", "gemini-1.5-flash", "gemini-1.5-pro-search", "gemini-1.5-flash-search"
             ])
         # Add Poe models if POE_API is available
         if Config.POE_API:
             models.extend([
-                "Poe-o1", "Poe-GPT-4.5", "Poe-o3-mini", "Poe-o3-mini-high", "Poe-o1-preview-128k", "Poe-o1-mini-128k", "Poe-Gemini-1.5-Pro-128k",
-                "Poe-Llama-3.1-405B-FW-128k", "Poe-Gemini-1.5-Flash-128k",
-                "Poe-GPT-4o-Mini-128k", "Poe-GPT-4o-128k", "Poe-Claude-3.5-Sonnet-200k",
-                "Poe-Mistral-Large-2-128k", "Poe-Llama-3.2-11B-FW-131k", 
-                "Poe-Llama-3.2-90B-FW-131k", "Poe-Llama-3.1-8B-T-128k",
-                "Poe-Llama-3.1-70B-FW-128k", "Poe-Llama-3.1-70B-T-128k",
-                "Poe-Llama-3.1-8B-FW-128k", "Poe-GPT-4-Turbo-128k",
-                "Poe-Claude-3-Opus-200k", "Poe-Claude-3-Sonnet-200k",
-                "Poe-Claude-3-Haiku-200k", "Poe-Mixtral8x22b-Inst-FW",
-                "Poe-Command-R", "Poe-Gemma-2-9b-T", "Poe-Mistral-Large-2",
-                "Poe-Mistral-Medium", "Poe-Snowflake-Arctic-T", "Poe-RekaCore",
-                "Poe-RekaFlash", "Poe-Command-R-Plus", "Poe-GPT-3.5-Turbo",
-                "Poe-Mixtral-8x7B-Chat", "Poe-DeepSeek-Coder-33B-T",
-                "Poe-CodeLlama-70B-T", "Poe-Qwen2-72B-Chat", "Poe-Qwen-72B-T",
-                "Poe-Claude-2", "Poe-Google-PaLM", "Poe-Llama-3-8b-Groq",
-                "Poe-Llama-3-8B-T", "Poe-Gemma-2-27b-T", "Poe-Assistant",
-                "Poe-Claude-3.5-Sonnet", "Poe-GPT-4o-Mini", "Poe-GPT-4o",
-                "Poe-Llama-3.1-405B-T", "Poe-Gemini-1.5-Flash",
-                "Poe-Gemini-1.5-Pro", "Poe-Claude-3-Sonnet", 
-                "Poe-Claude-3-Haiku", "Poe-Claude-3-Opus", "Poe-Gemini-1.0-Pro",
-                "Poe-Llama-3-70B-T", "Poe-Llama-3-70b-Inst-FW",
-                "Poe-Llama-3.2-90B-FW-131k", "Poe-Llama-3.2-11B-FW-131k"
+                "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
+                "Poe-o3", "Poe-o3-pro", "Poe-o4-mini",
+                "Poe-Claude-Opus-4", "Poe-Claude-Sonnet-4",
+                "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
+                "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
+                "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro-Search", "Poe-Gemini-1.5-Flash-Search",
+                "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
+                "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
+                "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B"
             ])
 
         # Optionally fetch from OpenRouter if OPEN_ROUTER_API_KEY is present
@@ -127,7 +111,7 @@ class LofnApp:
 
         # Prioritize the most powerful models if available
         priority_order = [
-            "gemini-2.5-pro-preview-06-05",
+            "gemini-2.5-pro",
             "claude-opus-4-20250514",
             "o3",
             "claude-sonnet-4-20250514",

@@ -566,26 +566,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
-            "o1": 100000,
-            "o1-2024-12-17": 100000,
-            "o3-mini": 100000,
-            "o4-mini": 100000,
-            "o3-mini-2025-01-31": 100000,
-            "o1-preview": 32768,
-            "o1-mini": 32768,
-            "o3": 32768,
             "gpt-4.1": 32768,
-            "gpt-4.1-nano": 32768,
             "gpt-4.1-mini": 32768,
-            "gpt-4o-mini": 4096,
-            "gpt-4o": 4096,
-            "gpt-4o-2024-08-06": 8192,
-            "gpt-4o-2024-11-20": 8192,
-            "chatgpt-4o-latest": 8192,
-            "gpt-4.5-preview": 16384,
-            "gpt-3.5-turbo": 4096,
-            "gpt-4-turbo": 4096,
-            "gpt-4": 8192,
+            "gpt-4.1-nano": 32768,
+            "o3": 100000,
+            "o3-pro": 100000,
+            "o4-mini": 100000,
 
             # Anthropic models
             "claude-3-7-sonnet-20250219": 32000,
@@ -600,80 +586,47 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
-            "gemini-2.5-flash-preview-05-20": 120000,
-            "gemini-2.0-flash-exp": 8191,
-            "gemini-2.5-pro-exp-03-25":120000,
-            "gemini-2.5-pro-preview-05-06":120000,
-            "gemini-2.5-pro-preview-06-05":120000,
-            "gemini-2.0-flash-thinking-exp": 32768,
-            "gemini-2.0-pro-exp-02-05": 32768,
-            "gemini-1.5-flash": 16384,
-            "gemini-1.5-flash-002": 8191,
+            "gemini-2.5-pro": 120000,
+            "gemini-2.5-flash": 120000,
+            "gemini-2.5-flash-lite": 120000,
+            "gemini-2.5-flash-lite-preview": 120000,
+            "gemini-2.0-flash": 8191,
+            "gemini-2.0-flash-lite": 8191,
+            "gemini-2.0-flash-preview": 8191,
             "gemini-1.5-pro": 32768,
-            "gemini-1.5-pro-002": 32768,
-            "gemini-1.5-pro-exp-0801": 32768,
-            "gemini-1.0-pro-exp-0827": 32768,
-            "gemini-exp-1114": 32768,
-            "gemini-exp-1121": 32768,
-            "gemini-exp-1206": 1932768,
+            "gemini-1.5-flash": 16384,
+            "gemini-1.5-pro-search": 32768,
+            "gemini-1.5-flash-search": 16384,
 
             # Poe models
-            "Poe-o1": 100000,
-            "Poe-o3-mini": 100000,
-            "Poe-o3-mini-high": 100000,
-            "Poe-Assistant": 4096,  # FIXME: Verify token limit
-            "Poe-Claude-3.5-Sonnet": 4096,
-            "Poe-GPT-4o-Mini": 4096,
-            "Poe-GPT-4o": 8192,
-            "Poe-GPT-4.5": 16384,
-            "Poe-Llama-3.1-405B-T": 4096,  # FIXME: Verify token limit
-            "Poe-Gemini-1.5-Flash": 16384,
+            "Poe-GPT-4.1": 32768,
+            "Poe-GPT-4.1-mini": 32768,
+            "Poe-GPT-4.1-nano": 32768,
+            "Poe-o3": 100000,
+            "Poe-o3-pro": 100000,
+            "Poe-o4-mini": 100000,
+            "Poe-Claude-Opus-4": 32000,
+            "Poe-Claude-Sonnet-4": 32000,
+            "Poe-Gemini-2.5-Pro": 120000,
+            "Poe-Gemini-2.5-Flash": 120000,
+            "Poe-Gemini-2.5-Flash-Lite": 120000,
+            "Poe-Gemini-2.5-Flash-Lite-Preview": 120000,
+            "Poe-Gemini-2.0-Flash": 8191,
+            "Poe-Gemini-2.0-Flash-Lite": 8191,
+            "Poe-Gemini-2.0-Flash-Preview": 8191,
             "Poe-Gemini-1.5-Pro": 32768,
-            "Poe-Llama-3.2-11B-FW-131k": 128000,
-            "Poe-Llama-3.2-90B-FW-131k": 128000,
-            "Poe-Llama-3.1-8B-T-128k": 128000,
-            "Poe-Llama-3.1-70B-FW-128k": 128000,
-            "Poe-Llama-3.1-70B-T-128k": 128000,
-            "Poe-Llama-3.1-8B-FW-128k": 128000,
-            "Poe-Llama-3-70b-Groq": 4096,  # FIXME: Verify token limit
-            "Poe-Gemma-2-27b-T": 4096,  # FIXME: Verify token limit
-            "Poe-Claude-3-Sonnet": 4096,
-            "Poe-Claude-3-Haiku": 4096,
-            "Poe-Claude-3-Opus": 4096,
-            "Poe-Gemini-1.5-Flash-128k": 128000,
-            "Poe-Gemini-1.5-Pro-128k": 128000,
-            "Poe-Gemini-1.0-Pro": 32768,
-            "Poe-Llama-3-70B-T": 4096,  # FIXME: Verify token limit
-            "Poe-Llama-3-70b-Inst-FW": 4096,  # FIXME: Verify token limit
-            "Poe-Mixtral8x22b-Inst-FW": 4096,  # FIXME: Verify token limit
-            "Poe-Command-R": 4096,  # FIXME: Verify token limit
-            "Poe-Gemma-2-9b-T": 4096,  # FIXME: Verify token limit
-            "Poe-Mistral-Large-2": 4096,  # FIXME: Verify token limit
-            "Poe-Mistral-Medium": 4096,  # FIXME: Verify token limit
-            "Poe-Snowflake-Arctic-T": 4096,  # FIXME: Verify token limit
-            "Poe-RekaCore": 4096,  # FIXME: Verify token limit
-            "Poe-RekaFlash": 4096,  # FIXME: Verify token limit
-            "Poe-Command-R-Plus": 4096,  # FIXME: Verify token limit
-            "Poe-GPT-3.5-Turbo": 4096,
-            "Poe-Mixtral-8x7B-Chat": 4096,  # FIXME: Verify token limit
-            "Poe-DeepSeek-Coder-33B-T": 4096,  # FIXME: Verify token limit
-            "Poe-CodeLlama-70B-T": 4096,  # FIXME: Verify token limit
-            "Poe-Qwen2-72B-Chat": 4096,  # FIXME: Verify token limit
-            "Poe-Qwen-72B-T": 4096,  # FIXME: Verify token limit
-            "Poe-Claude-2": 100000,
-            "Poe-Google-PaLM": 4096,  # FIXME: Verify token limit
-            "Poe-Llama-3-8b-Groq": 4096,  # FIXME: Verify token limit
-            "Poe-Llama-3-8B-T": 4096,  # FIXME: Verify token limit
-            "Poe-Gemma-Instruct-7B-T": 4096,  # FIXME: Verify token limit
-            "Poe-MythoMax-L2-13B": 4096,  # FIXME: Verify token limit
-            "Poe-Code-Llama-34b": 4096,  # FIXME: Verify token limit
-            "Poe-Code-Llama-13b": 4096,  # FIXME: Verify token limit
-            "Poe-Solar-Mini": 4096,  # FIXME: Verify token limit
-            "Poe-GPT-3.5-Turbo-Instruct": 4096,
-            "Poe-GPT-3.5-Turbo-Raw": 4096,
-            "Poe-Claude-instant": 100000,
-            "Poe-Mixtral-8x7b-Groq": 4096,  # FIXME: Verify token limit
-            "Poe-Mistral-7B-v0.3-T": 4096
+            "Poe-Gemini-1.5-Flash": 16384,
+            "Poe-Gemini-1.5-Pro-Search": 32768,
+            "Poe-Gemini-1.5-Flash-Search": 16384,
+            "Poe-Grok-4": 128000,
+            "Poe-Grok-3": 128000,
+            "Poe-Grok-3-Mini": 128000,
+            "Poe-DeepSeek-V3": 128000,
+            "Poe-Deepseek-V3-FW": 128000,
+            "Poe-Deepseek-R1": 164000,
+            "Poe-Qwen2-72B-Chat": 32768,
+            "Poe-Qwen2.5-VL-72B-T": 32000,
+            "Poe-Qwen2.5-Coder-32B": 32768
         }
 
         # Get the maximum token limit for the selected model
