@@ -179,6 +179,12 @@ LOCAL_LLM_API_BASE:  ""    # e.g. http://localhost:11434/v1
 LOCAL_LLM_API_KEY:   ""
 ```
 
+LLM start-up priorities live in **lofn/model_defaults.yaml**. Each mode
+(`art`, `video`, `music`) defines a preferred list for concept/medium
+generation and for final prompt synthesis. Lofn will attempt to use the first
+available model from each list when a mode is selected, falling back to the
+built-in order if none of the preferred models are accessible.
+
 All behavioural constants sit in `lofn/constants.py` (tree widths, critic weights, etc.).
 
 ---

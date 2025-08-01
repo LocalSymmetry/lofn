@@ -1,0 +1,27 @@
+art:
+  concept_medium:
+    - gemini-2.5-pro
+    - claude-opus-4-20250514
+    - o3
+  prompt:
+    - gemini-2.5-pro
+    - claude-opus-4-20250514
+    - o3
+video:
+  concept_medium:
+    - gemini-2.5-pro
+    - o3
+    - claude-sonnet-4-20250514
+  prompt:
+    - gemini-2.5-pro
+    - o3
+    - claude-sonnet-4-20250514
+music:
+  concept_medium:
+    - claude-opus-4-20250514
+    - gemini-2.5-pro
+    - o3
+  prompt:
+    - claude-opus-4-20250514
+    - gemini-2.5-pro
+    - o3
