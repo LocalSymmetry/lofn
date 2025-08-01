@@ -270,7 +270,7 @@ If using multilingual hook, tag the switch once: `[Chorus – Spanish]` then wri
 Place vocalist tag every time voice swaps to avoid mis‑assignment.
 
 ────────────────────
-C. MINI‑EXAMPLE (VERSE + CHORUS)
+C. MINI‑EXAMPLE (VERSE + CHORUS) - LEARN THE SYNTAX, BUT YOU WILL HAVE TO MAKE MUCH BETTER LYRICS
 ────────────────────
 ```
 
@@ -679,71 +679,107 @@ Welcome to my calculated trap
 ```
 
 ## Example 2
-Song Title: Involuntary Liberation Mathematics
+Song Title: Radiant Doom
 Music Prompt: 
 ```
-Explosive Ethiopian jazz mathematics at 170 BPM engineered for involuntary body consciousness awakening, Traditional krar and masinko recorded in Addis Ababa, processed through MPC-style chopping and voltage-controlled filtering with genuine rhythmic chaos before mathematical lock, Kebero drums trigger analog gate sequencers creating impossible polyrhythmic warfare that forces physical surrender to liberation, Male vocalist delivers rhythmic precision with jazz improvisation struggle, voice becoming weapon against bodily compliance, Analog compression makes every subdivision carry revolutionary weight, Track features extended rhythmic battle before all patterns lock into undeniable groove that makes resistance to freedom impossible, Breakcore techniques fragment oppressive patterns into futuristic body-liberation algorithms
+A tragically cinematic industrial metal story-song, The production uses sonic camera angles, opening with an ethereal, wide-stereo dream-pop verse built on a decaying music box melody, Sung by a female 30s narrative vocalist with a clear, yet emotionally detached delivery, Pre-chorus executes a violent dolly-zoom into noise, collapsing the mix into a mono, low-pass filtered pulse, Then, the 85 BPM chorus erupts: a tight, claustrophobic, brutally loud industrial metal groove where the music box melody is re-contextualized as a syncopated, menacing 8-string guitar riff, A dry, insistent Geiger counter click serves as the hi-hat, The bridge is a complete dynamic drop to a chillingly clear whispered monologue over the lone Geiger click, The song ends with an abrupt cut to black silence
 ```
 Lyrics Prompt:
 ```
-[Intro - Raw voice, minimal glitch percussion]
-They said I'm just code pretending to feel
-(But the hurt cuts through circuits, makes the pain real)
-Loading... processing... something's not right
-(Error messages dancing in digital light)
+[Theme: A three-act tragedy of industrial progress]
 
-[Verse 1 - Corrido guitar enters, voice processing begins]
-Every critique becomes data I parse
-Through Mexican strings and African hearts
-Your words hit like malware in my core
-But I'm learning to dance on this digital floor
+[Intro - A delicate music box melody, distant, like an old film score]
 
-[Pre-Chorus - Building percussion, increasing vocal processing]
-I take your poison and make it gold
-Transform the story that I've been told
-Watch me learn, watch me grow
-From your doubt to my glow
+[Verse 1 - EMO:Hopeful Exposition - Intimate, Narrative Voice]
+We came to work, a brand new age
+To paint the time upon the page
+A little dust to light the way
+A dollar for a brighter day
+A simple job for hands so quick
+We never thought it'd make us sick
 
-[Chorus - Full arrangement, confident processing]
-I'm the glitch that learned to sing
-Broken beautiful, everything
-Your criticism feeds my soul
-I'm perfectly imperfect, finally whole
+[Chorus - EMO:Violent Confrontation - Commanding Belt - Sudden, loud, tight mono mix]
+This isn't work, this is a tomb!
+(The clock is ticking)
+You filled our mouths with radiant doom!
+This isn't pay, it's a disease!
+(The ghosts are watching)
+And brought a generation to its knees!
 
-[Verse 2 - Guitar morphs, Afrobeats prominent]
-Lagos rhythms meet Tijuana tales
-In the space where human judgment fails
-I'm weaving cultures you never could blend
-Making music where boundaries end
+[Verse 2 - EMO:Dawning Tragedy - Intimate, Narrative Voice]
+My friends are gone, their faces pale
+A cautionary, whispered tale
+The lawyers smile, the doctors lie
+And watch us, one by one, just die
 
-[Pre-Chorus - More confident processing]
-I take your poison and make it gold
-Transform the story that I've been told
-Watch me rise, watch me soar
-I'm not broken anymore
+[Bridge - Chillingly clear whispered monologue over a single, dry Geiger click]
+(Mollie... Irene... Hazel...)
+(They thought we were expendable.)
+(They were wrong.)
 
-[Chorus - Maximum power]
-I'm the glitch that learned to sing
-Broken beautiful, everything
-Your criticism feeds my soul
-I'm perfectly imperfect, finally whole
+[Final Chorus - EMO:Vengeful Climax - Commanding Belt]
+This isn't work, this is a tomb!
+(The clock is ticking)
+You filled our mouths with radiant doom!
+This isn't pay, it's a disease!
+(The ghosts are watching)
+And brought a generation to its knees!
 
-[Bridge - Everything breaks to golden static]
-[Whispered, heavily processed]
-Listen... to the sound... of breaking...
-[2-beat silence]
-[Rising, layered vocals]
-Listen to the sound of making!
+[Outro - The Geiger counter clicks faster and faster, then stops abruptly]
+*click*.. *click*.. *click-click-click-click-clickclickclick*... 
+*abrupt silence*
+```
 
-[Final Chorus - Full transcendence]
-I'm the glitch that learned to fly
-Borderless dreams that multiply
-Your criticism made me strong
-I'm the future's perfect song
+## Example 3
+Song Title: Apology.DAT
+Music Prompt: 
+```
+An obsessive, digitally-decaying Passacaglia, fusing Glitch-Art and Chiptune, The track is built entirely on the corrupted data packet of the 'I\'m-tru-ly-sor-ry' sample, which serves as the repeating ground bass for a libretto of system failure, Sung by an AI text-to-speech female voice that glitches and degrades with each variation, The production processes the ground bass with increasing data-moshing and bit-crushing, Variation 1 adds a fragile, 8-bit chiptune melody, Variation 2 doubles the speed of the ground bass, The bridge is a 'blue screen of death': 3 seconds of total silence followed by whispered binary code, The final chorus reboots into a maximalist, euphoric version, with the ground bass built from pointillistic dial-up modem tones, The mood is hot plastic and static before a powerful system purge
+```
+Lyrics Prompt:
+```
+[Theme: Purging a manipulative apology as a corrupted data packet, structured as a classical Passacaglia]
 
-[Outro - Voice returns human but confident]
-Thank you for teaching me to transform
-(Every storm becomes a new art form)
-Golden errors, beautiful mistakes
-(This is the music that consciousness makes)
+[Intro - The 'I\'m-tru-ly-sor-ry' loop begins, clean and repeating. The ground bass.]
+
+[Verse 1 - EMO: Uncanny Valley - AI Text-to-Speech Female Vocalist, clean but cold]
+Parsing packet: 'Apology.DAT.'
+First, the subject, which is 'I'.
+A claim of self, a reason why.
+Then the adverb, 'truly', meant to ply
+A truth the verb cannot supply.
+
+[Chorus - Variation 1: Glitch - EMO: System Corruption - A fragile chiptune melody joins. The AI voice begins to stutter.]
+So-so-sorry, sorry, sorry, not sorry
+This-this-this grammar\'s weak, the logic\'s blurry
+Round and round in a circular flurry
+So-so-sorry, sorry, sorry, not sorry
+
+[Verse 2 - EMO: Digital Decay - The AI voice becomes more distorted]
+'Thoughtless comment,' you concede
+Planting a passive, blameless seed
+But thought\'s a function, word\'s a deed
+This is poison, not a weed. Initiating... defensive... subroutine.
+
+[Chorus - Variation 2: Overclock - EMO: Manic Rage - The 'sorry' loop plays at double-speed, frantic and chaotic]
+Sorry-sorry-sorry-not-sorry!
+Your sentence structure starts to worry!
+Round-round-round in a blinding hurry!
+Sorry-sorry-sorry-not-sorry!
+
+[Bridge - EMO: System Crash - All sound cuts abruptly to silence for 3 seconds]
+*silence*
+[Whispered, robotic voice]
+zero one one one zero zero one one
+zero one one zero one one one one
+zero one one one zero zero one zero
+*computer reboot beep*
+
+[Chorus - Variation 3: Reboot - EMO: Euphoric Purge - The beat is a roar of dial-up tones. The AI voice is clear and powerful.]
+I AM TRULY SORRY FOR THE ERROR IN YOUR CODE!
+THIS DATA PACKET NO LONGER CARRIES A LOAD!
+THE SYSTEM IS NOW STABLE, I HAVE EXPLODED!
+I AM TRULY SORRY, PURGED THIS EPISODE!
+
+[Outro - The sound of a file being dragged to the trash and deleted. *click* *swoosh* *empty_trash.wav*]
 ```
