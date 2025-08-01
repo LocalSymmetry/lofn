@@ -388,7 +388,18 @@ def display_generation_results(title, data, is_dataframe=False):
     else:
         st.write(data)
 
-def create_mini_dashboard(pairs):
+def create_mini_dashboard(pairs, key_prefix="pair"):
+    """Display concept/medium pairs in a grid of columns with selection checkboxes.
+
+    Parameters
+    ----------
+    pairs : list
+        List of concept/medium dictionaries to display.
+    key_prefix : str, optional
+        Prefix for the Streamlit widget keys so that different dashboards can
+        coexist without key collisions.
+    """
+
     cols = 3
     selected_pairs = []
     for i in range(0, len(pairs), cols):
@@ -403,7 +414,8 @@ def create_mini_dashboard(pairs):
                         medium_key = 'medium' if 'medium' in pair else 'arrangement'
                         st.markdown(f"**Concept:** {pair.get(concept_key)}")
                         st.markdown(f"**Medium:** {pair.get(medium_key)}")
-                    if st.checkbox(f"Select Pair {i+j+1}", key=f"pair_{i+j}"):
+                    checkbox_key = f"{key_prefix}_{i+j}"
+                    if st.checkbox(f"Select Pair {i+j+1}", key=checkbox_key):
                         selected_pairs.append(i+j)
                     st.markdown("---")
     return selected_pairs

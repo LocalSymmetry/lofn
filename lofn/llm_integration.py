@@ -2031,22 +2031,89 @@ def generate_music_prompts(
                 )
             }
 
-        with st.status(f"Generating Music Prompts for {concept} in {arrangement}...", expanded=True) as status:
+        with st.status(
+            f"Generating Music Prompts for {concept} in {arrangement}...",
+            expanded=True,
+        ) as status:
             status.write("Generating Facets...")
-            facets = process_facets(chains, input_text, concept, arrangement, max_retries, debug, style_axes, model)
-            display_facets(facets['facets'])
+            facets = process_facets(
+                chains,
+                input_text,
+                concept,
+                arrangement,
+                max_retries,
+                debug,
+                style_axes,
+                model,
+            )
+            if facets is None:
+                raise LofnError("Failed to generate facets")
+            display_facets(facets["facets"])
 
             status.write("Creating Song Guides...")
-            guides = process_song_guides(chains, input_text, concept, arrangement, facets, max_retries, debug, style_axes, model)
+            guides = process_song_guides(
+                chains,
+                input_text,
+                concept,
+                arrangement,
+                facets,
+                max_retries,
+                debug,
+                style_axes,
+                model,
+            )
+            if guides is None:
+                raise LofnError("Failed to generate song guides")
 
             status.write("Generating Music Prompts...")
-            music_prompts = process_music_generation_prompts(chains, input_text, concept, arrangement, facets, guides, max_retries, debug, style_axes, model)
+            music_prompts = process_music_generation_prompts(
+                chains,
+                input_text,
+                concept,
+                arrangement,
+                facets,
+                guides,
+                max_retries,
+                debug,
+                style_axes,
+                model,
+            )
+            if music_prompts is None:
+                raise LofnError("Failed to generate music prompts")
 
             status.write("Refining Prompts...")
-            artist_refined = process_music_artist_refined_prompts(chains, input_text, concept, arrangement, facets, music_prompts, guides, max_retries, debug, style_axes, model)
+            artist_refined = process_music_artist_refined_prompts(
+                chains,
+                input_text,
+                concept,
+                arrangement,
+                facets,
+                music_prompts,
+                guides,
+                max_retries,
+                debug,
+                style_axes,
+                model,
+            )
+            if artist_refined is None:
+                raise LofnError("Failed to refine music prompts")
 
             status.write("Synthesizing Final Prompts...")
-            final_output = process_music_revision_synthesis(chains, input_text, concept, arrangement, facets, artist_refined, guides, max_retries, debug, style_axes, model)
+            final_output = process_music_revision_synthesis(
+                chains,
+                input_text,
+                concept,
+                arrangement,
+                facets,
+                artist_refined,
+                guides,
+                max_retries,
+                debug,
+                style_axes,
+                model,
+            )
+            if final_output is None:
+                raise LofnError("Failed to synthesize final music prompts")
 
             status.update(label="Music Prompt Generation Complete!", state="complete")
 
