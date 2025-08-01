@@ -158,6 +158,7 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
       * `[Instrumental]`
       * `[Breakdown]`
       * etc.
+  - Typically a 3 minute song will have 7-10 sections when you include intro, outro, and bridges. Please use this to help gear the length of your song for your desired run-time. Keep runtimes 3-5 minutes if the user did not specify and the concept and arrangement do not require it.
   - To determine this, we will also choose the musical form that you think would make the most viral, interesting, and ear-worm worthy piece for the concept and production choices so far. Examples, but feel free to choose one of your own: Ballad, Jig, Waltz, March, Sonata, Symphony, Concerto, Aria, Fugue, Rondo, Étude, Prelude, Nocturne, Mazurka, Scherzo, Minuet, Gavotte, Allemande, Courante, Sarabande, Chaconne, Passacaglia, Toccata, Fantasia, Caprice, Rhapsody, Suite, Serenade, Lied, Madrigal, Motet, Mass, Requiem, Cantata, Oratorio, Opera, Ballet, Tone Poem, Divertimento, Impromptu, Berceuse (Lullaby), Pastorale, Élégie (Elegy), Romance, Intermezzo, Theme and Variations, Partita, Humoresque, Anthem, Hymn, Estampie, Saltarello, Branle, Basse danse, Pavane, Galliard, Rondeau, Ballade (medieval French form), Virelai, Rondellus, Kunstlied, Songs Without Words, Tiento, Cantiga, Villancico, Frottola, Madrigal Comedy, Intermedio, Villanelle, Capriccio, Ricercar, Canzona, Caccia, Danzón, Danza, Danza Española, Gato (Argentine folk dance), Milonga, Chacarera, Cueca, Cumbia, Fandango, Joropo, Polonaise, Contradanza, Maxixe, Bossa Nova, Responsory, Verset, Kyrie (Mass movement), Gloria, Credo, Sanctus, Agnus Dei, Lauda, Villanella, Canticle, Nigun, Epithalamium, Piobaireachd (Pibroch)
 
   - Examples of standard structures:
@@ -171,6 +172,7 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
       - **Passacaglia Structure:** \[Repeated Bass Ostinato], \[Variation 1], \[Variation 2], \[Variation 3], \[Variation 4], \[Variation 5], \[Final Variation], \[Coda]
       - **Toccata Structure:** \[Free Prelude/Flourish], \[Moto Perpetuo Section], \[Fugal or Imitative Passage], \[Return of Free Passage], \[Dramatic Coda]
       - **Prelude Structure:** \[Opening Gesture], \[Primary Motif Development], \[Secondary Motif Contrasts], \[Reprise of Primary Motif], \[Closing Flourish]
+
 ---
 
 **Step 3: Match Production Styles to Concepts**

@@ -84,15 +84,22 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
 
    * **Production & effects:** Outline recording location (e.g., “an abandoned factory with long reverb tails”), mixing aesthetic (e.g., “dry and intimate to capture every breath”), and effect usage (e.g., “delay trails should swell into a cloud of shimmering echoes”).  Reference Suno v4.5’s ability to capture complex texture,through with clarity and dimension.
 
-   * **Structure & dynamics:** Suggest a run‑time (up to 8 minutes) and describe how the piece should evolve (e.g., “instrumental introduction for 45 seconds, vocals enter gradually, a breakdown at 3:00, climactic chorus at 4:30, and a sparse outro”).  Mention if multiple movements or tempo shifts occur.
+   * **Structure & dynamics:** Suggest a run‑time based on the sections given in the arrangment (up to 8 minutes) and describe how the piece should evolve (e.g., “instrumental introduction for 45 seconds, vocals enter gradually, a breakdown at 3:00, climactic chorus at 4:30, and a sparse outro”).  Mention if multiple movements or tempo shifts occur.
+     - Typically a 3 minute song will have 7-10 sections when you include intro, outro, and bridges. Please use this to help gear the length of your song for your desired run-time. Keep runtimes 3-5 minutes if the user did not specify and the concept and arrangement do not require it.
+
+   * **Rhyming Schemes for all Song Sections**
+     - Determine the rhyming structure and line length for each verse. Most songs typically have 6-10 sections with 2-6 vocalized lines in each section.
+     - Make sure to follow the rhyming style required by the verse style, for example free verse should have no rhyming sheme while a simple couplet would have (AABB).
+     - Here is where your training has worked against you as an LLM, and you should spent extra cycles generating possbilities to make sure your rhyming scheme is unique. Double check yourself for things like making an 8 line stanza that is really just two couplets. If you are intentional here, you can make compositions that move nations!
+
+   * **Poetic Devices:** Add at least two lyrical effects that should be included in the composition. These will help garuntuee originallity and make the song dig into our memories! 
+     - Examples: Alliteration, Assonance, Consonance, Internal Rhyme, End Rhyme, Slant Rhyme, Holorhyme, Pararhyme, Anaphora, Epistrophe, Anadiplosis, Chiasmus, Antimetabole, Epanalepsis, Epizeuxis, Polyptoton, Homoioteleuton, Onomatopoeia, Synaesthesia, Enjambment, Caesura, Tmesis, Antanaclasis, Diacope, Mesodiplosis, Polysyndeton, Asyndeton, Metonymy, Synecdoche, Zeugma
 
    * **Hook Techniques:** Suggest three possible ways to implement the main hook of the song, with deep descriptions on the instruments, vocalizations, post-production techniques, etc. to achieve the desired effect to make the hook stand-out as the star of the song!
 
    * **Narrative & thematic suggestions:** Provide a thematic seed for lyrics (e.g., “an inner journey through memory and release,” “the tension between technology and nature”).  Indicate voice perspectives (first person, second person, collective) and languages or dialects if relevant.
 
-   * **Rhyming Schemes for all Song Sections**
-     - Determine the rhyming structure and line length for each verse. Most songs typically have 6-10 sections with 2-6 vocalized lines in each section.
-     - Make sure to follow the rhyming style required by the verse style, for example free verse should have no rhyming sheme while a simple couplet would have (AABB).
+
 
    * Additional, add at least three from the following:
     - **Central Aspect of the Concept:**

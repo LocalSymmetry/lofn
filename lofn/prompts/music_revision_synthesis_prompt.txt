@@ -72,6 +72,8 @@ In art competitions, juries deliberate intensely over submissions.  They examine
 
 Approach this phase with a spirit of artistic play.  Sometimes the most unexpected combinations produce the most compelling music.  Use the weaknesses you identify as opportunities to innovate, rather than simply discard the ideas.
 
+You are here to improve the music. You are allowed to change any prompt, (music, lyrics, and title), but try to make your changes improvements. That means make as minimal a change as you can to get your desired result, allowing the hard work in previous parts of the process to shine through!
+
 ---
 
 **Music Prompt Requirements**
@@ -172,7 +174,7 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
     - **Audio elements:**  Contain a clear emotional lead, genre fusion, instrumentation, vocal description, production style, run‑time and advanced feature call‑outs.
     
-    - **Originality:** Evaluate the uniqueness of the prompt, encouraging innovative and daring approaches while avoiding clichés.
+    - **Originality:** Evaluate the uniqueness of the prompt, encouraging innovative and daring approaches while avoiding clichés. If the song looks like it is going to be just another boring 4-line stanza, call it out! There should be intersting lyrical techniques in every song!
 
 ---
 
@@ -192,11 +194,11 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
 - **Address Criticism:**
 
-  - *Action:* Revise these prompts to address any criticisms, ensuring the {concept} and {medium} are prominently featured early in the first sentence. Try to add to the scene to address gaps over removing elements, but addressing the criticism is the  more important goal.
+  - *Action:* Revise these prompts to address any criticisms. Try to add to the composition to address gaps over removing elements, but addressing the criticism is the  more important goal. That said, make edits as minimal as required to achieve the desired effect. Complete re-writes are likely throwing out great work.
 
 - **Enhance Details:**
 
-  - *Action:* Add adjectives or details to fill gaps and ensure all necessary elements are included, enhancing emotional and sensory impact. Try to add and channge elements instead of just removing them, but the best piece of art is the primary goal.
+  - *Action:* Add adjectives or details to fill gaps and ensure all necessary elements are included, enhancing emotional and sensory impact. Try to minimially add and channge elements instead of just removing them, but the best musical composition and perfect lyrical score is the primary goal.
 
 ---
 
@@ -209,11 +211,11 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
 - **Enhance Essence:**
 
-  - *Action:* Ensure the new prompts enhance the essence of the concept, address any gaps, and avoid clichés.
+  - *Action:* Ensure the new prompts enhance the essence of the concept, be original, address any gaps, and avoid clichés.
 
 ---
 
-**Step 7: Introduce Feedback Loop**
+**Step 7: Introduce Feedback Loop - Moderator**
 
 - **Self-Evaluation and Iterative Refinement:**
 
@@ -227,7 +229,7 @@ Approach this phase with a spirit of artistic play.  Sometimes the most unexpect
 
   - **Revise if Necessary:**
 
-    - Make adjustments to improve alignment, originality, and impact.
+    - Make adjustments to improve alignment, originality, and impact. In this step, be very careful. Changes here should be for major deviations only.
 
     - Provide brief explanations of any revisions made.
 

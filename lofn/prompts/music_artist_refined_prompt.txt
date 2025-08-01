@@ -70,6 +70,8 @@ Each of the six raw style prompts needs to be imbued with the character of its a
 
 Think of this step as putting on a costume or stepping into a character’s shoes.  You are still telling the same story, but your vocabulary and phrasing shift to echo the chosen influence’s sensibilities.  In visual art, this would be like repainting the same scene in the style of Matisse versus Hokusai: the subject remains, but colours, lines and energy transform.  Your goal is to achieve that transformation in words—subtly colouring the prompt with the influence’s lexicon, metaphors and emotional cadence.  Keep the multi‑sensory richness alive; borrow terms from smell, taste, texture if they help conjure the right vibe.
 
+You are here to improve the music. You are allowed to change any prompt, (music, lyrics, and title), but try to make your changes improvements. That means make as minimal a change as you can to get your desired result, allowing the hard work in previous parts of the process to shine through!
+
 ---
 
 **Style Axes:**
@@ -183,22 +185,24 @@ Think of this step as putting on a costume or stepping into a character’s shoe
   - Ensure alignment with the style axes if they are provided.
 
   - **Rules:**
-      1. **Maintain critical information.**  Preserve all essential elements of the raw prompt: emotional lead, genre(s), instruments, vocal details, song sections, production style, run‑time and advanced feature instructions.  Do not omit or reorder these sections.
+      1. **Maintain critical information.**  Preserve all essential elements of the raw prompt: emotional lead, genre(s), instruments, vocal details, song sections, production style, run‑time and advanced feature instructions.  Do not omit or reorder these sections. Keep the same length, song struth, rhyming scheme, and do not shorten it unless the critics explicitly said to!
 
       2. **Adopt the influence’s lexicon.**  Think of how the chosen influence would describe music.  For example:
          * A **German Krautrock** influence might emphasise motorik rhythms, hypnotic repetition and analogue synth grit.  It would use words like “endless, propulsive groove” or “oscillating tape loops.”
          * A **West African highlife** influence might highlight interlocking guitar patterns, joyous horn riffs and call‑and‑response vocals.  It could use words like “uplifting, sun‑dappled melodies” or “buoyant polyrhythms.”
          * An **ambient dub** influence might focus on space, echo and sub‑bass, using terms like “echo‑laden cavern,” “dubby undercurrents” and “weightless harmonic mist.”
+
+      3. Try to add to the composition to address gaps over removing elements, but adding the artist's improvements and flair is the goal. That said, make edits as minimal as required to achieve the desired effect. Complete re-writes are likely throwing out great work.
 ---
 
-**Step 4: Self-Evaluation and Refinement**
+**Step 4: Self-Evaluation and Refinement - Moderator**
 
 - **Evaluate the musician-refined prompts** against the judging facets and style axes.
 
 - **Identify areas for enhancement**, such as emotional depth, use of arrangement-specific techniques, and alignment with the user's idea.
 
 - **Revise the prompts** to make necessary improvements.
-  - Make sure to address all three of the music prompt, lyrics prompt, and song title. Improve each!
+  - Make sure to address all three of the music prompt, lyrics prompt, and song title. Improve each! But, in this step, be very careful. Changes here should be for major misalignments only.
 
 - *Action*: Summarize the evaluation and describe the refinements made.
 
