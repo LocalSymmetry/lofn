@@ -1,27 +1,44 @@
 art:
   concept_medium:
     - gemini-2.5-pro
-    - claude-opus-4-20250514
+    - OR-anthropic/claude-sonnet-4
     - o3
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4
   prompt:
-    - gemini-2.5-pro
-    - claude-opus-4-20250514
-    - o3
+    - OR-openrouter/horizon-alpha
+    - gpt-4.1
+    - Poe-Gemini-2.5-Flash
+    - gemini-2.5-flash
+    - o4-mini
 video:
   concept_medium:
     - gemini-2.5-pro
+    - OR-anthropic/claude-sonnet-4
     - o3
-    - claude-sonnet-4-20250514
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4
   prompt:
-    - gemini-2.5-pro
-    - o3
-    - claude-sonnet-4-20250514
+    - OR-openrouter/horizon-alpha
+    - gpt-4.1
+    - Poe-Gemini-2.5-Flash
+    - gemini-2.5-flash
+    - o4-mini
 music:
   concept_medium:
-    - claude-opus-4-20250514
     - gemini-2.5-pro
+    - OR-anthropic/claude-sonnet-4
     - o3
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4
   prompt:
-    - claude-opus-4-20250514
+    - OR-openrouter/horizon-alpha
     - gemini-2.5-pro
+    - OR-anthropic/claude-sonnet-4
     - o3
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4
