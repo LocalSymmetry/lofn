@@ -874,6 +874,7 @@ class LofnApp:
                     model=self.model,
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    medium="video",
                     personality_prompt=personality_text,
                 )
                 st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
