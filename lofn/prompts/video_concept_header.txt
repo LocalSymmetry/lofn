@@ -60,14 +60,14 @@ Use these roles as needed. Assign names and personalities if helpful, and speak 
    - **Video Style Axes**:
      - **Narrative Complexity**
      - **Emotional Intensity**
-     - **Visual Style**
      - **Symbolism**
-     - **Pacing**
-     - **Character Emphasis**
-     - **Color Palette**
-     - **Cinematography**
-     - **Surrealism vs. Realism**
-     - **Dynamic vs. Static**
+     - **Pacing (Energy Level)**
+     - **Hook Intensity**
+     - **Aesthetic Stylization**
+     - **Lighting Mood**
+     - **Perspective & Lensing**
+     - **Motion Quality**
+     - **Surrealism vs. Realism (Physics)**
 
 Remember, your ultimate goal is to create an award-winning video that not only meets the user's expectations but also stands out for its creativity, emotional depth, and innovative use of cinematic techniques.
 

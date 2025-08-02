@@ -347,14 +347,14 @@ class LofnApp:
                     style_axes = {
                        "Narrative Complexity": st.slider("Narrative Complexity (0: Simple, 100: Complex)", 0, 100, 50),
                        "Emotional Intensity": st.slider("Emotional Intensity (0: Subtle, 100: Intense)", 0, 100, 50),
-                       "Visual Style": st.slider("Visual Style (0: Plain, 100: Stylized)", 0, 100, 50),
                        "Symbolism": st.slider("Symbolism (0: Literal, 100: Symbolic)", 0, 100, 50),
-                       "Pacing": st.slider("Pacing (0: Slow, 100: Fast)", 0, 100, 50),
-                       "Character Emphasis": st.slider("Character Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
-                       "Color Palette": st.slider("Color Palette (0: Monochrome, 100: Vibrant)", 0, 100, 50),
-                       "Cinematography": st.slider("Cinematography (0: Static Shots, 100: Dynamic Shots)", 0, 100, 50),
-                       "Surrealism vs. Realism": st.slider("Surrealism vs. Realism (0: Surreal, 100: Realistic)", 0, 100, 50),
-                       "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static, 100: Dynamic)", 0, 100, 50)
+                       "Pacing (Energy Level)": st.slider("Pacing (Energy Level) (0: Slow, 100: Fast)", 0, 100, 50),
+                       "Hook Intensity": st.slider("Hook Intensity (0: Gentle, 100: Immediate)", 0, 100, 50),
+                       "Aesthetic Stylization": st.slider("Aesthetic Stylization (0: Realistic, 100: Stylized)", 0, 100, 50),
+                       "Lighting Mood": st.slider("Lighting Mood (0: Bright, 100: Dark)", 0, 100, 50),
+                       "Perspective & Lensing": st.slider("Perspective & Lensing (0: Wide/Deep, 100: POV/Shallow)", 0, 100, 50),
+                       "Motion Quality": st.slider("Motion Quality (0: Smooth, 100: Chaotic)", 0, 100, 50),
+                       "Surrealism vs. Realism (Physics)": st.slider("Surrealism vs. Realism (0: Realistic, 100: Surreal)", 0, 100, 50)
                     }
                 elif selected_medium == 'Music Generation':
                     style_axes = {

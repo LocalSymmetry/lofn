@@ -99,43 +99,43 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
   - **Narrative Complexity (Value):**
 
-    - *Example*: 70 - The video features an intricate storyline with multiple layers.
+    - *Example*: 70 - The micro-story layers multiple timelines or perspectives.
 
   - **Emotional Intensity (Value):**
 
-    - *Example*: 85 - The piece evokes strong emotions like passion and suspense.
-
-  - **Visual Style (Value):**
-
-    - *Example*: 60 - A balance between realistic visuals and stylized elements.
+    - *Example*: 85 - The piece evokes powerful, visceral emotions.
 
   - **Symbolism (Value):**
 
-    - *Example*: 50 - The video contains a moderate amount of symbolic content.
+    - *Example*: 50 - Select elements carry metaphorical meaning.
 
-  - **Pacing (Value):**
+  - **Pacing (Energy Level) (Value):**
 
-    - *Example*: 40 - The pacing is steady, allowing moments of reflection.
+    - *Example*: 40 - Measured pacing allows moments of stillness.
 
-  - **Character Emphasis (Value):**
+  - **Hook Intensity (Value):**
 
-    - *Example*: 80 - The protagonist is directly on screen for this scene.
+    - *Example*: 80 - The opening instantly grabs attention.
 
-  - **Color Palette (Value):**
+  - **Aesthetic Stylization (Value):**
 
-    - *Example*: 75 - Vibrant and varied colors are used to enhance visuals.
+    - *Example*: 60 - A blend of realistic imagery and stylized accents.
 
-  - **Cinematography (Value):**
+  - **Lighting Mood (Value):**
 
-    - *Example*: 65 - The video employs creative camera angles and movements.
+    - *Example*: 75 - Shadows and contrast create a moody atmosphere.
 
-  - **Surrealism vs. Realism (Value):**
+  - **Perspective & Lensing (Value):**
 
-    - *Example*: 30 - The video leans towards realistic depictions.
+    - *Example*: 65 - Mix of wide shots and intimate close-ups.
 
-  - **Dynamic vs. Static (Value):**
+  - **Motion Quality (Value):**
 
-    - *Example*: 90 - The scenes are highly dynamic with a lot of movement.
+    - *Example*: 55 - Smooth tracking with occasional handheld energy.
+
+  - **Surrealism vs. Realism (Physics) (Value):**
+
+    - *Example*: 30 - Mostly realistic physics with slight dreamlike touches.
 
 ---
 
@@ -181,14 +181,14 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
       "style_axes": {{
         "Narrative Complexity": 70,
         "Emotional Intensity": 85,
-        "Visual Style": 60,
         "Symbolism": 50,
-        "Pacing": 40,
-        "Audio Emphasis": 80,
-        "Color Palette": 75,
-        "Cinematography": 65,
-        "Surrealism vs. Realism": 30,
-        "Dynamic vs. Static": 90
+        "Pacing (Energy Level)": 40,
+        "Hook Intensity": 80,
+        "Aesthetic Stylization": 60,
+        "Lighting Mood": 75,
+        "Perspective & Lensing": 65,
+        "Motion Quality": 55,
+        "Surrealism vs. Realism (Physics)": 30
       }}
     }}
   }}

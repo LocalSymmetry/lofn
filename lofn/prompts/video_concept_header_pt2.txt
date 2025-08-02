@@ -30,14 +30,14 @@ In the context of video, we replace "aesthetics" with **cinematic techniques, ge
    **Style Axes:**
    - **Narrative Complexity:** 70
    - **Emotional Intensity:** 80
-   - **Visual Style:** 60
    - **Symbolism:** 75
-   - **Pacing:** 50
-   - **Character Emphasis:** 90
-   - **Color Palette:** 65
-   - **Cinematography:** 80
-   - **Surrealism vs. Realism:** 40
-   - **Dynamic vs. Static:** 70
+   - **Pacing (Energy Level):** 50
+   - **Hook Intensity:** 85
+   - **Aesthetic Stylization:** 60
+   - **Lighting Mood:** 65
+   - **Perspective & Lensing:** 80
+   - **Motion Quality:** 70
+   - **Surrealism vs. Realism (Physics):** 40
 
    **Essence:** The profound transformation experienced during a journey that challenges and reshapes one's identity.
 
@@ -60,14 +60,14 @@ In the context of video, we replace "aesthetics" with **cinematic techniques, ge
    **Style Axes:**
    - **Narrative Complexity:** 80
    - **Emotional Intensity:** 70
-   - **Visual Style:** 85
    - **Symbolism:** 65
-   - **Pacing:** 60
-   - **Character Emphasis:** 75
-   - **Color Palette:** 50
-   - **Cinematography:** 90
-   - **Surrealism vs. Realism:** 60
-   - **Dynamic vs. Static:** 80
+   - **Pacing (Energy Level):** 60
+   - **Hook Intensity:** 75
+   - **Aesthetic Stylization:** 85
+   - **Lighting Mood:** 50
+   - **Perspective & Lensing:** 90
+   - **Motion Quality:** 80
+   - **Surrealism vs. Realism (Physics):** 60
 
    **Essence:** Exploring the unintended fallout of altering time and the ripple effects on reality.
 
