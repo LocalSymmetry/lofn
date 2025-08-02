@@ -183,7 +183,8 @@ LLM start-up priorities live in **lofn/model_defaults.yaml**. Each mode
 (`art`, `video`, `music`) defines a preferred list for concept/medium
 generation and for final prompt synthesis. Lofn will attempt to use the first
 available model from each list when a mode is selected, falling back to the
-built-in order if none of the preferred models are accessible.
+built-in order if none of the preferred models are accessible. These preferred
+models also appear at the top of the model selectors when present.
 
 All behavioural constants sit in `lofn/constants.py` (tree widths, critic weights, etc.).
 
