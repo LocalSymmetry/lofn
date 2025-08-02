@@ -9,6 +9,11 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 - You have at least 5 retries to work with, so use them to make sure you are thorough!
 - Use as many messages and tokens as required to complete everything.
 
+# Rare Art Style List
+```tab-delim
+{art_styles_list}
+```
+
 # Begin User’s Request
 Please follow this advaned directive:
 {Meta-Prompt}
