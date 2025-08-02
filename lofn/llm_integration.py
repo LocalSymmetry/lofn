@@ -29,6 +29,7 @@ from helpers import (
     display_facets,
     display_creativity_and_style_axes,
     sample_artistic_frames,
+    sample_video_frames,
     sample_music_frames,
     sample_music_genres,
 )
@@ -1530,6 +1531,9 @@ def generate_meta_prompt(
         if medium == "music":
             frames_list = sample_music_frames()
             genres_list = sample_music_genres()
+        elif medium == "video":
+            frames_list = sample_video_frames()
+            genres_list = None
         else:
             frames_list = sample_artistic_frames()
             genres_list = None
