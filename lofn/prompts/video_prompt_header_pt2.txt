@@ -155,7 +155,7 @@ This section covers the fundamental properties of the image itself—the medium 
     * **AI Prompt Keywords:** `acrobatic FPV drone shot`, `diving FPV drone footage`.
 
 * **Dolly Zoom (The "Vertigo" Effect):**
-    * **Description:** The camera physically moves toward or away from a subject on a dolly while the lens zooms in the opposite direction. The subject stays the same size while the background appears to warp and stretch. $d_{camera} \rightarrow 0$ while $f_{lens} \rightarrow \infty$ (or vice-versa) to maintain subject size.
+    * **Description:** The camera physically moves toward or away from a subject on a dolly while the lens zooms in the opposite direction. The subject stays the same size while the background appears to warp and stretch. $d_camera \rightarrow 0$ while $f_lens \rightarrow \infty$ (or vice-versa) to maintain subject size.
     * **Effect & Feeling:** Realization, paranoia, psychological distress, a fateful moment, vertigo.
     * **AI Prompt Keywords:** `dolly zoom effect`, `vertigo shot revealing a secret`.
 
