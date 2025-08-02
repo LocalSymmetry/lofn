@@ -32,6 +32,8 @@ from helpers import (
     sample_video_frames,
     sample_music_frames,
     sample_music_genres,
+    sample_art_styles,
+    sample_film_styles,
 )
 import plotly.graph_objects as go
 import random
@@ -1530,13 +1532,13 @@ def generate_meta_prompt(
     try:
         if medium == "music":
             frames_list = sample_music_frames()
-            genres_list = sample_music_genres()
+            styles_list = sample_music_genres()
         elif medium == "video":
             frames_list = sample_video_frames()
-            genres_list = None
+            styles_list = sample_film_styles()
         else:
             frames_list = sample_artistic_frames()
-            genres_list = None
+            styles_list = sample_art_styles()
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
@@ -1551,37 +1553,21 @@ def generate_meta_prompt(
 
         full_input = f"{personality_prompt}\n\n{input_text}" if personality_prompt else input_text
 
-        if medium == "music":
-            parsed_output = run_llm_chain(
-                {'meta': chain},
-                'meta',
-                {
-                    'input': full_input,
-                    'genres_list': genres_list,
-                    'frames_list': frames_list,
-                    'personality_prompt': personality_prompt,
-                },
-                max_retries,
-                model,
-                debug,
-                expected_schema=meta_prompt_schema,
-            )
-            return parsed_output, frames_list, genres_list
-        else:
-            parsed_output = run_llm_chain(
-                {'meta': chain},
-                'meta',
-                {
-                    'input': full_input,
-                    'frames_list': frames_list,
-                    'personality_prompt': personality_prompt,
-                },
-                max_retries,
-                model,
-                debug,
-                expected_schema=meta_prompt_schema,
-            )
-            return parsed_output, frames_list
+        parsed_output = run_llm_chain(
+            {'meta': chain},
+            'meta',
+            {
+                'input': full_input,
+                'frames_list': frames_list,
+                'styles_list': styles_list,
+                'personality_prompt': personality_prompt,
+            },
+            max_retries,
+            model,
+            debug,
+            expected_schema=meta_prompt_schema,
+        )
+        return parsed_output, frames_list, styles_list
     except Exception as e:
         logger.exception("Error generating meta prompt: %s", e)
         raise e

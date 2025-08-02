@@ -485,7 +485,7 @@ class LofnApp:
                         st.session_state['custom_personality'] = personality_text
                     display_temporary_results("Personality", personality_text, expanded=False)
 
-                meta_prompt, frames_list = generate_meta_prompt(
+                meta_prompt, frames_list, art_styles_list = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -515,6 +515,7 @@ class LofnApp:
                     .replace('{Panel-prompt}', panel_text)
                     .replace('{Personality-prompt}', personality_text)
                     .replace('{frames_list}', frames_list)
+                    .replace('{art_styles_list}', art_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
@@ -867,7 +868,7 @@ class LofnApp:
                         )
                         st.session_state['custom_personality'] = personality_text
                     display_temporary_results("Personality", personality_text, expanded=False)
-                meta_prompt, frames_list = generate_meta_prompt(
+                meta_prompt, frames_list, film_styles_list = generate_meta_prompt(
                     st.session_state.get('input', ''),
                     max_retries=self.max_retries,
                     temperature=self.temperature,
@@ -898,6 +899,7 @@ class LofnApp:
                     .replace('{Panel-prompt}', panel_text)
                     .replace('{Personality-prompt}', personality_text)
                     .replace('{frames_list}', frames_list)
+                    .replace('{film_styles_list}', film_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)

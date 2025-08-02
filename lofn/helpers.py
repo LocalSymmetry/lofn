@@ -69,6 +69,28 @@ def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     return "\n".join(sampled)
 
 
+def sample_art_styles(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected rare art styles."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'aesthetics.txt')
+    with open(path, 'r') as file:
+        styles = [s.strip() for s in file.read().split(',') if s.strip()]
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(styles, count)
+    return "\n".join(sampled)
+
+
+def sample_film_styles(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected film styles."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'film_styles.txt')
+    with open(path, 'r') as file:
+        styles = [line.strip() for line in file.readlines() if line.strip()]
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(styles, count)
+    return "\n".join(sampled)
+
+
 def sample_music_frames(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music frames."""
     path = os.path.join(os.path.dirname(__file__), 'prompts', 'music_frames.csv')
