@@ -112,10 +112,7 @@ In our visual art pipeline, we judge paintings on composition, palette, mood, na
   }}
   ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 

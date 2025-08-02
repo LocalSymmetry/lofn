@@ -676,10 +676,7 @@ Continue all steps on each of the six artistic guides individually to generate f
   }}
   ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 

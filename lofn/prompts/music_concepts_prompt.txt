@@ -191,10 +191,7 @@ To achieve the same award‑winning depth we expect in our visual art, you must 
 }}
   ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 

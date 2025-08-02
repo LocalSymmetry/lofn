@@ -142,10 +142,7 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
   }}
   ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 

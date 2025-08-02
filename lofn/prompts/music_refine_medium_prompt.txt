@@ -241,10 +241,7 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
      }}
   ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 

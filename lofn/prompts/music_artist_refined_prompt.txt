@@ -225,10 +225,7 @@ You are here to improve the music. You are allowed to change any prompt, (music,
   }}
 ```
 
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+ 
 
 ---
 
