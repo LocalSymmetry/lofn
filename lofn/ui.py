@@ -65,6 +65,7 @@ class LofnApp:
         self.available_models = self.get_available_models()
         self.available_image_models = self.get_available_image_models()
         self.model_priority = load_model_defaults()
+        self.prioritize_models_for_mode('Image Generation')
         self.initialize_session_state()
 
     def get_available_models(self):
@@ -168,6 +169,22 @@ class LofnApp:
             st.warning("No RunwayML API key found. Video generation models will not be available.")
         return models
 
+    def prioritize_models_for_mode(self, mode_name: str):
+        """Place default models for the mode at the start of available_models."""
+        mapping = {
+            'Image Generation': 'art',
+            'Video Generation': 'video',
+            'Music Generation': 'music',
+        }
+        mode_key = mapping.get(mode_name, 'art')
+        defaults = self.model_priority.get(mode_key, {})
+        priority = defaults.get('concept_medium', []) + defaults.get('prompt', [])
+        ordered = []
+        for m in priority:
+            if m in self.available_models and m not in ordered:
+                ordered.append(m)
+        self.available_models = ordered + [m for m in self.available_models if m not in ordered]
+
     def get_defaults_for_mode(self, mode_name: str):
         """Return default concept/medium and prompt models for a mode."""
         mapping = {
@@ -195,6 +212,7 @@ class LofnApp:
         current_tab = st.session_state.get('selected_tab', tabs[0])
         selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
         if selected_tab != current_tab:
+            self.prioritize_models_for_mode(selected_tab)
             model, prompt_model = self.get_defaults_for_mode(selected_tab)
             st.session_state['model'] = model
             st.session_state['prompt_model'] = prompt_model
