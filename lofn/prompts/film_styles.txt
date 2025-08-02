@@ -1,59 +1,682 @@
-German Expressionism
-Italian Neorealism
-French New Wave
-Soviet Montage
-Dogme 95
-Giallo
-Spaghetti Western
-Cinema Verite
-Mumblecore
-Slow Cinema
-Kitchen Sink Realism
-Surrealist Cinema
-Film Noir
-Avant-garde
-Neo-Noir
-New Hollywood
-Anime
-Bollywood Masala
-Wuxia
-Samurai Cinema
-Hong Kong Action
-Chambara
-Kaiju
-Pinku Eiga
-Blaxploitation
-Nunsploitation
-Sword-and-Sandal
+Absurdist Comedy
+Academic Satire
 Acid Western
-Psychedelic Cinema
-Experimental Film
-Mockumentary
-Docufiction
-Found Footage
-Anthology Film
-Nonlinear Narrative
-Minimalist Film
-Magical Realism
-Queer Cinema
-Postmodern Pastiche
+Action Blood-sport
+Action Comedy
+Action Documentary
+Action Noir
+Action Spectacle
+Afrofuturist Sci-Fi
+Afro-Surrealism
+Alien Invasion Horror
+Allegorical Fantasy
+Alternate History Sci-Fi
+Ambient Documentary
+Ambient Sci-Fi
+American Eccentric Comedy
+American Ethnographic Doc
+American Independent Drama
+American Neorealism
+Anarchic Comedy
+Anarcho-Punk Cinema
+Animesque Live-Action
+Anthology Horror
+Anti-Comedy
+Anti-War Film
+Apocalyptic Road Movie
+Arthouse Action
+Arthouse Animation
+Arthouse Biopic
+Arthouse Body Horror
+Arthouse Crime Film
+Arthouse Erotica
+Arthouse Fantasy
+Arthouse Found Footage
+Arthouse Heist
+Arthouse Historical Epic
+Arthouse Horror
+Arthouse Musical
+Arthouse Sci-Fi
+Arthouse Slasher
+Arthouse Thriller
+Arthouse Vampire Film
+Arthouse Western
+Aussie Exploitation (Ozploitation)
+Auteur-driven Blockbuster
+Auteurist Drama
+Avant-Garde Animation
+Avant-Garde Biographical
+Avant-Garde Comedy
+Avant-Garde Documentary
+Avant-Garde Ethnography
+Avant-Garde Narrative
+Avant-Garde Political
+Avant-Garde Sci-Fi
+B-Movie Sci-Fi
+B-Movie Western
+Backstage Musical
+Biker Film
+Biographical Documentary
+Biographical Drama
 Biopunk
-Steampunk
-Cyberpunk
-Dieselpunk
-Vaporwave Film
-Retro-futurism
-Poetic Realism
-Expressionist Animation
-Stop-motion
+Black Comedy
+Blacksploitation
+Bleak Kitchen Sink Realism
+Bleak Post-Apocalyptic
+Bollywood Historical Epic
+Bollywood Masala
+Bollywood Noir
+Bollywood Social Problem Film
+Brat Pack Teen Comedy
+Brazilian Cinema Novo
+British Folk Horror
+British Gangster
+Brit-Grit Drama
+Buddy Cop Action
+Buddy Comedy
+Camp
+Camp Horror
+Cannibal Horror
+Canuxploitation
+Cape-punk
+Caper Comedy
+Chambara (Samurai Cinema)
+Character Study
+Chicago-style Social Realism
+Chicano Cinema
+Children's Fantasy
+Chinese Wuxia
+Christian Allegory
+Christmas Comedy
+Christmas Horror
+Cinema of Transgression
+Cinéma Pur
+City Symphony
+Classic Hollywood Adventure
+Classic Hollywood Melodrama
+Classic Hollywood Musical
 Claymation
-Rotoscoped Live-Action
-Pixelation
-Hyperreal CGI
-Split-Screen Montage
-Oneiric Cinema
-Noir Western
+Climate Fiction (Cli-Fi)
+Cold War Espionage
+Cold War Sci-Fi
+College Comedy
+Colonial Epic
+Comedy of Manners
+Comedy of Remarriage
+Comic Fantasy
+Coming-of-Age Drama
+Coming-of-Age Horror
+Concert Film
+Conspiracy Thriller
+Contemporary Musical
+Contemporary Western
+Cosmic Horror
+Costume Drama
+Courtroom Drama
+Creature Feature
+Crime Comedy
+Crime Procedural
+Cronenbergian Body Horror
+Crossover Documentary
+Crude Humor Comedy
+Crude Stop-Motion
+Cult Animation
+Cult Comedy
+Cult Documentary
+Cult Fantasy
+Cult Horror
+Cult Sci-Fi
+Cutout Animation
+Cyber-Noir
+Cyberpunk
+Cyber-Sleaze
+Czech New Wave
+Dadaist Film
+Dance Film
+Dark Comedy
+Dark Fantasy
+Day-in-the-Life Drama
+Deadpan Comedy
+Demonic Possession Horror
+Depression-era Musical
+Desert Noir
+Destruction Spectacle
+Detective Fiction
+Deconstructed Western
+Dieselpunk
+Digital-shot Verite
+Disaster Film
+Docudrama
+Docufiction
+Documentary Portrait
+Dogme 95
+Doomsday Film
+Dystopian Sci-Fi
+Ealing Comedy
+Early Modernist Cinema
+East Asian Action-Comedy
+Eastern (Soviet Western)
+Eco-Horror
+Eco-Sci-Fi
+Eco-Thriller
+Elevated Horror
+Epic Fantasy
 Epic Historical Drama
-Social Realism
+Epic Western
+Erotic Drama
+Erotic Thriller
+Espionage Thriller
+Essay Film
+Ethnic Comedy
+Euro-Crime
+Eurospy
+Euro-Western
+Existential Comedy
+Existential Drama
+Existential Horror
+Existential Sci-Fi
+Existential Thriller
+Existential Western
+Exotic Adventure
+Experimental Animation
+Experimental Biopic
+Experimental Comedy
+Experimental Documentary
+Experimental Drama
+Experimental Ethnography
+Experimental Found Footage
+Experimental Horror
+Experimental Narrative
+Experimental Sci-Fi
+Experimental Western
+Expository Documentary
+Expressionist Animation
+Fable
+Fairy Tale Fantasy
+Family Drama
+Family-Saga
+Fantasy Adventure
+Fantasy Comedy
+Fantasy Horror
+Farce
+Feminist Sci-Fi
+Feminist Western
+Film à clef
+Film Gris
+Film Noir
+Film-within-a-film
+Final Girl Slasher
+First-Person Narrative
+Florida-Grit
+Folk Horror
+Folk Musical
+Food Documentary
+Found Footage
+Found Footage Comedy
+Found Footage Horror
+Found Footage Sci-Fi
+Fourth Wave Feminist Cinema
+Frat-House Comedy
+Free Cinema
+French Cinéma du Look
+French Extremity
+French New Wave
+French Poetic Realism
+Future Noir
+Gadget Spy Film
+Gangster Film
+Garage Cinema
+G-Funk Cinema
+German Expressionism
+German Kammerspielfilm
+Gothic Fantasy
 Gothic Horror
-Glam Rock Musical
+Gothic Romance
+Gothic Sci-Fi
+Gothic Western
+Greaser Film
+Greek Weird Wave
+Grindhouse
+Gristle-Noir
+Gross-Out Comedy
+Guerilla-Made Feature
+Hagiography
+Hallucinatory Cinema
+Hardboiled Detective
+Haunted House Film
+Heist Comedy
+Heist Film
+Heritage Film
+Heroic Bloodshed
+High-Concept Action
+High Fantasy
+High School Comedy
+Hixploitation
+Holiday Film
+Holocaust Drama
+Home-Invasion Thriller
+Hong Kong Action Cinema
+Hong Kong Crime Thriller
+Hong Kong New Wave
+Horror Comedy
+Horror Western
+Humanist Drama
+Hyperlink Cinema
+Hyperkinetic Action
+Hyperreal CGI
+Hysterical Melodrama
+I-Can't-Believe-It's-a-Doc
+Impressionistic Drama
+Improvisational Comedy
+Improvisational Drama
+Indie Animation
+Indie Coming-of-Age
+Indie Comedy
+Indie Drama
+Indie Horror
+Indie Musical
+Indie Sci-Fi
+Indie Slasher
+Indie Thriller
+Inspirational Sports Drama
+Integrated Musical
+Intellectual Sci-Fi
+Investigative Documentary
+Investigative Thriller
+Iranian New Wave
+Ironic Western
+Isekai Anime
+Islamic Golden Age Epic
+Italian Giallo
+Italian Neorealism
+Italian Poliziotteschi
+Its-a-Wonderful-Life-ism
+J-Horror
+J-Pop Musical
+J-sploitation
+Jatra Opera Film
+Jidaigeki
+Jukebox Musical
+Jungle Adventure
+Juvenile Delinquent Film
+Kaiju
+Kaidan (Ghost Story)
+Kitchen Sink Realism
+K-Noir
+Kollywood Masala
+Korean Historical Drama
+Korean Melodrama
+Korean New Wave
+Korean Vengeance Thriller
+Kraut-Western
+L.A. Rebellion Cinema
+Late-Capitalist Satire
+Latinx-Futurism
+Legal Thriller
+Lettrist Cinema
+LGBTQ+ Documentary
+LGBTQ+ Drama
+LGBTQ+ Historical
+Literary Adaptation
+Live-Action Anime
+Lo-Fi Animation
+Lo-Fi Comedy
+Lo-Fi Drama
+Lo-Fi Found Footage
+Lo-Fi Horror
+Lo-Fi Mumblecore
+Lo-Fi Sci-Fi
+Lo-Fi Thriller
+Lonely-Man-in-a-City Film
+Luchador Film
+Lyrical Drama
+Lyrical Documentary
+Machinima
+Mad Scientist Film
+Mafia Film
+Magical Girl Anime
+Magical Realism
+Martial Arts
+Martial Arts Comedy
+Marxist Cinema
+Masala Film
+Maternal Melodrama
+Maximalist Cinema
+Mecha Anime
+Media Satire
+Medical Drama
+Medical Horror
+Medieval Fantasy
+Meditative Documentary
+Meditative Drama
+Meditative Sci-Fi
+Melodrama
+Memento Mori Film
+Meta-Cinema
+Meta-Comedy
+Meta-Documentary
+Meta-Horror
+Metaphysical Western
+Micro-Budget Indie
+Middle-Class Satire
+Military Action
+Military Comedy
+Military Drama
+Military Sci-Fi
+Minimalist Animation
+Minimalist Drama
+Minimalist Horror
+Minimalist Sci-Fi
+Minimalist Thriller
+Mockumentary
+Modernist Cinema
+Modernized Shakespeare
+Mollywood Social Realism
+Monster Movie
+Mumblecore
+Mumblegore
+Music Biopic
+Music Documentary
+Musical Comedy
+Musical Drama
+Mystery Film
+Mythological Epic
+Mythopoetic Cinema
+Narco-Film
+Narrative-driven Game Film
+Nature Documentary
+Nautical Adventure
+Nazi-sploitation
+Neo-Blaxploitation
+Neo-Giallo
+Neo-Hollywood
+Neo-Noir
+Neorealism
+Neo-Western
+New German Cinema
+New Hollywood
+New Queer Cinema
+New Romanian Cinema
+Nihilistic Black Comedy
+Nihilistic Thriller
+No-Wave Cinema
+Noir-Comedy
+Nollywood Drama
+Non-Narrative Film
+Nonlinear Narrative
+Nordic Noir
+Nostalgic Period Piece
+Nunsploitation
+NYC-Indie
+Observational Documentary
+Observational Drama
+Occult Detective Fiction
+Occult Horror
+One-Location Thriller
+Oneiric Cinema (Dream Film)
+Operetta Film
+Optimistic Sci-Fi
+Outlaw Biker Film
+Ostern (Red Western)
+Pagan Folk Horror
+Paranoid Thriller
+Paranormal Horror
+Parody Film
+Participatory Documentary
+Pastiche Film
+Pastoral Drama
+Patriotic War Film
+Performative Documentary
+Period Drama
+Period Piece
+Philosophical Sci-Fi
+Pinku Eiga
+Pixelation Animation
+Planetary Romance
+Poetic Documentary
+Poetic Realism
+Political Allegory
+Political Cartoon (Animated)
+Political Documentary
+Political Drama
+Political Satire
+Political Thriller
+Poliziotteschi
+Porn-Chic
+Post-9/11 Thriller
+Post-Apocalyptic
+Post-Colonial Drama
+Post-Communist Satire
+Post-Horror
+Post-Human Sci-Fi
+Post-Internet Cinema
+Postmodern Comedy
+Postmodern Musical
+Postmodern Pastiche
+Postmodern Western
+Poverty Row Horror
+Pre-Code Comedy
+Pre-Code Gangster
+Pre-Code Horror
+Prison Drama
+Prison Escape Film
+Procedural Drama
+Propaganda Film
+Proto-Feminist Cinema
+Proto-Noir
+Proto-Slasher
+Psychedelic Animation
+Psychedelic Cinema
+Psychedelic Comedy
+Psychedelic Fantasy
+Psychedelic Horror
+Psychedelic Musical
+Psychedelic Western
+Psych-Biddy (Hagsploitation)
+Psycho-Drama
+Psychological Horror
+Psychological Thriller
+Psychotronic Film
+Pulp Noir
+Punk Rock Cinema
+Queer Arthouse
+Queer Cinema
+Queer Comedy
+Queer Drama
+Queer Horror
+Queer Period Drama
+Queer Romance
+Race Film
+Raunchy Comedy
+Real-Time Thriller
+Recut-Footage Comedy
+Redemptive Drama
+Reflexive Documentary
+Remodernist Film
+Revisionist Fairy Tale
+Revisionist History
+Revisionist Western
+Road Comedy
+Road Movie
+Rock Opera
+Rockumentary
+Rogue Cop Thriller
+Roman à clef
+Romanian New Wave
+Romantic Comedy
+Romantic Drama
+Romantic Fantasy
+Romantic Thriller
+Rotoscoped Animation
+Rural Drama
+Rural Noir
+Russo-futurism
+Samurai Cinema
+Sandalpunk
+Satire
+Satirical Horror
+Scandi-Noir
+Schlock-Horror
+Scholarly Documentary
+Sci-Fi Action
+Sci-Fi Adventure
+Sci-Fi Body Horror
+Sci-Fi Comedy
+Sci-Fi Drama
+Sci-Fi Fantasy
+Sci-Fi Horror
+Sci-Fi Musical
+Sci-Fi Noir
+Sci-Fi Satire
+Sci-Fi Thriller
+Sci-Fi Western
+Screwball Comedy
+Sea Adventure
+Self-Reflexive Cinema
+Senegalese New Wave
+Serial Killer Thriller
+Shomin-geki
+Shonen Anime
+Shoujo Anime
+Silent Comedy
+Silent Drama
+Silent Epic
+Silkpunk
+Skate Film
+Sketch Comedy Film
+Slasher Film
+Slapstick Comedy
+Slice of Life Anime
+Slice of Life Drama
+Slow Burn Horror
+Slow Burn Sci-Fi
+Slow Burn Thriller
+Slow Cinema
+Snow-bound Thriller
+Social Problem Film
+Social Realism
+Social Satire
+Socialist Realism
+Soft Sci-Fi
+Solarpunk
+Southern Gothic
+Soviet Montage Theory
+Space Adventure
+Space Opera
+Space Western
+Spaghetti Western
+Spanish Giallo
+Splatter Film
+Sports Comedy
+Sports Documentary
+Sports Drama
+Spy Comedy
+Spy-Fi
+Spy Film
+Stand-up Comedy Film
+Steampunk
+Stoner Comedy
+Stop-Motion Animation
+Storm-of-the-Century Film
+Straight-to-Video Action
+Structuralist Film
+Student Film
+Studio Ghibli-esque
+Submarine Film
+Suburban Drama
+Suburban Gothic
+Suburban Satire
+Sunshine Noir
+Superhero
+Superhero Comedy
+Superhero Deconstruction
+Supernatural Drama
+Supernatural Horror
+Supernatural Romance
+Supernatural Thriller
+Surf Film
+Surrealist Animation
+Surrealist Cinema
+Surrealist Comedy
+Surrealist Horror
+Survival Drama
+Survival Horror
+Swashbuckler
+Sword-and-sandal
+Sword-and-sorcery
+Synthwave Cinema
+Taiwanese New Wave
+Tartan-Noir
+Tearjerker
+Tech-Noir
+Techno-Thriller
+Teen Comedy
+Teen Drama
+Teen Horror
+Teen Romance
+Teen Slasher
+Tele-Novela Melodrama
+Terrorism Thriller
+Texas-Grit
+Third Cinema
+Thriller-Comedy
+Time Loop Film
+Time Travel Sci-Fi
+Tokusatsu
+Tollywood Masala
+Tonal Poem Film
+Tragedy
+Tragic-Comedy
+Trans-humanist Sci-Fi
+Travel Documentary
+Troma-esque
+True Crime Documentary
+True Crime Drama
+Underground Film
+Underwater Adventure
+Un-documentary
+Utopian Sci-Fi
+Urban Comedy
+Urban Drama
+Urban Fantasy
+Urban Gothic
+Urban Legend Horror
+Urban Western
+Vampire Film
+Vaporwave Cinema
+Variety Show Film
+Vaudeville Comedy
+Verite Drama
+Video Game Adaptation
+Video Nasties
+Vigilante Film
+Viking Epic
+Virtual Reality Sci-Fi
+Visceral Action
+War-Comedy
+War-Drama
+War-Epic
+War-Romance
+Weepie (Maternal Melodrama)
+Weird West
+Werewolf Film
+Western
+Whimsical Comedy
+Whimsical Fantasy
+Whodunit
+Witchcraft Horror
+Women-in-Prison Film
+Workplace Comedy
+Workplace Drama
+World-War-I Film
+World-War-II Film
+Wuxia
+Yakuza Film
+Yé-yé Musical
+Youth-in-Revolt Film
+YouTube Poop Cinema
+Zany Comedy
+Zapata Western
+Zen-Noir
+Zombie Apocalypse
+Zombie Comedy (Zom-Com)

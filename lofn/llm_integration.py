@@ -78,8 +78,8 @@ panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt
 personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
 
 # Video prompts
-video_concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
-video_concept_header_part2 = read_prompt('/lofn/prompts/concept_header_pt2.txt')
+video_concept_header_part1 = read_prompt('/lofn/prompts/video_concept_header.txt')
+video_concept_header_part2 = read_prompt('/lofn/prompts/video_concept_header_pt2.txt')
 video_essence_prompt_middle = read_prompt('/lofn/prompts/video_essence_prompt.txt')
 video_concepts_prompt_middle = read_prompt('/lofn/prompts/video_concepts_prompt.txt')
 video_prompt_header_part1 = read_prompt('/lofn/prompts/video_prompt_header.txt')
@@ -1171,9 +1171,9 @@ def generate_concept_mediums(
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
-        selected_aesthetics = random.sample(aesthetics, 100)
-        if "Poe" in model:
-            selected_aesthetics = selected_aesthetics[:24]
+        # selected_aesthetics = random.sample(aesthetics, 100)
+        # if "Poe" in model:
+        #     selected_aesthetics = selected_aesthetics[:24]
 
         # Determine max_tokens based on model's capacity
         max_tokens = llm._identifying_params.get('max_tokens', 4096)
@@ -1803,9 +1803,9 @@ def generate_video_prompts(
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
-        selected_aesthetics = random.sample(aesthetics, 100)
-        if "Poe" in model:
-            selected_aesthetics = selected_aesthetics[:24]
+        # selected_aesthetics = random.sample(aesthetics, 100)
+        # if "Poe" in model:
+        #     selected_aesthetics = selected_aesthetics[:24]
 
         # Use video prompts
         prompts = prompt_configs.get('video')

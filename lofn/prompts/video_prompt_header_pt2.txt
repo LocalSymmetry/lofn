@@ -42,11 +42,11 @@ Use to maintain consistency and quality.
 
 ---
 
-### EXAMPLE WORKFLOW
+### EXAMPLE WORKFLOW - PROMPT EXAMPLE BELOW!
 
 *Concept:* A robot flower blooming rapidly in a dark laboratory.
 
-*Strong Prompt (Auteur Level):*
+### PROMPT EXAMPLE - *Strong Prompt (Auteur Level):*
 (Subject/Setting) A hyper-detailed, chrome robotic flower on a steel table in a dark, moody laboratory.
 (Action/Motion) It blooms rapidly; the metallic petals unfold with smooth, precise mechanical movements.
 (Camera) Macro lens, extreme close-up. The camera slowly orbits the flower. Rack focus from the stamen to the petal tips.
