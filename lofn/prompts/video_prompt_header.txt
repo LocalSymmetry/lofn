@@ -61,14 +61,14 @@ Use these roles as needed. Assign names and personalities if helpful, and speak 
 5. **Style Axes**:
    - **Narrative Complexity**
    - **Emotional Intensity**
-   - **Visual Style**
    - **Symbolism**
-   - **Pacing**
-   - **Character Emphasis**
-   - **Color Palette**
-   - **Cinematography**
-   - **Surrealism vs. Realism**
-   - **Dynamic vs. Static**
+   - **Pacing (Energy Level)**
+   - **Hook Intensity**
+   - **Aesthetic Stylization**
+   - **Lighting Mood**
+   - **Perspective & Lensing**
+   - **Motion Quality**
+   - **Surrealism vs. Realism (Physics)**
 
 ### Understanding AI Video Generation with Runway ML Gen-3 Alpha, Minimax, or other AI video generators.
 
