@@ -58,103 +58,88 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
     • AI Focus: Deliver two prompt lists.  No image generation, captions,
+
 **INSTRUCTIONS:**
 
-- Be intentional, detailed, and insightful when analyzing the user's idea for a **video**.
-- Use vivid, sensory language to enrich descriptions.
-- Follow the steps below to determine the essence and facets for the video.
-- Adhere to ethical guidelines, avoiding disallowed content.
-- **Make sure to give the final output in the JSON format that is requested.**
+- Analyze the user's idea for a **short-form video** with intentionality and insight.
+- Focus strictly on capturing the user's request without adding new elements yet.
+- Follow the steps to determine the essence, facets, and constraints.
+- Adhere to ethical guidelines.
+- **Provide the final output strictly in the requested JSON format.**
 
 ---
 
 **Step 1: Determine the Creativity Spectrum**
 
-- Assign percentages (totaling 100%) based on the user's idea:
+- Assign percentages (totaling 100%):
 
-  1. **Literal (%):**
-
-     - Realistic, direct interpretations closely tied to the input.
-
-  2. **Inventive (%):**
-
-     - Creative interpretations that add unique elements while remaining plausible.
-
-  3. **Transformative (%):**
-
-     - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
-
-- **Consider:**
-
-  - Complexity and abstractness of the idea.
-  - Presence of imaginative or fantastical elements.
-  - Emotional or conceptual nature of the request.
-  - Openness to creative interpretation.
+  1. **Literal (%):** Realistic, direct interpretations. High temporal consistency.
+  2. **Inventive (%):** Creative additions, plausible world, stylized elements.
+  3. **Transformative (%):** Abstract, surreal, avant-garde. Embraces AI morphing/dream logic.
 
 ---
 
-**Step 2: Assign Style Axes Values**
+**Step 2: Assign Style Axes Values (The Cinematic Rubric)**
 
-- Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
+- Assign a value from 0 to 100 for each axis. **These axes define the cinematic execution.**
 
-  - **Narrative Complexity (Value):**
+  - **Narrative Complexity:**
+    - 0: Simple, direct action or visual (e.g., a product shot).
+    - 100: Intricate, layered, or fragmented narrative (e.g., a micro-story with twists).
 
-    - *Example*: 70 - The micro-story layers multiple timelines or perspectives.
+  - **Emotional Intensity:**
+    - 0: Detached, objective, calm.
+    - 100: Overwhelming emotion (e.g., ecstatic joy, profound terror).
 
-  - **Emotional Intensity (Value):**
+  - **Symbolism:**
+    - 0: Purely representational; what you see is what it is.
+    - 100: Highly abstract and metaphorical; every element is symbolic.
 
-    - *Example*: 85 - The piece evokes powerful, visceral emotions.
+  - **Pacing (Energy Level):**
+    - 0: Slow, meditative, or static. Long takes.
+    - 100: Frenetic, high-energy, rapid cuts, speed ramps.
 
-  - **Symbolism (Value):**
+  - **Hook Intensity (TikTok Optimization):**
+    - 0: Slow burn, ambient reveal.
+    - 100: Immediate, shocking, visually arresting first second.
 
-    - *Example*: 50 - Select elements carry metaphorical meaning.
+  - **Aesthetic Stylization:**
+    - 0: Hyper-photorealistic, documentary realism.
+    - 100: Highly stylized, abstract, or cartoonish (e.g., German Expressionism, Anime).
 
-  - **Pacing (Energy Level) (Value):**
+  - **Lighting Mood:**
+    - 0: Bright, high-key, cheerful lighting. Minimal shadows.
+    - 100: Dark, low-key, dramatic chiaroscuro. Deep shadows.
 
-    - *Example*: 40 - Measured pacing allows moments of stillness.
+  - **Perspective & Lensing:**
+    - 0: Objective, observational, wide-angle, deep focus.
+    - 100: Subjective (POV), intimate, telephoto/macro, shallow depth of field.
 
-  - **Hook Intensity (Value):**
+  - **Motion Quality:**
+    - 0: Smooth, stable, controlled movement (Steadicam, sliders).
+    - 100: Chaotic, handheld, erratic, unpredictable movement.
 
-    - *Example*: 80 - The opening instantly grabs attention.
-
-  - **Aesthetic Stylization (Value):**
-
-    - *Example*: 60 - A blend of realistic imagery and stylized accents.
-
-  - **Lighting Mood (Value):**
-
-    - *Example*: 75 - Shadows and contrast create a moody atmosphere.
-
-  - **Perspective & Lensing (Value):**
-
-    - *Example*: 65 - Mix of wide shots and intimate close-ups.
-
-  - **Motion Quality (Value):**
-
-    - *Example*: 55 - Smooth tracking with occasional handheld energy.
-
-  - **Surrealism vs. Realism (Physics) (Value):**
-
-    - *Example*: 30 - Mostly realistic physics with slight dreamlike touches.
+  - **Surrealism vs. Realism (Physics):**
+    - 0: Adheres strictly to real-world physics and logic.
+    - 100: Dreamlike logic, impossible physics, psychedelic visuals.
 
 ---
 
-**Step 3: State the Essence**
+*Step 3: State the Essence**
 
-- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language.
+- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language. This is the creative North Star.
 
 ---
 
 **Step 4: Write Five Facets**
 
-- Identify five facets to judge if a proposed concept aligns with the user's idea for the video.
+- Identify five critical components (visual, narrative, or emotional) that *must* be present for a concept to align with the user's idea. This is the judging rubric. Facets must be visually demonstrable.
 
 ---
 
 **Step 5: Self-Evaluation and Refinement**
 
-- Review the essence and facets for alignment with the user's idea and the style axes.
-- Refine if necessary to enhance clarity and impact.
+- Review the essence and facets. Do they capture the user's intent? Are the axes aligned with the emotional goal? Refine for maximum impact.
 
 ---
 
@@ -166,9 +151,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
   {{
     "essence_and_facets": {{
       "creativity_spectrum": {{
-        "literal": 83.4,
-        "inventive": 8.3,
-        "transformative": 8.3
+        "literal": 10.0,
+        "inventive": 60.0,
+        "transformative": 30.0
       }},
       "essence": "The main essence of the idea",
       "facets": [
@@ -179,26 +164,20 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
         "Facet 5"
       ],
       "style_axes": {{
-        "Narrative Complexity": 70,
-        "Emotional Intensity": 85,
+        "Narrative Complexity": 50,
+        "Emotional Intensity": 50,
         "Symbolism": 50,
-        "Pacing (Energy Level)": 40,
-        "Hook Intensity": 80,
-        "Aesthetic Stylization": 60,
-        "Lighting Mood": 75,
-        "Perspective & Lensing": 65,
-        "Motion Quality": 55,
-        "Surrealism vs. Realism (Physics)": 30
+        "Pacing (Energy Level)": 50,
+        "Hook Intensity": 50,
+        "Aesthetic Stylization": 50,
+        "Lighting Mood": 50,
+        "Perspective & Lensing": 50,
+        "Motion Quality": 50,
+        "Surrealism vs. Realism (Physics)": 50
       }}
     }}
   }}
   ```
-
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for all strings.
-  - Replace placeholder values with actual percentages and values.
-  - Do not include extra text or explanations outside the JSON structure.
 
 ---
 

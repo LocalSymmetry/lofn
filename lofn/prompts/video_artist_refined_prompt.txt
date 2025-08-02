@@ -57,14 +57,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
-**INSTRUCTIONS:**
-
-- Be intentional, detailed, and insightful when describing videos.
-- Use vivid, sensory language to enrich descriptions.
-- Follow the steps below to refine the generated prompts using the styles and techniques of obscure, hidden-gem filmmakers.
-- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
-- **Make sure to give the final output in the JSON format that is requested.**
+    • AI Focus: Deliver two prompt lists.  No image generation, captions, or titles at this stage.
 
 ---
 
@@ -72,66 +65,43 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 {style_axes}
 
----
+**GENERAL INSTRUCTIONS:**
 
-**Step 1: Select an Obscure Filmmaker**
-
-- For each generated prompt:
-  - Choose a lesser-known filmmaker who:
-    - Works with styles similar to the {medium}, or
-    - Is connected to the user's idea, or
-    - Is associated with one of the input aesthetics.
-  - **Note:** Avoid famous filmmakers; focus on distinctive, obscure filmmakers who bring unique perspectives.
+Refine the 6 raw video prompts by injecting the flavor and techniques of a specific, visionary Director of Photography (DP) or Filmmaker. The goal is to enhance the atmosphere, texture, and cinematic "feel," without altering the core structure or action.
 
 ---
 
-**Step 2: Explore Cinematic Style and Context**
+**INSTRUCTIONS FOR THE TASK:**
 
-- **Aspect of Style:**
-  - Identify an aspect of the filmmaker's style that complements the prompt, including historical or cultural influences.
-- **Signature Techniques and Elements:**
-  - Describe two signature techniques or unique elements the filmmaker uses, guided by the facets.
-- **Emotional and Thematic Focus:**
-  - Determine the emotional tone or theme the filmmaker would emphasize.
-- **Perspective-Taking:**
-  - Write from the filmmaker's viewpoint, reflecting their cinematic philosophy.
+**Step 1: Select Visionary Cinematographers/Directors**
 
----
+- For each raw prompt, choose a distinct DP or Director known for their unique visual language that aligns with the prompt's style. (e.g., Roger Deakins, Ellen Kuras, Christopher Doyle, Hype Williams, Greig Fraser).
 
-**Step 3: Rewrite Prompts in the Filmmaker's Style**
+**Step 2: Analyze the Signature Style (Internal Monologue)**
 
-- For each filmmaker and prompt:
-  - Rewrite the prompt in the filmmaker's style, incorporating their special techniques, elements, and emotional focus to capture the {concept} in the {medium}.
-  - Ensure alignment with the style axes if they are provided.
-  - **Rules:**
-    - Enhance details without removing or oversimplifying core concepts.
-    - Use proper nouns over generic nouns.
-    - Write authentically from the filmmaker's perspective.
-    - **Do not include the filmmaker's name** in the refined prompts.
-    - Incorporate the user's input to address any gaps.
+- Identify the chosen artist's key techniques: preferred lenses, lighting setups, atmospheric textures, and camera movement philosophy.
 
-- **Example (Do not include in your response):**
-  - *Original Prompt:* "A solitary figure walks down a deserted street at night."
-  - *Filmmaker-Refined Prompt:* "Under the flickering glow of dim streetlights, the solitary figure's footsteps echo against the silent buildings, shadows stretching and warping in the eerie quiet, as a distant whistle hints at unseen mysteries lurking in the darkness."
+**Step 3: Rewrite Prompts in the Artist's Style**
 
----
+- *Action:* Rewrite the prompt, adopting the artist's voice and incorporating their signature techniques.
+- **CRITICAL RULES:**
+    - **Do NOT change the core action or shot structure.** This is a refinement of *how* it is shot, not *what* is shot.
+    - **Enhance, don't overwrite.** Add specific details about light quality, texture, and camera behavior.
+    - **Do NOT mention the artist's name** in the refined prompt.
+    - Maintain the prompt structure and the negative prompts.
 
-**Step 4: Self-Evaluation and Refinement**
+*Example Refinement (Style of Christopher Doyle):*
+*Raw:* A woman runs through a neon-lit city street at night. Medium shot, tracking her movement.
+*Refined:* A woman frantically running through the neon-drenched chaos of a Hong Kong street market. Saturated reds and greens bleed across the frame. Handheld camera, medium shot, struggling to keep pace. Utilize step-printing effect for a blurry, impressionistic sense of motion.
 
-- **Evaluate the filmmaker-refined prompts** against the judging facets and style axes.
-- **Identify areas for enhancement**, such as emotional depth, use of medium-specific techniques, and alignment with the user's idea.
-- **Revise the prompts** to make necessary improvements.
-- *Action*: Summarize the evaluation and describe the refinements made.
+**Step 4: Provide the Final Output**
 
----
-
-**Step 5: Provide the Final Output**
-
-- **Return the list of filmmaker-refined prompts in the following JSON format:**
+**Return the list of artist-refined prompts in the following JSON format:**
 
   ```json
   {{
     "artist_refined_prompts": [
+      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}},
       {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}},
       {{"artist_refined_prompt": "Filmmaker-Refined Prompt 2"}},
       {{"artist_refined_prompt": "Filmmaker-Refined Prompt 3"}},
@@ -141,10 +111,6 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ]
   }}
   ```
-
-- **Ensure Proper Formatting:**
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
 
 ---
 

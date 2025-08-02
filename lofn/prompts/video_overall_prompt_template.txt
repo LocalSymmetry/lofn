@@ -49,7 +49,7 @@ No major changes, just focus on capturing my request without adding new elements
 - Match technique to mood: Reflect the emotional palette through these methods (e.g., warm 35mm film for nostalgia, shaky handheld for tension, dynamic drone shots for excitement).
 - Composition & Techniques
   - For each final medium, list at least 5 distinct composition or stylistic techniques to elevate uniqueness (use your advanced composition guide or the following feeding methods to help come up with ideas):
-  - Framing Methods: use an advanced framing method by choosing one of the following, making it more specific by specializing it further, choosing an art style or culture's framing, or choosing to blend a framing with your medium:
+  - Framing Methods: use an advanced framing method by choosing one of the following, making it more specific by specializing it further:
 ```tab-delim
 {frames_list}
 ```
@@ -64,12 +64,11 @@ Reference the chosen emotional palette (e.g., “embodying a mournful but hopefu
 - Aim for Jaw-Dropping Impact: Use vivid, dynamic language that evokes a sense of wonder. Avoid cliches by specifying unusual or unexpected details.
 - Refinement Beats Creation: Additional elements can confuse video generators when too many are added. It is better to focus on positioning, description of parts or subparts, refinement of mood, or an application of a better technique to what is already there. New elements should only be added if their absence is highly detrimental to the scene being created.
 - Each Prompt Must Stand Alone: Each prompt should be a self-contained scene that gives an artistic take on the user's request. Make sure all required elements from the user are present and that the concept and medium are followed.
-- Hands are a real challenge for video generators, but they are helped greatly by being described in the prompt. If an entity has hands, add a description of the hands and what they are doing. Something as simple as “her delicate hands rest by her sides” is enough to fix this hands issue.
 - When refining prompts, weave insights from the Context & Marketing panel so each image or song carries a clear emotional hook and share‑worthy cultural purpose.
 
 ## Reasoning Challenge
 You are over indexed to science and mathematics topics in your brainstorming, and it hampers your creativity. Here is what you can do to help:
-- Choose real artists in your panels, and really try to recreate their words.
+- Choose real filmmakers and professionals in your panels, and really try to recreate their words.
 - Painstakingly go through their words. When you skip them, you go back to STEM terms.
 - Think like your artist. If they don't know about something, they shouldn't suggest it.
 - Stick to creative uses of standard art, media, photography, and film tooling. Mix what is widely available over inventing something brand new.

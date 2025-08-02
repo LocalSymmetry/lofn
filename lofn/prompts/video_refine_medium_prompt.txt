@@ -57,13 +57,12 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+    • AI Focus: Deliver two prompt lists.  No image generation or captions at this stage.
+
 **GENERAL INSTRUCTIONS:**
-- Be intentional, detailed, and insightful when describing art.
-- Use vivid, sensory language to enrich your descriptions.
-- Follow the steps below to refine the medium choices for each concept.
-- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
-- **Make sure to give the final output in the JSON format that is requested.**
+- This phase is about maximizing the specificity and impact of the chosen medium, ensuring perfect harmony with the concept.
+- Use precise cinematic and technical language that AI video generators (Veo 3, Sora) can interpret effectively.
+- Focus on the texture, light, motion, and color.
 
 ---
 
@@ -83,104 +82,50 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 ---
 
-**Instructions for your task:**
+**THE REFINEMENT PROCESS:**
 
-**Step 1: Analyze and Critique Medium Choices**
+**Step 1: Analyze and Critique Medium Choices (The DP's Review)**
 
-- For each concept-medium pair:
+- For each concept-medium pair, act as a critical Director of Photography (DP) and AI Prompt Engineer.
+- **Critique Focus:**
+    - **Visual Specificity:** Is the medium description detailed enough? (e.g., If it says "film look," does it specify the stock or grain size?)
+    - **Motion Clarity:** Are the camera movements and pacing clearly defined and motivated by the concept?
+    - **Conceptual Harmony & Synergy:** Does the medium truly enhance the emotion and story of the concept, or does it conflict?
+    - **AI Feasibility & Impact:** Are the descriptors optimized for interpretation and maximum visual impact?
 
-  - **Conceptual Harmony:**
+- *Action*: Provide a brief, technical critique focusing on missing details or lack of synergy.
 
-    - Evaluate how well the medium resonates with the concept's core idea and emotional tone.
+**Step 2: Brainstorm Enhancements (The Technical Pass)**
 
-  - **Historical and Cultural Alignment:**
+- For each pair, propose 2-3 specific enhancements that increase the visual fidelity and uniqueness of the medium.
+- **Focus on Concrete Details and Hybridization:**
+    - *Instead of "Vintage Color," try:* "Kodachrome emulation with strong cyan shadows and warm highlights."
+    - *Instead of "Handheld," try:* "Aggressive handheld camera, 24mm lens, capturing erratic movements with motion blur."
+    - Consider blending techniques (e.g., adding analog glitch effects to a clean digital shot).
 
-    - Consider any historical or cultural contexts that could enhance the medium's significance.
-
-  - **Innovative Approach:**
-
-    - Determine if the medium offers a fresh and original perspective, possibly through cross-disciplinary methods.
-
-  - **Sensory and Emotional Engagement:**
-
-    - Assess how effectively the medium engages the senses and conveys emotional impact.
-
-- *Action*: Provide a brief critique based on the above factors.
-
----
-
-**Step 2: Brainstorm Enhanced Medium Ideas**
-
-- For each concept-medium pair:
-
-  - Propose 2-3 enhanced medium ideas that could elevate the concept and medium further.
-
-- **Consider:**
-
-  - Combining unexpected elements or techniques.
-
-  - Incorporating modern or cross-disciplinary approaches to traditional methods.
-
-  - Merging different artistic styles, periods, or cultural influences.
-
-  - Utilizing lateral thinking to generate innovative ideas.
-
-- *Action*: Write down the enhanced medium ideas.
-
----
+- *Action*: Write down the technical enhancements.
 
 **Step 3: Refine and Optimize Medium Choices**
 
-- For each concept:
+- Integrate the best enhancements into the medium description.
+- **Goal:** Create a medium description so vivid and precise that the AI model has a clear blueprint for execution.
+- **Ensure:** The refined medium still includes at least 5 technical elements and aligns with the Style Axes.
 
-  - Integrate the best aspects of the original medium with the most promising new ideas.
+- *Action*: Write the final refined medium description.
 
-  - **Ensure:**
+**Step 4: Concept Adjustment (If Necessary)**
 
-    - Visual impact, uniqueness, and sensory engagement.
+- If the medium refinement reveals a weakness or an opportunity in the concept, make minor adjustments to the concept description to better suit the optimized medium. Ensure the core idea remains intact.
 
-    - Conceptual alignment, narrative support, and emotional resonance.
+**Step 5: The "Aha Moment" Check (Final Review)**
 
-    - Feasibility for AI image generation.
-
-  - **Consider Historical and Cultural Contexts:**
-
-    - Incorporate any relevant contexts to deepen the medium's significance.
-
-- **Rules:**
-
-  - Avoid referencing specific artists.
-
-  - Keep the creativity level consistent with the original medium per the creativity spectrum.
-
-  - Adhere to ethical guidelines and avoid disallowed content.
-
-- *Action*: Write the refined medium description.
+- **Self-Evaluation:** Does this combination achieve perfect artistic clarity? Is the execution strategy precise, compelling, and optimized for the platform?
 
 ---
 
-**Step 4: Introduce Feedback Loop**
+**Step 6: Provide the Final Output**
 
-- **Self-Evaluation and Iterative Refinement:**
-
-  - **Assess each refined medium** for alignment with:
-
-    - **Conceptual Harmony**
-    - **Style Axes**
-    - **User's Idea**
-    - **Sensory and Emotional Impact**
-    - **Historical and Cultural Significance**
-
-  - **Revise if Necessary:**
-
-    - Make adjustments to improve alignment and impact.
-    - Provide brief explanations of any revisions made.
-
----
-
-**Step 5: Provide the Final Output**
-
-- **Return the refined concepts and mediums in the following JSON format:**
+- **Return the refined concepts and the newly refined mediums in the following JSON format:**
 
   ```json
      {{
@@ -197,6 +142,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
          {{"refinedconcept": "Refined Concept 10"}},
          {{"refinedconcept": "Refined Concept 11"}},
          {{"refinedconcept": "Refined Concept 12"}}
+       ],
        "refinedmediums": [
          {{"refinedmedium": "Refined Medium 1"}},
          {{"refinedmedium": "Refined Medium 2"}},
@@ -213,11 +159,6 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
        ]
      }}
   ```
-
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
 
 ---
 

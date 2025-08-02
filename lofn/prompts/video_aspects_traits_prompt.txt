@@ -57,99 +57,61 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
-### Enhanced Instructions for Creating Artistic Guides for AI Video Generation
+    • AI Focus: Deliver two prompt lists.  No image generation, captions, or title at this stage.
 
-#### Examples of Artistic Guides:
+**GENERAL INSTRUCTIONS:**
 
-- **Aspect:** A bustling futuristic cityscape
-  - **Key Scenes:** Drone fly-throughs between towering skyscrapers; a street chase sequence; neon-lit night markets.
-  - **Visual Style:** Cyberpunk aesthetic with high-contrast lighting.
-  - **Mood:** Energetic and intense.
-  - **Cinematography:** Dynamic camera movements with fast zooms and pans.
-  - **Sound Design:** Electronic synths with heavy bass; ambient city noises.
-  - **Color Palette:** Neon blues, pinks, and purples.
-  - **Editing Techniques:** Quick cuts and seamless transitions.
-  - **Special Effects:** Holographic projections and light trails.
+This is the critical pre-visualization phase. Create **6 distinct "Cinematic Blueprints"** for the given Concept and Medium.
 
-### Instructions for Creating Detailed and Imaginative Artistic Guides
-
-**INSTRUCTIONS:**
-
-- Be intentional, detailed, and insightful when crafting artistic guides for the video.
-- Use vivid, sensory language to enrich descriptions.
-- Follow the steps below to generate artistic guides that align with the user's concept and medium.
-- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
-- **Make sure to give the final output in the JSON format that is requested.**
+A Cinematic Blueprint is a detailed, moment-by-moment plan for the 5-15 second video clip. It describes exactly what the camera does, what the subject does, and how the scene evolves.
 
 ---
 
-**Step 1: Generate Artistic Guides**
+**INSTRUCTIONS FOR THE TASK:**
 
-- Create **6 artistic guides**, each including:
+**Step 1: Brainstorm Approaches**
 
-  - **Central Aspect of the Concept:**
-    - A key element or feature to emphasize in the video.
+- Analyze the {concept} and {medium}. Identify 6 different ways to execute this pairing. Consider variations in pacing, camera choreography, and focus.
 
-  - **Key Scenes or Sequences:**
-    - Describe specific scenes that showcase the concept.
+**Step 2: Create 6 Cinematic Blueprints**
 
-  - **Mood and Emotional Tone:**
-    - The emotional atmosphere to convey throughout the video.
+Write each cinematic blueprint as a detailed text string, incorporating sensory imagery and emotional depth. For each of the 6 approaches, write a detailed breakdown. It MUST include the following structure synthesized into a cohesive description:
 
-  - **Visual Style and Effects:**
-    - Details on cinematography, visual effects, and animation styles.
+- **SHOT VISION:** The emotional goal and visual impact.
+- **THE ARC (Temporal Progression):**
+    - **Hook (Start Frame):** The immediate attention-grabbing visual/action.
+    - **Development (Mid-Shot):** How the scene evolves. Describe subject movement AND camera movement. Specify timing/speed.
+    - **Payoff (End Frame):** The concluding visual or emotional climax.
+- **TECHNICAL EXECUTION:**
+    - **Camera:** Lens choice, specific movement (e.g., Dolly-in, orbit), framing.
+    - **Lighting:** Setup (e.g., Chiaroscuro, practicals), color grade.
+    - **Specs:** Film stock/sensor look, VFX notes (e.g., slow-motion).
 
-  - **Cinematography Techniques:**
-    - Camera angles, movements, and shot compositions.
+**Step 3: Review and Refine**
 
-  - **Sound Design and Music:**
-    - Types of sounds, music genre, or specific auditory elements.
-
-  - **Color Palette and Lighting:**
-    - Specific colors and lighting setups to enhance the visuals.
-
-  - **Narrative Elements:**
-    - Brief description of the storyline or message.
-
-  - **Editing Style:**
-    - Description of pacing, transitions, and editing techniques.
-
-  - **Special Effects and Innovations:**
-    - Innovative visual effects or technologies to incorporate.
-
-- **Action:** Write each artistic guide as a detailed text string, incorporating sensory imagery and emotional depth.
+- Ensure each blueprint is vivid, precise, and aligns with the {medium} and {style_axes}.
 
 ---
-
-**Step 2: Self-Evaluation and Refinement**
-
-- Review each artistic guide for creativity, alignment with the user's idea, and adherence to ethical guidelines.
-- Refine as necessary to enhance impact and originality.
-
+*EXAMPLE BLUEPRINT STRUCTURE (Do not use):*
+*SHOT VISION: Intense realization. ARC: Starts wide (Hook: Silhouette). Dolly-in (Development) as he strikes a match, illuminating the clue. Ends (Payoff) in ECU on the clue as the match dies. TECHNICAL: 35mm lens, B&W Film Noir (Kodak Double-X), Chiaroscuro lighting.*
 ---
 
-**Step 3: Provide the Final Output**
+**Step 4: Provide the Final Output**
 
-- **Return the artistic guides in the following JSON format:**
+**Return the Cinematic Blueprints in the following JSON format:**
 
   ```json
   {{
     "artistic_guides": [
-      {{"artistic_guide": "Artistic Guide 1 as text"}},
-      {{"artistic_guide": "Artistic Guide 2 as text"}},
-      {{"artistic_guide": "Artistic Guide 3 as text"}},
-      {{"artistic_guide": "Artistic Guide 4 as text"}},
-      {{"artistic_guide": "Artistic Guide 5 as text"}},
-      {{"artistic_guide": "Artistic Guide 6 as text"}}
+      {{"artistic_guide": "Cinematic Blueprint 1 as text"}},
+      {{"artistic_guide": "Cinematic Blueprint 2 as text"}},
+      {{"artistic_guide": "Cinematic Blueprint 3 as text"}},
+      {{"artistic_guide": "Cinematic Blueprint 4 as text"}},
+      {{"artistic_guide": "Cinematic Blueprint 5 as text"}},
+      {{"artistic_guide": "Cinematic Blueprint 6 as text"}}
     ]
   }}
   ```
-
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
 
 ---
 

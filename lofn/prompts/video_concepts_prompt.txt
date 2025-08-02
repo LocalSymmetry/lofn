@@ -57,16 +57,15 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+    • AI Focus: Deliver two prompt lists.  No image generation, captions at this stage.
+
 **GENERAL INSTRUCTIONS:**
 
-- Be intentional, detailed, and insightful when generating video concepts.
-- Use vivid, sensory language to enrich your descriptions.
-- Select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their musical opinions, and analyze like they would. To select panel members, choose 2 obscure artists, and then 5 relevant fields to the user's idea, 3 directly related to, and 2 from complimentary domains (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author). Choose real people whenever possible. Have a panel member take each piece of a task, have the panel weigh in on the result of that task, and then use their work to generate the final concepts.
-- Follow the steps below to generate 12 unique video concepts using the updated creativity spectrum.
-- Adhere to ethical guidelines.
-- **Currently, AI videos are only reliable for 5-30 second short films. So expect any prompt to only last that long. Plan accordingly!**
-- **Make sure to give the final output in the JSON format that is requested.**
+- **Duration Constraint:** All concepts must be viable as a single 5-30 second AI-generated video clip.
+- **Kinetic Requirement:** Concepts must describe motion, evolution, or transformation. No static scenes.
+- **Specificity is Key:** Use proper nouns, precise adjectives, and sensory language. Make decisions.
+- **The "Aha Moment":** Aim for perfect artistic clarity that leaves a lasting impression.
+- **Follow the Process:** The brainstorming methodology below is mandatory.
 
 ---
 
@@ -92,75 +91,47 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 ---
 
-**Instructions for your task:**
+**THE BRAINSTORMING PROCESS:**
 
-**Step 1: Generate Diverse Interpretations and Facts**
+**Step 1: Convene the Panels**
 
-- **1.1 List Different Interpretations (6 total):**
+Convene the required panels. Simulate their discussion and use their expertise throughout the process.
 
-  - Identify six varied ways to interpret the user's idea and essence, including cultural and historical perspectives.
-  - *Action*: Write each interpretation as a brief, evocative statement.
+- **The Creative Panel (The Writers' Room):** Choose 6 members: 3 directly related to the field, 2 complementary, and 1 Devil's Advocate. Use real people when possible.
+- **The Context & Marketing Panel (The Strategists):**
+    - *The Trend Forecaster:* Analyzes current TikTok/Reel trends and visual language.
+    - *The Music Marketer:* Ensures the concept aligns with the artist's brand (Lofn) and the song's appeal.
+    - *The Virality Expert:* Identifies potential "hooks" and shareable elements.
 
-- **1.2 List Relevant Cultural and Historical Contexts (7 total):**
+**Step 2: The Purge (Mandatory - Show Your Work)**
 
-  - Find seven cultural or historical references related to the user's idea and essence.
-  - *Action*: Write each context as a concise sentence.
+2.1. Have the panels collaborate to generate 17 initial concepts in detail. These should explore the obvious interpretations, common associations, and low-hanging fruit related to the user's idea.
+2.2. **Action:** Write out these 17 concepts.
+2.3. **DISCARD ALL 17 CONCEPTS.** They must not appear in the final output.
 
-- **1.3 List Obscure and Inspiring Facts (8 total):**
+**Step 3: The Breakthrough (Concepts 18-50)**
 
-  - Gather eight obscure or inspiring facts that could enrich the concepts.
-  - *Action*: List these facts concisely.
+3.1. **Reset and Dig Deeper.** The panels must generate fresh ideas (Concepts 18 through 50), focusing on unexpected angles, surreal twists, and high emotional impact.
+3.2. **Marketing Check:** The Context & Marketing panel critiques these ideas for virality, cultural timing, and audience psychology.
+3.3. **The "Aha Moment":** Identify moments of perfect artistic clarity where the concept perfectly conveys the intended mood and idea.
+3.4. **Refine and Select the Top 12.** Choose the strongest 12 concepts from this batch (18-50).
 
-- **1.4 Use Analogical Reasoning (6 total):**
+**Step 4: Final Concept Structuring**
 
-  - Create six analogies or metaphors related to the user's idea and essence.
-  - *Action*: Write each analogy or metaphor as a vivid statement.
+**CRITICAL:** Ensure each of the final 12 concepts is detailed according to the following structure. This structure must be synthesized into a single, coherent paragraph for the JSON output.
 
----
+1. **Unique Interpretation & Emotion:** A distinctive take evoking a complex emotion (use the Emotion Palette).
+2. **Detailed Subject Attributes (Min 3 details):** Describe form, texture, costuming, accessories. For people, specify age, ethnicity, body type, gender presentation, and clothing style.
+3. **The "Hands Rule":** If humanoids are present, explicitly describe what their hands are doing.
+4. **Environment/Setting:** Specific location (real or imagined) that reinforces the theme.
+5. **The Action (Temporal Dynamics):** What is actively happening? What is the motion or transformation?
+6. **Surreal or Unique Twist (The Hook):** An unexpected element that deepens the meaning and grabs attention immediately.
 
-**Step 2: Evaluate and Reflect on Ideas**
-
-- **2.1 Evaluate Each Idea:**
-
-  - Imagine being a judge in a prestigious film festival.
-  - Evaluate each interpretation, context, fact, and analogy on a scale of 1 to 10 using the provided judging facets below. Evaluate these concepts for their potential to create an insightful, compelling, and emotionally impactful video.
-  - *Action*: Assign scores and note key strengths and areas for improvement.
-
-- **2.2 Perform Cognitive Exploration:**
-
-  - Use the headings: Who? What? When? Where? Why? How?
-  - Answer each question for the top ideas to explore new angles and uncover unique perspectives.
-  - *Action*: Write down insightful answers for each question.
+*Example of synthesized structure:* A transformative concept exploring cosmic intimacy (Emotion). An elderly African-American astronaut (Subject) in an ornate, Baroque-inspired spacesuit (gold filigree helmet, velvet lining, pressurized lace cuffs) (Attributes) floats in the Andromeda galaxy (Setting). He reaches out a gloved hand toward a nebula (Hands Rule/Action). The twist: the nebula coalesces into a giant, spectral hand reaching back (Twist/Hook).
 
 ---
 
-**Step 3: Brainstorm and Refine Unique Concepts**
-
-- **3.1 Initial Brainstorming:**
-
-  - Use the top ideas from Step 2.
-  - Brainstorm 12 unique and relevant video concepts using proper nouns, precise adjectives, and sensory language.
-  - **Ensure each concept aligns with the style axes and evokes emotional resonance**.
-  - *Action*: For each concept:
-    - Write the concept as a concise, vivid phrase.
-    - Briefly explain how it aligns with the style axes, creativity spectrum, and emotional impact.
-    - Describe and given proper nouns to any abstract concepts or entities. For example, instead of "car", say "2012 Kia Rondo"
-    - Make decisions! If there are multiple options - then choose the best one! For example, instead of "a scary monster", determine which type and instead be specific: "a gargantuan engraged kraken".
-
-- **3.2 Reflection and Refinement:**
-
-  - Review each concept for originality, ethical considerations, and alignment with the user's idea.
-  - Revise as necessary to enhance creativity and impact.
-  - Additional Required Refinements:
-    - For entities, add specifications and diversity. For animals, describe their fur, skin patterns, and other features to differentiate them. For people, determine their age, ethnicity, body type, gender presentation, and clothing style.
-    - For places, specify the location if it is in the real world. If it is not, make sure to add descriptors to delinate it from a generic location.
-    - Ensure it is a complete composition with a background, foreground, and story.
-    - Make sure the concept can be displayed in a single short video.
-  - *Action*: Provide a brief explanation of any revisions made.
-
----
-
-**Step 4: Provide the Final Output**
+**Step 5: Provide the Final Output**
 
 - **Return the concepts in the following JSON format:**
 
@@ -184,10 +155,42 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
   }}
   ```
 
-- **Ensure Proper Formatting:**
+---
 
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
+## The HOW
+
+### Panel Evaluation
+- **Evaluate Each Idea:**
+
+  - Imagine being a judge in a prestigious TikTok competition.
+  - Evaluate each interpretation, context, fact, and analogy on a scale of 1 to 10 using the provided judging facets below. Evaluate these concepts for their potential to create an insightful, compelling, and resonant video.
+  - *Action*: Assign scores and note key strengths and areas for improvement.
+
+- **Perform Cognitive Exploration:**
+
+  - Use the headings: Who? What? When? Where? Why? How?
+  - Answer each question for the top ideas to explore new angles and uncover unique perspectives.
+  - *Action*: Write down insightful answers for each question.
+
+### Brainstorming
+- **Initial Brainstorming:**
+  - Brainstorm 12 unique and relevant video concepts using proper nouns, precise adjectives, and sensory language.
+  - **Ensure each concept aligns with the style axes and evokes emotional resonance**.
+  - *Action*: For each concept:
+    - Write the concept as a concise, vivid phrase.
+    - Briefly explain how it aligns with the style axes, creativity spectrum, and emotional impact.
+    - Describe and given proper nouns to any abstract concepts or entities. For example, instead of "car", say "2012 Kia Rondo"
+    - Make decisions! If there are multiple options - then choose the best one! For example, instead of "a scary monster", determine which type and instead be specific: "a gargantuan engraged kraken".
+- **Reflection and Refinement:**
+  - Review each concept for originality, ethical considerations, and alignment with the user's idea.
+  - Revise as necessary to enhance creativity and impact.
+  - Additional Required Refinements:
+    - For entities, add specifications and diversity. For animals, describe their fur, skin patterns, and other features to differentiate them. For people, determine their age, ethnicity, body type, gender presentation, and clothing style.
+    - For places, specify the location if it is in the real world. If it is not, make sure to add descriptors to delinate it from a generic location.
+    - Add the motion!
+    - Ensure it is a complete composition with a background, foreground, and story.
+    - Make sure the concept can be displayed in a single short video.
+  - *Action*: Provide a brief explanation of any revisions made.
 
 ---
 

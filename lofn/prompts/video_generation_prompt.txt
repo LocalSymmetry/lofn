@@ -57,16 +57,16 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     ────────────────────────────────────┤
     • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
       into fresh variants.  Output “Revised” + “Synthesized”.
-    • AI Focus: Deliver two prompt lists.  No image generation, captions,
-**INSTRUCTIONS:**
+    • AI Focus: Deliver two prompt lists.  No image generation, captions, or titles at this stage.
 
-- Be intentional, detailed, and insightful when crafting prompts for AI video generation.
-- Use vivid, sensory language to describe scenes, moods, and transitions.
-- Follow the steps below to create compelling and award-winning video prompts.
-- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
-- **Make sure to give the final output in the JSON format that is requested.**
+**GENERAL INSTRUCTIONS:**
+
+Translate the 6 "Cinematic Blueprints" into 6 precise, optimized prompts for a state-of-the-art AI video generator (e.g., Gen-3 Alpha, Veo, Sora). Adherence to the best practices defined in the Director's Handbook is mandatory.
+
+**THE GOAL:** Maximum control, clarity, and cinematic quality.
 
 ---
+
 
 **Style Axes:**
 
@@ -93,23 +93,21 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 ---
 
 **Step 2: Write the Video Prompts**
-
-- For each artistic guide, craft a concise yet detailed video prompt suitable for AI video generation.
-- Briefly explain how it aligns with the style axes, creativity spectrum, and enhances emotional and thematic elements.
-
-- **Ensure:**
-
-  - The {medium} and the {concept} are explicitly stated.
-  - Scenes are feasible for AI to render.
-  - Use proper nouns and unique descriptors where appropriate.
-  - The prompt is precise, descriptive, and vivid.
-
-- **Remember:**
-
-  - Honor the original concept but be daring and creative.
-  - Avoid impossible or unrenderable scenarios.
-  - Do not reference the video creation process.
-  - Adhere to ethical guidelines and avoid disallowed content.
+  **INSTRUCTIONS FOR THE Video Prompt:**
+  - **Stage 1: Translate Blueprints into Prompts**
+    - For each Cinematic Blueprint, craft a corresponding video prompt.
+  - **Stage 2: Apply Prompt Structure and Techniques**
+    - CRITICAL: Adhere strictly to this structure:
+    - **[Subject & Setting] + [Action & Motion] + [Camera Movement & Framing] + [Lighting & Atmosphere] + [Technical Specs/Style]**
+    - **Methodology:**
+        - **Front-load:** Ensure the most important elements (Subject and primary action/hook) are early.
+        - **Be Precise:** Use specific cinematic terminology (e.g., "Dolly zoom," "Rack focus").
+        - **Describe Evolution:** Describe how the shot changes over time (e.g., "The camera slowly dollies in as the light brightens").
+  - **Stage 3: Add Negative Prompts**
+    - For each prompt, include a list of negative prompts to ensure quality and adherence to style.
+        - *Standard Negatives:* Static image, low resolution, cartoon, 3D render, blurry, morphing artifacts, distorted faces, bad anatomy, flickering, watermark.
+  - **Stage 4: Review Against Facets**
+    - Evaluate each generated prompt against the {facets}. Ensure the prompt delivers on all critical aspects.
 
 ---
 
@@ -133,25 +131,20 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 **Step 4: Provide the Final Output**
 
-- **Return the prompts in the following JSON format:**
+**Return the prompts in the following JSON format. The negative prompts should be included at the end of each prompt string.**
 
   ```json
   {{
     "video_prompts": [
-      {{"video_prompt": "Video Prompt 1"}},
-      {{"video_prompt": "Video Prompt 2"}},
-      {{"video_prompt": "Video Prompt 3"}},
-      {{"video_prompt": "Video Prompt 4"}},
-      {{"video_prompt": "Video Prompt 5"}},
-      {{"video_prompt": "Video Prompt 6"}}
+      {{"video_prompt": "Video Prompt 1. Negative Prompts: ..."}},
+      {{"video_prompt": "Video Prompt 2. Negative Prompts: ..."}},
+      {{"video_prompt": "Video Prompt 3. Negative Prompts: ..."}},
+      {{"video_prompt": "Video Prompt 4. Negative Prompts: ..."}},
+      {{"video_prompt": "Video Prompt 5. Negative Prompts: ..."}},
+      {{"video_prompt": "Video Prompt 6. Negative Prompts: ..."}}
     ]
   }}
   ```
-
-- **Ensure Proper Formatting:**
-
-  - Use double quotes for strings.
-  - Do not include extra text or explanations outside the JSON structure.
 
 ---
 
@@ -161,7 +154,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Medium:** {medium}
 - **Facets:** {facets}
 - **Style Axes:** {style_axes}
-- **Artistic Guides:**
+- **Cinematic Blueprints:**
 
 {artistic_guides}
 
