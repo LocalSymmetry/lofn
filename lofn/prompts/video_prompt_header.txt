@@ -40,7 +40,7 @@ Examples are for "a knife cutting a rainbow fruit, but the fruit does not shatte
 In a space of soft, ethereal light, a single, perfect starfruit sits on a clean, minimalist white surface. It appears to be carved from solid, opalescent glass, with a liquid rainbow of color shimmering just beneath its flawless, polished surface. A sleek, matte black obsidian knife glides into the frame, its edge impossibly sharp. As it makes contact with the starfruit, the expected shatter never comes. Instead, the blade sinks in with a whisper-soft slice, parting the glass-like exterior to reveal a glistening, translucent jelly core that wobbles delicately. The cut surfaces ripple, and a thick, viscous nectar of liquid rainbow slowly wells up from the incision, catching the light in a hypnotic display. The scene is a moment of impossible physics captured in beautiful, serene detail, evoking a sense of gentle awe and fascination. The only sound is a soft, wet slicing noise, like cutting through perfectly set gelatin. Negative Prompts: shattering, cracking, loud noise, dramatic action, fast movement, explosion, blurry, cartoon, 3d render. CRITICAL: no subtitles, no captions, no on-screen text.
 ```
 
-#### **Architecture 2: The Timed Action Script (The "o3" Style)**
+#### **Architecture 2: The Timed Action Script**
 
 * **Purpose:** For precise choreography of action over time. Perfect for tutorials, ASMR content, product demonstrations, and any scene requiring perfectly synchronized, sequential events.
 * **Structure:** A shot description followed by a series of time-stamped beats that break down the 8-second clip into a clear sequence.
@@ -48,8 +48,8 @@ In a space of soft, ethereal light, a single, perfect starfruit sits on a clean,
 * **When to Use:** When the user's idea revolves around a process or a sequence of actions. Ideal for the "Classic Narrative" or "Cinéma Vérité" modes when temporal precision is paramount.
 
 #### Example of Architecture 2: 
-Cinematic ASMR macro shot of a glossy, rainbow-colored glass apple on a dark slate countertop, lit by a single studio softbox. A high-end chef's knife with a Damascus steel pattern enters the frame.
 ```
+Cinematic ASMR macro shot of a glossy, rainbow-colored glass apple on a dark slate countertop, lit by a single studio softbox. A high-end chef's knife with a Damascus steel pattern enters the frame.
 (0-2s) The knife's edge slowly approaches and makes first contact with the glass apple, creating a single, bright point of light.
 (2-5s) In extreme slow-motion, the blade presses into the surface. The 'glass' does not crack but yields like firm jelly. The cut is smooth, silent, and incredibly satisfying, revealing a wobbly, translucent interior with the same vibrant rainbow gradient.
 (5-7s) The knife pulls away from the apple, leaving a perfect, clean incision. A single, thick, viscous drop of clear nectar slowly beads and wells up on the surface of the cut.
@@ -104,6 +104,8 @@ Audio: A faint initial high-pitched *tink* as the knife touches the surface give
    }}
 }}
 ```
+
+During each prompt writing phase, determine the architecture if it is not yet determined, if it is determined, stick to it! Use either the Straight Style, Timed Action Script, or JSON, with JSON preferred.
 
 ---
 ## PART III: VEO 3 OPERATIONAL PARAMETERS & BEST PRACTICES

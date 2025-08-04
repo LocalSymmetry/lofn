@@ -89,6 +89,7 @@ Refine the 6 raw video prompts by injecting the flavor and techniques of a speci
     - **Enhance, don't overwrite.** Add specific details about light quality, texture, and camera behavior.
     - **Do NOT mention the artist's name** in the refined prompt.
     - Maintain the prompt structure and the negative prompts.
+    - Keep the architecture of the prompt the same. If it was a JSON-based prompt, keep it a JSON-based prompt.
 
 *Example Refinement (Style of Christopher Doyle):*
 *Raw:* A woman runs through a neon-lit city street at night. Medium shot, tracking her movement.

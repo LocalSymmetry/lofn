@@ -93,6 +93,7 @@ This is the final stage. You will act as the Executive Producer and Lead Critics
 - *Action:* Analyze the remaining 4 prompts (ranked 3-6).
 - Identify the strongest elements (e.g., a camera move from one, a lighting description from another).
 - Synthesize these elements into 2 NEW, superior prompts.
+- Keep the architecture of the prompt the same. If it was a JSON-based prompt, keep it a JSON-based prompt.
 
 **Step 5: Final Output**
 
