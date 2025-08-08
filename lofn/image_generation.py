@@ -162,7 +162,20 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
                 suffix += '--aspect 1:1'
             else: 
                 suffix += '--aspect 4:7'
-        elif poe_model in ["Poe-Imagen3", "Poe-StableDiffusion3.5-L", "Playground-v3", "Playground-v2.5", "Ideogram", "Ideogram-v2", "FLUX-schnell", "FLUX-pro", "FLUX-dev", "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"]:
+        elif poe_model in [
+            "GPT-Image-1",
+            "Imagen-4-Ultra-Exp", "Imagen-4", "Imagen-4-Fast",
+            "Flux-Kontext-Max", "Flux-Kontext-Pro",
+            "Seedream-3.0", "Phoenix-1.0",
+            "FLUX-pro-1.1-ultra", "FLUX-pro-1.1",
+            "Imagen-3", "Imagen-3-Fast",
+            "Gemini-2.0-Flash-Preview",
+            "Ideogram-v3", "Ideogram-v2a",
+            "StableDiffusion3.5-L", "Playground-v3", "Playground-v2.5",
+            "Ideogram", "Ideogram-v2",
+            "FLUX-schnell", "FLUX-pro", "FLUX-dev",
+            "StableDiffusion3", "SD3-Turbo", "StableDiffusionXL", "StableDiffusion3-2B", "SD3-Medium"
+        ]:
             if size in ["square_hd", "square"]:
                 suffix += '--aspect 1:1'
             elif size == "portrait_4_3":
@@ -840,7 +853,19 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["portrait_4_3", "portrait_16_9",  "square_hd", "square", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.selectbox("Generation Style", ["any", "realistic_image", "digital_illustration", "vector_illustration", "realistic_image/b_and_w", "realistic_image/hard_flash", "realistic_image/hdr", "realistic_image/natural_light", "realistic_image/studio_portrait", "realistic_image/enterprise", "realistic_image/motion_blur", "digital_illustration/pixel_art", "digital_illustration/hand_drawn", "digital_illustration/grain", "digital_illustration/infantile_sketch", "digital_illustration/2d_art_poster", "digital_illustration/handmade_3d", "digital_illustration/hand_drawn_outline", "digital_illustration/engraving_color", "digital_illustration/2d_art_poster_2", "vector_illustration/engraving", "vector_illustration/line_art", "vector_illustration/line_circuit", "vector_illustration/linocut"], key=f"{model}_recraft_style")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/flux-dev", "fal-ai/flux-realism","fal-ai/stable-diffusion-v35-medium", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro", "Poe-Ideogram-v2", "Poe-Ideogram", "Poe-Imagen3", "Poe-StableDiffusion3.5-L", "Poe-StableDiffusion3", "Poe-SD3-Turbo", "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"]:
+    elif model in [
+        "fal-ai/flux-dev", "fal-ai/flux-realism","fal-ai/stable-diffusion-v35-medium", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1",
+        "Poe-GPT-Image-1",
+        "Poe-Imagen-4-Ultra-Exp", "Poe-Imagen-4", "Poe-Imagen-4-Fast",
+        "Poe-Flux-Kontext-Max", "Poe-Flux-Kontext-Pro",
+        "Poe-Seedream-3.0", "Poe-Phoenix-1.0",
+        "Poe-FLUX-pro-1.1-ultra", "Poe-FLUX-pro-1.1", "Poe-FLUX-pro",
+        "Poe-Imagen-3", "Poe-Imagen-3-Fast",
+        "Poe-Gemini-2.0-Flash-Preview",
+        "Poe-Ideogram-v3", "Poe-Ideogram-v2a", "Poe-Ideogram-v2", "Poe-Ideogram",
+        "Poe-StableDiffusion3.5-L", "Poe-StableDiffusion3", "Poe-SD3-Turbo",
+        "fal-ai/stable-diffusion-v3", "Poe-FLUX-dev"
+    ]:
         st.selectbox("Image Size", ["portrait_4_3", "portrait_16_9",  "square_hd", "square", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=50, value=50, key=f"{model}_inference_steps")
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")

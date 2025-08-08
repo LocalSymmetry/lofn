@@ -97,14 +97,16 @@ class LofnApp:
         # Add Poe models if POE_API is available
         if Config.POE_API:
             models.extend([
+                "Poe-Assistant", "Poe-App-Creator",
                 "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
-                "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
+                "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
                 "Poe-o3", "Poe-o3-pro", "Poe-o4-mini",
-                "Poe-Claude-Opus-4", "Poe-Claude-Sonnet-4",
+                "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
                 "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
                 "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
                 "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro-Search", "Poe-Gemini-1.5-Flash-Search",
                 "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
+                "Poe-GPT-OSS-120B-T",
                 "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
                 "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B"
             ])
@@ -154,12 +156,19 @@ class LofnApp:
             models.append("DALL-E 3")
         if Config.POE_API:
             models.extend([
-                "Poe-FLUX-pro-1.1-ultra", "Poe-FLUX-pro-1.1", "Poe-Imagen3", "Poe-StableDiffusion3.5-L",
+                "Poe-GPT-Image-1",
+                "Poe-Imagen-4-Ultra-Exp", "Poe-Imagen-4", "Poe-Imagen-4-Fast",
+                "Poe-Flux-Kontext-Max", "Poe-Flux-Kontext-Pro",
+                "Poe-Seedream-3.0", "Poe-Phoenix-1.0",
+                "Poe-FLUX-pro-1.1-ultra", "Poe-FLUX-pro-1.1",
+                "Poe-Imagen-3", "Poe-Imagen-3-Fast",
+                "Poe-Gemini-2.0-Flash-Preview",
+                "Poe-Ideogram-v3", "Poe-Ideogram-v2a", "Poe-StableDiffusion3.5-L",
                 "Poe-FLUX-pro", "Poe-DALL-E-3", "Poe-Ideogram-v2",
-                "Poe-Playground-v2.5","Poe-Playground-v3", "Poe-Ideogram",
-                "Poe-FLUX-dev","Poe-FLUX-schnell","Poe-LivePortrait","Poe-StableDiffusion3",
-                "Poe-SD3-Turbo", "Poe-StableDiffusionXL","Poe-StableDiffusion3-2B",
-                "Poe-SD3-Medium","Poe-RealVisXL"
+                "Poe-Playground-v2.5", "Poe-Playground-v3", "Poe-Ideogram",
+                "Poe-FLUX-dev", "Poe-FLUX-schnell", "Poe-LivePortrait", "Poe-StableDiffusion3",
+                "Poe-SD3-Turbo", "Poe-StableDiffusionXL", "Poe-StableDiffusion3-2B",
+                "Poe-SD3-Medium", "Poe-RealVisXL"
             ])
         return models
 
