@@ -684,12 +684,22 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 openai_api_base=Config.LOCAL_LLM_API_BASE,
             )
         elif model.startswith("gpt"):
-            return ChatOpenAI(
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                openai_api_key=Config.OPENAI_API
-            )
+            # Newer OpenAI models (e.g. gpt-4.1, gpt-5) use
+            # `max_completion_tokens` instead of `max_tokens`.
+            if model.startswith("gpt-4.1") or model.startswith("gpt-5"):
+                return ChatOpenAI(
+                    model=model,
+                    temperature=temperature,
+                    max_completion_tokens=max_tokens,
+                    openai_api_key=Config.OPENAI_API,
+                )
+            else:
+                return ChatOpenAI(
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    openai_api_key=Config.OPENAI_API,
+                )
         elif model.startswith("o1"):
             return ChatOpenAI(
                 model=model,
@@ -1185,8 +1195,15 @@ def generate_concept_mediums(
         # if "Poe" in model:
         #     selected_aesthetics = selected_aesthetics[:24]
 
-        # Determine max_tokens based on model's capacity
-        max_tokens = llm._identifying_params.get('max_tokens', 4096)
+        # Determine max_tokens based on model's capacity. Newer OpenAI
+        # models expose this value under `max_completion_tokens` (or
+        # occasionally `max_output_tokens`). Fall back to the legacy
+        # `max_tokens` attribute if needed.
+        max_tokens = (
+            llm._identifying_params.get('max_completion_tokens')
+            or llm._identifying_params.get('max_output_tokens')
+            or llm._identifying_params.get('max_tokens', 4096)
+        )
 
         # Select the appropriate prompts based on the medium
         prompts = prompt_configs.get(medium)
@@ -1457,8 +1474,14 @@ def generate_simple_music_prompts(
 
 
 
-        # Determine max_tokens based on model's capacity
-        max_tokens = llm._identifying_params.get('max_tokens', 4096)
+        # Determine max_tokens based on model's capacity. Check for the
+        # newer `max_completion_tokens`/`max_output_tokens` fields used by
+        # recent OpenAI models before falling back to `max_tokens`.
+        max_tokens = (
+            llm._identifying_params.get('max_completion_tokens')
+            or llm._identifying_params.get('max_output_tokens')
+            or llm._identifying_params.get('max_tokens', 4096)
+        )
 
         if model[0] == "o":
             chain = (
