@@ -8,6 +8,7 @@ art:
     - Poe-Grok-4
   prompt:
     - OR-openrouter/horizon-alpha
+    - gpt-5
     - gpt-4.1
     - Poe-Gemini-2.5-Flash
     - gemini-2.5-flash
@@ -22,6 +23,7 @@ video:
     - Poe-Grok-4
   prompt:
     - OR-openrouter/horizon-alpha
+    - gpt-5
     - gpt-4.1
     - Poe-Gemini-2.5-Flash
     - gemini-2.5-flash

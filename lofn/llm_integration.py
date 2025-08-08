@@ -569,6 +569,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5": 32768,
+            "gpt-5-mini": 32768,
+            "gpt-5-nano": 32768,
             "gpt-4.1": 32768,
             "gpt-4.1-mini": 32768,
             "gpt-4.1-nano": 32768,
@@ -602,6 +605,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-1.5-flash-search": 16384,
 
             # Poe models
+            "Poe-GPT-5": 32768,
+            "Poe-GPT-5-mini": 32768,
+            "Poe-GPT-5-nano": 32768,
             "Poe-GPT-4.1": 32768,
             "Poe-GPT-4.1-mini": 32768,
             "Poe-GPT-4.1-nano": 32768,
