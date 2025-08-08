@@ -689,7 +689,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             if model.startswith("gpt-4.1") or model.startswith("gpt-5"):
                 return ChatOpenAI(
                     model=model,
-                    temperature=temperature,
+                    temperature=1,
                     max_completion_tokens=max_tokens,
                     openai_api_key=Config.OPENAI_API,
                 )
