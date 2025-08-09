@@ -683,23 +683,28 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 openai_api_key=Config.LOCAL_LLM_API_KEY,
                 openai_api_base=Config.LOCAL_LLM_API_BASE,
             )
+        elif model.startswith("gpt-5"):
+            return ChatOpenAI(
+                model=model,
+                temperature=1,
+                max_completion_tokens=max_tokens,
+                model_kwargs={"reasoning": {"effort": "high"}},
+                openai_api_key=Config.OPENAI_API,
+            )
+        elif model.startswith("gpt-4.1"):
+            return ChatOpenAI(
+                model=model,
+                temperature=1,
+                max_completion_tokens=max_tokens,
+                openai_api_key=Config.OPENAI_API,
+            )
         elif model.startswith("gpt"):
-            # Newer OpenAI models (e.g. gpt-4.1, gpt-5) use
-            # `max_completion_tokens` instead of `max_tokens`.
-            if model.startswith("gpt-4.1") or model.startswith("gpt-5"):
-                return ChatOpenAI(
-                    model=model,
-                    temperature=1,
-                    max_completion_tokens=max_tokens,
-                    openai_api_key=Config.OPENAI_API,
-                )
-            else:
-                return ChatOpenAI(
-                    model=model,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                    openai_api_key=Config.OPENAI_API,
-                )
+            return ChatOpenAI(
+                model=model,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                openai_api_key=Config.OPENAI_API,
+            )
         elif model.startswith("o1"):
             return ChatOpenAI(
                 model=model,
