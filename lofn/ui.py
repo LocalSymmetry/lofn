@@ -555,6 +555,9 @@ class LofnApp:
                     .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            images = st.session_state.get('input_images')
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
@@ -566,7 +569,7 @@ class LofnApp:
                     style_axes=st.session_state.get('style_axes', None),
                     creativity_spectrum=st.session_state.get('creativity_spectrum', None),
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),  # For o1
-                    input_images=st.session_state.get('input_images'),
+                    input_images=images,
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
@@ -699,7 +702,7 @@ class LofnApp:
         try:
             with st.spinner("Panel voting on best pairs..."):
                 best_pairs = select_best_pairs(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     pairs,
                     st.session_state.get('num_best_pairs', 3),
                     self.max_retries,
@@ -769,6 +772,10 @@ class LofnApp:
                 .replace('{input}', st.session_state.get('input', ''))
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            images = st.session_state.get('input_images')
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+            st.session_state['prompt_input'] = input_text
 
             with st.spinner("Generating music concepts..."):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
@@ -780,7 +787,7 @@ class LofnApp:
                     style_axes=None,
                     creativity_spectrum=None,
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                    input_images=st.session_state.get('input_images')
+                    input_images=images
                 )
 
             st.session_state['style_axes'] = style_axes
@@ -959,6 +966,9 @@ class LofnApp:
                     .replace('{input}', st.session_state.get('input', ''))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            images = st.session_state.get('input_images')
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating video concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
@@ -970,7 +980,7 @@ class LofnApp:
                     style_axes=st.session_state.get('style_axes', None),
                     creativity_spectrum=st.session_state.get('creativity_spectrum', None),
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
-                    input_images=st.session_state.get('input_images'),
+                    input_images=images,
                 )
             st.session_state['video_concept_mediums'] = concepts
             st.success("Video concepts generated successfully!")
@@ -1004,7 +1014,7 @@ class LofnApp:
         try:
             with st.spinner(f"Generating video prompts for '{pair['concept']}'..."):
                 prompts_df = generate_video_prompts(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     pair['concept'],
                     pair['medium'],
                     max_retries=self.max_retries,
@@ -1023,7 +1033,7 @@ class LofnApp:
                 'concept': pair['concept'],
                 'medium': pair['medium'],
                 'prompts': prompts_df.to_dict(orient='list'),
-                'input_text': st.session_state.get('input', ''),
+                'input_text': st.session_state.get('prompt_input', ''),
                 'competition': st.session_state.get('competition_mode', False),
                 'model': self.model,
             }
@@ -1066,7 +1076,7 @@ class LofnApp:
         try:
             with st.spinner(f"Generating music prompts for '{pair['concept']}'..."):
                 song_prompts = generate_music_prompts(
-                    st.session_state['input'],
+                    st.session_state['prompt_input'],
                     pair['concept'],
                     pair['medium'],
                     max_retries=self.max_retries,
@@ -1096,7 +1106,7 @@ class LofnApp:
                     'title': prompt['title'],
                     'music_prompt': prompt['music_prompt'],
                     'lyrics_prompt': prompt['lyrics_prompt'],
-                    'input_text': st.session_state.get('input', ''),
+                    'input_text': st.session_state.get('prompt_input', ''),
                     'competition': st.session_state.get('competition_mode', False),
                     'model': self.model,
                 }
@@ -1189,9 +1199,14 @@ class LofnApp:
 
     def generate_music_prompts_ui(self):
         try:
+            input_text = st.session_state['input']
+            images = st.session_state.get('input_images')
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+            st.session_state['prompt_input'] = input_text
             with st.spinner("Generating music prompts..."):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
-                    st.session_state['input'],
+                    input_text,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
                     model=self.model,
@@ -1199,7 +1214,7 @@ class LofnApp:
                     style_axes=None,
                     creativity_spectrum=None,
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
-                    input_images=st.session_state.get('input_images')
+                    input_images=images
                 )
 
                 st.session_state['music_concept_mediums'] = concept_mediums
@@ -1209,7 +1224,7 @@ class LofnApp:
                 if concept_mediums:
                     first = concept_mediums[0]
                     song_prompts = generate_music_prompts(
-                        st.session_state['input'],
+                        input_text,
                         first['concept'],
                         first['medium'],
                         max_retries=self.max_retries,
@@ -1219,7 +1234,7 @@ class LofnApp:
                         style_axes=style_axes,
                         creativity_spectrum=creativity,
                         reasoning_level=st.session_state.get('reasoning_level','medium'),
-                        input_images=st.session_state.get('input_images')
+                        input_images=images
                     )
                 else:
                     song_prompts = {'revised_prompts': [], 'synthesized_prompts': []}
@@ -1230,7 +1245,7 @@ class LofnApp:
                     'title': prompt['title'],
                     'music_prompt': prompt['music_prompt'],
                     'lyrics_prompt': prompt['lyrics_prompt'],
-                    'input_text': st.session_state['input'],
+                    'input_text': input_text,
                     'competition': False,
                     'model': self.model,
                 }
