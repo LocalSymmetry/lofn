@@ -76,7 +76,10 @@ class LofnApp:
             models.extend([
                 "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
-                "o3", "o3-pro", "o4-mini"
+                "o3", "o3-pro", "o4-mini",
+                "gpt-5-search", "gpt-5-mini-search", "gpt-5-nano-search",
+                "gpt-4.1-search", "gpt-4.1-mini-search", "gpt-4.1-nano-search",
+                "o3-search", "o3-pro-search", "o4-mini-search"
             ])
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
@@ -85,7 +88,12 @@ class LofnApp:
                 "claude-3-5-sonnet-latest", "claude-3-5-haiku-20241022",
                 "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620",
                 "claude-3-opus-20240229", "claude-3-sonnet-20240229",
-                "claude-3-haiku-20240307"
+                "claude-3-haiku-20240307",
+                "claude-3-7-sonnet-20250219-search", "claude-sonnet-4-20250514-search", "claude-opus-4-20250514-search",
+                "claude-3-5-sonnet-latest-search", "claude-3-5-haiku-20241022-search",
+                "claude-3-5-sonnet-20241022-search", "claude-3-5-sonnet-20240620-search",
+                "claude-3-opus-20240229-search", "claude-3-sonnet-20240229-search",
+                "claude-3-haiku-20240307-search"
             ])
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
@@ -116,8 +124,9 @@ class LofnApp:
             try:
                 or_models = fetch_openrouter_models()
                 if or_models:
+                    search_models = filter_models_by_capability(or_models, 'search')
                     filtered_or_models = filter_models_by_context_length(
-                        or_models, min_total_tokens=25000, min_response_tokens=15000
+                        search_models, min_total_tokens=25000, min_response_tokens=15000
                     )
                     # Extract model IDs
                     models.extend(['OR-'+m['id'] for m in filtered_or_models])

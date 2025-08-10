@@ -307,6 +307,14 @@ def filter_models_by_context_length(models, min_total_tokens=25000, min_response
                 })
     return filtered_models
 
+def filter_models_by_capability(models, capability):
+    filtered_models = []
+    for model in models:
+        capabilities = model.get('capabilities', []) or model.get('tools', [])
+        if capability in capabilities:
+            filtered_models.append(model)
+    return filtered_models
+
 def get_step_name(process_name, step):
     steps = {
         "Concept Medium Generation": [
