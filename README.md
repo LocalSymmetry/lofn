@@ -286,7 +286,7 @@ Any OpenAI‑compatible local LLM (Ollama, llama.cpp) works by setting `LOCAL_LL
 <details><summary>Expand</summary>
 
 **Q: Can I feed sketches or images as input?**
-*Not yet.* Text‑in → media‑out only.
+Yes. Upload up to five reference images to guide the generation.
 
 **Q: Why use Lofn over other prompt generators?**
 Lofn was made to have the highest possible quality to win.

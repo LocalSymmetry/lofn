@@ -12,7 +12,7 @@ from langchain.chains.structured_output.base import create_structured_output_run
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnableSequence
-from langchain.prompts import ChatPromptTemplate
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
 from langchain.schema import OutputParserException
@@ -51,6 +51,17 @@ class LofnError(Exception):
 
 
 logger = logging.getLogger(__name__)
+
+def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
+    """Convert data URL strings to LangChain HumanMessage objects.
+
+    Only the first 5 images are used.
+    """
+    image_strings = image_strings[:5] if image_strings else []
+    return [
+        HumanMessage(content=[{"type": "image_url", "image_url": {"url": img}}])
+        for img in image_strings
+    ]
 
 # Load prompts
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')
@@ -854,11 +865,14 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
 # The following functions are for generating image concepts and prompts
 def process_essence_and_facets(
     chains, input_text, max_retries, debug=False,
-    style_axes=None, creativity_spectrum=None, model=None
+    style_axes=None, creativity_spectrum=None, model=None, image_context=None
 ):
     expected_schema = essence_and_facets_schema  # Defined earlier
+    args = {"input": input_text}
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
-        chains, 'essence_and_facets', {"input": input_text}, max_retries,
+        chains, 'essence_and_facets', args, max_retries,
         model, debug, expected_schema=expected_schema
     )
     if parsed_output is None:
@@ -878,21 +892,25 @@ def process_essence_and_facets(
     return parsed_output, style_axes, creativity_spectrum
 
 def process_concepts(
-    chains, input_text, essence, facets, max_retries, debug=False, style_axes=None, creativity_spectrum=None, model=None
+    chains, input_text, essence, facets, max_retries, debug=False, style_axes=None,
+    creativity_spectrum=None, model=None, image_context=None
 ):
     expected_schema = concepts_schema
+    args = {
+        "input": input_text,
+        "essence": essence,
+        "facets": facets,
+        "style_axes": style_axes,
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'concepts',
-        {
-            "input": input_text,
-            "essence": essence,
-            "facets": facets,
-            "style_axes": style_axes,
-            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
-            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
-            "creativity_spectrum_literal": creativity_spectrum['literal'],
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -913,22 +931,26 @@ def process_artist_and_refined_concepts(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = artist_refined_concepts_schema
+    args = {
+        "input": input_text,
+        "essence": essence,
+        "facets": facets,
+        "style_axes": style_axes,
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
+        "concepts": [x['concept'] for x in concepts['concepts']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'artist_and_refined_concepts',
-        {
-            "input": input_text,
-            "essence": essence,
-            "facets": facets,
-            "style_axes": style_axes,
-            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
-            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
-            "creativity_spectrum_literal": creativity_spectrum['literal'],
-            "concepts": [x['concept'] for x in concepts['concepts']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -949,22 +971,26 @@ def process_mediums(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = mediums_schema
+    args = {
+        "input": input_text,
+        "essence": essence,
+        "facets": facets,
+        "style_axes": style_axes,
+        "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']],
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'medium',
-        {
-            "input": input_text,
-            "essence": essence,
-            "facets": facets,
-            "style_axes": style_axes,
-            "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']],
-            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
-            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
-            "creativity_spectrum_literal": creativity_spectrum['literal'],
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -987,24 +1013,28 @@ def process_refined_mediums(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = refined_mediums_schema
+    args = {
+        "input": input_text,
+        "essence": essence,
+        "facets": facets,
+        "style_axes": style_axes,
+        "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+        "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+        "creativity_spectrum_literal": creativity_spectrum['literal'],
+        "mediums": [x['medium'] for x in mediums['mediums']],
+        "artists": artists,
+        "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'refine_medium',
-        {
-            "input": input_text,
-            "essence": essence,
-            "facets": facets,
-            "style_axes": style_axes,
-            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
-            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
-            "creativity_spectrum_literal": creativity_spectrum['literal'],
-            "mediums": [x['medium'] for x in mediums['mediums']],
-            "artists": artists,
-            "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1024,18 +1054,22 @@ def process_facets(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = facets_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "style_axes": style_axes
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'facets',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "style_axes": style_axes
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1055,19 +1089,23 @@ def process_artistic_guides(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = artistic_guides_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'aspects_traits',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1088,20 +1126,24 @@ def process_midjourney_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = image_gen_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'midjourney',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1127,20 +1169,24 @@ def process_artist_refined_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = artist_refined_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1166,20 +1212,24 @@ def process_revised_synthesized_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = revised_synthesized_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -1211,13 +1261,16 @@ def generate_concept_mediums(
     style_axes=None,
     creativity_spectrum=None,
     medium='image',
-    reasoning_level="medium"
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         # selected_aesthetics = random.sample(aesthetics, 100)
         # if "Poe" in model:
         #     selected_aesthetics = selected_aesthetics[:24]
+
+        image_context = prepare_image_messages(input_images)
 
         # Determine max_tokens based on model's capacity. Newer OpenAI
         # models expose this value under `max_completion_tokens` (or
@@ -1237,30 +1290,35 @@ def generate_concept_mediums(
             chains = {
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
                 ),
                 'concepts': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
                 ),
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
                 ),
                 'medium': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
                 ),
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -1271,6 +1329,7 @@ def generate_concept_mediums(
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
@@ -1278,6 +1337,7 @@ def generate_concept_mediums(
                 'concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
@@ -1285,6 +1345,7 @@ def generate_concept_mediums(
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
@@ -1292,6 +1353,7 @@ def generate_concept_mediums(
                 'medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
@@ -1299,6 +1361,7 @@ def generate_concept_mediums(
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -1309,7 +1372,7 @@ def generate_concept_mediums(
             # Step 1: Essence and Facets
             status.write("Generating Essence and Facets...")
             essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(
-                chains, input_text, max_retries, debug, style_axes, creativity_spectrum, model
+                chains, input_text, max_retries, debug, style_axes, creativity_spectrum, model, image_context
             )
             if essence_and_facets:
                 spectrum = (
@@ -1334,7 +1397,8 @@ def generate_concept_mediums(
                 debug,
                 style_axes,
                 creativity_spectrum,
-                model
+                model,
+                image_context
             )
             if debug:
                 st.write("Initial Concepts:")
@@ -1353,7 +1417,8 @@ def generate_concept_mediums(
                 debug,
                 style_axes,
                 creativity_spectrum,
-                model
+                model,
+                image_context
             )
             if debug:
                 st.write("Refined Concepts:")
@@ -1372,7 +1437,8 @@ def generate_concept_mediums(
                 debug,
                 style_axes,
                 creativity_spectrum,
-                model
+                model,
+                image_context
             )
             if debug:
                 st.write("Initial Mediums:")
@@ -1393,7 +1459,8 @@ def generate_concept_mediums(
                 debug,
                 style_axes,
                 creativity_spectrum,
-                model
+                model,
+                image_context
             )
             if debug:
                 st.write("Refined Concepts:")
@@ -1727,54 +1794,56 @@ def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperatur
         logger.exception("Error selecting best pairs: %s", e)
         raise e
 
-def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None, reasoning_level="medium"):
+def generate_image_prompts(input_text, concept, medium, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, style_axes=None, creativity_spectrum=None, reasoning_level="medium", input_images: Optional[List[str]] = None):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+
+        image_context = prepare_image_messages(input_images)
 
         # Build chains using the selected prompts
         if model[0] == "o":
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("human", facets_prompt)])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", facets_prompt)])
                     | llm
                 ),
                 'aspects_traits': (
-                    ChatPromptTemplate.from_messages([("human", aspects_traits_prompt)])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", aspects_traits_prompt)])
                     | llm
                 ),
                 'midjourney': (
-                    ChatPromptTemplate.from_messages([("human", midjourney_prompt)])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", midjourney_prompt)])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("human", artist_refined_prompt)])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", artist_refined_prompt)])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("human", revision_synthesis_prompt)])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", revision_synthesis_prompt)])
                     | llm
                 )
             }
         else:
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", facets_prompt)])
+                    ChatPromptTemplate.from_messages([("system", concept_system), MessagesPlaceholder("image_context"), ("human", facets_prompt)])
                     | llm
                 ),
                 'aspects_traits': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", aspects_traits_prompt)])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", aspects_traits_prompt)])
                     | llm
                 ),
                 'midjourney': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", midjourney_prompt)])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", midjourney_prompt)])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", artist_refined_prompt)])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", artist_refined_prompt)])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", revision_synthesis_prompt)])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", revision_synthesis_prompt)])
                     | llm
                 )
             }
@@ -1782,7 +1851,7 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
         with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
             # Step 1: Generate Facets
             status.write("Generating Facets...")
-            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model)
+            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Facets:")
                 st.write(facets['facets'])
@@ -1791,7 +1860,7 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 2: Create Artistic Guides
             status.write("Creating Artistic Guides...")
-            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model)
+            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
@@ -1803,7 +1872,7 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 3: Generate Image Prompts
             status.write("Generating Image Prompts...")
-            midjourney_prompts = process_midjourney_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model)
+            midjourney_prompts = process_midjourney_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Image Generation Prompts:")
                 for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
@@ -1811,7 +1880,7 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 4: Refine Prompts
             status.write("Refining Prompts...")
-            artist_refined_prompts = process_artist_refined_prompts(chains, input_text, concept, medium, facets, midjourney_prompts, max_retries, debug, style_axes, model)
+            artist_refined_prompts = process_artist_refined_prompts(chains, input_text, concept, medium, facets, midjourney_prompts, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Artist Refined Prompts:")
                 for i, prompt in enumerate(artist_refined_prompts['artist_refined_prompts'], 1):
@@ -1819,7 +1888,7 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 5: Synthesize Final Prompts
             status.write("Synthesizing Final Prompts...")
-            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model)
+            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model, image_context)
 
             status.update(label="Prompt Generation Complete!", state="complete")
 
