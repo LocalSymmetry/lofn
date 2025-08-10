@@ -125,14 +125,13 @@ class LofnApp:
             try:
                 or_models = fetch_openrouter_models()
                 if or_models:
-                    search_models = filter_models_by_capability(or_models, 'search')
                     filtered_or_models = filter_models_by_context_length(
-                        search_models, min_total_tokens=25000, min_response_tokens=15000
+                        or_models, min_total_tokens=25000, min_response_tokens=15000
                     )
                     # Extract model IDs
                     models.extend(['OR-'+m['id'] for m in filtered_or_models])
                 else:
-                    print("No OpenRouter API key found. Skipping OpenRouter models.")
+                    print("No OpenRouter models returned. Skipping OpenRouter models.")
             except Exception as e:
                 st.error("An error occurred while getting OpenRouter models.")
                 logger.exception("Error getting OpenRouter models: %s", e)
