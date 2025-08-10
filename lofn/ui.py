@@ -4,6 +4,7 @@ import random
 import pandas as pd
 import streamlit as st
 import yaml
+import base64
 
 from image_generation import (
     render_image_controls,
@@ -452,6 +453,23 @@ class LofnApp:
             height=200
         )
 
+        st.subheader("Reference Images (Optional)")
+        uploaded_files = st.file_uploader(
+            "Upload up to 5 images",
+            type=["png", "jpg", "jpeg"],
+            accept_multiple_files=True,
+            key="uploaded_images"
+        )
+        images = []
+        if uploaded_files:
+            if len(uploaded_files) > 5:
+                st.warning("Only the first 5 images will be used.")
+            for file in uploaded_files[:5]:
+                images.append(
+                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                )
+        st.session_state['input_images'] = images
+
         # If there's no user input, provide a tip
         if not st.session_state['input']:
             st.info("Tip: You can describe anything from abstract concepts to detailed scenes. For example, 'I want to capture the essence of a mysterious and powerful witch's familiar.'")
@@ -552,6 +570,7 @@ class LofnApp:
                     style_axes=st.session_state.get('style_axes', None),
                     creativity_spectrum=st.session_state.get('creativity_spectrum', None),
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),  # For o1
+                    input_images=st.session_state.get('input_images'),
                 )
             st.session_state['concept_mediums'] = concepts
             st.success("Concepts generated successfully!")
@@ -602,6 +621,7 @@ class LofnApp:
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images'),
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{pair['concept']}'")
@@ -626,6 +646,7 @@ class LofnApp:
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images'),
                 )
             st.session_state['prompts_df'] = prompts_df
             st.success(f"Prompts generated for '{concept}'")
@@ -1254,6 +1275,7 @@ class LofnApp:
             'input': '',
             'progress_step': 0,
             'reasoning_level': 'medium',  # default reasoning if user doesn't set
+            'input_images': [],
         }
 
         for key, value in default_values.items():
