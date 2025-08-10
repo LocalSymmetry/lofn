@@ -1657,7 +1657,12 @@ def generate_meta_prompt(
                 | llm
             )
 
-        full_input = f"{personality_prompt}\n\n{input_text}" if personality_prompt else input_text
+        # Only pass the user's text as the main input. The personality prompt is
+        # supplied separately in the prompt template via the
+        # ``personality_prompt`` variable, so prepending it here would cause the
+        # generated meta-prompt to over-index on personality and ignore the
+        # user's request.
+        full_input = input_text
 
         parsed_output = run_llm_chain(
             {'meta': chain},
@@ -1702,7 +1707,11 @@ def generate_panel_prompt(
                 | llm
             )
 
-        full_input = f"{personality_prompt}\n\n{input_text}" if personality_prompt else input_text
+        # Similar to meta-prompt generation, keep the user's request separate
+        # from any optional personality prompt. The prompt template already has
+        # a ``personality_prompt`` field, so including it in the ``input`` would
+        # duplicate content and potentially drown out the user's text.
+        full_input = input_text
 
         parsed_output = run_llm_chain(
             {"panel": chain},
