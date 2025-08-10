@@ -578,6 +578,15 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o3": 100000,
             "o3-pro": 100000,
             "o4-mini": 100000,
+            "gpt-5-search": 32768,
+            "gpt-5-mini-search": 32768,
+            "gpt-5-nano-search": 32768,
+            "gpt-4.1-search": 32768,
+            "gpt-4.1-mini-search": 32768,
+            "gpt-4.1-nano-search": 32768,
+            "o3-search": 100000,
+            "o3-pro-search": 100000,
+            "o4-mini-search": 100000,
 
             # Anthropic models
             "claude-3-7-sonnet-20250219": 32000,
@@ -590,6 +599,16 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-opus-20240229": 4096,
             "claude-3-sonnet-20240229": 4096,
             "claude-3-haiku-20240307": 4096,
+            "claude-3-7-sonnet-20250219-search": 32000,
+            "claude-sonnet-4-20250514-search": 32000,
+            "claude-opus-4-20250514-search": 32000,
+            "claude-3-5-sonnet-latest-search": 8096,
+            "claude-3-5-sonnet-20241022-search": 8096,
+            "claude-3-5-haiku-20241022-search": 8096,
+            "claude-3-5-sonnet-20240620-search": 4096,
+            "claude-3-opus-20240229-search": 4096,
+            "claude-3-sonnet-20240229-search": 4096,
+            "claude-3-haiku-20240307-search": 4096,
 
             # Google models
             "gemini-2.5-pro": 120000,
