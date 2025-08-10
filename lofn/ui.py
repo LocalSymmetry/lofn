@@ -78,9 +78,6 @@ class LofnApp:
                 "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
                 "o3", "o3-pro", "o4-mini",
-                "gpt-5-search", "gpt-5-mini-search", "gpt-5-nano-search",
-                "gpt-4.1-search", "gpt-4.1-mini-search", "gpt-4.1-nano-search",
-                "o3-search", "o3-pro-search", "o4-mini-search"
             ])
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
@@ -90,18 +87,13 @@ class LofnApp:
                 "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620",
                 "claude-3-opus-20240229", "claude-3-sonnet-20240229",
                 "claude-3-haiku-20240307",
-                "claude-3-7-sonnet-20250219-search", "claude-sonnet-4-20250514-search", "claude-opus-4-20250514-search",
-                "claude-3-5-sonnet-latest-search", "claude-3-5-haiku-20241022-search",
-                "claude-3-5-sonnet-20241022-search", "claude-3-5-sonnet-20240620-search",
-                "claude-3-opus-20240229-search", "claude-3-sonnet-20240229-search",
-                "claude-3-haiku-20240307-search"
             ])
         # Add Google models if GOOGLE_API is available
         if Config.GOOGLE_API:
             models.extend([
                 "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
                 "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
-                "gemini-1.5-pro", "gemini-1.5-flash", "gemini-1.5-pro-search", "gemini-1.5-flash-search"
+                "gemini-1.5-pro", "gemini-1.5-flash",
             ])
         # Add Poe models if POE_API is available
         if Config.POE_API:
@@ -113,7 +105,7 @@ class LofnApp:
                 "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
                 "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
                 "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
-                "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash", "Poe-Gemini-1.5-Pro-Search", "Poe-Gemini-1.5-Flash-Search",
+                "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash",
                 "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
                 "Poe-GPT-OSS-120B-T",
                 "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
@@ -782,7 +774,8 @@ class LofnApp:
                     debug=self.debug,
                     style_axes=None,
                     creativity_spectrum=None,
-                    reasoning_level=st.session_state.get('reasoning_level', 'medium')
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    input_images=st.session_state.get('input_images')
                 )
 
             st.session_state['style_axes'] = style_axes
@@ -864,6 +857,22 @@ class LofnApp:
             help="Provide a detailed description of your idea to get the best results.",
             height=200
         )
+        st.subheader("Reference Images (Optional)")
+        uploaded_files = st.file_uploader(
+            "Upload up to 5 images",
+            type=["png", "jpg", "jpeg"],
+            accept_multiple_files=True,
+            key="uploaded_video_images"
+        )
+        images = []
+        if uploaded_files:
+            if len(uploaded_files) > 5:
+                st.warning("Only the first 5 images will be used.")
+            for file in uploaded_files[:5]:
+                images.append(
+                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                )
+        st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Describe a scene or narrative you'd like to see in motion.")
 
@@ -956,6 +965,7 @@ class LofnApp:
                     style_axes=st.session_state.get('style_axes', None),
                     creativity_spectrum=st.session_state.get('creativity_spectrum', None),
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images'),
                 )
             st.session_state['video_concept_mediums'] = concepts
             st.success("Video concepts generated successfully!")
@@ -999,6 +1009,7 @@ class LofnApp:
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images'),
                 )
             st.session_state['video_prompts_df'] = prompts_df
             st.success(f"Video prompts generated for '{pair['concept']}'")
@@ -1059,7 +1070,8 @@ class LofnApp:
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
-                    reasoning_level=st.session_state.get('reasoning_level','medium')
+                    reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images')
                 )
             if not song_prompts:
                 st.error("Failed to generate music prompts.")
@@ -1120,6 +1132,22 @@ class LofnApp:
             placeholder="Describe the themes, emotions, and specific elements you want in your song.",
             help="Provide a detailed description of your song idea."
         )
+        st.subheader("Reference Images (Optional)")
+        uploaded_files = st.file_uploader(
+            "Upload up to 5 images",
+            type=["png", "jpg", "jpeg"],
+            accept_multiple_files=True,
+            key="uploaded_music_images"
+        )
+        images = []
+        if uploaded_files:
+            if len(uploaded_files) > 5:
+                st.warning("Only the first 5 images will be used.")
+            for file in uploaded_files[:5]:
+                images.append(
+                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                )
+        st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Include themes, emotions, specific elements, and desired run time length.")
 
@@ -1165,7 +1193,8 @@ class LofnApp:
                     debug=self.debug,
                     style_axes=None,
                     creativity_spectrum=None,
-                    reasoning_level=st.session_state.get('reasoning_level','medium')
+                    reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images')
                 )
 
                 st.session_state['music_concept_mediums'] = concept_mediums
@@ -1184,7 +1213,8 @@ class LofnApp:
                         debug=self.debug,
                         style_axes=style_axes,
                         creativity_spectrum=creativity,
-                        reasoning_level=st.session_state.get('reasoning_level','medium')
+                        reasoning_level=st.session_state.get('reasoning_level','medium'),
+                        input_images=st.session_state.get('input_images')
                     )
                 else:
                     song_prompts = {'revised_prompts': [], 'synthesized_prompts': []}
