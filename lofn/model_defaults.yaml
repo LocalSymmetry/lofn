@@ -7,7 +7,6 @@ art:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - OR-openrouter/horizon-alpha
     - gpt-5
     - gpt-4.1
     - Poe-Gemini-2.5-Flash
@@ -22,7 +21,6 @@ video:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - OR-openrouter/horizon-alpha
     - gpt-5
     - gpt-4.1
     - Poe-Gemini-2.5-Flash
@@ -31,13 +29,14 @@ video:
 music:
   concept_medium:
     - gemini-2.5-pro
+    - gpt-5
     - OR-anthropic/claude-sonnet-4
     - o3
     - Poe-Claude-Sonnet-4
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - OR-openrouter/horizon-alpha
+    - gpt-5
     - gemini-2.5-pro
     - OR-anthropic/claude-sonnet-4
     - o3
