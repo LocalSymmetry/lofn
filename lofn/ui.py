@@ -270,11 +270,19 @@ class LofnApp:
 
             personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
             st.session_state['selected_personality'] = st.sidebar.selectbox(
-                'Personality', personality_names, index=personality_names.index(st.session_state.get('selected_personality', personality_names[0]))
+                'Personality',
+                personality_names,
+                index=personality_names.index(
+                    st.session_state.get('selected_personality', personality_names[0])
+                ),
+                key='sidebar_personality_select',
             )
             if st.session_state['selected_personality'] == 'Custom':
                 st.session_state['custom_personality'] = st.sidebar.text_area(
-                    'Custom Personality', value=st.session_state.get('custom_personality', ''), height=150
+                    'Custom Personality',
+                    value=st.session_state.get('custom_personality', ''),
+                    height=150,
+                    key='sidebar_custom_personality',
                 )
             elif st.session_state['selected_personality'] == 'LLM Generated':
                 st.sidebar.info('Personality will be generated automatically.')
@@ -1288,13 +1296,15 @@ class LofnApp:
             personality_names,
             index=personality_names.index(
                 st.session_state.get('selected_personality', personality_names[0])
-            )
+            ),
+            key='chat_personality_select',
         )
         if st.session_state['selected_personality'] == 'Custom':
             st.session_state['custom_personality'] = st.text_area(
                 'Custom Personality',
                 value=st.session_state.get('custom_personality', ''),
                 height=150,
+                key='chat_custom_personality',
             )
         else:
             st.session_state['custom_personality'] = next(
