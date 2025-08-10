@@ -17,6 +17,7 @@ from datetime import datetime
 from config import Config
 from helpers import *
 from llm_integration import *
+from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
@@ -187,6 +188,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
+            'Personality Chat': 'art',
         }
         mode_key = mapping.get(mode_name, 'art')
         defaults = self.model_priority.get(mode_key, {})
@@ -203,6 +205,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
+            'Personality Chat': 'art',
         }
         mode_key = mapping.get(mode_name, 'art')
         defaults = self.model_priority.get(mode_key, {})
@@ -222,7 +225,7 @@ class LofnApp:
         return model, prompt_model
     def run(self):
         # Create tabs within the app
-        tabs = ["Image Generation", "Video Generation", "Music Generation"]
+        tabs = ["Image Generation", "Video Generation", "Music Generation", "Personality Chat"]
         current_tab = st.session_state.get('selected_tab', tabs[0])
         selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
         if selected_tab != current_tab:
@@ -240,6 +243,8 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
+        elif selected_tab == "Personality Chat":
+            self.render_personality_chat()
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
@@ -1260,6 +1265,57 @@ class LofnApp:
 
         st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
 
+    def render_personality_chat(self):
+        st.header("Personality Chat")
+        personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
+        st.session_state['selected_personality'] = st.selectbox(
+            'Personality',
+            personality_names,
+            index=personality_names.index(
+                st.session_state.get('selected_personality', personality_names[0])
+            )
+        )
+        if st.session_state['selected_personality'] == 'Custom':
+            st.session_state['custom_personality'] = st.text_area(
+                'Custom Personality',
+                value=st.session_state.get('custom_personality', ''),
+                height=150,
+            )
+        else:
+            st.session_state['custom_personality'] = next(
+                p['prompt']
+                for p in PERSONALITY_OPTIONS
+                if p['name'] == st.session_state['selected_personality']
+            )
+        personality_text = st.session_state.get('custom_personality', '')
+
+        if 'chat_history' not in st.session_state:
+            st.session_state['chat_history'] = []
+
+        for msg in st.session_state['chat_history']:
+            role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
+            with st.chat_message(role):
+                st.markdown(msg.content)
+
+        user_input = st.chat_input("Send a message")
+        if user_input:
+            history = st.session_state['chat_history'][:]
+            st.session_state['chat_history'].append(HumanMessage(content=user_input))
+            with st.chat_message("user"):
+                st.markdown(user_input)
+            response_text = run_personality_chat(
+                personality_text,
+                history,
+                user_input,
+                model=self.model,
+                temperature=self.temperature,
+                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                debug=self.debug,
+            )
+            st.session_state['chat_history'].append(AIMessage(content=response_text))
+            with st.chat_message("assistant"):
+                st.markdown(response_text)
+
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
         default_values = {
@@ -1305,6 +1361,7 @@ class LofnApp:
             'progress_step': 0,
             'reasoning_level': 'medium',  # default reasoning if user doesn't set
             'input_images': [],
+            'chat_history': [],
         }
 
         for key, value in default_values.items():

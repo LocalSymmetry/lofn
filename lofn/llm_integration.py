@@ -44,6 +44,7 @@ from helpers import display_temporary_results, display_temporary_results_no_expa
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
 from o1_integration import *
+from pathlib import Path
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -87,6 +88,7 @@ meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generatio
 pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
 panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
 personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
+personality_chat_template = read_prompt('/lofn/prompts/personality_chat_template.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/video_concept_header.txt')
@@ -1747,6 +1749,40 @@ def generate_personality_prompt(input_text, max_retries, temperature, model="gpt
     except Exception as e:
         logger.exception("Error generating personality prompt: %s", e)
         raise e
+
+
+def run_personality_chat(
+    personality_prompt,
+    chat_history,
+    user_input,
+    model="gpt-3.5-turbo-16k",
+    temperature=0.7,
+    reasoning_level="medium",
+    debug=False,
+):
+    """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
+    llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+    readme_path = Path('/workspace/lofn/README.md')
+    lofn_readme = readme_path.read_text() if readme_path.exists() else ""
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", personality_chat_template),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ])
+    chain = prompt | llm
+    response = chain.invoke(
+        {
+            "personality": personality_prompt,
+            "lofn_readme": lofn_readme,
+            "chat_history": chat_history,
+            "input": user_input,
+        }
+    )
+    if isinstance(response, dict):
+        return response.get("text", str(response))
+    if hasattr(response, "content"):
+        return response.content
+    return str(response)
 
 @st.cache_data(persist=True)
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
