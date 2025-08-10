@@ -589,15 +589,6 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o3": 100000,
             "o3-pro": 100000,
             "o4-mini": 100000,
-            "gpt-5-search": 32768,
-            "gpt-5-mini-search": 32768,
-            "gpt-5-nano-search": 32768,
-            "gpt-4.1-search": 32768,
-            "gpt-4.1-mini-search": 32768,
-            "gpt-4.1-nano-search": 32768,
-            "o3-search": 100000,
-            "o3-pro-search": 100000,
-            "o4-mini-search": 100000,
 
             # Anthropic models
             "claude-3-7-sonnet-20250219": 32000,
@@ -610,16 +601,6 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-opus-20240229": 4096,
             "claude-3-sonnet-20240229": 4096,
             "claude-3-haiku-20240307": 4096,
-            "claude-3-7-sonnet-20250219-search": 32000,
-            "claude-sonnet-4-20250514-search": 32000,
-            "claude-opus-4-20250514-search": 32000,
-            "claude-3-5-sonnet-latest-search": 8096,
-            "claude-3-5-sonnet-20241022-search": 8096,
-            "claude-3-5-haiku-20241022-search": 8096,
-            "claude-3-5-sonnet-20240620-search": 4096,
-            "claude-3-opus-20240229-search": 4096,
-            "claude-3-sonnet-20240229-search": 4096,
-            "claude-3-haiku-20240307-search": 4096,
 
             # Google models
             "gemini-2.5-pro": 120000,
@@ -631,8 +612,6 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "gemini-2.0-flash-preview": 8191,
             "gemini-1.5-pro": 32768,
             "gemini-1.5-flash": 16384,
-            "gemini-1.5-pro-search": 32768,
-            "gemini-1.5-flash-search": 16384,
 
             # Poe models
             "Poe-Assistant": 32768,
@@ -658,8 +637,6 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-Gemini-2.0-Flash-Preview": 8191,
             "Poe-Gemini-1.5-Pro": 32768,
             "Poe-Gemini-1.5-Flash": 16384,
-            "Poe-Gemini-1.5-Pro-Search": 32768,
-            "Poe-Gemini-1.5-Flash-Search": 16384,
             "Poe-Grok-4": 128000,
             "Poe-Grok-3": 128000,
             "Poe-Grok-3-Mini": 128000,
@@ -717,7 +694,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             return ChatOpenAI(
                 model=model,
                 temperature=temperature,
-                max_tokens=max_tokens,
+                max_completion_tokens=max_tokens,
                 openai_api_key=Config.OPENAI_API,
             )
         elif model.startswith("gpt-4.1"):
@@ -1496,7 +1473,8 @@ def generate_video_concept_mediums(
     aesthetics=aesthetics,
     style_axes=None,
     creativity_spectrum=None,
-    reasoning_level="medium"
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None
 ):
     return generate_concept_mediums(
         input_text,
@@ -1509,7 +1487,8 @@ def generate_video_concept_mediums(
         style_axes,
         creativity_spectrum,
         medium='video',
-        reasoning_level=reasoning_level
+        reasoning_level=reasoning_level,
+        input_images=input_images
     )
 
 def generate_music_concept_mediums(
@@ -1523,6 +1502,7 @@ def generate_music_concept_mediums(
     style_axes=None,
     creativity_spectrum=None,
     reasoning_level="medium",
+    input_images: Optional[List[str]] = None,
 ):
     return generate_concept_mediums(
         input_text,
@@ -1535,7 +1515,8 @@ def generate_music_concept_mediums(
         style_axes,
         creativity_spectrum,
         medium='music',
-        reasoning_level=reasoning_level
+        reasoning_level=reasoning_level,
+        input_images=input_images
     )
 
 def generate_simple_music_prompts(
@@ -1924,7 +1905,8 @@ def generate_video_prompts(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
-    reasoning_level="medium"
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
@@ -1935,50 +1917,52 @@ def generate_video_prompts(
         # Use video prompts
         prompts = prompt_configs.get('video')
 
+        image_context = prepare_image_messages(input_images)
+
         # Build chains using the selected prompts
         if model[0] == "o":
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("human", prompts['facets'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
                 'aspects_traits': (
-                    ChatPromptTemplate.from_messages([("human", prompts['aspects_traits'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['aspects_traits'])])
                     | llm
                 ),
                 'generation': (
-                    ChatPromptTemplate.from_messages([("human", prompts['generation'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("human", prompts['artist_refined'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("human", prompts['revision_synthesis'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
         else:
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", prompts['facets'])])
+                    ChatPromptTemplate.from_messages([("system", concept_system), MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
                 'aspects_traits': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['aspects_traits'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['aspects_traits'])])
                     | llm
                 ),
                 'generation': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['generation'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['artist_refined'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['revision_synthesis'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
@@ -1986,7 +1970,7 @@ def generate_video_prompts(
         with st.status(f"Generating Video Prompts for {concept} in {medium}...", expanded=True) as status:
             # Step 1: Generate Facets
             status.write("Generating Facets...")
-            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model)
+            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Facets:")
                 st.write(facets['facets'])
@@ -1995,7 +1979,7 @@ def generate_video_prompts(
 
             # Step 2: Create Artistic Guides
             status.write("Creating Artistic Guides...")
-            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model)
+            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
@@ -2003,7 +1987,7 @@ def generate_video_prompts(
 
             # Step 3: Generate Video Prompts
             status.write("Generating Video Prompts...")
-            video_prompts = process_video_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model)
+            video_prompts = process_video_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model, image_context)
             if debug:
                 st.write("Video Prompts:")
                 for i, prompt in enumerate(video_prompts['video_prompts'], 1):
@@ -2012,7 +1996,7 @@ def generate_video_prompts(
             # Step 4: Refine Prompts
             status.write("Refining Prompts...")
             artist_refined_prompts = process_video_artist_refined_prompts(
-                chains, input_text, concept, medium, facets, video_prompts, max_retries, debug, style_axes, model
+                chains, input_text, concept, medium, facets, video_prompts, max_retries, debug, style_axes, model, image_context
             )
             if debug:
                 st.write("Filmmaker Refined Prompts:")
@@ -2021,7 +2005,7 @@ def generate_video_prompts(
 
             # Step 5: Synthesize Final Prompts
             status.write("Synthesizing Final Prompts...")
-            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model)
+            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model, image_context)
 
             status.update(label="Video Prompt Generation Complete!", state="complete")
 
@@ -2046,55 +2030,58 @@ def generate_music_prompts(
     debug=False,
     style_axes=None,
     creativity_spectrum=None,
-    reasoning_level="medium"
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None
 ):
     try:
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         prompts = prompt_configs.get('music')
 
+        image_context = prepare_image_messages(input_images)
+
         if model[0] == "o":
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("human", prompts['facets'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
                 'song_guides': (
-                    ChatPromptTemplate.from_messages([("human", prompts['song_guides'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['song_guides'])])
                     | llm
                 ),
                 'generation': (
-                    ChatPromptTemplate.from_messages([("human", prompts['generation'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("human", prompts['artist_refined'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("human", prompts['revision_synthesis'])])
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
         else:
             chains = {
                 'facets': (
-                    ChatPromptTemplate.from_messages([("system", concept_system), ("human", prompts['facets'])])
+                    ChatPromptTemplate.from_messages([("system", concept_system), MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
                 'song_guides': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['song_guides'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['song_guides'])])
                     | llm
                 ),
                 'generation': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['generation'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
                     | llm
                 ),
                 'artist_refined': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['artist_refined'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
                     | llm
                 ),
                 'revision_synthesis': (
-                    ChatPromptTemplate.from_messages([("system", prompt_system), ("human", prompts['revision_synthesis'])])
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
@@ -2113,6 +2100,7 @@ def generate_music_prompts(
                 debug,
                 style_axes,
                 model,
+                image_context,
             )
             if facets is None:
                 raise LofnError("Failed to generate facets")
@@ -2129,6 +2117,7 @@ def generate_music_prompts(
                 debug,
                 style_axes,
                 model,
+                image_context,
             )
             if guides is None:
                 raise LofnError("Failed to generate song guides")
@@ -2145,6 +2134,7 @@ def generate_music_prompts(
                 debug,
                 style_axes,
                 model,
+                image_context,
             )
             if music_prompts is None:
                 raise LofnError("Failed to generate music prompts")
@@ -2162,6 +2152,7 @@ def generate_music_prompts(
                 debug,
                 style_axes,
                 model,
+                image_context,
             )
             if artist_refined is None:
                 raise LofnError("Failed to refine music prompts")
@@ -2179,6 +2170,7 @@ def generate_music_prompts(
                 debug,
                 style_axes,
                 model,
+                image_context,
             )
             if final_output is None:
                 raise LofnError("Failed to synthesize final music prompts")
@@ -2200,20 +2192,24 @@ def process_video_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = video_gen_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'generation',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -2242,20 +2238,24 @@ def process_video_artist_refined_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = artist_refined_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "video_gen_prompts": [x['video_prompt'] for x in video_prompts['video_prompts']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": medium,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "video_gen_prompts": [x['video_prompt'] for x in video_prompts['video_prompts']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -2284,19 +2284,23 @@ def process_song_guides(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = song_guides_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": arrangement,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'song_guides',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": arrangement,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -2318,20 +2322,24 @@ def process_music_generation_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = music_generation_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": arrangement,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'generation',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": arrangement,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -2354,21 +2362,25 @@ def process_music_artist_refined_prompts(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = music_artist_refined_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": arrangement,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "song_prompts": music_prompts,
+        "song_guides": song_guides
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": arrangement,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "song_prompts": music_prompts,
-            "song_guides": song_guides
-        },
+        args,
         max_retries,
         model,
         debug,
@@ -2391,21 +2403,25 @@ def process_music_revision_synthesis(
     max_retries,
     debug=False,
     style_axes=None,
-    model=None
+    model=None,
+    image_context=None
 ):
     expected_schema = music_revised_synthesized_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": arrangement,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "artist_refined_prompts": artist_refined_prompts,
+        "song_guides": song_guides
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
-        {
-            "input": input_text,
-            "concept": concept,
-            "medium": arrangement,
-            "facets": facets['facets'],
-            "style_axes": style_axes,
-            "artist_refined_prompts": artist_refined_prompts,
-            "song_guides": song_guides
-        },
+        args,
         max_retries,
         model,
         debug,
