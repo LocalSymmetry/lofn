@@ -51,6 +51,38 @@ def load_model_defaults():
         logger.warning("Could not load model defaults: %s", e)
         return {}
 
+
+@st.cache_data(show_spinner=False)
+def build_prompt_index(base_path: str):
+    """Load all prompt metadata files and build a searchable index.
+
+    The index is a dictionary mapping file names to their parsed JSON and a
+    precomputed lowercase haystack string used for simple substring search.
+    Caching avoids repeatedly reading thousands of files on every search.
+    """
+    index = {}
+    if not os.path.exists(base_path):
+        return index
+    for entry in os.scandir(base_path):
+        if not entry.name.endswith(".json") or not entry.is_file():
+            continue
+        try:
+            with open(entry.path, "r") as meta_file:
+                meta = json.load(meta_file)
+        except Exception:
+            continue
+        haystack = " ".join(
+            [
+                entry.name,
+                str(meta.get("title", "")),
+                str(meta.get("prompt", "")),
+                str(meta.get("concept", "")),
+                str(meta.get("medium", "")),
+            ]
+        ).lower()
+        index[entry.name] = {"meta": meta, "haystack": haystack}
+    return index
+
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
@@ -1309,51 +1341,23 @@ class LofnApp:
             "Music": "/music",
         }
         base_path = base_paths[content_type]
-
-        files = []
-        if os.path.exists(base_path):
-            files = [f for f in os.listdir(base_path) if f.endswith(".json")]
-        if not files:
+        index = build_prompt_index(base_path)
+        if not index:
             st.info("No files found for this content type.")
             return
 
+        file_names = list(index.keys())
         search_query = st.text_input("Search", key="prompt_explorer_search").strip().lower()
         if search_query:
-            matched_files = []
-            for f in files:
-                fp = os.path.join(base_path, f)
-                try:
-                    with open(fp, "r") as meta_file:
-                        meta = json.load(meta_file)
-                except Exception:
-                    continue
-                haystack = " ".join(
-                    [
-                        f,
-                        str(meta.get("title", "")),
-                        str(meta.get("prompt", "")),
-                        str(meta.get("concept", "")),
-                        str(meta.get("medium", "")),
-                    ]
-                ).lower()
-                if search_query in haystack:
-                    matched_files.append(f)
-            files = matched_files
-            if not files:
+            file_names = [name for name, rec in index.items() if search_query in rec["haystack"]]
+            if not file_names:
                 st.info("No files match the search query.")
                 return
 
-        selected_file = st.selectbox("Select File", files, key="prompt_explorer_file")
+        selected_file = st.selectbox("Select File", file_names, key="prompt_explorer_file")
         if not selected_file:
             return
-        file_path = os.path.join(base_path, selected_file)
-        try:
-            with open(file_path, "r") as f:
-                data = json.load(f)
-        except Exception as e:
-            st.error("Failed to load the selected file.")
-            logger.exception("Error loading file %s: %s", file_path, e)
-            return
+        data = index[selected_file]["meta"]
 
         if content_type == "Images":
             image_path = None
