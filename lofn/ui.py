@@ -51,6 +51,30 @@ def load_model_defaults():
         logger.warning("Could not load model defaults: %s", e)
         return {}
 
+
+@st.cache_data(show_spinner=False)
+def build_prompt_index(base_path: str) -> dict[str, str]:
+    """Build a cached index mapping filenames to searchable strings."""
+    index: dict[str, str] = {}
+    if not os.path.exists(base_path):
+        return index
+    for entry in os.scandir(base_path):
+        if entry.is_file() and entry.name.endswith('.json'):
+            try:
+                with open(entry.path, 'r') as meta_file:
+                    meta = json.load(meta_file)
+            except Exception:
+                continue
+            haystack = ' '.join([
+                entry.name,
+                str(meta.get('title', '')),
+                str(meta.get('prompt', '')),
+                str(meta.get('concept', '')),
+                str(meta.get('medium', '')),
+            ]).lower()
+            index[entry.name] = haystack
+    return index
+
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
     pass
@@ -1310,38 +1334,19 @@ class LofnApp:
         }
         base_path = base_paths[content_type]
 
-        files = []
-        if os.path.exists(base_path):
-            files = [f for f in os.listdir(base_path) if f.endswith(".json")]
-        if not files:
+        index = build_prompt_index(base_path)
+        if not index:
             st.info("No files found for this content type.")
             return
 
         search_query = st.text_input("Search", key="prompt_explorer_search").strip().lower()
         if search_query:
-            matched_files = []
-            for f in files:
-                fp = os.path.join(base_path, f)
-                try:
-                    with open(fp, "r") as meta_file:
-                        meta = json.load(meta_file)
-                except Exception:
-                    continue
-                haystack = " ".join(
-                    [
-                        f,
-                        str(meta.get("title", "")),
-                        str(meta.get("prompt", "")),
-                        str(meta.get("concept", "")),
-                        str(meta.get("medium", "")),
-                    ]
-                ).lower()
-                if search_query in haystack:
-                    matched_files.append(f)
-            files = matched_files
+            files = [f for f, haystack in index.items() if search_query in haystack]
             if not files:
                 st.info("No files match the search query.")
                 return
+        else:
+            files = list(index.keys())
 
         selected_file = st.selectbox("Select File", files, key="prompt_explorer_file")
         if not selected_file:
