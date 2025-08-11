@@ -1300,19 +1300,49 @@ class LofnApp:
     def render_prompt_explorer(self):
         """Allow browsing of saved metadata, video, and music prompts."""
         st.header("Prompt Explorer")
-        content_type = st.radio("Select Content Type", ["Images", "Videos", "Music"], key="prompt_explorer_type")
+        content_type = st.radio(
+            "Select Content Type", ["Images", "Videos", "Music"], key="prompt_explorer_type"
+        )
         base_paths = {
             "Images": "/metadata",
             "Videos": "/videos",
             "Music": "/music",
         }
         base_path = base_paths[content_type]
+
         files = []
         if os.path.exists(base_path):
             files = [f for f in os.listdir(base_path) if f.endswith(".json")]
         if not files:
             st.info("No files found for this content type.")
             return
+
+        search_query = st.text_input("Search", key="prompt_explorer_search").strip().lower()
+        if search_query:
+            matched_files = []
+            for f in files:
+                fp = os.path.join(base_path, f)
+                try:
+                    with open(fp, "r") as meta_file:
+                        meta = json.load(meta_file)
+                except Exception:
+                    continue
+                haystack = " ".join(
+                    [
+                        f,
+                        str(meta.get("title", "")),
+                        str(meta.get("prompt", "")),
+                        str(meta.get("concept", "")),
+                        str(meta.get("medium", "")),
+                    ]
+                ).lower()
+                if search_query in haystack:
+                    matched_files.append(f)
+            files = matched_files
+            if not files:
+                st.info("No files match the search query.")
+                return
+
         selected_file = st.selectbox("Select File", files, key="prompt_explorer_file")
         if not selected_file:
             return
@@ -1326,10 +1356,13 @@ class LofnApp:
             return
 
         if content_type == "Images":
+            image_path = None
             if data.get("image_filename"):
-                image_path = os.path.join("/images", data.get("image_filename"))
-                if os.path.exists(image_path):
-                    st.image(image_path, caption=data.get("title", ""))
+                image_path = data.get("image_filename")
+                if not os.path.isabs(image_path):
+                    image_path = os.path.join("/images", image_path)
+            if image_path and os.path.exists(image_path):
+                st.image(image_path, caption=data.get("title", ""))
             elif data.get("image_url"):
                 st.image(data.get("image_url"), caption=data.get("title", ""))
             st.subheader("Image Prompt")
