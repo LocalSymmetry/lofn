@@ -1353,6 +1353,8 @@ class LofnApp:
             if not file_names:
                 st.info("No files match the search query.")
                 return
+        else:
+            files = list(index.keys())
 
         selected_file = st.selectbox("Select File", file_names, key="prompt_explorer_file")
         if not selected_file:
