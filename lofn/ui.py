@@ -52,35 +52,75 @@ def load_model_defaults():
         return {}
 
 
-@st.cache_data(show_spinner=False)
 def build_prompt_index(base_path: str):
     """Load all prompt metadata files and build a searchable index.
 
-    The index is a dictionary mapping file names to their parsed JSON and a
-    precomputed lowercase haystack string used for simple substring search.
-    Caching avoids repeatedly reading thousands of files on every search.
+    For directories with thousands of files, repeatedly parsing every JSON
+    file is slow.  To speed up lookups we maintain an on-disk cache
+    (``.index_cache.json``) that stores the parsed metadata along with each
+    file's modification time.  Subsequent calls only read files that are new
+    or have changed since the last cache build.
     """
+
     index = {}
     if not os.path.exists(base_path):
         return index
-    for entry in os.scandir(base_path):
-        if not entry.name.endswith(".json") or not entry.is_file():
-            continue
+
+    cache_path = os.path.join(base_path, ".index_cache.json")
+    try:
+        with open(cache_path, "r") as f:
+            cache = json.load(f)
+    except Exception:
+        cache = {}
+
+    # Scan the directory for current JSON files
+    entries = {
+        e.name: e
+        for e in os.scandir(base_path)
+        if e.is_file() and e.name.endswith(".json")
+    }
+
+    updated = False
+
+    # Add or refresh cache entries when files are new or modified
+    for name, entry in entries.items():
+        mtime = entry.stat().st_mtime
+        cached = cache.get(name)
+        if not cached or cached.get("mtime") != mtime:
+            try:
+                with open(entry.path, "r") as meta_file:
+                    meta = json.load(meta_file)
+            except Exception:
+                continue
+            haystack = " ".join(
+                [
+                    name,
+                    str(meta.get("title", "")),
+                    str(meta.get("prompt", "")),
+                    str(meta.get("concept", "")),
+                    str(meta.get("medium", "")),
+                ]
+            ).lower()
+            cache[name] = {"meta": meta, "haystack": haystack, "mtime": mtime}
+            updated = True
+
+    # Remove cache entries for files that no longer exist
+    missing = [name for name in list(cache.keys()) if name not in entries]
+    for name in missing:
+        del cache[name]
+        updated = True
+
+    if updated:
         try:
-            with open(entry.path, "r") as meta_file:
-                meta = json.load(meta_file)
+            with open(cache_path, "w") as f:
+                json.dump(cache, f)
         except Exception:
-            continue
-        haystack = " ".join(
-            [
-                entry.name,
-                str(meta.get("title", "")),
-                str(meta.get("prompt", "")),
-                str(meta.get("concept", "")),
-                str(meta.get("medium", "")),
-            ]
-        ).lower()
-        index[entry.name] = {"meta": meta, "haystack": haystack}
+            pass
+
+    # Return the index without the modification time field
+    for name, data in cache.items():
+        index[name] = {"meta": data["meta"], "haystack": data["haystack"]}
+
     return index
 
 class LofnError(Exception):
