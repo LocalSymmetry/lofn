@@ -1209,7 +1209,8 @@ class LofnApp:
     def display_music_prompts_for_pair(self, song_prompts, pair):
         st.subheader(f"Music Prompts for '{pair['concept']}' in '{pair['medium']}'")
         for prompt in song_prompts.get('revised_prompts', []):
-            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Title**")
+            st.code(prompt['title'], language='text')
             st.markdown("**Music Prompt**")
             st.code(prompt['music_prompt'], language='text')
             st.markdown("**Lyrics Prompt**")
@@ -1217,7 +1218,8 @@ class LofnApp:
             st.markdown('---')
 
         for prompt in song_prompts.get('synthesized_prompts', []):
-            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Title**")
+            st.code(prompt['title'], language='text')
             st.markdown("**Music Prompt**")
             st.code(prompt['music_prompt'], language='text')
             st.markdown("**Lyrics Prompt**")
@@ -1351,7 +1353,8 @@ class LofnApp:
 
         st.subheader("Revised Prompts")
         for prompt in song_prompts.get('revised_prompts', []):
-            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Title**")
+            st.code(prompt['title'], language='text')
             st.markdown("**Music Prompt**")
             st.code(prompt['music_prompt'], language='text')
             st.markdown("**Lyrics Prompt**")
@@ -1360,7 +1363,8 @@ class LofnApp:
 
         st.subheader("Synthesized Prompts")
         for prompt in song_prompts.get('synthesized_prompts', []):
-            st.markdown(f"### {prompt['title']}")
+            st.markdown("**Title**")
+            st.code(prompt['title'], language='text')
             st.markdown("**Music Prompt**")
             st.code(prompt['music_prompt'], language='text')
             st.markdown("**Lyrics Prompt**")
@@ -1423,7 +1427,16 @@ class LofnApp:
             st.subheader("Video Prompts")
             prompts = data.get("prompts")
             if isinstance(prompts, dict):
-                st.dataframe(pd.DataFrame(prompts))
+                prompts_df = pd.DataFrame(prompts)
+                for idx, row in prompts_df.iterrows():
+                    st.markdown(f"**Prompt {idx+1}:**")
+                    if "Revised Prompts" in prompts_df.columns:
+                        st.markdown("**Revised Prompt**")
+                        st.code(row.get("Revised Prompts", ""), language="text")
+                    if "Synthesized Prompts" in prompts_df.columns:
+                        st.markdown("**Synthesized Prompt**")
+                        st.code(row.get("Synthesized Prompts", ""), language="text")
+                    st.markdown('---')
         else:  # Music
             if data.get("music_filename"):
                 music_path = os.path.join("/music", data.get("music_filename"))
@@ -1432,6 +1445,9 @@ class LofnApp:
                         st.audio(audio_file.read())
             elif data.get("music_url"):
                 st.audio(data.get("music_url"))
+            if data.get("title"):
+                st.subheader("Title")
+                st.code(data.get("title", ""), language="text")
             st.subheader("Music Prompt")
             st.code(data.get("music_prompt", ""), language="text")
             st.subheader("Lyrics Prompt")
