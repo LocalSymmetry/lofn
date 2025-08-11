@@ -1,6 +1,7 @@
 import os
 import logging
 import random
+import json
 import pandas as pd
 import streamlit as st
 import yaml
@@ -225,7 +226,13 @@ class LofnApp:
         return model, prompt_model
     def run(self):
         # Create tabs within the app
-        tabs = ["Image Generation", "Video Generation", "Music Generation", "Personality Chat"]
+        tabs = [
+            "Image Generation",
+            "Video Generation",
+            "Music Generation",
+            "Personality Chat",
+            "Prompt Explorer",
+        ]
         current_tab = st.session_state.get('selected_tab', tabs[0])
         selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
         if selected_tab != current_tab:
@@ -243,6 +250,8 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
+        elif selected_tab == "Prompt Explorer":
+            self.render_prompt_explorer()
         elif selected_tab == "Personality Chat":
             self.render_personality_chat()
 
@@ -1287,6 +1296,90 @@ class LofnApp:
             st.markdown('---')
 
         st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
+
+    def render_prompt_explorer(self):
+        """Allow browsing of saved metadata, video, and music prompts."""
+        st.header("Prompt Explorer")
+        content_type = st.radio("Select Content Type", ["Images", "Videos", "Music"], key="prompt_explorer_type")
+        base_paths = {
+            "Images": "/metadata",
+            "Videos": "/videos",
+            "Music": "/music",
+        }
+        base_path = base_paths[content_type]
+        files = []
+        if os.path.exists(base_path):
+            files = [f for f in os.listdir(base_path) if f.endswith(".json")]
+        if not files:
+            st.info("No files found for this content type.")
+            return
+        selected_file = st.selectbox("Select File", files, key="prompt_explorer_file")
+        if not selected_file:
+            return
+        file_path = os.path.join(base_path, selected_file)
+        try:
+            with open(file_path, "r") as f:
+                data = json.load(f)
+        except Exception as e:
+            st.error("Failed to load the selected file.")
+            logger.exception("Error loading file %s: %s", file_path, e)
+            return
+
+        if content_type == "Images":
+            if data.get("image_filename"):
+                image_path = os.path.join("/images", data.get("image_filename"))
+                if os.path.exists(image_path):
+                    st.image(image_path, caption=data.get("title", ""))
+            elif data.get("image_url"):
+                st.image(data.get("image_url"), caption=data.get("title", ""))
+            st.subheader("Image Prompt")
+            st.code(data.get("prompt", ""), language="text")
+        elif content_type == "Videos":
+            if data.get("video_filename"):
+                video_path = os.path.join("/videos", data.get("video_filename"))
+                if os.path.exists(video_path):
+                    st.video(video_path)
+            elif data.get("video_url"):
+                st.video(data.get("video_url"))
+            st.subheader("Video Prompts")
+            prompts = data.get("prompts")
+            if isinstance(prompts, dict):
+                st.dataframe(pd.DataFrame(prompts))
+        else:  # Music
+            if data.get("music_filename"):
+                music_path = os.path.join("/music", data.get("music_filename"))
+                if os.path.exists(music_path):
+                    with open(music_path, "rb") as audio_file:
+                        st.audio(audio_file.read())
+            elif data.get("music_url"):
+                st.audio(data.get("music_url"))
+            st.subheader("Music Prompt")
+            st.code(data.get("music_prompt", ""), language="text")
+            st.subheader("Lyrics Prompt")
+            st.code(data.get("lyrics_prompt", ""), language="text")
+
+        st.subheader("Settings & Statistics")
+        basic_keys = [
+            "timestamp",
+            "model",
+            "title",
+            "concept",
+            "medium",
+            "prompt_type",
+            "prompt_index",
+            "image_index",
+        ]
+        info = {k: data.get(k) for k in basic_keys if k in data}
+        if info:
+            st.json(info)
+        if data.get("creativity_spectrum") or data.get("style_axes"):
+            display_creativity_and_style_axes(
+                data.get("creativity_spectrum", {}),
+                data.get("style_axes", {}),
+            )
+        if data.get("input_settings"):
+            with st.expander("Input Settings"):
+                st.json(data.get("input_settings"))
 
     def render_personality_chat(self):
         st.header("Personality Chat")
