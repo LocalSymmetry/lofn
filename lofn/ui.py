@@ -1516,7 +1516,7 @@ class LofnApp:
             st.session_state['chat_history'].append(HumanMessage(content=user_input))
             with st.chat_message("user"):
                 st.markdown(user_input)
-            response_text = run_personality_chat(
+            response_stream = stream_personality_chat(
                 personality_text,
                 history,
                 user_input,
@@ -1525,9 +1525,9 @@ class LofnApp:
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
             )
-            st.session_state['chat_history'].append(AIMessage(content=response_text))
             with st.chat_message("assistant"):
-                st.markdown(response_text)
+                response_text = st.write_stream(response_stream)
+            st.session_state['chat_history'].append(AIMessage(content=response_text))
 
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')

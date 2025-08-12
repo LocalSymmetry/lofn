@@ -1793,6 +1793,72 @@ def run_personality_chat(
         return response.content
     return str(response)
 
+
+async def stream_personality_chat(
+    personality_prompt,
+    chat_history,
+    user_input,
+    model="gpt-3.5-turbo-16k",
+    temperature=0.7,
+    reasoning_level="medium",
+    debug=False,
+):
+    """Stream a free-form chat response with a given personality.
+
+    This function mirrors ``run_personality_chat`` but yields tokens as they
+    arrive from the underlying LLM.  If streaming is unavailable for the
+    selected model it falls back to returning the full response in one chunk.
+    """
+
+    # Build the chain using the same prompt setup as the non-streaming version
+    llm = get_llm(
+        model,
+        temperature,
+        Config.OPENAI_API,
+        Config.ANTHROPIC_API,
+        debug,
+        reasoning_level,
+    )
+
+    readme_path = Path('/workspace/lofn/README.md')
+    lofn_readme = readme_path.read_text() if readme_path.exists() else ""
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", personality_chat_template),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ])
+
+    chain = prompt | llm
+    inputs = {
+        "personality": personality_prompt,
+        "lofn_readme": lofn_readme,
+        "chat_history": chat_history,
+        "input": user_input,
+    }
+
+    callback = AsyncIteratorCallbackHandler()
+
+    try:
+        task = asyncio.create_task(chain.astream(inputs, callbacks=[callback]))
+
+        async for token in callback.aiter():
+            yield token
+
+        await task
+    except Exception:
+        # If streaming isn't supported, fall back to the blocking call
+        fallback = run_personality_chat(
+            personality_prompt,
+            chat_history,
+            user_input,
+            model=model,
+            temperature=temperature,
+            reasoning_level=reasoning_level,
+            debug=debug,
+        )
+        yield fallback
+
 @st.cache_data(persist=True)
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
     """Use the panel to vote on the best concept-medium pairs."""
