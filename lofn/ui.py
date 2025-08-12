@@ -41,6 +41,9 @@ PERSONALITY_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PERSONALITY_OP
 
 DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
 
+# Limit the number of prompt files processed by the explorer
+MAX_PROMPT_FILES = 2000
+
 
 def load_model_defaults():
     """Load default model priority lists from YAML."""
@@ -59,7 +62,8 @@ def build_prompt_index(base_path: str):
     file is slow.  To speed up lookups we maintain an on-disk cache
     (``.index_cache.json``) that stores the parsed metadata along with each
     file's modification time.  Subsequent calls only read files that are new
-    or have changed since the last cache build.
+    or have changed since the last cache build. Only the most recent
+    ``MAX_PROMPT_FILES`` entries are scanned to keep lookups responsive.
     """
 
     index = {}
@@ -73,12 +77,13 @@ def build_prompt_index(base_path: str):
     except Exception:
         cache = {}
 
-    # Scan the directory for current JSON files
-    entries = {
-        e.name: e
-        for e in os.scandir(base_path)
+    # Scan the directory for current JSON files, prioritizing most recent ones
+    files = [
+        e for e in os.scandir(base_path)
         if e.is_file() and e.name.endswith(".json")
-    }
+    ]
+    files.sort(key=lambda e: e.stat().st_mtime, reverse=True)
+    entries = {e.name: e for e in files[:MAX_PROMPT_FILES]}
 
     updated = False
 
