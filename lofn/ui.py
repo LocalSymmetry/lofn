@@ -309,7 +309,6 @@ class LofnApp:
             "Music Generation",
             "Personality Chat",
             "Prompt Explorer",
-            "Config",
         ]
         current_tab = st.session_state.get('selected_tab', tabs[0])
         selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
@@ -320,8 +319,7 @@ class LofnApp:
             st.session_state['prompt_model'] = prompt_model
         st.session_state['selected_tab'] = selected_tab
 
-        if selected_tab not in ["Personality Chat", "Config"]:
-            self.render_sidebar()
+        self.render_sidebar()
 
         if selected_tab == "Image Generation":
             self.render_image_generation()
@@ -333,180 +331,198 @@ class LofnApp:
             self.render_prompt_explorer()
         elif selected_tab == "Personality Chat":
             self.render_personality_chat()
-        elif selected_tab == "Config":
-            self.render_config_tab()
 
-    
-def render_sidebar(self):
-    st.sidebar.header('Settings')
-    st.session_state['competition_mode'] = st.sidebar.checkbox(
-        'Competition Mode', value=st.session_state.get('competition_mode', False)
-    )
-    if st.session_state['competition_mode']:
-        st.session_state['competition_text'] = st.session_state.get('input', '')
-        st.sidebar.info('Competition mode uses the main input text.')
-        panel_names = [p['name'] for p in PANEL_OPTIONS] + ['Custom']
-        st.session_state['selected_panel'] = st.sidebar.selectbox(
-            'Panel Prompt', panel_names,
-            index=panel_names.index(st.session_state.get('selected_panel', panel_names[0]))
+    def render_sidebar(self):
+        st.sidebar.header('Settings')
+        st.session_state['competition_mode'] = st.sidebar.checkbox(
+            'Competition Mode', value=st.session_state.get('competition_mode', False)
         )
-        if st.session_state['selected_panel'] == 'Custom':
-            st.session_state['custom_panel'] = st.sidebar.text_area(
-                'Custom Panel Prompt', value=st.session_state.get('custom_panel', ''), height=150
+        if st.session_state['competition_mode']:
+            # Use the main input text as the competition text
+            st.session_state['competition_text'] = st.session_state.get('input', '')
+            st.sidebar.info('Competition mode uses the main input text.')
+            panel_names = [p['name'] for p in PANEL_OPTIONS] + ['Custom']
+            st.session_state['selected_panel'] = st.sidebar.selectbox(
+                'Panel Prompt', panel_names, index=panel_names.index(st.session_state.get('selected_panel', panel_names[0]))
             )
-        elif st.session_state['selected_panel'] == 'LLM Generated':
-            st.sidebar.info('Panel will be generated automatically.')
-        else:
-            st.session_state['custom_panel'] = next(
-                p['prompt'] for p in PANEL_OPTIONS if p['name'] == st.session_state['selected_panel']
-            )
-
-        personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
-        st.session_state['selected_personality'] = st.sidebar.selectbox(
-            'Personality',
-            personality_names,
-            index=personality_names.index(
-                st.session_state.get('selected_personality', personality_names[0])
-            ),
-            key='sidebar_personality_select',
-        )
-        if st.session_state['selected_personality'] == 'Custom':
-            st.session_state['custom_personality'] = st.sidebar.text_area(
-                'Custom Personality',
-                value=st.session_state.get('custom_personality', ''),
-                height=150,
-                key='sidebar_custom_personality',
-            )
-        elif st.session_state['selected_personality'] == 'LLM Generated':
-            st.sidebar.info('Personality will be generated automatically.')
-        else:
-            st.session_state['custom_personality'] = next(
-                p['prompt'] for p in PERSONALITY_OPTIONS if p['name'] == st.session_state['selected_personality']
-            )
-        st.session_state['num_best_pairs'] = st.sidebar.number_input(
-            'Top Pairs', min_value=1, max_value=10,
-            value=st.session_state.get('num_best_pairs', 3), step=1
-        )
-
-    self.model = st.sidebar.selectbox(
-        "Select Concept/Medium Model",
-        self.available_models,
-        index=self.available_models.index(
-            st.session_state.get('model', self.available_models[0])
-        ) if self.available_models else 0,
-        help="Model used generating concepts and mediums.",
-    )
-    st.session_state['model'] = self.model
-
-    self.prompt_model = st.sidebar.selectbox(
-        "Prompt Generation Model",
-        self.available_models,
-        index=self.available_models.index(
-            st.session_state.get('prompt_model', self.available_models[0])
-        ) if self.available_models else 0,
-        help="Model used for generating image prompts.",
-    )
-    st.session_state['prompt_model'] = self.prompt_model
-
-    self.max_retries = st.sidebar.slider(
-        "Maximum Retries",
-        min_value=1,
-        max_value=10,
-        value=st.session_state.get('max_retries', 3),
-        help="Set the maximum number of retries for LLM responses.",
-    )
-    st.session_state['max_retries'] = self.max_retries
-
-    if st.session_state.get('selected_tab') == 'Image Generation':
-        self.available_image_models = self.get_available_image_models()
-        self.image_model = st.sidebar.selectbox(
-            "Select Image Model",
-            self.available_image_models,
-            help="Choose the image generation model.",
-        )
-        render_image_controls(self.image_model)
-
-    with st.sidebar.expander("Advanced Settings", expanded=False):
-        if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
-            st.session_state['reasoning_level'] = st.selectbox(
-                "Reasoning Level (for o1 models)",
-                ["low", "medium", "high"],
-                index=["low", "medium", "high"].index(st.session_state.get('reasoning_level', 'medium'))
-            )
-        else:
-            self.temperature = st.slider(
-                "Temperature",
-                min_value=0.0,
-                max_value=1.0,
-                value=st.session_state.get('temperature', 0.7),
-                step=0.1,
-                help="Controls the randomness of the model's output.",
-            )
-            st.session_state['temperature'] = self.temperature
-
-        self.debug = st.checkbox("Debug Mode", value=st.session_state.get('debug', False), help="Enable debug mode for detailed logs.")
-        st.session_state['debug'] = self.debug
-
-        st.session_state['auto_style'] = st.checkbox("Automatic Style", value=True, help="Enable automatic style determination.")
-        if not st.session_state['auto_style']:
-            st.subheader("Adjust Style Axes")
-            selected_medium = st.session_state.get('selected_tab', 'Image Generation')
-            if selected_medium == 'Image Generation':
-                style_axes = {
-                   "Abstraction vs. Realism": st.slider("Abstraction vs. Realism (0: Abstract, 100: Realism)", 0, 100, 50),
-                   "Emotional Valence": st.slider("Emotional Valence (0: Negative, 100: Positive)", 0, 100, 50),
-                   "Color Intensity": st.slider("Color Intensity (0: Muted, 100: Vibrant)", 0, 100, 50),
-                   "Symbolic Density": st.slider("Symbolic Density (0: Literal, 100: Symbolic)", 0, 100, 50),
-                   "Compositional Complexity": st.slider("Compositional Complexity (0: Simple, 100: Complex)", 0, 100, 50),
-                   "Textural Richness": st.slider("Textural Richness (0: Smooth, 100: Textured)", 0, 100, 50),
-                   "Symmetry vs. Asymmetry": st.slider("Symmetry vs. Asymmetry (0: Asymmetrical, 100: Symmetrical)", 0, 100, 50),
-                   "Novelty": st.slider("Novelty (0: Traditional, 100: Innovative)", 0, 100, 50),
-                   "Figure-Ground Relationship": st.slider("Figure-Ground Relationship (0: Distinct, 100: Blended)", 0, 100, 50),
-                   "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static, 100: Dynamic)", 0, 100, 50)
-                }
-            elif selected_medium == 'Video Generation':
-                style_axes = {
-                   "Narrative Complexity": st.slider("Narrative Complexity (0: Simple, 100: Complex)", 0, 100, 50),
-                   "Emotional Intensity": st.slider("Emotional Intensity (0: Subtle, 100: Intense)", 0, 100, 50),
-                   "Symbolism": st.slider("Symbolism (0: Literal, 100: Symbolic)", 0, 100, 50),
-                   "Pacing (Energy Level)": st.slider("Pacing (Energy Level) (0: Slow, 100: Fast)", 0, 100, 50),
-                   "Hook Intensity": st.slider("Hook Intensity (0: Gentle, 100: Immediate)", 0, 100, 50),
-                   "Aesthetic Stylization": st.slider("Aesthetic Stylization (0: Realistic, 100: Stylized)", 0, 100, 50),
-                   "Lighting Mood": st.slider("Lighting Mood (0: Bright, 100: Dark)", 0, 100, 50),
-                   "Perspective & Lensing": st.slider("Perspective & Lensing (0: Wide/Deep, 100: POV/Shallow)", 0, 100, 50),
-                   "Motion Quality": st.slider("Motion Quality (0: Smooth, 100: Chaotic)", 0, 100, 50),
-                   "Surrealism vs. Realism (Physics)": st.slider("Surrealism vs. Realism (0: Realistic, 100: Surreal)", 0, 100, 50)
-                }
-            elif selected_medium == 'Music Generation':
-                style_axes = {
-                   "Tempo": st.slider("Tempo (0: Slow, 100: Fast)", 0, 100, 50),
-                   "Mood": st.slider("Mood (0: Negative, 100: Positive)", 0, 100, 50),
-                   "Instrumentation Complexity": st.slider("Instrumentation Complexity (0: Simple, 100: Complex)", 0, 100, 50),
-                   "Lyrical Depth": st.slider("Lyrical Depth (0: Simple, 100: Profound)", 0, 100, 50),
-                   "Genre Fusion": st.slider("Genre Fusion (0: Pure Genre, 100: Fusion)", 0, 100, 50),
-                   "Vocal Style": st.slider("Vocal Style (0: Soft, 100: Powerful)", 0, 100, 50),
-                   "Rhythmic Complexity": st.slider("Rhythmic Complexity (0: Simple, 100: Complex)", 0, 100, 50),
-                   "Melodic Emphasis": st.slider("Melodic Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
-                   "Harmonic Richness": st.slider("Harmonic Richness (0: Simple, 100: Rich)", 0, 100, 50),
-                   "Production Style": st.slider("Production Style (0: Raw, 100: Polished)", 0, 100, 50)
-                }
+            if st.session_state['selected_panel'] == 'Custom':
+                st.session_state['custom_panel'] = st.sidebar.text_area(
+                    'Custom Panel Prompt', value=st.session_state.get('custom_panel', ''), height=150
+                )
+            elif st.session_state['selected_panel'] == 'LLM Generated':
+                st.sidebar.info('Panel will be generated automatically.')
             else:
-                style_axes = {}
-            st.session_state['style_axes'] = style_axes
-        else:
-            if 'style_axes' not in st.session_state:
-                st.session_state['style_axes'] = None
-            st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
-            if not st.session_state['auto_creativity_spectrum']:
-                st.subheader("Adjust Creativity Spectrum")
-                creativity_spectrum = {
-                    "literal": st.slider("Literal", 0, 100, 33),
-                    "inventive": st.slider("Inventive", 0, 100, 33),
-                    "transformative": st.slider("Transformative", 0, 100, 34),
-                }
-                st.session_state['creativity_spectrum'] = creativity_spectrum
-            elif 'creativity_spectrum' not in st.session_state:
-                st.session_state['creativity_spectrum'] = None
+                st.session_state['custom_panel'] = next(p['prompt'] for p in PANEL_OPTIONS if p['name'] == st.session_state['selected_panel'])
+
+            personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
+            st.session_state['selected_personality'] = st.sidebar.selectbox(
+                'Personality',
+                personality_names,
+                index=personality_names.index(
+                    st.session_state.get('selected_personality', personality_names[0])
+                ),
+                key='sidebar_personality_select',
+            )
+            if st.session_state['selected_personality'] == 'Custom':
+                st.session_state['custom_personality'] = st.sidebar.text_area(
+                    'Custom Personality',
+                    value=st.session_state.get('custom_personality', ''),
+                    height=150,
+                    key='sidebar_custom_personality',
+                )
+            elif st.session_state['selected_personality'] == 'LLM Generated':
+                st.sidebar.info('Personality will be generated automatically.')
+            else:
+                st.session_state['custom_personality'] = next(p['prompt'] for p in PERSONALITY_OPTIONS if p['name'] == st.session_state['selected_personality'])
+            st.session_state['num_best_pairs'] = st.sidebar.number_input(
+                'Top Pairs', min_value=1, max_value=10,
+                value=st.session_state.get('num_best_pairs', 3), step=1
+            )
+
+        # Language Model Settings
+        with st.sidebar.expander("Language Model Settings", expanded=True):
+            self.model = st.selectbox(
+                "Select Concept/Medium Model",
+                self.available_models,
+                index=self.available_models.index(
+                    st.session_state.get('model', self.available_models[0])
+                ) if self.available_models else 0,
+                help="Model used generating concepts and mediums."
+            )
+            st.session_state['model'] = self.model
+            self.prompt_model = st.selectbox(
+                "Prompt Generation Model",
+                self.available_models,
+                index=self.available_models.index(
+                    st.session_state.get('prompt_model', self.available_models[0])
+                ) if self.available_models else 0,
+                help="Model used for generating image prompts."
+            )
+            st.session_state['prompt_model'] = self.prompt_model
+
+            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
+                # Reasoning Level for o1
+                # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
+                st.session_state['reasoning_level'] = st.selectbox(
+                    "Reasoning Level (for o1 models)",
+                    ["low", "medium", "high"],
+                    index=1
+                )
+            else:   
+                self.temperature = st.slider(
+                    "Temperature",
+                    min_value=0.0,
+                    max_value=1.0,
+                    value=0.7,
+                    step=0.1,
+                    help="Controls the randomness of the model's output."
+                )
+
+            self.max_retries = st.slider(
+                "Maximum Retries",
+                min_value=1,
+                max_value=10,
+                value=3,
+                help="Set the maximum number of retries for LLM responses."
+            )
+
+            self.debug = st.checkbox("Debug Mode", value=False, help="Enable debug mode for detailed logs.")
+
+        with st.sidebar.expander("Image Generation Settings", expanded=True):
+            self.available_image_models = self.get_available_image_models()
+
+            self.image_model = st.selectbox(
+                "Select Image Model",
+                self.available_image_models,
+                help="Choose the image generation model."
+            )
+            render_image_controls(self.image_model)
+
+        with st.sidebar.expander("Style Personalization", expanded=False):
+            st.session_state['auto_style'] = st.checkbox("Automatic Style", value=True, help="Enable automatic style determination.")
+            if not st.session_state['auto_style']:
+                st.subheader("Adjust Style Axes")
+                selected_medium = st.session_state.get('selected_tab', 'Image Generation')
+                if selected_medium == 'Image Generation':
+                    style_axes = {
+                       "Abstraction vs. Realism": st.slider("Abstraction vs. Realism (0: Abstract, 100: Realism)", 0, 100, 50),
+                       "Emotional Valence": st.slider("Emotional Valence (0: Negative, 100: Positive)", 0, 100, 50),
+                       "Color Intensity": st.slider("Color Intensity (0: Muted, 100: Vibrant)", 0, 100, 50),
+                       "Symbolic Density": st.slider("Symbolic Density (0: Literal, 100: Symbolic)", 0, 100, 50),
+                       "Compositional Complexity": st.slider("Compositional Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Textural Richness": st.slider("Textural Richness (0: Smooth, 100: Textured)", 0, 100, 50),
+                       "Symmetry vs. Asymmetry": st.slider("Symmetry vs. Asymmetry (0: Asymmetrical, 100: Symmetrical)", 0, 100, 50),
+                       "Novelty": st.slider("Novelty (0: Traditional, 100: Innovative)", 0, 100, 50),
+                       "Figure-Ground Relationship": st.slider("Figure-Ground Relationship (0: Distinct, 100: Blended)", 0, 100, 50),
+                       "Dynamic vs. Static": st.slider("Dynamic vs. Static (0: Static, 100: Dynamic)", 0, 100, 50)
+                    }
+                elif selected_medium == 'Video Generation':
+                    style_axes = {
+                       "Narrative Complexity": st.slider("Narrative Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Emotional Intensity": st.slider("Emotional Intensity (0: Subtle, 100: Intense)", 0, 100, 50),
+                       "Symbolism": st.slider("Symbolism (0: Literal, 100: Symbolic)", 0, 100, 50),
+                       "Pacing (Energy Level)": st.slider("Pacing (Energy Level) (0: Slow, 100: Fast)", 0, 100, 50),
+                       "Hook Intensity": st.slider("Hook Intensity (0: Gentle, 100: Immediate)", 0, 100, 50),
+                       "Aesthetic Stylization": st.slider("Aesthetic Stylization (0: Realistic, 100: Stylized)", 0, 100, 50),
+                       "Lighting Mood": st.slider("Lighting Mood (0: Bright, 100: Dark)", 0, 100, 50),
+                       "Perspective & Lensing": st.slider("Perspective & Lensing (0: Wide/Deep, 100: POV/Shallow)", 0, 100, 50),
+                       "Motion Quality": st.slider("Motion Quality (0: Smooth, 100: Chaotic)", 0, 100, 50),
+                       "Surrealism vs. Realism (Physics)": st.slider("Surrealism vs. Realism (0: Realistic, 100: Surreal)", 0, 100, 50)
+                    }
+                elif selected_medium == 'Music Generation':
+                    style_axes = {
+                       "Tempo": st.slider("Tempo (0: Slow, 100: Fast)", 0, 100, 50),
+                       "Mood": st.slider("Mood (0: Negative, 100: Positive)", 0, 100, 50),
+                       "Instrumentation Complexity": st.slider("Instrumentation Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Lyrical Depth": st.slider("Lyrical Depth (0: Simple, 100: Profound)", 0, 100, 50),
+                       "Genre Fusion": st.slider("Genre Fusion (0: Pure Genre, 100: Fusion)", 0, 100, 50),
+                       "Vocal Style": st.slider("Vocal Style (0: Soft, 100: Powerful)", 0, 100, 50),
+                       "Rhythmic Complexity": st.slider("Rhythmic Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Melodic Emphasis": st.slider("Melodic Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
+                       "Harmonic Richness": st.slider("Harmonic Richness (0: Simple, 100: Rich)", 0, 100, 50),
+                       "Production Style": st.slider("Production Style (0: Raw, 100: Polished)", 0, 100, 50)
+                    }
+                else:
+                    style_axes = {}
+                st.session_state['style_axes'] = style_axes
+            else:
+                if 'style_axes' not in st.session_state:
+                    st.session_state['style_axes'] = None
+                st.session_state['auto_creativity_spectrum'] = st.checkbox("Automatic Creativity Spectrum", value=True, help="Enable automatic creativity spectrum determination.")
+                if not st.session_state['auto_creativity_spectrum']:
+                    st.subheader("Adjust Creativity Spectrum")
+                    creativity_spectrum = {
+                        "literal": st.slider("Literal", 0, 100, 33),
+                        "inventive": st.slider("Inventive", 0, 100, 33),
+                        "transformative": st.slider("Transformative", 0, 100, 34),
+                    }
+                    st.session_state['creativity_spectrum'] = creativity_spectrum
+                elif 'creativity_spectrum' not in st.session_state:
+                    st.session_state['creativity_spectrum'] = None
+
+        with st.sidebar.expander("Discord Settings", expanded=False):
+            st.session_state['send_to_discord'] = st.checkbox(
+                "Send to Discord",
+                value=True,
+                help="Enable or disable sending prompts to a Discord channel.",
+            )
+            if st.session_state['send_to_discord']:
+                st.session_state['use_default_webhook'] = st.checkbox(
+                    "Use Environment Webhook",
+                    value=True,
+                    help="Enable manual webhook entry.",
+                )
+                if st.session_state['use_default_webhook']:
+                    st.text("Webhook URL: **********")
+                    webhook_url = Config.WEBHOOK_URL
+                else:
+                    webhook_url = st.text_input(
+                        "Discord Webhook URL",
+                        value=Config.WEBHOOK_URL,
+                        placeholder="Enter your Discord webhook URL here",
+                        help="Provide the webhook URL for your Discord channel.",
+                    )
+                st.session_state['webhook_url'] = webhook_url
 
     def render_image_generation(self):
         self.render_image_main_container()
@@ -1467,11 +1483,6 @@ def render_sidebar(self):
 
     def render_personality_chat(self):
         st.header("Personality Chat")
-        model_index = self.available_models.index(
-            st.session_state.get('model', self.available_models[0])
-        ) if self.available_models else 0
-        self.model = st.selectbox("Language Model", self.available_models, index=model_index)
-        st.session_state['model'] = self.model
         personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
         st.session_state['selected_personality'] = st.selectbox(
             'Personality',
@@ -1525,63 +1536,8 @@ def render_sidebar(self):
                 )
             st.session_state['chat_history'].append(AIMessage(content=response_text))
 
-    def render_config_tab(self):
-        st.header("Configuration")
-        config_path = '/lofn/custom_configs.yaml'
-        try:
-            with open(config_path, 'r') as f:
-                existing = yaml.safe_load(f) or {}
-        except Exception:
-            existing = {}
-
-        field_map = {
-            'OPENAI_API': 'OPENAI_API',
-            'ANTHROPIC_API': 'ANTHROPIC_API',
-            'GOOGLE_API': 'GOOGLE_API',
-            'POE_API': 'POE_API',
-            'FAL_KEY': 'FAL_API_KEY',
-            'RUNWARE_API_KEY': 'RUNWARE_API_KEY',
-            'IDEOGRAM_API_KEY': 'IDEOGRAM_API_KEY',
-            'OPEN_ROUTER_API_KEY': 'OPEN_ROUTER_API_KEY',
-            'GOOGLE_PROJECT_ID': 'GOOGLE_PROJECT_ID',
-            'RUNWAYML_API_KEY': 'RUNWAYML_API_KEY',
-            'LOCAL_LLM_API_BASE': 'LOCAL_LLM_API_BASE',
-            'LOCAL_LLM_API_KEY': 'LOCAL_LLM_API_KEY',
-            'WEBHOOK_URL': 'WEBHOOK_URL',
-        }
-
-        inputs = {}
-        for key, attr in field_map.items():
-            inputs[key] = st.text_input(key, value=existing.get(key, getattr(Config, attr, '')))
-
-        st.session_state['send_to_discord'] = st.checkbox(
-            'Send to Discord',
-            value=existing.get('SEND_TO_DISCORD', st.session_state.get('send_to_discord', True))
-        )
-
-        if st.button('Save Configuration'):
-            to_save = {k: inputs[k] for k in field_map}
-            to_save['SEND_TO_DISCORD'] = st.session_state['send_to_discord']
-            with open(config_path, 'w') as f:
-                yaml.safe_dump(to_save, f)
-            for key, attr in field_map.items():
-                setattr(Config, attr, inputs[key])
-                os.environ[key] = inputs[key]
-                if key == 'WEBHOOK_URL':
-                    setattr(Config, 'webhook_url', inputs[key])
-                    st.session_state['webhook_url'] = inputs[key]
-            self.available_models = self.get_available_models()
-            self.available_image_models = self.get_available_image_models()
-            st.success('Configuration saved.')
-
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
-        send_default = True
-        try:
-            with open('/lofn/custom_configs.yaml', 'r') as f:
-                send_default = (yaml.safe_load(f) or {}).get('SEND_TO_DISCORD', True)
-        except Exception:
-            pass
         default_values = {
             'selected_tab': 'Image Generation',
             'video_concept_mediums': None,
@@ -1593,7 +1549,8 @@ def render_sidebar(self):
             'pairs_to_try': [0],
             'button_clicked': False,
             'webhook_url': Config.webhook_url,
-            'send_to_discord': send_default,
+            'send_to_discord': True,
+            'use_default_webhook': True,
             'concept_manual_mode': False,
             'essence_and_facets_output': None,
             'concepts_output': None,
@@ -1610,9 +1567,6 @@ def render_sidebar(self):
             'image_model': 'None',
             'model': cm_model,
             'prompt_model': prompt_model,
-            'max_retries': 3,
-            'temperature': 0.7,
-            'debug': False,
             'competition_mode': True,
             'competition_text': '',
             'selected_panel': PANEL_OPTIONS[0]['name'],
