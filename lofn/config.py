@@ -1,6 +1,7 @@
 # config.py
 
 import os
+import yaml
 
 class Config:
     # Read environment variables
@@ -20,3 +21,21 @@ class Config:
     # Local LLM configuration (for OpenAI-compatible local servers)
     LOCAL_LLM_API_BASE = os.environ.get('LOCAL_LLM_API_BASE', '')
     LOCAL_LLM_API_KEY = os.environ.get('LOCAL_LLM_API_KEY', '')
+
+
+# Load overrides from a user-provided YAML file if available
+CUSTOM_CONFIG_PATH = '/lofn/custom_configs.yaml'
+if os.path.exists(CUSTOM_CONFIG_PATH):
+    try:
+        with open(CUSTOM_CONFIG_PATH, 'r') as f:
+            custom_cfg = yaml.safe_load(f) or {}
+        for key, value in custom_cfg.items():
+            attr = key
+            if key == 'FAL_KEY':
+                attr = 'FAL_API_KEY'
+            setattr(Config, attr, value)
+            os.environ[key] = value
+            if key == 'WEBHOOK_URL':
+                setattr(Config, 'webhook_url', value)
+    except Exception:
+        pass
