@@ -7,7 +7,10 @@ import requests
 import random
 import json_repair
 import csv
-from typing import Union, List
+import asyncio
+import threading
+from queue import Queue
+from typing import Union, List, AsyncGenerator, Generator
 from datetime import datetime
 import os
 from config import Config
@@ -572,3 +575,35 @@ def send_to_discord(content, content_type='prompts', premessage=''):
                     requests.post(st.session_state['webhook_url'], data=json.dumps(message), headers={"Content-Type": "application/json"})
     except Exception as e:
         st.write(f"An error occurred while sending to Discord: {str(e)}")
+
+
+def async_to_sync_generator(async_gen: AsyncGenerator[str, None]) -> Generator[str, None, None]:
+    """Convert an async generator into a synchronous generator.
+
+    This helper runs the provided async generator in a background thread and
+    yields items as they are produced. It allows components such as
+    ``st.write_stream`` to consume async sources.
+    """
+
+    queue: Queue[str | None] = Queue()
+
+    async def produce():
+        try:
+            async for item in async_gen:
+                queue.put(item)
+        finally:
+            queue.put(None)
+
+    def runner():
+        asyncio.run(produce())
+
+    thread = threading.Thread(target=runner, daemon=True)
+    thread.start()
+
+    while True:
+        item = queue.get()
+        if item is None:
+            break
+        yield item
+
+    thread.join()

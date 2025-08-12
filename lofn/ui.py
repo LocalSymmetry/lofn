@@ -1531,7 +1531,9 @@ class LofnApp:
                 debug=self.debug,
             )
             with st.chat_message("assistant"):
-                response_text = st.write_stream(response_stream)
+                response_text = st.write_stream(
+                    async_to_sync_generator(response_stream)
+                )
             st.session_state['chat_history'].append(AIMessage(content=response_text))
 
     def initialize_session_state(self):
