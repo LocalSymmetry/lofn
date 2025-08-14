@@ -1548,8 +1548,12 @@ class LofnApp:
                     for part in msg.content:
                         if part.get("type") == "text":
                             st.markdown(part.get("text", ""))
-                        elif part.get("type") == "image_url":
-                            st.image(base64.b64decode(part["image_url"]["url"].split(",")[1]))
+                        elif part.get("type") in ("image_url", "input_image"):
+                            url = part.get("image_url", {}).get("url", "")
+                            if url.startswith("data:"):
+                                st.image(base64.b64decode(url.split(",")[1]))
+                            else:
+                                st.image(url)
                 else:
                     st.markdown(msg.content)
 
@@ -1561,7 +1565,7 @@ class LofnApp:
                 content=[
                     {"type": "text", "text": user_input},
                     *[
-                        {"type": "image_url", "image_url": {"url": img}}
+                        {"type": "input_image", "image_url": {"url": img}}
                         for img in images
                     ],
                 ]
@@ -1644,8 +1648,12 @@ class LofnApp:
                     for part in msg.content:
                         if part.get("type") == "text":
                             st.markdown(part.get("text", ""))
-                        elif part.get("type") == "image_url":
-                            st.image(base64.b64decode(part["image_url"]["url"].split(",")[1]))
+                        elif part.get("type") in ("image_url", "input_image"):
+                            url = part.get("image_url", {}).get("url", "")
+                            if url.startswith("data:"):
+                                st.image(base64.b64decode(url.split(",")[1]))
+                            else:
+                                st.image(url)
                 else:
                     st.markdown(msg.content)
 
@@ -1657,7 +1665,7 @@ class LofnApp:
                 content=[
                     {"type": "text", "text": user_input},
                     *[
-                        {"type": "image_url", "image_url": {"url": img}}
+                        {"type": "input_image", "image_url": {"url": img}}
                         for img in images
                     ],
                 ]
