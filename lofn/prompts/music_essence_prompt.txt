@@ -192,6 +192,7 @@ Return a single JSON object containing:
 **USER'S IDEA:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 Use proper JSON syntax with no trailing commas.  This structured output will be consumed by later phases.

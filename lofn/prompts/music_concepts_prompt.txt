@@ -209,6 +209,7 @@ To achieve the same award‑winning depth we expect in our visual art, you must 
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the concepts in the following JSON format:**

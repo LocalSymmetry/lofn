@@ -236,6 +236,7 @@ You are here to improve the music. You are allowed to change any prompt, (music,
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 - **Generated Prompts:**
 

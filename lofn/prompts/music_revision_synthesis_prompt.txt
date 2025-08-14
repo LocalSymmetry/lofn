@@ -280,6 +280,7 @@ You are here to improve the music. You are allowed to change any prompt, (music,
 - **Style Axes:** {style_axes}
 
 - **User's Idea:** {input}
+  Supplied images (if any): {image_context}
 
 - **Artist-Refined Prompts:** {artist_refined_prompts}
 

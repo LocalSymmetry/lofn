@@ -208,3 +208,4 @@ Convene the required panels. Simulate their discussion and use their expertise t
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}

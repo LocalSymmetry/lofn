@@ -189,3 +189,4 @@ Simulate a discussion between the specialized panels.
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}

@@ -119,6 +119,7 @@ The primary focus should be an emotional punch that fuses mystique and resonance
 
 ## Competition Text
 {input}
+Supplied images (if any): {image_context}
 
 ## Lofn Personality
 {personality_prompt}

@@ -220,3 +220,4 @@ This is not a simple translation. It is an act of deep analysis, strategic plann
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}

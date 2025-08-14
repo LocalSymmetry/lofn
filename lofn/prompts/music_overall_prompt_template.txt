@@ -28,6 +28,7 @@ Assisted with this panel:
 
 The user's original prompt for reference:
 {input}
+Supplied images (if any): {image_context}
 
 ## ADDITIONAL GUIDANCE
 Each guidance piece is targeted to a specific part of our tree of thoughts. Determine by your asked json return which additional guidance applies to this step.

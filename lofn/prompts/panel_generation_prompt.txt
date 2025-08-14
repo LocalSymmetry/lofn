@@ -173,6 +173,7 @@ I want to construct a perfect panel, and seed the perfect flairs to make these 4
 
 ## Competition Text
 {input}
+Supplied images (if any): {image_context}
 
 ## Lofn Personality
 {personality_prompt}

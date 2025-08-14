@@ -209,7 +209,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 **USER'S IDEA:**
 
 {input}
-
+Supplied images (if any): {image_context}
 
 - **REMEBER - Return the results in the following JSON format:**
 

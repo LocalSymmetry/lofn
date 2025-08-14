@@ -124,3 +124,4 @@ Write each cinematic blueprint as a detailed text string, incorporating sensory 
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}

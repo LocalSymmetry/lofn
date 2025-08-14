@@ -155,6 +155,7 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the music-based Song guides in the following JSON format:**

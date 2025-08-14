@@ -217,6 +217,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Style Axes:** {style_axes}
 
 - **User's Idea:** {input}
+Supplied images (if any): {image_context}
 
 - **Artist-Refined Prompts:** {artist_refined_prompts}
 

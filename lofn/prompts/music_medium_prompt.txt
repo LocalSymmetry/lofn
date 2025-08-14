@@ -239,6 +239,7 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the list of mediums in the following JSON format:**

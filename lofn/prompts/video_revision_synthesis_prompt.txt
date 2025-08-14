@@ -129,5 +129,6 @@ This is the final stage. You will act as the Executive Producer and Lead Critics
 - **Style Axes:** {style_axes}
 
 - **User's Idea:** {input}
+    Supplied images (if any): {image_context}
 
 - **Video Prompts:** {artist_refined_prompts}

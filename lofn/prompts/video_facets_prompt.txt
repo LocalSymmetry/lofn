@@ -108,3 +108,4 @@ Create five facets. They must cover the following domains:
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}

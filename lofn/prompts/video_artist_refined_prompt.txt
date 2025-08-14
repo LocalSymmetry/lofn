@@ -122,6 +122,7 @@ Refine the 6 raw video prompts by injecting the flavor and techniques of a speci
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 - **Generated Prompts:**
 

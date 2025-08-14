@@ -271,6 +271,7 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 - **REMEBER - Return the refined concepts and Production Styles in the following JSON format:**
 

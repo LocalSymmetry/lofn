@@ -248,6 +248,7 @@ This step is akin to inviting guest musicians or curators to comment on a series
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the list of musicians and refined concepts in the following JSON format for the process to continue:**

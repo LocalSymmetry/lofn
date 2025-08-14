@@ -124,6 +124,7 @@ In our visual art pipeline, we judge paintings on composition, palette, mood, na
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the facets in the following JSON format:**

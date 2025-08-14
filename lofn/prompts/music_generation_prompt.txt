@@ -693,6 +693,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 - **User's Idea:**
 
 {input}
+Supplied images (if any): {image_context}
 
 
 - **REMEBER - Return the prompts in the following JSON format:**
