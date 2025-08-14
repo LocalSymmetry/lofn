@@ -89,6 +89,7 @@ pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
 panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
 personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
 personality_chat_template = read_prompt('/lofn/prompts/personality_chat_template.txt')
+personality_image2video_template = read_prompt('/lofn/prompts/personality_image2video_template.txt')
 
 # Video prompts
 video_concept_header_part1 = read_prompt('/lofn/prompts/video_concept_header.txt')
@@ -1821,13 +1822,14 @@ def run_personality_chat(
     reasoning_level="medium",
     debug=False,
     input_images: Optional[List[str]] = None,
+    system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
     llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
     readme_path = Path('/workspace/lofn/README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     prompt = ChatPromptTemplate.from_messages([
-        ("system", personality_chat_template),
+        ("system", system_prompt),
         MessagesPlaceholder("chat_history"),
         MessagesPlaceholder("image_context"),
         ("human", "{input}"),
@@ -1859,6 +1861,7 @@ async def stream_personality_chat(
     reasoning_level="medium",
     debug=False,
     input_images: Optional[List[str]] = None,
+    system_prompt: str = personality_chat_template,
 ):
     """Stream a free-form chat response with a given personality.
 
@@ -1881,7 +1884,7 @@ async def stream_personality_chat(
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
 
     prompt = ChatPromptTemplate.from_messages([
-        ("system", personality_chat_template),
+        ("system", system_prompt),
         MessagesPlaceholder("chat_history"),
         MessagesPlaceholder("image_context"),
         ("human", "{input}"),
@@ -1918,8 +1921,57 @@ async def stream_personality_chat(
             reasoning_level=reasoning_level,
             debug=debug,
             input_images=input_images,
+            system_prompt=system_prompt,
         )
         yield fallback
+
+
+def run_personality_image2video_chat(
+    personality_prompt,
+    chat_history,
+    user_input,
+    model="gpt-3.5-turbo-16k",
+    temperature=0.7,
+    reasoning_level="medium",
+    debug=False,
+    input_images: Optional[List[str]] = None,
+):
+    """Run a chat using the image-to-video personality template."""
+    return run_personality_chat(
+        personality_prompt,
+        chat_history,
+        user_input,
+        model=model,
+        temperature=temperature,
+        reasoning_level=reasoning_level,
+        debug=debug,
+        input_images=input_images,
+        system_prompt=personality_image2video_template,
+    )
+
+
+def stream_personality_image2video_chat(
+    personality_prompt,
+    chat_history,
+    user_input,
+    model="gpt-3.5-turbo-16k",
+    temperature=0.7,
+    reasoning_level="medium",
+    debug=False,
+    input_images: Optional[List[str]] = None,
+):
+    """Stream chat responses using the image-to-video personality template."""
+    return stream_personality_chat(
+        personality_prompt,
+        chat_history,
+        user_input,
+        model=model,
+        temperature=temperature,
+        reasoning_level=reasoning_level,
+        debug=debug,
+        input_images=input_images,
+        system_prompt=personality_image2video_template,
+    )
 
 @st.cache_data(persist=True)
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
