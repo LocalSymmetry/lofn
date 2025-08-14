@@ -600,6 +600,7 @@ class LofnApp:
             st.session_state['concept_mediums'] = []
             st.session_state['progress_step'] = 0
             input_text = st.session_state['input']
+            images = st.session_state.get('input_images')
             if st.session_state.get('competition_mode'):
                 personality_text = st.session_state.get('custom_personality', '')
                 if st.session_state.get('selected_personality') == 'LLM Generated':
@@ -610,7 +611,8 @@ class LofnApp:
                             self.temperature,
                             self.model,
                             self.debug,
-                            st.session_state.get('reasoning_level', 'medium')
+                            st.session_state.get('reasoning_level', 'medium'),
+                            input_images=images,
                         )
                         st.session_state['custom_personality'] = personality_text
                     display_temporary_results("Personality", personality_text, expanded=False)
@@ -623,6 +625,7 @@ class LofnApp:
                     debug=self.debug,
                     reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                     personality_prompt=personality_text,
+                    input_images=images,
                 )
                 st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
                 panel_text = st.session_state.get('custom_panel', '')
@@ -636,6 +639,7 @@ class LofnApp:
                             self.debug,
                             st.session_state.get('reasoning_level', 'medium'),
                             personality_prompt=personality_text,
+                            input_images=images,
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
@@ -647,11 +651,12 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{art_styles_list}', art_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
+                    .replace('{image_context}', "\n".join(images) if images else "")
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
-            images = st.session_state.get('input_images')
-            if images:
-                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+            else:
+                if images:
+                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
@@ -818,6 +823,7 @@ class LofnApp:
 
     def run_music_competition(self):
         try:
+            images = st.session_state.get('input_images')
             personality_text = st.session_state.get('custom_personality', '')
             if st.session_state.get('selected_personality') == 'LLM Generated':
                 if not personality_text:
@@ -827,7 +833,8 @@ class LofnApp:
                         self.temperature,
                         self.model,
                         self.debug,
-                        st.session_state.get('reasoning_level', 'medium')
+                        st.session_state.get('reasoning_level', 'medium'),
+                        input_images=images,
                     )
                     st.session_state['custom_personality'] = personality_text
                 display_temporary_results("Personality", personality_text, expanded=False)
@@ -840,6 +847,7 @@ class LofnApp:
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 medium="music",
                 personality_prompt=personality_text,
+                input_images=images,
             )
             st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
             panel_text = st.session_state.get('custom_panel', '')
@@ -853,6 +861,7 @@ class LofnApp:
                         self.debug,
                         st.session_state.get('reasoning_level', 'medium'),
                         personality_prompt=personality_text,
+                        input_images=images,
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
@@ -864,11 +873,9 @@ class LofnApp:
                 .replace('{genres_list}', genres_list)
                 .replace('{frames_list}', frames_list)
                 .replace('{input}', st.session_state.get('input', ''))
+                .replace('{image_context}', "\n".join(images) if images else "")
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
-            images = st.session_state.get('input_images')
-            if images:
-                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
             st.session_state['prompt_input'] = input_text
 
             with st.spinner("Generating music concepts..."):
@@ -1011,6 +1018,7 @@ class LofnApp:
         try:
             st.session_state['video_concept_mediums'] = []
             input_text = st.session_state['input']
+            images = st.session_state.get('input_images')
             if st.session_state.get('competition_mode'):
                 personality_text = st.session_state.get('custom_personality', '')
                 if st.session_state.get('selected_personality') == 'LLM Generated':
@@ -1021,7 +1029,8 @@ class LofnApp:
                             self.temperature,
                             self.model,
                             self.debug,
-                            st.session_state.get('reasoning_level','medium')
+                            st.session_state.get('reasoning_level','medium'),
+                            input_images=images,
                         )
                         st.session_state['custom_personality'] = personality_text
                     display_temporary_results("Personality", personality_text, expanded=False)
@@ -1034,6 +1043,7 @@ class LofnApp:
                     reasoning_level=st.session_state.get('reasoning_level','medium'),
                     medium="video",
                     personality_prompt=personality_text,
+                    input_images=images,
                 )
                 st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
                 panel_text = st.session_state.get('custom_panel', '')
@@ -1047,6 +1057,7 @@ class LofnApp:
                             self.debug,
                             st.session_state.get('reasoning_level','medium'),
                             personality_prompt=personality_text,
+                            input_images=images,
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
@@ -1058,11 +1069,12 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{film_styles_list}', film_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
+                    .replace('{image_context}', "\n".join(images) if images else "")
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
-            images = st.session_state.get('input_images')
-            if images:
-                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+            else:
+                if images:
+                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating video concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
