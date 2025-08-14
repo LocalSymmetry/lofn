@@ -740,7 +740,7 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
                   debug=None, expected_schema=None):
     chain = chains[chain_name]
     output = run_chain_with_retries(
-        chain, max_retries=max_retries, args_dict=args_dict, is_correction=False,
+        chain, max_retries=max_retries, _args_dict=args_dict, is_correction=False,
         model=model, debug=debug, expected_schema=expected_schema
     )
 
@@ -752,7 +752,7 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
 
 @st.cache_data(persist=True)
 def run_chain_with_retries(
-    _lang_chain, max_retries, args_dict=None, is_correction=False, model=None,
+    _lang_chain, max_retries, _args_dict=None, is_correction=False, model=None,
     debug=False, expected_schema=None
 ):
     output = None
@@ -760,9 +760,9 @@ def run_chain_with_retries(
     while retry_count < max_retries:
         try:
             output = run_any_chain(
-                _lang_chain, args_dict, is_correction, retry_count, model, debug, expected_schema
+                _lang_chain, _args_dict, is_correction, retry_count, model, debug, expected_schema
             )
-            args_dict['output'] = output
+            _args_dict['output'] = output
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
 
@@ -1577,7 +1577,7 @@ def generate_simple_music_prompts(
     
         output_essence = run_chain_with_retries(
             chain,
-            args_dict={"input": input_text},
+            _args_dict={"input": input_text},
             max_retries=max_retries,
             model=model,
             debug=debug,
@@ -1602,10 +1602,10 @@ def generate_simple_music_prompts(
         # Run the chain with retries
         parsed_output = run_chain_with_retries(
             gen_chain,
-            args_dict={
-                "input": input_text, 
-                "essence":output_essence["essence_and_facets"]["essence"], 
-                "facets":output_essence["essence_and_facets"]["facets"], 
+            _args_dict={
+                "input": input_text,
+                "essence":output_essence["essence_and_facets"]["essence"],
+                "facets":output_essence["essence_and_facets"]["facets"],
                 "style_axes":output_essence["essence_and_facets"]["style_axes"]},
             max_retries=max_retries,
             model=model,
