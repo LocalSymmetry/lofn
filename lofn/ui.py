@@ -1549,7 +1549,9 @@ class LofnApp:
                         if part.get("type") == "text":
                             st.markdown(part.get("text", ""))
                         elif part.get("type") in ("image_url", "input_image"):
-                            url = part.get("image_url", {}).get("url", "")
+                            url = part.get("image_url", "")
+                            if isinstance(url, dict):
+                                url = url.get("url", "")
                             if url.startswith("data:"):
                                 st.image(base64.b64decode(url.split(",")[1]))
                             else:
@@ -1565,7 +1567,7 @@ class LofnApp:
                 content=[
                     {"type": "text", "text": user_input},
                     *[
-                        {"type": "input_image", "image_url": {"url": img}}
+                        {"type": "input_image", "image_url": img}
                         for img in images
                     ],
                 ]
@@ -1649,7 +1651,9 @@ class LofnApp:
                         if part.get("type") == "text":
                             st.markdown(part.get("text", ""))
                         elif part.get("type") in ("image_url", "input_image"):
-                            url = part.get("image_url", {}).get("url", "")
+                            url = part.get("image_url", "")
+                            if isinstance(url, dict):
+                                url = url.get("url", "")
                             if url.startswith("data:"):
                                 st.image(base64.b64decode(url.split(",")[1]))
                             else:
@@ -1665,7 +1669,7 @@ class LofnApp:
                 content=[
                     {"type": "text", "text": user_input},
                     *[
-                        {"type": "input_image", "image_url": {"url": img}}
+                        {"type": "input_image", "image_url": img}
                         for img in images
                     ],
                 ]
