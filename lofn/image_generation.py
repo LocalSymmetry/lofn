@@ -382,15 +382,15 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
     )
     
     output = run_chain_with_retries(
-        chain, 
-        args_dict={
+        chain,
+        _args_dict={
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.essence_and_facets_output['essence_and_facets']['facets'],
         "image": image
         },
-        max_retries=max_retries, 
+        max_retries=max_retries,
         debug=debug,
         expected_schema = image_title_schema)
 
