@@ -10,10 +10,11 @@ module_ast = ast.Module(body=[func_node], type_ignores=[])
 code = compile(module_ast, filename="<prepare_image_messages>", mode="exec")
 
 class HumanMessage:
-    def __init__(self, content):
+    def __init__(self, content, additional_kwargs=None):
         self.content = content
+        self.additional_kwargs = additional_kwargs or {}
 
-ns = {'HumanMessage': HumanMessage, 'List': list}
+ns = {'HumanMessage': HumanMessage, 'List': list, 'base64': base64}
 exec(code, ns)
 prepare_image_messages = ns['prepare_image_messages']
 
@@ -23,5 +24,9 @@ def test_prepare_image_messages_limit():
     images = [f"data:image/png;base64,{dummy}" for _ in range(6)]
     msgs = prepare_image_messages(images)
     assert len(msgs) == 5
-    for m in msgs:
-        assert m.content[0]["type"] == "image_url"
+    for idx, m in enumerate(msgs):
+        assert m.content[0]["type"] == "input_image"
+        assert m.content[0]["image_url"]["url"] == f"cid:image{idx}"
+        attachments = m.additional_kwargs["attachments"]
+        assert attachments[0]["name"] == f"image{idx}"
+        assert isinstance(attachments[0]["data"], bytes)

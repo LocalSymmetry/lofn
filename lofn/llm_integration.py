@@ -40,6 +40,7 @@ import random
 import numpy as np
 import pandas as pd
 import logging
+import base64
 from helpers import display_temporary_results, display_temporary_results_no_expander
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
@@ -54,15 +55,39 @@ class LofnError(Exception):
 logger = logging.getLogger(__name__)
 
 def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
-    """Convert data URL strings to LangChain HumanMessage objects.
+    """Convert data URLs to messages with binary attachments.
 
-    Only the first 5 images are used.
+    Only the first five images are included.  Each image is attached using a
+    content ID (``cid``) so the raw bytes do not inflate the token count.
     """
     image_strings = image_strings[:5] if image_strings else []
-    return [
-        HumanMessage(content=[{"type": "image_url", "image_url": {"url": img}}])
-        for img in image_strings
-    ]
+    messages: List[HumanMessage] = []
+    for idx, img in enumerate(image_strings):
+        if img.startswith("data:"):
+            header, b64_data = img.split(",", 1)
+            mime = header.split(";")[0].split(":")[1]
+            data = base64.b64decode(b64_data)
+            messages.append(
+                HumanMessage(
+                    content=[{"type": "input_image", "image_url": {"url": f"cid:image{idx}"}}],
+                    additional_kwargs={
+                        "attachments": [
+                            {
+                                "name": f"image{idx}",
+                                "data": data,
+                                "mime_type": mime,
+                            }
+                        ]
+                    },
+                )
+            )
+        else:
+            messages.append(
+                HumanMessage(
+                    content=[{"type": "input_image", "image_url": {"url": img}}]
+                )
+            )
+    return messages
 
 # Load prompts
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')
