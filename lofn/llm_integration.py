@@ -1641,6 +1641,7 @@ def generate_meta_prompt(
     reasoning_level="medium",
     medium="image",
     personality_prompt="",
+    input_images: Optional[List[str]] = None,
 ):
     try:
         if medium == "music":
@@ -1652,15 +1653,23 @@ def generate_meta_prompt(
         else:
             frames_list = sample_artistic_frames()
             styles_list = sample_art_styles()
+        image_context = prepare_image_messages(input_images)
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
-                ChatPromptTemplate.from_messages([("human", meta_prompt_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    MessagesPlaceholder("image_context"),
+                    ("human", meta_prompt_generation_prompt),
+                ])
                 | llm
             )
         else:
             chain = (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", meta_prompt_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    MessagesPlaceholder("image_context"),
+                    ("human", meta_prompt_generation_prompt),
+                ])
                 | llm
             )
 
@@ -1672,13 +1681,14 @@ def generate_meta_prompt(
         full_input = input_text
 
         parsed_output = run_llm_chain(
-            {'meta': chain},
-            'meta',
+            {"meta": chain},
+            "meta",
             {
-                'input': full_input,
-                'frames_list': frames_list,
-                'styles_list': styles_list,
-                'personality_prompt': personality_prompt,
+                "input": full_input,
+                "frames_list": frames_list,
+                "styles_list": styles_list,
+                "personality_prompt": personality_prompt,
+                "image_context": image_context,
             },
             max_retries,
             model,
@@ -1699,18 +1709,27 @@ def generate_panel_prompt(
     debug=False,
     reasoning_level="medium",
     personality_prompt="",
+    input_images: Optional[List[str]] = None,
 ):
     """Generate an artistic panel description via the LLM."""
     try:
+        image_context = prepare_image_messages(input_images)
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
-                ChatPromptTemplate.from_messages([("human", panel_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    MessagesPlaceholder("image_context"),
+                    ("human", panel_generation_prompt),
+                ])
                 | llm
             )
         else:
             chain = (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", panel_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    MessagesPlaceholder("image_context"),
+                    ("human", panel_generation_prompt),
+                ])
                 | llm
             )
 
@@ -1723,7 +1742,11 @@ def generate_panel_prompt(
         parsed_output = run_llm_chain(
             {"panel": chain},
             "panel",
-            {"input": full_input, "personality_prompt": personality_prompt},
+            {
+                "input": full_input,
+                "personality_prompt": personality_prompt,
+                "image_context": image_context,
+            },
             max_retries,
             model,
             debug,
@@ -1739,23 +1762,45 @@ def generate_panel_prompt(
         raise e
 
 @st.cache_data(persist=True)
-def generate_personality_prompt(input_text, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
+def generate_personality_prompt(
+    input_text,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    debug=False,
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None,
+):
     """Generate a short personality description via the LLM."""
     try:
+        image_context = prepare_image_messages(input_images)
         llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
         if model[0] == "o":
             chain = (
-                ChatPromptTemplate.from_messages([("human", personality_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    MessagesPlaceholder("image_context"),
+                    ("human", personality_generation_prompt),
+                ])
                 | llm
             )
         else:
             chain = (
-                ChatPromptTemplate.from_messages([("system", concept_system), ("human", personality_generation_prompt)])
+                ChatPromptTemplate.from_messages([
+                    ("system", concept_system),
+                    MessagesPlaceholder("image_context"),
+                    ("human", personality_generation_prompt),
+                ])
                 | llm
             )
 
         parsed_output = run_llm_chain(
-            {"personality": chain}, "personality", {"input": input_text}, max_retries, model, debug, expected_schema=personality_prompt_schema
+            {"personality": chain},
+            "personality",
+            {"input": input_text, "image_context": image_context},
+            max_retries,
+            model,
+            debug,
+            expected_schema=personality_prompt_schema,
         )
         if parsed_output is not None:
             return parsed_output.get("personality_prompt", "")
