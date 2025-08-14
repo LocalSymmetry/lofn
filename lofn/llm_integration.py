@@ -801,8 +801,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
                   debug=None, expected_schema=None):
     chain = chains[chain_name]
+    args_json = json.dumps(args_dict, sort_keys=True) if args_dict is not None else None
     output = run_chain_with_retries(
-        chain, max_retries=max_retries, args_dict=args_dict, is_correction=False,
+        chain, max_retries=max_retries, args_json=args_json, is_correction=False,
         model=model, debug=debug, expected_schema=expected_schema
     )
 
@@ -814,9 +815,10 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
 
 @st.cache_data(persist=True)
 def run_chain_with_retries(
-    _lang_chain, max_retries, args_dict=None, is_correction=False, model=None,
+    _lang_chain, max_retries, args_json=None, is_correction=False, model=None,
     debug=False, expected_schema=None
 ):
+    args_dict = json.loads(args_json) if args_json else {}
     output = None
     retry_count = 0
     while retry_count < max_retries:
@@ -1629,7 +1631,7 @@ def generate_simple_music_prompts(
     
         output_essence = run_chain_with_retries(
             chain,
-            args_dict={"input": input_text},
+            args_json=json.dumps({"input": input_text}, sort_keys=True),
             max_retries=max_retries,
             model=model,
             debug=debug,
@@ -1654,11 +1656,12 @@ def generate_simple_music_prompts(
         # Run the chain with retries
         parsed_output = run_chain_with_retries(
             gen_chain,
-            args_dict={
+            args_json=json.dumps({
                 "input": input_text,
                 "essence":output_essence["essence_and_facets"]["essence"],
                 "facets":output_essence["essence_and_facets"]["facets"],
-                "style_axes":output_essence["essence_and_facets"]["style_axes"]},
+                "style_axes":output_essence["essence_and_facets"]["style_axes"]
+            }, sort_keys=True),
             max_retries=max_retries,
             model=model,
             debug=debug,
