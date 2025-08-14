@@ -802,7 +802,7 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
                   debug=None, expected_schema=None):
     chain = chains[chain_name]
     output = run_chain_with_retries(
-        chain, max_retries=max_retries, _args_dict=args_dict, is_correction=False,
+        chain, max_retries=max_retries, args_dict=args_dict, is_correction=False,
         model=model, debug=debug, expected_schema=expected_schema
     )
 
@@ -814,7 +814,7 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
 
 @st.cache_data(persist=True)
 def run_chain_with_retries(
-    _lang_chain, max_retries, _args_dict=None, is_correction=False, model=None,
+    _lang_chain, max_retries, args_dict=None, is_correction=False, model=None,
     debug=False, expected_schema=None
 ):
     output = None
@@ -822,9 +822,9 @@ def run_chain_with_retries(
     while retry_count < max_retries:
         try:
             output = run_any_chain(
-                _lang_chain, _args_dict, is_correction, retry_count, model, debug, expected_schema
+                _lang_chain, args_dict, is_correction, retry_count, model, debug, expected_schema
             )
-            _args_dict['output'] = output
+            args_dict['output'] = output
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
 
@@ -911,7 +911,7 @@ def process_essence_and_facets(
     expected_schema = essence_and_facets_schema  # Defined earlier
     args = {"input": input_text}
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains, 'essence_and_facets', args, max_retries,
         model, debug, expected_schema=expected_schema
@@ -947,7 +947,7 @@ def process_concepts(
         "creativity_spectrum_literal": creativity_spectrum['literal'],
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'concepts',
@@ -987,7 +987,7 @@ def process_artist_and_refined_concepts(
         "concepts": [x['concept'] for x in concepts['concepts']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'artist_and_refined_concepts',
@@ -1027,7 +1027,7 @@ def process_mediums(
         "creativity_spectrum_literal": creativity_spectrum['literal'],
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'medium',
@@ -1071,7 +1071,7 @@ def process_refined_mediums(
         "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'refine_medium',
@@ -1106,7 +1106,7 @@ def process_facets(
         "style_axes": style_axes
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'facets',
@@ -1142,7 +1142,7 @@ def process_artistic_guides(
         "style_axes": style_axes,
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'aspects_traits',
@@ -1180,7 +1180,7 @@ def process_midjourney_prompts(
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'midjourney',
@@ -1223,7 +1223,7 @@ def process_artist_refined_prompts(
         "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -1266,7 +1266,7 @@ def process_revised_synthesized_prompts(
         "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',
@@ -1331,35 +1331,30 @@ def generate_concept_mediums(
             chains = {
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
                 ),
                 'concepts': (
                     ChatPromptTemplate.from_messages([
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
                 ),
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
                 ),
                 'medium': (
                     ChatPromptTemplate.from_messages([
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
                 ),
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -1370,7 +1365,6 @@ def generate_concept_mediums(
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
@@ -1378,7 +1372,6 @@ def generate_concept_mediums(
                 'concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
@@ -1386,7 +1379,6 @@ def generate_concept_mediums(
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
@@ -1394,7 +1386,6 @@ def generate_concept_mediums(
                 'medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
@@ -1402,7 +1393,6 @@ def generate_concept_mediums(
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
-                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -1639,7 +1629,7 @@ def generate_simple_music_prompts(
     
         output_essence = run_chain_with_retries(
             chain,
-            _args_dict={"input": input_text},
+            args_dict={"input": input_text},
             max_retries=max_retries,
             model=model,
             debug=debug,
@@ -1664,7 +1654,7 @@ def generate_simple_music_prompts(
         # Run the chain with retries
         parsed_output = run_chain_with_retries(
             gen_chain,
-            _args_dict={
+            args_dict={
                 "input": input_text,
                 "essence":output_essence["essence_and_facets"]["essence"],
                 "facets":output_essence["essence_and_facets"]["facets"],
@@ -2616,7 +2606,7 @@ def process_video_prompts(
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -2662,7 +2652,7 @@ def process_video_artist_refined_prompts(
         "video_gen_prompts": [x['video_prompt'] for x in video_prompts['video_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -2707,7 +2697,7 @@ def process_song_guides(
         "style_axes": style_axes,
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'song_guides',
@@ -2746,7 +2736,7 @@ def process_music_generation_prompts(
         "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'generation',
@@ -2787,7 +2777,7 @@ def process_music_artist_refined_prompts(
         "song_guides": song_guides
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'artist_refined',
@@ -2828,7 +2818,7 @@ def process_music_revision_synthesis(
         "song_guides": song_guides
     }
     if image_context is not None:
-        args["image_context"] = image_context
+        args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
         chains,
         'revision_synthesis',

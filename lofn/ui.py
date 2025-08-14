@@ -654,7 +654,7 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{art_styles_list}', art_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
-                    .replace('{image_context}', "\n".join(images) if images else "")
+                    .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
@@ -876,7 +876,7 @@ class LofnApp:
                 .replace('{genres_list}', genres_list)
                 .replace('{frames_list}', frames_list)
                 .replace('{input}', st.session_state.get('input', ''))
-                .replace('{image_context}', "\n".join(images) if images else "")
+                .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
@@ -1070,7 +1070,7 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{film_styles_list}', film_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
-                    .replace('{image_context}', "\n".join(images) if images else "")
+                    .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
@@ -1568,7 +1568,7 @@ class LofnApp:
                     {"type": "text", "text": user_input},
                     *[
                         {"type": "input_image", "image_url": img}
-                        for img in images
+                        for img in prepare_image_messages(images)
                     ],
                 ]
             )
@@ -1670,7 +1670,7 @@ class LofnApp:
                     {"type": "text", "text": user_input},
                     *[
                         {"type": "input_image", "image_url": img}
-                        for img in images
+                        for img in prepare_image_messages(images)
                     ],
                 ]
             )
