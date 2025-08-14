@@ -560,9 +560,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
-                )
+                images.append(resize_image_to_data_url(file))
         st.session_state['input_images'] = images
 
         # If there's no user input, provide a tip
@@ -987,9 +985,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
-                )
+                images.append(resize_image_to_data_url(file))
         st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Describe a scene or narrative you'd like to see in motion.")
@@ -1272,9 +1268,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
-                )
+                images.append(resize_image_to_data_url(file))
         st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Include themes, emotions, specific elements, and desired run time length.")
@@ -1541,9 +1535,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
-                )
+                chat_images.append(resize_image_to_data_url(file))
         st.session_state['chat_input_images'] = chat_images
 
         if 'chat_history' not in st.session_state:
@@ -1639,9 +1631,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
-                )
+                chat_images.append(resize_image_to_data_url(file))
         st.session_state['image2video_chat_input_images'] = chat_images
 
         if 'image2video_chat_history' not in st.session_state:

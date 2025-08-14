@@ -2,6 +2,9 @@
 
 import re
 import json
+import base64
+from io import BytesIO
+from PIL import Image
 import streamlit as st
 import requests
 import random
@@ -28,6 +31,25 @@ def set_style_axes(auto_style: bool, style_axes=None):
 def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
+
+
+def resize_image_to_data_url(uploaded_file, target: int = 512) -> str:
+    """Return a data URL for ``uploaded_file`` scaled so the smallest axis is ``target`` pixels."""
+    image = Image.open(BytesIO(uploaded_file.getvalue()))
+    width, height = image.size
+    if min(width, height) == 0:
+        encoded = base64.b64encode(uploaded_file.getvalue()).decode()
+        return f"data:{uploaded_file.type};base64,{encoded}"
+    scale = target / min(width, height)
+    new_size = (int(width * scale), int(height * scale))
+    image = image.resize(new_size, Image.LANCZOS)
+    buffer = BytesIO()
+    fmt = "PNG" if uploaded_file.type == "image/png" else "JPEG"
+    if fmt == "JPEG":
+        image = image.convert("RGB")
+    image.save(buffer, format=fmt)
+    encoded = base64.b64encode(buffer.getvalue()).decode()
+    return f"data:{uploaded_file.type};base64,{encoded}"
 
 
 def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
