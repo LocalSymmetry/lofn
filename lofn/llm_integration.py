@@ -34,6 +34,7 @@ from helpers import (
     sample_music_genres,
     sample_art_styles,
     sample_film_styles,
+    compress_image_bytes,
 )
 import plotly.graph_objects as go
 import random
@@ -65,8 +66,10 @@ def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
     for idx, img in enumerate(image_strings):
         if img.startswith("data:"):
             header, b64_data = img.split(",", 1)
-            mime = header.split(";")[0].split(":")[1]
             data = base64.b64decode(b64_data)
+            data, mime = compress_image_bytes(data)
+            if mime is None:
+                mime = header.split(";")[0].split(":")[1]
             messages.append(
                 HumanMessage(
                     content=[{"type": "input_image", "image_url": {"url": f"cid:image{idx}"}}],

@@ -13,10 +13,13 @@ import csv
 import asyncio
 import threading
 from queue import Queue
-from typing import Union, List, AsyncGenerator, Generator
+from typing import Union, List, AsyncGenerator, Generator, Tuple, Optional
 from datetime import datetime
 import os
-from config import Config
+try:
+    from config import Config
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .config import Config
 import plotly.graph_objects as go
 
 def set_style_axes(auto_style: bool, style_axes=None):
@@ -32,24 +35,27 @@ def read_prompt(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
+def compress_image_bytes(data: bytes, max_dim: int = 1024, quality: int = 80) -> Tuple[bytes, Optional[str]]:
+    """Return JPEG-compressed ``data`` and its MIME type.
 
-def resize_image_to_data_url(uploaded_file, target: int = 512) -> str:
-    """Return a data URL for ``uploaded_file`` scaled so the smallest axis is ``target`` pixels."""
-    image = Image.open(BytesIO(uploaded_file.getvalue()))
-    width, height = image.size
-    if min(width, height) == 0:
-        encoded = base64.b64encode(uploaded_file.getvalue()).decode()
-        return f"data:{uploaded_file.type};base64,{encoded}"
-    scale = target / min(width, height)
-    new_size = (int(width * scale), int(height * scale))
-    image = image.resize(new_size, Image.LANCZOS)
+    If ``data`` is not a valid image, return it unchanged and ``None`` as the MIME type.
+    """
+    try:
+        img = Image.open(BytesIO(data))
+    except Exception:
+        return data, None
+
+    img.thumbnail((max_dim, max_dim), Image.LANCZOS)
     buffer = BytesIO()
-    fmt = "PNG" if uploaded_file.type == "image/png" else "JPEG"
-    if fmt == "JPEG":
-        image = image.convert("RGB")
-    image.save(buffer, format=fmt)
-    encoded = base64.b64encode(buffer.getvalue()).decode()
-    return f"data:{uploaded_file.type};base64,{encoded}"
+    img.convert("RGB").save(buffer, format="JPEG", quality=quality, optimize=True)
+    return buffer.getvalue(), "image/jpeg"
+
+
+def resize_image_to_data_url(uploaded_file, max_dim: int = 1024, quality: int = 80) -> str:
+    """Return a JPEG data URL for ``uploaded_file`` scaled to ``max_dim`` on its largest side."""
+    data, _ = compress_image_bytes(uploaded_file.getvalue(), max_dim=max_dim, quality=quality)
+    encoded = base64.b64encode(data).decode()
+    return f"data:image/jpeg;base64,{encoded}"
 
 
 def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
