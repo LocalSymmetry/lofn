@@ -11,7 +11,28 @@ if not Path("/lofn/prompts").exists():
     os.makedirs("/lofn", exist_ok=True)
     os.symlink(prompts_src, "/lofn/prompts")
 
-from lofn.llm_integration import prepare_image_messages
+# Load only the prepare_image_messages function to avoid heavy imports
+import ast
+from pathlib import Path
+
+source = Path('lofn/llm_integration.py').read_text()
+module = ast.parse(source)
+func_node = next(
+    node for node in module.body if isinstance(node, ast.FunctionDef) and node.name == 'prepare_image_messages'
+)
+module_ast = ast.Module(body=[func_node], type_ignores=[])
+code = compile(module_ast, filename='<prepare_image_messages>', mode='exec')
+
+class HumanMessage:
+    def __init__(self, content, additional_kwargs=None):
+        self.content = content
+        self.additional_kwargs = additional_kwargs or {}
+
+ns = {'HumanMessage': HumanMessage, 'List': list, 'base64': base64}
+from lofn.helpers import compress_image_bytes
+ns['compress_image_bytes'] = compress_image_bytes
+exec(code, ns)
+prepare_image_messages = ns['prepare_image_messages']
 
 
 def make_data_url():
@@ -29,6 +50,6 @@ def test_prepare_image_messages_inlines_jpeg():
     msg = msgs[0]
     assert isinstance(msg.content, list)
     assert msg.content[0]["type"] == "input_image"
-    url = msg.content[0]["image_url"]["url"]
+    url = msg.content[0]["image_url"]
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}
