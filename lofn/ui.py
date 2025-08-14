@@ -556,7 +556,7 @@ class LofnApp:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
                 images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
                 )
         st.session_state['input_images'] = images
 
@@ -976,7 +976,7 @@ class LofnApp:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
                 images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
                 )
         st.session_state['input_images'] = images
         if not st.session_state['input']:
@@ -1256,7 +1256,7 @@ class LofnApp:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
                 images.append(
-                    f"data:{file.type};base64,{base64.b64encode(file.read()).decode()}"
+                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
                 )
         st.session_state['input_images'] = images
         if not st.session_state['input']:
@@ -1507,20 +1507,56 @@ class LofnApp:
             )
         personality_text = st.session_state.get('custom_personality', '')
 
+        st.subheader("Reference Images (Optional)")
+        uploaded_files = st.file_uploader(
+            "Upload up to 5 images",
+            type=["png", "jpg", "jpeg"],
+            accept_multiple_files=True,
+            key="personality_chat_images",
+        )
+        chat_images = []
+        if uploaded_files:
+            if len(uploaded_files) > 5:
+                st.warning("Only the first 5 images will be used.")
+            for file in uploaded_files[:5]:
+                chat_images.append(
+                    f"data:{file.type};base64,{base64.b64encode(file.getvalue()).decode()}"
+                )
+        st.session_state['chat_input_images'] = chat_images
+
         if 'chat_history' not in st.session_state:
             st.session_state['chat_history'] = []
 
         for msg in st.session_state['chat_history']:
             role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
             with st.chat_message(role):
-                st.markdown(msg.content)
+                if isinstance(msg.content, list):
+                    for part in msg.content:
+                        if part.get("type") == "text":
+                            st.markdown(part.get("text", ""))
+                        elif part.get("type") == "image_url":
+                            st.image(base64.b64decode(part["image_url"]["url"].split(",")[1]))
+                else:
+                    st.markdown(msg.content)
 
         user_input = st.chat_input("Send a message")
         if user_input:
             history = st.session_state['chat_history'][:]
-            st.session_state['chat_history'].append(HumanMessage(content=user_input))
+            images = st.session_state.get('chat_input_images', [])
+            user_message = HumanMessage(
+                content=[
+                    {"type": "text", "text": user_input},
+                    *[
+                        {"type": "image_url", "image_url": {"url": img}}
+                        for img in images
+                    ],
+                ]
+            )
+            st.session_state['chat_history'].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
+                for img in images:
+                    st.image(base64.b64decode(img.split(",")[1]))
             response_stream = stream_personality_chat(
                 personality_text,
                 history,
@@ -1529,12 +1565,15 @@ class LofnApp:
                 temperature=self.temperature,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
+                input_images=images,
             )
             with st.chat_message("assistant"):
                 response_text = st.write_stream(
                     async_to_sync_generator(response_stream)
                 )
             st.session_state['chat_history'].append(AIMessage(content=response_text))
+            st.session_state['chat_input_images'] = []
+            st.session_state['personality_chat_images'] = None
 
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
@@ -1582,6 +1621,7 @@ class LofnApp:
             'reasoning_level': 'medium',  # default reasoning if user doesn't set
             'input_images': [],
             'chat_history': [],
+            'chat_input_images': [],
         }
 
         for key, value in default_values.items():
