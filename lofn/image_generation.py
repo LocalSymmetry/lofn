@@ -9,12 +9,10 @@ import fal_client
 import os
 import time
 import asyncio
-import streamlit as st
 from config import Config
 from helpers import *
 import logging
 logger = logging.getLogger(__name__)
-from config import Config
 import plotly.graph_objects as go
 import pandas as pd
 from llm_integration import *
@@ -30,6 +28,7 @@ from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import HumanMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
+import json
 
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
@@ -383,13 +382,13 @@ def generate_image_title(input, concept, medium, image, max_retries, temperature
     
     output = run_chain_with_retries(
         chain,
-        _args_dict={
+        args_json=json.dumps({
         "input": input,
         "concept": concept,
         "medium": medium,
         "facets": st.session_state.essence_and_facets_output['essence_and_facets']['facets'],
         "image": image
-        },
+        }, sort_keys=True),
         max_retries=max_retries,
         debug=debug,
         expected_schema = image_title_schema)
