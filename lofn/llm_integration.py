@@ -1768,6 +1768,7 @@ def run_personality_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
+    input_images: Optional[List[str]] = None,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
     llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
@@ -1776,14 +1777,17 @@ def run_personality_chat(
     prompt = ChatPromptTemplate.from_messages([
         ("system", personality_chat_template),
         MessagesPlaceholder("chat_history"),
+        MessagesPlaceholder("image_context"),
         ("human", "{input}"),
     ])
+    image_context = prepare_image_messages(input_images)
     chain = prompt | llm
     response = chain.invoke(
         {
             "personality": personality_prompt,
             "lofn_readme": lofn_readme,
             "chat_history": chat_history,
+            "image_context": image_context,
             "input": user_input,
         }
     )
@@ -1802,6 +1806,7 @@ async def stream_personality_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
+    input_images: Optional[List[str]] = None,
 ):
     """Stream a free-form chat response with a given personality.
 
@@ -1826,14 +1831,18 @@ async def stream_personality_chat(
     prompt = ChatPromptTemplate.from_messages([
         ("system", personality_chat_template),
         MessagesPlaceholder("chat_history"),
+        MessagesPlaceholder("image_context"),
         ("human", "{input}"),
     ])
+
+    image_context = prepare_image_messages(input_images)
 
     chain = prompt | llm
     inputs = {
         "personality": personality_prompt,
         "lofn_readme": lofn_readme,
         "chat_history": chat_history,
+        "image_context": image_context,
         "input": user_input,
     }
 
@@ -1856,6 +1865,7 @@ async def stream_personality_chat(
             temperature=temperature,
             reasoning_level=reasoning_level,
             debug=debug,
+            input_images=input_images,
         )
         yield fallback
 
