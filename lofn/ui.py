@@ -39,6 +39,12 @@ if os.path.exists(custom_personality_path):
 
 PERSONALITY_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PERSONALITY_OPTIONS
 
+
+def image_context_to_string(images):
+    """Utility to inline prepared images as data URLs separated by newlines."""
+
+    return "\n".join(prepare_image_strings(images)) if images else ""
+
 DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
 
 # Limit the number of prompt files processed by the explorer
@@ -654,12 +660,12 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{art_styles_list}', art_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
-                    .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
+                    .replace('{image_context}', image_context_to_string(images))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
                 if images:
-                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
@@ -876,7 +882,7 @@ class LofnApp:
                 .replace('{genres_list}', genres_list)
                 .replace('{frames_list}', frames_list)
                 .replace('{input}', st.session_state.get('input', ''))
-                .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
+                .replace('{image_context}', image_context_to_string(images))
             )
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
@@ -1070,12 +1076,12 @@ class LofnApp:
                     .replace('{frames_list}', frames_list)
                     .replace('{film_styles_list}', film_styles_list)
                     .replace('{input}', st.session_state.get('input', ''))
-                    .replace('{image_context}', "\n".join(prepare_image_messages(images)) if images else "")
+                    .replace('{image_context}', image_context_to_string(images))
                 )
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
                 if images:
-                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating video concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
@@ -1308,8 +1314,8 @@ class LofnApp:
         try:
             input_text = st.session_state['input']
             images = st.session_state.get('input_images')
-            if images:
-                input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(images)
+                if images:
+                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating music prompts..."):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
@@ -1563,15 +1569,17 @@ class LofnApp:
         if user_input:
             history = st.session_state['chat_history'][:]
             images = st.session_state.get('chat_input_images', [])
+            prepared = prepare_image_strings(images)
             user_message = HumanMessage(
                 content=[
-                    {"type": "text", "text": user_input + "Input images (if any):" + (' '.join([img for img in prepare_image_messages(images)]))}
+                    {"type": "text", "text": user_input},
+                    *[{"type": "input_image", "image_url": img} for img in prepared],
                 ]
             )
             st.session_state['chat_history'].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
-                for img in images:
+                for img in prepared:
                     st.image(base64.b64decode(img.split(",")[1]))
             response_stream = stream_personality_chat(
                 personality_text,
@@ -1581,7 +1589,7 @@ class LofnApp:
                 temperature=self.temperature,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
-                input_images=images,
+                input_images=prepared,
             )
             with st.chat_message("assistant"):
                 response_text = st.write_stream(
@@ -1661,15 +1669,17 @@ class LofnApp:
         if user_input:
             history = st.session_state['image2video_chat_history'][:]
             images = st.session_state.get('image2video_chat_input_images', [])
+            prepared = prepare_image_strings(images)
             user_message = HumanMessage(
                 content=[
-                    {"type": "text", "text": user_input + "Input images (if any):" + (' '.join([img for img in prepare_image_messages(images)]))}
+                    {"type": "text", "text": user_input},
+                    *[{"type": "input_image", "image_url": img} for img in prepared],
                 ]
             )
             st.session_state['image2video_chat_history'].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
-                for img in images:
+                for img in prepared:
                     st.image(base64.b64decode(img.split(",")[1]))
             response_stream = stream_personality_image2video_chat(
                 personality_text,
@@ -1679,7 +1689,7 @@ class LofnApp:
                 temperature=self.temperature,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
-                input_images=images,
+                input_images=prepared,
             )
             with st.chat_message("assistant"):
                 response_text = st.write_stream(

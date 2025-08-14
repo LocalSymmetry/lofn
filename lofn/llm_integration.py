@@ -126,6 +126,17 @@ def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
 
     return messages
 
+
+def prepare_image_strings(image_strings: List[str]) -> List[str]:
+    """Return data URLs for images prepared for model consumption.
+
+    This helper mirrors :func:`prepare_image_messages` but returns plain
+    strings instead of ``HumanMessage`` objects.  The resulting strings are
+    suitable for embedding into prompts or hashing for caching.
+    """
+
+    return [m.content[0]["image_url"] for m in prepare_image_messages(image_strings)]
+
 # Load prompts
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')
 prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
@@ -798,10 +809,26 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             raise LofnError(f"{model} not found!")
 
 
+def _make_serializable(obj: Any) -> Any:
+    """Convert possibly complex objects into JSON-serializable structures."""
+
+    if isinstance(obj, HumanMessage):
+        return {
+            "content": obj.content,
+            "additional_kwargs": getattr(obj, "additional_kwargs", {}),
+        }
+    if isinstance(obj, list):
+        return [_make_serializable(o) for o in obj]
+    if isinstance(obj, dict):
+        return {k: _make_serializable(v) for k, v in obj.items()}
+    return obj
+
+
 def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
                   debug=None, expected_schema=None):
     chain = chains[chain_name]
-    args_json = json.dumps(args_dict, sort_keys=True) if args_dict is not None else None
+    serializable = _make_serializable(args_dict) if args_dict is not None else None
+    args_json = json.dumps(serializable, sort_keys=True) if serializable is not None else None
     output = run_chain_with_retries(
         chain, max_retries=max_retries, args_json=args_json, is_correction=False,
         model=model, debug=debug, expected_schema=expected_schema
