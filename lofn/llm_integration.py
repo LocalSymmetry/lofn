@@ -17,7 +17,7 @@ from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
 from langchain.schema import OutputParserException
 from langchain.callbacks import AsyncIteratorCallbackHandler
-from langchain.schema import HumanMessage
+from langchain.schema import HumanMessage, SystemMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional
@@ -1825,26 +1825,29 @@ def run_personality_chat(
     system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
-    llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+    llm = get_llm(
+        model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
+    )
     readme_path = Path('/workspace/lofn/README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", system_prompt),
-        MessagesPlaceholder("chat_history"),
-        MessagesPlaceholder("image_context"),
-        ("human", "{input}"),
-    ])
-    image_context = prepare_image_messages(input_images)
-    chain = prompt | llm
-    response = chain.invoke(
-        {
-            "personality": personality_prompt,
-            "lofn_readme": lofn_readme,
-            "chat_history": chat_history,
-            "image_context": image_context,
-            "input": user_input,
-        }
+    system_text = system_prompt.replace("{personality}", personality_prompt).replace(
+        "{lofn_readme}", lofn_readme
     )
+    user_message = HumanMessage(
+        content=[
+            {"type": "text", "text": user_input},
+            *[
+                {"type": "image_url", "image_url": {"url": img}}
+                for img in (input_images or [])
+            ],
+        ]
+    )
+    prompt = ChatPromptTemplate.from_messages([
+        SystemMessage(content=system_text),
+        MessagesPlaceholder("chat_history"),
+    ])
+    chain = prompt | llm
+    response = chain.invoke({"chat_history": chat_history + [user_message]})
     if isinstance(response, dict):
         return response.get("text", str(response))
     if hasattr(response, "content"):
@@ -1872,34 +1875,30 @@ async def stream_personality_chat(
 
     # Build the chain using the same prompt setup as the non-streaming version
     llm = get_llm(
-        model,
-        temperature,
-        Config.OPENAI_API,
-        Config.ANTHROPIC_API,
-        debug,
-        reasoning_level,
+        model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
     )
 
     readme_path = Path('/workspace/lofn/README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
-
+    system_text = system_prompt.replace("{personality}", personality_prompt).replace(
+        "{lofn_readme}", lofn_readme
+    )
+    user_message = HumanMessage(
+        content=[
+            {"type": "text", "text": user_input},
+            *[
+                {"type": "image_url", "image_url": {"url": img}}
+                for img in (input_images or [])
+            ],
+        ]
+    )
     prompt = ChatPromptTemplate.from_messages([
-        ("system", system_prompt),
+        SystemMessage(content=system_text),
         MessagesPlaceholder("chat_history"),
-        MessagesPlaceholder("image_context"),
-        ("human", "{input}"),
     ])
 
-    image_context = prepare_image_messages(input_images)
-
     chain = prompt | llm
-    inputs = {
-        "personality": personality_prompt,
-        "lofn_readme": lofn_readme,
-        "chat_history": chat_history,
-        "image_context": image_context,
-        "input": user_input,
-    }
+    inputs = {"chat_history": chat_history + [user_message]}
 
     callback = AsyncIteratorCallbackHandler()
 
