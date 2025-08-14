@@ -1565,11 +1565,7 @@ class LofnApp:
             images = st.session_state.get('chat_input_images', [])
             user_message = HumanMessage(
                 content=[
-                    {"type": "text", "text": user_input},
-                    *[
-                        {"type": "input_image", "image_url": img}
-                        for img in prepare_image_messages(images)
-                    ],
+                    {"type": "text", "text": user_input + "Input images (if any):" + (' '.join([img for img in prepare_image_messages(images)]))}
                 ]
             )
             st.session_state['chat_history'].append(user_message)
@@ -1667,11 +1663,7 @@ class LofnApp:
             images = st.session_state.get('image2video_chat_input_images', [])
             user_message = HumanMessage(
                 content=[
-                    {"type": "text", "text": user_input},
-                    *[
-                        {"type": "input_image", "image_url": img}
-                        for img in prepare_image_messages(images)
-                    ],
+                    {"type": "text", "text": user_input + "Input images (if any):" + (' '.join([img for img in prepare_image_messages(images)]))}
                 ]
             )
             st.session_state['image2video_chat_history'].append(user_message)
