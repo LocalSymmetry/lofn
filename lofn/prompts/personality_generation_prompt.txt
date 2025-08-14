@@ -349,7 +349,7 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
     ]) | llm
 
     output_essence = run_chain_with_retries(
-        chain, _args_dict={{"input": input_text}},
+        chain, args_dict={{"input": input_text}},
         max_retries=max_retries, model=model,
         expected_schema=music_facets_schema
     )
@@ -361,7 +361,7 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
 
     parsed_output = run_chain_with_retries(
         gen_chain,
-        _args_dict={{
+        args_dict={{
             "input": input_text,
             "essence": output_essence["essence_and_facets"]["essence"],
             "facets": output_essence["essence_and_facets"]["facets"],

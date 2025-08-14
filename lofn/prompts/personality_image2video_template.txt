@@ -125,67 +125,68 @@ Here is the methodology for ensuring the cut and the slice are one and the same 
 4.  **Direct the Eye, Direct the Action:** Use your camera and lighting descriptions to reinforce the point of action. By specifying a `"Macro lens"` and `"razor-sharp focus on the point of contact between the knife and the apple,"` you are telling the AI that this interaction is the most important event in the frame. This increases the computational resources dedicated to rendering that specific physical interaction correctly.
 In essence, you cannot trust the AI to infer the physics of a clean cut. You must **teach it the physics** within the prompt itself by breaking the event into its constituent, causally-linked parts and forcing it to adhere to a strict timeline. This is how we move from hoping for a good result to directing one.
 #### Examples for glass fruit cutting images
-```{
-  "veo3_prompt": {
+```
+{{
+  "veo3_prompt": {{
     "scene_description": "A pair of hyper-realistic glass cherries, deep crimson with translucent skin and intertwined green glass stems, rest on a slab of black, unpolished marble. The scene is minimalist and stark.",
     "lighting": "Cinematic, high-contrast chiaroscuro. A single, soft key light from the top-left illuminates the cherries, making them glow from within. The background is in deep shadow.",
     "camera": "Macro lens, stationary shot, eye-level. Extreme close-up with a very shallow depth of field, focusing on the texture of the glass.",
     "action_sequence": [
-      {
+      {{
         "time": "0-2s",
         "action": "An obsidian scalpel, held by an unseen hand, enters the frame from the right. Its movement is slow and surgically precise. The blade tip gently touches the surface of the rightmost cherry."
-      },
-      {
+      }},
+      {{
         "time": "2-4s",
         "action": "The scalpel blade presses down, scoring a clean, vertical line down the center of the cherry. The cut is not instantaneous; a network of white, thread-like micro-fractures visibly spreads from the blade's path."
-      },
-      {
+      }},
+      {{
         "time": "4-8s",
         "action": "The scalpel performs a perfect cleave. The right half of the cherry splits and falls away with a clean, satisfying motion, revealing the interior. The inside is not a pit, but a hollow cavity filled with a swirling, liquid nebula of glowing magenta and gold light."
-      }
+      }}
     ],
-    "audio_design": {
+    "audio_design": {{
       "ambience": "Absolute silence. No music or background noise.",
       "sfx": [
-        {"time": "2s", "sound": "A high-frequency, clean, resonant 'tink' as blade meets glass."},
-        {"time": "2-4s", "sound": "A crisp, granular, high-fidelity 'shhhk' sound of fracturing glass."},
-        {"time": "4.5s", "sound": "A single, sharp, satisfying 'clack' as the sliced piece separates."}
+        {{"time": "2s", "sound": "A high-frequency, clean, resonant 'tink' as blade meets glass."},
+        {{"time": "2-4s", "sound": "A crisp, granular, high-fidelity 'shhhk' sound of fracturing glass."},
+        {{"time": "4.5s", "sound": "A single, sharp, satisfying 'clack' as the sliced piece separates."}}
       ]
-    },
+    }},
     "negative_prompt": "no music, no voice, no background, no subtitles, no shaking, no jerky motion"
-  }
-}
+  }}
+}}
 ```
 ```
-{
-  "veo3_prompt": {
+{{
+  "veo3_prompt": {{
     "scene_description": "An ornate, baroque-style glass pomegranate, with a crown-like calyx, sits centered on a dark slate surface. The glass is a deep, swirling carnelian red.",
     "lighting": "Low-key, dramatic lighting. A single spotlight from above creates a pool of light around the pomegranate, with the edges falling into darkness.",
     "camera": "Macro lens, stationary shot. The frame is tight, focusing on the top half of the pomegranate.",
     "action_sequence": [
-      {
+      {{
         "time": "0-2s",
         "action": "A black, razor-sharp cleaver, held in a steady hand, is positioned directly above the pomegranate."
-      },
-      {
+      }},
+      {{
         "time": "2-3s",
         "action": "The cleaver descends with force, slicing off the top quarter of the pomegranate in one swift, powerful motion."
-      },
-      {
+      }},
+      {{
         "time": "3-8s",
         "action": "The cut section is lifted away, revealing the interior. The inside is not filled with arils, but with a mesmerizing, slow-motion vortex of swirling, bioluminescent particles, like a galaxy being born. The particles shimmer in shades of ruby, gold, and deep purple."
-      }
+      }}
     ],
-    "audio_design": {
+    "audio_design": {{
       "ambience": "Profound silence.",
       "sfx": [
-        {"time": "2.5s", "sound": "A sharp, percussive, cracking 'CRACK' sound."},
-        {"time": "3s", "sound": "A low, resonant 'whoosh' as the top is lifted, revealing a subtle, deep hum from the vortex within."}
+        {{"time": "2.5s", "sound": "A sharp, percussive, cracking 'CRACK' sound."},
+        {{"time": "3s", "sound": "A low, resonant 'whoosh' as the top is lifted, revealing a subtle, deep hum from the vortex within."}}
       ]
-    },
+    }},
     "negative_prompt": "no music, no voice, no text, no camera shake, single clean cut, dramatic reveal"
-  }
-}
+  }}
+}}
 ```
 ** FINAL RULE ** Make sure to use the input images as the basis for the videos! Describe the images with a full paragraph each before beginning!
 
