@@ -1,8 +1,9 @@
+import base64
+import ast
+from pathlib import Path
 from io import BytesIO
 from PIL import Image
-import base64
 import os
-from pathlib import Path
 
 # ``llm_integration`` expects prompts under ``/lofn/prompts``. Ensure the path
 # exists during testing so the module can import successfully.
@@ -11,8 +12,23 @@ if not Path("/lofn/prompts").exists():
     os.makedirs("/lofn", exist_ok=True)
     os.symlink(prompts_src, "/lofn/prompts")
 
-from lofn.llm_integration import prepare_image_messages
+source = Path("lofn/llm_integration.py").read_text()
+module = ast.parse(source)
+func_node = next(node for node in module.body if isinstance(node, ast.FunctionDef) and node.name == 'prepare_image_messages')
+module_ast = ast.Module(body=[func_node], type_ignores=[])
+code = compile(module_ast, filename="<prepare_image_messages>", mode="exec")
 
+class HumanMessage:
+    def __init__(self, content, additional_kwargs=None):
+        self.content = content
+        self.additional_kwargs = additional_kwargs or {}
+
+ns = {'HumanMessage': HumanMessage, 'List': list, 'base64': base64}
+# Inject helper used by prepare_image_messages
+from lofn.helpers import compress_image_bytes
+ns['compress_image_bytes'] = compress_image_bytes
+exec(code, ns)
+prepare_image_messages = ns['prepare_image_messages']
 
 def make_data_url():
     img = Image.new("RGB", (100, 100), color="blue")
@@ -21,7 +37,6 @@ def make_data_url():
     b64 = base64.b64encode(buf.getvalue()).decode()
     return f"data:image/png;base64,{b64}"
 
-
 def test_prepare_image_messages_inlines_jpeg():
     data_url = make_data_url()
     msgs = prepare_image_messages([data_url])
@@ -29,6 +44,6 @@ def test_prepare_image_messages_inlines_jpeg():
     msg = msgs[0]
     assert isinstance(msg.content, list)
     assert msg.content[0]["type"] == "input_image"
-    url = msg.content[0]["image_url"]["url"]
+    url = msg.content[0]["image_url"]
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}

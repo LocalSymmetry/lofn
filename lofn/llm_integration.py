@@ -122,7 +122,7 @@ def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
 
         messages.append(
             HumanMessage(
-                content=[{"type": "input_image", "image_url": {"url": url}}]
+                content=[{"type": "input_image", "image_url": url}]
             )
         )
 
@@ -1901,7 +1901,7 @@ def run_personality_chat(
         content=[
             {"type": "text", "text": user_input},
             *[
-                {"type": "input_image", "image_url": {"url": img}}
+                {"type": "input_image", "image_url": img}
                 for img in (input_images or [])
             ],
         ]
@@ -1951,7 +1951,7 @@ async def stream_personality_chat(
         content=[
             {"type": "text", "text": user_input},
             *[
-                {"type": "input_image", "image_url": {"url": img}}
+                {"type": "input_image", "image_url": img}
                 for img in (input_images or [])
             ],
         ]
