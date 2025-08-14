@@ -1350,7 +1350,14 @@ def generate_concept_mediums(
             # Step 1: Essence and Facets
             status.write("Generating Essence and Facets...")
             essence_and_facets, style_axes, creativity_spectrum = process_essence_and_facets(
-                chains, input_text, max_retries, debug, style_axes, creativity_spectrum, model, image_context
+                chains,
+                input_text,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if essence_and_facets:
                 spectrum = (
@@ -1372,11 +1379,11 @@ def generate_concept_mediums(
                 essence_and_facets["essence_and_facets"]["essence"],
                 essence_and_facets["essence_and_facets"]["facets"],
                 max_retries,
-                debug,
-                style_axes,
-                creativity_spectrum,
-                model,
-                image_context
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if debug:
                 st.write("Initial Concepts:")
@@ -1392,11 +1399,11 @@ def generate_concept_mediums(
                 essence_and_facets["essence_and_facets"]["facets"],
                 concepts,
                 max_retries,
-                debug,
-                style_axes,
-                creativity_spectrum,
-                model,
-                image_context
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if debug:
                 st.write("Refined Concepts:")
@@ -1412,11 +1419,11 @@ def generate_concept_mediums(
                 essence_and_facets["essence_and_facets"]["facets"],
                 artist_and_refined_concepts,
                 max_retries,
-                debug,
-                style_axes,
-                creativity_spectrum,
-                model,
-                image_context
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if debug:
                 st.write("Initial Mediums:")
@@ -1434,11 +1441,11 @@ def generate_concept_mediums(
                 [x['artist'] for x in artist_and_refined_concepts['artists']],
                 artist_and_refined_concepts,
                 max_retries,
-                debug,
-                style_axes,
-                creativity_spectrum,
-                model,
-                image_context
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if debug:
                 st.write("Refined Concepts:")
@@ -1952,7 +1959,18 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
         with st.status(f"Generating Prompts for {concept} in {medium}...", expanded=True) as status:
             # Step 1: Generate Facets
             status.write("Generating Facets...")
-            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model, image_context)
+            facets = process_facets(
+                chains,
+                input_text,
+                concept,
+                medium,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Facets:")
                 st.write(facets['facets'])
@@ -1961,7 +1979,18 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 2: Create Artistic Guides
             status.write("Creating Artistic Guides...")
-            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model, image_context)
+            artistic_guides = process_artistic_guides(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
@@ -1973,7 +2002,19 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 3: Generate Image Prompts
             status.write("Generating Image Prompts...")
-            midjourney_prompts = process_midjourney_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model, image_context)
+            midjourney_prompts = process_midjourney_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artistic_guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Image Generation Prompts:")
                 for i, prompt in enumerate(midjourney_prompts['image_gen_prompts'], 1):
@@ -1981,7 +2022,19 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 4: Refine Prompts
             status.write("Refining Prompts...")
-            artist_refined_prompts = process_artist_refined_prompts(chains, input_text, concept, medium, facets, midjourney_prompts, max_retries, debug, style_axes, model, image_context)
+            artist_refined_prompts = process_artist_refined_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                midjourney_prompts,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Artist Refined Prompts:")
                 for i, prompt in enumerate(artist_refined_prompts['artist_refined_prompts'], 1):
@@ -1989,7 +2042,19 @@ def generate_image_prompts(input_text, concept, medium, max_retries, temperature
 
             # Step 5: Synthesize Final Prompts
             status.write("Synthesizing Final Prompts...")
-            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model, image_context)
+            revised_synthesized_prompts = process_revised_synthesized_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artist_refined_prompts,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
 
             status.update(label="Prompt Generation Complete!", state="complete")
 
@@ -2009,7 +2074,17 @@ def generate_all_prompts(input_text, concept_mediums, max_retries, temperature, 
     
     for i, pair in enumerate(concept_mediums):
         st.write(f"Generating prompts for pair {i+1}/{total_pairs}: {pair['concept']} in {pair['medium']}")
-        df_prompts = generate_prompts(input_text, pair['concept'], pair['medium'], max_retries, temperature, model, debug, style_axes, creativity_spectrum)
+        df_prompts = generate_image_prompts(
+            input_text,
+            pair['concept'],
+            pair['medium'],
+            max_retries,
+            temperature,
+            model,
+            debug=debug,
+            style_axes=style_axes,
+            creativity_spectrum=creativity_spectrum,
+        )
         results.append(df_prompts)
         st.markdown("---")  # Add a separator between each pair's results
         
@@ -2091,7 +2166,18 @@ def generate_video_prompts(
         with st.status(f"Generating Video Prompts for {concept} in {medium}...", expanded=True) as status:
             # Step 1: Generate Facets
             status.write("Generating Facets...")
-            facets = process_facets(chains, input_text, concept, medium, max_retries, debug, style_axes, model, image_context)
+            facets = process_facets(
+                chains,
+                input_text,
+                concept,
+                medium,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Facets:")
                 st.write(facets['facets'])
@@ -2100,7 +2186,18 @@ def generate_video_prompts(
 
             # Step 2: Create Artistic Guides
             status.write("Creating Artistic Guides...")
-            artistic_guides = process_artistic_guides(chains, input_text, concept, medium, facets, max_retries, debug, style_axes, model, image_context)
+            artistic_guides = process_artistic_guides(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Artistic Guides:")
                 for i, guide in enumerate(artistic_guides['artistic_guides'], 1):
@@ -2108,7 +2205,19 @@ def generate_video_prompts(
 
             # Step 3: Generate Video Prompts
             status.write("Generating Video Prompts...")
-            video_prompts = process_video_prompts(chains, input_text, concept, medium, facets, artistic_guides, max_retries, debug, style_axes, model, image_context)
+            video_prompts = process_video_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artistic_guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
             if debug:
                 st.write("Video Prompts:")
                 for i, prompt in enumerate(video_prompts['video_prompts'], 1):
@@ -2117,7 +2226,17 @@ def generate_video_prompts(
             # Step 4: Refine Prompts
             status.write("Refining Prompts...")
             artist_refined_prompts = process_video_artist_refined_prompts(
-                chains, input_text, concept, medium, facets, video_prompts, max_retries, debug, style_axes, model, image_context
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                video_prompts,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
             )
             if debug:
                 st.write("Filmmaker Refined Prompts:")
@@ -2126,7 +2245,19 @@ def generate_video_prompts(
 
             # Step 5: Synthesize Final Prompts
             status.write("Synthesizing Final Prompts...")
-            revised_synthesized_prompts = process_revised_synthesized_prompts(chains, input_text, concept, medium, facets, artist_refined_prompts, max_retries, debug, style_axes, model, image_context)
+            revised_synthesized_prompts = process_revised_synthesized_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artist_refined_prompts,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
 
             status.update(label="Video Prompt Generation Complete!", state="complete")
 
@@ -2218,10 +2349,11 @@ def generate_music_prompts(
                 concept,
                 arrangement,
                 max_retries,
-                debug,
-                style_axes,
-                model,
-                image_context,
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
             )
             if facets is None:
                 raise LofnError("Failed to generate facets")
@@ -2235,10 +2367,10 @@ def generate_music_prompts(
                 arrangement,
                 facets,
                 max_retries,
-                debug,
-                style_axes,
-                model,
-                image_context,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
             )
             if guides is None:
                 raise LofnError("Failed to generate song guides")
@@ -2252,10 +2384,10 @@ def generate_music_prompts(
                 facets,
                 guides,
                 max_retries,
-                debug,
-                style_axes,
-                model,
-                image_context,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
             )
             if music_prompts is None:
                 raise LofnError("Failed to generate music prompts")
@@ -2270,10 +2402,10 @@ def generate_music_prompts(
                 music_prompts,
                 guides,
                 max_retries,
-                debug,
-                style_axes,
-                model,
-                image_context,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
             )
             if artist_refined is None:
                 raise LofnError("Failed to refine music prompts")
@@ -2288,10 +2420,10 @@ def generate_music_prompts(
                 artist_refined,
                 guides,
                 max_retries,
-                debug,
-                style_axes,
-                model,
-                image_context,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
             )
             if final_output is None:
                 raise LofnError("Failed to synthesize final music prompts")

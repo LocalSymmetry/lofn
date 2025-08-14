@@ -1507,6 +1507,11 @@ class LofnApp:
             )
         personality_text = st.session_state.get('custom_personality', '')
 
+        # Clear uploaded images if a reset was requested before rendering the uploader
+        if st.session_state.get('clear_personality_chat_images'):
+            st.session_state.pop('personality_chat_images', None)
+            st.session_state['clear_personality_chat_images'] = False
+
         st.subheader("Reference Images (Optional)")
         uploaded_files = st.file_uploader(
             "Upload up to 5 images",
@@ -1573,7 +1578,7 @@ class LofnApp:
                 )
             st.session_state['chat_history'].append(AIMessage(content=response_text))
             st.session_state['chat_input_images'] = []
-            st.session_state['personality_chat_images'] = None
+            st.session_state['clear_personality_chat_images'] = True
 
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
@@ -1622,6 +1627,7 @@ class LofnApp:
             'input_images': [],
             'chat_history': [],
             'chat_input_images': [],
+            'clear_personality_chat_images': False,
         }
 
         for key, value in default_values.items():
