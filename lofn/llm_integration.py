@@ -21,31 +21,62 @@ from langchain.schema import HumanMessage, SystemMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional
-from config import Config
-from helpers import (
-    read_prompt,
-    send_to_discord,
-    parse_output,
-    display_facets,
-    display_creativity_and_style_axes,
-    sample_artistic_frames,
-    sample_video_frames,
-    sample_music_frames,
-    sample_music_genres,
-    sample_art_styles,
-    sample_film_styles,
-    compress_image_bytes,
-)
+try:
+    from config import Config
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .config import Config
+try:
+    from helpers import (
+        read_prompt,
+        send_to_discord,
+        parse_output,
+        display_facets,
+        display_creativity_and_style_axes,
+        sample_artistic_frames,
+        sample_video_frames,
+        sample_music_frames,
+        sample_music_genres,
+        sample_art_styles,
+        sample_film_styles,
+        compress_image_bytes,
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .helpers import (
+        read_prompt,
+        send_to_discord,
+        parse_output,
+        display_facets,
+        display_creativity_and_style_axes,
+        sample_artistic_frames,
+        sample_video_frames,
+        sample_music_frames,
+        sample_music_genres,
+        sample_art_styles,
+        sample_film_styles,
+        compress_image_bytes,
+    )
 import plotly.graph_objects as go
 import random
 import numpy as np
 import pandas as pd
 import logging
 import base64
-from helpers import display_temporary_results, display_temporary_results_no_expander
+try:
+    from helpers import (
+        display_temporary_results,
+        display_temporary_results_no_expander,
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .helpers import (
+        display_temporary_results,
+        display_temporary_results_no_expander,
+    )
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
-from o1_integration import *
+try:
+    from o1_integration import *  # noqa: F401,F403
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .o1_integration import *  # noqa: F401,F403
 from pathlib import Path
 
 class LofnError(Exception):
@@ -56,40 +87,45 @@ class LofnError(Exception):
 logger = logging.getLogger(__name__)
 
 def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
-    """Convert data URLs to messages with binary attachments.
+    """Return ``HumanMessage`` objects with inline JPEG data URLs.
 
-    Only the first five images are included.  Each image is attached using a
-    content ID (``cid``) so the raw bytes do not inflate the token count.
+    The OpenAI image spec expects images to be sent directly within the
+    payload.  To ensure compatibility across providers, this function compresses
+    each image to JPEG (max dimension 1024) and embeds it in the message using a
+    ``data:`` URL.  Only the first five images are included.
     """
+
     image_strings = image_strings[:5] if image_strings else []
     messages: List[HumanMessage] = []
-    for idx, img in enumerate(image_strings):
-        if img.startswith("data:"):
-            header, b64_data = img.split(",", 1)
-            data = base64.b64decode(b64_data)
-            data, mime = compress_image_bytes(data)
-            if mime is None:
-                mime = header.split(";")[0].split(":")[1]
-            messages.append(
-                HumanMessage(
-                    content=[{"type": "input_image", "image_url": {"url": f"cid:image{idx}"}}],
-                    additional_kwargs={
-                        "attachments": [
-                            {
-                                "name": f"image{idx}",
-                                "data": data,
-                                "mime_type": mime,
-                            }
-                        ]
-                    },
-                )
+
+    for img in image_strings:
+        url = img
+
+        try:
+            if img.startswith("data:"):
+                header, b64_data = img.split(",", 1)
+                data = base64.b64decode(b64_data)
+                data, mime = compress_image_bytes(data)
+                if mime is None:
+                    mime = header.split(";")[0].split(":")[1]
+            else:
+                response = requests.get(img, timeout=5)
+                response.raise_for_status()
+                data, mime = compress_image_bytes(response.content)
+                if mime is None:
+                    mime = response.headers.get("Content-Type", "image/jpeg")
+            encoded = base64.b64encode(data).decode()
+            url = f"data:{mime};base64,{encoded}"
+        except Exception:
+            # Fallback to original URL if fetching/compression fails
+            pass
+
+        messages.append(
+            HumanMessage(
+                content=[{"type": "input_image", "image_url": {"url": url}}]
             )
-        else:
-            messages.append(
-                HumanMessage(
-                    content=[{"type": "input_image", "image_url": {"url": img}}]
-                )
-            )
+        )
+
     return messages
 
 # Load prompts
@@ -1865,7 +1901,7 @@ def run_personality_chat(
         content=[
             {"type": "text", "text": user_input},
             *[
-                {"type": "image_url", "image_url": {"url": img}}
+                {"type": "input_image", "image_url": {"url": img}}
                 for img in (input_images or [])
             ],
         ]
@@ -1915,7 +1951,7 @@ async def stream_personality_chat(
         content=[
             {"type": "text", "text": user_input},
             *[
-                {"type": "image_url", "image_url": {"url": img}}
+                {"type": "input_image", "image_url": {"url": img}}
                 for img in (input_images or [])
             ],
         ]
