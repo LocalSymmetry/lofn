@@ -20,7 +20,9 @@ from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import HumanMessage, SystemMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
+from dataclasses import dataclass
+import imghdr
 try:
     from config import Config
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
@@ -86,56 +88,311 @@ class LofnError(Exception):
 
 logger = logging.getLogger(__name__)
 
-def prepare_image_messages(image_strings: List[str]) -> List[HumanMessage]:
+@dataclass
+class ImageAsset:
+    """Simple container for inline image data."""
+
+    data: bytes
+    mime: str
+    data_url: str
+
+
+def _detect_mime(data: bytes) -> str:
+    """Best-effort MIME type detection for binary image data."""
+
+    kind = imghdr.what(None, h=data) or "png"
+    if kind == "jpeg":
+        kind = "jpg"
+    return f"image/{kind}"
+
+
+def to_data_url(data: bytes, mime: Optional[str] = None) -> str:
+    """Convert raw bytes into a data URL."""
+
+    mime = mime or _detect_mime(data)
+    b64 = base64.b64encode(data).decode("utf-8")
+    return f"data:{mime};base64,{b64}"
+
+
+def normalize_images(files) -> List[ImageAsset]:
+    """Convert an iterable of uploaded files to ``ImageAsset`` objects."""
+
+    assets: List[ImageAsset] = []
+    for f in files or []:
+        try:
+            raw = f.read() if hasattr(f, "read") else bytes(f)
+            mime = _detect_mime(raw)
+            assets.append(ImageAsset(data=raw, mime=mime, data_url=to_data_url(raw, mime)))
+        except Exception:
+            continue
+    return assets
+
+
+# ---------------------------------------------------------------------------
+# Model capability guardrails
+# ---------------------------------------------------------------------------
+
+VISION_MODELS = {
+    "openai": {"gpt-4o", "gpt-4o-mini"},
+    "anthropic": {
+        "claude-3-5-sonnet",
+        "claude-3-5-haiku",
+        "claude-3-opus",
+        "claude-3-sonnet",
+        "claude-3-haiku",
+    },
+    "google": {
+        "gemini-1.5-pro",
+        "gemini-1.5-flash",
+        "gemini-2.0-flash",
+        "gemini-2.0-pro",
+    },
+    "openrouter_like_openai_schema": {"*"},
+    "poe": {"*"},
+}
+
+
+def ensure_vision_capable(provider: str, model: str, has_images: bool) -> None:
+    if not has_images:
+        return
+    provider = provider.lower()
+    if provider == "openai" and model.startswith(("o1", "o3")):
+        raise ValueError(f"Model {model} does not support images. Choose gpt-4o / gpt-4o-mini.")
+    if provider in ("openai", "anthropic", "google"):
+        known = any(model.startswith(m) or model == m for m in VISION_MODELS[provider])
+        if not known:
+            raise ValueError(f"Selected {provider}:{model} may not support images.")
+
+
+# ---------------------------------------------------------------------------
+# Token counting helpers (best-effort, many return ``None``)
+# ---------------------------------------------------------------------------
+
+
+def count_tokens_openai(text: str) -> Optional[int]:
+    try:
+        import tiktoken
+
+        enc = tiktoken.encoding_for_model("gpt-4o")
+        return len(enc.encode(text))
+    except Exception:
+        return None
+
+
+def count_tokens_anthropic(text: str) -> Optional[int]:
+    return None
+
+
+def count_tokens_google_gemini(text: str) -> Optional[int]:
+    return None
+
+
+def count_tokens_openrouter(text: str) -> Optional[int]:
+    return None
+
+
+def count_tokens_poe(text: str) -> Optional[int]:
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Provider adapters
+# ---------------------------------------------------------------------------
+
+
+def call_openai_with_images(user_text: str, images: List[ImageAsset], model: str = "gpt-4o") -> Tuple[str, Optional[dict]]:
+    from openai import OpenAI
+
+    client = OpenAI()
+    ensure_vision_capable("openai", model, bool(images))
+
+    parts = [{"type": "text", "text": user_text}]
+    for img in images:
+        parts.append({"type": "image_url", "image_url": {"url": img.data_url}, "detail": "low"})
+
+    resp = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": parts}],
+        temperature=0.2,
+    )
+    text = resp.choices[0].message.content or ""
+    usage = getattr(resp, "usage", None)
+    return text, usage.model_dump() if usage else None
+
+
+def call_anthropic_with_images(user_text: str, images: List[ImageAsset], model: str = "claude-3-5-sonnet") -> Tuple[str, Optional[dict]]:
+    import anthropic
+
+    client = anthropic.Anthropic()
+    ensure_vision_capable("anthropic", model, bool(images))
+
+    content = [{"type": "text", "text": user_text}]
+    for img in images:
+        content.append({
+            "type": "image",
+            "source": {
+                "type": "base64",
+                "media_type": img.mime,
+                "data": base64.b64encode(img.data).decode("utf-8"),
+            },
+        })
+
+    msg = client.messages.create(
+        model=model,
+        max_tokens=2000,
+        messages=[{"role": "user", "content": content}],
+        temperature=0.2,
+    )
+    out = "".join([b.text for b in msg.content if getattr(b, "type", None) == "text"])
+    usage = getattr(msg, "usage", None)
+    usage_dict = {"input_tokens": usage.input_tokens, "output_tokens": usage.output_tokens} if usage else None
+    return out, usage_dict
+
+
+def call_gemini_with_images(user_text: str, images: List[ImageAsset], model: str = "gemini-1.5-pro") -> Tuple[str, Optional[dict]]:
+    import google.generativeai as genai
+
+    genai.configure()
+    ensure_vision_capable("google", model, bool(images))
+
+    model_obj = genai.GenerativeModel(model)
+    parts = [user_text] + [{"mime_type": img.mime, "data": img.data} for img in images]
+
+    usage_dict = None
+    try:
+        tc = model_obj.count_tokens(parts)
+        usage_dict = {"input_tokens": tc.total_tokens}
+    except Exception:
+        pass
+
+    resp = model_obj.generate_content(parts)
+    text = resp.text or ""
+    return text, usage_dict
+
+
+def call_openrouter_with_images(user_text: str, images: List[ImageAsset], model: str) -> Tuple[str, Optional[dict]]:
+    import os
+
+    ensure_vision_capable("openrouter_like_openai_schema", model, bool(images))
+
+    parts = [{"type": "text", "text": user_text}] + [
+        {"type": "image_url", "image_url": {"url": img.data_url}, "detail": "low"}
+        for img in images
+    ]
+
+    headers = {
+        "Authorization": f"Bearer {os.environ.get('OPENROUTER_API_KEY', '')}",
+        "HTTP-Referer": os.environ.get("OR_APP_URL", "https://lofn.ai"),
+        "X-Title": "LOFN Vision Chat",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": parts}],
+        "temperature": 0.2,
+    }
+    r = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, data=json.dumps(payload))
+    r.raise_for_status()
+    data = r.json()
+    text = data["choices"][0]["message"]["content"]
+    usage = data.get("usage")
+    return text, usage
+
+
+def upload_to_cdn(data: bytes, mime: str) -> str:
+    raise NotImplementedError
+
+
+def poe_send_and_receive(text: str, model: str) -> str:
+    raise NotImplementedError
+
+
+def call_poe_with_images(user_text: str, images: List[ImageAsset], model: str) -> Tuple[str, Optional[dict]]:
+    if images:
+        urls = [f"[image]({upload_to_cdn(img.data, img.mime)})" for img in images]
+        user_text = user_text + "\n\n" + "\n".join(urls)
+
+    text = poe_send_and_receive(user_text, model=model)
+    return text, None
+
+
+# ---------------------------------------------------------------------------
+# Unified entry point
+# ---------------------------------------------------------------------------
+
+
+def chat_with_model(user_text: str, uploaded_images, provider: str, model_name: str) -> str:
+    assets = normalize_images(uploaded_images) if uploaded_images else []
+    provider = provider.lower()
+    if provider == "openai":
+        text, _ = call_openai_with_images(user_text, assets, model=model_name)
+    elif provider == "anthropic":
+        text, _ = call_anthropic_with_images(user_text, assets, model=model_name)
+    elif provider == "google":
+        text, _ = call_gemini_with_images(user_text, assets, model=model_name)
+    elif provider == "openrouter":
+        text, _ = call_openrouter_with_images(user_text, assets, model=model_name)
+    elif provider == "poe":
+        text, _ = call_poe_with_images(user_text, assets, model=model_name)
+    else:
+        raise ValueError(f"Unknown provider: {provider}")
+    return text
+
+def prepare_image_messages(images: List) -> List[HumanMessage]:
     """Return ``HumanMessage`` objects with inline JPEG data URLs.
 
-    The OpenAI image spec expects images to be sent directly within the
-    payload.  To ensure compatibility across providers, this function compresses
-    each image to JPEG (max dimension 1024) and embeds it in the message using a
-    ``data:`` URL.  Only the first five images are included.
+    Accepts a list of strings, bytes, or file-like objects. Images are
+    compressed and inlined as ``data:`` URLs. Only the first five images are
+    processed.
     """
 
-    image_strings = image_strings[:5] if image_strings else []
+    images = images[:5] if images else []
     messages: List[HumanMessage] = []
 
-    for img in image_strings:
-        url = img
+    for img in images:
+        url = None
 
         try:
-            if img.startswith("data:"):
-                header, b64_data = img.split(",", 1)
-                data = base64.b64decode(b64_data)
-                data, mime = compress_image_bytes(data)
-                if mime is None:
-                    mime = header.split(";")[0].split(":")[1]
+            if isinstance(img, str):
+                url = img
+                if img.startswith("data:"):
+                    header, b64_data = img.split(",", 1)
+                    data = base64.b64decode(b64_data)
+                    data, mime = compress_image_bytes(data)
+                    if mime is None:
+                        mime = header.split(";")[0].split(":")[1]
+                else:
+                    response = requests.get(img, timeout=5)
+                    response.raise_for_status()
+                    data, mime = compress_image_bytes(response.content)
+                    if mime is None:
+                        mime = response.headers.get("Content-Type", "image/jpeg")
+                encoded = base64.b64encode(data).decode()
+                url = f"data:{mime};base64,{encoded}"
             else:
-                response = requests.get(img, timeout=5)
-                response.raise_for_status()
-                data, mime = compress_image_bytes(response.content)
+                raw = img.read() if hasattr(img, "read") else bytes(img)
+                data, mime = compress_image_bytes(raw)
                 if mime is None:
-                    mime = response.headers.get("Content-Type", "image/jpeg")
-            encoded = base64.b64encode(data).decode()
-            url = f"data:{mime};base64,{encoded}"
+                    mime = "image/jpeg"
+                encoded = base64.b64encode(data).decode()
+                url = f"data:{mime};base64,{encoded}"
         except Exception:
-            # Fallback to original URL if fetching/compression fails
-            pass
+            continue
 
-        messages.append(
-            HumanMessage(content=[{"type": "input_image", "image_url": url}])
-        )
+        messages.append(HumanMessage(content=[{"type": "input_image", "image_url": url}]))
 
     return messages
 
 
-def prepare_image_strings(image_strings: List[str]) -> List[str]:
+def prepare_image_strings(images: List) -> List[str]:
     """Return data URLs for images prepared for model consumption.
 
-    This helper mirrors :func:`prepare_image_messages` but returns plain
-    strings instead of ``HumanMessage`` objects.  The resulting strings are
-    suitable for embedding into prompts or hashing for caching.
+    Mirrors :func:`prepare_image_messages` but returns plain strings instead of
+    ``HumanMessage`` objects. The input may contain strings, bytes, or uploaded
+    file objects.
     """
 
-    return [m.content[0]["image_url"] for m in prepare_image_messages(image_strings)]
+    return [m.content[0]["image_url"] for m in prepare_image_messages(images)]
 
 # Load prompts
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')

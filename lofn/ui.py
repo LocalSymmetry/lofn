@@ -566,7 +566,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(resize_image_to_data_url(file))
+                images.append(file)
         st.session_state['input_images'] = images
 
         # If there's no user input, provide a tip
@@ -665,7 +665,7 @@ class LofnApp:
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
                 if images:
-                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
+                    input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
@@ -991,7 +991,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(resize_image_to_data_url(file))
+                images.append(file)
         st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Describe a scene or narrative you'd like to see in motion.")
@@ -1081,7 +1081,7 @@ class LofnApp:
                 display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             else:
                 if images:
-                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
+                    input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating video concepts..."):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
@@ -1274,7 +1274,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                images.append(resize_image_to_data_url(file))
+                images.append(file)
         st.session_state['input_images'] = images
         if not st.session_state['input']:
             st.info("Tip: Include themes, emotions, specific elements, and desired run time length.")
@@ -1314,8 +1314,8 @@ class LofnApp:
         try:
             input_text = st.session_state['input']
             images = st.session_state.get('input_images')
-                if images:
-                    input_text = f"{input_text}\n\nReference Images:\n" + "\n".join(prepare_image_strings(images))
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
             with st.spinner("Generating music prompts..."):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
@@ -1541,7 +1541,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(resize_image_to_data_url(file))
+                chat_images.append(file)
         st.session_state['chat_input_images'] = chat_images
 
         if 'chat_history' not in st.session_state:
@@ -1641,7 +1641,7 @@ class LofnApp:
             if len(uploaded_files) > 5:
                 st.warning("Only the first 5 images will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(resize_image_to_data_url(file))
+                chat_images.append(file)
         st.session_state['image2video_chat_input_images'] = chat_images
 
         if 'image2video_chat_history' not in st.session_state:
