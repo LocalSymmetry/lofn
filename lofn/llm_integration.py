@@ -133,15 +133,22 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-4o", "gpt-4o-mini"},
+    "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini, "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
-        "claude-3-5-sonnet",
-        "claude-3-5-haiku",
-        "claude-3-opus",
-        "claude-3-sonnet",
-        "claude-3-haiku",
+        "claude-3-7-sonnet-20250219", 
+        "claude-sonnet-4-20250514", 
+        "claude-opus-4-20250514", 
+        "claude-3-5-sonnet-latest", 
+        "claude-3-5-haiku-20241022", 
+        "claude-3-5-sonnet-20241022", 
+        "claude-3-5-sonnet-20240620", 
+        "claude-3-opus-20240229", 
+        "claude-3-sonnet-20240229", 
+        "claude-3-haiku-20240307"
     },
     "google": {
+        "gemini-2.5-pro", 
+        "gemini-2.5-flash",
         "gemini-1.5-pro",
         "gemini-1.5-flash",
         "gemini-2.0-flash",
