@@ -1587,9 +1587,13 @@ class LofnApp:
                 for media in prepared:
                     part = media.content[0]
                     url = part.get("image_url") or part.get("video_url")
-                    if part["type"] == "input_image":
+                    if part["type"] in ("image_url", "input_image"):
+                        if isinstance(url, dict):
+                            url = url.get("url", "")
                         st.image(base64.b64decode(url.split(",")[1]))
-                    elif part["type"] == "input_video":
+                    elif part["type"] in ("video_url", "input_video"):
+                        if isinstance(url, dict):
+                            url = url.get("url", "")
                         st.video(base64.b64decode(url.split(",")[1]))
             response_stream = stream_personality_chat(
                 personality_text,
@@ -1697,9 +1701,13 @@ class LofnApp:
                 for media in prepared:
                     part = media.content[0]
                     url = part.get("image_url") or part.get("video_url")
-                    if part["type"] == "input_image":
+                    if part["type"] in ("image_url", "input_image"):
+                        if isinstance(url, dict):
+                            url = url.get("url", "")
                         st.image(base64.b64decode(url.split(",")[1]))
-                    elif part["type"] == "input_video":
+                    elif part["type"] in ("video_url", "input_video"):
+                        if isinstance(url, dict):
+                            url = url.get("url", "")
                         st.video(base64.b64decode(url.split(",")[1]))
             response_stream = stream_personality_image2video_chat(
                 personality_text,
