@@ -1421,6 +1421,7 @@ def process_facets(
     max_retries,
     debug=False,
     style_axes=None,
+    creativity_spectrum=None,
     model=None,
     image_context=None
 ):
@@ -1431,6 +1432,12 @@ def process_facets(
         "medium": medium,
         "style_axes": style_axes
     }
+    if creativity_spectrum is not None:
+        args.update({
+            "creativity_spectrum_transformative": creativity_spectrum['transformative'],
+            "creativity_spectrum_inventive": creativity_spectrum['inventive'],
+            "creativity_spectrum_literal": creativity_spectrum['literal'],
+        })
     if image_context is not None:
         args["image_context"] = str(image_context)
     parsed_output = run_llm_chain(
