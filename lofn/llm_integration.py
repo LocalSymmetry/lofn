@@ -63,6 +63,7 @@ import numpy as np
 import pandas as pd
 import logging
 import base64
+import mimetypes
 try:
     from helpers import (
         display_temporary_results,
@@ -133,7 +134,7 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini, "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
         "claude-3-7-sonnet-20250219", 
         "claude-sonnet-4-20250514", 
@@ -358,35 +359,60 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
 
     for img in images:
         url = None
+        media_type = None
 
         try:
             if isinstance(img, str):
                 url = img
                 if img.startswith("data:"):
                     header, b64_data = img.split(",", 1)
+                    mime = header.split(";")[0].split(":")[1]
                     data = base64.b64decode(b64_data)
-                    data, mime = compress_image_bytes(data)
-                    if mime is None:
-                        mime = header.split(";")[0].split(":")[1]
+                    if mime.startswith("image/"):
+                        data, new_mime = compress_image_bytes(data)
+                        if new_mime:
+                            mime = new_mime
+                    encoded = base64.b64encode(data).decode()
+                    url = f"data:{mime};base64,{encoded}"
                 else:
                     response = requests.get(img, timeout=5)
                     response.raise_for_status()
-                    data, mime = compress_image_bytes(response.content)
-                    if mime is None:
-                        mime = response.headers.get("Content-Type", "image/jpeg")
-                encoded = base64.b64encode(data).decode()
-                url = f"data:{mime};base64,{encoded}"
+                    mime = response.headers.get("Content-Type", "image/jpeg")
+                    data = response.content
+                    if mime.startswith("image/"):
+                        data, new_mime = compress_image_bytes(data)
+                        if new_mime:
+                            mime = new_mime
+                    encoded = base64.b64encode(data).decode()
+                    url = f"data:{mime};base64,{encoded}"
             else:
                 raw = img.read() if hasattr(img, "read") else bytes(img)
-                data, mime = compress_image_bytes(raw)
-                if mime is None:
-                    mime = "image/jpeg"
+                name = getattr(img, "name", "")
+                import mimetypes
+
+                mime, _ = mimetypes.guess_type(name)
+                if mime and mime.startswith("image/"):
+                    data, new_mime = compress_image_bytes(raw)
+                    if new_mime:
+                        mime = new_mime
+                else:
+                    data = raw
+                    if not mime:
+                        mime = "video/mp4" if raw[:4] == b"\x00\x00\x00\x18" else "application/octet-stream"
                 encoded = base64.b64encode(data).decode()
                 url = f"data:{mime};base64,{encoded}"
+
+            if mime and mime.startswith("image/"):
+                media_type = "input_image"
+            elif mime and mime.startswith("video/"):
+                media_type = "input_video"
         except Exception:
             continue
 
-        messages.append(HumanMessage(content=[{"type": "input_image", "image_url": url}]))
+        if media_type == "input_image":
+            messages.append(HumanMessage(content=[{"type": media_type, "image_url": url}]))
+        elif media_type == "input_video":
+            messages.append(HumanMessage(content=[{"type": media_type, "video_url": url}]))
 
     return messages
 
@@ -399,7 +425,14 @@ def prepare_image_strings(images: List) -> List[str]:
     file objects.
     """
 
-    return [m.content[0]["image_url"] for m in prepare_image_messages(images)]
+    urls = []
+    for m in prepare_image_messages(images):
+        part = m.content[0]
+        if part["type"] == "input_image":
+            urls.append(part.get("image_url", ""))
+        elif part["type"] == "input_video":
+            urls.append(part.get("video_url", ""))
+    return urls
 
 # Load prompts
 concept_system = read_prompt('/lofn/prompts/concept_system.txt')
@@ -2167,7 +2200,7 @@ def run_personality_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
-    input_images: Optional[List[str]] = None,
+    input_media: Optional[List[Dict[str, str]]] = None,
     system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
@@ -2180,13 +2213,7 @@ def run_personality_chat(
         "{lofn_readme}", lofn_readme
     )
     user_message = HumanMessage(
-        content=[
-            {"type": "text", "text": user_input},
-            *[
-                {"type": "input_image", "image_url": img}
-                for img in (input_images or [])
-            ],
-        ]
+        content=[{"type": "text", "text": user_input}, *(input_media or [])]
     )
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=system_text),
@@ -2209,7 +2236,7 @@ async def stream_personality_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
-    input_images: Optional[List[str]] = None,
+    input_media: Optional[List[Dict[str, str]]] = None,
     system_prompt: str = personality_chat_template,
 ):
     """Stream a free-form chat response with a given personality.
@@ -2230,13 +2257,7 @@ async def stream_personality_chat(
         "{lofn_readme}", lofn_readme
     )
     user_message = HumanMessage(
-        content=[
-            {"type": "text", "text": user_input},
-            *[
-                {"type": "input_image", "image_url": img}
-                for img in (input_images or [])
-            ],
-        ]
+        content=[{"type": "text", "text": user_input}, *(input_media or [])]
     )
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=system_text),
@@ -2265,7 +2286,7 @@ async def stream_personality_chat(
             temperature=temperature,
             reasoning_level=reasoning_level,
             debug=debug,
-            input_images=input_images,
+            input_media=input_media,
             system_prompt=system_prompt,
         )
         yield fallback
@@ -2279,7 +2300,7 @@ def run_personality_image2video_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
-    input_images: Optional[List[str]] = None,
+    input_media: Optional[List[Dict[str, str]]] = None,
 ):
     """Run a chat using the image-to-video personality template."""
     return run_personality_chat(
@@ -2290,7 +2311,7 @@ def run_personality_image2video_chat(
         temperature=temperature,
         reasoning_level=reasoning_level,
         debug=debug,
-        input_images=input_images,
+        input_media=input_media,
         system_prompt=personality_image2video_template,
     )
 
@@ -2303,7 +2324,7 @@ def stream_personality_image2video_chat(
     temperature=0.7,
     reasoning_level="medium",
     debug=False,
-    input_images: Optional[List[str]] = None,
+    input_media: Optional[List[Dict[str, str]]] = None,
 ):
     """Stream chat responses using the image-to-video personality template."""
     return stream_personality_chat(
@@ -2314,7 +2335,7 @@ def stream_personality_image2video_chat(
         temperature=temperature,
         reasoning_level=reasoning_level,
         debug=debug,
-        input_images=input_images,
+        input_media=input_media,
         system_prompt=personality_image2video_template,
     )
 

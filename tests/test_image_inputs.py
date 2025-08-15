@@ -15,6 +15,8 @@ class HumanMessage:
         self.additional_kwargs = additional_kwargs or {}
 
 ns = {'HumanMessage': HumanMessage, 'List': list, 'base64': base64}
+import mimetypes
+ns['mimetypes'] = mimetypes
 # Inject helper used by prepare_image_messages
 from lofn.helpers import compress_image_bytes
 ns['compress_image_bytes'] = compress_image_bytes
