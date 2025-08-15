@@ -1529,20 +1529,20 @@ class LofnApp:
             st.session_state.pop('personality_chat_images', None)
             st.session_state['clear_personality_chat_images'] = False
 
-        st.subheader("Reference Images (Optional)")
+        st.subheader("Reference Media (Optional)")
         uploaded_files = st.file_uploader(
-            "Upload up to 5 images",
-            type=["png", "jpg", "jpeg"],
+            "Upload up to 5 images or videos",
+            type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
             accept_multiple_files=True,
             key="personality_chat_images",
         )
-        chat_images = []
+        chat_media = []
         if uploaded_files:
             if len(uploaded_files) > 5:
-                st.warning("Only the first 5 images will be used.")
+                st.warning("Only the first 5 files will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(file)
-        st.session_state['chat_input_images'] = chat_images
+                chat_media.append(file)
+        st.session_state['chat_input_images'] = chat_media
 
         if 'chat_history' not in st.session_state:
             st.session_state['chat_history'] = []
@@ -1562,6 +1562,14 @@ class LofnApp:
                                 st.image(base64.b64decode(url.split(",")[1]))
                             else:
                                 st.image(url)
+                        elif part.get("type") in ("video_url", "input_video"):
+                            url = part.get("video_url", "")
+                            if isinstance(url, dict):
+                                url = url.get("url", "")
+                            if url.startswith("data:"):
+                                st.video(base64.b64decode(url.split(",")[1]))
+                            else:
+                                st.video(url)
                 else:
                     st.markdown(msg.content)
 
@@ -1569,18 +1577,20 @@ class LofnApp:
         if user_input:
             history = st.session_state['chat_history'][:]
             images = st.session_state.get('chat_input_images', [])
-            prepared = prepare_image_strings(images)
+            prepared = prepare_image_messages(images)
             user_message = HumanMessage(
-                content=[
-                    {"type": "text", "text": user_input},
-                    *[{"type": "input_image", "image_url": img} for img in prepared],
-                ]
+                content=[{"type": "text", "text": user_input}, *[m.content[0] for m in prepared]]
             )
             st.session_state['chat_history'].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
-                for img in prepared:
-                    st.image(base64.b64decode(img.split(",")[1]))
+                for media in prepared:
+                    part = media.content[0]
+                    url = part.get("image_url") or part.get("video_url")
+                    if part["type"] == "input_image":
+                        st.image(base64.b64decode(url.split(",")[1]))
+                    elif part["type"] == "input_video":
+                        st.video(base64.b64decode(url.split(",")[1]))
             response_stream = stream_personality_chat(
                 personality_text,
                 history,
@@ -1589,7 +1599,7 @@ class LofnApp:
                 temperature=self.temperature,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
-                input_images=prepared,
+                input_media=[m.content[0] for m in prepared],
             )
             with st.chat_message("assistant"):
                 response_text = st.write_stream(
@@ -1629,20 +1639,20 @@ class LofnApp:
             st.session_state.pop('image2video_chat_images', None)
             st.session_state['clear_image2video_chat_images'] = False
 
-        st.subheader("Reference Images (Optional)")
+        st.subheader("Reference Media (Optional)")
         uploaded_files = st.file_uploader(
-            "Upload up to 5 images",
-            type=["png", "jpg", "jpeg"],
+            "Upload up to 5 images or videos",
+            type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
             accept_multiple_files=True,
             key="image2video_chat_images",
         )
-        chat_images = []
+        chat_media = []
         if uploaded_files:
             if len(uploaded_files) > 5:
-                st.warning("Only the first 5 images will be used.")
+                st.warning("Only the first 5 files will be used.")
             for file in uploaded_files[:5]:
-                chat_images.append(file)
-        st.session_state['image2video_chat_input_images'] = chat_images
+                chat_media.append(file)
+        st.session_state['image2video_chat_input_images'] = chat_media
 
         if 'image2video_chat_history' not in st.session_state:
             st.session_state['image2video_chat_history'] = []
@@ -1662,6 +1672,14 @@ class LofnApp:
                                 st.image(base64.b64decode(url.split(",")[1]))
                             else:
                                 st.image(url)
+                        elif part.get("type") in ("video_url", "input_video"):
+                            url = part.get("video_url", "")
+                            if isinstance(url, dict):
+                                url = url.get("url", "")
+                            if url.startswith("data:"):
+                                st.video(base64.b64decode(url.split(",")[1]))
+                            else:
+                                st.video(url)
                 else:
                     st.markdown(msg.content)
 
@@ -1669,18 +1687,20 @@ class LofnApp:
         if user_input:
             history = st.session_state['image2video_chat_history'][:]
             images = st.session_state.get('image2video_chat_input_images', [])
-            prepared = prepare_image_strings(images)
+            prepared = prepare_image_messages(images)
             user_message = HumanMessage(
-                content=[
-                    {"type": "text", "text": user_input},
-                    *[{"type": "input_image", "image_url": img} for img in prepared],
-                ]
+                content=[{"type": "text", "text": user_input}, *[m.content[0] for m in prepared]]
             )
             st.session_state['image2video_chat_history'].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
-                for img in prepared:
-                    st.image(base64.b64decode(img.split(",")[1]))
+                for media in prepared:
+                    part = media.content[0]
+                    url = part.get("image_url") or part.get("video_url")
+                    if part["type"] == "input_image":
+                        st.image(base64.b64decode(url.split(",")[1]))
+                    elif part["type"] == "input_video":
+                        st.video(base64.b64decode(url.split(",")[1]))
             response_stream = stream_personality_image2video_chat(
                 personality_text,
                 history,
@@ -1689,7 +1709,7 @@ class LofnApp:
                 temperature=self.temperature,
                 reasoning_level=st.session_state.get('reasoning_level', 'medium'),
                 debug=self.debug,
-                input_images=prepared,
+                input_media=[m.content[0] for m in prepared],
             )
             with st.chat_message("assistant"):
                 response_text = st.write_stream(

@@ -29,6 +29,8 @@ class HumanMessage:
         self.additional_kwargs = additional_kwargs or {}
 
 ns = {'HumanMessage': HumanMessage, 'List': list, 'base64': base64}
+import mimetypes
+ns['mimetypes'] = mimetypes
 from lofn.helpers import compress_image_bytes
 ns['compress_image_bytes'] = compress_image_bytes
 exec(code, ns)
@@ -53,3 +55,14 @@ def test_prepare_image_messages_inlines_jpeg():
     url = msg.content[0]["image_url"]
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}
+
+
+def test_prepare_image_messages_handles_video():
+    video_bytes = b"\x00\x00\x00\x18ftypmp42" + b"0" * 10
+    b64 = base64.b64encode(video_bytes).decode()
+    data_url = f"data:video/mp4;base64,{b64}"
+    msgs = prepare_image_messages([data_url])
+    assert len(msgs) == 1
+    part = msgs[0].content[0]
+    assert part["type"] == "input_video"
+    assert part["video_url"].startswith("data:video/mp4;base64")
