@@ -403,16 +403,22 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
                 url = f"data:{mime};base64,{encoded}"
 
             if mime and mime.startswith("image/"):
-                media_type = "input_image"
+                media_type = "image_url"
             elif mime and mime.startswith("video/"):
                 media_type = "input_video"
         except Exception:
             continue
 
-        if media_type == "input_image":
-            messages.append(HumanMessage(content=[{"type": media_type, "image_url": url}]))
+        if media_type == "image_url":
+            messages.append(
+                HumanMessage(
+                    content=[{"type": media_type, "image_url": {"url": url}}]
+                )
+            )
         elif media_type == "input_video":
-            messages.append(HumanMessage(content=[{"type": media_type, "video_url": url}]))
+            messages.append(
+                HumanMessage(content=[{"type": media_type, "video_url": url}])
+            )
 
     return messages
 
@@ -428,8 +434,12 @@ def prepare_image_strings(images: List) -> List[str]:
     urls = []
     for m in prepare_image_messages(images):
         part = m.content[0]
-        if part["type"] == "input_image":
-            urls.append(part.get("image_url", ""))
+        if part["type"] == "image_url":
+            image_data = part.get("image_url", {})
+            if isinstance(image_data, dict):
+                urls.append(image_data.get("url", ""))
+            else:
+                urls.append(image_data)
         elif part["type"] == "input_video":
             urls.append(part.get("video_url", ""))
     return urls
