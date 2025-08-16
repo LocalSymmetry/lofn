@@ -17,11 +17,11 @@ import lofn.llm_integration as li
 def test_process_facets_creativity_spectrum(monkeypatch):
     captured = {}
 
-    def fake_run_llm_chain(chains, name, args, max_retries, model, debug, expected_schema=None):
+    def fake_run_llm_chain_raw(chains, name, args, max_retries, model, debug, expected_schema=None):
         captured['args'] = args
         return {'facets': []}
 
-    monkeypatch.setattr(li, 'run_llm_chain', fake_run_llm_chain)
+    monkeypatch.setattr(li, 'run_llm_chain_raw', fake_run_llm_chain_raw)
 
     cs = {'transformative': 10, 'inventive': 20, 'literal': 70}
     li.process_facets({}, 'text', 'concept', 'medium', 1, creativity_spectrum=cs)

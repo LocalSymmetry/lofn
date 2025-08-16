@@ -2,10 +2,17 @@
 
 import streamlit as st
 import openai
-from google import genai
-from google.genai import types
+try:  # pragma: no cover - optional dependency
+    from google import genai
+    from google.genai import types
+except Exception:  # pragma: no cover
+    genai = None
+    types = None
 import asyncio
-import fastapi_poe as fp
+try:  # pragma: no cover - optional dependency
+    import fastapi_poe as fp
+except Exception:  # pragma: no cover
+    fp = None
 import requests
 import json
 from langchain.chains.structured_output.base import create_structured_output_runnable
@@ -64,6 +71,8 @@ import pandas as pd
 import logging
 import base64
 import mimetypes
+from PIL import Image
+import io
 try:
     from helpers import (
         display_temporary_results,
@@ -102,17 +111,33 @@ def _detect_mime(data: bytes) -> str:
     """Best-effort MIME type detection for binary image data."""
 
     kind = imghdr.what(None, h=data) or "png"
-    if kind == "jpeg":
-        kind = "jpg"
+    # normalize to common standards
+    if kind in ("jpg", "jpeg"):
+        return "image/jpeg"
+    if kind == "png":
+        return "image/png"
+    if kind == "webp":
+        return "image/webp"
     return f"image/{kind}"
 
 
 def to_data_url(data: bytes, mime: Optional[str] = None) -> str:
     """Convert raw bytes into a data URL."""
 
-    mime = mime or _detect_mime(data)
+    mime = (mime or _detect_mime(data)).lower()
     b64 = base64.b64encode(data).decode("utf-8")
     return f"data:{mime};base64,{b64}"
+
+
+def _to_jpeg_max1024(raw: bytes) -> Tuple[bytes, str]:
+    img = Image.open(io.BytesIO(raw)).convert("RGB")
+    w, h = img.size
+    scale = min(1.0, 1024 / max(w, h))
+    if scale < 1.0:
+        img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=80, optimize=True)
+    return buf.getvalue(), "image/jpeg"
 
 
 def normalize_images(files) -> List[ImageAsset]:
@@ -122,8 +147,8 @@ def normalize_images(files) -> List[ImageAsset]:
     for f in files or []:
         try:
             raw = f.read() if hasattr(f, "read") else bytes(f)
-            mime = _detect_mime(raw)
-            assets.append(ImageAsset(data=raw, mime=mime, data_url=to_data_url(raw, mime)))
+            data, mime = _to_jpeg_max1024(raw)
+            assets.append(ImageAsset(data=data, mime=mime, data_url=to_data_url(data, mime)))
         except Exception:
             continue
     return assets
@@ -158,6 +183,23 @@ VISION_MODELS = {
     "openrouter_like_openai_schema": {"*"},
     "poe": {"*"},
 }
+
+
+def _supports_vision(model_name: str) -> bool:
+    for models in VISION_MODELS.values():
+        if "*" in models or model_name in models:
+            return True
+    return False
+
+
+def _has_image_parts(msgs: List[HumanMessage]) -> bool:
+    for m in msgs:
+        content = getattr(m, "content", [])
+        if isinstance(content, list):
+            for part in content:
+                if isinstance(part, dict) and part.get("type") in ("image_url", "input_image", "input_video"):
+                    return True
+    return False
 
 
 def ensure_vision_capable(provider: str, model: str, has_images: bool) -> None:
@@ -1140,11 +1182,22 @@ def run_llm_chain(chains, chain_name, args_dict, max_retries, model=None,
         chain, max_retries=max_retries, args_json=args_json, is_correction=False,
         model=model, debug=debug, expected_schema=expected_schema
     )
-
     if output is None:
         st.error(f"Failed to get valid JSON response after {max_retries} attempts.")
         return None
+    return output
 
+
+def run_llm_chain_raw(chains, chain_name, args_dict, max_retries, model=None,
+                      debug=None, expected_schema=None):
+    chain = chains[chain_name]
+    output = run_chain_with_retries_raw(
+        chain, max_retries=max_retries, args_dict=args_dict,
+        model=model, debug=debug, expected_schema=expected_schema
+    )
+    if output is None:
+        st.error(f"Failed to get valid JSON response after {max_retries} attempts.")
+        return None
     return output
 
 @st.cache_data(persist=True)
@@ -1173,6 +1226,39 @@ def run_chain_with_retries(
             else:
                 st.write(f"Failed to parse or validate JSON: {error}")
                 is_correction = True  # Use correction prompt in next iteration
+                retry_count += 1
+        except Exception as e:
+            st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
+            is_correction = True
+            retry_count += 1
+    if retry_count >= max_retries:
+        st.write("Max retries reached. Exiting.")
+    return None
+
+
+def run_chain_with_retries_raw(
+    _lang_chain, max_retries, args_dict=None, model=None, debug=False, expected_schema=None
+):
+    args_dict = args_dict or {}
+    output = None
+    retry_count = 0
+    is_correction = False
+    while retry_count < max_retries:
+        try:
+            output = run_any_chain(
+                _lang_chain, args_dict, is_correction, retry_count, model, debug, expected_schema
+            )
+            args_dict['output'] = output
+            if debug:
+                st.write(f"Raw output from LLM:\n{output}")
+            parsed_output, error = parse_output(str(output), expected_schema, debug)
+            if parsed_output is not None:
+                if debug:
+                    st.write("Successfully parsed JSON output")
+                return parsed_output
+            else:
+                st.write(f"Failed to parse or validate JSON: {error}")
+                is_correction = True
                 retry_count += 1
         except Exception as e:
             st.write(f"An error occurred in attempt {retry_count + 1}: {str(e)}")
@@ -1247,8 +1333,8 @@ def process_essence_and_facets(
     expected_schema = essence_and_facets_schema  # Defined earlier
     args = {"input": input_text}
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains, 'essence_and_facets', args, max_retries,
         model, debug, expected_schema=expected_schema
     )
@@ -1283,8 +1369,8 @@ def process_concepts(
         "creativity_spectrum_literal": creativity_spectrum['literal'],
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'concepts',
         args,
@@ -1323,8 +1409,8 @@ def process_artist_and_refined_concepts(
         "concepts": [x['concept'] for x in concepts['concepts']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'artist_and_refined_concepts',
         args,
@@ -1363,8 +1449,8 @@ def process_mediums(
         "creativity_spectrum_literal": creativity_spectrum['literal'],
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'medium',
         args,
@@ -1407,8 +1493,8 @@ def process_refined_mediums(
         "refinedconcepts": [x['refinedconcept'] for x in refined_concepts['refinedconcepts']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'refine_medium',
         args,
@@ -1449,8 +1535,8 @@ def process_facets(
             "creativity_spectrum_literal": creativity_spectrum['literal'],
         })
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'facets',
         args,
@@ -1485,8 +1571,8 @@ def process_artistic_guides(
         "style_axes": style_axes,
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'aspects_traits',
         args,
@@ -1523,8 +1609,8 @@ def process_midjourney_prompts(
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'midjourney',
         args,
@@ -1566,8 +1652,8 @@ def process_artist_refined_prompts(
         "image_gen_prompts": [x['image_gen_prompt'] for x in image_gen_prompts['image_gen_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'artist_refined',
         args,
@@ -1609,8 +1695,8 @@ def process_revised_synthesized_prompts(
         "artist_refined_prompts": [x['artist_refined_prompt'] for x in artist_refined_prompts['artist_refined_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'revision_synthesis',
         args,
@@ -1674,30 +1760,35 @@ def generate_concept_mediums(
             chains = {
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
                 ),
                 'concepts': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
                 ),
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
                 ),
                 'medium': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
                 ),
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -1708,6 +1799,7 @@ def generate_concept_mediums(
                 'essence_and_facets': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['essence_and_facets'])
                     ])
                     | llm
@@ -1715,6 +1807,7 @@ def generate_concept_mediums(
                 'concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['concepts'])
                     ])
                     | llm
@@ -1722,6 +1815,7 @@ def generate_concept_mediums(
                 'artist_and_refined_concepts': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['artist_and_critique'])
                     ])
                     | llm
@@ -1729,6 +1823,7 @@ def generate_concept_mediums(
                 'medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['medium'])
                     ])
                     | llm
@@ -1736,6 +1831,7 @@ def generate_concept_mediums(
                 'refine_medium': (
                     ChatPromptTemplate.from_messages([
                         ("system", concept_system),
+                        MessagesPlaceholder("image_context"),
                         ("human", prompts['refine_medium'])
                     ])
                     | llm
@@ -2077,7 +2173,7 @@ def generate_meta_prompt(
         # user's request.
         full_input = input_text
 
-        parsed_output = run_llm_chain(
+        parsed_output = run_llm_chain_raw(
             {"meta": chain},
             "meta",
             {
@@ -2136,7 +2232,7 @@ def generate_panel_prompt(
         # duplicate content and potentially drown out the user's text.
         full_input = input_text
 
-        parsed_output = run_llm_chain(
+        parsed_output = run_llm_chain_raw(
             {"panel": chain},
             "panel",
             {
@@ -2190,7 +2286,7 @@ def generate_personality_prompt(
                 | llm
             )
 
-        parsed_output = run_llm_chain(
+        parsed_output = run_llm_chain_raw(
             {"personality": chain},
             "personality",
             {"input": input_text, "image_context": image_context},
@@ -2221,6 +2317,11 @@ def run_personality_chat(
     system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
+    user_message = HumanMessage(
+        content=[{"type": "text", "text": user_input}, *(input_media or [])]
+    )
+    if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
+        raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
     llm = get_llm(
         model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
     )
@@ -2228,9 +2329,6 @@ def run_personality_chat(
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     system_text = system_prompt.replace("{personality}", personality_prompt).replace(
         "{lofn_readme}", lofn_readme
-    )
-    user_message = HumanMessage(
-        content=[{"type": "text", "text": user_input}, *(input_media or [])]
     )
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=system_text),
@@ -2263,6 +2361,11 @@ async def stream_personality_chat(
     selected model it falls back to returning the full response in one chunk.
     """
 
+    user_message = HumanMessage(
+        content=[{"type": "text", "text": user_input}, *(input_media or [])]
+    )
+    if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
+        raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
     # Build the chain using the same prompt setup as the non-streaming version
     llm = get_llm(
         model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
@@ -2272,9 +2375,6 @@ async def stream_personality_chat(
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     system_text = system_prompt.replace("{personality}", personality_prompt).replace(
         "{lofn_readme}", lofn_readme
-    )
-    user_message = HumanMessage(
-        content=[{"type": "text", "text": user_input}, *(input_media or [])]
     )
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=system_text),
@@ -2938,8 +3038,8 @@ def process_video_prompts(
         "artistic_guides": [x['artistic_guide'] for x in artistic_guides['artistic_guides']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'generation',
         args,
@@ -2984,8 +3084,8 @@ def process_video_artist_refined_prompts(
         "video_gen_prompts": [x['video_prompt'] for x in video_prompts['video_prompts']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'artist_refined',
         args,
@@ -3029,8 +3129,8 @@ def process_song_guides(
         "style_axes": style_axes,
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'song_guides',
         args,
@@ -3068,8 +3168,8 @@ def process_music_generation_prompts(
         "song_guides": [x['song_guide'] for x in song_guides['song_guides']]
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'generation',
         args,
@@ -3109,8 +3209,8 @@ def process_music_artist_refined_prompts(
         "song_guides": song_guides
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'artist_refined',
         args,
@@ -3150,8 +3250,8 @@ def process_music_revision_synthesis(
         "song_guides": song_guides
     }
     if image_context is not None:
-        args["image_context"] = str(image_context)
-    parsed_output = run_llm_chain(
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
         chains,
         'revision_synthesis',
         args,
