@@ -985,7 +985,8 @@ def save_metadata(metadata):
 
 def save_music_metadata(metadata):
     os.makedirs('/music', exist_ok=True)
-    metadata_filename = f"/music/{metadata['timestamp']}_{metadata['title'][0:10]}.json"
+    safe_title = metadata['title'][0:10].replace('/', '_')
+    metadata_filename = f"/music/{metadata['timestamp']}_{safe_title}.json"
 
     def json_serializable(obj):
         if isinstance(obj, datetime):
