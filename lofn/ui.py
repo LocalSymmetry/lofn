@@ -934,8 +934,6 @@ class LofnApp:
                 self.generate_music_prompts_for_pair(pair)
 
             st.success("Music prompts generated successfully!")
-            if st.session_state.get('music_concept_mediums'):
-                self.display_music_concepts()
         except Exception as e:
             st.error("An error occurred during music competition mode.")
             logger.exception("Error in music competition: %s", e)
