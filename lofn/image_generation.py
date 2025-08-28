@@ -71,7 +71,7 @@ def generate_image(model: str, params: dict, OPENAI_API = Config.OPENAI_API, deb
         st.write(f"Unsupported model: {model}")
         return None
 
-def save_image_locally(image_url, filename, directory='images'):
+def save_image_locally(image_url, filename, directory='images', rotate_clockwise=False):
     max_retries = 3
     retry_delay = 1  # seconds
 
@@ -90,12 +90,22 @@ def save_image_locally(image_url, filename, directory='images'):
                 with open(image_url, 'rb') as f:
                     content = f.read()
 
-            # Save the content to the desired location
-            with open(f'/{directory}/{filename}', 'wb') as f:
-                f.write(content)
+            save_path = f'/{directory}/{filename}'
+            if rotate_clockwise:
+                # Rotate and save as PNG
+                if image_url[0] != '/':
+                    img = Image.open(BytesIO(content))
+                else:
+                    img = Image.open(image_url)
+                img = img.rotate(-90, expand=True)
+                img.save(save_path, format='PNG')
+            else:
+                # Save the content to the desired location without modification
+                with open(save_path, 'wb') as f:
+                    f.write(content)
 
-            st.write(f"Image saved as /{directory}/{filename}")
-            return  # Exit the function after successful save
+            st.write(f"Image saved as {save_path}")
+            return save_path  # Exit the function after successful save
         except Exception as e:
             st.write(f"Attempt {attempt + 1} failed: {str(e)}")
             if attempt < max_retries:
@@ -103,6 +113,8 @@ def save_image_locally(image_url, filename, directory='images'):
             else:
                 st.write(f"Failed to save image after {max_retries} attempts")
                 st.write(f"Full URL or path attempted: {image_url}")
+
+    return None
 
 
 def generate_google_imagen_image(params, debug=False):
@@ -255,8 +267,12 @@ def generate_image_dalle3(params, OPENAI_API = Config.OPENAI_API, debug = False)
         return None
 
 @st.cache_data(persist=True)
-def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium'):
-    if image_model == "None":
+def generate_dalle_images(input, concept, medium, df_prompts, max_retries, temperature, model, debug, image_model, style_axes, creativity_spectrum, OPENAI_API = Config.OPENAI_API, reasoning_level = 'medium', tiktok_mode: bool = False):
+    if tiktok_mode:
+        image_model = "fal-ai/flux-pro/v1.1-ultra"
+        st.session_state.setdefault('fal-ai/flux-pro/v1.1-ultra_num_images', 1)
+        st.session_state.setdefault('fal-ai/flux-pro/v1.1-ultra_image_size', '9:16')
+    elif image_model == "None":
         st.write("Image generation skipped.")
         return
     st.write(f"Generating images using {image_model}...")
@@ -269,6 +285,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
         
         params = get_model_params(image_model)
         params['prompt'] = prompt  # Override the prompt with the current one
+        if tiktok_mode:
+            params['aspect_ratio'] = '9:16'
         
         try:
             results = generate_image(image_model, params, OPENAI_API, debug)
@@ -276,8 +294,16 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
             if results:
                 for i, result in enumerate(results):
                     try:
-                        # Display the image
-                        st.image(result, caption=f"Generated image {i+1} for {concept} in {medium}")
+                        # Display and optionally rotate the image
+                        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                        prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
+                        filename = f"{timestamp}_{model.replace('/','_')}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
+                        if tiktok_mode:
+                            saved_path = save_image_locally(result, filename, rotate_clockwise=True)
+                            st.image(saved_path, caption=f"Generated image {i+1} for {concept} in {medium}")
+                        else:
+                            st.image(result, caption=f"Generated image {i+1} for {concept} in {medium}")
+                            save_image_locally(result, filename)
                         st.code(prompt, language='')
                         
                         # Generate a title for the image
@@ -297,14 +323,8 @@ def generate_dalle_images(input, concept, medium, df_prompts, max_retries, tempe
                             st.error(f"Error generating title and Instagram post: {str(e)}")
                             title_data = {"title": "Untitled", "instagram_caption": "", "instagram_hashtags": "", "seo_keywords": ""}
                     
-                        # Save the image locally
-                        try:
-                            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                            prompt_type = "Revised" if index < len(df_prompts) else "Synthesized"
-                            filename = f"{timestamp}_{model.replace('/','_')}_{concept[0:10]}_{medium[0:10]}_{prompt_type}_{index + 1}_{i + 1}.png"
-                            save_image_locally(result, filename)
-                        except Exception as e:
-                            st.error(f"Error saving image locally: {str(e)}")
+                        # Save and display handled above
+                        pass
 
                         # Generate video using Pika through Poe if enabled
                         # video_url = None
