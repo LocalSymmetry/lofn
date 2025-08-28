@@ -99,6 +99,7 @@
 | **Steerability** | **10 Style Axes**, **Creativity Spectrum** sliders, persistent **Personality DNA** |
 | **Expert Panels** | Automatic or user‑selected **6 experts + 1 devil’s advocate** debate each branch |
 | **Multi‑Modal** | Image, Music, Video |
+| **TikTok Mode** | FLUX Pro v1.1 Ultra 9:16 images rotated for Veo 3 ingestion |
 | **Competition Mode** | Shrinks the prompt to platform limits while preserving nuance; injects Panel + Personality context first |
 | **Model‑Agnostic** | Works with OpenAI, Anthropic, Google Gemini, Meta Llama, and any OpenAI‑compatible local LLM (via Ollama, text‑gen‑webui, etc.) |
 | **Phase‑Map Transparency** | A visible flowchart of every stage, emitted with each run |
