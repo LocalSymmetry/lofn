@@ -455,8 +455,8 @@ class LofnApp:
             st.session_state['tiktok_mode'] = tiktok_mode
             if tiktok_mode:
                 self.image_model = 'fal-ai/flux-pro/v1.1-ultra'
-                st.session_state.setdefault('fal-ai/flux-pro/v1.1-ultra_image_size', '9:16')
-                st.session_state.setdefault('fal-ai/flux-pro/v1.1-ultra_num_images', 1)
+                st.session_state['fal-ai/flux-pro/v1.1-ultra_image_size'] = '9:16'
+                st.session_state['fal-ai/flux-pro/v1.1-ultra_num_images'] = 1
             render_image_controls(self.image_model)
 
         with st.sidebar.expander("Style Personalization", expanded=False):
