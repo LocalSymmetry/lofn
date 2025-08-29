@@ -909,7 +909,10 @@ def render_image_controls(model: str):
     else:
         st.selectbox("Image Size", ["1024x1024", "512x512", "768x768", "512x768", "768x512"], key=f"{model}_image_size")
     
-    st.number_input("Number of Images", min_value=1, max_value=10, value=1, key=f"{model}_num_images")
+    num_images_key = f"{model}_num_images"
+    if num_images_key not in st.session_state:
+        st.session_state[num_images_key] = 1
+    st.number_input("Number of Images", min_value=1, max_value=10, key=num_images_key)
 
 def update_image_controls():
     # Clear previous image controls
