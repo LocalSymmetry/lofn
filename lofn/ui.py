@@ -1505,49 +1505,55 @@ class LofnApp:
                 st.json(data.get("input_settings"))
 
     def render_chat(self):
-        col1, col2 = st.columns(2)
-        with col1:
-            self.render_personality_chat_section()
-        with col2:
-            self.render_image_to_video_chat_section()
+        mode = st.selectbox(
+            "Chat Mode", ["Personality Chat", "Image to Video Chat"], key="chat_mode"
+        )
+        self.render_chat_section(mode)
 
-    def render_personality_chat_section(self):
-        st.subheader("Personality Chat")
+    def render_chat_section(self, mode):
+        image_mode = mode == "Image to Video Chat"
+        key_prefix = "image2video_" if image_mode else ""
+        st.subheader(mode)
+
         personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
-        st.session_state['selected_personality'] = st.selectbox(
+        select_key = f"{key_prefix}selected_personality" if key_prefix else "selected_personality"
+        st.session_state[select_key] = st.selectbox(
             'Personality',
             personality_names,
             index=personality_names.index(
-                st.session_state.get('selected_personality', personality_names[0])
+                st.session_state.get(select_key, personality_names[0])
             ),
-            key='chat_personality_select',
+            key=f"{key_prefix}personality_select",
         )
-        if st.session_state['selected_personality'] == 'Custom':
-            st.session_state['custom_personality'] = st.text_area(
+        custom_key = f"{key_prefix}custom_personality" if key_prefix else "custom_personality"
+        if st.session_state[select_key] == 'Custom':
+            st.session_state[custom_key] = st.text_area(
                 'Custom Personality',
-                value=st.session_state.get('custom_personality', ''),
+                value=st.session_state.get(custom_key, ''),
                 height=150,
-                key='chat_custom_personality',
+                key=f"{key_prefix}custom_personality_text",
             )
         else:
-            st.session_state['custom_personality'] = next(
+            st.session_state[custom_key] = next(
                 p['prompt']
                 for p in PERSONALITY_OPTIONS
-                if p['name'] == st.session_state['selected_personality']
+                if p['name'] == st.session_state[select_key]
             )
-        personality_text = st.session_state.get('custom_personality', '')
+        personality_text = st.session_state.get(custom_key, '')
 
-        # Clear uploaded images if a reset was requested before rendering the uploader
-        if st.session_state.get('clear_personality_chat_images'):
-            st.session_state.pop('personality_chat_images', None)
-            st.session_state['clear_personality_chat_images'] = False
+        clear_key = "clear_image2video_chat_images" if image_mode else "clear_personality_chat_images"
+        if st.session_state.get(clear_key):
+            images_key = f"{key_prefix}chat_images" if image_mode else "personality_chat_images"
+            st.session_state.pop(images_key, None)
+            st.session_state[clear_key] = False
 
         st.subheader("Reference Media (Optional)")
+        images_key = f"{key_prefix}chat_images" if image_mode else "personality_chat_images"
         uploaded_files = st.file_uploader(
             "Upload up to 5 images or videos",
             type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
             accept_multiple_files=True,
-            key="personality_chat_images",
+            key=images_key,
         )
         chat_media = []
         if uploaded_files:
@@ -1555,19 +1561,21 @@ class LofnApp:
                 st.warning("Only the first 5 files will be used.")
             for file in uploaded_files[:5]:
                 chat_media.append(file)
-        st.session_state['chat_input_images'] = chat_media
+        input_images_key = f"{key_prefix}chat_input_images" if image_mode else "chat_input_images"
+        st.session_state[input_images_key] = chat_media
 
-        if 'chat_history' not in st.session_state:
-            st.session_state['chat_history'] = []
+        history_key = f"{key_prefix}chat_history" if image_mode else "chat_history"
+        if history_key not in st.session_state:
+            st.session_state[history_key] = []
 
-        for msg in st.session_state['chat_history']:
+        for msg in st.session_state[history_key]:
             role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
             with st.chat_message(role):
                 if isinstance(msg.content, list):
                     for part in msg.content:
                         if part.get("type") == "text":
                             st.markdown(part.get("text", ""))
-                        elif part.get("type") in ("image_url", "input_image"):
+                        elif part.get("type") == "image_url":
                             url = part.get("image_url", "")
                             if isinstance(url, dict):
                                 url = url.get("url", "")
@@ -1575,170 +1583,73 @@ class LofnApp:
                                 st.image(base64.b64decode(url.split(",")[1]))
                             else:
                                 st.image(url)
-                        elif part.get("type") in ("video_url", "input_video"):
-                            url = part.get("video_url", "")
-                            if isinstance(url, dict):
-                                url = url.get("url", "")
-                            if url.startswith("data:"):
-                                st.video(base64.b64decode(url.split(",")[1]))
-                            else:
-                                st.video(url)
+                        elif part.get("type") == "file":
+                            file_data = part.get("file", {})
+                            mime = file_data.get("mime_type", "")
+                            b64 = file_data.get("b64_json", "")
+                            if mime.startswith("image/"):
+                                st.image(base64.b64decode(b64))
+                            elif mime.startswith("video/"):
+                                st.video(base64.b64decode(b64))
                 else:
                     st.markdown(msg.content)
 
-        user_input = st.chat_input("Send a message", key="personality_chat_input")
+        input_key = "image2video_chat_input" if image_mode else "personality_chat_input"
+        user_input = st.chat_input("Send a message", key=input_key)
         if user_input:
-            history = st.session_state['chat_history'][:]
-            images = st.session_state.get('chat_input_images', [])
+            history = st.session_state[history_key][:]
+            images = st.session_state.get(input_images_key, [])
             prepared = prepare_image_messages(images)
             user_message = HumanMessage(
                 content=[{"type": "text", "text": user_input}, *[m.content[0] for m in prepared]]
             )
-            st.session_state['chat_history'].append(user_message)
+            st.session_state[history_key].append(user_message)
             with st.chat_message("user"):
                 st.markdown(user_input)
                 for media in prepared:
                     part = media.content[0]
-                    url = part.get("image_url") or part.get("video_url")
-                    if part["type"] in ("image_url", "input_image"):
+                    if part["type"] == "image_url":
+                        url = part["image_url"]
                         if isinstance(url, dict):
                             url = url.get("url", "")
                         st.image(base64.b64decode(url.split(",")[1]))
-                    elif part["type"] in ("video_url", "input_video"):
-                        if isinstance(url, dict):
-                            url = url.get("url", "")
-                        st.video(base64.b64decode(url.split(",")[1]))
-            logger.debug("Personality chat user input: %s", user_input)
-            response_text = run_personality_chat(
-                personality_text,
-                history,
-                user_input,
-                model=self.model,
-                temperature=self.temperature,
-                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                debug=self.debug,
-                input_media=[m.content[0] for m in prepared],
-            )
-            logger.debug("Personality chat response: %s", response_text)
+                    elif part["type"] == "file":
+                        file_data = part["file"]
+                        mime = file_data.get("mime_type", "")
+                        b64 = file_data.get("b64_json", "")
+                        if mime.startswith("image/"):
+                            st.image(base64.b64decode(b64))
+                        elif mime.startswith("video/"):
+                            st.video(base64.b64decode(b64))
+            logger.debug(f"{mode} user input: %s", user_input)
+            if mode == "Image to Video Chat":
+                response_text = run_personality_image2video_chat(
+                    personality_text,
+                    history,
+                    user_input,
+                    model=self.model,
+                    temperature=self.temperature,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    debug=self.debug,
+                    input_media=[m.content[0] for m in prepared],
+                )
+            else:
+                response_text = run_personality_chat(
+                    personality_text,
+                    history,
+                    user_input,
+                    model=self.model,
+                    temperature=self.temperature,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    debug=self.debug,
+                    input_media=[m.content[0] for m in prepared],
+                )
+            logger.debug(f"{mode} response: %s", response_text)
             with st.chat_message("assistant"):
                 st.markdown(response_text)
-            st.session_state['chat_history'].append(AIMessage(content=response_text))
-        st.session_state['chat_input_images'] = []
-        st.session_state['clear_personality_chat_images'] = True
-
-    def render_image_to_video_chat_section(self):
-        st.subheader("Image to Video Chat")
-        personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
-        st.session_state['image2video_selected_personality'] = st.selectbox(
-            'Personality',
-            personality_names,
-            index=personality_names.index(
-                st.session_state.get('image2video_selected_personality', personality_names[0])
-            ),
-            key='image2video_personality_select',
-        )
-        if st.session_state['image2video_selected_personality'] == 'Custom':
-            st.session_state['image2video_custom_personality'] = st.text_area(
-                'Custom Personality',
-                value=st.session_state.get('image2video_custom_personality', ''),
-                height=150,
-                key='image2video_custom_personality',
-            )
-        else:
-            st.session_state['image2video_custom_personality'] = next(
-                p['prompt']
-                for p in PERSONALITY_OPTIONS
-                if p['name'] == st.session_state['image2video_selected_personality']
-            )
-        personality_text = st.session_state.get('image2video_custom_personality', '')
-
-        if st.session_state.get('clear_image2video_chat_images'):
-            st.session_state.pop('image2video_chat_images', None)
-            st.session_state['clear_image2video_chat_images'] = False
-
-        st.subheader("Reference Media (Optional)")
-        uploaded_files = st.file_uploader(
-            "Upload up to 5 images or videos",
-            type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
-            accept_multiple_files=True,
-            key="image2video_chat_images",
-        )
-        chat_media = []
-        if uploaded_files:
-            if len(uploaded_files) > 5:
-                st.warning("Only the first 5 files will be used.")
-            for file in uploaded_files[:5]:
-                chat_media.append(file)
-        st.session_state['image2video_chat_input_images'] = chat_media
-
-        if 'image2video_chat_history' not in st.session_state:
-            st.session_state['image2video_chat_history'] = []
-
-        for msg in st.session_state['image2video_chat_history']:
-            role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
-            with st.chat_message(role):
-                if isinstance(msg.content, list):
-                    for part in msg.content:
-                        if part.get("type") == "text":
-                            st.markdown(part.get("text", ""))
-                        elif part.get("type") in ("image_url", "input_image"):
-                            url = part.get("image_url", "")
-                            if isinstance(url, dict):
-                                url = url.get("url", "")
-                            if url.startswith("data:"):
-                                st.image(base64.b64decode(url.split(",")[1]))
-                            else:
-                                st.image(url)
-                        elif part.get("type") in ("video_url", "input_video"):
-                            url = part.get("video_url", "")
-                            if isinstance(url, dict):
-                                url = url.get("url", "")
-                            if url.startswith("data:"):
-                                st.video(base64.b64decode(url.split(",")[1]))
-                            else:
-                                st.video(url)
-                else:
-                    st.markdown(msg.content)
-
-        user_input = st.chat_input("Send a message", key="image2video_chat_input")
-        if user_input:
-            history = st.session_state['image2video_chat_history'][:]
-            images = st.session_state.get('image2video_chat_input_images', [])
-            prepared = prepare_image_messages(images)
-            user_message = HumanMessage(
-                content=[{"type": "text", "text": user_input}, *[m.content[0] for m in prepared]]
-            )
-            st.session_state['image2video_chat_history'].append(user_message)
-            with st.chat_message("user"):
-                st.markdown(user_input)
-                for media in prepared:
-                    part = media.content[0]
-                    url = part.get("image_url") or part.get("video_url")
-                    if part["type"] in ("image_url", "input_image"):
-                        if isinstance(url, dict):
-                            url = url.get("url", "")
-                        st.image(base64.b64decode(url.split(",")[1]))
-                    elif part["type"] in ("video_url", "input_video"):
-                        if isinstance(url, dict):
-                            url = url.get("url", "")
-                        st.video(base64.b64decode(url.split(",")[1]))
-            logger.debug("Image-to-video chat user input: %s", user_input)
-            response_text = run_personality_image2video_chat(
-                personality_text,
-                history,
-                user_input,
-                model=self.model,
-                temperature=self.temperature,
-                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                debug=self.debug,
-                input_media=[m.content[0] for m in prepared],
-            )
-            logger.debug("Image-to-video chat response: %s", response_text)
-            with st.chat_message("assistant"):
-                st.markdown(response_text)
-            st.session_state['image2video_chat_history'].append(AIMessage(content=response_text))
-            st.session_state['image2video_chat_input_images'] = []
-            st.session_state['clear_image2video_chat_images'] = True
+            st.session_state[history_key].append(AIMessage(content=response_text))
+            st.session_state[input_images_key] = []
+            st.session_state[clear_key] = True
 
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')

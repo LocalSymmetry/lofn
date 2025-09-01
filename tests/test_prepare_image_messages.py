@@ -51,8 +51,11 @@ def test_prepare_image_messages_inlines_jpeg():
     assert len(msgs) == 1
     msg = msgs[0]
     assert isinstance(msg.content, list)
-    assert msg.content[0]["type"] == "input_image"
-    url = msg.content[0]["image_url"]
+    part = msg.content[0]
+    assert part["type"] == "image_url"
+    url = part["image_url"]
+    if isinstance(url, dict):
+        url = url.get("url", "")
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}
 
@@ -64,5 +67,7 @@ def test_prepare_image_messages_handles_video():
     msgs = prepare_image_messages([data_url])
     assert len(msgs) == 1
     part = msgs[0].content[0]
-    assert part["type"] == "input_video"
-    assert part["video_url"].startswith("data:video/mp4;base64")
+    assert part["type"] == "file"
+    file_data = part.get("file", {})
+    assert file_data.get("mime_type") == "video/mp4"
+    assert file_data.get("b64_json", "").startswith(b64[:10])
