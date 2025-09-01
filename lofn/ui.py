@@ -173,8 +173,8 @@ class LofnApp:
                 "claude-3-opus-20240229", "claude-3-sonnet-20240229",
                 "claude-3-haiku-20240307",
             ])
-        # Add Google models if GOOGLE_API is available
-        if Config.GOOGLE_API:
+        # Add Google models if GOOGLE_API_KEY is available
+        if Config.GOOGLE_API_KEY:
             models.extend([
                 "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
                 "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
@@ -236,7 +236,7 @@ class LofnApp:
             ])
         if Config.IDEOGRAM_API_KEY:
             models.append("Ideogram")
-        if Config.GOOGLE_PROJECT_ID:
+        if Config.GCP_PROJECT_ID:
             models.append("Google Imagen 3")
         if Config.OPENAI_API:
             models.append("DALL-E 3")
