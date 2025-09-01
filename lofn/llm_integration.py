@@ -2369,7 +2369,19 @@ def run_personality_chat(
         MessagesPlaceholder("chat_history"),
     ])
     chain = prompt | llm
+    if debug:
+        logger.debug(
+            "Personality chat request",
+            extra={
+                "personality_prompt": personality_prompt,
+                "chat_history": chat_history,
+                "user_input": user_input,
+                "input_media": input_media,
+            },
+        )
     response = chain.invoke({"chat_history": chat_history + [user_message]})
+    if debug:
+        logger.debug("Personality chat response: %s", response)
     if isinstance(response, dict):
         return response.get("text", str(response))
     if hasattr(response, "content"):
@@ -2454,6 +2466,16 @@ def run_personality_image2video_chat(
     input_media: Optional[List[Dict[str, str]]] = None,
 ):
     """Run a chat using the image-to-video personality template."""
+    if debug:
+        logger.debug(
+            "Image-to-video chat request",
+            extra={
+                "personality_prompt": personality_prompt,
+                "chat_history": chat_history,
+                "user_input": user_input,
+                "input_media": input_media,
+            },
+        )
     return run_personality_chat(
         personality_prompt,
         chat_history,

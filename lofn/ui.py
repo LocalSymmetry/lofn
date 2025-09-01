@@ -315,8 +315,7 @@ class LofnApp:
             "Image Generation",
             "Video Generation",
             "Music Generation",
-            "Personality Chat",
-            "Image to Video Chat",
+            "Chat",
             "Prompt Explorer",
         ]
         current_tab = st.session_state.get('selected_tab', tabs[0])
@@ -336,12 +335,10 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
-        elif selected_tab == "Image to Video Chat":
-            self.render_image_to_video_chat()
+        elif selected_tab == "Chat":
+            self.render_chat()
         elif selected_tab == "Prompt Explorer":
             self.render_prompt_explorer()
-        elif selected_tab == "Personality Chat":
-            self.render_personality_chat()
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
@@ -1507,8 +1504,15 @@ class LofnApp:
             with st.expander("Input Settings"):
                 st.json(data.get("input_settings"))
 
-    def render_personality_chat(self):
-        st.header("Personality Chat")
+    def render_chat(self):
+        col1, col2 = st.columns(2)
+        with col1:
+            self.render_personality_chat_section()
+        with col2:
+            self.render_image_to_video_chat_section()
+
+    def render_personality_chat_section(self):
+        st.subheader("Personality Chat")
         personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
         st.session_state['selected_personality'] = st.selectbox(
             'Personality',
@@ -1604,7 +1608,8 @@ class LofnApp:
                         if isinstance(url, dict):
                             url = url.get("url", "")
                         st.video(base64.b64decode(url.split(",")[1]))
-            response_stream = stream_personality_chat(
+            logger.debug("Personality chat user input: %s", user_input)
+            response_text = run_personality_chat(
                 personality_text,
                 history,
                 user_input,
@@ -1614,16 +1619,15 @@ class LofnApp:
                 debug=self.debug,
                 input_media=[m.content[0] for m in prepared],
             )
+            logger.debug("Personality chat response: %s", response_text)
             with st.chat_message("assistant"):
-                response_text = st.write_stream(
-                    async_to_sync_generator(response_stream)
-                )
+                st.markdown(response_text)
             st.session_state['chat_history'].append(AIMessage(content=response_text))
         st.session_state['chat_input_images'] = []
         st.session_state['clear_personality_chat_images'] = True
 
-    def render_image_to_video_chat(self):
-        st.header("Image to Video Chat")
+    def render_image_to_video_chat_section(self):
+        st.subheader("Image to Video Chat")
         personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
         st.session_state['image2video_selected_personality'] = st.selectbox(
             'Personality',
@@ -1718,7 +1722,8 @@ class LofnApp:
                         if isinstance(url, dict):
                             url = url.get("url", "")
                         st.video(base64.b64decode(url.split(",")[1]))
-            response_stream = stream_personality_image2video_chat(
+            logger.debug("Image-to-video chat user input: %s", user_input)
+            response_text = run_personality_image2video_chat(
                 personality_text,
                 history,
                 user_input,
@@ -1728,10 +1733,9 @@ class LofnApp:
                 debug=self.debug,
                 input_media=[m.content[0] for m in prepared],
             )
+            logger.debug("Image-to-video chat response: %s", response_text)
             with st.chat_message("assistant"):
-                response_text = st.write_stream(
-                    async_to_sync_generator(response_stream)
-                )
+                st.markdown(response_text)
             st.session_state['image2video_chat_history'].append(AIMessage(content=response_text))
             st.session_state['image2video_chat_input_images'] = []
             st.session_state['clear_image2video_chat_images'] = True
