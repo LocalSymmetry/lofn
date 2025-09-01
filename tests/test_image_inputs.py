@@ -31,5 +31,5 @@ def test_prepare_image_messages_limit():
     assert len(msgs) == 5
     for m in msgs:
         assert m.content[0]["type"] == "input_image"
-        assert m.content[0]["image_url"].startswith("data:image/")
+        assert m.content[0]["image_url"]["url"].startswith("data:image/")
         assert m.additional_kwargs == {}

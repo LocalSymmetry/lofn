@@ -236,7 +236,7 @@ def call_openai_gpt5_multimodal(
             img_bytes, mime = normalize_image_bytes(blob)
             data_url = to_data_url(img_bytes, mime)
             user_content.append(
-                {"type": "input_image", "image_url": data_url, "detail": "high"}
+                {"type": "input_image", "image_url": {"url": data_url}, "detail": "high"}
             )
 
     user_content.append({"type": "input_text", "text": user_text})
@@ -489,12 +489,14 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
         if media_type == "input_image":
             messages.append(
                 HumanMessage(
-                    content=[{"type": media_type, "image_url": url}]
+                    content=[{"type": media_type, "image_url": {"url": url}}]
                 )
             )
         elif media_type == "input_video":
             messages.append(
-                HumanMessage(content=[{"type": media_type, "video_url": url}])
+                HumanMessage(
+                    content=[{"type": media_type, "video_url": {"url": url}}]
+                )
             )
 
     return messages
@@ -514,11 +516,15 @@ def prepare_image_strings(images: List) -> List[str]:
         if part["type"] in ("image_url", "input_image"):
             image_data = part.get("image_url", {})
             if isinstance(image_data, dict):
-                urls.append(image_data.get("url", ""))
+                urls.append(image_data.get("url") or image_data.get("file_id", ""))
             else:
                 urls.append(image_data)
         elif part["type"] == "input_video":
-            urls.append(part.get("video_url", ""))
+            video_data = part.get("video_url", {})
+            if isinstance(video_data, dict):
+                urls.append(video_data.get("url") or video_data.get("file_id", ""))
+            else:
+                urls.append(video_data)
     return urls
 
 # Load prompts

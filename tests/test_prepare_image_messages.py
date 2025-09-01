@@ -52,7 +52,7 @@ def test_prepare_image_messages_inlines_jpeg():
     msg = msgs[0]
     assert isinstance(msg.content, list)
     assert msg.content[0]["type"] == "input_image"
-    url = msg.content[0]["image_url"]
+    url = msg.content[0]["image_url"]["url"]
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}
 
@@ -65,4 +65,4 @@ def test_prepare_image_messages_handles_video():
     assert len(msgs) == 1
     part = msgs[0].content[0]
     assert part["type"] == "input_video"
-    assert part["video_url"].startswith("data:video/mp4;base64")
+    assert part["video_url"]["url"].startswith("data:video/mp4;base64")
