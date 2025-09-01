@@ -2,17 +2,10 @@
 
 import streamlit as st
 import openai
-try:  # pragma: no cover - optional dependency
-    from google import genai
-    from google.genai import types
-except Exception:  # pragma: no cover
-    genai = None
-    types = None
+from google import genai
+from google.genai import types
 import asyncio
-try:  # pragma: no cover - optional dependency
-    import fastapi_poe as fp
-except Exception:  # pragma: no cover
-    fp = None
+import fastapi_poe as fp
 import requests
 import json
 from langchain.chains.structured_output.base import create_structured_output_runnable
@@ -30,12 +23,8 @@ from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import imghdr
-try:
-    from config import Config
-except ModuleNotFoundError:  # pragma: no cover - fallback for package import
-    from .config import Config
-try:
-    from helpers import (
+from config import Config
+from helpers import (
         read_prompt,
         send_to_discord,
         parse_output,
@@ -48,22 +37,7 @@ try:
         sample_art_styles,
         sample_film_styles,
         compress_image_bytes,
-    )
-except ModuleNotFoundError:  # pragma: no cover - fallback for package import
-    from .helpers import (
-        read_prompt,
-        send_to_discord,
-        parse_output,
-        display_facets,
-        display_creativity_and_style_axes,
-        sample_artistic_frames,
-        sample_video_frames,
-        sample_music_frames,
-        sample_music_genres,
-        sample_art_styles,
-        sample_film_styles,
-        compress_image_bytes,
-    )
+)
 import plotly.graph_objects as go
 import random
 import numpy as np
@@ -73,25 +47,16 @@ import base64
 import mimetypes
 from PIL import Image
 import io
-try:
-    from helpers import (
+from helpers import (
         display_temporary_results,
-        display_temporary_results_no_expander,
-    )
-except ModuleNotFoundError:  # pragma: no cover - fallback for package import
-    from .helpers import (
-        display_temporary_results,
-        display_temporary_results_no_expander,
-    )
+        display_temporary_results_no_expander
+)
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
-try:
-    from o1_integration import *  # noqa: F401,F403
-except ModuleNotFoundError:  # pragma: no cover - fallback for package import
-    from .o1_integration import *  # noqa: F401,F403
+from o1_integration import *  # noqa: F401,F403
 from pathlib import Path
-from lofn.utils.image_io import normalize_image_bytes, to_data_url
+from utils.image_io import normalize_image_bytes, to_data_url
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
