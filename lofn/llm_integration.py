@@ -27,8 +27,8 @@ from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import imghdr
-from config import Config
-from helpers import (
+from .config import Config
+from .helpers import (
         read_prompt,
         send_to_discord,
         parse_output,
@@ -51,16 +51,16 @@ import base64
 import mimetypes
 from PIL import Image
 import io
-from helpers import (
+from .helpers import (
         display_temporary_results,
         display_temporary_results_no_expander
 )
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
-from o1_integration import *  # noqa: F401,F403
+from .o1_integration import *  # noqa: F401,F403
 from pathlib import Path
-from utils.image_io import normalize_image_bytes, to_data_url
+from .utils.image_io import normalize_image_bytes, to_data_url
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -233,10 +233,16 @@ def call_openai_gpt5_multimodal(
 
     if image_blobs:
         for blob in image_blobs:
-            img_bytes, mime = normalize_image_bytes(blob)
-            data_url = to_data_url(img_bytes, mime)
+            img_bytes, _ = normalize_image_bytes(blob)
+            uploaded = client.files.create(
+                file=io.BytesIO(img_bytes), purpose="vision"
+            )
             user_content.append(
-                {"type": "input_image", "image_url": data_url, "detail": "high"}
+                {
+                    "type": "input_image",
+                    "image_url": {"file_id": uploaded.id},
+                    "detail": "high",
+                }
             )
 
     user_content.append({"type": "input_text", "text": user_text})
