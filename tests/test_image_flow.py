@@ -15,10 +15,19 @@ def test_openai_accepts_image(monkeypatch):
         def create(**kwargs):
             assert kwargs["model"].startswith("gpt-5")
             inp = kwargs["input"][-1]["content"]
-            assert any(x.get("type") == "input_image" for x in inp)
+            assert any(
+                x.get("type") == "input_image" and "file_id" in x.get("image_url", {})
+                for x in inp
+            )
             return type("R", (), {"output_text": "ok"})
 
+    class FakeFiles:
+        @staticmethod
+        def create(**kwargs):
+            return type("F", (), {"id": "file-123"})
+
     class FakeClient:
+        files = FakeFiles()
         responses = FakeResponses()
 
     monkeypatch.setattr(li, "OpenAI", lambda: FakeClient())
