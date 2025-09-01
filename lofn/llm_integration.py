@@ -167,7 +167,7 @@ def _has_image_parts(msgs: List[HumanMessage]) -> bool:
         content = getattr(m, "content", [])
         if isinstance(content, list):
             for part in content:
-                if isinstance(part, dict) and part.get("type") in ("image_url", "input_image", "input_video"):
+                if isinstance(part, dict) and part.get("type") in ("image_url", "file"):
                     return True
     return False
 
@@ -239,18 +239,18 @@ def call_openai_gpt5_multimodal(
             )
             user_content.append(
                 {
-                    "type": "input_image",
+                    "type": "image_url",
                     "image_url": {"file_id": uploaded.id},
                     "detail": "high",
                 }
             )
 
-    user_content.append({"type": "input_text", "text": user_text})
+    user_content.append({"type": "text", "text": user_text})
 
     messages = []
     if system_text:
         messages.append(
-            {"role": "system", "content": [{"type": "input_text", "text": system_text}]}
+            {"role": "system", "content": [{"type": "text", "text": system_text}]}
         )
     messages.append({"role": "user", "content": user_content})
 
@@ -442,7 +442,7 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
 
     for img in images:
         url = None
-        media_type = None
+        mime = None
 
         try:
             if isinstance(img, str):
@@ -485,22 +485,25 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
                 encoded = base64.b64encode(data).decode()
                 url = f"data:{mime};base64,{encoded}"
 
-            if mime and mime.startswith("image/"):
-                media_type = "input_image"
-            elif mime and mime.startswith("video/"):
-                media_type = "input_video"
         except Exception:
             continue
 
-        if media_type == "input_image":
+        if mime and mime.startswith("image/"):
             messages.append(
                 HumanMessage(
-                    content=[{"type": media_type, "image_url": url}]
+                    content=[{"type": "image_url", "image_url": {"url": url}}]
                 )
             )
-        elif media_type == "input_video":
+        elif mime and mime.startswith("video/"):
             messages.append(
-                HumanMessage(content=[{"type": media_type, "video_url": url}])
+                HumanMessage(
+                    content=[
+                        {
+                            "type": "file",
+                            "file": {"mime_type": mime, "b64_json": encoded},
+                        }
+                    ]
+                )
             )
 
     return messages
@@ -517,14 +520,18 @@ def prepare_image_strings(images: List) -> List[str]:
     urls = []
     for m in prepare_image_messages(images):
         part = m.content[0]
-        if part["type"] in ("image_url", "input_image"):
+        if part["type"] == "image_url":
             image_data = part.get("image_url", {})
             if isinstance(image_data, dict):
                 urls.append(image_data.get("url", ""))
             else:
                 urls.append(image_data)
-        elif part["type"] == "input_video":
-            urls.append(part.get("video_url", ""))
+        elif part["type"] == "file":
+            file_data = part.get("file", {})
+            mime = file_data.get("mime_type", "")
+            b64 = file_data.get("b64_json", "")
+            if mime and b64:
+                urls.append(f"data:{mime};base64,{b64}")
     return urls
 
 # Load prompts

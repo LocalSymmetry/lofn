@@ -16,7 +16,7 @@ def test_openai_accepts_image(monkeypatch):
             assert kwargs["model"].startswith("gpt-5")
             inp = kwargs["input"][-1]["content"]
             assert any(
-                x.get("type") == "input_image" and "file_id" in x.get("image_url", {})
+                x.get("type") == "image_url" and "file_id" in x.get("image_url", {})
                 for x in inp
             )
             return type("R", (), {"output_text": "ok"})
