@@ -3,9 +3,19 @@ import os
 import types
 
 # Stub dependencies
-streamlit_stub = types.SimpleNamespace(session_state={})
+streamlit_stub = types.SimpleNamespace(
+    write=lambda *a, **k: None,
+    code=lambda *a, **k: None,
+    warning=lambda *a, **k: None,
+    session_state={},
+    cache_data=lambda *a, **k: (lambda f: f),
+)
 sys.modules['streamlit'] = streamlit_stub
-sys.modules['requests'] = types.SimpleNamespace(post=lambda *a, **k: None)
+sys.modules['requests'] = types.SimpleNamespace(
+    post=lambda *a, **k: None,
+    HTTPError=Exception,
+    Response=object,
+)
 sys.modules['json_repair'] = types.SimpleNamespace(repair_json=lambda s: s)
 
 plotly_module = types.ModuleType("plotly")
