@@ -51,8 +51,8 @@ def test_prepare_image_messages_inlines_jpeg():
     assert len(msgs) == 1
     msg = msgs[0]
     assert isinstance(msg.content, list)
-    assert msg.content[0]["type"] == "image_url"
-    url = msg.content[0]["image_url"]["url"]
+    assert msg.content[0]["type"] == "input_image"
+    url = msg.content[0]["image_url"]
     assert url.startswith("data:image/jpeg;base64")
     assert msg.additional_kwargs == {}
 
