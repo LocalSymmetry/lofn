@@ -480,16 +480,16 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
                 url = f"data:{mime};base64,{encoded}"
 
             if mime and mime.startswith("image/"):
-                media_type = "image_url"
+                media_type = "input_image"
             elif mime and mime.startswith("video/"):
                 media_type = "input_video"
         except Exception:
             continue
 
-        if media_type == "image_url":
+        if media_type == "input_image":
             messages.append(
                 HumanMessage(
-                    content=[{"type": media_type, "image_url": {"url": url}}]
+                    content=[{"type": media_type, "image_url": url}]
                 )
             )
         elif media_type == "input_video":
@@ -511,7 +511,7 @@ def prepare_image_strings(images: List) -> List[str]:
     urls = []
     for m in prepare_image_messages(images):
         part = m.content[0]
-        if part["type"] == "image_url":
+        if part["type"] in ("image_url", "input_image"):
             image_data = part.get("image_url", {})
             if isinstance(image_data, dict):
                 urls.append(image_data.get("url", ""))
