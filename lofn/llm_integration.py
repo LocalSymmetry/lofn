@@ -85,11 +85,13 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
     )
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 import openai  # For the advanced "o1" usage if needed
+from openai import OpenAI
 try:
     from o1_integration import *  # noqa: F401,F403
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
     from .o1_integration import *  # noqa: F401,F403
 from pathlib import Path
+from lofn.utils.image_io import normalize_image_bytes, to_data_url
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -259,6 +261,71 @@ def count_tokens_poe(text: str) -> Optional[int]:
 # ---------------------------------------------------------------------------
 # Provider adapters
 # ---------------------------------------------------------------------------
+
+
+def call_openai_gpt5_multimodal(
+    model: str,
+    user_text: str,
+    image_blobs: Optional[List[bytes]] = None,
+    system_text: Optional[str] = None,
+    temperature: float = 0.7,
+):
+    """Send text plus optional images to OpenAI GPT-5 via the Responses API."""
+    client = OpenAI()
+    user_content = []
+
+    if image_blobs:
+        for blob in image_blobs:
+            img_bytes, mime = normalize_image_bytes(blob)
+            data_url = to_data_url(img_bytes, mime)
+            user_content.append(
+                {"type": "input_image", "image_url": data_url, "detail": "high"}
+            )
+
+    user_content.append({"type": "input_text", "text": user_text})
+
+    messages = []
+    if system_text:
+        messages.append(
+            {"role": "system", "content": [{"type": "input_text", "text": system_text}]}
+        )
+    messages.append({"role": "user", "content": user_content})
+
+    resp = client.responses.create(
+        model=model, input=messages, temperature=temperature
+    )
+    return getattr(resp, "output_text", None) or str(resp)
+
+
+def call_gemini_25p_multimodal(
+    project_id: str,
+    location: str,
+    user_text: str,
+    image_blobs: Optional[List[bytes]] = None,
+    system_text: Optional[str] = None,
+    temperature: float = 0.7,
+):
+    """Send text and images to Gemini 2.5 Pro via Vertex AI."""
+    from vertexai.generative_models import GenerativeModel, Part, Content
+    import vertexai
+
+    vertexai.init(project=project_id, location=location)
+    model = GenerativeModel("gemini-2.5-pro")
+
+    parts: List[Part] = []
+    if image_blobs:
+        for blob in image_blobs:
+            img_bytes, mime = normalize_image_bytes(blob)
+            parts.append(Part.from_data(mime_type=mime, data=img_bytes))
+
+    parts.append(Part.from_text(user_text))
+    user_content = Content(role="user", parts=parts)
+
+    sys = [Content(role="user", parts=[Part.from_text(system_text)])] if system_text else []
+    resp = model.generate_content(
+        sys + [user_content], generation_config={"temperature": temperature}
+    )
+    return resp.text
 
 
 def call_openai_with_images(user_text: str, images: List[ImageAsset], model: str = "gpt-4o") -> Tuple[str, Optional[dict]]:
@@ -1116,7 +1183,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         elif model.startswith("gemini"):
             return GeminiLLM(
                 model_name=model,
-                api_key=Config.GOOGLE_API,
+                api_key=Config.GOOGLE_API_KEY,
                 temperature=temperature,
                 max_tokens=max_tokens
             )

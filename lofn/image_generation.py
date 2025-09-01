@@ -119,7 +119,7 @@ def save_image_locally(image_url, filename, directory='images', rotate_clockwise
 
 def generate_google_imagen_image(params, debug=False):
     try:
-        vertexai.init(project=Config.GOOGLE_PROJECT_ID, location="us-central1")
+        vertexai.init(project=Config.GCP_PROJECT_ID, location=Config.GCP_LOCATION or "us-central1")
 
         generation_model = ImageGenerationModel.from_pretrained("imagen-3.0-generate-001")
 

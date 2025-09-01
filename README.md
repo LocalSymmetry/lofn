@@ -178,6 +178,8 @@ RUNWAY_API_KEY:      ""    # Gen‑3 Alpha
 DISCORD_WEBHOOK_URL: ""
 LOCAL_LLM_API_BASE:  ""    # e.g. http://localhost:11434/v1
 LOCAL_LLM_API_KEY:   ""
+GCP_PROJECT_ID:      ""
+GCP_LOCATION:        ""
 ```
 
 LLM start-up priorities live in **lofn/model_defaults.yaml**. Each mode
