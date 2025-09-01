@@ -1586,7 +1586,7 @@ class LofnApp:
                 else:
                     st.markdown(msg.content)
 
-        user_input = st.chat_input("Send a message")
+        user_input = st.chat_input("Send a message", key="personality_chat_input")
         if user_input:
             history = st.session_state['chat_history'][:]
             images = st.session_state.get('chat_input_images', [])
@@ -1700,7 +1700,7 @@ class LofnApp:
                 else:
                     st.markdown(msg.content)
 
-        user_input = st.chat_input("Send a message")
+        user_input = st.chat_input("Send a message", key="image2video_chat_input")
         if user_input:
             history = st.session_state['image2video_chat_history'][:]
             images = st.session_state.get('image2video_chat_input_images', [])
