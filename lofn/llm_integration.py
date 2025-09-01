@@ -2,8 +2,12 @@
 
 import streamlit as st
 import openai
-from google import genai
-from google.genai import types
+try:
+    from google import genai
+    from google.genai import types
+except Exception:
+    genai = None
+    types = None
 import asyncio
 import fastapi_poe as fp
 import requests
@@ -151,18 +155,6 @@ VISION_MODELS = {
     "poe": {"*"},
 }
 
-# Models that can leverage web search. The list is kept as prefixes so that
-# variants like ``-mini`` or ``-nano`` are automatically included.
-SEARCH_PREFIXES = ("gpt-5", "gpt-4.1", "o3", "o4")
-
-
-def _supports_search(model_name: str) -> bool:
-    """Return True if ``model_name`` should have web search enabled."""
-
-    base = model_name.split("/")[-1]  # Strip provider prefix from OR models
-    return any(base.startswith(pref) for pref in SEARCH_PREFIXES)
-
-
 def _supports_vision(model_name: str) -> bool:
     for models in VISION_MODELS.values():
         if "*" in models or model_name in models:
@@ -303,15 +295,10 @@ def call_openai_with_images(user_text: str, images: List[ImageAsset], model: str
     for img in images:
         parts.append({"type": "image_url", "image_url": {"url": img.data_url}, "detail": "low"})
 
-    kwargs = {}
-    if _supports_search(model):
-        kwargs["tools"] = [{"type": "web_search"}]
-
     resp = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": parts}],
         temperature=0.2,
-        **kwargs,
     )
     text = resp.choices[0].message.content or ""
     usage = getattr(resp, "usage", None)
@@ -389,8 +376,6 @@ def call_openrouter_with_images(user_text: str, images: List[ImageAsset], model:
         "messages": [{"role": "user", "content": parts}],
         "temperature": 0.2,
     }
-    if _supports_search(model):
-        payload["tools"] = [{"type": "web_search"}]
     r = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, data=json.dumps(payload))
     r.raise_for_status()
     data = r.json()
@@ -868,9 +853,6 @@ class OpenRouterLLM(LLM):
             "max_tokens": self.max_tokens,
         }
 
-        if _supports_search(self.model_name):
-            data["tools"] = [{"type": "web_search"}]
-
         if stop is not None:
             data["stop"] = stop
 
@@ -1169,15 +1151,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 openai_api_base=Config.LOCAL_LLM_API_BASE,
             )
         elif model.startswith("gpt-5") or model.startswith("gpt-4.1"):
-            kwargs = {
-                "model": model,
-                "temperature": 1,
-                "max_completion_tokens": max_tokens,
-                "openai_api_key": Config.OPENAI_API,
-            }
-            if _supports_search(model):
-                kwargs["model_kwargs"] = {"tools": [{"type": "web_search"}]}
-            return ChatOpenAI(**kwargs)
+            return ChatOpenAI(
+                model=model,
+                temperature=1,
+                max_completion_tokens=max_tokens,
+                openai_api_key=Config.OPENAI_API,
+            )
         elif model.startswith("gpt"):
             return ChatOpenAI(
                 model=model,

@@ -13,15 +13,6 @@ from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.pydantic_v1 import Field, PrivateAttr, root_validator
 from openai import OpenAI  # openai>=1.0.0 style usage
 
-SEARCH_PREFIXES = ("gpt-5", "gpt-4.1", "o3", "o4")
-
-
-def _supports_search(model_name: str) -> bool:
-    """Return True if ``model_name`` should have web search enabled."""
-
-    base = model_name.split("/")[-1]
-    return any(base.startswith(pref) for pref in SEARCH_PREFIXES)
-
 
 def _decide_max_completion_tokens(level: str) -> int:
     """
@@ -103,9 +94,6 @@ class O1ChatOpenAI(BaseChatModel):
         # We'll pass max_completion_tokens plus any user overrides
         final_kwargs = {"max_completion_tokens": self.max_completion_tokens, "reasoning_effort": self.reasoning_level}
         final_kwargs.update(kwargs)
-
-        if _supports_search(self.model_name):
-            final_kwargs.setdefault("tools", [{"type": "web_search"}])
 
         openai_messages = self._convert_langchain_messages(messages)
 
