@@ -272,8 +272,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
-            'Personality Chat': 'art',
-            'Image to Video Chat': 'video',
+            'Chat': 'art',
         }
         mode_key = mapping.get(mode_name, 'art')
         defaults = self.model_priority.get(mode_key, {})
@@ -290,8 +289,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
-            'Personality Chat': 'art',
-            'Image to Video Chat': 'video',
+            'Chat': 'art',
         }
         mode_key = mapping.get(mode_name, 'art')
         defaults = self.model_priority.get(mode_key, {})
@@ -315,8 +313,7 @@ class LofnApp:
             "Image Generation",
             "Video Generation",
             "Music Generation",
-            "Personality Chat",
-            "Image to Video Chat",
+            "Chat",
             "Prompt Explorer",
         ]
         current_tab = st.session_state.get('selected_tab', tabs[0])
@@ -336,12 +333,10 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
-        elif selected_tab == "Image to Video Chat":
-            self.render_image_to_video_chat()
+        elif selected_tab == "Chat":
+            self.render_chat()
         elif selected_tab == "Prompt Explorer":
             self.render_prompt_explorer()
-        elif selected_tab == "Personality Chat":
-            self.render_personality_chat()
 
     def render_sidebar(self):
         st.sidebar.header('Settings')
@@ -1507,43 +1502,32 @@ class LofnApp:
             with st.expander("Input Settings"):
                 st.json(data.get("input_settings"))
 
-    def render_personality_chat(self):
-        st.header("Personality Chat")
-        personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
-        st.session_state['selected_personality'] = st.selectbox(
-            'Personality',
-            personality_names,
-            index=personality_names.index(
-                st.session_state.get('selected_personality', personality_names[0])
-            ),
-            key='chat_personality_select',
+    def render_chat(self):
+        st.header("Chat")
+        chat_modes = ['General', 'Image to Video']
+        st.session_state['chat_mode'] = st.selectbox(
+            'Chat Mode',
+            chat_modes,
+            index=chat_modes.index(st.session_state.get('chat_mode', chat_modes[0])),
+            key='chat_mode_select',
         )
-        if st.session_state['selected_personality'] == 'Custom':
-            st.session_state['custom_personality'] = st.text_area(
-                'Custom Personality',
-                value=st.session_state.get('custom_personality', ''),
-                height=150,
-                key='chat_custom_personality',
-            )
-        else:
-            st.session_state['custom_personality'] = next(
-                p['prompt']
-                for p in PERSONALITY_OPTIONS
-                if p['name'] == st.session_state['selected_personality']
-            )
-        personality_text = st.session_state.get('custom_personality', '')
+        st.session_state['chat_personality'] = st.text_area(
+            'System Prompt',
+            value=st.session_state.get('chat_personality', ''),
+            height=150,
+            key='chat_personality_input',
+        )
 
-        # Clear uploaded images if a reset was requested before rendering the uploader
-        if st.session_state.get('clear_personality_chat_images'):
-            st.session_state.pop('personality_chat_images', None)
-            st.session_state['clear_personality_chat_images'] = False
+        if st.session_state.get('clear_chat_images'):
+            st.session_state.pop('chat_images', None)
+            st.session_state['clear_chat_images'] = False
 
         st.subheader("Reference Media (Optional)")
         uploaded_files = st.file_uploader(
             "Upload up to 5 images or videos",
             type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
             accept_multiple_files=True,
-            key="personality_chat_images",
+            key="chat_images",
         )
         chat_media = []
         if uploaded_files:
@@ -1604,8 +1588,11 @@ class LofnApp:
                         if isinstance(url, dict):
                             url = url.get("url", "")
                         st.video(base64.b64decode(url.split(",")[1]))
-            response_stream = stream_personality_chat(
-                personality_text,
+            run_fn = run_personality_chat
+            if st.session_state.get('chat_mode') == 'Image to Video':
+                run_fn = run_personality_image2video_chat
+            response_text = run_fn(
+                st.session_state.get('chat_personality', ''),
                 history,
                 user_input,
                 model=self.model,
@@ -1615,126 +1602,10 @@ class LofnApp:
                 input_media=[m.content[0] for m in prepared],
             )
             with st.chat_message("assistant"):
-                response_text = st.write_stream(
-                    async_to_sync_generator(response_stream)
-                )
+                st.markdown(response_text)
             st.session_state['chat_history'].append(AIMessage(content=response_text))
         st.session_state['chat_input_images'] = []
-        st.session_state['clear_personality_chat_images'] = True
-
-    def render_image_to_video_chat(self):
-        st.header("Image to Video Chat")
-        personality_names = [p['name'] for p in PERSONALITY_OPTIONS] + ['Custom']
-        st.session_state['image2video_selected_personality'] = st.selectbox(
-            'Personality',
-            personality_names,
-            index=personality_names.index(
-                st.session_state.get('image2video_selected_personality', personality_names[0])
-            ),
-            key='image2video_personality_select',
-        )
-        if st.session_state['image2video_selected_personality'] == 'Custom':
-            st.session_state['image2video_custom_personality'] = st.text_area(
-                'Custom Personality',
-                value=st.session_state.get('image2video_custom_personality', ''),
-                height=150,
-                key='image2video_custom_personality',
-            )
-        else:
-            st.session_state['image2video_custom_personality'] = next(
-                p['prompt']
-                for p in PERSONALITY_OPTIONS
-                if p['name'] == st.session_state['image2video_selected_personality']
-            )
-        personality_text = st.session_state.get('image2video_custom_personality', '')
-
-        if st.session_state.get('clear_image2video_chat_images'):
-            st.session_state.pop('image2video_chat_images', None)
-            st.session_state['clear_image2video_chat_images'] = False
-
-        st.subheader("Reference Media (Optional)")
-        uploaded_files = st.file_uploader(
-            "Upload up to 5 images or videos",
-            type=["png", "jpg", "jpeg", "mp4", "mov", "webm"],
-            accept_multiple_files=True,
-            key="image2video_chat_images",
-        )
-        chat_media = []
-        if uploaded_files:
-            if len(uploaded_files) > 5:
-                st.warning("Only the first 5 files will be used.")
-            for file in uploaded_files[:5]:
-                chat_media.append(file)
-        st.session_state['image2video_chat_input_images'] = chat_media
-
-        if 'image2video_chat_history' not in st.session_state:
-            st.session_state['image2video_chat_history'] = []
-
-        for msg in st.session_state['image2video_chat_history']:
-            role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
-            with st.chat_message(role):
-                if isinstance(msg.content, list):
-                    for part in msg.content:
-                        if part.get("type") == "text":
-                            st.markdown(part.get("text", ""))
-                        elif part.get("type") in ("image_url", "input_image"):
-                            url = part.get("image_url", "")
-                            if isinstance(url, dict):
-                                url = url.get("url", "")
-                            if url.startswith("data:"):
-                                st.image(base64.b64decode(url.split(",")[1]))
-                            else:
-                                st.image(url)
-                        elif part.get("type") in ("video_url", "input_video"):
-                            url = part.get("video_url", "")
-                            if isinstance(url, dict):
-                                url = url.get("url", "")
-                            if url.startswith("data:"):
-                                st.video(base64.b64decode(url.split(",")[1]))
-                            else:
-                                st.video(url)
-                else:
-                    st.markdown(msg.content)
-
-        user_input = st.chat_input("Send a message")
-        if user_input:
-            history = st.session_state['image2video_chat_history'][:]
-            images = st.session_state.get('image2video_chat_input_images', [])
-            prepared = prepare_image_messages(images)
-            user_message = HumanMessage(
-                content=[{"type": "text", "text": user_input}, *[m.content[0] for m in prepared]]
-            )
-            st.session_state['image2video_chat_history'].append(user_message)
-            with st.chat_message("user"):
-                st.markdown(user_input)
-                for media in prepared:
-                    part = media.content[0]
-                    url = part.get("image_url") or part.get("video_url")
-                    if part["type"] in ("image_url", "input_image"):
-                        if isinstance(url, dict):
-                            url = url.get("url", "")
-                        st.image(base64.b64decode(url.split(",")[1]))
-                    elif part["type"] in ("video_url", "input_video"):
-                        if isinstance(url, dict):
-                            url = url.get("url", "")
-                        st.video(base64.b64decode(url.split(",")[1]))
-            response_stream = stream_personality_image2video_chat(
-                personality_text,
-                history,
-                user_input,
-                model=self.model,
-                temperature=self.temperature,
-                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                debug=self.debug,
-                input_media=[m.content[0] for m in prepared],
-            )
-            with st.chat_message("assistant"):
-                response_text = st.write_stream(
-                    async_to_sync_generator(response_stream)
-                )
-            st.session_state['image2video_chat_history'].append(AIMessage(content=response_text))
-            st.session_state['image2video_chat_input_images'] = []
-            st.session_state['clear_image2video_chat_images'] = True
+        st.session_state['clear_chat_images'] = True
 
     def initialize_session_state(self):
         cm_model, prompt_model = self.get_defaults_for_mode('Image Generation')
@@ -1773,8 +1644,8 @@ class LofnApp:
             'custom_panel': PANEL_OPTIONS[0]['prompt'],
             'selected_personality': PERSONALITY_OPTIONS[0]['name'],
             'custom_personality': PERSONALITY_OPTIONS[0]['prompt'],
-            'image2video_selected_personality': PERSONALITY_OPTIONS[0]['name'],
-            'image2video_custom_personality': PERSONALITY_OPTIONS[0]['prompt'],
+            'chat_personality': '',
+            'chat_mode': 'General',
             'num_best_pairs': 3,
             'prompt_input': '',
             'creativity_spectrum': None,
@@ -1785,10 +1656,7 @@ class LofnApp:
             'input_images': [],
             'chat_history': [],
             'chat_input_images': [],
-            'clear_personality_chat_images': False,
-            'image2video_chat_history': [],
-            'image2video_chat_input_images': [],
-            'clear_image2video_chat_images': False,
+            'clear_chat_images': False,
         }
 
         for key, value in default_values.items():

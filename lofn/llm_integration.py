@@ -12,6 +12,7 @@ import asyncio
 import fastapi_poe as fp
 import requests
 import json
+import time
 from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
@@ -20,7 +21,6 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
 from langchain.schema import OutputParserException
-from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import HumanMessage, SystemMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
@@ -2351,6 +2351,13 @@ def run_personality_chat(
     system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
+    start_time = time.time()
+    logger.debug(
+        "run_personality_chat start: model=%s, history=%d, media=%d",
+        model,
+        len(chat_history),
+        len(input_media or []),
+    )
     user_message = HumanMessage(
         content=[{"type": "text", "text": user_input}, *(input_media or [])]
     )
@@ -2370,125 +2377,16 @@ def run_personality_chat(
     ])
     chain = prompt | llm
     response = chain.invoke({"chat_history": chat_history + [user_message]})
+    duration = time.time() - start_time
+    logger.debug("run_personality_chat completed in %.2fs", duration)
+    if debug:
+        logger.debug("chat response: %s", getattr(response, 'content', response))
     if isinstance(response, dict):
         return response.get("text", str(response))
     if hasattr(response, "content"):
         return response.content
     return str(response)
 
-
-async def stream_personality_chat(
-    personality_prompt,
-    chat_history,
-    user_input,
-    model="gpt-3.5-turbo-16k",
-    temperature=0.7,
-    reasoning_level="medium",
-    debug=False,
-    input_media: Optional[List[Dict[str, str]]] = None,
-    system_prompt: str = personality_chat_template,
-):
-    """Stream a free-form chat response with a given personality.
-
-    This function mirrors ``run_personality_chat`` but yields tokens as they
-    arrive from the underlying LLM.  If streaming is unavailable for the
-    selected model it falls back to returning the full response in one chunk.
-    """
-
-    user_message = HumanMessage(
-        content=[{"type": "text", "text": user_input}, *(input_media or [])]
-    )
-    if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
-        raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
-    # Build the chain using the same prompt setup as the non-streaming version
-    llm = get_llm(
-        model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
-    )
-
-    readme_path = Path('/workspace/lofn/README.md')
-    lofn_readme = readme_path.read_text() if readme_path.exists() else ""
-    system_text = system_prompt.replace("{personality}", personality_prompt).replace(
-        "{lofn_readme}", lofn_readme
-    )
-    prompt = ChatPromptTemplate.from_messages([
-        SystemMessage(content=system_text),
-        MessagesPlaceholder("chat_history"),
-    ])
-
-    chain = prompt | llm
-    inputs = {"chat_history": chat_history + [user_message]}
-
-    callback = AsyncIteratorCallbackHandler()
-
-    try:
-        task = asyncio.create_task(chain.astream(inputs, callbacks=[callback]))
-
-        async for token in callback.aiter():
-            yield token
-
-        await task
-    except Exception:
-        # If streaming isn't supported, fall back to the blocking call
-        fallback = run_personality_chat(
-            personality_prompt,
-            chat_history,
-            user_input,
-            model=model,
-            temperature=temperature,
-            reasoning_level=reasoning_level,
-            debug=debug,
-            input_media=input_media,
-            system_prompt=system_prompt,
-        )
-        yield fallback
-
-
-def run_personality_image2video_chat(
-    personality_prompt,
-    chat_history,
-    user_input,
-    model="gpt-3.5-turbo-16k",
-    temperature=0.7,
-    reasoning_level="medium",
-    debug=False,
-    input_media: Optional[List[Dict[str, str]]] = None,
-):
-    """Run a chat using the image-to-video personality template."""
-    return run_personality_chat(
-        personality_prompt,
-        chat_history,
-        user_input,
-        model=model,
-        temperature=temperature,
-        reasoning_level=reasoning_level,
-        debug=debug,
-        input_media=input_media,
-        system_prompt=personality_image2video_template,
-    )
-
-
-def stream_personality_image2video_chat(
-    personality_prompt,
-    chat_history,
-    user_input,
-    model="gpt-3.5-turbo-16k",
-    temperature=0.7,
-    reasoning_level="medium",
-    debug=False,
-    input_media: Optional[List[Dict[str, str]]] = None,
-):
-    """Stream chat responses using the image-to-video personality template."""
-    return stream_personality_chat(
-        personality_prompt,
-        chat_history,
-        user_input,
-        model=model,
-        temperature=temperature,
-        reasoning_level=reasoning_level,
-        debug=debug,
-        input_media=input_media,
-        system_prompt=personality_image2video_template,
-    )
 
 @st.cache_data(persist=True)
 def select_best_pairs(input_text, pairs, num_best_pairs, max_retries, temperature, model="gpt-3.5-turbo-16k", debug=False, reasoning_level="medium"):
