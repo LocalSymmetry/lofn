@@ -76,7 +76,6 @@
 - **User's Idea:**
 
 {input}
-Supplied images (if any): {image_context}
 
 - **Generated Concept:** {concept}
 - **Generated Medium:** {medium}
