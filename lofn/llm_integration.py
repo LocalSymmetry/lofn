@@ -19,10 +19,12 @@ from langchain_core.runnables import RunnableSequence
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_anthropic.experimental import ChatAnthropicTools
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
+from langchain.chat_models.base import BaseChatModel
 from langchain.schema import OutputParserException
 from langchain.callbacks import AsyncIteratorCallbackHandler
-from langchain.schema import HumanMessage, SystemMessage
+from langchain.schema import BaseMessage, AIMessage, HumanMessage, SystemMessage, ChatGeneration, ChatResult
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
+from langchain_core.pydantic_v1 import PrivateAttr
 from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
@@ -56,6 +58,7 @@ from helpers import (
         display_temporary_results_no_expander
 )
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
+from langchain_core.pydantic_v1 import PrivateAttr
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
 from o1_integration import *  # noqa: F401,F403
@@ -899,6 +902,65 @@ class OpenRouterLLM(LLM):
             "max_tokens": self.max_tokens,
         }
 
+
+class ChatOpenAIWebSearch(BaseChatModel):
+    model_name: str
+    openai_api_key: Optional[str] = None
+    temperature: float = 1.0
+    max_tokens: int = 4096
+    _client: OpenAI = PrivateAttr(default=None)
+
+    def __init__(self, model_name: str, openai_api_key: Optional[str], temperature: float = 1.0, max_tokens: int = 4096):
+        super().__init__()
+        self.model_name = model_name
+        self.openai_api_key = openai_api_key
+        self.temperature = temperature
+        self.max_tokens = max_tokens
+        self._client = OpenAI(api_key=openai_api_key)
+
+    def _convert_messages(self, messages: List[BaseMessage]) -> List[Dict[str, str]]:
+        converted = []
+        for m in messages:
+            if isinstance(m, SystemMessage):
+                converted.append({"role": "system", "content": m.content})
+            elif isinstance(m, HumanMessage):
+                converted.append({"role": "user", "content": m.content})
+            elif isinstance(m, AIMessage):
+                converted.append({"role": "assistant", "content": m.content})
+            else:
+                converted.append({"role": "user", "content": m.content})
+        return converted
+
+    def _generate(
+        self,
+        messages: List[BaseMessage],
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[CallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> ChatResult:
+        input_messages = self._convert_messages(messages)
+        tool_type_candidates = ["web_search", "web_search_preview"]
+        last_err = None
+        for tool_type in tool_type_candidates:
+            try:
+                resp = self._client.responses.create(
+                    model=self.model_name,
+                    input=input_messages,
+                    tools=[{"type": tool_type}],
+                    max_output_tokens=self.max_tokens,
+                    temperature=self.temperature,
+                )
+                text = resp.output_text
+                gen = ChatGeneration(message=AIMessage(content=text))
+                return ChatResult(generations=[gen])
+            except Exception as e:
+                last_err = e
+        raise RuntimeError(f"OpenAI search failed: {last_err}")
+
+    @property
+    def _llm_type(self) -> str:
+        return "openai-web-search"
+
 class GeminiLLM(LLM):
     model_name: str
     temperature: float = 0.7
@@ -929,6 +991,8 @@ class GeminiLLM(LLM):
         # else:
 
         # Use thinking budget for Gemini 2.5 models that support it
+        use_search = self.model_name.startswith("gemini-2.5-pro")
+        tool = types.Tool(google_search=types.GoogleSearch()) if use_search and types is not None else None
         if self.model_name.startswith("gemini-2.5-pro") or self.model_name.startswith("gemini-2.5-flash"):
             generation_config = genai.types.GenerateContentConfig(
                 thinking_config=types.ThinkingConfig(
@@ -937,12 +1001,14 @@ class GeminiLLM(LLM):
                 max_output_tokens=self.max_tokens,
                 temperature=self.temperature,
                 stop_sequences=stop or [],
+                tools=[tool] if tool else None,
             )
         else:
             generation_config = genai.types.GenerateContentConfig(
                 max_output_tokens=self.max_tokens,
                 temperature=self.temperature,
                 stop_sequences=stop or [],
+                tools=[tool] if tool else None,
             )
 
         response = self.generative_model.models.generate_content(
@@ -1163,7 +1229,14 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 openai_api_key=Config.LOCAL_LLM_API_KEY,
                 openai_api_base=Config.LOCAL_LLM_API_BASE,
             )
-        elif model.startswith("gpt-5") or model.startswith("gpt-4.1"):
+        elif model.startswith("gpt-5"):
+            return ChatOpenAIWebSearch(
+                model_name=model,
+                openai_api_key=Config.OPENAI_API,
+                temperature=1,
+                max_tokens=max_tokens
+            )
+        elif model.startswith("gpt-4.1"):
             return ChatOpenAI(
                 model=model,
                 temperature=1,
