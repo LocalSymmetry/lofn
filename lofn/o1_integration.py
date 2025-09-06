@@ -9,8 +9,7 @@ from langchain.schema import (
 )
 from langchain.chat_models.base import BaseChatModel
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
-# This PrivateAttr is from pydantic < 2, often used with langchain's pydantic_v1
-from langchain_core.pydantic_v1 import Field, PrivateAttr, root_validator
+from pydantic import Field, PrivateAttr
 from openai import OpenAI  # openai>=1.0.0 style usage
 
 

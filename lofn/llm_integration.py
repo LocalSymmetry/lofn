@@ -24,7 +24,7 @@ from langchain.schema import OutputParserException
 from langchain.callbacks import AsyncIteratorCallbackHandler
 from langchain.schema import BaseMessage, AIMessage, HumanMessage, SystemMessage, ChatGeneration, ChatResult
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
-from langchain_core.pydantic_v1 import PrivateAttr
+from pydantic import PrivateAttr
 from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
@@ -90,8 +90,6 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         display_temporary_results,
         display_temporary_results_no_expander,
     )
-from langchain_core.callbacks.manager import CallbackManagerForLLMRun
-from langchain_core.pydantic_v1 import PrivateAttr
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
 try:
