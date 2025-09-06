@@ -252,14 +252,19 @@ def _normalize_responses_messages(
         parts: List[Dict[str, Any]] = []
 
         if isinstance(content, str):
-            parts.append({"type": "input_text", "text": content})
+            msg_type = "output_text" if role == "assistant" else "input_text"
+            parts.append({"type": msg_type, "text": content})
         elif isinstance(content, list):
             for p in content:
                 if isinstance(p, dict):
                     ptype = p.get("type", "text")
                     if ptype in TEXT_PART_KEYS:
                         txt = _to_str(p.get("text", ""))
-                        parts.append({"type": "input_text", "text": txt})
+                        if ptype in ("output_text", "refusal"):
+                            parts.append({"type": ptype, "text": txt})
+                        else:
+                            t = "output_text" if role == "assistant" else "input_text"
+                            parts.append({"type": t, "text": txt})
                     elif ptype in ("image_url", "input_image"):
                         img = p.get("image_url")
                         detail = p.get("detail", "auto")
@@ -267,22 +272,23 @@ def _normalize_responses_messages(
                             image_url = img
                         else:
                             image_url = {"url": img}
-                        parts.append(
-                            {"type": "input_image", "image_url": image_url, "detail": detail}
-                        )
+                        parts.append({"type": "input_image", "image_url": image_url, "detail": detail})
                     elif ptype in ("input_file", "file"):
                         fid = p.get("file_id") or p.get("id")
                         if fid:
                             parts.append({"type": "input_file", "file_id": fid})
                     else:
-                        parts.append({"type": "input_text", "text": _to_str(p)})
+                        t = "output_text" if role == "assistant" else "input_text"
+                        parts.append({"type": t, "text": _to_str(p)})
                 else:
-                    parts.append({"type": "input_text", "text": _to_str(p)})
+                    t = "output_text" if role == "assistant" else "input_text"
+                    parts.append({"type": t, "text": _to_str(p)})
         else:
-            parts.append({"type": "input_text", "text": _to_str(content)})
+            t = "output_text" if role == "assistant" else "input_text"
+            parts.append({"type": t, "text": _to_str(content)})
 
         for cp in parts:
-            if cp.get("type") == "input_text":
+            if cp.get("type") in {"input_text", "output_text", "refusal"}:
                 cp["text"] = _to_str(cp.get("text", ""))
 
         out.append({"role": role, "content": parts})
