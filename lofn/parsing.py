@@ -1,74 +1,281 @@
 from __future__ import annotations
 import json
-from typing import Any, Callable, Iterable
+import re
+from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
+JSON = Union[dict, list, str, int, float, bool, None]
 
-def extract_json_objects(text: str) -> Iterable[str]:
-    """Yield all substrings within ``text`` that are valid JSON objects."""
+# --------- small helpers ---------
 
-    for start in (i for i, ch in enumerate(text) if ch == "{"):
-        depth = 0
-        for i, ch in enumerate(text[start:], start=start):
-            if ch == "{":
-                depth += 1
-            elif ch == "}":
-                depth -= 1
-                if depth == 0:
-                    candidate = text[start : i + 1]
-                    try:
-                        json.loads(candidate)
-                        yield candidate
-                    except json.JSONDecodeError:
-                        pass
-                    break
+def _minimal_cleanup(s: str) -> str:
+    # normalize newlines, strip BOM/nbsp, drop obvious log clutter
+    s = s.replace("\r\n", "\n").replace("\r", "\n")
+    s = s.replace("\ufeff", "").replace("\u00a0", " ")
+    return s.strip()
 
+_CODE_FENCE_RE = re.compile(r"```(?:json|javascript|js)?\s*([\s\S]*?)```", re.IGNORECASE)
 
-def extract_first_json_object(text: str) -> str:
-    """Return the first valid JSON object found within ``text``."""
+def _strip_code_fences(s: str) -> str:
+    # If fenced blocks exist, prefer their content; otherwise just strip any stray fences.
+    blocks = _CODE_FENCE_RE.findall(s)
+    if blocks:
+        # Return concatenated blocks (common when models emit multiple fenced snippets)
+        return "\n\n".join(b.strip() for b in blocks if b.strip())
+    # No explicit fences—just remove lone fences
+    return s.replace("```json", "").replace("```", "").strip()
 
-    for obj in extract_json_objects(text):
-        return obj
-    raise ValueError("No valid JSON object found.")
+def _maybe_unquote(s: str) -> str:
+    s = s.strip()
+    if len(s) >= 2 and ((s[0] == s[-1] == "'") or (s[0] == s[-1] == '"')):
+        return s[1:-1]
+    return s
 
-
-def parse_strict_json(text: str, validate: Callable[[Any], None] | None = None) -> Any:
-    """Strictly parse ``text`` as JSON, optionally validating the result.
-
-    If multiple JSON objects are present, the first one that parses and passes
-    ``validate`` (when supplied) is returned.
+def _remove_trailing_commas(s: str) -> str:
     """
+    Remove trailing commas before } or ] outside strings (minimal 'repair' only).
+    """
+    out = []
+    stack: List[str] = []
+    in_str = False
+    esc = False
+    i = 0
+    while i < len(s):
+        ch = s[i]
+        if in_str:
+            out.append(ch)
+            if esc:
+                esc = False
+            elif ch == '\\':
+                esc = True
+            elif ch == '"':
+                in_str = False
+            i += 1
+            continue
+        # not in string
+        if ch == '"':
+            in_str = True
+            out.append(ch)
+        elif ch in "{[":
+            stack.append(ch)
+            out.append(ch)
+        elif ch in "}]":
+            # if last non-space char is a comma, drop it
+            j = len(out) - 1
+            while j >= 0 and out[j].isspace():
+                j -= 1
+            if j >= 0 and out[j] == ",":
+                out.pop(j)
+            if stack:
+                stack.pop()
+            out.append(ch)
+        else:
+            out.append(ch)
+        i += 1
+    return "".join(out)
 
-    def try_parse(candidate: str) -> Any:
-        obj = json.loads(candidate)
-        if validate:
-            validate(obj)
-        return obj
+# --------- JSON candidate extraction ---------
 
+def _match_json_end(text: str, start: int) -> Optional[int]:
+    """
+    Given text[start] in {'{','['}, return the index of the matching closing
+    bracket, ignoring anything inside JSON strings.
+    """
+    open_to_close = {"{": "}", "[": "]"}
+    stack = [text[start]]
+    i = start + 1
+    in_str = False
+    esc = False
+    while i < len(text):
+        ch = text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == '\\':
+                esc = True
+            elif ch == '"':
+                in_str = False
+        else:
+            if ch == '"':
+                in_str = True
+            elif ch in "{[":
+                stack.append(ch)
+            elif ch in "}]":
+                if not stack:
+                    return None
+                expected = open_to_close[stack[-1]]
+                if ch != expected:
+                    return None
+                stack.pop()
+                if not stack:
+                    return i
+        i += 1
+    return None
+
+def iter_json_substrings(text: str, max_candidates: int = 16) -> Iterable[str]:
+    """
+    Yield balanced JSON substrings ({...} or [...]) found anywhere in 'text'.
+    """
+    i = 0
+    n = len(text)
+    count = 0
+    while i < n and count < max_candidates:
+        ch = text[i]
+        if ch in "{[":
+            end = _match_json_end(text, i)
+            if end is not None:
+                yield text[i:end + 1]
+                count += 1
+                i = end + 1
+                continue
+        i += 1
+
+# --------- tolerant JSON loader ---------
+
+def _loads_tolerant(candidate: str) -> JSON:
+    """
+    Try several safe ways to turn a candidate string into JSON.
+    No heavy 'repairs'—only gentle unquoting and trailing-comma removal.
+    """
+    c = candidate.strip()
+
+    # 1) direct
     try:
-        return try_parse(text)
-    except (json.JSONDecodeError, ValueError):
+        first = json.loads(c)
+        if isinstance(first, str) and first.strip().startswith(("{", "[")):
+            try:
+                return json.loads(first)
+            except Exception:
+                pass
+        return first
+    except Exception:
         pass
 
-    for candidate in extract_json_objects(text):
+    # 2) if it's a quoted string literal containing JSON, remove outer quotes
+    unq = _maybe_unquote(c)
+    if unq != c:
         try:
-            return try_parse(candidate)
-        except (json.JSONDecodeError, ValueError):
-            continue
+            return json.loads(unq)
+        except Exception:
+            # Sometimes it is a JSON-encoded string of JSON: try twice.
+            try:
+                s = json.loads(c)  # returns a str
+                if isinstance(s, str) and s.strip().startswith(("{", "[")):
+                    return json.loads(s)
+            except Exception:
+                pass
 
-    raise ValueError("No valid JSON object found.")
+    # 3) trailing commas (common LLM hiccup)
+    repaired = _remove_trailing_commas(c)
+    if repaired != c:
+        try:
+            return json.loads(repaired)
+        except Exception:
+            pass
 
+    # give up
+    raise json.JSONDecodeError("Unable to parse JSON candidate", c, 0)
 
-def coerce_common_forms(obj: Any, expected_keys: set[str]) -> Any:
-    """Perform gentle, idempotent coercions of common near-miss structures."""
+# --------- schema scoring / normalization ---------
+
+def _is_sequential_numeric_dict(d: dict) -> bool:
+    if not d:
+        return False
+    keys = list(d.keys())
+    if not all(str(k).isdigit() for k in keys):
+        return False
+    idx = sorted(int(k) for k in keys)
+    return idx == list(range(len(keys)))
+
+def _dict_to_list_by_numeric_keys(d: dict) -> list:
+    return [d[str(i)] if str(i) in d else d[i] for i in range(len(d))]
+
+def _normalize_to_schema(obj: JSON, schema: Dict[str, Union[type, str]]) -> Optional[dict]:
+    """
+    schema example:
+      {"meta_prompt": str}
+      {"personality_prompt": str}
+      {"facets": "list[str]"}
+    Returns a dict with only the required keys if they can be satisfied; else None.
+    """
+    if not isinstance(obj, (dict, list)):
+        return None
+
+    # unwrap single-item list
     if isinstance(obj, list) and len(obj) == 1 and isinstance(obj[0], dict):
         obj = obj[0]
-    if isinstance(obj, dict):
-        synonyms = {"metaPrompt": "meta_prompt", "facetsList": "facets"}
-        for k, v in list(obj.items()):
-            if k in synonyms and synonyms[k] not in obj:
-                obj[synonyms[k]] = v
-                del obj[k]
-    return obj
+
+    if not isinstance(obj, dict):
+        return None
+
+    out: Dict[str, Any] = {}
+    for key, t in schema.items():
+        if key not in obj:
+            return None
+        val = obj[key]
+        if t == str or t is str:
+            if isinstance(val, str):
+                out[key] = val
+            else:
+                return None
+        elif t == "list[str]":
+            if isinstance(val, list) and all(isinstance(x, str) for x in val):
+                out[key] = val
+            elif isinstance(val, dict) and _is_sequential_numeric_dict(val):
+                out[key] = [str(x) for x in _dict_to_list_by_numeric_keys(val)]
+            elif isinstance(val, str):
+                # gentle coercion: a single string → [string]
+                out[key] = [val]
+            else:
+                return None
+        else:
+            # simple type
+            if isinstance(val, t):  # type: ignore[arg-type]
+                out[key] = val
+            else:
+                return None
+    return out
+
+def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]]) -> dict:
+    """
+    Finds and returns the best JSON object matching 'schema'.
+    Raises ValueError with a useful message if nothing matches.
+    """
+    text = _minimal_cleanup(_strip_code_fences(raw_text))
+
+    # 0) Direct parse: if whole message IS the JSON
+    try:
+        obj = _loads_tolerant(text)
+        norm = _normalize_to_schema(obj, schema)
+        if norm is not None:
+            return norm
+    except Exception:
+        pass
+
+    # 1) Scan for JSON substrings (objects OR arrays)
+    candidates = list(iter_json_substrings(text, max_candidates=24))
+    parsed: List[Tuple[dict, int]] = []  # (normalized_obj, length)
+
+    for cand in candidates:
+        try:
+            value = _loads_tolerant(cand)
+        except Exception:
+            continue
+        norm = _normalize_to_schema(value, schema)
+        if norm is not None:
+            parsed.append((norm, len(cand)))
+
+    if parsed:
+        # pick the largest candidate (usually the full object)
+        parsed.sort(key=lambda t: t[1], reverse=True)
+        return parsed[0][0]
+
+    # 2) If we couldn’t match the schema but *did* see JSON, return a helpful error
+    preview = text[:500].replace("\n", "\\n")
+    raise ValueError(
+        "No JSON matching the expected schema was found. "
+        "Saw {} JSON-like blocks. "
+        "First 500 chars of message: {}".format(len(candidates), preview)
+    )
 
 
 def validate_schema(data: Any, schema: Any) -> bool:
@@ -93,3 +300,4 @@ def validate_schema(data: Any, schema: Any) -> bool:
         if not isinstance(data, schema):
             return False
     return True
+
