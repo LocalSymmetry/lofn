@@ -35,3 +35,18 @@ def test_code_fenced_json():
     raw = "```json\n{\n  \"meta_prompt\": \"ok\"\n}\n```"
     out = select_best_json_candidate(raw, {"meta_prompt": str})
     assert out["meta_prompt"] == "ok"
+
+
+def test_multiline_string_in_json_value():
+    raw = (
+        "Full response from attempt 1: content='{\n"
+        ' "personality_prompt": "\n'
+        " # Core Strategy Framework\n"
+        " ## The H.A.T.C.H. Method\n"
+        " H – Hyperlocal Myth\u2011Making ...\n"
+        " > \u201cYou are HB Ghost ... time.\u201d\n"
+        ' "\n'
+        "}' additional_kwargs={} response_metadata={}"
+    )
+    out = select_best_json_candidate(raw, {"personality_prompt": str})
+    assert "H.A.T.C.H" in out["personality_prompt"] or "HB Ghost" in out["personality_prompt"]
