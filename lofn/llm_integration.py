@@ -910,12 +910,19 @@ class ChatOpenAIWebSearch(BaseChatModel):
     max_tokens: int = 4096
     _client: OpenAI = PrivateAttr(default=None)
 
-    def __init__(self, model_name: str, openai_api_key: Optional[str], temperature: float = 1.0, max_tokens: int = 4096):
-        super().__init__()
-        self.model_name = model_name
-        self.openai_api_key = openai_api_key
-        self.temperature = temperature
-        self.max_tokens = max_tokens
+    def __init__(
+        self,
+        model_name: str,
+        openai_api_key: Optional[str],
+        temperature: float = 1.0,
+        max_tokens: int = 4096,
+    ):
+        super().__init__(
+            model_name=model_name,
+            openai_api_key=openai_api_key,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
         self._client = OpenAI(api_key=openai_api_key)
 
     def _convert_messages(self, messages: List[BaseMessage]) -> List[Dict[str, str]]:
