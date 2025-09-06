@@ -3,6 +3,8 @@ import json
 import re
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
+from lofjson import parse_with_repairs
+
 JSON = Union[dict, list, str, int, float, bool, None]
 
 # --------- small helpers ---------
@@ -336,6 +338,15 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
     try:
         obj = _loads_tolerant(text)
         norm = _normalize_to_schema(obj, schema)
+        if norm is not None:
+            return norm
+    except Exception:
+        pass
+
+    # 0b) Try robust repair-based parser
+    try:
+        repaired_obj, _, _ = parse_with_repairs(raw_text, required_keys=list(schema.keys()))
+        norm = _normalize_to_schema(repaired_obj, schema)
         if norm is not None:
             return norm
     except Exception:
