@@ -34,10 +34,20 @@ def test_extract_first_json_object():
     assert extract_first_json_object(text) == '{"a":1}'
 
 
+def test_extract_skips_non_json_blocks():
+    text = "pre {not json} post {\"ok\":1}"
+    assert extract_first_json_object(text) == '{"ok":1}'
+
+
 def test_parse_strict_json_direct_and_extract():
     assert parse_strict_json('{"x":1}') == {"x":1}
     text = "noise before {\"x\":2} trailing"
     assert parse_strict_json(text) == {"x":2}
+
+
+def test_parse_skips_invalid_blocks():
+    text = "intro {bad} middle {\"y\":3}"
+    assert parse_strict_json(text) == {"y":3}
 
 
 def test_parse_strict_json_validation():
