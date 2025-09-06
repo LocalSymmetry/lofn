@@ -32,6 +32,8 @@ import json
 
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
+from google import genai
+from google.genai import types
 
 image_title_schema = {
     "title": str,
@@ -61,6 +63,8 @@ def generate_image(model: str, params: dict, OPENAI_API = Config.OPENAI_API, deb
         return [generate_image_dalle3(params, OPENAI_API, debug = debug)]
     elif model == "Google Imagen 3":
           return generate_google_imagen_image(params, debug=debug)
+    elif model == "Gemini 2.5 Flash Image":
+          return generate_gemini_flash_image(params, debug=debug)
     elif model.startswith("fal-ai/"):
         return generate_fal_image(model, params, debug = debug)
     elif model.startswith("Poe-"):
@@ -148,6 +152,40 @@ def generate_google_imagen_image(params, debug=False):
 
     except Exception as e:
         st.error(f"An error occurred while generating the image with Google Imagen 3: {str(e)}")
+        if debug:
+            st.exception(e)
+        return None
+
+
+def generate_gemini_flash_image(params, debug=False):
+    """Generate images using Gemini 2.5 Flash Image (aka Nano Banana)."""
+    try:
+        client = genai.Client(api_key=Config.GOOGLE_API_KEY)
+        prompt = params.get("prompt", "")
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-image-preview",
+            contents=[prompt],
+        )
+
+        image_paths = []
+        idx = 0
+        for candidate in response.candidates:
+            for part in candidate.content.parts:
+                if part.text and debug:
+                    st.write(part.text)
+                elif getattr(part, "inline_data", None):
+                    image = Image.open(BytesIO(part.inline_data.data))
+                    filename = f"gemini_flash_{idx}_{prompt[:40]}.png"
+                    image.save(f"/images/{filename}")
+                    image_paths.append(f"/images/{filename}")
+                    idx += 1
+
+        return image_paths
+    except Exception as e:
+        st.error(
+            f"An error occurred while generating the image with Gemini 2.5 Flash Image: {str(e)}"
+        )
         if debug:
             st.exception(e)
         return None

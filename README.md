@@ -102,6 +102,7 @@
 | **TikTok Mode** | FLUX Pro v1.1 Ultra 9:16 images rotated for Veo 3 ingestion |
 | **Competition Mode** | Shrinks the prompt to platform limits while preserving nuance; injects Panel + Personality context first |
 | **Model‑Agnostic** | Works with OpenAI, Anthropic, Google Gemini, Meta Llama, and any OpenAI‑compatible local LLM (via Ollama, text‑gen‑webui, etc.) |
+| **Nano Banana** | Gemini 2.5 Flash Image preview for Gemini‑powered image generation |
 | **Phase‑Map Transparency** | A visible flowchart of every stage, emitted with each run |
 | **Ethics & Provenance** | Strong NSFW/harassment filters + anti-copyright infringement checks|
 | **Discord & Webhooks** | Push prompts or rendered assets straight to any channel |

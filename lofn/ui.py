@@ -236,6 +236,8 @@ class LofnApp:
             ])
         if Config.IDEOGRAM_API_KEY:
             models.append("Ideogram")
+        if Config.GOOGLE_API_KEY:
+            models.append("Gemini 2.5 Flash Image")
         if Config.GCP_PROJECT_ID:
             models.append("Google Imagen 3")
         if Config.OPENAI_API:
