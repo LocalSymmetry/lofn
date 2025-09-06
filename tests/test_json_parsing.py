@@ -50,6 +50,14 @@ def test_parse_skips_invalid_blocks():
     assert parse_strict_json(text) == {"y":3}
 
 
+def test_parse_strict_json_uses_validated_candidate():
+    text = "{\"a\":1} noise {\"foo\":2}"
+    def validator(obj):
+        if "foo" not in obj:
+            raise ValueError("missing foo")
+    assert parse_strict_json(text, validate=validator) == {"foo": 2}
+
+
 def test_parse_strict_json_validation():
     def validator(obj):
         if "foo" not in obj:

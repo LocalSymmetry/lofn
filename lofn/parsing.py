@@ -1,23 +1,11 @@
 from __future__ import annotations
 import json
-from typing import Any, Callable
+from typing import Any, Callable, Iterable
 
 
-def extract_first_json_object(text: str) -> str:
-    """Return the first substring that is valid JSON.
+def extract_json_objects(text: str) -> Iterable[str]:
+    """Yield all substrings within ``text`` that are valid JSON objects."""
 
-    Some models (notably ``gpt-5`` via the Responses API) may prepend search
-    citations or other text containing stray curly braces before the actual
-    JSON payload.  The previous implementation grabbed the first balanced brace
-    block without verifying that it was valid JSON, which meant a snippet such
-    as ``{not json}`` would be returned and subsequently fail to parse.  To be
-    more resilient we scan for every ``{"`` candidate and only return the first
-    brace block that can be ``json.loads``ed successfully.
-    """
-
-    # Iterate over every potential opening brace and try to extract a valid
-    # JSON object.  This gracefully skips over stray brace fragments that might
-    # appear in search snippets or reasoning traces.
     for start in (i for i, ch in enumerate(text) if ch == "{"):
         depth = 0
         for i, ch in enumerate(text[start:], start=start):
@@ -29,21 +17,45 @@ def extract_first_json_object(text: str) -> str:
                     candidate = text[start : i + 1]
                     try:
                         json.loads(candidate)
-                        return candidate
+                        yield candidate
                     except json.JSONDecodeError:
-                        break  # not valid JSON, continue searching
+                        pass
+                    break
+
+
+def extract_first_json_object(text: str) -> str:
+    """Return the first valid JSON object found within ``text``."""
+
+    for obj in extract_json_objects(text):
+        return obj
     raise ValueError("No valid JSON object found.")
 
 
 def parse_strict_json(text: str, validate: Callable[[Any], None] | None = None) -> Any:
-    """Strictly parse ``text`` as JSON, optionally validating the result."""
+    """Strictly parse ``text`` as JSON, optionally validating the result.
+
+    If multiple JSON objects are present, the first one that parses and passes
+    ``validate`` (when supplied) is returned.
+    """
+
+    def try_parse(candidate: str) -> Any:
+        obj = json.loads(candidate)
+        if validate:
+            validate(obj)
+        return obj
+
     try:
-        obj = json.loads(text)
-    except json.JSONDecodeError:
-        obj = json.loads(extract_first_json_object(text))
-    if validate:
-        validate(obj)
-    return obj
+        return try_parse(text)
+    except (json.JSONDecodeError, ValueError):
+        pass
+
+    for candidate in extract_json_objects(text):
+        try:
+            return try_parse(candidate)
+        except (json.JSONDecodeError, ValueError):
+            continue
+
+    raise ValueError("No valid JSON object found.")
 
 
 def coerce_common_forms(obj: Any, expected_keys: set[str]) -> Any:
