@@ -6,7 +6,8 @@ This repository contains **Lofn**, an AI art generator built with Streamlit.  Th
 /lofn
   ├─ config.py              # Reads API keys from environment variables
   ├─ config.yaml            # Example configuration with all API fields
-  ├─ helpers.py             # Utility functions for parsing JSON, charts, and Discord integration
+  ├─ helpers.py             # Utility functions for charts and Discord integration
+  ├─ parsing.py             # Conservative JSON parsing helpers
   ├─ llm_integration.py     # Core logic for interacting with LLMs
   ├─ image_generation.py    # Interfaces with image and video generation APIs
   ├─ o1_integration.py      # Custom ChatModel for OpenAI o1/o1-mini
@@ -41,7 +42,7 @@ The `panels.yaml` file defines expert panel presets used in competition mode.
 This module contains the majority of the algorithmic logic.  Highlights:
 
 - **Model Abstraction** – `get_llm()` returns a LangChain model wrapper for OpenAI, Anthropic, Google Gemini, Poe, local servers, and OpenRouter.  Custom classes `OpenRouterLLM` and `GeminiLLM` implement the `LLM` interface.
-- **Prompt Chains** – Chains are built from `ChatPromptTemplate` objects and executed via `run_any_chain` with automatic retries (`run_chain_with_retries`) and JSON validation using `parse_output` from `helpers.py`.
+- **Prompt Chains** – Chains are built from `ChatPromptTemplate` objects and executed via `run_any_chain` with automatic retries (`run_chain_with_retries`) and JSON validation using strict parsers from `parsing.py`.
 - **Generation Workflow** – Functions such as `generate_concept_mediums`, `generate_prompts`, and `generate_video_prompts` orchestrate multi‑step flows:
   1. extract essence and facets from user input
   2. create concepts and refine them with artist voices
