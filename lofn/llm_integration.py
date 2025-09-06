@@ -29,8 +29,8 @@ from langchain_core.language_models.llms import LLM
 from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import imghdr
-from config import Config
-from helpers import (
+from .config import Config
+from .helpers import (
         read_prompt,
         send_to_discord,
         parse_output,
@@ -53,7 +53,7 @@ import base64
 import mimetypes
 from PIL import Image
 import io
-from helpers import (
+from .helpers import (
         display_temporary_results,
         display_temporary_results_no_expander
 )
@@ -61,9 +61,9 @@ from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.pydantic_v1 import PrivateAttr
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
-from o1_integration import *  # noqa: F401,F403
+from .o1_integration import *  # noqa: F401,F403
 from pathlib import Path
-from utils.image_io import normalize_image_bytes, to_data_url
+from .utils.image_io import normalize_image_bytes, to_data_url
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -223,6 +223,73 @@ def count_tokens_poe(text: str) -> Optional[int]:
 # ---------------------------------------------------------------------------
 
 
+TEXT_PART_KEYS = {"text", "input_text", "output_text"}
+
+
+def _to_str(x: Any) -> str:
+    """Conservatively convert arbitrary objects to strings."""
+    if isinstance(x, str):
+        return x
+    if isinstance(x, (list, tuple)):
+        chunks = []
+        for item in x:
+            if isinstance(item, str):
+                chunks.append(item)
+            else:
+                chunks.append(json.dumps(item, ensure_ascii=False))
+        return " ".join(chunks)
+    return str(x)
+
+
+def _normalize_responses_messages(
+    messages: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
+    """Ensure every message/content part matches the OpenAI Responses schema."""
+    out: List[Dict[str, Any]] = []
+    for m in messages:
+        role = m.get("role") or m.get("speaker") or "user"
+        content = m.get("content")
+        parts: List[Dict[str, Any]] = []
+
+        if isinstance(content, str):
+            parts.append({"type": "input_text", "text": content})
+        elif isinstance(content, list):
+            for p in content:
+                if isinstance(p, dict):
+                    ptype = p.get("type", "text")
+                    if ptype in TEXT_PART_KEYS:
+                        txt = _to_str(p.get("text", ""))
+                        parts.append({"type": "input_text", "text": txt})
+                    elif ptype in ("image_url", "input_image"):
+                        img = p.get("image_url")
+                        detail = p.get("detail", "auto")
+                        if isinstance(img, dict):
+                            image_url = img
+                        else:
+                            image_url = {"url": img}
+                        parts.append(
+                            {"type": "input_image", "image_url": image_url, "detail": detail}
+                        )
+                    elif ptype in ("input_file", "file"):
+                        fid = p.get("file_id") or p.get("id")
+                        if fid:
+                            parts.append({"type": "input_file", "file_id": fid})
+                    else:
+                        parts.append({"type": "input_text", "text": _to_str(p)})
+                else:
+                    parts.append({"type": "input_text", "text": _to_str(p)})
+        else:
+            parts.append({"type": "input_text", "text": _to_str(content)})
+
+        for cp in parts:
+            if cp.get("type") == "input_text":
+                cp["text"] = _to_str(cp.get("text", ""))
+
+        out.append({"role": role, "content": parts})
+
+    return out
+
+
 def call_openai_gpt5_multimodal(
     model: str,
     user_text: str,
@@ -256,6 +323,8 @@ def call_openai_gpt5_multimodal(
             {"role": "system", "content": [{"type": "text", "text": system_text}]}
         )
     messages.append({"role": "user", "content": user_content})
+
+    messages = _normalize_responses_messages(messages)
 
     resp = client.responses.create(
         model=model, input=messages, temperature=temperature
@@ -966,6 +1035,7 @@ class ChatOpenAIWebSearch(BaseChatModel):
         **kwargs: Any,
     ) -> ChatResult:
         input_messages = self._convert_messages(messages)
+        input_messages = _normalize_responses_messages(input_messages)
         tool_type_candidates = ["web_search", "web_search_preview"]
         last_err = None
         for tool_type in tool_type_candidates:
