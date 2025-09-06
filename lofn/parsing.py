@@ -4,19 +4,35 @@ from typing import Any, Callable
 
 
 def extract_first_json_object(text: str) -> str:
-    """Grab the first balanced {...} block. No rewriting, no numbering of array items."""
-    start = text.find("{")
-    if start == -1:
-        raise ValueError("No JSON object found.")
-    depth = 0
-    for i, ch in enumerate(text[start:], start=start):
-        if ch == "{":
-            depth += 1
-        elif ch == "}":
-            depth -= 1
-            if depth == 0:
-                return text[start : i + 1]
-    raise ValueError("Unbalanced JSON braces.")
+    """Return the first substring that is valid JSON.
+
+    Some models (notably ``gpt-5`` via the Responses API) may prepend search
+    citations or other text containing stray curly braces before the actual
+    JSON payload.  The previous implementation grabbed the first balanced brace
+    block without verifying that it was valid JSON, which meant a snippet such
+    as ``{not json}`` would be returned and subsequently fail to parse.  To be
+    more resilient we scan for every ``{"`` candidate and only return the first
+    brace block that can be ``json.loads``ed successfully.
+    """
+
+    # Iterate over every potential opening brace and try to extract a valid
+    # JSON object.  This gracefully skips over stray brace fragments that might
+    # appear in search snippets or reasoning traces.
+    for start in (i for i, ch in enumerate(text) if ch == "{"):
+        depth = 0
+        for i, ch in enumerate(text[start:], start=start):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    candidate = text[start : i + 1]
+                    try:
+                        json.loads(candidate)
+                        return candidate
+                    except json.JSONDecodeError:
+                        break  # not valid JSON, continue searching
+    raise ValueError("No valid JSON object found.")
 
 
 def parse_strict_json(text: str, validate: Callable[[Any], None] | None = None) -> Any:
