@@ -30,10 +30,10 @@ from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import imghdr
 from config import Config
-from helpers import (
+try:
+    from helpers import (
         read_prompt,
         send_to_discord,
-        parse_output,
         display_facets,
         display_creativity_and_style_axes,
         sample_artistic_frames,
@@ -43,7 +43,34 @@ from helpers import (
         sample_art_styles,
         sample_film_styles,
         compress_image_bytes,
-)
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .helpers import (
+        read_prompt,
+        send_to_discord,
+        display_facets,
+        display_creativity_and_style_axes,
+        sample_artistic_frames,
+        sample_video_frames,
+        sample_music_frames,
+        sample_music_genres,
+        sample_art_styles,
+        sample_film_styles,
+        compress_image_bytes,
+    )
+
+try:
+    from parsing import (
+        parse_strict_json,
+        coerce_common_forms,
+        validate_schema,
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .parsing import (
+        parse_strict_json,
+        coerce_common_forms,
+        validate_schema,
+    )
 import plotly.graph_objects as go
 import random
 import numpy as np
@@ -53,17 +80,29 @@ import base64
 import mimetypes
 from PIL import Image
 import io
-from helpers import (
+try:
+    from helpers import (
         display_temporary_results,
-        display_temporary_results_no_expander
-)
+        display_temporary_results_no_expander,
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .helpers import (
+        display_temporary_results,
+        display_temporary_results_no_expander,
+    )
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.pydantic_v1 import PrivateAttr
 import openai  # For the advanced "o1" usage if needed
 from openai import OpenAI
-from o1_integration import *  # noqa: F401,F403
+try:
+    from o1_integration import *  # noqa: F401,F403
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .o1_integration import *  # noqa: F401,F403
 from pathlib import Path
-from utils.image_io import normalize_image_bytes, to_data_url
+try:
+    from utils.image_io import normalize_image_bytes, to_data_url
+except ModuleNotFoundError:  # pragma: no cover - fallback for package import
+    from .utils.image_io import normalize_image_bytes, to_data_url
 
 class LofnError(Exception):
     """Custom exception class for Lofn-specific errors."""
@@ -1434,14 +1473,20 @@ def run_chain_with_retries(
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
 
-            # Parse the output, passing the expected schema
-            parsed_output, error = parse_output(str(output), expected_schema, debug)
-            if parsed_output is not None:
+            def schema_validator(obj):
+                if expected_schema and not validate_schema(obj, expected_schema):
+                    raise ValueError("Parsed JSON does not match the expected schema.")
+            try:
+                parsed_output = parse_strict_json(str(output), validate=schema_validator)
+                parsed_output = coerce_common_forms(
+                    parsed_output,
+                    set(expected_schema.keys()) if isinstance(expected_schema, dict) else set(),
+                )
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
-            else:
-                st.write(f"Failed to parse or validate JSON: {error}")
+            except Exception as e:
+                st.write(f"Failed to parse or validate JSON: {e}")
                 is_correction = True  # Use correction prompt in next iteration
                 retry_count += 1
         except Exception as e:
@@ -1468,13 +1513,20 @@ def run_chain_with_retries_raw(
             args_dict['output'] = output
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
-            parsed_output, error = parse_output(str(output), expected_schema, debug)
-            if parsed_output is not None:
+            def schema_validator(obj):
+                if expected_schema and not validate_schema(obj, expected_schema):
+                    raise ValueError("Parsed JSON does not match the expected schema.")
+            try:
+                parsed_output = parse_strict_json(str(output), validate=schema_validator)
+                parsed_output = coerce_common_forms(
+                    parsed_output,
+                    set(expected_schema.keys()) if isinstance(expected_schema, dict) else set(),
+                )
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
-            else:
-                st.write(f"Failed to parse or validate JSON: {error}")
+            except Exception as e:
+                st.write(f"Failed to parse or validate JSON: {e}")
                 is_correction = True
                 retry_count += 1
         except Exception as e:
@@ -2324,10 +2376,6 @@ def generate_simple_music_prompts(
         if debug:
             print(parsed_output)
         # Parse the output
-        # parsed_output, error = parse_output(str(gen_output), debug)
-        # if debug:
-        #     print(parsed_output)
-        #     print(error)
         if parsed_output is not None:
             music_prompt = parsed_output['music_prompt']
             lyrics_prompt = parsed_output['lyrics_prompt']

@@ -15,7 +15,6 @@ sys.modules['requests'] = types.SimpleNamespace(
     HTTPError=Exception,
     Response=object,
 )
-sys.modules['json_repair'] = types.SimpleNamespace(repair_json=lambda s: s)
 
 plotly_module = types.ModuleType("plotly")
 graph_objects_module = types.ModuleType("plotly.graph_objects")
@@ -27,37 +26,29 @@ sys.modules['plotly.graph_objects'] = graph_objects_module
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, REPO_ROOT)
 
-# Ensure ``config`` module resolves to ``lofn.config``
-import importlib
-config_module = importlib.import_module('lofn.config')
-sys.modules['config'] = config_module
-
-from lofn.helpers import parse_output
+from lofn.parsing import extract_first_json_object, parse_strict_json, coerce_common_forms
 
 
-def test_preserve_newlines_and_quotes():
-    output = "{'text': '{\"lyrics\": \"line1\\nline2\"}'}"
-    data, error = parse_output(output, {'lyrics': str})
-    assert error is None
-    assert data == {'lyrics': 'line1\nline2'}
+def test_extract_first_json_object():
+    text = "prefix {\"a\":1} suffix {\"b\":2}"
+    assert extract_first_json_object(text) == '{"a":1}'
 
 
-def test_extract_json_from_markdown_block():
-    output = 'Here is data:\n```json\n{"song": "Can\'t Stop"}\n```\nDone.'
-    data, error = parse_output(output, {'song': str})
-    assert error is None
-    assert data == {'song': "Can't Stop"}
+def test_parse_strict_json_direct_and_extract():
+    assert parse_strict_json('{"x":1}') == {"x":1}
+    text = "noise before {\"x\":2} trailing"
+    assert parse_strict_json(text) == {"x":2}
 
 
-def test_trailing_text_ignored():
-    output = '{"foo": "bar"}\nSome trailing text.'
-    data, error = parse_output(output, {'foo': str})
-    assert error is None
-    assert data == {'foo': 'bar'}
+def test_parse_strict_json_validation():
+    def validator(obj):
+        if "foo" not in obj:
+            raise ValueError("missing foo")
+    result = parse_strict_json('{"foo":"bar"}', validate=validator)
+    assert result == {"foo": "bar"}
 
 
-def test_curly_quotes_and_escapes_removed():
-    output = 'Intro {“foo”: “bar”, “num”: 3,\n"extra": 1}\nMore'
-    data, error = parse_output(output, {'foo': str, 'num': int, 'extra': int})
-    assert error is None
-    assert data == {'foo': 'bar', 'num': 3, 'extra': 1}
+def test_coerce_common_forms():
+    obj = [{"metaPrompt": "x"}]
+    coerced = coerce_common_forms(obj, {"meta_prompt"})
+    assert coerced == {"meta_prompt": "x"}
