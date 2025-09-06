@@ -929,13 +929,33 @@ class ChatOpenAIWebSearch(BaseChatModel):
         converted = []
         for m in messages:
             if isinstance(m, SystemMessage):
-                converted.append({"role": "system", "content": m.content})
+                converted.append(
+                    {
+                        "role": "system",
+                        "content": [{"type": "input_text", "text": m.content}],
+                    }
+                )
             elif isinstance(m, HumanMessage):
-                converted.append({"role": "user", "content": m.content})
+                converted.append(
+                    {
+                        "role": "user",
+                        "content": [{"type": "input_text", "text": m.content}],
+                    }
+                )
             elif isinstance(m, AIMessage):
-                converted.append({"role": "assistant", "content": m.content})
+                converted.append(
+                    {
+                        "role": "assistant",
+                        "content": [{"type": "output_text", "text": m.content}],
+                    }
+                )
             else:
-                converted.append({"role": "user", "content": m.content})
+                converted.append(
+                    {
+                        "role": "user",
+                        "content": [{"type": "input_text", "text": m.content}],
+                    }
+                )
         return converted
 
     def _generate(
