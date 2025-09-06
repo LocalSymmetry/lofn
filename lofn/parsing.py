@@ -73,6 +73,53 @@ def _remove_trailing_commas(s: str) -> str:
         i += 1
     return "".join(out)
 
+def _escape_control_chars_in_strings(s: str) -> str:
+    """
+    JSON cannot contain literal control characters (including raw newlines) inside
+    double-quoted strings. GPT-5 sometimes emits them. This pass walks the text and,
+    only while inside a JSON string, replaces:
+      \n -> \\n,  \r\n -> \\n,  \r -> \\n,  \t -> \\t,
+      other control chars -> \\u00XX
+    """
+    out: List[str] = []
+    in_str = False
+    esc = False
+    i = 0
+    n = len(s)
+    while i < n:
+        ch = s[i]
+        if in_str:
+            if esc:
+                out.append(ch)
+                esc = False
+            else:
+                if ch == '\\':
+                    out.append(ch)
+                    esc = True
+                elif ch == '"':
+                    out.append(ch)
+                    in_str = False
+                elif ch == '\n':
+                    out.append('\\n')
+                elif ch == '\r':
+                    if i + 1 < n and s[i+1] == '\n':
+                        i += 1
+                    out.append('\\n')
+                elif ch == '\t':
+                    out.append('\\t')
+                elif ord(ch) < 0x20:
+                    out.append('\\u%04x' % ord(ch))
+                else:
+                    out.append(ch)
+        else:
+            out.append(ch)
+            if ch == '"':
+                j = len(out) - 2
+                if j < 0 or out[j] != '\\':
+                    in_str = True
+        i += 1
+    return ''.join(out)
+
 # --------- JSON candidate extraction ---------
 
 def _match_json_end(text: str, start: int) -> Optional[int]:
@@ -150,6 +197,20 @@ def _loads_tolerant(candidate: str) -> JSON:
     except Exception:
         pass
 
+    # 1b) repair: escape raw newlines/tabs/control chars inside quoted JSON strings
+    repaired_controls = _escape_control_chars_in_strings(c)
+    if repaired_controls != c:
+        try:
+            first = json.loads(repaired_controls)
+            if isinstance(first, str) and first.strip().startswith(("{", "[")):
+                try:
+                    return json.loads(first)
+                except Exception:
+                    pass
+            return first
+        except Exception:
+            pass
+
     # 2) if it's a quoted string literal containing JSON, remove outer quotes
     unq = _maybe_unquote(c)
     if unq != c:
@@ -158,7 +219,7 @@ def _loads_tolerant(candidate: str) -> JSON:
         except Exception:
             # Sometimes it is a JSON-encoded string of JSON: try twice.
             try:
-                s = json.loads(c)  # returns a str
+                s = json.loads(c)
                 if isinstance(s, str) and s.strip().startswith(("{", "[")):
                     return json.loads(s)
             except Exception:
@@ -168,9 +229,38 @@ def _loads_tolerant(candidate: str) -> JSON:
     repaired = _remove_trailing_commas(c)
     if repaired != c:
         try:
-            return json.loads(repaired)
+            first = json.loads(repaired)
+            if isinstance(first, str) and first.strip().startswith(("{", "[")):
+                try:
+                    return json.loads(first)
+                except Exception:
+                    pass
+            return first
         except Exception:
             pass
+
+    # 3b) combine both repairs (common in GPT outputs)
+    if repaired != c:
+        repaired_both = _escape_control_chars_in_strings(repaired)
+        if repaired_both != repaired:
+            try:
+                first = json.loads(repaired_both)
+                if isinstance(first, str) and first.strip().startswith(("{", "[")):
+                    try:
+                        return json.loads(first)
+                    except Exception:
+                        pass
+                return first
+            except Exception:
+                pass
+
+    # 4) as last resort, if it decodes to a string, try to parse that string
+    try:
+        s = json.loads(c)
+        if isinstance(s, str) and s.strip().startswith(("{", "[")):
+            return json.loads(s)
+    except Exception:
+        pass
 
     # give up
     raise json.JSONDecodeError("Unable to parse JSON candidate", c, 0)
@@ -253,6 +343,15 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
 
     # 1) Scan for JSON substrings (objects OR arrays)
     candidates = list(iter_json_substrings(text, max_candidates=24))
+
+    key_hints = [k.lower() for k in schema.keys()]
+
+    def key_score(s: str) -> int:
+        t = s.lower()
+        return sum(1 for k in key_hints if f'"{k}"' in t)
+
+    candidates.sort(key=lambda s: (key_score(s), len(s)), reverse=True)
+
     parsed: List[Tuple[dict, int]] = []  # (normalized_obj, length)
 
     for cand in candidates:
