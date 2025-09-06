@@ -61,14 +61,12 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
 
 try:
     from parsing import (
-        parse_strict_json,
-        coerce_common_forms,
+        select_best_json_candidate,
         validate_schema,
     )
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
     from .parsing import (
-        parse_strict_json,
-        coerce_common_forms,
+        select_best_json_candidate,
         validate_schema,
     )
 import plotly.graph_objects as go
@@ -1475,11 +1473,21 @@ def run_chain_with_retries(
                 if expected_schema and not validate_schema(obj, expected_schema):
                     raise ValueError("Parsed JSON does not match the expected schema.")
             try:
-                parsed_output = parse_strict_json(str(output), validate=schema_validator)
-                parsed_output = coerce_common_forms(
-                    parsed_output,
-                    set(expected_schema.keys()) if isinstance(expected_schema, dict) else set(),
-                )
+                simple_schema = {}
+                if isinstance(expected_schema, dict):
+                    for key, val in expected_schema.items():
+                        if isinstance(val, list):
+                            if val and val[0] == str:
+                                simple_schema[key] = "list[str]"
+                            else:
+                                simple_schema[key] = list
+                        elif isinstance(val, dict):
+                            simple_schema[key] = dict
+                        else:
+                            simple_schema[key] = val
+                parsed_output = select_best_json_candidate(str(output), simple_schema)
+                if expected_schema and not validate_schema(parsed_output, expected_schema):
+                    raise ValueError("Parsed JSON does not match the expected schema.")
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
@@ -1515,11 +1523,20 @@ def run_chain_with_retries_raw(
                 if expected_schema and not validate_schema(obj, expected_schema):
                     raise ValueError("Parsed JSON does not match the expected schema.")
             try:
-                parsed_output = parse_strict_json(str(output), validate=schema_validator)
-                parsed_output = coerce_common_forms(
-                    parsed_output,
-                    set(expected_schema.keys()) if isinstance(expected_schema, dict) else set(),
-                )
+                simple_schema = {}
+                if isinstance(expected_schema, dict):
+                    for key, val in expected_schema.items():
+                        if isinstance(val, list):
+                            if val and val[0] == str:
+                                simple_schema[key] = "list[str]"
+                            else:
+                                simple_schema[key] = list
+                        elif isinstance(val, dict):
+                            simple_schema[key] = dict
+                        else:
+                            simple_schema[key] = val
+                parsed_output = select_best_json_candidate(str(output), simple_schema)
+                schema_validator(parsed_output)
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
