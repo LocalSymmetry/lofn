@@ -8,6 +8,7 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, REPO_ROOT)
 
 from lofn.parsing import select_best_json_candidate
+from lofjson import parse_with_repairs
 
 
 def test_personality_from_logged_content():
@@ -50,3 +51,12 @@ def test_multiline_string_in_json_value():
     )
     out = select_best_json_candidate(raw, {"personality_prompt": str})
     assert "H.A.T.C.H" in out["personality_prompt"] or "HB Ghost" in out["personality_prompt"]
+
+
+def test_claude_panel_transcript():
+    raw = (
+        "content=[{'signature': 'abc', 'thinking': 'x'},"
+        " {'text': 'json\\n{\\n  \"personality_prompt\": \"ok\"\\n}', 'type': 'text'}]"
+    )
+    obj, _, _ = parse_with_repairs(raw, required_keys=("personality_prompt",))
+    assert obj["personality_prompt"] == "ok"
