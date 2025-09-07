@@ -59,16 +59,10 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         compress_image_bytes,
     )
 
-try:
-    from parsing import (
+from parsing import (
         select_best_json_candidate,
         validate_schema,
-    )
-except ModuleNotFoundError:  # pragma: no cover - fallback for package import
-    from .parsing import (
-        select_best_json_candidate,
-        validate_schema,
-    )
+)
 import plotly.graph_objects as go
 import random
 import numpy as np
