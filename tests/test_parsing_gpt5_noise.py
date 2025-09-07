@@ -53,6 +53,12 @@ def test_multiline_string_in_json_value():
     assert "H.A.T.C.H" in out["personality_prompt"] or "HB Ghost" in out["personality_prompt"]
 
 
+def test_unescaped_quotes_in_json_value():
+    raw = """content='{"personality_prompt": "Hello "World""}'"""
+    out = select_best_json_candidate(raw, {"personality_prompt": str})
+    assert out["personality_prompt"] == 'Hello "World"'
+
+
 def test_claude_panel_transcript():
     raw = (
         "content=[{'signature': 'abc', 'thinking': 'x'},"
