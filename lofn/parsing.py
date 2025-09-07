@@ -99,8 +99,18 @@ def _escape_control_chars_in_strings(s: str) -> str:
                     out.append(ch)
                     esc = True
                 elif ch == '"':
-                    out.append(ch)
-                    in_str = False
+                    # If the quote isn't followed by a typical string terminator
+                    # (comma, colon, closing brace/bracket), treat it as a
+                    # literal quote and escape it. GPT-5 occasionally emits
+                    # unescaped quotes inside strings like: "Hello "World"".
+                    j = i + 1
+                    while j < n and s[j].isspace():
+                        j += 1
+                    if j < n and s[j] not in ',:}]':
+                        out.append('\\"')
+                    else:
+                        out.append(ch)
+                        in_str = False
                 elif ch == '\n':
                     out.append('\\n')
                 elif ch == '\r':
