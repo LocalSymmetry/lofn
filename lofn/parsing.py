@@ -384,7 +384,7 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
     raise ValueError(
         "No JSON matching the expected schema was found. "
         "Saw {} JSON-like blocks. "
-        "First 500 chars of message: {}".format(len(candidates), preview)
+        "Candidates: {}".format(len(candidates), candidates)
     )
 
 

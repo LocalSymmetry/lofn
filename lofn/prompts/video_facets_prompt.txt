@@ -87,15 +87,7 @@ Create five facets. They must cover the following domains:
 **Return the facets in the following JSON format:**
 
   ```json
-  {{
-    "facets": [
-      "Facet 1.",
-      "Facet 2.",
-      "Facet 3.",
-      "Facet 4.",
-      "Facet 5."
-    ]
-  }}
+  {{ "facets": [ "Facet 1.", "Facet 2.", "Facet 3.", "Facet 4.", "Facet 5." ] }}
   ```
 
 ---

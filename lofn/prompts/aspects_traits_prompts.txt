@@ -180,14 +180,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the artistic guides in the following JSON format:**
 
   ```json
-  {{
-    "artistic_guides": [
-      {{"artistic_guide": "Artistic Guide 1"}},
-      {{"artistic_guide": "Artistic Guide 2"}},
-      {{"artistic_guide": "Artistic Guide 3"}},
-      {{"artistic_guide": "Artistic Guide 4"}},
-      {{"artistic_guide": "Artistic Guide 5"}},
-      {{"artistic_guide": "Artistic Guide 6"}}
-    ]
-  }}
+   {{ "artistic_guides": [ {{"artistic_guide": "Artistic Guide 1"}}, {{"artistic_guide": "Artistic Guide 2"}}, {{"artistic_guide": "Artistic Guide 3"}}, {{"artistic_guide": "Artistic Guide 4"}}, {{"artistic_guide": "Artistic Guide 5"}}, {{"artistic_guide": "Artistic Guide 6"}} ] }}
   ```

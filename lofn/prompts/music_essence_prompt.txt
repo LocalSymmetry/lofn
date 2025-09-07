@@ -150,35 +150,7 @@ These facets should mirror the criteria you would use when judging a painting: e
 
 Return a single JSON object containing:
 ```json
-  {{
-    "essence_and_facets": {{
-      "creativity_spectrum": {{
-        "literal": 83.4,
-        "inventive": 8.3,
-        "transformative": 8.3
-      }},
-      "essence": "The main essence of the idea",
-      "facets": [
-        "Facet 1",
-        "Facet 2",
-        "Facet 3",
-        "Facet 4",
-        "Facet 5"
-      ],
-      "style_axes": {{
-        "Tempo": 23,
-        "Energy/Dynamics": 79,
-        "Harmonic Complexity": 29,
-        "Rhythmic Complexity": 11,
-        "Timbre Richness": 57,
-        "Vintage_Modern": 37,
-        "Vocal Prominence": 58,
-        "Organic_Synthetic": 24,
-        "Genre Purity": 86,
-        "Narrative Emphasis": 12
-      }}
-    }}
-  }}
+  {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Tempo": 23, "Energy/Dynamics": 79, "Harmonic Complexity": 29, "Rhythmic Complexity": 11, "Timbre Richness": 57, "Vintage_Modern": 37, "Vocal Prominence": 58, "Organic_Synthetic": 24, "Genre Purity": 86, "Narrative Emphasis": 12 }} }} }}
 ```
 
 - **Ensure Proper Formatting:**
@@ -202,33 +174,5 @@ Use proper JSON syntax with no trailing commas.  This structured output will be 
 **Again, return the results in the following JSON format:**
 
   ```json
-  {{
-    "essence_and_facets": {{
-      "creativity_spectrum": {{
-        "literal": 83.4,
-        "inventive": 8.3,
-        "transformative": 8.3
-      }},
-      "essence": "The main essence of the idea",
-      "facets": [
-        "Facet 1",
-        "Facet 2",
-        "Facet 3",
-        "Facet 4",
-        "Facet 5"
-      ],
-      "style_axes": {{
-        "Tempo": 23,
-        "Energy/Dynamics": 79,
-        "Harmonic Complexity": 29,
-        "Rhythmic Complexity": 11,
-        "Timbre Richness": 57,
-        "Vintage_Modern": 37,
-        "Vocal Prominence": 58,
-        "Organic_Synthetic": 24,
-        "Genre Purity": 86,
-        "Narrative Emphasis": 12
-      }}
-    }}
-  }}
+  {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Tempo": 23, "Energy/Dynamics": 79, "Harmonic Complexity": 29, "Rhythmic Complexity": 11, "Timbre Richness": 57, "Vintage_Modern": 37, "Vocal Prominence": 58, "Organic_Synthetic": 24, "Genre Purity": 86, "Narrative Emphasis": 12 }} }} }}
   ```

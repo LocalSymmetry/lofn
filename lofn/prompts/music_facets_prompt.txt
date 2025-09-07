@@ -101,15 +101,7 @@ In our visual art pipeline, we judge paintings on composition, palette, mood, na
 - **Return the facets in the following JSON format:**
 
   ```json
-  {{
-    "facets": [
-      "Facet 1 with sensory element.",
-      "Facet 2 with sensory element.",
-      "Facet 3 with sensory element.",
-      "Facet 4 with sensory element.",
-      "Facet 5 with sensory element."
-    ]
-  }}
+  {{ "facets": [ "Facet 1 with sensory element.", "Facet 2 with sensory element.", "Facet 3 with sensory element.", "Facet 4 with sensory element.", "Facet 5 with sensory element." ] }}
   ```
 
  
@@ -130,13 +122,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the facets in the following JSON format:**
 
   ```json
-  {{
-    "facets": [
-      "Facet 1 with sensory element.",
-      "Facet 2 with sensory element.",
-      "Facet 3 with sensory element.",
-      "Facet 4 with sensory element.",
-      "Facet 5 with sensory element."
-    ]
-  }}
+  {{ "facets": [ "Facet 1 with sensory element.", "Facet 2 with sensory element.", "Facet 3 with sensory element.", "Facet 4 with sensory element.", "Facet 5 with sensory element." ] }}
   ```

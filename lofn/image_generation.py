@@ -1016,7 +1016,13 @@ def get_controlnet_params(model: str):
 
 def save_metadata(metadata):
     # Ensure the metadata directory exists
-    os.makedirs('/metadata', exist_ok=True)
+    try:
+        os.makedirs('/metadata', exist_ok=True)
+    except Exception as e:
+        if debug:
+            st.error(f"An error occurred while making the metadata directory: {str(e)}")
+            st.exception(e)
+
     
     # Create a filename for the metadata
     metadata_filename = f"/metadata/{metadata['timestamp']}_{metadata['model'][0:10].replace('/','_')}_{metadata['concept'][0:10]}_{metadata['medium'][0:10]}_{metadata['prompt_type']}_{metadata['prompt_index']}.json"
@@ -1045,7 +1051,12 @@ def save_metadata(metadata):
 
 
 def save_music_metadata(metadata):
-    os.makedirs('/music', exist_ok=True)
+    try:
+        os.makedirs('/music', exist_ok=True)
+    except Exception as e:
+        if debug:
+            st.error(f"An error occurred while making the music directory: {str(e)}")
+            st.exception(e)
     safe_title = metadata['title'][0:10].replace('/', '_')
     metadata_filename = f"/music/{metadata['timestamp']}_{safe_title}.json"
 

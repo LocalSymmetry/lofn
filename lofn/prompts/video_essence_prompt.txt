@@ -148,35 +148,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Return the results in the following JSON format:**
 
   ```json
-  {{
-    "essence_and_facets": {{
-      "creativity_spectrum": {{
-        "literal": 10.0,
-        "inventive": 60.0,
-        "transformative": 30.0
-      }},
-      "essence": "The main essence of the idea",
-      "facets": [
-        "Facet 1",
-        "Facet 2",
-        "Facet 3",
-        "Facet 4",
-        "Facet 5"
-      ],
-      "style_axes": {{
-        "Narrative Complexity": 50,
-        "Emotional Intensity": 50,
-        "Symbolism": 50,
-        "Pacing (Energy Level)": 50,
-        "Hook Intensity": 50,
-        "Aesthetic Stylization": 50,
-        "Lighting Mood": 50,
-        "Perspective & Lensing": 50,
-        "Motion Quality": 50,
-        "Surrealism vs. Realism (Physics)": 50
-      }}
-    }}
-  }}
+  {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 10.0, "inventive": 60.0, "transformative": 30.0 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Narrative Complexity": 50, "Emotional Intensity": 50, "Symbolism": 50, "Pacing (Energy Level)": 50, "Hook Intensity": 50, "Aesthetic Stylization": 50, "Lighting Mood": 50, "Perspective & Lensing": 50, "Motion Quality": 50, "Surrealism vs. Realism (Physics)": 50 }} }} }}
   ```
 
 ---

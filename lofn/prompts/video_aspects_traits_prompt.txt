@@ -101,16 +101,7 @@ Write each cinematic blueprint as a detailed text string, incorporating sensory 
 **Return the Cinematic Blueprints in the following JSON format:**
 
   ```json
-  {{
-    "artistic_guides": [
-      {{"artistic_guide": "Cinematic Blueprint 1 as text"}},
-      {{"artistic_guide": "Cinematic Blueprint 2 as text"}},
-      {{"artistic_guide": "Cinematic Blueprint 3 as text"}},
-      {{"artistic_guide": "Cinematic Blueprint 4 as text"}},
-      {{"artistic_guide": "Cinematic Blueprint 5 as text"}},
-      {{"artistic_guide": "Cinematic Blueprint 6 as text"}}
-    ]
-  }}
+  {{ "artistic_guides": [ {{"artistic_guide": "Cinematic Blueprint 1 as text"}}, {{"artistic_guide": "Cinematic Blueprint 2 as text"}}, {{"artistic_guide": "Cinematic Blueprint 3 as text"}}, {{"artistic_guide": "Cinematic Blueprint 4 as text"}}, {{"artistic_guide": "Cinematic Blueprint 5 as text"}}, {{"artistic_guide": "Cinematic Blueprint 6 as text"}} ] }}
   ```
 
 ---

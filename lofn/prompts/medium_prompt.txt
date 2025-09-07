@@ -167,22 +167,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Return the list of mediums in the following JSON format:**
 
   ```json
-{{
-  "mediums": [
-    {{"medium": "Medium 1"}},
-    {{"medium": "Medium 2"}},
-    {{"medium": "Medium 3"}},
-    {{"medium": "Medium 4"}},
-    {{"medium": "Medium 5"}},
-    {{"medium": "Medium 6"}},
-    {{"medium": "Medium 7"}},
-    {{"medium": "Medium 8"}},
-    {{"medium": "Medium 9"}},
-    {{"medium": "Medium 10"}},
-    {{"medium": "Medium 11"}},
-    {{"medium": "Medium 12"}}
-  ]
-}}
+  {{ "mediums": [ {{"medium": "Medium 1"}}, {{"medium": "Medium 2"}}, {{"medium": "Medium 3"}}, {{"medium": "Medium 4"}}, {{"medium": "Medium 5"}}, {{"medium": "Medium 6"}}, {{"medium": "Medium 7"}}, {{"medium": "Medium 8"}}, {{"medium": "Medium 9"}}, {{"medium": "Medium 10"}}, {{"medium": "Medium 11"}}, {{"medium": "Medium 12"}} ] }}
   ```
 
  
@@ -213,20 +198,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the list of mediums in the following JSON format:**
 
   ```json
-{{
-  "mediums": [
-    {{"medium": "Medium 1"}},
-    {{"medium": "Medium 2"}},
-    {{"medium": "Medium 3"}},
-    {{"medium": "Medium 4"}},
-    {{"medium": "Medium 5"}},
-    {{"medium": "Medium 6"}},
-    {{"medium": "Medium 7"}},
-    {{"medium": "Medium 8"}},
-    {{"medium": "Medium 9"}},
-    {{"medium": "Medium 10"}},
-    {{"medium": "Medium 11"}},
-    {{"medium": "Medium 12"}}
-  ]
-}}
+  {{ "mediums": [ {{"medium": "Medium 1"}}, {{"medium": "Medium 2"}}, {{"medium": "Medium 3"}}, {{"medium": "Medium 4"}}, {{"medium": "Medium 5"}}, {{"medium": "Medium 6"}}, {{"medium": "Medium 7"}}, {{"medium": "Medium 8"}}, {{"medium": "Medium 9"}}, {{"medium": "Medium 10"}}, {{"medium": "Medium 11"}}, {{"medium": "Medium 12"}} ] }}
   ```

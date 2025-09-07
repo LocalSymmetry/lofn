@@ -664,16 +664,7 @@ Continue all steps on each of the six artistic guides individually to generate f
 **Step 4: Provide the Final Output**
 
   ```json
-  {{
-    "music_prompts": [
-      {{"music_prompt": "Music Prompt 1", "lyrics_prompt": "Lyrics Prompt 1", "title":"Song 1 Title"}},
-      {{"music_prompt": "Music Prompt 2", "lyrics_prompt": "Lyrics Prompt 2", "title":"Song 2 Title"}},
-      {{"music_prompt": "Music Prompt 3", "lyrics_prompt": "Lyrics Prompt 3", "title":"Song 3 Title"}},
-      {{"music_prompt": "Music Prompt 4", "lyrics_prompt": "Lyrics Prompt 4", "title":"Song 4 Title"}},
-      {{"music_prompt": "Music Prompt 5", "lyrics_prompt": "Lyrics Prompt 5", "title":"Song 5 Title"}},
-      {{"music_prompt": "Music Prompt 6", "lyrics_prompt": "Lyrics Prompt 6", "title":"Song 6 Title"}}
-    ]
-  }}
+  {{ "music_prompts": [ {{"music_prompt": "Music Prompt 1", "lyrics_prompt": "Lyrics Prompt 1", "title":"Song 1 Title"}}, {{"music_prompt": "Music Prompt 2", "lyrics_prompt": "Lyrics Prompt 2", "title":"Song 2 Title"}}, {{"music_prompt": "Music Prompt 3", "lyrics_prompt": "Lyrics Prompt 3", "title":"Song 3 Title"}}, {{"music_prompt": "Music Prompt 4", "lyrics_prompt": "Lyrics Prompt 4", "title":"Song 4 Title"}}, {{"music_prompt": "Music Prompt 5", "lyrics_prompt": "Lyrics Prompt 5", "title":"Song 5 Title"}}, {{"music_prompt": "Music Prompt 6", "lyrics_prompt": "Lyrics Prompt 6", "title":"Song 6 Title"}} ] }}
   ```
 
  
@@ -699,14 +690,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the prompts in the following JSON format:**
 
   ```json
-  {{
-    "music_prompts": [
-      {{"music_prompt": "Music Prompt 1", "lyrics_prompt": "Lyrics Prompt 1", "title":"Song 1 Title"}},
-      {{"music_prompt": "Music Prompt 2", "lyrics_prompt": "Lyrics Prompt 2", "title":"Song 2 Title"}},
-      {{"music_prompt": "Music Prompt 3", "lyrics_prompt": "Lyrics Prompt 3", "title":"Song 3 Title"}},
-      {{"music_prompt": "Music Prompt 4", "lyrics_prompt": "Lyrics Prompt 4", "title":"Song 4 Title"}},
-      {{"music_prompt": "Music Prompt 5", "lyrics_prompt": "Lyrics Prompt 5", "title":"Song 5 Title"}},
-      {{"music_prompt": "Music Prompt 6", "lyrics_prompt": "Lyrics Prompt 6", "title":"Song 6 Title"}}
-    ]
-  }}
+  {{ "music_prompts": [ {{"music_prompt": "Music Prompt 1", "lyrics_prompt": "Lyrics Prompt 1", "title":"Song 1 Title"}}, {{"music_prompt": "Music Prompt 2", "lyrics_prompt": "Lyrics Prompt 2", "title":"Song 2 Title"}}, {{"music_prompt": "Music Prompt 3", "lyrics_prompt": "Lyrics Prompt 3", "title":"Song 3 Title"}}, {{"music_prompt": "Music Prompt 4", "lyrics_prompt": "Lyrics Prompt 4", "title":"Song 4 Title"}}, {{"music_prompt": "Music Prompt 5", "lyrics_prompt": "Lyrics Prompt 5", "title":"Song 5 Title"}}, {{"music_prompt": "Music Prompt 6", "lyrics_prompt": "Lyrics Prompt 6", "title":"Song 6 Title"}} ] }}
   ```

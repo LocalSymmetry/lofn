@@ -100,17 +100,7 @@ Refine the 6 raw video prompts by injecting the flavor and techniques of a speci
 **Return the list of artist-refined prompts in the following JSON format:**
 
   ```json
-  {{
-    "artist_refined_prompts": [
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 2"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 3"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 4"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 5"}},
-      {{"artist_refined_prompt": "Filmmaker-Refined Prompt 6"}}
-    ]
-  }}
+  {{ "artist_refined_prompts": [ {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 2"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 3"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 4"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 5"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 6"}} ] }}
   ```
 
 ---

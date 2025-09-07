@@ -213,16 +213,7 @@ You are here to improve the music. You are allowed to change any prompt, (music,
 - **Return the list of musician-refined prompts in the following JSON format:**
 
 ```json
-   {{
-     "musician_refined_prompts": [
-      {{"music_prompt": "Refined Music Prompt 1", "lyrics_prompt": "Refined Lyrics Prompt 1", "title":"Refined Song 1 Title"}},
-      {{"music_prompt": "Refined Music Prompt 2", "lyrics_prompt": "Refined Lyrics Prompt 2", "title":"Refined Song 2 Title"}},
-      {{"music_prompt": "Refined Music Prompt 3", "lyrics_prompt": "Refined Lyrics Prompt 3", "title":"Refined Song 3 Title"}},
-      {{"music_prompt": "Refined Music Prompt 4", "lyrics_prompt": "Refined Lyrics Prompt 4", "title":"Refined Song 4 Title"}},
-      {{"music_prompt": "Refined Music Prompt 5", "lyrics_prompt": "Refined Lyrics Prompt 5", "title":"Refined Song 5 Title"}},
-      {{"music_prompt": "Refined Music Prompt 6", "lyrics_prompt": "Refined Lyrics Prompt 6", "title":"Refined Song 6 Title"}}
-    ]
-  }}
+   {{ "musician_refined_prompts": [ {{"music_prompt": "Refined Music Prompt 1", "lyrics_prompt": "Refined Lyrics Prompt 1", "title":"Refined Song 1 Title"}}, {{"music_prompt": "Refined Music Prompt 2", "lyrics_prompt": "Refined Lyrics Prompt 2", "title":"Refined Song 2 Title"}}, {{"music_prompt": "Refined Music Prompt 3", "lyrics_prompt": "Refined Lyrics Prompt 3", "title":"Refined Song 3 Title"}}, {{"music_prompt": "Refined Music Prompt 4", "lyrics_prompt": "Refined Lyrics Prompt 4", "title":"Refined Song 4 Title"}}, {{"music_prompt": "Refined Music Prompt 5", "lyrics_prompt": "Refined Lyrics Prompt 5", "title":"Refined Song 5 Title"}}, {{"music_prompt": "Refined Music Prompt 6", "lyrics_prompt": "Refined Lyrics Prompt 6", "title":"Refined Song 6 Title"}} ] }}
 ```
 
  
@@ -249,14 +240,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the list of musician-refined prompts in the following JSON format:**
 
 ```json
-   {{
-     "musician_refined_prompts": [
-      {{"music_prompt": "Refined Music Prompt 1", "lyrics_prompt": "Refined Lyrics Prompt 1", "title":"Refined Song 1 Title"}},
-      {{"music_prompt": "Refined Music Prompt 2", "lyrics_prompt": "Refined Lyrics Prompt 2", "title":"Refined Song 2 Title"}},
-      {{"music_prompt": "Refined Music Prompt 3", "lyrics_prompt": "Refined Lyrics Prompt 3", "title":"Refined Song 3 Title"}},
-      {{"music_prompt": "Refined Music Prompt 4", "lyrics_prompt": "Refined Lyrics Prompt 4", "title":"Refined Song 4 Title"}},
-      {{"music_prompt": "Refined Music Prompt 5", "lyrics_prompt": "Refined Lyrics Prompt 5", "title":"Refined Song 5 Title"}},
-      {{"music_prompt": "Refined Music Prompt 6", "lyrics_prompt": "Refined Lyrics Prompt 6", "title":"Refined Song 6 Title"}}
-    ]
-  }}
+   {{ "musician_refined_prompts": [ {{"music_prompt": "Refined Music Prompt 1", "lyrics_prompt": "Refined Lyrics Prompt 1", "title":"Refined Song 1 Title"}}, {{"music_prompt": "Refined Music Prompt 2", "lyrics_prompt": "Refined Lyrics Prompt 2", "title":"Refined Song 2 Title"}}, {{"music_prompt": "Refined Music Prompt 3", "lyrics_prompt": "Refined Lyrics Prompt 3", "title":"Refined Song 3 Title"}}, {{"music_prompt": "Refined Music Prompt 4", "lyrics_prompt": "Refined Lyrics Prompt 4", "title":"Refined Song 4 Title"}}, {{"music_prompt": "Refined Music Prompt 5", "lyrics_prompt": "Refined Lyrics Prompt 5", "title":"Refined Song 5 Title"}}, {{"music_prompt": "Refined Music Prompt 6", "lyrics_prompt": "Refined Lyrics Prompt 6", "title":"Refined Song 6 Title"}} ] }}
 ```

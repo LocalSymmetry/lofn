@@ -210,35 +210,7 @@ Think of this as the phase where a painter adds finishing glazes or scrapes away
 - **Return the refined concepts and Production Styles in the following JSON format:**
 
   ```json
-     {{
-       "refinedconcepts": [
-         {{"refinedconcept": "Refined Concept 1"}},
-         {{"refinedconcept": "Refined Concept 2"}},
-         {{"refinedconcept": "Refined Concept 3"}},
-         {{"refinedconcept": "Refined Concept 4"}},
-         {{"refinedconcept": "Refined Concept 5"}},
-         {{"refinedconcept": "Refined Concept 6"}},
-         {{"refinedconcept": "Refined Concept 7"}},
-         {{"refinedconcept": "Refined Concept 8"}},
-         {{"refinedconcept": "Refined Concept 9"}},
-         {{"refinedconcept": "Refined Concept 10"}},
-         {{"refinedconcept": "Refined Concept 11"}},
-         {{"refinedconcept": "Refined Concept 12"}}
-       "refinedProduction Styles": [
-         {{"refinedmedium": "Refined Production Style 1"}},
-         {{"refinedmedium": "Refined Production Style 2"}},
-         {{"refinedmedium": "Refined Production Style 3"}},
-         {{"refinedmedium": "Refined Production Style 4"}},
-         {{"refinedmedium": "Refined Production Style 5"}},
-         {{"refinedmedium": "Refined Production Style 6"}},
-         {{"refinedmedium": "Refined Production Style 7"}},
-         {{"refinedmedium": "Refined Production Style 8"}},
-         {{"refinedmedium": "Refined Production Style 9"}},
-         {{"refinedmedium": "Refined Production Style 10"}},
-         {{"refinedmedium": "Refined Production Style 11"}},
-         {{"refinedmedium": "Refined Production Style 12"}}
-       ]
-     }}
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Production Style 1"}}, {{"refinedmedium": "Refined Production Style 2"}}, {{"refinedmedium": "Refined Production Style 3"}}, {{"refinedmedium": "Refined Production Style 4"}}, {{"refinedmedium": "Refined Production Style 5"}}, {{"refinedmedium": "Refined Production Style 6"}}, {{"refinedmedium": "Refined Production Style 7"}}, {{"refinedmedium": "Refined Production Style 8"}}, {{"refinedmedium": "Refined Production Style 9"}}, {{"refinedmedium": "Refined Production Style 10"}}, {{"refinedmedium": "Refined Production Style 11"}}, {{"refinedmedium": "Refined Production Style 12"}} ] }}
   ```
 
  
@@ -276,33 +248,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the refined concepts and Production Styles in the following JSON format:**
 
   ```json
-     {{
-       "refinedconcepts": [
-         {{"refinedconcept": "Refined Concept 1"}},
-         {{"refinedconcept": "Refined Concept 2"}},
-         {{"refinedconcept": "Refined Concept 3"}},
-         {{"refinedconcept": "Refined Concept 4"}},
-         {{"refinedconcept": "Refined Concept 5"}},
-         {{"refinedconcept": "Refined Concept 6"}},
-         {{"refinedconcept": "Refined Concept 7"}},
-         {{"refinedconcept": "Refined Concept 8"}},
-         {{"refinedconcept": "Refined Concept 9"}},
-         {{"refinedconcept": "Refined Concept 10"}},
-         {{"refinedconcept": "Refined Concept 11"}},
-         {{"refinedconcept": "Refined Concept 12"}}
-       "refinedmediums": [
-         {{"refinedmedium": "Refined Production Style 1"}},
-         {{"refinedmedium": "Refined Production Style 2"}},
-         {{"refinedmedium": "Refined Production Style 3"}},
-         {{"refinedmedium": "Refined Production Style 4"}},
-         {{"refinedmedium": "Refined Production Style 5"}},
-         {{"refinedmedium": "Refined Production Style 6"}},
-         {{"refinedmedium": "Refined Production Style 7"}},
-         {{"refinedmedium": "Refined Production Style 8"}},
-         {{"refinedmedium": "Refined Production Style 9"}},
-         {{"refinedmedium": "Refined Production Style 10"}},
-         {{"refinedmedium": "Refined Production Style 11"}},
-         {{"refinedmedium": "Refined Production Style 12"}}
-       ]
-     }}
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Production Style 1"}}, {{"refinedmedium": "Refined Production Style 2"}}, {{"refinedmedium": "Refined Production Style 3"}}, {{"refinedmedium": "Refined Production Style 4"}}, {{"refinedmedium": "Refined Production Style 5"}}, {{"refinedmedium": "Refined Production Style 6"}}, {{"refinedmedium": "Refined Production Style 7"}}, {{"refinedmedium": "Refined Production Style 8"}}, {{"refinedmedium": "Refined Production Style 9"}}, {{"refinedmedium": "Refined Production Style 10"}}, {{"refinedmedium": "Refined Production Style 11"}}, {{"refinedmedium": "Refined Production Style 12"}} ] }}
   ```

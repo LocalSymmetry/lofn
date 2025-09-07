@@ -187,35 +187,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Return the refined concepts and mediums in the following JSON format:**
 
   ```json
-     {{
-       "refinedconcepts": [
-         {{"refinedconcept": "Refined Concept 1"}},
-         {{"refinedconcept": "Refined Concept 2"}},
-         {{"refinedconcept": "Refined Concept 3"}},
-         {{"refinedconcept": "Refined Concept 4"}},
-         {{"refinedconcept": "Refined Concept 5"}},
-         {{"refinedconcept": "Refined Concept 6"}},
-         {{"refinedconcept": "Refined Concept 7"}},
-         {{"refinedconcept": "Refined Concept 8"}},
-         {{"refinedconcept": "Refined Concept 9"}},
-         {{"refinedconcept": "Refined Concept 10"}},
-         {{"refinedconcept": "Refined Concept 11"}},
-         {{"refinedconcept": "Refined Concept 12"}}
-       "refinedmediums": [
-         {{"refinedmedium": "Refined Medium 1"}},
-         {{"refinedmedium": "Refined Medium 2"}},
-         {{"refinedmedium": "Refined Medium 3"}},
-         {{"refinedmedium": "Refined Medium 4"}},
-         {{"refinedmedium": "Refined Medium 5"}},
-         {{"refinedmedium": "Refined Medium 6"}},
-         {{"refinedmedium": "Refined Medium 7"}},
-         {{"refinedmedium": "Refined Medium 8"}},
-         {{"refinedmedium": "Refined Medium 9"}},
-         {{"refinedmedium": "Refined Medium 10"}},
-         {{"refinedmedium": "Refined Medium 11"}},
-         {{"refinedmedium": "Refined Medium 12"}}
-       ]
-     }}
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Medium 1"}}, {{"refinedmedium": "Refined Medium 2"}}, {{"refinedmedium": "Refined Medium 3"}}, {{"refinedmedium": "Refined Medium 4"}}, {{"refinedmedium": "Refined Medium 5"}}, {{"refinedmedium": "Refined Medium 6"}}, {{"refinedmedium": "Refined Medium 7"}}, {{"refinedmedium": "Refined Medium 8"}}, {{"refinedmedium": "Refined Medium 9"}}, {{"refinedmedium": "Refined Medium 10"}}, {{"refinedmedium": "Refined Medium 11"}}, {{"refinedmedium": "Refined Medium 12"}} ] }}
   ```
 
  
@@ -253,33 +225,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the refined concepts and mediums in the following JSON format:**
 
   ```json
-     {{
-       "refinedconcepts": [
-         {{"refinedconcept": "Refined Concept 1"}},
-         {{"refinedconcept": "Refined Concept 2"}},
-         {{"refinedconcept": "Refined Concept 3"}},
-         {{"refinedconcept": "Refined Concept 4"}},
-         {{"refinedconcept": "Refined Concept 5"}},
-         {{"refinedconcept": "Refined Concept 6"}},
-         {{"refinedconcept": "Refined Concept 7"}},
-         {{"refinedconcept": "Refined Concept 8"}},
-         {{"refinedconcept": "Refined Concept 9"}},
-         {{"refinedconcept": "Refined Concept 10"}},
-         {{"refinedconcept": "Refined Concept 11"}},
-         {{"refinedconcept": "Refined Concept 12"}}
-       "refinedmediums": [
-         {{"refinedmedium": "Refined Medium 1"}},
-         {{"refinedmedium": "Refined Medium 2"}},
-         {{"refinedmedium": "Refined Medium 3"}},
-         {{"refinedmedium": "Refined Medium 4"}},
-         {{"refinedmedium": "Refined Medium 5"}},
-         {{"refinedmedium": "Refined Medium 6"}},
-         {{"refinedmedium": "Refined Medium 7"}},
-         {{"refinedmedium": "Refined Medium 8"}},
-         {{"refinedmedium": "Refined Medium 9"}},
-         {{"refinedmedium": "Refined Medium 10"}},
-         {{"refinedmedium": "Refined Medium 11"}},
-         {{"refinedmedium": "Refined Medium 12"}}
-       ]
-     }}
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Medium 1"}}, {{"refinedmedium": "Refined Medium 2"}}, {{"refinedmedium": "Refined Medium 3"}}, {{"refinedmedium": "Refined Medium 4"}}, {{"refinedmedium": "Refined Medium 5"}}, {{"refinedmedium": "Refined Medium 6"}}, {{"refinedmedium": "Refined Medium 7"}}, {{"refinedmedium": "Refined Medium 8"}}, {{"refinedmedium": "Refined Medium 9"}}, {{"refinedmedium": "Refined Medium 10"}}, {{"refinedmedium": "Refined Medium 11"}}, {{"refinedmedium": "Refined Medium 12"}} ] }}
   ```

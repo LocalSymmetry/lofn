@@ -130,16 +130,7 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
 - **Return the music-based Song guides in the following JSON format:**
 
   ```json
-  {{
-    "song_guides": [
-      {{"song_guide": "Song Guide 1"}},
-      {{"song_guide": "Song Guide 2"}},
-      {{"song_guide": "Song Guide 3"}},
-      {{"song_guide": "Song Guide 4"}},
-      {{"song_guide": "Song Guide 5"}},
-      {{"song_guide": "Song Guide 6"}}
-    ]
-  }}
+  {{ "song_guides": [ {{"song_guide": "Song Guide 1"}}, {{"song_guide": "Song Guide 2"}}, {{"song_guide": "Song Guide 3"}}, {{"song_guide": "Song Guide 4"}}, {{"song_guide": "Song Guide 5"}}, {{"song_guide": "Song Guide 6"}} ] }}
   ```
 
  
@@ -161,14 +152,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the music-based Song guides in the following JSON format:**
 
   ```json
-  {{
-    "song_guides": [
-      {{"song_guide": "Song Guide 1"}},
-      {{"song_guide": "Song Guide 2"}},
-      {{"song_guide": "Song Guide 3"}},
-      {{"song_guide": "Song Guide 4"}},
-      {{"song_guide": "Song Guide 5"}},
-      {{"song_guide": "Song Guide 6"}}
-    ]
-  }}
+  {{ "song_guides": [ {{"song_guide": "Song Guide 1"}}, {{"song_guide": "Song Guide 2"}}, {{"song_guide": "Song Guide 3"}}, {{"song_guide": "Song Guide 4"}}, {{"song_guide": "Song Guide 5"}}, {{"song_guide": "Song Guide 6"}} ] }}
   ```

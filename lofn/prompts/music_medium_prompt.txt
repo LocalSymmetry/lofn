@@ -199,22 +199,7 @@ This phase is our equivalent of choosing Production Styles and techniques in vis
 - **Return the list of mediums in the following JSON format:**
 
   ```json
-{{
-  "mediums": [
-    {{"medium": "Production Style 1"}},
-    {{"medium": "Production Style 2"}},
-    {{"medium": "Production Style 3"}},
-    {{"medium": "Production Style 4"}},
-    {{"medium": "Production Style 5"}},
-    {{"medium": "Production Style 6"}},
-    {{"medium": "Production Style 7"}},
-    {{"medium": "Production Style 8"}},
-    {{"medium": "Production Style 9"}},
-    {{"medium": "Production Style 10"}},
-    {{"medium": "Production Style 11"}},
-    {{"medium": "Production Style 12"}}
-  ]
-}}
+  {{ "mediums": [ {{"medium": "Production Style 1"}}, {{"medium": "Production Style 2"}}, {{"medium": "Production Style 3"}}, {{"medium": "Production Style 4"}}, {{"medium": "Production Style 5"}}, {{"medium": "Production Style 6"}}, {{"medium": "Production Style 7"}}, {{"medium": "Production Style 8"}}, {{"medium": "Production Style 9"}}, {{"medium": "Production Style 10"}}, {{"medium": "Production Style 11"}}, {{"medium": "Production Style 12"}} ] }}
   ```
 
  
@@ -245,21 +230,6 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the list of mediums in the following JSON format:**
 
   ```json
-{{
-  "mediums": [
-    {{"medium": "Production Style 1"}},
-    {{"medium": "Production Style 2"}},
-    {{"medium": "Production Style 3"}},
-    {{"medium": "Production Style 4"}},
-    {{"medium": "Production Style 5"}},
-    {{"medium": "Production Style 6"}},
-    {{"medium": "Production Style 7"}},
-    {{"medium": "Production Style 8"}},
-    {{"medium": "Production Style 9"}},
-    {{"medium": "Production Style 10"}},
-    {{"medium": "Production Style 11"}},
-    {{"medium": "Production Style 12"}}
-  ]
-}}
+  {{ "mediums": [ {{"medium": "Production Style 1"}}, {{"medium": "Production Style 2"}}, {{"medium": "Production Style 3"}}, {{"medium": "Production Style 4"}}, {{"medium": "Production Style 5"}}, {{"medium": "Production Style 6"}}, {{"medium": "Production Style 7"}}, {{"medium": "Production Style 8"}}, {{"medium": "Production Style 9"}}, {{"medium": "Production Style 10"}}, {{"medium": "Production Style 11"}}, {{"medium": "Production Style 12"}} ] }}
   ```
 

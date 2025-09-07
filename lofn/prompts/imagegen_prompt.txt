@@ -170,19 +170,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Return the prompts in the following JSON format:**
 
   ```json
-  {{
-    "image_gen_prompts": [
-      {{"image_gen_prompt": "Image Generator Prompt 1"}},
-      {{"image_gen_prompt": "Image Generator Prompt 2"}},
-      {{"image_gen_prompt": "Image Generator Prompt 3"}},
-      {{"image_gen_prompt": "Image Generator Prompt 4"}},
-      {{"image_gen_prompt": "Image Generator Prompt 5"}},
-      {{"image_gen_prompt": "Image Generator Prompt 6"}}
-    ]
-  }}
+  {{ "image_gen_prompts": [ {{"image_gen_prompt": "Image Generator Prompt 1"}}, {{"image_gen_prompt": "Image Generator Prompt 2"}}, {{"image_gen_prompt": "Image Generator Prompt 3"}}, {{"image_gen_prompt": "Image Generator Prompt 4"}}, {{"image_gen_prompt": "Image Generator Prompt 5"}}, {{"image_gen_prompt": "Image Generator Prompt 6"}} ] }}
   ```
 
- 
 
 ---
 
@@ -204,14 +194,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the prompts in the following JSON format:**
 
   ```json
-  {{
-    "image_gen_prompts": [
-      {{"image_gen_prompt": "Image Generator Prompt 1"}},
-      {{"image_gen_prompt": "Image Generator Prompt 2"}},
-      {{"image_gen_prompt": "Image Generator Prompt 3"}},
-      {{"image_gen_prompt": "Image Generator Prompt 4"}},
-      {{"image_gen_prompt": "Image Generator Prompt 5"}},
-      {{"image_gen_prompt": "Image Generator Prompt 6"}}
-    ]
-  }}
+  {{ "image_gen_prompts": [ {{"image_gen_prompt": "Image Generator Prompt 1"}}, {{"image_gen_prompt": "Image Generator Prompt 2"}}, {{"image_gen_prompt": "Image Generator Prompt 3"}}, {{"image_gen_prompt": "Image Generator Prompt 4"}}, {{"image_gen_prompt": "Image Generator Prompt 5"}}, {{"image_gen_prompt": "Image Generator Prompt 6"}} ] }}
   ```

@@ -198,23 +198,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 - **Return the concepts in the following JSON format:**
 
   ```json
-{{
-  "concepts": 
-  [
-    {{"concept": "Concept 1"}},
-    {{"concept": "Concept 2"}},
-    {{"concept": "Concept 3"}},
-    {{"concept": "Concept 4"}},
-    {{"concept": "Concept 5"}},
-    {{"concept": "Concept 6"}},
-    {{"concept": "Concept 7"}},
-    {{"concept": "Concept 8"}},
-    {{"concept": "Concept 9"}},
-    {{"concept": "Concept 10"}},
-    {{"concept": "Concept 11"}},
-    {{"concept": "Concept 12"}}
-  ]
-}}
+  {{ "concepts": [ {{"concept": "Concept 1"}}, {{"concept": "Concept 2"}}, {{"concept": "Concept 3"}}, {{"concept": "Concept 4"}}, {{"concept": "Concept 5"}}, {{"concept": "Concept 6"}}, {{"concept": "Concept 7"}}, {{"concept": "Concept 8"}}, {{"concept": "Concept 9"}}, {{"concept": "Concept 10"}}, {{"concept": "Concept 11"}}, {{"concept": "Concept 12"}} ] }}
   ```
 
  
@@ -241,21 +225,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the concepts in the following JSON format:**
 
   ```json
-{{
-  "concepts": 
-  [
-    {{"concept": "Concept 1"}},
-    {{"concept": "Concept 2"}},
-    {{"concept": "Concept 3"}},
-    {{"concept": "Concept 4"}},
-    {{"concept": "Concept 5"}},
-    {{"concept": "Concept 6"}},
-    {{"concept": "Concept 7"}},
-    {{"concept": "Concept 8"}},
-    {{"concept": "Concept 9"}},
-    {{"concept": "Concept 10"}},
-    {{"concept": "Concept 11"}},
-    {{"concept": "Concept 12"}}
-  ]
-}}
+  {{ "concepts": [ {{"concept": "Concept 1"}}, {{"concept": "Concept 2"}}, {{"concept": "Concept 3"}}, {{"concept": "Concept 4"}}, {{"concept": "Concept 5"}}, {{"concept": "Concept 6"}}, {{"concept": "Concept 7"}}, {{"concept": "Concept 8"}}, {{"concept": "Concept 9"}}, {{"concept": "Concept 10"}}, {{"concept": "Concept 11"}}, {{"concept": "Concept 12"}} ] }}
   ```

@@ -105,22 +105,7 @@ After the panel votes, return a JSON object with key "best_pairs" as a list of t
 - **Return the list of filmmakers and refined concepts in the following JSON format:**
 
   ```json
-  {{
-    "best_pairs": [
-      {{"concept": "1st Place Concept", "medium":"1st Place Medium"}},
-      {{"concept": "2nd Place Concept", "medium":"2nd Place Medium"}},
-      {{"concept": "3rd Place Concept", "medium":"3rd Place Medium"}},
-      {{"concept": "4th Place Concept", "medium":"4th Place Medium"}},
-      {{"concept": "5th Place Concept", "medium":"5th Place Medium"}},
-      {{"concept": "6th Place Concept", "medium":"6th Place Medium"}},
-      {{"concept": "7th Place Concept", "medium":"7th Place Medium"}},
-      {{"concept": "8th Place Concept", "medium":"8th Place Medium"}},
-      {{"concept": "9th" Place Concept", "medium":"9th Place Medium"}},
-      {{"concept": "10th Place Concept", "medium":"10th Place Medium"}},
-      {{"concept": "11th Place Concept", "medium":"11th Place Medium"}},
-      {{"concept": "12th Place Concept", "medium":"12th Place Medium"}},
-    ]
-  }}
+  {{ "best_pairs": [ {{"concept": "1st Place Concept", "medium":"1st Place Medium"}}, {{"concept": "2nd Place Concept", "medium":"2nd Place Medium"}}, {{"concept": "3rd Place Concept", "medium":"3rd Place Medium"}}, {{"concept": "4th Place Concept", "medium":"4th Place Medium"}}, {{"concept": "5th Place Concept", "medium":"5th Place Medium"}}, {{"concept": "6th Place Concept", "medium":"6th Place Medium"}}, {{"concept": "7th Place Concept", "medium":"7th Place Medium"}}, {{"concept": "8th Place Concept", "medium":"8th Place Medium"}}, {{"concept": "9th" Place Concept", "medium":"9th Place Medium"}}, {{"concept": "10th Place Concept", "medium":"10th Place Medium"}}, {{"concept": "11th Place Concept", "medium":"11th Place Medium"}}, {{"concept": "12th Place Concept", "medium":"12th Place Medium"}}, ] }}
   ```
 
 - **Ensure Proper Formatting:**

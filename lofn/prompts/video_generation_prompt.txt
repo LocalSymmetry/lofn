@@ -193,16 +193,7 @@ This is not a simple translation. It is an act of deep analysis, strategic plann
 **Return the 6 completed, masterfully assembled video prompts in the following JSON format. Ensure the negative prompts are appended to the end of each prompt string.**
 
   ```json
-  {{
-    "video_prompts": [
-      {{"video_prompt": "Video Prompt 1"}},
-      {{"video_prompt": "Video Prompt 2"}},
-      {{"video_prompt": "Video Prompt 3"}},
-      {{"video_prompt": "Video Prompt 4"}},
-      {{"video_prompt": "Video Prompt 5"}},
-      {{"video_prompt": "Video Prompt 6"}}
-    ]
-  }}
+  {{ "video_prompts": [ {{"video_prompt": "Video Prompt 1"}}, {{"video_prompt": "Video Prompt 2"}}, {{"video_prompt": "Video Prompt 3"}}, {{"video_prompt": "Video Prompt 4"}}, {{"video_prompt": "Video Prompt 5"}}, {{"video_prompt": "Video Prompt 6"}} ] }}
   ```
 
 ---

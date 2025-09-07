@@ -290,14 +290,6 @@ You are here to improve the music. You are allowed to change any prompt, (music,
 
 - **REMEBER - Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
 
-  {{
-    "revised_prompts": [
-      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
-      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
-    ],
-    "synthesized_prompts":[
-      {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}},
-      {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}}
-    ]
-  }}
+  ```json
+   {{ "revised_prompts": [ {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}}, {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}} ], "synthesized_prompts":[ {{"music_prompt": "Revised Music Prompt 1", "lyrics_prompt": "Revised Lyrics Prompt 1", "title":"Revised Song 1 Title"}}, {{"music_prompt": "Revised Music Prompt 2", "lyrics_prompt": "Revised Lyrics Prompt 2", "title":"Revised Song 2 Title"}} ] }}
   ```

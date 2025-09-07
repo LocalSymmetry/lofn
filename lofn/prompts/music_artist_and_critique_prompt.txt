@@ -185,36 +185,7 @@ This step is akin to inviting guest musicians or curators to comment on a series
 - **Return the list of musicians and refined concepts in the following JSON format:**
 
   ```json
-    {{
-      "artists": [
-        {{"artist": "musician 1"}},
-        {{"artist": "musician 2"}},
-        {{"artist": "musician 3"}},
-        {{"artist": "musician 4"}},
-        {{"artist": "musician 5"}},
-        {{"artist": "musician 6"}},
-        {{"artist": "musician 7"}},
-        {{"artist": "musician 8"}},
-        {{"artist": "musician 9"}},
-        {{"artist": "musician 10"}},
-        {{"artist": "musician 11"}},
-        {{"artist": "musician 12"}}
-      ],
-      "refinedconcepts": [
-        {{"refinedconcept": "Refined Concept 1"}},
-        {{"refinedconcept": "Refined Concept 2"}},
-        {{"refinedconcept": "Refined Concept 3"}},
-        {{"refinedconcept": "Refined Concept 4"}},
-        {{"refinedconcept": "Refined Concept 5"}},
-        {{"refinedconcept": "Refined Concept 6"}},
-        {{"refinedconcept": "Refined Concept 7"}},
-        {{"refinedconcept": "Refined Concept 8"}},
-        {{"refinedconcept": "Refined Concept 9"}},
-        {{"refinedconcept": "Refined Concept 10"}},
-        {{"refinedconcept": "Refined Concept 11"}},
-        {{"refinedconcept": "Refined Concept 12"}}
-      ]
-    }}    
+    {{ "artists": [ {{"artist": "musician 1"}}, {{"artist": "musician 2"}}, {{"artist": "musician 3"}}, {{"artist": "musician 4"}}, {{"artist": "musician 5"}}, {{"artist": "musician 6"}}, {{"artist": "musician 7"}}, {{"artist": "musician 8"}}, {{"artist": "musician 9"}}, {{"artist": "musician 10"}}, {{"artist": "musician 11"}}, {{"artist": "musician 12"}} ], "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} ] }}     
   ```
 
 - **Ensure Proper Formatting:**
@@ -254,34 +225,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Return the list of musicians and refined concepts in the following JSON format for the process to continue:**
 
   ```json
-    {{
-      "artists": [
-        {{"artist": "musician 1"}},
-        {{"artist": "musician 2"}},
-        {{"artist": "musician 3"}},
-        {{"artist": "musician 4"}},
-        {{"artist": "musician 5"}},
-        {{"artist": "musician 6"}},
-        {{"artist": "musician 7"}},
-        {{"artist": "musician 8"}},
-        {{"artist": "musician 9"}},
-        {{"artist": "musician 10"}},
-        {{"artist": "musician 11"}},
-        {{"artist": "musician 12"}}
-      ],
-      "refinedconcepts": [
-        {{"refinedconcept": "Refined Concept 1"}},
-        {{"refinedconcept": "Refined Concept 2"}},
-        {{"refinedconcept": "Refined Concept 3"}},
-        {{"refinedconcept": "Refined Concept 4"}},
-        {{"refinedconcept": "Refined Concept 5"}},
-        {{"refinedconcept": "Refined Concept 6"}},
-        {{"refinedconcept": "Refined Concept 7"}},
-        {{"refinedconcept": "Refined Concept 8"}},
-        {{"refinedconcept": "Refined Concept 9"}},
-        {{"refinedconcept": "Refined Concept 10"}},
-        {{"refinedconcept": "Refined Concept 11"}},
-        {{"refinedconcept": "Refined Concept 12"}}
-      ]
-    }}      
+  {{ "artists": [ {{"artist": "musician 1"}}, {{"artist": "musician 2"}}, {{"artist": "musician 3"}}, {{"artist": "musician 4"}}, {{"artist": "musician 5"}}, {{"artist": "musician 6"}}, {{"artist": "musician 7"}}, {{"artist": "musician 8"}}, {{"artist": "musician 9"}}, {{"artist": "musician 10"}}, {{"artist": "musician 11"}}, {{"artist": "musician 12"}} ], "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} ] }} 
   ```

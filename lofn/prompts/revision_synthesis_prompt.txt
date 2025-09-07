@@ -189,16 +189,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
   - *Action:* Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
 
    ```json
-    {{
-      "revised_prompts": [
-        {{"revised_prompt": "Revised Prompt 1"}},
-        {{"revised_prompt": "Revised Prompt 2"}}
-      ],
-      "synthesized_prompts": [
-        {{"synthesized_prompt": "Synthesized Prompt 1"}},
-        {{"synthesized_prompt": "Synthesized Prompt 2"}}
-      ]
-    }}
+     {{ "revised_prompts": [ {{"revised_prompt": "Revised Prompt 1"}}, {{"revised_prompt": "Revised Prompt 2"}} ], "synthesized_prompts": [ {{"synthesized_prompt": "Synthesized Prompt 1"}}, {{"synthesized_prompt": "Synthesized Prompt 2"}} ] }}
   ```
 
  
@@ -225,14 +216,5 @@ Supplied images (if any): {image_context}
 - **REMEBER - Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format, escaping all special characters inside strings including apostrophes and quotation marks:
 
    ```json
-    {{
-      "revised_prompts": [
-        {{"revised_prompt": "Revised Prompt 1"}},
-        {{"revised_prompt": "Revised Prompt 2"}}
-      ],
-      "synthesized_prompts": [
-        {{"synthesized_prompt": "Synthesized Prompt 1"}},
-        {{"synthesized_prompt": "Synthesized Prompt 2"}}
-      ]
-    }}
+    {{ "revised_prompts": [ {{"revised_prompt": "Revised Prompt 1"}}, {{"revised_prompt": "Revised Prompt 2"}} ], "synthesized_prompts": [ {{"synthesized_prompt": "Synthesized Prompt 1"}}, {{"synthesized_prompt": "Synthesized Prompt 2"}} ] }}
   ```
