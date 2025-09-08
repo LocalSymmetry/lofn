@@ -4,6 +4,7 @@ import re
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
 from lofjson import parse_with_repairs
+from json_repair import repair_json
 
 JSON = Union[dict, list, str, int, float, bool, None]
 
@@ -130,7 +131,7 @@ def _escape_control_chars_in_strings(s: str) -> str:
                 if j < 0 or out[j] != '\\':
                     in_str = True
         i += 1
-    return ''.join(out)
+    return ''.join(out).replace('\\"',"\"")
 
 # --------- JSON candidate extraction ---------
 
@@ -200,6 +201,12 @@ def _loads_tolerant(candidate: str) -> JSON:
     # 1) direct
     try:
         first = json.loads(c)
+    except Exception:
+        try:
+            first = json_repair.loads(c.replace("\\n","").replace("\n","").replace('\\"',"\""))
+        except Exception:
+            pass
+    try:
         if isinstance(first, str) and first.strip().startswith(("{", "[")):
             try:
                 return json.loads(first)
@@ -273,6 +280,19 @@ def _loads_tolerant(candidate: str) -> JSON:
             return json.loads(s)
     except Exception:
         pass
+
+    try:
+        return json.loads(repair_json(c.replace("\n","")))
+    except Exception:
+        try:
+            if debug:
+                st.error("JSONs are failing to load. Trying automated repairs...")
+            return json_repair.loads(_escape_control_chars_in_strings(c).replace("\n","").replace("\'","\u0027").replace('\\"','\"').replace("”","").replace("“",""))
+        except Exception:
+            try:
+                return json_repair.loads(repair_json(_escape_control_chars_in_strings(_remove_trailing_commas(c)).replace("\n","").replace("\'","\u0027").replace('\\"','\"').replace("”","").replace("“","")))
+            except Exception: 
+                pass   
 
     # give up
     raise json.JSONDecodeError("Unable to parse JSON candidate", c, 0)
