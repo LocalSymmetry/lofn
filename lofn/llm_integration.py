@@ -1561,6 +1561,7 @@ def run_any_chain(chain, args_dict, is_correction, retry_count, model, debug=Fal
             Did you forget to label the inside of your arrays? Make sure the key inside the array is also present!
             Most JSON schemas we provide want the return as `"keys" : ["key": "Value 1",  "key": "Value 2", ... ]`. 
             A common error most LLM's make is misisng `refinedconcept` inside the `refinedconcepts` array when revising mediums (this might not be your step!).  
+            To assist parsing, make sure the JSON is completely parsable by itself. Remove all newline characters, avoid double-quotes, use \\u0027 as the apostrphe and ensure all escapes satify JSON parsing requirements.
             Expected schema we want from you is in the instructions, and is validated by us through checking: {str(dict(expected_schema)).replace("{", "{{").replace("}","}}")}
             """
             # Preserve original input parameters
