@@ -358,17 +358,36 @@ def _normalize_to_schema(obj: JSON, schema: Dict[str, Union[type, str]]) -> Opti
                 return None
     return out
 
-def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]], expected_schema:Dict = None, debug : bool = False) -> dict:
+
+def select_best_json_candidate(
+    raw_text: str,
+    schema: Dict[str, Union[type, str]],
+    expected_schema: Dict | None = None,
+    debug: bool = False,
+) -> dict:
+    """Find and return the best JSON object matching ``schema``.
+    If ``expected_schema`` is provided, each parsed candidate is also validated
+    against it before being returned. This allows us to try additional
+    candidates when the first parse yields JSON that doesn't actually conform
+    to the desired structure.
     """
-    Finds and returns the best JSON object matching 'schema'.
-    Raises ValueError with a useful message if nothing matches.
-    """
-    text = _minimal_cleanup(_strip_code_fences(raw_text.replace("""\'""","\u0027").replace("""\\'""","\u0027")))
+    text = _minimal_cleanup(
+        _strip_code_fences(
+            raw_text.replace("""\'""", "\u0027").replace("""\\'""", "\u0027")
+        )
+    )
+
+    def _maybe_return(norm: Optional[dict]) -> Optional[dict]:
+        if norm is None:
+            return None
+        if expected_schema and not validate_schema(norm, expected_schema):
+            return None
+        return norm
 
     # 0) Direct parse: if whole message IS the JSON
     try:
         obj = _loads_tolerant(text, debug)
-        norm = _normalize_to_schema(obj, schema)
+        norm = _maybe_return(_normalize_to_schema(obj, schema))
         if norm is not None:
             st.write("Parsed {text} \n\n to get {obj} \n\n and {norm}")
             return norm
@@ -378,8 +397,11 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
 
     # 0b) Try robust repair-based parser
     try:
-        repaired_obj, _, _ = parse_with_repairs(text.replace('''\n''','').replace('''\\n''',''), required_keys=list(schema.keys()))
-        norm = _normalize_to_schema(repaired_obj, schema)
+        repaired_obj, _, _ = parse_with_repairs(
+            text.replace("""\n""", "").replace("""\\n""", ""),
+            required_keys=list(schema.keys()),
+        )
+        norm = _maybe_return(_normalize_to_schema(repaired_obj, schema))
         if norm is not None:
             return norm
     except Exception:
@@ -409,9 +431,9 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
             # if debug:
             st.write('Failed to parse {cleaned_cand} with _loads_tolerant')
             continue
-        norm = _normalize_to_schema(value, schema)
-        # if debug:
-        st.write('Schema-safe normalizing to {norm}')
+            if debug:
+                raise ValueError('Failed to parse {cleaned_cand} with _loads_tolerant')
+        norm = _maybe_return(_normalize_to_schema(value, schema))
         if norm is not None:
             parsed.append((norm, len(cand)))
 
