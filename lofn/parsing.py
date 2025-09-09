@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 import re
+import streamlit as st
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
 from lofjson import parse_with_repairs
@@ -357,7 +358,7 @@ def _normalize_to_schema(obj: JSON, schema: Dict[str, Union[type, str]]) -> Opti
                 return None
     return out
 
-def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]], debug : bool = False) -> dict:
+def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]], expected_schema:Dict = None, debug : bool = False) -> dict:
     """
     Finds and returns the best JSON object matching 'schema'.
     Raises ValueError with a useful message if nothing matches.
@@ -369,9 +370,11 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
         obj = _loads_tolerant(text, debug)
         norm = _normalize_to_schema(obj, schema)
         if norm is not None:
+            st.write("Parsed {text} \n\n to get {obj} \n\n and {norm}")
             return norm
     except Exception:
-        pass
+        # if debug:
+        st.write("Failed to parse {text} \n\n to get {obj} \n\n and {norm}")
 
     # 0b) Try robust repair-based parser
     try:
@@ -380,7 +383,8 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
         if norm is not None:
             return norm
     except Exception:
-        pass
+        # if debug:
+        st.write("Failed to parse {text} \n\n to get {repaired_obj} \n\n and {norm}")
 
     # 1) Scan for JSON substrings (objects OR arrays)
     candidates = list(iter_json_substrings(text, max_candidates=24))
@@ -399,13 +403,15 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
         try:
             cleaned_cand = cand.replace('''\n''','').replace('''\\n''','').replace('''\\"''',"\"").replace("\n","").replace("""\'""","\u0027").replace("""\\'""","\u0027").replace("”","").replace("“","")
             value = _loads_tolerant(cleaned_cand)
-            if debug:
-                st.write('Attempted parsing for {value}, and recieved {cand} back')
+            # if debug:
+            st.write('Attempted parsing for {value}, and recieved {cand} back')
         except Exception:
+            # if debug:
+            st.write('Failed to parse {cleaned_cand} with _loads_tolerant')
             continue
-            if debug:
-                raise ValueError('Failed to parse {cleaned_cand} with _loads_tolerant')
         norm = _normalize_to_schema(value, schema)
+        # if debug:
+        st.write('Schema-safe normalizing to {norm}')
         if norm is not None:
             parsed.append((norm, len(cand)))
 
