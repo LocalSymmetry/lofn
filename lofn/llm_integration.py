@@ -1459,7 +1459,7 @@ def run_chain_with_retries(
             output = run_any_chain(
                 _lang_chain, args_dict, is_correction, retry_count, model, debug, expected_schema
             )
-            args_dict['output'] = output
+            args_dict['output'] = output.replace('''\n''', '')
             if debug:
                 st.write(f"Raw output from LLM:\n{output}")
 
@@ -1481,7 +1481,7 @@ def run_chain_with_retries(
                             simple_schema[key] = val
                 parsed_output = select_best_json_candidate(str(output), simple_schema, debug)
                 if expected_schema and not validate_schema(parsed_output, expected_schema):
-                    raise ValueError("Parsed JSON does not match the expected schema.")
+                    raise ValueError("Parsed JSON does not match the expected schema. Parsed Output {parsed_output}")
                 if debug:
                     st.write("Successfully parsed JSON output")
                 return parsed_output
