@@ -1,85 +1,169 @@
-/* Base styles */
-body {
-    font-family: "Garamond", serif;
-    background-color: #F5F5F5;
-    color: #333333;
+/* ========== Lofn Clean Theme (Streamlit-safe) ========== */
+
+/* Design tokens */
+:root {
+  --bg: #F7F7F8;
+  --surface: #FFFFFF;
+  --surface-2: #F3F4F6;
+  --text: #111827;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+  --primary: #0EA5E9;
+  --primary-hover: #0284C7;
+  --ring: rgba(14, 165, 233, 0.35);
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-/* Header */
-header.css-1avcm0n.e8zbici2 {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #E0E0E0;
-    padding: 1rem;
+/* Base */
+html, body, .stApp {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-header .css-1xarl3l.e16fv1kl1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333333;
+/* Header & Sidebar — use stable data-testid selectors */
+[data-testid="stHeader"] {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  z-index: 1000;
+  backdrop-filter: saturate(180%) blur(8px);
 }
 
-/* Sidebar */
-section.css-1lcbmhc.e1fqkh3o0 {
-    background-color: #FFFFFF;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+[data-testid="stSidebar"] {
+  background: var(--surface) !important;
+  border-right: 1px solid var(--border);
 }
 
-section.css-1lcbmhc.e1fqkh3o0 label {
-    font-size: 1.1rem;
-    color: #333333;
+/* Constrain main width a bit and add breathing room */
+[data-testid="stAppViewContainer"] > .main {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
-/* Main content */
-section.main > div {
-    background-color: #FFFFFF;
-    padding: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.block-container {  /* widely present, but still optional */
+  max-width: 1100px;
 }
 
-/* Buttons */
-button.css-1x8cf1d.edgvbvh10 {
-    background-color: #333333;
-    color: #FFFFFF;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-button.css-1x8cf1d.edgvbvh10:hover {
-    background-color: #555555;
-}
-
-/* Inputs */
-input[type="text"], textarea {
-    border: 1px solid #E0E0E0;
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
-}
-
-/* Headings */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Garamond", serif;
-    color: #333333;
+  color: var(--text) !important;
+  letter-spacing: -0.01em;
+}
+p, li, label, span, small {
+  color: var(--text);
+}
+
+/* Cards (use in your own markup) */
+.lofn-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+}
+.lofn-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Sticky bars — these are YOUR classes (stable) */
+.progress-dashboard,
+.sticky-action-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
 }
 
 .progress-dashboard {
-    background-color: #FFFFFF;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 49;
+  position: sticky; top: 0.75rem;
+  padding: 0.75rem 1rem;
+  z-index: 900;  /* below header(1000), above content */
+  margin-bottom: 1rem;
 }
 
 .sticky-action-bar {
-    position: sticky;
-    bottom: 0;
-    background-color: #FFFFFF;
-    padding: 0.5rem;
-    border-top: 1px solid #E0E0E0;
-    z-index: 50;
+  position: sticky; bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  z-index: 950;
+}
+
+/* Buttons — target Streamlit’s stable wrappers */
+div.stButton > button,
+div.stDownloadButton > button {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+div.stButton > button:hover,
+div.stDownloadButton > button:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover);
+}
+div.stButton > button:focus,
+div.stDownloadButton > button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Inputs — use component wrappers + native inputs */
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea,
+[data-testid="stNumberInput"] input,
+[data-testid="stDateInput"] input,
+[data-testid="stTimeInput"] input {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+}
+[data-testid="stTextArea"] textarea { min-height: 120px; }
+
+/* Select boxes (best-effort, structure can change) */
+[data-testid="stSelectbox"] > div > div {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+/* Small utility classes you can use in Markdown/HTML */
+.lofn-pill {
+  display: inline-flex; align-items: center;
+  gap: 0.375rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.lofn-muted { color: var(--muted); }
+
+.lofn-divider {
+  height: 1px; background: var(--border);
+  margin: 1rem 0;
+}
+
+/* Optional dark preference — matches theme if you switch base = "dark" */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B1020;
+    --surface: #0F1528;
+    --surface-2: #111a33;
+    --text: #E5E7EB;
+    --muted: #9CA3AF;
+    --border: #1F2A44;
+    --primary: #38BDF8;
+    --primary-hover: #0EA5E9;
+    --ring: rgba(56, 189, 248, 0.35);
+  }
 }
