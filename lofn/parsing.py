@@ -191,7 +191,7 @@ def iter_json_substrings(text: str, max_candidates: int = 16) -> Iterable[str]:
 
 # --------- tolerant JSON loader ---------
 
-def _loads_tolerant(candidate: str) -> JSON:
+def _loads_tolerant(candidate: str, debug : bool = False) -> JSON:
     """
     Try several safe ways to turn a candidate string into JSON.
     No heavy 'repairs'—only gentle unquoting and trailing-comma removal.
@@ -203,7 +203,7 @@ def _loads_tolerant(candidate: str) -> JSON:
         first = json.loads(c)
     except Exception:
         try:
-            first = json_repair.loads(c.replace("\\n","").replace("\n","").replace('\\"',"\""))
+            first = json_repair.loads(c.replace("""\\n""","").replace("""\n""","").replace('\\"',"\""))
         except Exception:
             pass
     try:
@@ -287,7 +287,7 @@ def _loads_tolerant(candidate: str) -> JSON:
         try:
             if debug:
                 st.error("JSONs are failing to load. Trying automated repairs...")
-            return json_repair.loads(_escape_control_chars_in_strings(c).replace("\n","").replace("\'","\u0027").replace('\\"','\"').replace("”","").replace("“",""))
+            return json_repair.loads(_escape_control_chars_in_strings(c).replace("\n","").replace("""\'""","\u0027").replace('\\"','\"').replace("”","").replace("“",""))
         except Exception:
             try:
                 return json_repair.loads(repair_json(_escape_control_chars_in_strings(_remove_trailing_commas(c)).replace("\n","").replace("\'","\u0027").replace('\\"','\"').replace("”","").replace("“","")))
@@ -357,16 +357,16 @@ def _normalize_to_schema(obj: JSON, schema: Dict[str, Union[type, str]]) -> Opti
                 return None
     return out
 
-def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]]) -> dict:
+def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]], debug : bool = False) -> dict:
     """
     Finds and returns the best JSON object matching 'schema'.
     Raises ValueError with a useful message if nothing matches.
     """
-    text = _minimal_cleanup(_strip_code_fences(raw_text))
+    text = _minimal_cleanup(_strip_code_fences(raw_text.replace("""\\n""",'~~n').replace('\n','')).replace('~~n',"""\\n""").replace("""\'""","\u0027").replace("""\\'""","\u0027"))
 
     # 0) Direct parse: if whole message IS the JSON
     try:
-        obj = _loads_tolerant(text)
+        obj = _loads_tolerant(text, debug)
         norm = _normalize_to_schema(obj, schema)
         if norm is not None:
             return norm
@@ -375,7 +375,7 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
 
     # 0b) Try robust repair-based parser
     try:
-        repaired_obj, _, _ = parse_with_repairs(raw_text, required_keys=list(schema.keys()))
+        repaired_obj, _, _ = parse_with_repairs(text, required_keys=list(schema.keys()))
         norm = _normalize_to_schema(repaired_obj, schema)
         if norm is not None:
             return norm
@@ -398,8 +398,12 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
     for cand in candidates:
         try:
             value = _loads_tolerant(cand)
+            if debug:
+                st.write('Attempted parsing for {value}, and recieved {cand} back')
         except Exception:
             continue
+            if debug:
+                st.write('Failed to parse {value} with _loads_tolerant')
         norm = _normalize_to_schema(value, schema)
         if norm is not None:
             parsed.append((norm, len(cand)))
@@ -410,7 +414,6 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
         return parsed[0][0]
 
     # 2) If we couldn’t match the schema but *did* see JSON, return a helpful error
-    preview = text[:500].replace("\n", "\\n")
     raise ValueError(
         "No JSON matching the expected schema was found. "
         "Saw {} JSON-like blocks. "

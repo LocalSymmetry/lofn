@@ -1479,7 +1479,7 @@ def run_chain_with_retries(
                             simple_schema[key] = dict
                         else:
                             simple_schema[key] = val
-                parsed_output = select_best_json_candidate(str(output), simple_schema)
+                parsed_output = select_best_json_candidate(str(output), simple_schema, debug)
                 if expected_schema and not validate_schema(parsed_output, expected_schema):
                     raise ValueError("Parsed JSON does not match the expected schema.")
                 if debug:
