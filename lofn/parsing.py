@@ -389,11 +389,12 @@ def select_best_json_candidate(
         obj = _loads_tolerant(text, debug)
         norm = _maybe_return(_normalize_to_schema(obj, schema))
         if norm is not None:
-            st.write("Parsed {text} \n\n to get {obj} \n\n and {norm}")
+            if debug:
+                st.write("Parsed {text} \n\n to get {obj} \n\n and {norm}")
             return norm
     except Exception:
-        # if debug:
-        st.write("Failed to parse {text} \n\n to get {obj} \n\n and {norm}")
+        if debug:
+            st.write("Failed to parse {text} \n\n to get {obj} \n\n and {norm}")
 
     # 0b) Try robust repair-based parser
     try:
@@ -405,8 +406,8 @@ def select_best_json_candidate(
         if norm is not None:
             return norm
     except Exception:
-        # if debug:
-        st.write("Failed to parse {text} \n\n to get {repaired_obj} \n\n and {norm}")
+        if debug:
+          st.write("Failed to parse {text} \n\n to get {repaired_obj} \n\n and {norm}")
 
     # 1) Scan for JSON substrings (objects OR arrays)
     candidates = list(iter_json_substrings(text, max_candidates=24))
@@ -425,11 +426,11 @@ def select_best_json_candidate(
         try:
             cleaned_cand = cand.replace('''\n''','').replace('''\\n''','').replace('''\\"''',"\"").replace("\n","").replace("""\'""","\u0027").replace("""\\'""","\u0027").replace("”","").replace("“","")
             value = _loads_tolerant(cleaned_cand)
-            # if debug:
-            st.write('Attempted parsing for {value}, and recieved {cand} back')
+            if debug:
+                st.write('Attempted parsing for {value}, and recieved {cand} back')
         except Exception:
-            # if debug:
-            st.write('Failed to parse {cleaned_cand} with _loads_tolerant')
+            if debug:
+                st.write('Failed to parse {cleaned_cand} with _loads_tolerant')
             continue
             if debug:
                 raise ValueError('Failed to parse {cleaned_cand} with _loads_tolerant')
