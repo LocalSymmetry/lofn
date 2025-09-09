@@ -203,7 +203,7 @@ def _loads_tolerant(candidate: str, debug : bool = False) -> JSON:
         first = json.loads(c)
     except Exception:
         try:
-            first = json_repair.loads(c)
+            first = loads(repair_json(c))
         except Exception:
             pass
     try:
@@ -362,7 +362,7 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
     Finds and returns the best JSON object matching 'schema'.
     Raises ValueError with a useful message if nothing matches.
     """
-    text = _minimal_cleanup(_strip_code_fences(raw_text.replace("""\\n""",'~~n').replace('\n','')).replace('~~n',"""\\n""").replace("""\'""","\u0027").replace("""\\'""","\u0027"))
+    text = _minimal_cleanup(_strip_code_fences(raw_text.replace("""\'""","\u0027").replace("""\\'""","\u0027")))
 
     # 0) Direct parse: if whole message IS the JSON
     try:
@@ -375,7 +375,7 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
 
     # 0b) Try robust repair-based parser
     try:
-        repaired_obj, _, _ = parse_with_repairs(text, required_keys=list(schema.keys()))
+        repaired_obj, _, _ = parse_with_repairs(text.replace('''\n''','').replace('''\\n''',''), required_keys=list(schema.keys()))
         norm = _normalize_to_schema(repaired_obj, schema)
         if norm is not None:
             return norm
@@ -397,7 +397,7 @@ def select_best_json_candidate(raw_text: str, schema: Dict[str, Union[type, str]
 
     for cand in candidates:
         try:
-            cleaned_cand = cand.replace("\\n","").replace("\n","").replace('''\\"''',"\"").replace("\n","").replace("""\'""","\u0027").replace("""\\'""","\u0027").replace("”","").replace("“","")
+            cleaned_cand = cand.replace('''\n''','').replace('''\\n''','').replace('''\\"''',"\"").replace("\n","").replace("""\'""","\u0027").replace("""\\'""","\u0027").replace("”","").replace("“","")
             value = _loads_tolerant(cleaned_cand)
             if debug:
                 st.write('Attempted parsing for {value}, and recieved {cand} back')
