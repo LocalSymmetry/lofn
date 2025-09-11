@@ -314,10 +314,14 @@ def _normalize_responses_messages(
                         img = p.get("image_url")
                         detail = p.get("detail", "auto")
                         if isinstance(img, dict):
-                            image_url = img
-                        else:
-                            image_url = {"url": img}
-                        parts.append({"type": "input_image", "image_url": image_url, "detail": detail})
+                            file_id = img.get("file_id")
+                            url = img.get("url")
+                            if file_id:
+                                parts.append({"type": "input_image", "file_id": file_id, "detail": detail})
+                            elif url:
+                                parts.append({"type": "input_image", "image_url": url, "detail": detail})
+                        elif isinstance(img, str):
+                            parts.append({"type": "input_image", "image_url": img, "detail": detail})
                     elif ptype in ("input_file", "file"):
                         fid = p.get("file_id") or p.get("id")
                         if fid:
@@ -350,32 +354,29 @@ def call_openai_gpt5_multimodal(
 ):
     """Send text plus optional images to OpenAI GPT-5 via the Responses API."""
     client = OpenAI()
-    user_content = []
+    user_parts: List[Dict[str, Any]] = []
 
     if image_blobs:
         for blob in image_blobs:
-            img_bytes, _ = normalize_image_bytes(blob)
-            uploaded = client.files.create(
-                file=io.BytesIO(img_bytes), purpose="vision"
-            )
-            user_content.append(
+            img_bytes, mime = normalize_image_bytes(blob)
+            b64 = base64.b64encode(img_bytes).decode()
+            data_url = f"data:{mime};base64,{b64}"
+            user_parts.append(
                 {
-                    "type": "image_url",
-                    "image_url": {"file_id": uploaded.id},
+                    "type": "input_image",
+                    "image_url": data_url,
                     "detail": "high",
                 }
             )
 
-    user_content.append({"type": "text", "text": user_text})
+    user_parts.append({"type": "input_text", "text": user_text})
 
-    messages = []
+    messages: List[Dict[str, Any]] = []
     if system_text:
         messages.append(
-            {"role": "system", "content": [{"type": "text", "text": system_text}]}
+            {"role": "system", "content": [{"type": "input_text", "text": system_text}]}
         )
-    messages.append({"role": "user", "content": user_content})
-
-    messages = _normalize_responses_messages(messages)
+    messages.append({"role": "user", "content": user_parts})
 
     resp = client.responses.create(
         model=model, input=messages, temperature=temperature
@@ -1076,15 +1077,15 @@ class ChatOpenAIWebSearch(BaseChatModel):
                         parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": txt})
                     elif ptype in {"image_url", "input_image"}:
                         image = p.get("image_url")
-                        image = {"url": image} if isinstance(image, str) else (image or {})
-                        url = image.get("url", "")
                         detail = p.get("detail", "auto")
-                        if isinstance(url, str) and url.startswith("data:"):
-                            header, b64 = url.split(",", 1)
-                            blob = base64.b64decode(b64)
-                            uploaded = self._client.files.create(file=io.BytesIO(blob), purpose="vision")
-                            parts.append({"type": "input_image", "image_url": {"file_id": uploaded.id}, "detail": detail})
-                        else:
+                        if isinstance(image, dict):
+                            file_id = image.get("file_id")
+                            url = image.get("url")
+                            if file_id:
+                                parts.append({"type": "input_image", "file_id": file_id, "detail": detail})
+                            elif url:
+                                parts.append({"type": "input_image", "image_url": url, "detail": detail})
+                        elif isinstance(image, str):
                             parts.append({"type": "input_image", "image_url": image, "detail": detail})
                     elif ptype == "file":
                         f = p.get("file", {})
