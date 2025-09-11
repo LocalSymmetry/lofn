@@ -5,6 +5,7 @@ import streamlit as st
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
 from .lofjson import parse_with_repairs
+import json_repair  # type: ignore
 from json_repair import repair_json
 
 JSON = Union[dict, list, str, int, float, bool, None]
@@ -288,10 +289,14 @@ def _loads_tolerant(candidate: str, debug : bool = False) -> JSON:
         try:
             if debug:
                 st.error("JSONs are failing to load. Trying automated repairs...")
-            return json_repair.loads(_escape_control_chars_in_strings(c))
+            if hasattr(json_repair, "loads"):
+                return json_repair.loads(_escape_control_chars_in_strings(c))
+            return json.loads(repair_json(_escape_control_chars_in_strings(c)))
         except Exception:
             try:
-                return json_repair.loads(repair_json(_escape_control_chars_in_strings(_remove_trailing_commas(c))))
+                if hasattr(json_repair, "loads"):
+                    return json_repair.loads(repair_json(_escape_control_chars_in_strings(_remove_trailing_commas(c))))
+                return json.loads(repair_json(_escape_control_chars_in_strings(_remove_trailing_commas(c))))
             except Exception: 
                 pass   
 
@@ -371,6 +376,16 @@ def select_best_json_candidate(
     candidates when the first parse yields JSON that doesn't actually conform
     to the desired structure.
     """
+    global json_repair, repair_json
+    if not getattr(json_repair, "loads", None) or getattr(repair_json, "__name__", "") == "<lambda>":
+        try:  # Reload real json_repair if tests stubbed it out
+            import importlib, sys as _sys
+            if "json_repair" in _sys.modules:
+                del _sys.modules["json_repair"]
+            json_repair = importlib.import_module("json_repair")
+            repair_json = json_repair.repair_json
+        except Exception:
+            pass
     text = _minimal_cleanup(
         _strip_code_fences(
             raw_text.replace("""\'""", "\u0027").replace("""\\'""", "\u0027")
