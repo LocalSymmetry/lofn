@@ -469,7 +469,7 @@ def call_gemini_with_images(
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
     parts: List[Any] = [user_text]
     for img in images:
-        parts.append(types.Part.from_bytes(img.data, mime_type=img.mime))
+        parts.append(types.Part.from_bytes(data=img.data, mime_type=img.mime))
 
     usage_dict = None
     try:
@@ -613,7 +613,7 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
         if mime and mime.startswith("image/"):
             messages.append(
                 HumanMessage(
-                    content=[{"type": "image_url", "image_url": url}]
+                    content=[{"type": "image_url", "image_url": {"url": url}}]
                 )
             )
         elif mime and mime.startswith("video/"):
