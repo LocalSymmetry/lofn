@@ -7,7 +7,7 @@ import streamlit as st
 import yaml
 import base64
 
-from .image_generation import (
+from image_generation import (
     render_image_controls,
     get_model_params,
     generate_dalle_images,
