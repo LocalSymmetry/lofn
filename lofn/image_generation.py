@@ -10,18 +10,12 @@ import os
 import time
 import asyncio
 from config import Config
-try:
-    from .helpers import *  # type: ignore # noqa: F401,F403
-except ModuleNotFoundError:  # pragma: no cover - fallback when run as script
-    from helpers import *  # type: ignore # noqa: F401,F403
+from helpers import *
 import logging
 logger = logging.getLogger(__name__)
 import plotly.graph_objects as go
 import pandas as pd
-try:
-    from .llm_integration import *  # type: ignore # noqa: F401,F403
-except ModuleNotFoundError:  # pragma: no cover - fallback when run as script
-    from llm_integration import *  # type: ignore # noqa: F401,F403
+from llm_integration import * 
 from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
