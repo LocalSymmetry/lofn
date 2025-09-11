@@ -33,7 +33,6 @@ def test_prepare_image_messages_limit():
         part = m.content[0]
         assert part["type"] == "image_url"
         url = part["image_url"]
-        if isinstance(url, dict):
-            url = url.get("url", "")
+        assert isinstance(url, str)
         assert url.startswith("data:image/")
         assert m.additional_kwargs == {}

@@ -4,7 +4,7 @@ import re
 import streamlit as st
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
-from lofjson import parse_with_repairs
+from .lofjson import parse_with_repairs
 from json_repair import repair_json
 
 JSON = Union[dict, list, str, int, float, bool, None]
