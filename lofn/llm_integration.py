@@ -1029,38 +1029,55 @@ class ChatOpenAIWebSearch(BaseChatModel):
         )
         self._client = OpenAI(api_key=openai_api_key)
 
-    def _convert_messages(self, messages: List[BaseMessage]) -> List[Dict[str, str]]:
-        converted = []
+    def _convert_messages(self, messages: List[BaseMessage]) -> List[Dict[str, Any]]:
+        """Map LangChain messages to OpenAI Responses schema while preserving multimodal parts."""
+        out: List[Dict[str, Any]] = []
         for m in messages:
+            role = "user"
             if isinstance(m, SystemMessage):
-                converted.append(
-                    {
-                        "role": "system",
-                        "content": [{"type": "input_text", "text": m.content}],
-                    }
-                )
-            elif isinstance(m, HumanMessage):
-                converted.append(
-                    {
-                        "role": "user",
-                        "content": [{"type": "input_text", "text": m.content}],
-                    }
-                )
+                role = "system"
             elif isinstance(m, AIMessage):
-                converted.append(
-                    {
-                        "role": "assistant",
-                        "content": [{"type": "output_text", "text": m.content}],
-                    }
-                )
+                role = "assistant"
+
+            parts: List[Dict[str, Any]] = []
+            content = getattr(m, "content", "")
+
+            if isinstance(content, str):
+                parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": content})
+            elif isinstance(content, list):
+                for p in content:
+                    if not isinstance(p, dict):
+                        parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": str(p)})
+                        continue
+                    ptype = p.get("type", "text")
+                    if ptype in {"text", "input_text", "output_text"}:
+                        txt = p.get("text", "")
+                        parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": txt})
+                    elif ptype in {"image_url", "input_image"}:
+                        image = p.get("image_url")
+                        image = {"url": image} if isinstance(image, str) else (image or {})
+                        url = image.get("url", "")
+                        detail = p.get("detail", "auto")
+                        if isinstance(url, str) and url.startswith("data:"):
+                            header, b64 = url.split(",", 1)
+                            blob = base64.b64decode(b64)
+                            uploaded = self._client.files.create(file=io.BytesIO(blob), purpose="vision")
+                            parts.append({"type": "input_image", "image_url": {"file_id": uploaded.id}, "detail": detail})
+                        else:
+                            parts.append({"type": "input_image", "image_url": image, "detail": detail})
+                    elif ptype == "file":
+                        f = p.get("file", {})
+                        b64 = f.get("b64_json")
+                        if b64:
+                            blob = base64.b64decode(b64)
+                            uploaded = self._client.files.create(file=io.BytesIO(blob), purpose="vision")
+                            parts.append({"type": "input_file", "file_id": uploaded.id})
+                    # silently drop unknown blocks
             else:
-                converted.append(
-                    {
-                        "role": "user",
-                        "content": [{"type": "input_text", "text": m.content}],
-                    }
-                )
-        return converted
+                parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": str(content)})
+
+            out.append({"role": role, "content": parts})
+        return out
 
     def _generate(
         self,
@@ -1070,7 +1087,6 @@ class ChatOpenAIWebSearch(BaseChatModel):
         **kwargs: Any,
     ) -> ChatResult:
         input_messages = self._convert_messages(messages)
-        input_messages = _normalize_responses_messages(input_messages)
         tool_type_candidates = ["web_search", "web_search_preview"]
         last_err = None
         for tool_type in tool_type_candidates:
@@ -1372,7 +1388,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             return ChatOpenAI(
                 model=model,
                 temperature=1,
-                max_completion_tokens=max_tokens,
+                max_tokens=max_tokens,
                 openai_api_key=Config.OPENAI_API,
             )
         elif model.startswith("gpt"):
@@ -2596,18 +2612,43 @@ def run_personality_chat(
     system_prompt: str = personality_chat_template,
 ):
     """Run a free-form chat with a given personality using the COGNITION MATRIX template."""
+    media_parts = input_media or []
+    if not model.startswith("gpt-5"):
+        media_parts = [p for p in media_parts if p.get("type") in ("image_url", "input_image")]
+
     user_message = HumanMessage(
-        content=[{"type": "text", "text": user_input}, *(input_media or [])]
+        content=[{"type": "text", "text": user_input}, *media_parts]
     )
     if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
         raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
-    llm = get_llm(
-        model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
-    )
+
     readme_path = Path('/workspace/lofn/README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     system_text = system_prompt.replace("{personality}", personality_prompt).replace(
         "{lofn_readme}", lofn_readme
+    )
+
+    if media_parts and model.startswith("gemini-2.5"):
+        assets: List[ImageAsset] = []
+        for p in media_parts:
+            if p.get("type") in ("image_url", "input_image"):
+                img = p.get("image_url")
+                img = {"url": img} if isinstance(img, str) else (img or {})
+                url = img.get("url", "")
+                if isinstance(url, str) and url.startswith("data:"):
+                    header, b64 = url.split(",", 1)
+                    mime = header.split(";")[0].split(":")[1]
+                    data = base64.b64decode(b64)
+                    assets.append(ImageAsset(data=data, mime=mime, data_url=url))
+        text, _ = call_gemini_with_images(
+            user_text=f"{system_text}\n\n{user_input}",
+            images=assets,
+            model=model,
+        )
+        return text
+
+    llm = get_llm(
+        model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
     )
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=system_text),
@@ -2652,8 +2693,12 @@ async def stream_personality_chat(
     selected model it falls back to returning the full response in one chunk.
     """
 
+    media_parts = input_media or []
+    if not model.startswith("gpt-5"):
+        media_parts = [p for p in media_parts if p.get("type") in ("image_url", "input_image")]
+
     user_message = HumanMessage(
-        content=[{"type": "text", "text": user_input}, *(input_media or [])]
+        content=[{"type": "text", "text": user_input}, *media_parts]
     )
     if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
         raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
