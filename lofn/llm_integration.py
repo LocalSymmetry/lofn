@@ -59,10 +59,16 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         compress_image_bytes,
     )
 
-from parsing import (
+try:
+    from .parsing import (
         select_best_json_candidate,
         validate_schema,
-)
+    )
+except ModuleNotFoundError:  # pragma: no cover - fallback for script usage
+    from parsing import (
+        select_best_json_candidate,
+        validate_schema,
+    )
 import plotly.graph_objects as go
 import random
 import numpy as np
@@ -447,8 +453,18 @@ def call_anthropic_with_images(user_text: str, images: List[ImageAsset], model: 
     return out, usage_dict
 
 
-def call_gemini_with_images(user_text: str, images: List[ImageAsset], model: str = "gemini-1.5-pro") -> Tuple[str, Optional[dict]]:
-    import google.generativeai as genai
+def call_gemini_with_images(
+    user_text: str, images: List[ImageAsset], model: str = "gemini-1.5-pro"
+) -> Tuple[str, Optional[dict]]:
+    try:  # Prefer new package name but support legacy import
+        import google.generativeai as genai  # type: ignore
+    except ModuleNotFoundError:  # pragma: no cover - import fallback
+        try:
+            import google.genai as genai  # type: ignore
+        except ModuleNotFoundError as exc:
+            raise ModuleNotFoundError(
+                "google.generativeai or google.genai is required"
+            ) from exc
 
     genai.configure()
     ensure_vision_capable("google", model, bool(images))
@@ -598,7 +614,7 @@ def prepare_image_messages(images: List) -> List[HumanMessage]:
         if mime and mime.startswith("image/"):
             messages.append(
                 HumanMessage(
-                    content=[{"type": "image_url", "image_url": {"url": url}}]
+                    content=[{"type": "image_url", "image_url": url}]
                 )
             )
         elif mime and mime.startswith("video/"):

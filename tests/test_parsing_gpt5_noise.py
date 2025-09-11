@@ -8,7 +8,7 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, REPO_ROOT)
 
 from lofn.parsing import select_best_json_candidate
-from lofjson import parse_with_repairs
+from lofn.lofjson import parse_with_repairs
 
 
 def test_personality_from_logged_content():
