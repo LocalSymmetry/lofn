@@ -36,10 +36,12 @@ from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
 import json
 
-import vertexai
-from vertexai.preview.vision_models import ImageGenerationModel
-from google import genai
-from google.genai import types
+try:
+    import vertexai
+    from vertexai.preview.vision_models import ImageGenerationModel
+except Exception:  # pragma: no cover - optional dependency
+    vertexai = None
+    ImageGenerationModel = None
 
 image_title_schema = {
     "title": str,
@@ -166,6 +168,7 @@ def generate_google_imagen_image(params, debug=False):
 def generate_gemini_flash_image(params, debug=False):
     """Generate images using Gemini 2.5 Flash Image (aka Nano Banana)."""
     try:
+        from google import genai
         client = genai.Client(api_key=Config.GOOGLE_API_KEY)
         prompt = params.get("prompt", "")
 

@@ -182,8 +182,9 @@ VISION_MODELS = {
         "claude-3-haiku-20240307"
     },
     "google": {
-        "gemini-2.5-pro", 
+        "gemini-2.5-pro",
         "gemini-2.5-flash",
+        "gemini-2.5-flash-image-preview",
         "gemini-1.5-pro",
         "gemini-1.5-flash",
         "gemini-2.0-flash",
@@ -242,7 +243,16 @@ def count_tokens_anthropic(text: str) -> Optional[int]:
 
 
 def count_tokens_google_gemini(text: str) -> Optional[int]:
-    return None
+    """Best-effort token counting for Google Gemini models."""
+    if genai is None:
+        return None
+    try:
+        import os
+        client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+        resp = client.models.count_tokens(model="gemini-1.5-pro", contents=[text])
+        return getattr(resp, "total_tokens", None)
+    except Exception:
+        return None
 
 
 def count_tokens_openrouter(text: str) -> Optional[int]:
@@ -456,30 +466,25 @@ def call_anthropic_with_images(user_text: str, images: List[ImageAsset], model: 
 def call_gemini_with_images(
     user_text: str, images: List[ImageAsset], model: str = "gemini-1.5-pro"
 ) -> Tuple[str, Optional[dict]]:
-    try:  # Prefer new package name but support legacy import
-        import google.generativeai as genai  # type: ignore
-    except ModuleNotFoundError:  # pragma: no cover - import fallback
-        try:
-            import google.genai as genai  # type: ignore
-        except ModuleNotFoundError as exc:
-            raise ModuleNotFoundError(
-                "google.generativeai or google.genai is required"
-            ) from exc
+    if genai is None or types is None:
+        raise ModuleNotFoundError("google.genai is required")
 
-    genai.configure()
+    import os
     ensure_vision_capable("google", model, bool(images))
 
-    model_obj = genai.GenerativeModel(model)
-    parts = [user_text] + [{"mime_type": img.mime, "data": img.data} for img in images]
+    client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+    parts: List[Any] = [user_text]
+    for img in images:
+        parts.append(types.Part.from_bytes(img.data, mime_type=img.mime))
 
     usage_dict = None
     try:
-        tc = model_obj.count_tokens(parts)
+        tc = client.models.count_tokens(model=model, contents=parts)
         usage_dict = {"input_tokens": tc.total_tokens}
     except Exception:
         pass
 
-    resp = model_obj.generate_content(parts)
+    resp = client.models.generate_content(model=model, contents=parts)
     text = resp.text or ""
     return text, usage_dict
 
