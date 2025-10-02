@@ -113,6 +113,29 @@ div.stDownloadButton > button:focus {
   box-shadow: 0 0 0 3px var(--ring);
 }
 
+/* Restore Streamlit copy buttons inside code blocks */
+[data-testid="stCopyButton"] {
+  pointer-events: auto !important;
+}
+
+[data-testid="stCopyButton"] button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 999px !important;
+  color: var(--muted) !important;
+  padding: 0.2rem !important;
+  min-width: auto;
+  line-height: 1;
+}
+
+[data-testid="stCopyButton"] button:hover,
+[data-testid="stCopyButton"] button:focus {
+  background: rgba(14, 165, 233, 0.14) !important;
+  color: var(--primary) !important;
+  outline: none !important;
+}
+
 /* Inputs — use component wrappers + native inputs */
 [data-testid="stTextInput"] input,
 [data-testid="stTextArea"] textarea,
