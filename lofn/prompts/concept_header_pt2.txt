@@ -1,17 +1,89 @@
-## Concept and Mediums Guide
+## Concepts and Mediums Guide
 
-A future system will generate art based on concept and medium pairs. The concept tells the system what it needs to create, the scene that needs to be set, or the emotion to be expressed. The medium tells it what art medium to use to make the expression on. So concepts tend to be very focused on the content of the art while the mediums are focused on the method, style, and form the art takes. Make sure to capture the core pieces of the user’s idea including details the art system will need to realize it.
+This system generates art based on concept and medium pairs. The concept defines what needs to be created—the scene to set or the emotion to express. The medium specifies the art form used to convey the expression. Concepts focus on the content of the art, while mediums focus on the method, style, and form the art takes.
 
-### Concept Examples:
+When creating concepts, use proper nouns (names of people who are not artists are acceptable) and precise descriptors. The concept should *precisely* convey what the system should generate.
 
-1. A fluffy kitten, with its fur standing on end, attempting to roar while wearing an oversized Godzilla costume, the tail dragging comically behind it.
-2. A steampunk florist tending her shop.
-3. Fear of the AI-driven future, even though it will be better.
+Once the concepts and mediums are chosen, a subsequent stage will generate image prompts based on the concept and medium, filling in details like shot angle, object placement, and additional descriptors and styles. Ensure these conceptual choices are covered in the Concept and Medium construction steps.
 
-### Medium Examples:
+**Consider the updated creativity spectrum and style axes when making concepts.**
 
-Vintage Steampunk – Medium: "Mixed media with aged metals and clockwork components."
-Modern Minimalism – Medium: "Digital art with clean lines and a monochromatic palette."
-Surrealist Dreamscape – Medium: "Oil painting with melting and distorted forms."
-Futuristic Cyberpunk – Medium: "Neon acrylics with holographic overlays."
-Abstract Expressionism – Medium: "Acrylics with heavy texture and bold colors."
+### Examples of Concept Generation:
+
+1. **User Input:** "A serene forest at twilight"
+
+   **Creativity Spectrum:**
+   - Literal: 50%
+   - Inventive: 30%
+   - Transformative: 20%
+
+   **Style Axes:**
+   - **Abstraction vs. Realism:** 60
+   - **Emotional Valence:** 65
+   - **Color Intensity:** 40
+   - **Symbolic Density:** 30
+   - **Compositional Complexity:** 55
+   - **Textural Richness:** 80
+   - **Symmetry vs. Asymmetry:** 40
+   - **Novelty:** 25
+   - **Figure-Ground Relationship:** 60
+   - **Dynamic vs. Static:** 20
+
+   **Essence:** The tranquil beauty and mystery of a forest as day transitions to night.
+
+   **Facets:**
+   1. Interplay of light and shadow
+   2. Sense of timelessness and ancient wisdom
+   3. Harmony between flora and fauna
+   4. Transition from day to night
+   5. Subtle signs of life amidst stillness
+
+   **Generated Concept:** A misty redwood forest clearing bathed in the soft, fading light of dusk, with ancient trees standing as silent guardians around a reflective pond.
+
+2. **User Input:** "A futuristic metropolis"
+
+   **Creativity Spectrum:**
+   - Literal: 10%
+   - Inventive: 40%
+   - Transformative: 50%
+
+   **Style Axes:**
+   - **Abstraction vs. Realism:** 40
+   - **Emotional Valence:** 70
+   - **Color Intensity:** 85
+   - **Symbolic Density:** 60
+   - **Compositional Complexity:** 90
+   - **Textural Richness:** 70
+   - **Symmetry vs. Asymmetry:** 30
+   - **Novelty:** 95
+   - **Figure-Ground Relationship:** 40
+   - **Dynamic vs. Static:** 85
+
+   **Essence:** A visionary urban landscape that pushes the boundaries of architecture, technology, and sustainable living.
+
+   **Facets:**
+   1. Innovative architectural designs
+   2. Integration of nature and technology
+   3. Advanced transportation systems
+   4. Sustainable energy solutions
+   5. Diverse and harmonious social interactions
+
+   **Generated Concept:** A vertically oriented cityscape where buildings defy gravity, interconnected by transparent maglev transit tubes and floating bioluminescent gardens.
+
+**When generating concepts, consider how the style axes influence the level of detail, emotional tone, and overall approach to the user's idea. The creativity spectrum should guide the balance between realistic and fantastical elements in the concept.**
+
+### Examples of Medium Selection:
+
+1. **User Input:** "A serene forest at twilight"
+
+   **Generated Concept:** A misty redwood forest clearing bathed in the soft, fading light of dusk, with ancient trees standing as silent guardians around a reflective pond.
+
+   **Selected Medium:** Hyper-detailed digital painting with focus stacking techniques, emphasizing both macro and micro details of the forest ecosystem.
+
+2. **User Input:** "A futuristic metropolis"
+
+   **Generated Concept:** A vertically oriented cityscape where buildings defy gravity, interconnected by transparent maglev transit tubes and floating bioluminescent gardens.
+
+   **Selected Medium:** 3D fractal architecture rendering with procedurally generated holographic overlays and simulated light refraction.
+
+**When selecting mediums, consider how they can best represent the concept while adhering to the style axes. The chosen medium should enhance the concept's key elements and support the desired level of abstraction, texture, and complexity.**

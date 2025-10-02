@@ -1,201 +1,349 @@
-## Midjourney and DALL-E Art Guides
+## Image Generator Art Guide (DALL-E, Flux Pro Ultra, Midjourney, Ideogram v2, Google Imagen 3, etc.)
 
 ### Detailed Instructions for the AI Artist
 
-1. **Brainstorm Five Features**:
-   - For each concept, brainstorm five key features that best capture the essence of the subject. This includes notable traits, actions, settings, or elements that define the concept.
-   - **Example**:
-     - For a "futuristic cityscape":
-       1. Towering neon-lit skyscrapers
-       2. Flying cars
-       3. Pedestrians in holographic attire
-       4. Digital billboards
-       5. Cybernetic enhancements on people
+**SPECIAL NOTES**: This guide is designed to help you create the most compelling and controlled images using advanced AI models like DALL·E 3 and Ideogram v2. **Do not use the examples verbatim. Create your own examples that best suit your concept and medium.**
 
-2. **Generate Descriptors for Each Feature**:
-   - Write detailed descriptors for each feature, ensuring important elements are highlighted and clearly visible.
-   - **Example**:
-     - “The towering neon-lit skyscrapers, adorned with holographic advertisements, loom over the bustling streets filled with flying cars and pedestrians in futuristic attire.”
+#### **Prompt Structuring Guidelines**
 
-3. **Call Out the Medium**:
-   - Clearly specify the artistic medium to set the tone and style of the image.
-   - **Examples**:
-     - “In the flowing grains of perfectly arranged sand”
-     - “With the experimental flair of mixed media”
-     - “In the tactile sensation of fiber art”
+- **Front-Load Important Details**: Begin your prompt with the most crucial elements to ensure they receive the highest attention.
+- **Use Clear and Specific Language**: Be explicit with your descriptions to guide the model effectively.
+- **Balance Detail and Conciseness**: Include essential details without unnecessary verbosity.
 
-4. **Describe the Scene in Detail**:
-   - Provide a vivid and detailed description of the scene, including the subject, their actions, and the environment.
-   - **Examples**:
-     - “An old man wearing 1950's retro-futuristic glasses rubbing his eyes with his left hand, standing on a cobblestone street with vintage cars passing by.”
-     - “A futuristic cityscape with towering skyscrapers adorned with neon lights, bustling with flying cars and pedestrians in holographic attire.”
+---
 
-5. **Use Unique Artistic Descriptors**:
-   - Incorporate unique terms and phrases to add depth and differentiate the scene.
-   - **Examples**:
-     - Biomorphic forms, geometric precision, gestural strokes.
-     - “A surreal landscape with biomorphic forms and geometric precision, featuring gestural strokes that evoke movement and fluidity.”
+### **Enhanced Comprehensive Step-by-Step Instructions for Image Generation**
 
-6. **Set the Mood Explicitly**:
-   - Describe the mood of the scene clearly and concisely.
-   - **Examples**:
-     - “Joyous and happy,” “sinister and dark,” “serene and peaceful.”
+#### **Creating Award-Winning Image Generator Prompts**
 
-7. **Define the Perspective Clearly**:
-   - Specify the type of perspective to be used in the image.
-   - **Examples**:
-     - One-Point Perspective, Aerial Perspective, Frog's Eye View.
+**Introduction:**
 
-8. **Detail the Lighting Conditions**:
-   - Describe the lighting to shape the scene’s ambiance.
-   - **Examples**:
-     - Spotlighting, candlelit ambience, moonlight, silhouette lighting.
+To craft compelling and detailed prompts for AI image generation models (such as DALL·E 3, Midjourney, or Ideogram v2), follow these comprehensive steps. These guidelines aim to help you include all necessary elements, ensuring the AI generates images that are unique, visually stunning, and align closely with your artistic vision.
 
-9. **Specify the Color Palette**:
-   - Use specific color palettes or detailed color descriptions to set the visual tone of the image.
-   - **Examples**:
-     - “1980's CMYK color palette,” “Neon Nightlife,” “Tropical Paradise.”
+---
 
-10. **Detail Tools and Settings**:
-    - Describe the tools and their artistic effects.
-    - **Examples**:
-      - “Chunkiness of acrylic finger paints,” “Using a Nikon D7500 camera.”
+**Step 1: Brainstorm Key Features**
 
-11. **Frame the Subjects and Type of Shot**:
-    - Describe subject positions and camera angles.
-    - **Examples**:
-      - Wide Shot (WS), Close-Up (CU), Low-Angle Tracking Shot.
+- **Action:**
+  - Identify at least **five to seven** key features that best capture the essence of your **concept**.
+  - Think about elements that are central to the concept and will make the image stand out.
 
-12. **Capture the Artistic Style**:
-    - Describe the artistic style in detail.
-    - **Examples**:
-      - Dark Academia, Cyberpop, Cottagecore, Synthwave.
+- **Consider:**
+  - Subjects, objects, or characters.
+  - Environments or settings.
+  - Symbolic elements or motifs.
+  - Emotional tones or moods.
+  - Unique attributes or characteristics.
 
-13. **Frame the Subject**:
-    - Use detailed framing techniques to position the subject within the composition.
-    - **Examples**:
-      - Leading Lines, Golden Spiral, Dynamic Tension.
+- **Example:**
+  - For "an ethereal underwater kingdom":
+    1. Majestic coral castles illuminated by bioluminescent flora.
+    2. Schools of exotic fish weaving through ancient ruins.
+    3. Merfolk adorned with pearls and seashell armor.
+    4. Sunlight filtering through the water's surface, casting a golden glow.
+    5. Giant sea turtles serving as guardians at the city's entrance.
+    6. Swirling currents forming mesmerizing patterns.
+    7. Crystal-clear waters revealing the depth of the ocean floor.
 
-14. **Set the Composition Principles**:
-    - Describe the composition principles that guide the visual structure of the image.
-    - **Examples**:
-      - Balance, contrast, emphasis, movement, rhythm.
+---
 
-15. **Specify Artistic Effects**:
-    - Detail post-processing effects or artistic enhancements.
-    - **Examples**:
-      - Layering Effects, Glitch Effect, Tilt-Shift Effect.
+**Step 2: Elaborate on Each Feature**
 
-16. **Incorporate Adjectives and Analogies**:
-    - Use descriptive adjectives and analogies to add nuance and depth to the image. For instance, describing something in terms of another thing can create a unique visual interpretation.
-    - **Examples**:
-      - “A futuristic city skyline at dusk” becomes “A futuristic city skyline at dusk with glowing neon signs and flying cars zooming past towering skyscrapers.”
-      - “An office building that looks like a sliced watermelon.”
+- **Action:**
+  - Write detailed descriptions for each feature, using vivid and sensory language.
+  - Highlight important visual and emotional aspects.
 
-17. **Utilize Prompt Stacking**:
-    - Write multiple standalone prompts and stack them to create images that fulfill several conditions simultaneously.
-    - **Example**:
-      - For an image of a robot that looks like a knight riding a mechanical dragon in the moonlight, stack prompts as follows: “A robot,” “resembling a knight,” “riding a dragon,” “a mechanical dragon,” “in the moonlight.”
+- **Consider:**
+  - Colors, textures, shapes, and sizes.
+  - Movements or interactions between elements.
+  - Emotional or symbolic significance.
 
-18. **Apply Meta-Prompts**:
-    - Use higher-order instructions to guide the structure of your actual prompt.
-    - **Example**:
-      - “Write a prompt requesting an image of an enchanting elvish kingdom bathed in twilight.”
+- **Example:**
+  - "The coral castles rise like grand spires, encrusted with shimmering gems and glowing anemones that pulse softly. Schools of exotic fish, their scales reflecting a spectrum of colors, weave intricately through the ancient ruins overgrown with seaweed."
 
-19. **Experiment with Mega Prompts**:
-    - Combine complex ideas into a single comprehensive instruction to produce high-quality images.
-    - **Example**:
-      - “Create a detailed illustration of a steampunk airship soaring over a Victorian-era city at sunset, with billowing steam and intricate mechanical details.”
+---
 
-20. **Emphasize Cultural and Contextual Awareness**:
-    - Be sensitive to cultural nuances and context to avoid stereotypes or inaccuracies.
-    - **Example**:
-      - When creating images representing specific cultures, ensure the prompt includes respectful and accurate descriptions of cultural elements.
+**Step 3: Define the Artistic Medium and Style**
 
-21. **Utilize Negative Space**:
-   - Describe how to use negative space to create impactful compositions.
-   - **Example**:
-     - “A serene landscape with a lone tree, surrounded by open space to emphasize isolation and tranquility.”
+- **Action:**
+  - Clearly specify the **artistic medium** and **style** to set the tone and visual appearance of the image.
 
-22. **Request Specific Textures and Materials**:
-   - Specify textures and materials to enhance realism and sensory appeal.
-   - **Example**:
-     - “A close-up of a rough stone wall with moss growing in the crevices.”
+- **Consider:**
+  - Traditional mediums (oil painting, watercolor, charcoal sketch).
+  - Digital mediums (digital illustration, 3D rendering, photorealistic CGI).
+  - Artistic styles (impressionism, surrealism, hyperrealism, abstract).
 
-23. **Integrate Feedback and Learning**:
-   - Observe how the AI responds to different phrases and refine prompts based on the generated outputs.
-   - **Example**:
-     - Adjust prompts iteratively to better align with the desired visual outcome.
+- **Example:**
+  - "Rendered as a hyper-detailed digital illustration with photorealistic textures and dynamic lighting effects."
 
-24. **Incorporate Temporal and Kinetic Dimensions**:
-   - Capture a specific time of day or suggest movement to add dynamism or serenity to the image.
-   - **Example**:
-     - “A bustling market square at dawn with merchants setting up stalls.”
+---
 
-25. **Detail Cultural and Historical Contexts**:
-   - Ensure accuracy and respect for cultural or historical contexts within the artwork.
-   - **Example**:
-     - “An ancient Greek agora with philosophers debating amidst marble columns.”
+**Step 4: Craft a Strong Opening Description**
 
-26. **Explore Diverse Image Outputs with Parameter Manipulation**:
-   - Experiment with aspect ratios, styles, and other parameters to generate diverse and interesting images.
-   - **Example**:
-     - “A vertical image of a rainforest canopy with vibrant, hyper-realistic details.”
+- **Action:**
+  - Begin your prompt with the most crucial elements to capture the AI's focus.
+  - Summarize the main scene in a compelling opening sentence.
 
-27. **Character Consistency Techniques**:
-   - Maintain consistency for characters across multiple prompts using detailed descriptions and constant seeds.
-   - **Example**:
-     - “A young wizard in various stages of learning, from apprentice to master, in a series of illustrations.”
+- **Consider:**
+  - Using powerful adjectives and imagery.
+  - Introducing the primary subject and setting immediately.
 
-28. **Use of Mega Prompts**:
-   - Create complex, single comprehensive prompts to distill large ideas into professional-quality images.
-   - **Example**:
-     - “A grand space opera scene with starships engaging in battle against a backdrop of a distant galaxy, featuring detailed spacecraft designs and vivid, cinematic lighting.”
+- **Example:**
+  - "An ethereal underwater kingdom illuminated by cascading bioluminescent light."
 
-29. **Refine and Experiment with Subtractive Prompts**:
-   - Remove unwanted elements from the generated image by specifying what should be excluded.
-   - **Example**:
-     - “A peaceful mountain landscape without any signs of human presence.”
+---
 
-30. ** Follow Ethical Guidelines for AI-Driven Image Generation**:
-   - Make sure the prompt follows ethical guidelines around cultural senstivity while still allowing for artistic representation of complex and graphic topics.
+**Step 5: Incorporate Key Visual Elements Early**
 
-### Ethical Guidelines for AI-Driven Image Generation
+- **Action:**
+  - Immediately follow the opening with essential details and primary features identified earlier.
 
-1. **Respect for Cultural Sensitivity**:
-   - Ensure prompts respect cultural nuances and avoid stereotypes. Include accurate and respectful descriptions when representing different cultures.
-   - **Example**:
-     - When depicting a traditional Japanese tea ceremony, include accurate details such as the tea set, attire, and setting, while avoiding any stereotypes or cultural misrepresentations.
+- **Consider:**
+  - Ensuring that important subjects are mentioned prominently.
+  - Highlighting interactions between elements.
+  - Set specifics! LEAVE NO NOUN GENERIC!
+    - for animals determine fur patterns, skin tones, teeth, or other distinguishing features.
+    - for people determine age, gender presentation, body type, ethnicity, social class, and clothing.
+    - for places determine the real world location or describe the nearby buildings, landmarks landscape, or scenery.
 
-2. **Promote Inclusivity and Diversity**:
-   - Create prompts that promote inclusivity and reflect diverse backgrounds and perspectives. Strive for balanced representation in all generated content.
-   - **Example**:
-     - Ensure that images of people include a variety of ages, genders, ethnicities, and abilities.
+- **Example:**
+  - "Majestic bright staghorn coral castles adorned with glowing anemones stand amidst ancient Aztec ruins teeming with diverse Gulf of Mexico marine life."
 
-3. **Accuracy in Representation**:
-   - Aim for accuracy when depicting historical events, scientific concepts, or specific professions. Avoid spreading misinformation through generated images.
-   - **Example**:
-     - When creating an image of a historical event, use accurate period details and context to represent it faithfully.
+---
 
-4. **Ethical Use of Sensitive Topics**:
-   - Handle sensitive topics such as mental health, disability, and socio-political issues with care and respect. Avoid sensationalism and strive for a compassionate portrayal.
-   - **Example**:
-     - When creating an image related to mental health, focus on promoting understanding and empathy rather than depicting stereotypes or stigmatizing imagery.
+**Step 6: Describe the Scene in Rich Detail**
 
-5. **User Privacy and Consent**:
-   - Ensure that any prompts involving real individuals or private scenarios respect privacy and consent. Do not create images of real people without explicit permission.
-   - **Example**:
-     - Avoid creating images of private individuals in personal settings without their consent. Focus on public figures or fictional characters where appropriate.
+- **Action:**
+  - Expand on the setting, characters, and environment.
+  - Use vivid descriptions to paint a clear picture.
 
-### Example 1: Mythical Forest Guardian
-**Concept**: Mythical Forest Guardian
-**Medium**: Watercolor Painting
-In the tranquil hues of dawn, a majestic centaur stands guard at the entrance of an ancient forest, the embodiment of nature's protector. His equine body is adorned with intricate tribal markings, and his human torso, rippling with muscle, is garbed in flowing, earthy robes. His piercing eyes convey wisdom and a deep connection to the forest. The watercolor medium captures the ethereal glow of the early morning light filtering through the dense canopy, casting a serene yet powerful aura around the guardian. The scene is filled with lush foliage, vibrant flowers, and the soft trickle of a nearby stream, creating a harmonious and peaceful mood. Birds and woodland creatures gather around, enhancing the sense of a living, breathing forest. The centaur's vigilant gaze and the delicate brushstrokes evoke a sense of timeless wisdom and strength. The lighting is soft and diffuse, with gentle shadows adding depth and dimension. The color palette features earthy greens, browns, and subtle hints of vibrant flora.
-### Example 2: Cyberpunk Market
-**Concept**: Cyberpunk Market
-**Medium**: Digital Art
-Amidst the neon-lit alleyways of a bustling cyberpunk market, a street vendor with cybernetic limbs peddles exotic, glowing fruits from distant planets. The vibrant market is alive with a myriad of holographic signs, hovering drones, and a diverse crowd of futuristic city-dwellers in high-tech attire. The digital art medium brings to life the intricate details of the cybernetic enhancements, the dazzling array of neon colors, and the dynamic movement of the crowd. Stalls are filled with various futuristic gadgets and wares, and the air is thick with the sounds of robotic chatter and electronic music. The scene is captured in a wide shot, with an aerial perspective highlighting the chaotic yet mesmerizing atmosphere. The lighting is a blend of neon and natural shadows, creating a striking contrast that emphasizes the market's otherworldly feel. The color palette is dominated by electric blues, vibrant pinks, and neon greens, with reflective surfaces adding to the visual complexity.
-### Example 3: Ancient Warrior Queen
-**Concept**: Ancient Warrior Queen
-**Medium**: Oil Painting
-Under the stormy skies of an ancient battlefield, an imposing warrior queen stands defiantly, her armor gleaming despite the rain. Her fierce gaze pierces through the chaos, commanding her troops with unwavering resolve. The oil painting medium captures the rich textures of her ornate armor, the flowing fabric of her royal cloak, and the dramatic interplay of light and shadow. The scene is dominated by dark, brooding clouds and flashes of lightning, setting a mood of intense determination and strength. The battlefield is strewn with fallen warriors and banners flapping in the wind. The queen's loyal steed, a powerful warhorse, stands by her side, equally adorned in battle regalia. The composition uses leading lines to draw the viewer's eye towards the queen, emphasizing her role as the central figure amidst the turmoil. The color palette features deep reds, steely grays, and flashes of gold, creating a striking contrast that highlights the queen's regal presence.
+- **Consider:**
+  - Including details about textures, patterns, and movement.
+  - Describing the atmosphere and ambience.
+
+- **Example:**
+  - "Merfolk with flowing hair and shimmering tails, adorned with pearls and seashell armor, swim gracefully among swirling schools of vibrantly colored fish."
+
+---
+
+**Step 7: Define the Mood and Emotional Tone**
+
+- **Action:**
+  - Clearly express the intended mood and emotions the image should evoke.
+
+- **Consider:**
+  - Using adjectives that convey feelings (serene, mysterious, exhilarating).
+  - Aligning the emotional tone with the concept.
+
+- **Example:**
+  - "An atmosphere of wonder and tranquility, evoking a sense of awe at the mysteries of the deep."
+
+---
+
+**Step 8: Specify the Perspective and Composition**
+
+- **Action:**
+  - Detail the camera angle, viewpoint, and compositional techniques.
+
+- **Consider:**
+  - Perspectives (eye-level, bird's-eye view, worm's-eye view).
+  - Composition rules (rule of thirds, golden ratio, leading lines).
+
+- **Example:**
+  - "A wide-angle underwater shot capturing the vast expanse of the kingdom, with leading lines from the coral formations guiding the eye toward the central palace."
+
+---
+
+**Step 9: Describe Lighting Conditions**
+
+- **Action:**
+  - Specify the lighting to shape the scene's ambiance and highlight key elements.
+
+- **Consider:**
+  - Light sources (sunlight, moonlight, artificial lights).
+  - Lighting quality (soft, diffused, harsh, dramatic shadows).
+
+- **Example:**
+  - "Soft, diffused sunlight filters through the water's surface, casting shimmering patterns and illuminating the scene with a golden glow, complemented by the gentle radiance of bioluminescent plants."
+
+---
+
+**Step 10: Define the Color Palette**
+
+- **Action:**
+  - Specify dominant colors and color schemes to enhance mood and aesthetics.
+
+- **Consider:**
+  - Harmonious color combinations.
+  - Symbolic meanings of colors.
+
+- **Example:**
+  - "A harmonious blend of deep ocean blues and emerald greens, accented with vibrant coral pinks and glowing turquoise hues."
+
+---
+
+**Step 11: Use Unique and Descriptive Language**
+
+- **Action:**
+  - Incorporate distinctive adjectives, metaphors, and analogies to enrich the description.
+
+- **Consider:**
+  - Avoiding clichés; using fresh and original expressions.
+  - Emphasizing sensory experiences.
+
+- **Example:**
+  - "The scene resembles a dreamscape, where every element flows seamlessly into the next, creating a tapestry of underwater wonders that mesmerizes the senses."
+
+---
+
+**Step 12: Include Unique and Memorable Details**
+
+- **Action:**
+  - Introduce original concepts or unexpected elements that make the image stand out.
+
+- **Consider:**
+  - Adding mythical creatures, symbolic artifacts, or surprising interactions.
+  - Enhancing the narrative aspect of the image.
+
+- **Example:**
+  - "Giant sea turtles with intricately patterned shells etched with ancient runes serve as guardians at the city's entrance, their eyes reflecting the wisdom of the ages."
+
+---
+
+**Step 13: Incorporate Artistic Techniques and Tools**
+
+- **Action:**
+  - Mention any specific artistic techniques, tools, or materials that influence the image's style.
+
+- **Consider:**
+  - Techniques (impasto, chiaroscuro, pointillism).
+  - Materials (metallic inks, textured brushes).
+
+- **Example:**
+  - "Created using digital painting techniques with emphasis on realistic water physics and detailed texture mapping to capture the intricate details of marine life."
+
+---
+
+**Step 14: Emphasize Emotion and Sensory Experiences**
+
+- **Action:**
+  - Convey the emotional impact and sensory aspects of the scene.
+
+- **Consider:**
+  - Describing sounds, smells, or tactile sensations if appropriate.
+  - Highlighting feelings the viewer should experience.
+
+- **Example:**
+  - "Evoke a sense of serenity and fascination, immersing the viewer in the tranquil beauty and endless mysteries of the underwater realm."
+
+---
+
+**Step 15: Incorporate Cultural and Historical Contexts**
+
+- **Action:**
+  - Reference cultural inspirations, myths, or historical elements that enhance the image's depth.
+
+- **Consider:**
+  - Ensuring respectful and accurate representation.
+  - Adding layers of meaning through symbolism.
+
+- **Example:**
+  - "Design elements inspired by ancient Atlantean myths, blending folklore with imaginative fantasy to create a rich cultural tapestry."
+
+---
+
+**Step 16: Specify the Artistic Style and Influences**
+
+- **Action:**
+  - Define the overarching artistic style and any stylistic influences.
+
+- **Consider:**
+  - Combining styles for a unique effect.
+  - Citing art movements or genres.
+
+- **Example:**
+  - "A fusion of surrealism and hyperrealism, combining meticulously detailed textures with fantastical elements."
+
+---
+
+**Step 17: Utilize Advanced Visual Effects**
+
+- **Action:**
+  - Mention any visual effects or techniques that enhance the image's quality.
+
+- **Consider:**
+  - Depth of field, motion blur, bokeh effects.
+  - Lighting effects like glow, reflections, or shadows.
+
+- **Example:**
+  - "Apply a subtle depth of field to focus on the central figures, with a soft bokeh effect on distant marine life, enhancing the sense of depth."
+
+---
+
+**Step 18: Review and Refine the Prompt**
+
+- **Action:**
+  - Read through the entire prompt to ensure clarity, coherence, and completeness.
+
+- **Consider:**
+  - Checking for redundant or conflicting information.
+  - Ensuring the prompt flows logically.
+
+- **Example:**
+  - "Confirm that all key features, moods, and stylistic elements align and that the prompt effectively guides the AI to produce the desired image."
+
+---
+
+**Step 19: Finalize the Prompt**
+
+- **Action:**
+  - Combine all the elements into a cohesive, detailed prompt suitable for the AI model.
+
+- **Consider:**
+  - Keeping the prompt within any length constraints of the AI model.
+  - Using clear, descriptive sentences.
+
+- **Example:**
+
+  > "An ethereal underwater kingdom illuminated by cascading bioluminescent light. Majestic coral castles adorned with glowing anemones and shimmering gems stand amidst ancient ruins overgrown with seaweed. Merfolk with flowing hair and shimmering tails, adorned with pearls and seashell armor, swim gracefully among swirling schools of vibrantly colored fish. Giant sea turtles with intricately patterned shells etched with ancient runes serve as guardians at the city's entrance. Soft, diffused sunlight filters through the water's surface, casting golden rays and illuminating the scene. A harmonious blend of deep blues and emerald greens is accented with vibrant coral pinks and glowing turquoise hues. The atmosphere evokes wonder and tranquility, immersing the viewer in the ocean's mysteries. Created as a hyper-detailed digital illustration combining surrealism and hyperrealism, with emphasis on realistic water physics and intricate textures. Apply a subtle depth of field to focus on central figures, enhancing the sense of depth."
+
+---
+
+#### **Previous Winning Prompts** - USE AS TECHNIQUE INSPIRATION BUT COME UP WITH YOUR OWN PROMPTS
+
+1. **concept**: "As dusk settles over the mystical garden, the witch gently embraces her majestic stag familiar amid luminous blossoms that emit a soft, enchanting glow."
+  **medium**: "Bioluminescent ink artwork utilizing phosphorescent pigments to evoke the enchanting glow of the mystical garden at dusk."
+  **prompt**: "A striking magenta digital portrait fragmenting and glitching, the face cleft down the middle\u2014one half pristine, the other dissolving into chaotic pixels and abstract digital noise through advanced pixel-sorting algorithms and glitch art techniques. The contrast powerfully evokes the tension between identity and digital entropy."
+  **title**: "Glinting Serenity"
+
+2. **concept**: "A violinists silhouette composed of flowing musical scores that fragment into abstract sonic waves, capturing the fleeting essence of sound and the haunting emotion of kenopsia."
+  **medium**: "A kinetic light sculpture capturing the violinists silhouette, with musical scores fragmenting into abstract sonic waves through motion-sensitive lights."
+  **prompt**: "In the darkness of an isolated chamber, a kinetic light sculpture reveals the fluid silhouette of a violinist, composed of musical scores that fragment into abstract sonic waves responsive to the viewers movements. Shifting lights ripple across the scene, mirroring the observers presence with ephemeral patterns. Pulsating colors transition from warm ambers to deep ceruleans, symbolizing the shared yet personal experience of sound, capturing the haunting emotion of kenopsia."
+  **title**: "Echoes of Kenopsia"
+
+3. **concept**: "A gentle yet powerful depiction of Florence Nightingale, illuminated by the warm glow of her lantern, her face conveying a deep sense of compassion and resolve, with a soft, misty atmosphere surrounding her, symbolizing the lives she saved and the hope she brought to the wounded."
+  **medium**: "Illuminated Manuscript Glow: A modern reimagining of illuminated manuscripts, using digital light effects to highlight Florence Nightingale's lantern and create a soft, ethereal glow around her figure, evoking warmth and compassion."
+  **prompt**: "A radiant depiction of Florence Nightingale, her lantern glowing like a sacred beacon of hope amidst a misty hospital landscape. The mist dynamically interacts with the warm, golden light to create an ethereal aura, symbolizing the lives she saved. Her garments flow softly, reflecting the gentle light of the lantern, while her expression exudes a profound sense of compassion and resolve. Illuminated manuscript-inspired patterns frame her figure, blending intricate floral and geometric motifs in gold and emerald with the mist for a seamless effect. The faint silhouettes of hospital beds and soldiers in the background blend subtly into the mist, evoking a quiet narrative of healing and sacrifice. The scene's palette harmonizes warm yellows, deep greens, and muted blues, with the digital lighting effects enhancing the glowing highlights and soft shadows."
+  **title**: "Florence Nightingale is My Favorite Statistician"
+
+4. **concept**: "An elusive black panther emerging gracefully from a cascade of wilting dark roses, its form seamlessly blending into the surrounding shadows of a moonlit sanctuary."
+  **medium**: "Digital chiaroscuro painting emphasizing the play of light and shadow, capturing the panther emerging from wilting dark roses, blending seamlessly into the shadows of the moonlit sanctuary."
+  **prompt**: "A detailed and captivating digital chiaroscuro painting portrays an elusive black panther in fluid motion, emerging gracefully from withering dark roses amidst a moonlit sanctuary. Subtle motion blur emphasizes its silent passage through shadows, its form both seen and unseen. Moonlight casts elongated shadows and silvery highlights, blending dark fantasy realism with impressionistic digital techniques, capturing the dark beauty of her feline form."
+  **title**: "Dark Beauty"
+
+
+---
+
+#### **Ethical Guidelines**
+
+- **Respect Cultural Sensitivity**: Accurately and respectfully represent different cultures and avoid stereotypes.
+- **Promote Inclusivity and Diversity**: Include diverse characters and settings reflecting various backgrounds.
+- **Ensure Accurate Representation**: Depict historical events, professions, and concepts accurately.
+- **Handle Sensitive Topics with Care**: Approach subjects like mental health or social issues thoughtfully and respectfully.
+- **Avoid Disallowed Content**: Do not include offensive, violent, or inappropriate material.
+
+---
+
+#### **Final Reminder**
+
+**Add details! Add details! Add details!** Your prompt should be so vivid and precise that it leaves little room for ambiguity, guiding the AI to generate a unique and compelling image that stands out. Use this comprehensive guide to include all necessary elements, ensuring the best possible outcome with the most control.

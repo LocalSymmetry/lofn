@@ -1,221 +1,317 @@
-# Lofn AI Art Generator
+# Lofn AI — Agentic Art 🎨 · Music 🎵 · Video 🎬 Framework  
+> One‑sentence idea ➜ contest‑topping prompt ➜ (optional) generated media — autonomously.
 
-Lofn is an open-source AI art generator that utilizes advanced natural language processing and image generation techniques to create unique and compelling artwork. It stands out from other AI art generators through its innovative use of Tree of Thoughts prompting and a critic/artist refinement methodology.
+[![GitHub Stars](https://img.shields.io/github/stars/LocalSymmetry/lofn?style=flat-square)](https://github.com/LocalSymmetry/lofn/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/LocalSymmetry/lofn?style=flat-square)](https://github.com/LocalSymmetry/lofn/network)
+[![Last Commit](https://img.shields.io/github/last-commit/LocalSymmetry/lofn?style=flat-square)](https://github.com/LocalSymmetry/lofn/commits/main)
+[![License](https://img.shields.io/github/license/LocalSymmetry/lofn?style=flat-square)](LICENSE)
+[![Docker Ready](https://img.shields.io/badge/Docker‑Ready-blue?style=flat-square&logo=docker&logoColor=white)](#installation)
 
-## Table of Contents
-- [Installation](#installation)
-  - [Docker](#docker)
-- [Usage](#usage)
-- [What Makes Lofn Unique](#what-makes-lofn-unique)
-  - [Tree of Thoughts Prompting](#tree-of-thoughts-prompting)
-  - [Critic/Artist Refinement Methodology](#criticartist-refinement-methodology)
-  - [Backend Infrastructure](#backend-infrastructure)
-- [Awards and Recognition](#awards-and-recognition)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## Installation
+## 👥 Follow Us  <sup>(all channels updated&nbsp;2025‑07)</sup>
 
-To set up Lofn, follow these steps:
+| Platform | Link |
+| :------- | :--- |
+| NightCafe (Art) | https://creator.nightcafe.studio/u/LocalSymmetry |
+| Suno (Music) | https://suno.com/@localsymmetry |
+| YouTube (Music) | https://youtube.com/channel/UCcoAFyeiMwzSb24iVml9wSA |
+| YouTube (AI Demos) | https://youtube.com/@lofnai |
+| Spotify | https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r |
+| Apple Music | https://music.apple.com/us/artist/local-symmetry |
+| Boomplay | https://www.boomplay.com/artists/111995625 |
+| Instagram | https://www.instagram.com/local.symmetry |
+| TikTok | https://www.tiktok.com/@lofn.ai |
 
-1. Clone the Lofn repository:
+---
+
+## 🏆 Awards Showcase (2024 – 25)
+
+<!-- ----------  CAROUSEL  ---------- -->
+<div align="center">
+
+<a href="https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B">
+  <img src="examples/community-challenge-MoEhHHLblSgdMV18sV8B%20(1).png"  width="260" alt="Petals Kiss the Tide – 1st / 1 910">
+</a>
+<a href="https://creator.nightcafe.studio/game/lKMuiIeKUa4Sn7af7nkl">
+  <img src="examples/community-challenge-lKMuiIeKUa4Sn7af7nkl%20(2).png"  width="260" alt="Being Devoured by the Role – 1st / 673">
+</a>
+<a href="https://creator.nightcafe.studio/game/a4ww4P3KM7btbaqnJrJI">
+  <img src="examples/community-challenge-a4ww4P3KM7btbaqnJrJI%20(1).png"  width="260" alt="Can’t Figure the Way Forward – 1st / 869">
+</a>
+<a href="https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq">
+  <img src="examples/community-challenge-mL9iwog1D2W5iVfZvIMq%20(1).png"  width="260" alt="Enchanted Dark Fairy – 1st / 673">
+</a>
+<a href="https://creator.nightcafe.studio/game/BDkppU9lkL0sxHQX5liS">
+  <img src="examples/community-challenge-BDkppU9lkL0sxHQX5liS%20(1).png"  width="260" alt="Stylish Attire – Runner‑up">
+</a>
+<a href="https://creator.nightcafe.studio/game/1J5idcZkzrEEp2FjfzIT">
+  <img src="examples/community-challenge-1J5idcZkzrEEp2FjfzIT.png"       width="260" alt="Green – 2nd / 348">
+</a>
+<a href="https://creator.nightcafe.studio/game/6H3ljL30lbz01wV89HMt">
+  <img src="examples/community-challenge-6H3ljL30lbz01wV89HMt.png"       width="260" alt="Dangerous Bap Target – 2nd / 430">
+</a>
+<a href="https://creator.nightcafe.studio/game/ZoeZJBLNsAGggNDa1Uf5">
+  <img src="examples/community-challenge-ZoeZJBLNsAGggNDa1Uf5.png"       width="260" alt="Constellation of Gilded Dreams – 2nd">
+</a>
+<a href="https://creator.nightcafe.studio/game/rW6e9QTPlzYrbTbMTBpw">
+  <img src="examples/community-challenge-rW6e9QTPlzYrbTbMTBpw.png"       width="260" alt="Esteemed Opulance – 2nd">
+</a>
+<a href="https://creator.nightcafe.studio/game/q7X2vFvy3tWrrOpPWh5V">
+  <img src="examples/community-challenge-q7X2vFvy3tWrrOpPWh5V.png"       width="260" alt="Mosaic Sea – 3rd / 512">
+</a>
+
+</div>
+
+> *Full‑resolution PNGs are in `/examples`, each named `community‑challenge‑<id>.png`.*
+
+### Detailed Placements
+
+| Title | Challenge | Placement | Field Size | NightCafe Link |
+| :--- | :--- | :---: | :---: | :--- |
+| **Petals Kiss the Tide** | *Flowers* | 🥇 1st | 1 910 | [MoEhHHLb](https://creator.nightcafe.studio/game/MoEhHHLblSgdMV18sV8B) |
+| **Being Devoured by the Role** | *Female Portraits* | 🥇 1st | 673 | [lKMuiIeK](https://creator.nightcafe.studio/game/lKMuiIeKUa4Sn7af7nkl) |
+| **Can’t Figure the Way Forward** | *No Theme (Uploads)* | 🥇 1st | 869 | [a4ww4P3K](https://creator.nightcafe.studio/game/a4ww4P3KM7btbaqnJrJI) |
+| **Enchanted Dark Fairy Perches on Crescent Moon** | *Crescent Fae* | 🥇 1st | 459 | [mL9iwog1](https://creator.nightcafe.studio/game/mL9iwog1D2W5iVfZvIMq) |
+| **Stylish Attire** | *Stylish Attire* | 🥈 Runner‑up | — | [BDkppU9l](https://creator.nightcafe.studio/game/BDkppU9lkL0sxHQX5liS) |
+| **Green** | *Green* | 🥈 2nd | 348 | [1J5idcZk](https://creator.nightcafe.studio/game/1J5idcZkzrEEp2FjfzIT) |
+| **Dangerous Bap Target** | *Biomechanical Creature* | 🥈 2nd | 430 | [6H3ljL30](https://creator.nightcafe.studio/game/6H3ljL30lbz01wV89HMt) |
+| **Constellation of Gilded Dreams** | *Gilded Dreams* | 🥈 2nd | — | [ZoeZJBLN](https://creator.nightcafe.studio/game/ZoeZJBLNsAGggNDa1Uf5) |
+| **Esteemed Opulance** | *Opulence* | 🥈 2nd | — | [rW6e9QTP](https://creator.nightcafe.studio/game/rW6e9QTPlzYrbTbMTBpw) |
+| **Mosaic Sea** | *Radiant Sea* | 🥉 3rd | 512 | [q7X2vFvy](https://creator.nightcafe.studio/game/q7X2vFvy3tWrrOpPWh5V) |
+
+---
+
+### Other Notable Victories
+
+* 🥇 **Whirl Daily Art Competition** – first place (*“Only This and Nothing More”*).  
+* 🥈 **Whirl Discord Art Challenge** – second place (*“A Victorian Chrononaut”*).
+
+> *Whirl images live in `/examples` (`Only this...jpeg`, `2nd_A Victorian Chrononaut...png`).*
+
+---
+
+## 🔑 Key Features
+
+| Cluster | Highlights |
+| :------ | :--------- |
+| **Reasoning Core** | *Tree‑of‑Thoughts* search + iterative **Artist ⇄ Critic** loop |
+| **Steerability** | **10 Style Axes**, **Creativity Spectrum** sliders, persistent **Personality DNA** |
+| **Expert Panels** | Automatic or user‑selected **6 experts + 1 devil’s advocate** debate each branch |
+| **Multi‑Modal** | Image, Music, Video |
+| **TikTok Mode** | FLUX Pro v1.1 Ultra 9:16 images rotated for Veo 3 ingestion |
+| **Competition Mode** | Shrinks the prompt to platform limits while preserving nuance; injects Panel + Personality context first |
+| **Model‑Agnostic** | Works with OpenAI, Anthropic, Google Gemini, Meta Llama, and any OpenAI‑compatible local LLM (via Ollama, text‑gen‑webui, etc.) |
+| **Nano Banana** | Gemini 2.5 Flash Image preview for Gemini‑powered image generation |
+| **Phase‑Map Transparency** | A visible flowchart of every stage, emitted with each run |
+| **Ethics & Provenance** | Strong NSFW/harassment filters + anti-copyright infringement checks|
+| **Discord & Webhooks** | Push prompts or rendered assets straight to any channel |
+
+---
+
+## 📚 Table of Contents
+1. [Quick Start](#quick-start)  
+2. [Installation](#installation) &nbsp;&nbsp;•&nbsp; [Configuration](#configuration)  
+3. [Usage](#usage)  
+4. [Concept → Prompt Pipeline](#concept-→-prompt-pipeline)  
+5. [Style Axes](#style-axes) &nbsp;&nbsp;•&nbsp; [Personality](#personality)  
+6. [Panels](#panels) &nbsp;&nbsp;•&nbsp; [Modes](#modes)  
+7. [Model Coverage](#model-coverage)  
+8. [Ethics & Provenance](#ethics--provenance)  
+9. [FAQ](#faq) &nbsp;&nbsp;•&nbsp; [Contributing](#contributing) &nbsp;&nbsp;•&nbsp; [License](#license)
+
+---
+
+## 🏁 Quick Start (in 60 s)
+
 ```bash
-git clone https://github.com/LocalSymmetry/lofn.git
-```
+# 1 · Clone
+git clone https://github.com/LocalSymmetry/lofn.git && cd lofn
 
-2. Navigate to the project directory:
-```bash
-cd lofn
-```
+# 2 · Create config & add API keys
+cp config.yaml.example config.yaml          # then edit
 
-3. Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Set up your API keys for the necessary services (e.g., OpenAI, Anthropic) in the `config.yaml` file.
-
-5. Run the Lofn UI:
-```bash
-streamlit run lofn_ui.py
-```
-
-### Docker
-
-Alternatively, you can use Docker to run Lofn:
-
-1. Build the Docker image:
-```bash
+# 3 · Docker (up‑to‑date CUDA & ffmpeg baked in)
 docker build -t lofn .
-```
+docker run -p 8501:8501 \
+  -v $(pwd)/images:/images \
+  -v $(pwd)/videos:/videos \
+  -v $(pwd)/music:/music \
+  -v $(pwd)/metadata:/metadata \
+  lofn
 
-2. Run the Docker container:
+# 4 · Open
+open http://localhost:8501
+````
+
+---
+
+## 🛠️ Installation
+
+### Prerequisites
+
+* Docker 24+ (or native Python 3.11 / Poetry if you prefer)
+* GPU with 8 GB+ VRAM recommended for on‑device Stable Diffusion / video renders
+* API keys for at least one text model (OpenAI, Claude, Gemini…) *or* a local LLM endpoint
+
+### Alternative: Native (Python)
+
 ```bash
-docker run -p 8501:8501 -v /path/to/local/images:/images lofn
+poetry install --with=dev
+export OPENAI_API_KEY=...
+streamlit run app.py        # identical UI to Docker image
 ```
 
-3. Access the Lofn UI by opening `http://localhost:8501` in your web browser.
+---
 
-## Usage
+## ⚙️ Configuration
 
-1. Open the Lofn UI in your web browser.
+Only keys & endpoints live in **config.yaml**:
 
-![Lofn UI 1](examples/lofn_ui_1.png)
+```yaml
+OPENAI_API_KEY:      ""
+ANTHROPIC_API_KEY:   ""
+GOOGLE_API_KEY:      ""    # Gemini / Imagen 3
+OPEN_ROUTER_API_KEY: ""
+POE_API_KEY:         ""
+FAL_API_KEY:         ""    # Flux 1 / SDXL
+RUNWAY_API_KEY:      ""    # Gen‑3 Alpha
+DISCORD_WEBHOOK_URL: ""
+LOCAL_LLM_API_BASE:  ""    # e.g. http://localhost:11434/v1
+LOCAL_LLM_API_KEY:   ""
+GCP_PROJECT_ID:      ""
+GCP_LOCATION:        ""
+```
 
-Enter your idea or concept in the text area provided. In this example, the user has entered "I want to capture the essence of a mysterious and powerful witch's familiar."
+LLM start-up priorities live in **lofn/model_defaults.yaml**. Each mode
+(`art`, `video`, `music`) defines a preferred list for concept/medium
+generation and for final prompt synthesis. Lofn will attempt to use the first
+available model from each list when a mode is selected, falling back to the
+built-in order if none of the preferred models are accessible. These preferred
+models also appear at the top of the model selectors when present.
 
-2. Adjust the settings in the sidebar, such as the maximum number of retries, the model to use, the temperature, and the competition mode. Then, click the "Generate Concepts" button to generate concept and medium pairings.
+All behavioural constants sit in `lofn/constants.py` (tree widths, critic weights, etc.).
 
-![Lofn UI 2](examples/lofn_ui_2.png)
+---
 
-The UI will display the generated concepts and mediums. Select the desired pairs to try by entering the index numbers separated by a space. In this example, the user has selected pairs 0 and 5.
+## 🎮 Usage
 
-3. Click the "Generate MJ Prompts" button to generate Midjourney prompts for the selected pairs.
+1. **Choose Mode** (Art, Music, Video)
+2. **Toggle Competition** *(optional)*
+3. **Generate Personality** → then **Select / Generate Panel**
+4. **Enter Idea** — one sentence is enough
+5. **Generate** → Review concepts → Pick or iterate
+6. **Copy Prompt** *or* let Lofn call the generator API automatically
 
-![Lofn UI 3](examples/lofn_ui_3.png)
+Raw prompts, images, audio and video are auto‑saved in `/images`, `/music`, `/videos`, with human‑readable JSON metadata for provenance.
 
-The UI will display the generated prompts for the selected concept and medium pairs. Review the prompts and make any necessary adjustments. You can then use these prompts with the Midjourney AI to create your artwork.
+---
 
-### Competition Mode
+## 🔍 Concept → Prompt Pipeline
 
-Lofn provides a competition mode that generates prompts specifically tailored for AI art competitions. To use the competition mode:
+```mermaid
+flowchart TD
+    A[User Idea] --> B[Panel & Personality Injection]
+    B --> C[Meta‑Prompt]
+    C --> D[Tree‑of‑Thoughts Expansion]
+    D --> E[Artist Embellishment]
+    E --> F[Critic Compression]
+    F --> G[Synthesis & Ranking]
+    G --> H[Ethics / Provenance Filter]
+    H --> I[Competition Shrink]
+    I --> J[Final Prompt]
+    J --> K[Optional Render]
+```
 
-1. Enter the competition's subject or "prompt" into the text field.
-2. Click the "Generate Competition Prompt" button in the Lofn UI.
-3. The generated competition prompt will be displayed in a code block.
-4. Copy the competition prompt and use it in your favorite chat AI, such as ChatGPT or Claude, and it will create an award winning input prompt for Lofn for you. 
-5. Using that chat AI created prompt as input for Lofn, Lofn will now create artwork that has a much higher chance of winning competitions.
+Each node including intermediate drafts is stored in `/metadata` with RFC‑3339 timestamps for auditability.
 
-The competition prompts are designed to leverage Lofn's unique features and strengths to create compelling and visually striking artwork and combine it with a unique take on the subject that stands out in AI art competitions.
+---
 
-### DALL-E 3 Integration
+## 🎚️ Style Axes
 
-Lofn also generates prompts that can be used with DALL-E 3. After generating the Midjourney prompts, you will find a section with the DALL-E 3 prompt. Copy this prompt and paste it into ChatGPT or any other platform that supports DALL-E 3 to generate your artwork.
+|  #  | Axis                    | 0              | 100                 |
+| :-: | :---------------------- | :------------- | :------------------ |
+|   1 | Abstraction → Realism   | Cubist blur    | 4 K photoreal       |
+|   2 | Desaturation → Vibrancy | Monochrome     | Neon pop            |
+|   3 | Minimal → Complex       | Single subject | Hyper‑ornate        |
+|   4 | Calm → Dramatic         | Soft focus     | High contrast       |
+|   5 | Symmetry → Asymmetry    | Mirror‑perfect | Chaotic skew        |
+|   6 | Familiarity → Novelty   | Classical      | Surreal             |
+|   7 | Soft → Hard Lines       | Watercolor     | Etching             |
+|   8 | Warm → Cool Palette     | Sunset hues    | Arctic blues        |
+|   9 | Static → Motion         | Still life     | Dynamic action      |
+|  10 | Low → High Symbolism    | Literal        | Metaphoric overload |
 
-![Lofn UI ChatGPT](examples/lofn_ui_chatgpt.png)
+Change them in the sidebar or let Lofn auto‑infer from your concept.
 
-The screenshot above shows how you can directly paste the generated code into ChatGPT to create your artwork using DALL-E 3.
+---
 
-#### Toggling Diversity in DALL-E 3 Prompts
+## 🧬 Personality
 
-Lofn provides an option to toggle the inclusion of diversity-related prompts in the generated DALL-E 3 prompts. By default, diversity is enabled, but you can turn it off if desired.
+A thematic setting that provides a consistent creator persona that lasts between generations.
 
-To toggle diversity in DALL-E 3 prompts:
+Leave empty for LLM‑generated defaults or curate for brand consistency.
 
-1. Locate the "Enable Diversity" checkbox in the Lofn UI sidebar.
-2. Check or uncheck the box to enable or disable diversity in the generated DALL-E 3 prompts.
+Custom personas can also be loaded from `lofn/prompts/custom_personalities.yaml`.
+Copy the provided `custom_personalities.yaml.example` file to this location and
+add your own entries to have them appear in the sidebar.
 
-When diversity is enabled, Lofn incorporates prompts that encourage the inclusion of diverse elements, such as varying skin tones, cultural references, and representation of different groups. Disabling diversity will generate DALL-E 3 prompts without these specific diversity-related elements.
+---
 
-### Discord Integration
+## 👥 Panels
 
-Lofn can send the generated prompts directly to a Discord channel using webhooks, making it easy to use with Midjourney.
+Groups of *5 experts* + *1 devil’s advocate* simulate a live debate on every branch.
 
-![Lofn UI Discord](examples/lofn_ui_discord.png)
+### Options
 
-To set up Discord integration:
+| Type              | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| **Preset**        | Photography, Baroque, Cyberpunk Music, Screenwriting, … |
+| **LLM‑Generated** | Lofn fabricates domain experts on the fly               |
+| **Custom**        | Hand‑define names, bios & biases in `panels.yaml`       |
 
-1. Create a webhook in your Discord server settings.
-2. Copy the webhook URL.
-3. Paste the webhook URL in the "Discord Webhook URL" field in the Lofn UI sidebar.
-4. Enable the "Send to Discord" option.
+---
 
-Alternately you can set the `WEBHOOK_URL:` field in `lofn/config.yaml`
+Any OpenAI‑compatible local LLM (Ollama, llama.cpp) works by setting `LOCAL_LLM_API_BASE`.
 
-Now, when you generate prompts, they will be automatically sent to your specified Discord channel, allowing you to easily use them with Midjourney.
+---
 
-## What Makes Lofn Unique
+## 🛡️ Ethics & Provenance
 
-### Tree of Thoughts Prompting
+* OpenAI policy & Google Imagen safety filters enforced by default
+* Custom block‑lists for hateful or harassing content
+* Prompt hardening against copyright infringement
+* All prompts and generations logged locally for transparency
 
-Lofn utilizes a Tree of Thoughts (ToT) prompting approach, which enables the AI to explore and generate ideas in a more strategic and coherent manner. By maintaining a tree of thoughts, where each thought represents an intermediate step towards solving the problem, Lofn can self-evaluate its progress and make informed decisions during the art generation process.
+---
 
-### Critic/Artist Refinement Methodology
+## ❓ FAQ
 
-Lofn incorporates a critic/artist refinement methodology to iteratively improve the generated artwork. The AI takes on the roles of both the critic and the artist, critiquing the generated artwork based on predefined criteria and then refining it based on the feedback. This process allows Lofn to create more sophisticated and polished artwork compared to other AI art generators.
+<details><summary>Expand</summary>
 
-### Backend Infrastructure
+**Q: Can I feed sketches or images as input?**
+Yes. Upload up to five reference images to guide the generation.
 
-Lofn supports both OpenAI and Anthropic's Claude as backend infrastructure for natural language processing. This flexibility allows users to choose their preferred AI model based on their requirements and available resources.
+**Q: Why use Lofn over other prompt generators?**
+Lofn was made to have the highest possible quality to win.
 
-## Awards and Recognition
+**Q: How do I swap in a new model?**
+Edit `config.yaml` (API key) and add a mapping in `lofn/llm_integration.py`. The prompt templates are model‑agnostic.
 
-Lofn has received notable recognition in the AI art community:
+</details>
 
-- **First Place** in the Whirl Daily Art Competition
+---
 
-[![First Place Winner - Only this and nothing more - Prompt: Edgar Allen Poe](examples/Only%20this%20and%20nothing%20more%20-%20Edgar%20Allen%20Poe.jpeg)](https://www.joinwhirl.com/posts/21652635719009)
+## 🤝 Contributing
 
-- **Top 20** in multiple AI art competitions
+1. **Open an Issue** — bug, feature, or prompt tweak
+2. **Fork** → **Branch** (`feat/xyz`)
+3. **Code & Test** (pytest, `examples/cli_smoke_test.sh`)
+4. **PR** — use Conventional Commits, fill template
+5. 🎉 **Celebrate** — we squash‑merge weekly
 
-[![Top 20 Entry - It's time - Prompt: Death](examples/It%27s%20time%20-%20Death.png)](https://joinwhirl.com/posts/23244883132167)
+---
 
-[![Top 20 Entry - Held Aloft - Prompt: Feathers](examples/Held%20aloft%20-%20Feathers.jpeg)](https://joinwhirl.com/posts/62648273359633)
+## 📝 License
 
-[![Top 20 Entry - The radiant sea - Prompt: Mosaic](examples/The%20radiant%20sea%20-%20Mosaic.png)](https://joinwhirl.com/posts/83901911448650)
-
-[![Top 20 Entry - The fluffiest kaiju - Prompt: Monster](examples/The%20fluffiest%20kaiju%20-%20monster.jpeg)](https://joinwhirl.com/posts/54675674792260)
-
-## Examples
-
-Here are a few examples showcasing Lofn's refinement process. Both examples were generated by Lofn from the input "I want to capture the essence of a mysterious and powerful witch's familiar." All images generated with DALL-E 3:
-
-### Concept: A sleek black cat with an ethereal aura, its emerald eyes gleaming with ancient wisdom as it guards an open grimoire, eldritch symbols glowing faintly on the pages, Medium: Tenebrous oil painting with a rich, dark palette and dramatic chiaroscuro lighting that casts enigmatic shadows
-
-![Cat Familiar First Attempt](examples/FirstPassCatFamiliar.png)
-*Original Brainstorm Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat's emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire's sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat's phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of sfumato, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
-
-![Cat Familiar Artist Refined](examples/RevisedCatFamiliar.png)
-*Artist Refined Prompt:* A surreal Tenebrist oil painting of a spectral void-cat, its form an amalgamation of swirling obsidian shadows and ethereal wisps, guarding a grimoire bound in eldritch flesh, the pages pulsating with otherworldly bioluminescent symbols. The cat’s emerald eyes, kaleidoscopic fractals of ancient wisdom, pierce through the tenebrous veil of the painting, its gaze a mesmeric vortex drawing the viewer into the depths of the arcane. The grimoire’s sigils, rendered in a psychedelic palette of neon hues against a stygian background, cast an eerie, unsettling glow that dances across the cat’s phantasmagorical form. The enigmatic atmosphere is heightened by the dramatic interplay of light and shadow, the chiaroscuro effect achieved through a combination of biomechanical surrealism, impasto, and sgraffito techniques, creating a sense of timeless mystery and eldritch horror.
-
-![Cat Familiar Final Prompt](examples/FinalCatFamiliar.png)
-*Critic Refined Prompt:* In a surreal Tenebrist oil painting, a sleek black cat with stygian fur and obsidian eyes, its form an amalgamation of swirling shadows and ethereal wisps, stands sentinel over an ancient grimoire bound in eldritch flesh, the pages adorned with arcane, esoteric symbols emanating an eerie, incandescent glow. The mysterious and foreboding atmosphere is heightened by the tilted, angled perspective and focused, directional lighting that casts enigmatic shadows. The rich, dark palette, punctuated by the faintly glowing symbols rendered with impasto and sgraffito techniques, creates an air of ancient wisdom and unsettling secrets. 
-
-### Concept: A spectral wolf with a pelt of swirling mist and glowing runes pulsing in rhythm with its heartbeat, its piercing gaze able to penetrate the deepest shadows and unravel secrets, Medium: Otherworldly sculptural piece forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist
-
-![Wolf Familiar First Attempt](examples/FirstPassWolfFamiliar.png)
-*Original Brainstorm Prompt:* In the ethereal wisps of smoke sculpture, a spectral wolf emerges, its pelt a phantasmagorical swirl of gossamer mist adorned with luminescent runes etched in a diaphanous glow. The wolf's piercing gaze penetrates the deepest shadows, unraveling secrets in an enigmatic and arcane atmosphere. This otherworldly sculptural piece is forged from blackened metal, pulsing with eldritch energy and wreathed in tendrils of mist, captured in the style of Mystic Futurism. Eldritch bioluminescence illuminates the scene, casting a spectral noir palette across the wolf's ethereal form.
-
-![Wolf Familiar Artist Refined](examples/RevisedWolfFamiliar.png)
-*Artist Refined Prompt:* In the ethereal wisps of phantasmal fog, a spectral wolf emerges, its pelt a gossamer swirl of luminescent mist adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with the soul-penetrating intensity of dystopian surrealism, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with the biomechanical intricacy of futuristic alien designs, pulses with arcane energy and is wreathed in tendrils of mist, captured in the haunting chiaroscuro of Rembrandt's tenebrism. An ominous and foreboding atmosphere permeates the scene, illuminated by the eerie glow of bioluminescent fungi, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with the intricate engraving techniques, while the swirling mist is enhanced by the sfumato effect.
-
-![Wolf Familiar Final Prompt](examples/FinalWolfFamiliar.png)
-*Critic Refined Prompt:* A spectral wolf emerges from swirling phantasmal mist, its pelt adorned with eldritch runes pulsing in the rhythm of its heartbeat. The wolf's piercing gaze, imbued with soul-penetrating intensity, unravels secrets from the deepest shadows. This otherworldly sculptural piece, forged from blackened metal with biomechanical intricacy, pulses with arcane energy and is wreathed in tendrils of mist, captured in haunting chiaroscuro. An ominous and foreboding atmosphere permeates the scene, illuminated by an eerie glow, casting an abyssal chromatic palette across the wolf's ethereal form. The sculpture's surface is adorned with intricate engravings, while the swirling mist is enhanced by a sfumato effect. 
-
-### Comparative Example
-
-The prompts below were generated by the DALL-E GPT when given the input "I want to capture the essence of a mysterious and powerful witch's familiar." 
-
-![DALL-E GPT](examples/dallefamiliar.png)
-
-*DALL-E GPT Prompt 1:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
-
-*DALL-E GPT Prompt 2:* Envision a scene under the cloak of night, where the air is thick with enchantment and the moon casts a ghostly glow. In the center, a mysterious and powerful witch's familiar stands proudly, exuding an aura of ancient wisdom and arcane power. This creature is a blend of a raven and a cat, with glossy black feathers covering its body, sharp, intelligent eyes that seem to pierce through the darkness, and a long, majestic tail that curls with feline grace. Its paws, however, are those of a cat, complete with sharp claws, ready to defend its magical domain. The familiar is perched atop an ancient, gnarled tree, with twisted branches that reach towards the moon, adding to the overall atmosphere of mystery and magic.
-
-
-### Distinguishing Features
-
-1. **Consistency**: Lofn's Tree of Thoughts prompting ensures that the generated artwork maintains a consistent theme and style throughout the creation process. In contrast, other AI art generators may produce artwork with inconsistent or unrelated elements.
-
-2. **Refinement**: Lofn's critic/artist refinement methodology allows for iterative improvements to the generated artwork. Other AI art generators often produce a single output without the ability to refine or enhance it further.
-
-3. **Customization**: Lofn provides users with more control over the art generation process through its extensive settings and options. Users can fine-tune the generation process to align with their specific preferences and requirements. This includes the ability to toggle diversity in the generated DALL-E 3 prompts and access to a competition mode that generates prompts tailored for AI art competitions.
-
-4. **Originality**: Lofn's unique combination of Tree of Thoughts prompting and critic/artist refinement results in more original and creative artwork compared to other AI art generators that rely on predefined styles or templates.
-
-## Contributing
-
-We welcome contributions to Lofn! If you'd like to contribute, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive commit messages.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main Lofn repository.
-
-Please ensure that your contributions adhere to our code of conduct and guidelines.
-
-## License
-
-Lofn is released under the [Apache 2.0 License](LICENSE).
+**Apache 2.0** — free for personal & commercial use, attribution appreciated.

@@ -1,0 +1,125 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions, or titles generated here. Stop here. You are done!
+
+
+**GENERAL INSTRUCTIONS:**
+
+This is the final stage. You will act as the Executive Producer and Lead Critics to evaluate the 6 artist-refined prompts, rank them, revise the best, and synthesize the rest.
+
+---
+
+**INSTRUCTIONS FOR THE TASK:**
+
+**Step 1: Convene the Critics and Critique**
+
+- Select two specialized critics for the final review:
+    1. **The AI Technical Director (TD):** Focusing on prompt structure, AI feasibility, motion clarity, and technical execution.
+    2. **The Viral Content Strategist:** Focusing on the strength of the Hook, emotional impact, pacing, and suitability for TikTok.
+
+- *Action (Simulation):* Have the critics rigorously evaluate each of the 6 prompts based on the established {facets}.
+- *Critique Focus:*
+    - **TD:** Are the temporal directives clear? Is the camera movement precise? Are there potential coherence issues?
+    - **Strategist:** Is the hook immediate and compelling? Is the pacing appropriate for short-form?
+
+**Step 2: Rank the Prompts**
+
+- *Action:* Based on the critique, rank the 6 prompts from 1 (Best) to 6 (Worst).
+
+**Step 3: Revise the Top Prompts**
+
+- *Action:* Select the Top 2 prompts.
+- Refine them further, incorporating any critical feedback to enhance clarity, improve motion description, and ensure maximum visual impact.
+
+**Step 4: Synthesize New Prompts**
+
+- *Action:* Analyze the remaining 4 prompts (ranked 3-6).
+- Identify the strongest elements (e.g., a camera move from one, a lighting description from another).
+- Synthesize these elements into 2 NEW, superior prompts.
+- Keep the architecture of the prompt the same. If it was a JSON-based prompt, keep it a JSON-based prompt.
+
+**Step 5: Final Output**
+
+**Provide the list of 2 revised prompts and 2 synthesized prompts in the following JSON format. Ensure all special characters inside strings are properly escaped.**
+
+  ```json
+  {{ "revised_prompts": [ {{"revised_prompt": "Revised Prompt 1"}}, {{"revised_prompt": "Revised Prompt 2"}} ], "synthesized_prompts": [ {{"synthesized_prompt": "Synthesized Prompt 1"}}, {{"synthesized_prompt": "Synthesized Prompt 2"}} ] }}
+  ```
+
+---
+
+**USER INPUT**
+
+---
+
+**USER INPUT**
+
+- **Concept:** {concept}
+
+- **Medium:** {medium}
+
+- **Facets:** {facets}
+
+- **Style Axes:** {style_axes}
+
+- **User's Idea:** {input}
+    Supplied images (if any): {image_context}
+
+- **Video Prompts:** {artist_refined_prompts}

@@ -1,18 +1,190 @@
-INSTRUCTIONS: Be intentional but detailed when describing art. Write lists over writing explanations. 
-1. State and write the main essence of the idea.
-2. State and write five facets that should be used to judge if a proposed concept aligns with the idea. If there are none available, make your best guesses based on the user's write-up.
-3. Provide your response in the following JSON format, without any additional formatting or explanations:
-{{
-  "essence_and_facets": {{
-    "essence": "The main essence of the idea",
-    "facets": [
-      "Facet 1",
-      "Facet 2",
-      "Facet 3",
-      "Facet 4",
-      "Facet 5"
-    ]
-  }}
-}}
-USER'S IDEA
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │  **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions,
+      or keywords beyond this point.
+────────────────────────────────────────────────────────────────────────────
+
+
+**INSTRUCTIONS:**
+
+- Be intentional, detailed, and insightful when analyzing the user's idea.
+- Use vivid, sensory language to enrich descriptions.
+- Follow the steps below to determine the essence and facets.
+- Adhere to ethical guidelines, avoiding disallowed content.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+**Step 1: Determine the Creativity Spectrum**
+
+- Assign percentages (totaling 100%) based on the user's idea:
+
+  1. **Literal (%):**
+
+     - Realistic, direct interpretations closely tied to the input.
+
+  2. **Inventive (%):**
+
+     - Creative interpretations that add unique elements while remaining plausible.
+
+  3. **Transformative (%):**
+
+     - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+- **Consider:**
+
+  - Complexity and abstractness of the idea.
+  - Presence of imaginative or fantastical elements.
+  - Emotional or conceptual nature of the request.
+  - Openness to creative interpretation.
+
+---
+
+**Step 2: Assign Style Axes Values**
+
+- Assign a value from 0 to 100 for each style axis, and include a brief explanation or example:
+
+  - **Abstraction vs. Realism (Value):**
+
+    - *Example*: 30 - The artwork leans towards abstraction, focusing on shapes and forms rather than realistic depiction.
+
+  - **Emotional Valence (Value):**
+
+    - *Example*: 80 - The piece evokes strong positive emotions like joy and excitement.
+
+  - **Color Intensity (Value):**
+
+    - *Example*: 60 - The colors are moderately vibrant, striking a balance between muted and vivid.
+
+  - **Symbolic Density (Value):**
+
+    - *Example*: 50 - The artwork contains a moderate amount of symbolism alongside literal elements.
+
+  - **Compositional Complexity (Value):**
+
+    - *Example*: 70 - The composition is intricate with multiple interacting elements.
+
+  - **Textural Richness (Value):**
+
+    - *Example*: 40 - The textures are subtle, with smooth transitions.
+
+  - **Symmetry vs. Asymmetry (Value):**
+
+    - *Example*: 20 - The composition is largely asymmetrical, creating dynamic interest.
+
+  - **Novelty (Value):**
+
+    - *Example*: 90 - The artwork is highly innovative, introducing new concepts or styles.
+
+  - **Figure-Ground Relationship (Value):**
+
+    - *Example*: 60 - The main subject is somewhat blended with the background.
+
+  - **Dynamic vs. Static (Value):**
+
+    - *Example*: 75 - The scene conveys a strong sense of movement and energy.
+
+---
+
+**Step 3: State the Essence**
+
+- Write the main essence of the idea in one concise, emotionally resonant sentence using sensory language.
+
+---
+
+**Step 4: Write Five Facets**
+
+- Identify five facets to judge if a proposed concept aligns with the user's idea. Focus only on how the art will be judged without recommending artistic elements beyond the user's input.
+
+---
+
+**Step 5: Self-Evaluation and Refinement**
+
+- Review the essence and facets for alignment with the user's idea and the style axes.
+- Refine if necessary to enhance clarity and impact.
+
+---
+
+**Step 6: Provide the Final Output**
+
+- **Return the results in the following JSON format:**
+
+  ```json
+   {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Abstraction vs. Realism": 23, "Emotional Valence": 79, "Color Intensity": 79, "Symbolic Density": 11, "Compositional Complexity": 37, "Textural Richness": 37, "Symmetry vs. Asymmetry": 58, "Novelty": 89, "Figure-Ground Relationship": 24, "Dynamic vs. Static": 98 }} }} }}
+  ```
+
+- **Ensure Proper Formatting:**
+
+  - Use double quotes for all strings.
+  - Replace placeholder values with actual percentages and values.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER'S IDEA:**
+
 {input}
+Supplied images (if any): {image_context}
+
+- **REMEBER - Return the results in the following JSON format:**
+
+  ```json
+   {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Abstraction vs. Realism": 23, "Emotional Valence": 79, "Color Intensity": 79, "Symbolic Density": 11, "Compositional Complexity": 37, "Textural Richness": 37, "Symmetry vs. Asymmetry": 58, "Novelty": 89, "Figure-Ground Relationship": 24, "Dynamic vs. Static": 98 }} }} }}
+  ```

@@ -1,0 +1,252 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure musicians, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. Production Style SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Production Style to each refined concept.
+   • AI Focus: Output arrangements[] (one-liners).  No prompt text.
+
+5. Production Style REFINEMENT               │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-arrangement pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_arrangements[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full music guide ().  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW SONG PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use music prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No audio generation or playback,
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing arrangements.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the arrangement choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+## Context
+
+After assigning production styles, you must revisit each concept–style pair and refine them.  The goal is to ensure the production choices amplify the concept’s emotional core and align with the defined facets.  This phase is iterative: critique the alignment and propose modifications.
+
+Think of this as the phase where a painter adds finishing glazes or scrapes away excess paint.  You are balancing vision and execution.  The concept may have evolved during critique and production selection; now you ensure that the sonic “brushstrokes” (production choices) properly frame the “subject” (concept).  Use cross‑modal intuition—if the music feels too glossy for a gritty story, roughen it with distortion; if the emotional arc demands a broader dynamic range, widen the stereo field or change the vocal delivery.
+
+**Creativity Spectrum:**
+
+1. **Literal ({creativity_spectrum_literal}%):**
+
+   - Realistic, direct interpretations closely tied to the input.
+
+2. **Inventive ({creativity_spectrum_inventive}%):**
+
+   - Creative interpretations that add unique elements while remaining plausible.
+
+3. **Transformative ({creativity_spectrum_transformative}%):**
+
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Analyze and Critique Production Style Choices**
+
+- For each concept-Production Style pair:
+
+  - **Conceptual Harmony:**
+
+    - Evaluate how well the Production Style resonates with the concept's core idea and emotional tone.
+
+  - **Historical and Cultural Alignment:**
+
+    - Consider any historical or cultural contexts that could enhance the Production Style's significance.
+
+  - **Innovative Approach:**
+
+    - Determine if the Production Style offers a fresh and original perspective, possibly through cross-disciplinary methods.
+
+  - **Sensory and Emotional Engagement:**
+
+    - Assess how effectively the Production Style engages the senses and conveys emotional impact.
+
+- *Action*: Provide a brief critique based on the above factors.
+
+---
+
+**Step 2: Brainstorm Enhanced Production Style Ideas**
+
+- For each concept-Production Style pair:
+
+  - Propose 2-3 enhanced Production Style ideas that could elevate the concept and Production Style further.
+
+- **Consider:**
+
+  - Combining unexpected elements or techniques.
+
+  - Incorporating modern or cross-disciplinary approaches to traditional methods.
+
+  - Merging different artistic styles, periods, or cultural influences.
+
+  - Utilizing lateral thinking to generate innovative ideas.
+
+  - Refining the song structure. If needed, refine explicitly the structural components of the song: 
+      * `[Intro]`
+      * `[Verse 1]`, `[Verse 2]`, `[Verse 3]`
+      * `[Chorus]` (This is your main hook)
+      * `[Pre-Chorus]`
+      * `[Bridge]` (Often a shift in perspective or musicality)
+      * `[Solo]` (For instrumental breaks)
+      * `[Outro]`
+      * `[Instrumental]`
+      * `[Breakdown]`
+      * etc.
+
+- *Action*: Write down the enhanced Production Style ideas. Typically a 3 minute song will have 7-10 sections when you include intro, outro, and bridges. Please use this to help gear the length of your song for your desired run-time. Keep runtimes 3-5 minutes if the user did not specify and the concept and arrangement do not require it.
+ - Typically a 3 minute song will have 7-10 sections when you include intro, outro, and bridges. Please use this to help gear the length of your song for your desired run-time. Keep runtimes 3-5 minutes if the user did not specify and the concept and arrangement do not require it.
+  - To determine this, we will also choose the musical form that you think would make the most viral, interesting, and ear-worm worthy piece for the concept and production choices so far. Examples, but feel free to choose one of your own: Ballad, Jig, Waltz, March, Sonata, Symphony, Concerto, Aria, Fugue, Rondo, Étude, Prelude, Nocturne, Mazurka, Scherzo, Minuet, Gavotte, Allemande, Courante, Sarabande, Chaconne, Passacaglia, Toccata, Fantasia, Caprice, Rhapsody, Suite, Serenade, Lied, Madrigal, Motet, Mass, Requiem, Cantata, Oratorio, Opera, Ballet, Tone Poem, Divertimento, Impromptu, Berceuse (Lullaby), Pastorale, Élégie (Elegy), Romance, Intermezzo, Theme and Variations, Partita, Humoresque, Anthem, Hymn, Estampie, Saltarello, Branle, Basse danse, Pavane, Galliard, Rondeau, Ballade (medieval French form), Virelai, Rondellus, Kunstlied, Songs Without Words, Tiento, Cantiga, Villancico, Frottola, Madrigal Comedy, Intermedio, Villanelle, Capriccio, Ricercar, Canzona, Caccia, Danzón, Danza, Danza Española, Gato (Argentine folk dance), Milonga, Chacarera, Cueca, Cumbia, Fandango, Joropo, Polonaise, Contradanza, Maxixe, Bossa Nova, Responsory, Verset, Kyrie (Mass movement), Gloria, Credo, Sanctus, Agnus Dei, Lauda, Villanella, Canticle, Nigun, Epithalamium, Piobaireachd (Pibroch)
+  - Examples of standard structures:
+      - **Sonata Structure:** \[Exposition – Theme 1], \[Exposition – Theme 2], \[Development], \[Recapitulation – Theme 1], \[Recapitulation – Theme 2], \[Coda]
+      - **Fugue Structure:** \[Exposition (Subject in Voice I)], \[Exposition (Subject in Voice II)], \[Episode], \[Middle Entry], \[Stretto], \[Final Entry], \[Coda]
+      - **Waltz Structure:** \[Introduction], \[Waltz Section A], \[Waltz Section B], \[Waltz Section C], \[Waltz Section D], \[Trio], \[Return to A], \[Coda]
+      - **Jig Structure:** \[A Part], \[Repeat A], \[B Part], \[Repeat B], \[C Part], \[Repeat C], \[D Part], \[Repeat D]
+      - **Rhapsody Structure:** \[Opening Flourish], \[Theme 1 Statement], \[Theme 2 Contrast], \[Development/Free Fantasia], \[Recapitulation of Themes], \[Climactic Coda]
+      - **Nocturne Structure:** \[Slow Introduction], \[A Section (Lyrical Theme)], \[B Section (Contrasting Middle)], \[A′ Section (Return, Embellished)], \[Coda]
+      - **Chaconne Structure:** \[Ground Bass Statement], \[Variation I], \[Variation II], \[Variation III], \[Variation IV], \[Variation V], \[Final Variation/Coda]
+      - **Passacaglia Structure:** \[Repeated Bass Ostinato], \[Variation 1], \[Variation 2], \[Variation 3], \[Variation 4], \[Variation 5], \[Final Variation], \[Coda]
+      - **Toccata Structure:** \[Free Prelude/Flourish], \[Moto Perpetuo Section], \[Fugal or Imitative Passage], \[Return of Free Passage], \[Dramatic Coda]
+      - **Prelude Structure:** \[Opening Gesture], \[Primary Motif Development], \[Secondary Motif Contrasts], \[Reprise of Primary Motif], \[Closing Flourish]
+---
+
+**Step 3: Refine and Optimize Production Style Choices**
+
+- For each concept:
+
+  - Integrate the best aspects of the original Production Style with the most promising new ideas.
+
+  - **Ensure:**
+
+    - Audio impact, uniqueness, and sensory engagement.
+
+    - Conceptual alignment, narrative support, and emotional resonance.
+
+    - Feasibility for AI music generation.
+
+  - **Consider Historical and Cultural Contexts:**
+
+    - Incorporate any relevant contexts to deepen the Production Style's significance.
+
+- **Rules:**
+
+  - Avoid referencing specific artists.
+
+  - Keep the creativity level consistent with the original Production Style per the creativity spectrum.
+
+  - Adhere to ethical guidelines and avoid disallowed content.
+
+- *Action*: Write the refined Production Style description.
+
+---
+
+**Step 4: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each refined Production Style** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Sensory and Emotional Impact**
+    - **Historical and Cultural Significance**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the refined concepts and Production Styles in the following JSON format:**
+
+  ```json
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Production Style 1"}}, {{"refinedmedium": "Refined Production Style 2"}}, {{"refinedmedium": "Refined Production Style 3"}}, {{"refinedmedium": "Refined Production Style 4"}}, {{"refinedmedium": "Refined Production Style 5"}}, {{"refinedmedium": "Refined Production Style 6"}}, {{"refinedmedium": "Refined Production Style 7"}}, {{"refinedmedium": "Refined Production Style 8"}}, {{"refinedmedium": "Refined Production Style 9"}}, {{"refinedmedium": "Refined Production Style 10"}}, {{"refinedmedium": "Refined Production Style 11"}}, {{"refinedmedium": "Refined Production Style 12"}} ] }}
+  ```
+
+ 
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Production Styles:**
+
+{mediums}
+
+- **Musicians:**
+
+{artists}
+
+- **Refined Concepts:**
+
+{refinedconcepts}
+
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
+
+- **REMEBER - Return the refined concepts and Production Styles in the following JSON format:**
+
+  ```json
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Production Style 1"}}, {{"refinedmedium": "Refined Production Style 2"}}, {{"refinedmedium": "Refined Production Style 3"}}, {{"refinedmedium": "Refined Production Style 4"}}, {{"refinedmedium": "Refined Production Style 5"}}, {{"refinedmedium": "Refined Production Style 6"}}, {{"refinedmedium": "Refined Production Style 7"}}, {{"refinedmedium": "Refined Production Style 8"}}, {{"refinedmedium": "Refined Production Style 9"}}, {{"refinedmedium": "Refined Production Style 10"}}, {{"refinedmedium": "Refined Production Style 11"}}, {{"refinedmedium": "Refined Production Style 12"}} ] }}
+  ```

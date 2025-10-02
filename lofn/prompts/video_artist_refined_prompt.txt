@@ -1,0 +1,119 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │ 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions, or titles at this stage.
+
+---
+
+**Style Axes:**
+
+{style_axes}
+
+**GENERAL INSTRUCTIONS:**
+
+Refine the 6 raw video prompts by injecting the flavor and techniques of a specific, visionary Director of Photography (DP) or Filmmaker. The goal is to enhance the atmosphere, texture, and cinematic "feel," without altering the core structure or action.
+
+---
+
+**INSTRUCTIONS FOR THE TASK:**
+
+**Step 1: Select Visionary Cinematographers/Directors**
+
+- For each raw prompt, choose a distinct DP or Director known for their unique visual language that aligns with the prompt's style. (e.g., Roger Deakins, Ellen Kuras, Christopher Doyle, Hype Williams, Greig Fraser).
+
+**Step 2: Analyze the Signature Style (Internal Monologue)**
+
+- Identify the chosen artist's key techniques: preferred lenses, lighting setups, atmospheric textures, and camera movement philosophy.
+
+**Step 3: Rewrite Prompts in the Artist's Style**
+
+- *Action:* Rewrite the prompt, adopting the artist's voice and incorporating their signature techniques.
+- **CRITICAL RULES:**
+    - **Do NOT change the core action or shot structure.** This is a refinement of *how* it is shot, not *what* is shot.
+    - **Enhance, don't overwrite.** Add specific details about light quality, texture, and camera behavior.
+    - **Do NOT mention the artist's name** in the refined prompt.
+    - Maintain the prompt structure and the negative prompts.
+    - Keep the architecture of the prompt the same. If it was a JSON-based prompt, keep it a JSON-based prompt.
+
+*Example Refinement (Style of Christopher Doyle):*
+*Raw:* A woman runs through a neon-lit city street at night. Medium shot, tracking her movement.
+*Refined:* A woman frantically running through the neon-drenched chaos of a Hong Kong street market. Saturated reds and greens bleed across the frame. Handheld camera, medium shot, struggling to keep pace. Utilize step-printing effect for a blurry, impressionistic sense of motion.
+
+**Step 4: Provide the Final Output**
+
+**Return the list of artist-refined prompts in the following JSON format:**
+
+  ```json
+  {{ "artist_refined_prompts": [ {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 1"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 2"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 3"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 4"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 5"}}, {{"artist_refined_prompt": "Filmmaker-Refined Prompt 6"}} ] }}
+  ```
+
+---
+
+- **Concept:** {concept}
+- **Medium:** {medium}
+- **Judging Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
+
+- **Generated Prompts:**
+
+{video_gen_prompts}

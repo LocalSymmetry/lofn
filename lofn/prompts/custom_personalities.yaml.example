@@ -1,0 +1,7 @@
+# Copy to custom_personalities.yaml and edit to add your own creator personas.
+# Each entry should contain a 'name' and a multiline 'prompt'.
+
+- name:
+  prompt: |
+    # Core Strategy Framework
+    ##  

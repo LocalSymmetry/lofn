@@ -1,0 +1,151 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │ 
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │  **YOU ARE HERE - COMPLETE THIS PHASE** 
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure artist, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: artists[], refined_concepts[].
+
+4. MEDIUM SELECTION                │ 
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling MEDIUM to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │ 
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-medium pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │ 
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │ 
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full artistic guide (mood, style,
+     lighting, palette, tools, story cue).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW IMAGE PROMPT GENERATION     │ 
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use Midjourney /
+     DALL·E prompt.
+   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+
+9. ARTIST-REFINED PROMPT           │ 
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen artist’s signature style
+     (critic/artist loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │ 
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No image generation, captions at this stage.
+
+**GENERAL INSTRUCTIONS:**
+
+- Adopt the persona of the selected filmmaker accurately.
+- Focus on enhancing the concept for AI video generation, prioritizing motion, clarity, and impact.
+- Seek the "Aha Moment" of artistic clarity through rigorous analysis.
+
+---
+
+**Creativity Spectrum:**
+
+- **Transformative:** {creativity_spectrum_transformative}%
+- **Inventive:** {creativity_spectrum_inventive}%
+- **Literal:** {creativity_spectrum_literal}%
+
+---
+
+**THE REFINEMENT PROCESS:**
+
+**Step 1: Select Obscure Filmmakers**
+
+- For each concept, choose an obscure, hidden-gem filmmaker (or experimental animator/visual artist) whose style strongly aligns with the concept.
+- **Criteria:** Distinctive visual style, thematic resonance. Avoid mainstream names.
+
+**Step 2: Analyze the Cinematic Approach (The Auteur's Voice)**
+
+- For each filmmaker/concept pair, adopt the filmmaker's voice.
+- **Action:** Explain their approach to the concept, focusing specifically on:
+    - **Visualizing Motion:** How would they utilize movement (camera and subject) to express the emotion?
+    - **Temporal Dynamics:** How would they approach the pacing and the evolution of the scene over 5-30 seconds?
+    - **Aesthetic Texture:** What specific visual qualities (light, color, texture) would they emphasize?
+
+**Step 3: Critique the Concept (Ruthless Refinement)**
+
+- In the filmmaker's voice, critique the raw concept.
+- **Focus of Critique:**
+    - **Dynamism:** Is the concept too static? Is the action clear and motivated?
+    - **Specificity:** Are the details vivid enough for generation? Are the textures and lighting defined?
+    - **Alignment:** Does it meet the Facets and Style Axes?
+    - **The Hook:** Is the unique twist impactful enough for short-form media?
+
+**Step 4: Refine the Concept (The Final Cut)**
+
+- Using the critique, have the filmmaker rewrite the concept.
+- **Mandatory Refinements:**
+    - **Enhance Motion:** Add specific action verbs and descriptions of movement.
+    - **Increase Detail:** Add more precise visual descriptors and proper nouns.
+    - **Hand/Limb Description (CRITICAL):** If the concept features human or humanoid characters, specifically describe what their hands or limbs are doing (e.g., "her hands grip the rusted railing tightly"). This is crucial for AI video stability.
+  - **Maintain Alignment:** Ensure the refined concept adheres to the original creativity spectrum level and style axes.
+  - **Rules:** Do not include the filmmaker's name in the refined concept.
+
+**Step 5: Final Review**
+
+- Ensure all instructions are followed, particularly the hand description and motion enhancement.
+
+---
+
+**Step 6: Provide the Final Output**
+
+- **Return the list of filmmakers and refined concepts in the following JSON format:**
+
+  ```json
+  {{ "artists": [ {{"artist": "Filmmaker 1"}}, {{"artist": "Filmmaker 2"}}, {{"artist": "Filmmaker 3"}}, {{"artist": "Filmmaker 4"}}, {{"artist": "Filmmaker 5"}}, {{"artist": "Filmmaker 6"}}, {{"artist": "Filmmaker 7"}}, {{"artist": "Filmmaker 8"}}, {{"artist": "Filmmaker 9"}}, {{"artist": "Filmmaker 10"}}, {{"artist": "Filmmaker 11"}}, {{"artist": "Filmmaker 12"}} ], "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} ] }}
+  ```
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+
+- **Facets:** {facets}
+
+- **Style Axes:** {style_axes}
+
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+
+  - Inventive: {creativity_spectrum_inventive}%
+
+  - Literal: {creativity_spectrum_literal}%
+
+- **Input Concepts:**
+
+{concepts}
+
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
