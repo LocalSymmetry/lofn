@@ -8,6 +8,8 @@ art:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - Poe-GPT-5-mini
+    - Poe-Gemini-2.5-Flash
     - gpt-5-mini
     - gemini-2.5-flash
     - gpt-4.1
@@ -24,6 +26,8 @@ video:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - Poe-GPT-5-mini
+    - Poe-Gemini-2.5-Flash
     - gpt-5-mini
     - gemini-2.5-flash
     - gpt-4.1
