@@ -446,16 +446,16 @@ class LofnApp:
                 self.available_image_models,
                 help="Choose the image generation model."
             )
-            tiktok_mode = st.checkbox(
-                "TikTok Mode",
-                value=st.session_state.get('tiktok_mode', False),
-                help="Use FLUX Pro v1.1 Ultra at 9:16 and rotate output for Veo 3.",
-            )
-            st.session_state['tiktok_mode'] = tiktok_mode
-            if tiktok_mode:
-                self.image_model = 'fal-ai/flux-pro/v1.1-ultra'
-                st.session_state['fal-ai/flux-pro/v1.1-ultra_image_size'] = '9:16'
-                st.session_state['fal-ai/flux-pro/v1.1-ultra_num_images'] = 1
+            # tiktok_mode = st.checkbox(
+            #     "TikTok Mode",
+            #     value=st.session_state.get('tiktok_mode', False),
+            #     help="Use FLUX Pro v1.1 Ultra at 9:16.",
+            # )
+            # st.session_state['tiktok_mode'] = tiktok_mode
+            # if tiktok_mode:
+            #     self.image_model = 'fal-ai/flux-pro/v1.1-ultra'
+            #     st.session_state['fal-ai/flux-pro/v1.1-ultra_image_size'] = '9:16'
+            #     st.session_state['fal-ai/flux-pro/v1.1-ultra_num_images'] = 1
             render_image_controls(self.image_model)
 
         with st.sidebar.expander("Style Personalization", expanded=False):

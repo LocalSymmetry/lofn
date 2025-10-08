@@ -931,7 +931,7 @@ def render_image_controls(model: str):
         st.number_input("Guidance Scale", min_value=0.0, max_value=20.0, value=7.0, step=0.1, key=f"{model}_guidance_scale")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in ["fal-ai/flux-pro/v1.1-ultra"]:
-        st.selectbox("Aspect Ratio", ["3:4", "4:3", "1:1", "9:16", "16:9", "9:21", "21:9"], key=f"{model}_image_size")
+        st.selectbox("Aspect Ratio", ["9:16", "16:9", "3:4", "4:3", "1:1", "9:21", "21:9"], key=f"{model}_image_size")
         st.checkbox("Enable Raw Mode", value=False, key=f"{model}_raw_mode")    
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")    
         st.number_input("Safety Tolerance", min_value=1, max_value=6, value=6, key=f"{model}_safety_tolerance")
