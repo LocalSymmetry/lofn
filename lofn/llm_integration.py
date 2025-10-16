@@ -163,6 +163,8 @@ def normalize_images(files) -> List[ImageAsset]:
 VISION_MODELS = {
     "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
+        "claude-sonnet-4-5",
+        "claude-haiku-4-5",
         "claude-3-7-sonnet-20250219", 
         "claude-sonnet-4-20250514", 
         "claude-opus-4-20250514", 
@@ -1293,6 +1295,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o4-mini": 100000,
 
             # Anthropic models
+            "claude-sonnet-4-5": 32000,
+            "claude-haiku-4-5": 32000,
             "claude-3-7-sonnet-20250219": 32000,
             "claude-sonnet-4-20250514": 32000,
             "claude-opus-4-20250514": 32000,
@@ -1329,6 +1333,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-o3-pro": 100000,
             "Poe-o4-mini": 100000,
             "Poe-Claude-Opus-4.1": 32000,
+            "Poe-Claude-Sonnet-4.5": 32000,
+            "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
             "Poe-Gemini-2.5-Pro": 120000,
             "Poe-Gemini-2.5-Flash": 120000,
@@ -1355,11 +1361,11 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         max_tokens = model_max_tokens.get(model, 4096)
 
         if model.startswith("claude"):
-            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514"]:
+            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-haiku-4-5", "claude-sonnet-4-5"]:
                 return ChatAnthropic(
                     model=model,
                     max_tokens=max_tokens,
-                    thinking={"type": "enabled", "budget_tokens": 15000},
+                    thinking={"type": "enabled", "budget_tokens": 25000},
                     anthropic_api_key=Config.ANTHROPIC_API
                 )
             else:

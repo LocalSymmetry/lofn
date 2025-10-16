@@ -167,7 +167,7 @@ class LofnApp:
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
             models.extend([
-                "claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514",
+                "claude-sonnet-4-5", "claude-haiku-4-5", "claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514",
                 "claude-3-5-sonnet-latest", "claude-3-5-haiku-20241022",
                 "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620",
                 "claude-3-opus-20240229", "claude-3-sonnet-20240229",
@@ -186,7 +186,7 @@ class LofnApp:
                 "Poe-Assistant", "Poe-App-Creator",
                 "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
                 "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
-                "Poe-o3", "Poe-o3-pro", "Poe-o4-mini",
+                "Poe-o3", "Poe-o3-pro", "Poe-o4-mini", "Poe-Claude-Haiku-4.5", "Poe-Claude-Sonnet-4.5",
                 "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
                 "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
                 "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
@@ -217,8 +217,8 @@ class LofnApp:
         priority_order = [
             "gemini-2.5-pro",
             "claude-opus-4-20250514",
-            "o3",
-            "claude-sonnet-4-20250514",
+            "gpt-5",
+            "claude-sonnet-4-5",
         ]
         ordered = [m for m in priority_order if m in models]
         ordered.extend([m for m in models if m not in ordered])

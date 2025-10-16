@@ -2,15 +2,17 @@ art:
   concept_medium:
     - gpt-5
     - gemini-2.5-pro
-    - OR-anthropic/claude-sonnet-4
+    - OR-anthropic/claude-sonnet-4.5
     - OR-x-ai/grok-4
-    - Poe-Claude-Sonnet-4
+    - Poe-Claude-Sonnet-4.5
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
+    - Poe-Claude-Haiku-4.5
     - gpt-5-mini
+    - claude-haiku-4-5
     - gemini-2.5-flash
     - gpt-4.1
     - Poe-Gemini-2.5-Flash
@@ -22,12 +24,13 @@ video:
     - OR-anthropic/claude-sonnet-4
     - gpt-5
     - OR-xai/grok-4
-    - Poe-Claude-Sonnet-4
+    - Poe-Claude-Sonnet-4.5
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
+    - claude-haiku-4-5
     - gpt-5-mini
     - gemini-2.5-flash
     - gpt-4.1
@@ -38,7 +41,7 @@ music:
   concept_medium:
     - gemini-2.5-pro
     - gpt-5
-    - OR-anthropic/claude-sonnet-4
+    - OR-anthropic/claude-sonnet-4.5
     - OR-x-ai/grok-4
     - Poe-Claude-Sonnet-4
     - Poe-Gemini-2.5-Pro
@@ -46,7 +49,7 @@ music:
   prompt:
     - gpt-5
     - gemini-2.5-pro
-    - OR-anthropic/claude-sonnet-4
+    - OR-anthropic/claude-sonnet-4.5
     - OR-x-ai/grok-4
     - o3
     - Poe-Claude-Sonnet-4
