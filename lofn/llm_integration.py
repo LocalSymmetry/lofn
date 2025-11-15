@@ -161,7 +161,7 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
         "claude-sonnet-4-5",
         "claude-haiku-4-5",
@@ -1284,6 +1284,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5.1": 32768,
             "gpt-5": 32768,
             "gpt-5-mini": 32768,
             "gpt-5-nano": 32768,
@@ -1322,6 +1323,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Poe models
             "Poe-Assistant": 32768,
             "Poe-App-Creator": 32768,
+            "Poe-GPT-5.1": 32768,
             "Poe-GPT-5": 32768,
             "Poe-GPT-5-mini": 32768,
             "Poe-GPT-5-nano": 32768,

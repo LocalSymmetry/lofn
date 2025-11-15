@@ -160,7 +160,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-5", "gpt-5-mini", "gpt-5-nano",
+                "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
                 "o3", "o3-pro", "o4-mini",
             ])
@@ -184,7 +184,7 @@ class LofnApp:
         if Config.POE_API:
             models.extend([
                 "Poe-Assistant", "Poe-App-Creator",
-                "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
+                "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
                 "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
                 "Poe-o3", "Poe-o3-pro", "Poe-o4-mini", "Poe-Claude-Haiku-4.5", "Poe-Claude-Sonnet-4.5",
                 "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
@@ -217,7 +217,7 @@ class LofnApp:
         priority_order = [
             "gemini-2.5-pro",
             "claude-opus-4-20250514",
-            "gpt-5",
+            "gpt-5.1",
             "claude-sonnet-4-5",
         ]
         ordered = [m for m in priority_order if m in models]
@@ -304,8 +304,8 @@ class LofnApp:
         if model is None:
             model = self.available_models[0] if self.available_models else None
         if prompt_model is None:
-            if 'gpt-5' in self.available_models:
-                prompt_model = 'gpt-5'
+            if 'gpt-5.1' in self.available_models:
+                prompt_model = 'gpt-5.1'
             elif 'gpt-4.1' in self.available_models:
                 prompt_model = 'gpt-4.1'
             else:
