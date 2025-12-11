@@ -18,6 +18,7 @@ from datetime import datetime
 from config import Config
 from helpers import *
 from llm_integration import *
+from deep_research import run_deep_research_stream
 from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
@@ -317,6 +318,7 @@ class LofnApp:
             "Image Generation",
             "Video Generation",
             "Music Generation",
+            "Deep Research",
             "Chat",
             "Prompt Explorer",
         ]
@@ -337,6 +339,8 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
+        elif selected_tab == "Deep Research":
+            self.render_deep_research()
         elif selected_tab == "Chat":
             self.render_chat()
         elif selected_tab == "Prompt Explorer":
@@ -1402,6 +1406,63 @@ class LofnApp:
             st.markdown('---')
 
         st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
+
+    def render_deep_research(self):
+        st.header("Google Deep Research Powered by Gemini 3 Pro")
+        st.info("This agent autonomously plans, executes, and synthesizes multi-step research tasks. It may take several minutes.")
+
+        input_text = st.text_area("Research Topic", height=150, placeholder="e.g., Research the competitive landscape of EV batteries.")
+
+        if st.button("Start Deep Research"):
+            if not input_text.strip():
+                st.warning("Please provide a research topic.")
+                return
+
+            st.write("Starting research... (this runs in the background)")
+
+            # Container for logs and result
+            log_container = st.expander("Thinking Process", expanded=True)
+            result_container = st.container()
+
+            with log_container:
+                log_placeholder = st.empty()
+
+            with result_container:
+                st.subheader("Research Report")
+                report_placeholder = st.empty()
+
+            logs = []
+            full_report = ""
+
+            # Using the stream generator
+            # Note: run_deep_research_stream is a generator, so we iterate over it
+            for event in run_deep_research_stream(input_text):
+                event_type = event.get("type")
+                content = event.get("content")
+
+                if event_type == "text_delta":
+                    full_report += content
+                    report_placeholder.markdown(full_report + "▌")
+
+                elif event_type == "thought":
+                    logs.append(f"Thinking: {content}")
+                    log_placeholder.code("\n".join(logs[-20:])) # Show last 20 lines to avoid too much scrolling
+
+                elif event_type == "info":
+                    logs.append(f"Info: {content}")
+                    log_placeholder.code("\n".join(logs[-20:]))
+
+                elif event_type == "error":
+                    st.error(content)
+                    logs.append(f"ERROR: {content}")
+                    log_placeholder.code("\n".join(logs[-20:]))
+
+                elif event_type == "complete":
+                    report_placeholder.markdown(full_report) # Remove cursor
+                    st.success(content)
+
+            if not full_report and not logs:
+                 st.error("No response received from the agent.")
 
     def render_prompt_explorer(self):
         """Allow browsing of saved metadata, video, and music prompts."""
