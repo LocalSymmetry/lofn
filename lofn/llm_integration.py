@@ -1323,6 +1323,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Poe models
             "Poe-Assistant": 32768,
             "Poe-App-Creator": 32768,
+            "Poe-GPT-5.2": 32768,
             "Poe-GPT-5.1": 32768,
             "Poe-GPT-5": 32768,
             "Poe-GPT-5-mini": 32768,
@@ -1356,7 +1357,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-Deepseek-R1": 164000,
             "Poe-Qwen2-72B-Chat": 32768,
             "Poe-Qwen2.5-VL-72B-T": 32000,
-            "Poe-Qwen2.5-Coder-32B": 32768
+            "Poe-Qwen2.5-Coder-32B": 32768,
+            "Poe-Kimi-K2-Thinking": 200000
         }
 
         # Get the maximum token limit for the selected model

@@ -184,7 +184,7 @@ class LofnApp:
         if Config.POE_API:
             models.extend([
                 "Poe-Assistant", "Poe-App-Creator",
-                "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
+                "Poe-GPT-5.2", "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
                 "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
                 "Poe-o3", "Poe-o3-pro", "Poe-o4-mini", "Poe-Claude-Haiku-4.5", "Poe-Claude-Sonnet-4.5",
                 "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
@@ -194,7 +194,8 @@ class LofnApp:
                 "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
                 "Poe-GPT-OSS-120B-T",
                 "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
-                "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B"
+                "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B",
+                "Poe-Kimi-K2-Thinking"
             ])
 
         # Optionally fetch from OpenRouter if OPEN_ROUTER_API_KEY is present
@@ -244,7 +245,7 @@ class LofnApp:
             models.append("DALL-E 3")
         if Config.POE_API:
             models.extend([
-                "Poe-GPT-Image-1",
+                "Poe-GPT-Image-1", "Poe-Recraft-V3",
                 "Poe-Imagen-4-Ultra-Exp", "Poe-Imagen-4", "Poe-Imagen-4-Fast",
                 "Poe-Flux-Kontext-Max", "Poe-Flux-Kontext-Pro",
                 "Poe-Seedream-3.0", "Poe-Phoenix-1.0",

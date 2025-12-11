@@ -215,7 +215,7 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
             else: 
                 suffix += '--aspect 4:7'
         elif poe_model in [
-            "GPT-Image-1",
+            "GPT-Image-1", "Recraft-V3",
             "Imagen-4-Ultra-Exp", "Imagen-4", "Imagen-4-Fast",
             "Flux-Kontext-Max", "Flux-Kontext-Pro",
             "Seedream-3.0", "Phoenix-1.0",
@@ -243,6 +243,10 @@ def generate_poe_image(model: str, params: dict, debug: bool = False):
             options['negative_prompt'] = params.get('negative_prompt', '')
         elif poe_model == "Ideogram":
             options['style_preset'] = params.get('style_preset', 'default')
+        elif poe_model == "Recraft-V3":
+            style = params.get('style')
+            if style and style != 'any':
+                suffix += f' --style {style}'
         elif poe_model == "LivePortrait":
             options['video_length'] = params.get('video_length', 3)
             suffix += '--aspect 16:9'
@@ -720,7 +724,7 @@ def get_model_params(model: str):
     }
 
     image_size = st.session_state[f"{model}_image_size"]
-    if model == "DALL-E 3" or ('flux' in model) or ('omnigen' in model) or ('recraft' in model) or ('Flux' in model) or ('FLUX' in model) or ('Ideogram' in model) or ('Playground' in model):
+    if model == "DALL-E 3" or ('flux' in model) or ('omnigen' in model) or ('recraft' in model) or ('Recraft' in model) or ('Flux' in model) or ('FLUX' in model) or ('Ideogram' in model) or ('Playground' in model):
         base_params["size"] = image_size
         base_params["image_size"] = image_size
     else:
@@ -780,6 +784,9 @@ def get_model_params(model: str):
             "num_inference_steps": st.session_state.get(f"{model}_inference_steps", 50),
             "guidance_scale": st.session_state.get(f"{model}_guidance_scale", 3.5),
             "enable_safety_checker": st.session_state.get(f"{model}_enable_safety_checker", True),
+            "style": st.session_state.get(f"{model}_recraft_style")
+        },
+        "Poe-Recraft-V3": {
             "style": st.session_state.get(f"{model}_recraft_style")
         },
         "fal-ai/stable-diffusion-v35-large": {
@@ -909,10 +916,11 @@ def render_image_controls(model: str):
         st.selectbox("Image Size", ["portrait_16_9", "square_hd", "square", "portrait_4_3", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.number_input("Inference Steps", min_value=1, max_value=12, value=12, key=f"{model}_inference_steps")
         st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
-    elif model in ["fal-ai/recraft-v3"]:
+    elif model in ["fal-ai/recraft-v3", "Poe-Recraft-V3"]:
         st.selectbox("Image Size", ["portrait_4_3", "portrait_16_9",  "square_hd", "square", "landscape_4_3", "landscape_16_9"], key=f"{model}_image_size")
         st.selectbox("Generation Style", ["any", "realistic_image", "digital_illustration", "vector_illustration", "realistic_image/b_and_w", "realistic_image/hard_flash", "realistic_image/hdr", "realistic_image/natural_light", "realistic_image/studio_portrait", "realistic_image/enterprise", "realistic_image/motion_blur", "digital_illustration/pixel_art", "digital_illustration/hand_drawn", "digital_illustration/grain", "digital_illustration/infantile_sketch", "digital_illustration/2d_art_poster", "digital_illustration/handmade_3d", "digital_illustration/hand_drawn_outline", "digital_illustration/engraving_color", "digital_illustration/2d_art_poster_2", "vector_illustration/engraving", "vector_illustration/line_art", "vector_illustration/line_circuit", "vector_illustration/linocut"], key=f"{model}_recraft_style")
-        st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
+        if model != "Poe-Recraft-V3":
+            st.checkbox("Enable Safety Checker", value=True, key=f"{model}_enable_safety_checker")
     elif model in [
         "fal-ai/flux-dev", "fal-ai/flux-realism","fal-ai/stable-diffusion-v35-medium", "fal-ai/omnigen-v1", "fal-ai/stable-diffusion-v35-large", "fal-ai/flux-pro", "fal-ai/flux-pro/v1.1",
         "Poe-GPT-Image-1",
