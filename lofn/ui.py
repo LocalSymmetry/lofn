@@ -2,6 +2,7 @@ import os
 import logging
 import random
 import json
+import requests
 import pandas as pd
 import streamlit as st
 import yaml
@@ -1443,8 +1444,28 @@ class LofnApp:
                     image_path = os.path.join("/images", image_path)
             if image_path and os.path.exists(image_path):
                 st.image(image_path, caption=data.get("title", ""))
+                with open(image_path, "rb") as f:
+                    st.download_button(
+                        label="Download Image 📥",
+                        data=f,
+                        file_name=os.path.basename(image_path),
+                        mime="image/png",
+                        key=f"dl_btn_{selected_file}"
+                    )
             elif data.get("image_url"):
                 st.image(data.get("image_url"), caption=data.get("title", ""))
+                try:
+                    response = requests.get(data.get("image_url"), timeout=5)
+                    if response.status_code == 200:
+                        st.download_button(
+                            label="Download Image 📥",
+                            data=response.content,
+                            file_name="image.png",
+                            mime="image/png",
+                            key=f"dl_btn_{selected_file}"
+                        )
+                except Exception:
+                    pass
             st.subheader("Image Prompt")
             st.code(data.get("prompt", ""), language="text")
         elif content_type == "Videos":
@@ -1542,6 +1563,10 @@ class LofnApp:
                 if p['name'] == st.session_state[select_key]
             )
         personality_text = st.session_state.get(custom_key, '')
+
+        if st.button("Clear Chat 🗑️", key=f"{key_prefix}clear_chat_btn"):
+            st.session_state[history_key] = []
+            st.rerun()
 
         clear_key = "clear_image2video_chat_images" if image_mode else "clear_personality_chat_images"
         if st.session_state.get(clear_key):
