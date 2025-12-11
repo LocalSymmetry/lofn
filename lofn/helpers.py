@@ -59,7 +59,7 @@ def resize_image_to_data_url(uploaded_file, max_dim: int = 1024, quality: int = 
 
 def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected artistic frames."""
-    with open('/lofn/prompts/frames.csv', newline='') as csvfile:
+    with open('lofn/prompts/frames.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         rows = list(reader)
 

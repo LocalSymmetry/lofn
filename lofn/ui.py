@@ -22,16 +22,16 @@ from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
-with open('/lofn/prompts/panels.yaml', 'r') as f:
+with open('lofn/prompts/panels.yaml', 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
 PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 
-with open('/lofn/prompts/personalities.yaml', 'r') as f:
+with open('lofn/prompts/personalities.yaml', 'r') as f:
     PERSONALITY_OPTIONS = yaml.safe_load(f)
 
 # Merge in user-defined personalities if the optional file exists
-custom_personality_path = '/lofn/prompts/custom_personalities.yaml'
+custom_personality_path = 'lofn/prompts/custom_personalities.yaml'
 if os.path.exists(custom_personality_path):
     with open(custom_personality_path, 'r') as f:
         custom_personalities = yaml.safe_load(f) or []
@@ -45,7 +45,7 @@ def image_context_to_string(images):
 
     return "\n".join(prepare_image_strings(images)) if images else ""
 
-DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
+DEFAULT_MODEL_CONFIG_PATH = 'lofn/model_defaults.yaml'
 
 # Limit the number of prompt files processed by the explorer
 MAX_PROMPT_FILES = 2000
@@ -661,7 +661,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
@@ -883,7 +883,7 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
+            template = read_prompt('lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
@@ -1076,7 +1076,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/video_overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/video_overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)

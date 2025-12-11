@@ -315,3 +315,30 @@ Edit `config.yaml` (API key) and add a mapping in `lofn/llm_integration.py`. The
 ## 📝 License
 
 **Apache 2.0** — free for personal & commercial use, attribution appreciated.
+
+## 🚀 Modern UI (React + FastAPI)
+
+Lofn now includes a modern, streamlined UI for competition mode.
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+
+### Setup
+1. Install Python dependencies:
+   ```bash
+   pip install fastapi uvicorn python-multipart
+   ```
+2. Build Frontend:
+   ```bash
+   cd frontend
+   npm install
+   npm run build
+   cd ..
+   ```
+
+### Run
+```bash
+python lofn/api.py
+```
+Access the UI at http://localhost:8000

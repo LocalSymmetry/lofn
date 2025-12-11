@@ -1,0 +1,14 @@
+INFO:     Started server process [10575]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51218 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33948 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:49596 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37456 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37456 - "GET /assets/index-DxKWZX3C.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37460 - "GET /assets/index-DQ3P1g1z.css HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [10575]

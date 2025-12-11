@@ -44,17 +44,17 @@ image_title_schema = {
     "seo_keywords": str
 }
 
-prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
+prompt_system = read_prompt('lofn/prompts/prompt_system.txt')
 
-prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
+prompt_ending = read_prompt('lofn/prompts/prompt_ending.txt')
 
-prompt_header_part1 = read_prompt("/lofn/prompts/prompt_header.txt")
+prompt_header_part1 = read_prompt("lofn/prompts/prompt_header.txt")
 
-prompt_header_part2 = read_prompt("/lofn/prompts/prompt_header_pt2.txt")
+prompt_header_part2 = read_prompt("lofn/prompts/prompt_header_pt2.txt")
 
 prompt_header = prompt_header_part1 + prompt_header_part2
 
-image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
+image_title_prompt_middle = read_prompt("lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
