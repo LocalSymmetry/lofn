@@ -161,7 +161,7 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.2", "gpt-5.2-pro", "gpt-5.2-chat-latest", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
         "claude-sonnet-4-5",
         "claude-haiku-4-5",
@@ -1126,6 +1126,123 @@ class ChatOpenAIWebSearch(BaseChatModel):
     def _llm_type(self) -> str:
         return "openai-web-search"
 
+class ChatOpenAIResponses(BaseChatModel):
+    model_name: str
+    openai_api_key: Optional[str] = None
+    temperature: float = 1.0
+    max_tokens: int = 4096
+    reasoning_effort: str = "medium"
+    _client: OpenAI = PrivateAttr(default=None)
+
+    def __init__(
+        self,
+        model_name: str,
+        openai_api_key: Optional[str],
+        temperature: float = 1.0,
+        max_tokens: int = 4096,
+        reasoning_effort: str = "medium"
+    ):
+        super().__init__(
+            model_name=model_name,
+            openai_api_key=openai_api_key,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            reasoning_effort=reasoning_effort
+        )
+        self._client = OpenAI(api_key=openai_api_key)
+
+    def _convert_messages(self, messages: List[BaseMessage]) -> List[Dict[str, Any]]:
+        """Map LangChain messages to OpenAI Responses schema while preserving multimodal parts."""
+        out: List[Dict[str, Any]] = []
+        for m in messages:
+            role = "user"
+            if isinstance(m, SystemMessage):
+                role = "system"
+            elif isinstance(m, AIMessage):
+                role = "assistant"
+
+            parts: List[Dict[str, Any]] = []
+            content = getattr(m, "content", "")
+
+            if isinstance(content, str):
+                parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": content})
+            elif isinstance(content, list):
+                for p in content:
+                    if not isinstance(p, dict):
+                        parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": str(p)})
+                        continue
+                    ptype = p.get("type", "text")
+                    if ptype in {"text", "input_text", "output_text"}:
+                        txt = p.get("text", "")
+                        parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": txt})
+                    elif ptype in {"image_url", "input_image"}:
+                        image = p.get("image_url")
+                        detail = p.get("detail", "auto")
+                        if isinstance(image, dict):
+                            file_id = image.get("file_id")
+                            url = image.get("url")
+                            if file_id:
+                                parts.append({"type": "input_image", "file_id": file_id, "detail": detail})
+                            elif url:
+                                parts.append({"type": "input_image", "image_url": url, "detail": detail})
+                        elif isinstance(image, str):
+                            parts.append({"type": "input_image", "image_url": image, "detail": detail})
+                    elif ptype == "file":
+                        f = p.get("file", {})
+                        b64 = f.get("b64_json")
+                        if b64:
+                            blob = base64.b64decode(b64)
+                            uploaded = self._client.files.create(file=io.BytesIO(blob), purpose="vision")
+                            parts.append({"type": "input_file", "file_id": uploaded.id})
+                    # silently drop unknown blocks
+            else:
+                parts.append({"type": "input_text" if role != "assistant" else "output_text", "text": str(content)})
+
+            out.append({"role": role, "content": parts})
+        return out
+
+    def _generate(
+        self,
+        messages: List[BaseMessage],
+        stop: Optional[List[str]] = None,
+        run_manager: Optional[CallbackManagerForLLMRun] = None,
+        **kwargs: Any,
+    ) -> ChatResult:
+        input_messages = self._convert_messages(messages)
+
+        params = {
+            "model": self.model_name,
+            "input": input_messages,
+            "max_output_tokens": self.max_tokens,
+        }
+
+        if self.reasoning_effort != "none":
+            params["reasoning"] = {"effort": self.reasoning_effort}
+        else:
+            params["reasoning"] = {"effort": "none"}
+            params["temperature"] = self.temperature
+
+        try:
+            resp = self._client.responses.create(**params)
+            text = resp.output_text
+            gen = ChatGeneration(message=AIMessage(content=text))
+            return ChatResult(generations=[gen])
+        except Exception as e:
+            raise RuntimeError(f"OpenAI responses API failed: {e}")
+
+    @property
+    def _llm_type(self) -> str:
+        return "openai-responses"
+
+    @property
+    def _identifying_params(self) -> Dict[str, Any]:
+        return {
+            "model_name": self.model_name,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+            "reasoning_effort": self.reasoning_effort
+        }
+
 class GeminiLLM(LLM):
     model_name: str
     temperature: float = 0.7
@@ -1284,6 +1401,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5.2": 128000,
+            "gpt-5.2-pro": 128000,
+            "gpt-5.2-chat-latest": 128000,
             "gpt-5.1": 32768,
             "gpt-5": 32768,
             "gpt-5-mini": 32768,
@@ -1399,6 +1519,14 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
                 max_tokens=max_tokens,
                 openai_api_key=Config.LOCAL_LLM_API_KEY,
                 openai_api_base=Config.LOCAL_LLM_API_BASE,
+            )
+        elif model.startswith("gpt-5.2"):
+            return ChatOpenAIResponses(
+                model_name=model,
+                openai_api_key=Config.OPENAI_API,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                reasoning_effort=reasoning_level
             )
         elif model.startswith("gpt-5"):
             return ChatOpenAIWebSearch(

@@ -160,6 +160,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
+                "gpt-5.2", "gpt-5.2-pro", "gpt-5.2-chat-latest",
                 "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
                 "o3", "o3-pro", "o4-mini",
@@ -215,6 +216,7 @@ class LofnApp:
 
         # Prioritize the most powerful models if available
         priority_order = [
+            "gpt-5.2",
             "gemini-2.5-pro",
             "claude-opus-4-20250514",
             "gpt-5.1",
@@ -410,15 +412,29 @@ class LofnApp:
             )
             st.session_state['prompt_model'] = self.prompt_model
 
-            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
-                # Reasoning Level for o1
-                # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
+            if self.model.startswith(('o1', 'o3', 'o4', 'gpt-5.2')):
+                # Reasoning Level for reasoning models
+                options = ["low", "medium", "high"]
+                if self.model.startswith("gpt-5.2"):
+                    options = ["none"] + options
+
+                default_idx = options.index("medium") if "medium" in options else 0
                 st.session_state['reasoning_level'] = st.selectbox(
-                    "Reasoning Level (for o1 models)",
-                    ["low", "medium", "high"],
-                    index=1
+                    "Reasoning Effort",
+                    options,
+                    index=default_idx
                 )
-            else:   
+
+            # Show temperature slider unless it's a reasoning model with effort != none
+            # For o1/o3/o4, they generally don't support temperature in the same way or it's fixed to 1.
+            # For gpt-5.2, temperature is supported ONLY if reasoning_level is "none".
+            show_temp = True
+            if self.model.startswith(('o1', 'o3', 'o4')):
+                show_temp = False
+            elif self.model.startswith("gpt-5.2") and st.session_state.get('reasoning_level') != "none":
+                show_temp = False
+
+            if show_temp:
                 self.temperature = st.slider(
                     "Temperature",
                     min_value=0.0,
