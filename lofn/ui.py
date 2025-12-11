@@ -160,6 +160,7 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
+                "gpt-5.2", "gpt-5.2-pro", "gpt-5.2-chat-latest",
                 "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
                 "o3", "o3-pro", "o4-mini",
@@ -176,7 +177,7 @@ class LofnApp:
         # Add Google models if GOOGLE_API_KEY is available
         if Config.GOOGLE_API_KEY:
             models.extend([
-                "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
+                "gemini-3-pro-preview", "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
                 "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
                 "gemini-1.5-pro", "gemini-1.5-flash",
             ])
@@ -185,14 +186,14 @@ class LofnApp:
             models.extend([
                 "Poe-Assistant", "Poe-App-Creator",
                 "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
-                "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
+                "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano", "Poe-Claude-Opus-4.5",
                 "Poe-o3", "Poe-o3-pro", "Poe-o4-mini", "Poe-Claude-Haiku-4.5", "Poe-Claude-Sonnet-4.5",
-                "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
+                "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4", "Poe-Gemini-3-Pro",
                 "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
                 "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
                 "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash",
                 "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
-                "Poe-GPT-OSS-120B-T",
+                "Poe-GPT-OSS-120B-T", "Poe-Kimi-K2-Thinking", "Poe-Qwen3-Max-N"
                 "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
                 "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B"
             ])
@@ -215,9 +216,10 @@ class LofnApp:
 
         # Prioritize the most powerful models if available
         priority_order = [
+            "gemini-3-pro-preview",
             "gemini-2.5-pro",
             "claude-opus-4-20250514",
-            "gpt-5.1",
+            "gpt-5.2",
             "claude-sonnet-4-5",
         ]
         ordered = [m for m in priority_order if m in models]
