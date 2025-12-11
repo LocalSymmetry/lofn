@@ -1284,6 +1284,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5.2": 128000,
+            "gpt-5.2-pro": 128000,
+            "gpt-5.2-chat-latest": 128000,
             "gpt-5.1": 32768,
             "gpt-5": 32768,
             "gpt-5-mini": 32768,
@@ -1310,6 +1313,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
+            "gemini-3-pro-preview": 120000,
             "gemini-2.5-pro": 120000,
             "gemini-2.5-flash": 120000,
             "gemini-2.5-flash-lite": 120000,
@@ -1335,10 +1339,12 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-o3": 100000,
             "Poe-o3-pro": 100000,
             "Poe-o4-mini": 100000,
+            "Poe-Claude-Opus-4.5": 32000,
             "Poe-Claude-Opus-4.1": 32000,
             "Poe-Claude-Sonnet-4.5": 32000,
             "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
+            "Poe-Gemini-3-Pro": 120000,
             "Poe-Gemini-2.5-Pro": 120000,
             "Poe-Gemini-2.5-Flash": 120000,
             "Poe-Gemini-2.5-Flash-Lite": 120000,
@@ -1355,6 +1361,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-DeepSeek-V3": 128000,
             "Poe-Deepseek-V3-FW": 128000,
             "Poe-Deepseek-R1": 164000,
+            "Poe-Kimi-K2-Thinking": 32768,
+            "Poe-Qwen3-Max-N":32768,
             "Poe-Qwen2-72B-Chat": 32768,
             "Poe-Qwen2.5-VL-72B-T": 32000,
             "Poe-Qwen2.5-Coder-32B": 32768,
@@ -2653,7 +2661,7 @@ def run_personality_chat(
         "{lofn_readme}", lofn_readme
     )
 
-    if media_parts and model.startswith("gemini-2.5"):
+    if media_parts and (model.startswith("gemini-2.5") or model.startswith("gemini-3")):
         assets: List[ImageAsset] = []
         for p in media_parts:
             if p.get("type") in ("image_url", "input_image"):
