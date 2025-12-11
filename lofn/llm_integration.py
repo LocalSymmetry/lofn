@@ -1365,7 +1365,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-Qwen3-Max-N":32768,
             "Poe-Qwen2-72B-Chat": 32768,
             "Poe-Qwen2.5-VL-72B-T": 32000,
-            "Poe-Qwen2.5-Coder-32B": 32768
+            "Poe-Qwen2.5-Coder-32B": 32768,
+            "Poe-Kimi-K2-Thinking": 200000
         }
 
         # Get the maximum token limit for the selected model
