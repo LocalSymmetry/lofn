@@ -22,16 +22,16 @@ from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
-with open('/lofn/prompts/panels.yaml', 'r') as f:
+with open(get_safe_path('/lofn/prompts/panels.yaml'), 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
 PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 
-with open('/lofn/prompts/personalities.yaml', 'r') as f:
+with open(get_safe_path('/lofn/prompts/personalities.yaml'), 'r') as f:
     PERSONALITY_OPTIONS = yaml.safe_load(f)
 
 # Merge in user-defined personalities if the optional file exists
-custom_personality_path = '/lofn/prompts/custom_personalities.yaml'
+custom_personality_path = get_safe_path('/lofn/prompts/custom_personalities.yaml')
 if os.path.exists(custom_personality_path):
     with open(custom_personality_path, 'r') as f:
         custom_personalities = yaml.safe_load(f) or []
@@ -45,7 +45,7 @@ def image_context_to_string(images):
 
     return "\n".join(prepare_image_strings(images)) if images else ""
 
-DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
+DEFAULT_MODEL_CONFIG_PATH = get_safe_path('/lofn/model_defaults.yaml')
 
 # Limit the number of prompt files processed by the explorer
 MAX_PROMPT_FILES = 2000
@@ -547,8 +547,76 @@ class LofnApp:
     def render_image_generation(self):
         self.render_image_main_container()
 
+    def render_progress_stepper(self):
+        steps = ["Idea", "Concepts", "Prompts", "Images"]
+        current_step = st.session_state.get('progress_step', 0)
+
+        html = """
+<div class="progress-dashboard">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+"""
+
+        for i, step in enumerate(steps):
+            is_completed = i < current_step
+            is_current = i == current_step
+
+            color_active = "var(--primary)"
+            color_muted = "var(--muted)"
+            color_text = "var(--text)"
+            color_surface = "var(--surface)"
+
+            font_weight = "bold" if is_current else "normal"
+            opacity = "1.0" if (is_completed or is_current) else "0.5"
+
+            if is_completed:
+                indicator = "✓"
+                bg_color = color_active
+                text_color = "#fff"
+                border_color = color_active
+            elif is_current:
+                indicator = f"{i+1}"
+                bg_color = color_surface
+                text_color = color_active
+                border_color = color_active
+            else:
+                indicator = f"{i+1}"
+                bg_color = color_surface
+                text_color = color_muted
+                border_color = "var(--border)"
+
+            step_html = f"""
+<div style="display: flex; align-items: center; opacity: {opacity};">
+    <div style="
+        display: flex; align-items: center; justify-content: center;
+        width: 28px; height: 28px; border-radius: 50%;
+        background-color: {bg_color}; color: {text_color};
+        border: 2px solid {border_color};
+        font-size: 14px; font-weight: bold; margin-right: 10px;
+        transition: all 0.3s ease;
+    ">
+        {indicator}
+    </div>
+    <span style="color: {color_text if (is_current or is_completed) else color_muted}; font-weight: {font_weight}; font-size: 14px;">{step}</span>
+</div>
+"""
+
+            html += step_html
+
+            if i < len(steps) - 1:
+                line_color = color_active if is_completed else "var(--border)"
+                html += f"""
+<div style="flex-grow: 1; height: 2px; background-color: {line_color}; margin: 0 15px; transition: background-color 0.3s ease;"></div>
+"""
+
+        html += """
+    </div>
+</div>
+"""
+
+        st.markdown(html, unsafe_allow_html=True)
 
     def render_image_main_container(self):
+        self.render_progress_stepper()
         st.header("Generate Your Art Concept")
 
 

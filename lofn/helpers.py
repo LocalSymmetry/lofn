@@ -30,7 +30,23 @@ def set_style_axes(auto_style: bool, style_axes=None):
         st.session_state['style_axes'] = style_axes
     return st.session_state['style_axes']
 
+def get_safe_path(path):
+    """Resolve absolute paths starting with /lofn to relative if needed."""
+    if path.startswith('/lofn/'):
+        if os.path.exists(path):
+            return path
+        # Try relative path (remove leading slash)
+        local_path = path[1:]
+        if os.path.exists(local_path):
+            return local_path
+        # Try relative to current file if running from root
+        local_path = os.path.join('.', path[1:])
+        if os.path.exists(local_path):
+            return local_path
+    return path
+
 def read_prompt(file_path):
+    file_path = get_safe_path(file_path)
     with open(file_path, "r") as file:
         return file.read()
 

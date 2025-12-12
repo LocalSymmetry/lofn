@@ -43,6 +43,7 @@ try:
         sample_art_styles,
         sample_film_styles,
         compress_image_bytes,
+        get_safe_path,
     )
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
     from .helpers import (
@@ -57,6 +58,7 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         sample_art_styles,
         sample_film_styles,
         compress_image_bytes,
+        get_safe_path,
     )
 from parsing import (
     select_best_json_candidate,
@@ -709,7 +711,7 @@ music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2
 
 
 # Read aesthetics from the file
-with open('/lofn/prompts/aesthetics.txt', 'r') as file:
+with open(get_safe_path('/lofn/prompts/aesthetics.txt'), 'r') as file:
     aesthetics = file.read().split(', ')
 
 # Combine prompt parts
