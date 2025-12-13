@@ -555,7 +555,7 @@ class LofnApp:
         # The user’s idea. Tying it to session_state so it does not vanish
         st.subheader("Describe Your Idea")
         st.text_area(
-            label="Describe Your Idea",
+            label="Art Idea",
             label_visibility="collapsed",  # hides it visually if desired
             key="input",  # This ensures the text stays in st.session_state['input']
             placeholder="Describe the essence of the art you wish to generate.",
@@ -980,7 +980,7 @@ class LofnApp:
         st.header("Generate Your Art Video Concept")
         st.subheader("Describe Your Idea")
         st.text_area(
-            label="Describe Your Idea",
+            label="Video Idea",
             label_visibility="collapsed",  # hides it visually if desired
             key="input",
             placeholder="Describe the essence of the art video you wish to generate.",
@@ -1264,7 +1264,7 @@ class LofnApp:
 
         st.subheader("Describe Your Song Idea")
         st.text_area(
-            label="Describe Your Song Idea",
+            label="Song Idea",
             label_visibility="collapsed",  # hides it visually if desired
             key="input",
             placeholder="Describe the themes, emotions, and specific elements you want in your song.",
@@ -1570,10 +1570,6 @@ class LofnApp:
         if history_key not in st.session_state:
             st.session_state[history_key] = []
 
-        if not st.session_state[history_key]:
-            name = st.session_state.get(select_key, "the assistant")
-            st.info(f"👋 Start a conversation with **{name}**! Upload reference media above or type a message below to begin.")
-
         for msg in st.session_state[history_key]:
             role = 'user' if isinstance(msg, HumanMessage) else 'assistant'
             with st.chat_message(role):
@@ -1628,34 +1624,31 @@ class LofnApp:
                         elif mime.startswith("video/"):
                             st.video(base64.b64decode(b64))
             logger.debug(f"{mode} user input: %s", user_input)
-
-            with st.chat_message("assistant"):
-                with st.spinner("Thinking..."):
-                    if mode == "Image to Video Chat":
-                        response_text = run_personality_image2video_chat(
-                            personality_text,
-                            history,
-                            user_input,
-                            model=self.model,
-                            temperature=self.temperature,
-                            reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                            debug=self.debug,
-                            input_media=[m.content[0] for m in prepared],
-                        )
-                    else:
-                        response_text = run_personality_chat(
-                            personality_text,
-                            history,
-                            user_input,
-                            model=self.model,
-                            temperature=self.temperature,
-                            reasoning_level=st.session_state.get('reasoning_level', 'medium'),
-                            debug=self.debug,
-                            input_media=[m.content[0] for m in prepared],
-                        )
-                st.markdown(response_text)
-
+            if mode == "Image to Video Chat":
+                response_text = run_personality_image2video_chat(
+                    personality_text,
+                    history,
+                    user_input,
+                    model=self.model,
+                    temperature=self.temperature,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    debug=self.debug,
+                    input_media=[m.content[0] for m in prepared],
+                )
+            else:
+                response_text = run_personality_chat(
+                    personality_text,
+                    history,
+                    user_input,
+                    model=self.model,
+                    temperature=self.temperature,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    debug=self.debug,
+                    input_media=[m.content[0] for m in prepared],
+                )
             logger.debug(f"{mode} response: %s", response_text)
+            with st.chat_message("assistant"):
+                st.markdown(response_text)
             st.session_state[history_key].append(AIMessage(content=response_text))
             st.session_state[input_images_key] = []
             st.session_state[clear_key] = True
