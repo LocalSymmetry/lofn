@@ -22,6 +22,36 @@ from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
+EXAMPLE_PROMPTS = {
+    'Image Generation': [
+        "A futuristic city floating in the clouds, cyberpunk style, neon lights.",
+        "An oil painting of a cozy cottage in the woods during autumn.",
+        "A portrait of a cyborg warrior, detailed metal textures, dramatic lighting.",
+        "A whimsical forest filled with glowing mushrooms and tiny fairies.",
+        "A surreal landscape where melting clocks drape over barren trees.",
+        "A high-fashion photography shot of a model wearing a dress made of light.",
+        "A detailed blueprint of a steam-powered mechanical dragon."
+    ],
+    'Video Generation': [
+        "A slow-motion cinematic shot of raindrops falling on a lotus flower.",
+        "A drone flying through a bustling market in Tokyo at night.",
+        "A time-lapse of a flower blooming in a desert landscape.",
+        "A camera panning across a medieval battlefield after the rain.",
+        "An astronaut floating weightlessly in a space station corridor.",
+        "A close-up of a potter's hands shaping clay on a spinning wheel.",
+        "A mystical portal opening in the middle of a busy city street."
+    ],
+    'Music Generation': [
+        "An upbeat synthwave track with a driving bassline and nostalgic 80s vibes.",
+        "A melancholic piano melody accompanied by soft strings and rain sounds.",
+        "A high-energy rock song with distorted guitars and powerful drums.",
+        "A lo-fi hip hop beat perfect for studying and relaxing.",
+        "A dramatic orchestral piece building up to an epic climax.",
+        "A jazzy saxophone solo over a smooth double bass and brush drums.",
+        "An ethereal ambient soundscape with whale calls and ocean waves."
+    ]
+}
+
 with open('/lofn/prompts/panels.yaml', 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
@@ -553,7 +583,14 @@ class LofnApp:
 
 
         # The user’s idea. Tying it to session_state so it does not vanish
-        st.subheader("Describe Your Idea")
+        col1, col2 = st.columns([0.8, 0.2])
+        with col1:
+            st.subheader("Describe Your Idea")
+        with col2:
+            if st.button("🎲 Surprise Me", key="surprise_image", help="Get a random idea to start"):
+                st.session_state['input'] = random.choice(EXAMPLE_PROMPTS['Image Generation'])
+                st.rerun()
+
         st.text_area(
             label="Art Idea",
             label_visibility="collapsed",  # hides it visually if desired
@@ -978,7 +1015,15 @@ class LofnApp:
 
     def render_video_generation(self):
         st.header("Generate Your Art Video Concept")
-        st.subheader("Describe Your Idea")
+
+        col1, col2 = st.columns([0.8, 0.2])
+        with col1:
+            st.subheader("Describe Your Idea")
+        with col2:
+            if st.button("🎲 Surprise Me", key="surprise_video", help="Get a random idea to start"):
+                st.session_state['input'] = random.choice(EXAMPLE_PROMPTS['Video Generation'])
+                st.rerun()
+
         st.text_area(
             label="Video Idea",
             label_visibility="collapsed",  # hides it visually if desired
@@ -1262,7 +1307,14 @@ class LofnApp:
         # self.render_music_sidebar()
         st.header("Generate Your Music Concept")
 
-        st.subheader("Describe Your Song Idea")
+        col1, col2 = st.columns([0.8, 0.2])
+        with col1:
+            st.subheader("Describe Your Song Idea")
+        with col2:
+            if st.button("🎲 Surprise Me", key="surprise_music", help="Get a random idea to start"):
+                st.session_state['input'] = random.choice(EXAMPLE_PROMPTS['Music Generation'])
+                st.rerun()
+
         st.text_area(
             label="Song Idea",
             label_visibility="collapsed",  # hides it visually if desired
