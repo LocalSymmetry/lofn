@@ -2,6 +2,7 @@
 
 import re
 import json
+import yaml
 import base64
 from io import BytesIO
 from PIL import Image
@@ -471,3 +472,24 @@ def async_to_sync_generator(async_gen: AsyncGenerator[str, None]) -> Generator[s
         yield item
 
     thread.join()
+
+
+@st.cache_data
+def load_loading_messages():
+    """Load loading messages from YAML file."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'loading_messages.yaml')
+    try:
+        with open(path, 'r') as f:
+            return yaml.safe_load(f)
+    except Exception:
+        return {}
+
+
+def get_loading_message(category="default"):
+    """Return a random loading message for the given category."""
+    messages = load_loading_messages()
+    # Fallback to 'concepts' if category not found or empty
+    options = messages.get(category, messages.get('concepts', ["Processing..."]))
+    if not options:
+        return "Processing..."
+    return random.choice(options)

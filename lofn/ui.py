@@ -555,7 +555,7 @@ class LofnApp:
         # The user’s idea. Tying it to session_state so it does not vanish
         st.subheader("Describe Your Idea")
         st.text_area(
-            label="Art Idea",
+            label="Describe Your Idea",
             label_visibility="collapsed",  # hides it visually if desired
             key="input",  # This ensures the text stays in st.session_state['input']
             placeholder="Describe the essence of the art you wish to generate.",
@@ -676,7 +676,7 @@ class LofnApp:
                 if images:
                     input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
-            with st.spinner("Generating concepts..."):
+            with st.spinner(get_loading_message("concepts")):
                 concepts, style_axes, creativity_spectrum = generate_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
@@ -725,7 +725,7 @@ class LofnApp:
     def generate_prompts_for_pair(self, pair):
         st.subheader(f"Generating Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
-            with st.spinner(f"Generating prompts for '{pair['concept']}'..."):
+            with st.spinner(f"{get_loading_message('prompts')} (Concept: {pair['concept']})"):
                 prompts_df = generate_image_prompts(
                     st.session_state['prompt_input'],
                     pair['concept'],
@@ -750,7 +750,7 @@ class LofnApp:
     def generate_prompts_for_manual_input(self, concept, medium):
         st.subheader(f"Generating Prompts for '{concept}' in '{medium}'")
         try:
-            with st.spinner(f"Generating prompts for '{concept}'..."):
+            with st.spinner(f"{get_loading_message('prompts')} (Concept: {concept})"):
                 prompts_df = generate_image_prompts(
                     st.session_state['prompt_input'],
                     concept,
@@ -789,7 +789,7 @@ class LofnApp:
         if not pairs:
             return
         try:
-            with st.spinner("Panel voting on best pairs..."):
+            with st.spinner(get_loading_message("panel")):
                 best_pairs = select_best_pairs(
                     st.session_state['prompt_input'],
                     pairs,
@@ -817,7 +817,7 @@ class LofnApp:
         if not pairs:
             return
         try:
-            with st.spinner("Panel voting on best pairs..."):
+            with st.spinner(get_loading_message("panel")):
                 best_pairs = select_best_pairs(
                     st.session_state['prompt_input'],
                     pairs,
@@ -896,7 +896,7 @@ class LofnApp:
             display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
             st.session_state['prompt_input'] = input_text
 
-            with st.spinner("Generating music concepts..."):
+            with st.spinner(get_loading_message("music")):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
@@ -916,7 +916,7 @@ class LofnApp:
             pairs = concept_mediums
             if pairs:
                 try:
-                    with st.spinner("Panel voting on best pairs..."):
+                    with st.spinner(get_loading_message("panel")):
                         best_pairs = select_best_pairs(
                             input_text,
                             pairs,
@@ -953,7 +953,7 @@ class LofnApp:
             st.info("Image generation skipped.")
             return
         try:
-            with st.spinner(f"Generating images for '{pair['concept']}'..."):
+            with st.spinner(f"{get_loading_message('images')} (Concept: {pair['concept']})"):
                 generate_dalle_images(
                     st.session_state['prompt_input'],
                     pair['concept'],
@@ -1091,7 +1091,7 @@ class LofnApp:
                 if images:
                     input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
-            with st.spinner("Generating video concepts..."):
+            with st.spinner(get_loading_message("video")):
                 concepts, style_axes, creativity_spectrum = generate_video_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
@@ -1133,7 +1133,7 @@ class LofnApp:
     def generate_video_prompts_for_pair(self, pair):
         st.subheader(f"Generating Video Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
-            with st.spinner(f"Generating video prompts for '{pair['concept']}'..."):
+            with st.spinner(f"{get_loading_message('video')} (Concept: {pair['concept']})"):
                 prompts_df = generate_video_prompts(
                     st.session_state['prompt_input'],
                     pair['concept'],
@@ -1195,7 +1195,7 @@ class LofnApp:
     def generate_music_prompts_for_pair(self, pair):
         st.subheader(f"Generating Music Prompts for '{pair['concept']}' in '{pair['medium']}'")
         try:
-            with st.spinner(f"Generating music prompts for '{pair['concept']}'..."):
+            with st.spinner(f"{get_loading_message('music')} (Concept: {pair['concept']})"):
                 song_prompts = generate_music_prompts(
                     st.session_state['prompt_input'],
                     pair['concept'],
@@ -1325,7 +1325,7 @@ class LofnApp:
             if images:
                 input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
             st.session_state['prompt_input'] = input_text
-            with st.spinner("Generating music prompts..."):
+            with st.spinner(get_loading_message("music")):
                 concept_mediums, style_axes, creativity = generate_music_concept_mediums(
                     input_text,
                     max_retries=self.max_retries,
