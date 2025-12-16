@@ -18,20 +18,20 @@ from datetime import datetime
 from config import Config
 from helpers import *
 from llm_integration import *
-from langchain.schema import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
-with open('/lofn/prompts/panels.yaml', 'r') as f:
+with open('lofn/prompts/panels.yaml', 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
 PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 
-with open('/lofn/prompts/personalities.yaml', 'r') as f:
+with open('lofn/prompts/personalities.yaml', 'r') as f:
     PERSONALITY_OPTIONS = yaml.safe_load(f)
 
 # Merge in user-defined personalities if the optional file exists
-custom_personality_path = '/lofn/prompts/custom_personalities.yaml'
+custom_personality_path = 'lofn/prompts/custom_personalities.yaml'
 if os.path.exists(custom_personality_path):
     with open(custom_personality_path, 'r') as f:
         custom_personalities = yaml.safe_load(f) or []
@@ -45,7 +45,7 @@ def image_context_to_string(images):
 
     return "\n".join(prepare_image_strings(images)) if images else ""
 
-DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
+DEFAULT_MODEL_CONFIG_PATH = 'lofn/model_defaults.yaml'
 
 # Limit the number of prompt files processed by the explorer
 MAX_PROMPT_FILES = 2000
@@ -357,7 +357,10 @@ class LofnApp:
             )
             if st.session_state['selected_panel'] == 'Custom':
                 st.session_state['custom_panel'] = st.sidebar.text_area(
-                    'Custom Panel Prompt', value=st.session_state.get('custom_panel', ''), height=150
+                    'Custom Panel Prompt',
+                    value=st.session_state.get('custom_panel', ''),
+                    height=150,
+                    help="Define the personas and criteria for the expert panel that will critique the concepts."
                 )
             elif st.session_state['selected_panel'] == 'LLM Generated':
                 st.sidebar.info('Panel will be generated automatically.')
@@ -379,6 +382,7 @@ class LofnApp:
                     value=st.session_state.get('custom_personality', ''),
                     height=150,
                     key='sidebar_custom_personality',
+                    help="Define the personality of the AI assistant."
                 )
             elif st.session_state['selected_personality'] == 'LLM Generated':
                 st.sidebar.info('Personality will be generated automatically.')
@@ -586,8 +590,8 @@ class LofnApp:
         st.subheader("Manual Concept and Medium Input (Optional)")
         st.session_state['manual_input'] = st.checkbox("Manually input Concept and Medium")
         if st.session_state['manual_input']:
-            manual_concept = st.text_input("Enter your Concept")
-            manual_medium = st.text_input("Enter your Medium")
+            manual_concept = st.text_input("Enter your Concept", placeholder="e.g. A futuristic cityscape")
+            manual_medium = st.text_input("Enter your Medium", placeholder="e.g. Oil painting")
             if st.button("Generate Image Prompts for Manual Input"):
                 if manual_concept.strip() == "" or manual_medium.strip() == "":
                     st.warning("Please provide both a concept and a medium.")
@@ -661,7 +665,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
@@ -883,7 +887,7 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
+            template = read_prompt('lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
@@ -1076,7 +1080,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/video_overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/video_overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
@@ -1421,7 +1425,7 @@ class LofnApp:
             return
 
         file_names = list(index.keys())
-        search_query = st.text_input("Search", key="prompt_explorer_search").strip().lower()
+        search_query = st.text_input("Search", key="prompt_explorer_search", placeholder="Filter by title, prompt, or concept...").strip().lower()
         if search_query:
             file_names = [name for name, rec in index.items() if search_query in rec["haystack"]]
             if not file_names:

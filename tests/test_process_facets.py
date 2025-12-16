@@ -6,11 +6,6 @@ from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent
 sys.path.append(str(project_root))
 
-# Create a temporary symlink so llm_integration can load prompt files
-symlink_path = Path('/lofn')
-if not symlink_path.exists():
-    symlink_path.symlink_to(project_root / 'lofn', target_is_directory=True)
-
 import lofn.llm_integration as li
 
 

@@ -7,9 +7,9 @@ from pathlib import Path
 # ``llm_integration`` expects prompts under ``/lofn/prompts``. Ensure the path
 # exists during testing so the module can import successfully.
 prompts_src = Path(__file__).resolve().parent.parent / "lofn" / "prompts"
-if not Path("/lofn/prompts").exists():
+if not Path("lofn/prompts").exists():
     os.makedirs("/lofn", exist_ok=True)
-    os.symlink(prompts_src, "/lofn/prompts")
+    os.symlink(prompts_src, "lofn/prompts")
 
 # Load only the prepare_image_messages function to avoid heavy imports
 import ast

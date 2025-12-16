@@ -12,17 +12,25 @@ import asyncio
 import fastapi_poe as fp
 import requests
 import json
-from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnableSequence
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_anthropic.experimental import ChatAnthropicTools
-from langchain.output_parsers import ResponseSchema, StructuredOutputParser
-from langchain.chat_models.base import BaseChatModel
-from langchain.schema import OutputParserException
-from langchain.callbacks import AsyncIteratorCallbackHandler
-from langchain.schema import BaseMessage, AIMessage, HumanMessage, SystemMessage, ChatGeneration, ChatResult
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_classic.output_parsers.structured import ResponseSchema, StructuredOutputParser
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.exceptions import OutputParserException
+try:
+    from langchain.callbacks import AsyncIteratorCallbackHandler
+except ImportError:
+    try:
+        from langchain_core.callbacks import AsyncIteratorCallbackHandler
+    except ImportError:
+        try:
+             from langchain_classic.callbacks import AsyncIteratorCallbackHandler
+        except ImportError:
+             pass
+from langchain_core.messages import BaseMessage, AIMessage, HumanMessage, SystemMessage
+from langchain_core.outputs import ChatGeneration, ChatResult
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from pydantic import PrivateAttr
 from langchain_core.language_models.llms import LLM
@@ -657,59 +665,59 @@ def prepare_image_strings(images: List) -> List[str]:
     return urls
 
 # Load prompts
-concept_system = read_prompt('/lofn/prompts/concept_system.txt')
-prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
-prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
-concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
-concept_header_part2 = read_prompt('/lofn/prompts/concept_header_pt2.txt')
-prompt_header_part1 = read_prompt('/lofn/prompts/prompt_header.txt')
-prompt_header_part2 = read_prompt('/lofn/prompts/prompt_header_pt2.txt')
-essence_prompt_middle = read_prompt('/lofn/prompts/essence_prompt.txt')
-concepts_prompt_middle = read_prompt('/lofn/prompts/concepts_prompt.txt')
-artist_and_critique_prompt_middle = read_prompt('/lofn/prompts/artist_and_critique_prompt.txt')
-medium_prompt_middle = read_prompt('/lofn/prompts/medium_prompt.txt')
-refine_medium_prompt_middle = read_prompt('/lofn/prompts/refine_medium_prompt.txt')
-facets_prompt_middle = read_prompt('/lofn/prompts/facets_prompt.txt')
-aspects_traits_prompt_middle = read_prompt('/lofn/prompts/aspects_traits_prompts.txt')
-midjourney_prompt_middle = read_prompt('/lofn/prompts/imagegen_prompt.txt')
-artist_refined_prompt_middle = read_prompt('/lofn/prompts/artist_refined_prompt.txt')
-revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/revision_synthesis_prompt.txt')
-dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
-dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
-meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
-pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
-panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
-personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
-personality_chat_template = read_prompt('/lofn/prompts/personality_chat_template.txt')
-personality_image2video_template = read_prompt('/lofn/prompts/personality_image2video_template.txt')
+concept_system = read_prompt('lofn/prompts/concept_system.txt')
+prompt_system = read_prompt('lofn/prompts/prompt_system.txt')
+prompt_ending = read_prompt('lofn/prompts/prompt_ending.txt')
+concept_header_part1 = read_prompt('lofn/prompts/concept_header.txt')
+concept_header_part2 = read_prompt('lofn/prompts/concept_header_pt2.txt')
+prompt_header_part1 = read_prompt('lofn/prompts/prompt_header.txt')
+prompt_header_part2 = read_prompt('lofn/prompts/prompt_header_pt2.txt')
+essence_prompt_middle = read_prompt('lofn/prompts/essence_prompt.txt')
+concepts_prompt_middle = read_prompt('lofn/prompts/concepts_prompt.txt')
+artist_and_critique_prompt_middle = read_prompt('lofn/prompts/artist_and_critique_prompt.txt')
+medium_prompt_middle = read_prompt('lofn/prompts/medium_prompt.txt')
+refine_medium_prompt_middle = read_prompt('lofn/prompts/refine_medium_prompt.txt')
+facets_prompt_middle = read_prompt('lofn/prompts/facets_prompt.txt')
+aspects_traits_prompt_middle = read_prompt('lofn/prompts/aspects_traits_prompts.txt')
+midjourney_prompt_middle = read_prompt('lofn/prompts/imagegen_prompt.txt')
+artist_refined_prompt_middle = read_prompt('lofn/prompts/artist_refined_prompt.txt')
+revision_synthesis_prompt_middle = read_prompt('lofn/prompts/revision_synthesis_prompt.txt')
+dalle3_gen_prompt_middle = read_prompt('lofn/prompts/dalle3_gen_prompt.txt')
+dalle3_gen_prompt_nodiv_middle = read_prompt('lofn/prompts/dalle3_gen_nodiv_prompt.txt')
+meta_prompt_generation_prompt = read_prompt('lofn/prompts/meta_prompt_generation.txt')
+pair_selection_prompt = read_prompt('lofn/prompts/pair_selection_prompt.txt')
+panel_generation_prompt = read_prompt('lofn/prompts/panel_generation_prompt.txt')
+personality_generation_prompt = read_prompt('lofn/prompts/personality_generation_prompt.txt')
+personality_chat_template = read_prompt('lofn/prompts/personality_chat_template.txt')
+personality_image2video_template = read_prompt('lofn/prompts/personality_image2video_template.txt')
 
 # Video prompts
-video_concept_header_part1 = read_prompt('/lofn/prompts/video_concept_header.txt')
-video_concept_header_part2 = read_prompt('/lofn/prompts/video_concept_header_pt2.txt')
-video_essence_prompt_middle = read_prompt('/lofn/prompts/video_essence_prompt.txt')
-video_concepts_prompt_middle = read_prompt('/lofn/prompts/video_concepts_prompt.txt')
-video_prompt_header_part1 = read_prompt('/lofn/prompts/video_prompt_header.txt')
-video_prompt_header_part2 = read_prompt('/lofn/prompts/video_prompt_header_pt2.txt')
-video_artist_and_critique_prompt_middle = read_prompt('/lofn/prompts/video_artist_and_critique_prompt.txt')
-video_medium_prompt_middle = read_prompt('/lofn/prompts/video_medium_prompt.txt')
-video_refine_medium_prompt_middle = read_prompt('/lofn/prompts/video_refine_medium_prompt.txt')
-video_facets_prompt_middle = read_prompt('/lofn/prompts/video_facets_prompt.txt')
-video_aspects_traits_prompt_middle = read_prompt('/lofn/prompts/video_aspects_traits_prompt.txt')
-video_generation_prompt_middle = read_prompt('/lofn/prompts/video_generation_prompt.txt')
-video_revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/video_revision_synthesis_prompt.txt')
-video_artist_refined_prompt = read_prompt('/lofn/prompts/video_artist_refined_prompt.txt')
+video_concept_header_part1 = read_prompt('lofn/prompts/video_concept_header.txt')
+video_concept_header_part2 = read_prompt('lofn/prompts/video_concept_header_pt2.txt')
+video_essence_prompt_middle = read_prompt('lofn/prompts/video_essence_prompt.txt')
+video_concepts_prompt_middle = read_prompt('lofn/prompts/video_concepts_prompt.txt')
+video_prompt_header_part1 = read_prompt('lofn/prompts/video_prompt_header.txt')
+video_prompt_header_part2 = read_prompt('lofn/prompts/video_prompt_header_pt2.txt')
+video_artist_and_critique_prompt_middle = read_prompt('lofn/prompts/video_artist_and_critique_prompt.txt')
+video_medium_prompt_middle = read_prompt('lofn/prompts/video_medium_prompt.txt')
+video_refine_medium_prompt_middle = read_prompt('lofn/prompts/video_refine_medium_prompt.txt')
+video_facets_prompt_middle = read_prompt('lofn/prompts/video_facets_prompt.txt')
+video_aspects_traits_prompt_middle = read_prompt('lofn/prompts/video_aspects_traits_prompt.txt')
+video_generation_prompt_middle = read_prompt('lofn/prompts/video_generation_prompt.txt')
+video_revision_synthesis_prompt_middle = read_prompt('lofn/prompts/video_revision_synthesis_prompt.txt')
+video_artist_refined_prompt = read_prompt('lofn/prompts/video_artist_refined_prompt.txt')
 
 # Music prompts
-music_essence_prompt = read_prompt('/lofn/prompts/music_essence_prompt.txt')
-music_creation_prompt = read_prompt('/lofn/prompts/music_creation_prompt.txt')
-music_prompt_header_part1 = read_prompt('/lofn/prompts/music_prompt_header.txt')
-music_prompt_header_part2 = read_prompt('/lofn/prompts/music_prompt_header_pt2.txt')
-music_concept_header_part1 = read_prompt('/lofn/prompts/music_concept_header.txt')
-music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2.txt')
+music_essence_prompt = read_prompt('lofn/prompts/music_essence_prompt.txt')
+music_creation_prompt = read_prompt('lofn/prompts/music_creation_prompt.txt')
+music_prompt_header_part1 = read_prompt('lofn/prompts/music_prompt_header.txt')
+music_prompt_header_part2 = read_prompt('lofn/prompts/music_prompt_header_pt2.txt')
+music_concept_header_part1 = read_prompt('lofn/prompts/music_concept_header.txt')
+music_concept_header_part2 = read_prompt('lofn/prompts/music_concept_header_pt2.txt')
 
 
 # Read aesthetics from the file
-with open('/lofn/prompts/aesthetics.txt', 'r') as file:
+with open('lofn/prompts/aesthetics.txt', 'r') as file:
     aesthetics = file.read().split(', ')
 
 # Combine prompt parts
@@ -751,16 +759,16 @@ video_prompts = {
 
 # Music prompts
 music_prompts = {
-    'essence_and_facets': music_concept_header + read_prompt('/lofn/prompts/music_essence_prompt.txt') + prompt_ending,
-    'concepts': music_concept_header + read_prompt('/lofn/prompts/music_concepts_prompt.txt') + prompt_ending,
-    'artist_and_critique': music_concept_header + read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt') + prompt_ending,
-    'medium': music_concept_header + read_prompt('/lofn/prompts/music_medium_prompt.txt') + prompt_ending,
-    'refine_medium': music_concept_header + read_prompt('/lofn/prompts/music_refine_medium_prompt.txt') + prompt_ending,
-    'facets': music_concept_header + read_prompt('/lofn/prompts/music_facets_prompt.txt') + prompt_ending,
-    'song_guides': music_prompt_header + read_prompt('/lofn/prompts/music_song_guides_prompt.txt') + prompt_ending,
-    'generation': music_prompt_header + read_prompt('/lofn/prompts/music_generation_prompt.txt') + prompt_ending,
-    'artist_refined': music_prompt_header + read_prompt('/lofn/prompts/music_artist_refined_prompt.txt') + prompt_ending,
-    'revision_synthesis': music_prompt_header + read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt') + prompt_ending,
+    'essence_and_facets': music_concept_header + read_prompt('lofn/prompts/music_essence_prompt.txt') + prompt_ending,
+    'concepts': music_concept_header + read_prompt('lofn/prompts/music_concepts_prompt.txt') + prompt_ending,
+    'artist_and_critique': music_concept_header + read_prompt('lofn/prompts/music_artist_and_critique_prompt.txt') + prompt_ending,
+    'medium': music_concept_header + read_prompt('lofn/prompts/music_medium_prompt.txt') + prompt_ending,
+    'refine_medium': music_concept_header + read_prompt('lofn/prompts/music_refine_medium_prompt.txt') + prompt_ending,
+    'facets': music_concept_header + read_prompt('lofn/prompts/music_facets_prompt.txt') + prompt_ending,
+    'song_guides': music_prompt_header + read_prompt('lofn/prompts/music_song_guides_prompt.txt') + prompt_ending,
+    'generation': music_prompt_header + read_prompt('lofn/prompts/music_generation_prompt.txt') + prompt_ending,
+    'artist_refined': music_prompt_header + read_prompt('lofn/prompts/music_artist_refined_prompt.txt') + prompt_ending,
+    'revision_synthesis': music_prompt_header + read_prompt('lofn/prompts/music_revision_synthesis_prompt.txt') + prompt_ending,
 }
 
 # Image prompts (existing)
@@ -2637,7 +2645,7 @@ def run_personality_chat(
     if _has_image_parts(chat_history + [user_message]) and not _supports_vision(model):
         raise LofnError(f"{model} does not accept image inputs. Pick a vision model.")
 
-    readme_path = Path('/workspace/lofn/README.md')
+    readme_path = Path('README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     system_text = system_prompt.replace("{personality}", personality_prompt).replace(
         "{lofn_readme}", lofn_readme
@@ -2722,7 +2730,7 @@ async def stream_personality_chat(
         model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level
     )
 
-    readme_path = Path('/workspace/lofn/README.md')
+    readme_path = Path('README.md')
     lofn_readme = readme_path.read_text() if readme_path.exists() else ""
     system_text = system_prompt.replace("{personality}", personality_prompt).replace(
         "{lofn_readme}", lofn_readme

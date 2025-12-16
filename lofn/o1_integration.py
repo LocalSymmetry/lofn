@@ -1,13 +1,12 @@
 from typing import List, Dict, Any, Optional
-from langchain.schema import (
+from langchain_core.messages import (
     BaseMessage,
     AIMessage,
     HumanMessage,
     SystemMessage,
-    ChatGeneration,
-    ChatResult,
 )
-from langchain.chat_models.base import BaseChatModel
+from langchain_core.outputs import ChatGeneration, ChatResult
+from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from pydantic import Field, PrivateAttr
 from openai import OpenAI  # openai>=1.0.0 style usage

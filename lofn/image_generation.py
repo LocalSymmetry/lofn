@@ -16,16 +16,23 @@ logger = logging.getLogger(__name__)
 import plotly.graph_objects as go
 import pandas as pd
 from llm_integration import * 
-from langchain.chains.structured_output.base import create_structured_output_runnable
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_core.runnables import RunnableSequence
-from langchain.prompts import ChatPromptTemplate
-from langchain_anthropic.experimental import ChatAnthropicTools
-from langchain.output_parsers import ResponseSchema, StructuredOutputParser
-from langchain.schema import OutputParserException
-from langchain.callbacks import AsyncIteratorCallbackHandler
-from langchain.schema import HumanMessage
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_classic.output_parsers.structured import ResponseSchema, StructuredOutputParser
+from langchain_core.exceptions import OutputParserException
+try:
+    from langchain.callbacks import AsyncIteratorCallbackHandler
+except ImportError:
+    try:
+        from langchain_core.callbacks import AsyncIteratorCallbackHandler
+    except ImportError:
+        try:
+             from langchain_classic.callbacks import AsyncIteratorCallbackHandler
+        except ImportError:
+             pass
+from langchain_core.messages import HumanMessage
 from langchain_core.callbacks.manager import CallbackManagerForLLMRun
 from langchain_core.language_models.llms import LLM
 import json
@@ -44,17 +51,17 @@ image_title_schema = {
     "seo_keywords": str
 }
 
-prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
+prompt_system = read_prompt('lofn/prompts/prompt_system.txt')
 
-prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
+prompt_ending = read_prompt('lofn/prompts/prompt_ending.txt')
 
-prompt_header_part1 = read_prompt("/lofn/prompts/prompt_header.txt")
+prompt_header_part1 = read_prompt("lofn/prompts/prompt_header.txt")
 
-prompt_header_part2 = read_prompt("/lofn/prompts/prompt_header_pt2.txt")
+prompt_header_part2 = read_prompt("lofn/prompts/prompt_header_pt2.txt")
 
 prompt_header = prompt_header_part1 + prompt_header_part2
 
-image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
+image_title_prompt_middle = read_prompt("lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
