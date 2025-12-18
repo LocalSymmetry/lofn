@@ -21,6 +21,21 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
     from .config import Config
 import plotly.graph_objects as go
 
+def resolve_path(path: str) -> str:
+    """Resolve absolute paths (Docker style) to local paths if needed."""
+    if os.path.exists(path):
+        return path
+
+    # Handle /lofn/ prefix for local execution
+    if path.startswith('/lofn/'):
+        # Case: Running from repo root
+        # /lofn/prompts/x -> lofn/prompts/x
+        candidate_root = path.lstrip('/')
+        if os.path.exists(candidate_root):
+            return candidate_root
+
+    return path
+
 def set_style_axes(auto_style: bool, style_axes=None):
     """Update st.session_state['style_axes'] respecting automatic mode."""
     if auto_style:
@@ -31,6 +46,7 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
+    file_path = resolve_path(file_path)
     with open(file_path, "r") as file:
         return file.read()
 
@@ -59,7 +75,8 @@ def resize_image_to_data_url(uploaded_file, max_dim: int = 1024, quality: int = 
 
 def sample_artistic_frames(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected artistic frames."""
-    with open('/lofn/prompts/frames.csv', newline='') as csvfile:
+    path = resolve_path('/lofn/prompts/frames.csv')
+    with open(path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         rows = list(reader)
 

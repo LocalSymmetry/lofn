@@ -1,0 +1,48 @@
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.0.2:8501
+  External URL: http://34.46.237.233:8501
+
+[31m──[0m[31m────────────────────────[0m[31m [0m[1;31mTraceback [0m[1;2;31m(most recent call last)[0m[31m [0m[31m─────────────────────────[0m[31m──[0m
+[31m [0m [2m/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/streamlit/runtime/s[0m [31m [0m
+[31m [0m [2mcriptrunner/[0m[1mexec_code.py[0m:129 in exec_func_with_error_handling                        [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/streamlit/runtime/s[0m [31m [0m
+[31m [0m [2mcriptrunner/[0m[1mscript_runner.py[0m:671 in code_to_exec                                     [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/app/lofn/[0m[1mui.py[0m:10 in <module>                                                       [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m   7 [0m[94mimport[0m[90m [0m[4;96myaml[0m                                                                   [31m [0m
+[31m [0m   [2m   8 [0m[94mimport[0m[90m [0m[4;96mbase64[0m                                                                 [31m [0m
+[31m [0m   [2m   9 [0m                                                                              [31m [0m
+[31m [0m [31m❱ [0m  10 [1;4;94mfrom[0m[1;4;90m [0m[1;4;96mimage_generation[0m[1;4;90m [0m[1;4;94mimport[0m[1;4m ([0m                                                [31m [0m
+[31m [0m   [2m  11 [0m[2m│   [0m[1;4mrender_image_controls,[0m                                                    [31m [0m
+[31m [0m   [2m  12 [0m[2m│   [0m[1;4mget_model_params,[0m                                                         [31m [0m
+[31m [0m   [2m  13 [0m[2m│   [0m[1;4mgenerate_dalle_images,[0m                                                    [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/app/lofn/[0m[1mimage_generation.py[0m:18 in <module>                                         [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m  15 [0mlogger = logging.getLogger([91m__name__[0m)                                          [31m [0m
+[31m [0m   [2m  16 [0m[94mimport[0m[90m [0m[4;96mplotly[0m[4;96m.[0m[4;96mgraph_objects[0m[90m [0m[94mas[0m[90m [0m[4;96mgo[0m                                             [31m [0m
+[31m [0m   [2m  17 [0m[94mimport[0m[90m [0m[4;96mpandas[0m[90m [0m[94mas[0m[90m [0m[4;96mpd[0m                                                           [31m [0m
+[31m [0m [31m❱ [0m  18 [1;4;94mfrom[0m[1;4;90m [0m[1;4;96mllm_integration[0m[1;4;90m [0m[1;4;94mimport[0m[1;4m *[0m                                                 [31m [0m
+[31m [0m   [2m  19 [0m[94mfrom[0m[90m [0m[4;96mlangchain[0m[4;96m.[0m[4;96mchains[0m[4;96m.[0m[4;96mstructured_output[0m[4;96m.[0m[4;96mbase[0m[90m [0m[94mimport[0m create_structured_output_ [31m [0m
+[31m [0m   [2m  20 [0m[94mfrom[0m[90m [0m[4;96mlangchain_anthropic[0m[90m [0m[94mimport[0m ChatAnthropic                                 [31m [0m
+[31m [0m   [2m  21 [0m[94mfrom[0m[90m [0m[4;96mlangchain_openai[0m[90m [0m[94mimport[0m ChatOpenAI                                       [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/app/lofn/[0m[1mllm_integration.py[0m:15 in <module>                                          [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m  12 [0m[94mimport[0m[90m [0m[4;96mfastapi_poe[0m[90m [0m[94mas[0m[90m [0m[4;96mfp[0m                                                      [31m [0m
+[31m [0m   [2m  13 [0m[94mimport[0m[90m [0m[4;96mrequests[0m                                                               [31m [0m
+[31m [0m   [2m  14 [0m[94mimport[0m[90m [0m[4;96mjson[0m                                                                   [31m [0m
+[31m [0m [31m❱ [0m  15 [1;4;94mfrom[0m[1;4;90m [0m[1;4;96mlangchain[0m[1;4;96m.[0m[1;4;96mchains[0m[1;4;96m.[0m[1;4;96mstructured_output[0m[1;4;96m.[0m[1;4;96mbase[0m[1;4;90m [0m[1;4;94mimport[0m[1;4m create_structured_output_[0m [31m [0m
+[31m [0m   [2m  16 [0m[94mfrom[0m[90m [0m[4;96mlangchain_anthropic[0m[90m [0m[94mimport[0m ChatAnthropic                                 [31m [0m
+[31m [0m   [2m  17 [0m[94mfrom[0m[90m [0m[4;96mlangchain_openai[0m[90m [0m[94mimport[0m ChatOpenAI                                       [31m [0m
+[31m [0m   [2m  18 [0m[94mfrom[0m[90m [0m[4;96mlangchain_core[0m[4;96m.[0m[4;96mrunnables[0m[90m [0m[94mimport[0m RunnableSequence                         [31m [0m
+[31m────────────────────────────────────────────────────────────────────────────────────────[0m
+[1;91mModuleNotFoundError: [0mNo module named [32m'langchain.chains'[0m
