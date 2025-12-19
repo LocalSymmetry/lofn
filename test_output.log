@@ -1,0 +1,78 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0
+rootdir: /app
+plugins: anyio-4.12.0, asyncio-1.3.0, langsmith-0.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 10 items / 5 errors
+
+==================================== ERRORS ====================================
+_________________ ERROR collecting tests/test_gemini_image.py __________________
+ImportError while importing test module '/app/tests/test_gemini_image.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/jules/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_gemini_image.py:1: in <module>
+    import lofn.image_generation as ig
+lofn/image_generation.py:13: in <module>
+    from helpers import *
+E   ModuleNotFoundError: No module named 'helpers'
+__________________ ERROR collecting tests/test_image_flow.py ___________________
+ImportError while importing test module '/app/tests/test_image_flow.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/jules/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_image_flow.py:2: in <module>
+    import lofn.llm_integration as li
+lofn/llm_integration.py:61: in <module>
+    from parsing import (
+E   ModuleNotFoundError: No module named 'parsing'
+______________ ERROR collecting tests/test_parsing_gpt5_noise.py _______________
+ImportError while importing test module '/app/tests/test_parsing_gpt5_noise.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/jules/.pyenv/versions/3.12.12/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_parsing_gpt5_noise.py:10: in <module>
+    from lofn.parsing import select_best_json_candidate
+lofn/parsing.py:7: in <module>
+    from lofjson import parse_with_repairs
+E   ModuleNotFoundError: No module named 'lofjson'
+____________ ERROR collecting tests/test_prepare_image_messages.py _____________
+tests/test_prepare_image_messages.py:11: in <module>
+    os.makedirs("/lofn", exist_ok=True)
+<frozen os>:225: in makedirs
+    ???
+E   PermissionError: [Errno 13] Permission denied: '/lofn'
+________________ ERROR collecting tests/test_process_facets.py _________________
+tests/test_process_facets.py:12: in <module>
+    symlink_path.symlink_to(project_root / 'lofn', target_is_directory=True)
+/home/jules/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py:1386: in symlink_to
+    os.symlink(target, self, target_is_directory)
+E   PermissionError: [Errno 13] Permission denied: '/app/lofn' -> '/lofn'
+=============================== warnings summary ===============================
+../home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/fastapi_poe/types.py:114
+  /home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/fastapi_poe/types.py:114: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class RequestContext(BaseModel):
+
+../home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/google/genai/types.py:9008
+  /home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/google/genai/types.py:9008: PydanticDeprecatedSince212: Using `@model_validator` with mode='after' on a classmethod is deprecated. Instead, use an instance method. See the documentation at https://docs.pydantic.dev/2.12/concepts/validators/#model-after-validator. Deprecated in Pydantic V2.12 to be removed in V3.0.
+    @model_validator(mode='after')  # type: ignore[arg-type]
+
+lofn/llm_integration.py:31
+  /app/lofn/llm_integration.py:31: DeprecationWarning: 'imghdr' is deprecated and slated for removal in Python 3.13
+    import imghdr
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/test_gemini_image.py
+ERROR tests/test_image_flow.py
+ERROR tests/test_parsing_gpt5_noise.py
+ERROR tests/test_prepare_image_messages.py - PermissionError: [Errno 13] Perm...
+ERROR tests/test_process_facets.py - PermissionError: [Errno 13] Permission d...
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+======================== 3 warnings, 5 errors in 3.63s =========================
