@@ -556,7 +556,7 @@ class LofnApp:
         st.subheader("Describe Your Idea")
         st.text_area(
             label="Art Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # hides it visually if desired
             key="input",  # This ensures the text stays in st.session_state['input']
             placeholder="Describe the essence of the art you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -981,7 +981,7 @@ class LofnApp:
         st.subheader("Describe Your Idea")
         st.text_area(
             label="Video Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # hides it visually if desired
             key="input",
             placeholder="Describe the essence of the art video you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -1265,7 +1265,7 @@ class LofnApp:
         st.subheader("Describe Your Song Idea")
         st.text_area(
             label="Song Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # hides it visually if desired
             key="input",
             placeholder="Describe the themes, emotions, and specific elements you want in your song.",
             help="Provide a detailed description of your song idea."
