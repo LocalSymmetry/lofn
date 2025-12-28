@@ -31,6 +31,24 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
+    # If the file path is absolute and starts with /lofn, we attempt to resolve it relative to the repo root
+    # if it doesn't exist at the absolute path (which happens outside Docker).
+    if file_path.startswith('/lofn') and not os.path.exists(file_path):
+        # Assuming the repo root is where lofn/ is located
+        # We find where this helpers.py is, and go up one level
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        # file_path is like /lofn/prompts/concept_system.txt
+        # relative_path becomes prompts/concept_system.txt
+        relative_path = file_path[6:] # strip /lofn/
+        new_path = os.path.join(current_dir, relative_path)
+        if os.path.exists(new_path):
+            file_path = new_path
+        else:
+             # Try relative to CWD if running from root
+             cwd_path = os.path.join(os.getcwd(), 'lofn', relative_path)
+             if os.path.exists(cwd_path):
+                 file_path = cwd_path
+
     with open(file_path, "r") as file:
         return file.read()
 
