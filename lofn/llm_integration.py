@@ -709,8 +709,7 @@ music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2
 
 
 # Read aesthetics from the file
-with open('/lofn/prompts/aesthetics.txt', 'r') as file:
-    aesthetics = file.read().split(', ')
+aesthetics = read_prompt('/lofn/prompts/aesthetics.txt')
 
 # Combine prompt parts
 prompt_header = prompt_header_part1 + prompt_header_part2

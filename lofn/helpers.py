@@ -31,8 +31,29 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
-    with open(file_path, "r") as file:
-        return file.read()
+    # Adjust path if it starts with /lofn/
+    if file_path.startswith("/lofn/"):
+        # Remove the leading slash and assume it's relative to the repo root
+        relative_path = file_path.lstrip("/")
+        if os.path.exists(relative_path):
+            file_path = relative_path
+        elif os.path.exists(os.path.join(os.getcwd(), relative_path)):
+            file_path = os.path.join(os.getcwd(), relative_path)
+
+    try:
+        with open(file_path, "r") as file:
+            return file.read()
+    except FileNotFoundError:
+        # Fallback for testing environment where absolute paths might not match
+        # Try to find 'lofn/prompts' relative to current directory
+        base_dir = os.getcwd()
+        if "lofn/prompts" in file_path:
+            filename = os.path.basename(file_path)
+            potential_path = os.path.join(base_dir, "lofn", "prompts", filename)
+            if os.path.exists(potential_path):
+                with open(potential_path, "r") as file:
+                    return file.read()
+        raise
 
 def compress_image_bytes(data: bytes, max_dim: int = 1024, quality: int = 80) -> Tuple[bytes, Optional[str]]:
     """Return JPEG-compressed ``data`` and its MIME type.
