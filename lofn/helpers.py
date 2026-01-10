@@ -31,6 +31,14 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
+    # If the path starts with /lofn/, we might be running locally where it's relative
+    if file_path.startswith('/lofn/'):
+        local_path = file_path.lstrip('/')
+        if os.path.exists(local_path):
+            with open(local_path, "r") as file:
+                return file.read()
+
+    # Fallback to the original path (e.g. if inside Docker)
     with open(file_path, "r") as file:
         return file.read()
 
