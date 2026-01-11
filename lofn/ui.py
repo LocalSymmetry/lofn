@@ -410,7 +410,7 @@ class LofnApp:
             )
             st.session_state['prompt_model'] = self.prompt_model
 
-            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
+            if self.model and (self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4')):
                 # Reasoning Level for o1
                 # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
                 st.session_state['reasoning_level'] = st.selectbox(
@@ -556,7 +556,7 @@ class LofnApp:
         st.subheader("Describe Your Idea")
         st.text_area(
             label="Art Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # keeps it in DOM for screen readers
             key="input",  # This ensures the text stays in st.session_state['input']
             placeholder="Describe the essence of the art you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -981,7 +981,7 @@ class LofnApp:
         st.subheader("Describe Your Idea")
         st.text_area(
             label="Video Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # keeps it in DOM for screen readers
             key="input",
             placeholder="Describe the essence of the art video you wish to generate.",
             help="Provide a detailed description of your idea to get the best results.",
@@ -1265,7 +1265,7 @@ class LofnApp:
         st.subheader("Describe Your Song Idea")
         st.text_area(
             label="Song Idea",
-            label_visibility="collapsed",  # hides it visually if desired
+            label_visibility="hidden",  # keeps it in DOM for screen readers
             key="input",
             placeholder="Describe the themes, emotions, and specific elements you want in your song.",
             help="Provide a detailed description of your song idea."
