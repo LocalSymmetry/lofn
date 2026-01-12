@@ -31,6 +31,17 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
+    # If the path starts with /lofn, treat it relative to the project root
+    if file_path.startswith("/lofn"):
+        # Assuming the project root is where the script is run from or one level up
+        # Adjust this logic based on how tests vs app are run
+        import os
+        relative_path = file_path.lstrip("/")
+        if os.path.exists(relative_path):
+            file_path = relative_path
+        elif os.path.exists(os.path.join(".", relative_path)):
+             file_path = os.path.join(".", relative_path)
+
     with open(file_path, "r") as file:
         return file.read()
 

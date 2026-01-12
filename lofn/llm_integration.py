@@ -9,6 +9,7 @@ except Exception:
     genai = None
     types = None
 import asyncio
+import os
 import fastapi_poe as fp
 import requests
 import json
@@ -709,7 +710,7 @@ music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2
 
 
 # Read aesthetics from the file
-with open('/lofn/prompts/aesthetics.txt', 'r') as file:
+with open(os.path.join(os.path.dirname(__file__), 'prompts/aesthetics.txt'), 'r') as file:
     aesthetics = file.read().split(', ')
 
 # Combine prompt parts
