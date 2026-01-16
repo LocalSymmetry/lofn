@@ -31,6 +31,11 @@ def set_style_axes(auto_style: bool, style_axes=None):
     return st.session_state['style_axes']
 
 def read_prompt(file_path):
+    # Fallback for local execution where /lofn/ is not at root
+    if file_path.startswith('/lofn/') and not os.path.exists(file_path):
+        local_path = file_path.lstrip('/')
+        if os.path.exists(local_path):
+            file_path = local_path
     with open(file_path, "r") as file:
         return file.read()
 
