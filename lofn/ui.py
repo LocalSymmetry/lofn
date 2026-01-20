@@ -596,13 +596,13 @@ class LofnApp:
 
         # Process Flow Control
         st.markdown("<div class='sticky-action-bar'>", unsafe_allow_html=True)
-        if st.button("Generate Concepts"):
+        if st.button("Generate Concepts", type="primary", icon=":material/lightbulb:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition", type="primary", icon=":material/trophy:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
@@ -1004,13 +1004,13 @@ class LofnApp:
         if not st.session_state['input']:
             st.info("Tip: Describe a scene or narrative you'd like to see in motion.")
 
-        if st.button("Generate Video Concepts"):
+        if st.button("Generate Video Concepts", type="primary", icon=":material/movie:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
                 self.generate_ui_video_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_video_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_video_competition", type="primary", icon=":material/trophy:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
@@ -1287,13 +1287,13 @@ class LofnApp:
         if not st.session_state['input']:
             st.info("Tip: Include themes, emotions, specific elements, and desired run time length.")
 
-        if st.button("Generate Music Prompts"):
+        if st.button("Generate Music Prompts", type="primary", icon=":material/music_note:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your song idea.")
             else:
                 self.generate_music_prompts_ui()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_music_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_music_competition", type="primary", icon=":material/trophy:"):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your song idea.")
             else:
