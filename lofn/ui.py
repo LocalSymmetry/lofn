@@ -586,9 +586,17 @@ class LofnApp:
         st.subheader("Manual Concept and Medium Input (Optional)")
         st.session_state['manual_input'] = st.checkbox("Manually input Concept and Medium")
         if st.session_state['manual_input']:
-            manual_concept = st.text_input("Enter your Concept")
-            manual_medium = st.text_input("Enter your Medium")
-            if st.button("Generate Image Prompts for Manual Input"):
+            manual_concept = st.text_input(
+                "Enter your Concept",
+                placeholder="e.g. A futuristic city in neon lights",
+                help="The core subject or idea you want to generate."
+            )
+            manual_medium = st.text_input(
+                "Enter your Medium",
+                placeholder="e.g. Oil painting, 3D Render, Pixel Art",
+                help="The artistic style or medium for the generation."
+            )
+            if st.button("Generate Prompts", icon=":material/edit_note:", type="primary", help="Generate prompts based on your manual inputs."):
                 if manual_concept.strip() == "" or manual_medium.strip() == "":
                     st.warning("Please provide both a concept and a medium.")
                 else:
