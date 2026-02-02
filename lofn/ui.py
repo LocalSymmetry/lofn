@@ -588,7 +588,7 @@ class LofnApp:
         if st.session_state['manual_input']:
             manual_concept = st.text_input("Enter your Concept")
             manual_medium = st.text_input("Enter your Medium")
-            if st.button("Generate Image Prompts for Manual Input"):
+            if st.button("Generate Image Prompts for Manual Input", icon=":material/edit_note:", type="primary", help="Generate prompts using the manually entered concept and medium."):
                 if manual_concept.strip() == "" or manual_medium.strip() == "":
                     st.warning("Please provide both a concept and a medium.")
                 else:
@@ -596,13 +596,13 @@ class LofnApp:
 
         # Process Flow Control
         st.markdown("<div class='sticky-action-bar'>", unsafe_allow_html=True)
-        if st.button("Generate Concepts"):
+        if st.button("Generate Concepts", icon=":material/lightbulb:", type="primary", help="Generate initial art concepts based on your idea."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition", icon=":material/trophy:", type="primary", help="Run a competition between AI agents to find the best concept."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
@@ -710,7 +710,7 @@ class LofnApp:
         st.session_state['selected_pairs'] = selected_pairs
 
         # Buttons to proceed
-        if st.button("Generate Image Prompts for Selected Concepts"):
+        if st.button("Generate Image Prompts for Selected Concepts", icon=":material/check_circle:", type="primary", help="Generate detailed prompts for the selected concepts."):
             if selected_pairs:
                 for idx in selected_pairs:
                     pair = st.session_state['concept_mediums'][idx]
@@ -718,7 +718,7 @@ class LofnApp:
             else:
                 st.warning("Please select at least one concept to generate prompts.")
 
-        if st.button("Generate Image Prompts for All Concepts"):
+        if st.button("Generate Image Prompts for All Concepts", icon=":material/grid_view:", help="Generate detailed prompts for all generated concepts."):
             for pair in st.session_state['concept_mediums']:
                 self.generate_prompts_for_pair(pair)
 
@@ -1004,13 +1004,13 @@ class LofnApp:
         if not st.session_state['input']:
             st.info("Tip: Describe a scene or narrative you'd like to see in motion.")
 
-        if st.button("Generate Video Concepts"):
+        if st.button("Generate Video Concepts", icon=":material/movie:", type="primary", help="Generate video concepts based on your idea."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
                 self.generate_ui_video_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_video_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_video_competition", icon=":material/trophy:", type="primary", help="Run a competition for the best video concept."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
@@ -1118,7 +1118,7 @@ class LofnApp:
         )
         st.session_state['selected_video_pairs'] = selected_pairs
 
-        if st.button("Generate Video Prompts for Selected Concepts"):
+        if st.button("Generate Video Prompts for Selected Concepts", icon=":material/check_circle:", type="primary", help="Generate video prompts for the selected concepts."):
             if selected_pairs:
                 for idx in selected_pairs:
                     pair = st.session_state['video_concept_mediums'][idx]
@@ -1126,7 +1126,7 @@ class LofnApp:
             else:
                 st.warning("Please select at least one concept to generate prompts.")
 
-        if st.button("Generate Video Prompts for All Concepts"):
+        if st.button("Generate Video Prompts for All Concepts", icon=":material/grid_view:", help="Generate video prompts for all generated concepts."):
             for pair in st.session_state['video_concept_mediums']:
                 self.generate_video_prompts_for_pair(pair)
 
@@ -1180,7 +1180,7 @@ class LofnApp:
         )
         st.session_state['selected_music_pairs'] = selected_pairs
 
-        if st.button("Generate Music Prompts for Selected Concepts"):
+        if st.button("Generate Music Prompts for Selected Concepts", icon=":material/check_circle:", type="primary", help="Generate music prompts for the selected concepts."):
             if selected_pairs:
                 for idx in selected_pairs:
                     pair = st.session_state['music_concept_mediums'][idx]
@@ -1188,7 +1188,7 @@ class LofnApp:
             else:
                 st.warning("Please select at least one concept to generate prompts.")
 
-        if st.button("Generate Music Prompts for All Concepts"):
+        if st.button("Generate Music Prompts for All Concepts", icon=":material/grid_view:", help="Generate music prompts for all generated concepts."):
             for pair in st.session_state['music_concept_mediums']:
                 self.generate_music_prompts_for_pair(pair)
 
@@ -1287,13 +1287,13 @@ class LofnApp:
         if not st.session_state['input']:
             st.info("Tip: Include themes, emotions, specific elements, and desired run time length.")
 
-        if st.button("Generate Music Prompts"):
+        if st.button("Generate Music Prompts", icon=":material/music_note:", type="primary", help="Generate music prompts based on your idea."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your song idea.")
             else:
                 self.generate_music_prompts_ui()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_music_competition"):
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_music_competition", icon=":material/trophy:", type="primary", help="Run a competition for the best music concept."):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your song idea.")
             else:
