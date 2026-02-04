@@ -584,11 +584,26 @@ class LofnApp:
 
         # Manual Input Option
         st.subheader("Manual Concept and Medium Input (Optional)")
-        st.session_state['manual_input'] = st.checkbox("Manually input Concept and Medium")
+        st.session_state['manual_input'] = st.checkbox(
+            "Manually input Concept and Medium",
+            help="Bypass the AI concept generation and directly specify what you want."
+        )
         if st.session_state['manual_input']:
-            manual_concept = st.text_input("Enter your Concept")
-            manual_medium = st.text_input("Enter your Medium")
-            if st.button("Generate Image Prompts for Manual Input"):
+            manual_concept = st.text_input(
+                "Enter your Concept",
+                placeholder="e.g., A futuristic city in the clouds",
+                help="The core subject or idea you want to visualize."
+            )
+            manual_medium = st.text_input(
+                "Enter your Medium",
+                placeholder="e.g., Oil painting, Digital Art, 3D Render",
+                help="The artistic style, technique, or medium for the image."
+            )
+            if st.button(
+                "Generate Image Prompts for Manual Input",
+                type="primary",
+                icon=":material/edit_note:"
+            ):
                 if manual_concept.strip() == "" or manual_medium.strip() == "":
                     st.warning("Please provide both a concept and a medium.")
                 else:
@@ -1421,7 +1436,12 @@ class LofnApp:
             return
 
         file_names = list(index.keys())
-        search_query = st.text_input("Search", key="prompt_explorer_search").strip().lower()
+        search_query = st.text_input(
+            "Search",
+            key="prompt_explorer_search",
+            placeholder="e.g., futuristic city",
+            help="Search by title, prompt, concept, or medium."
+        ).strip().lower()
         if search_query:
             file_names = [name for name, rec in index.items() if search_query in rec["haystack"]]
             if not file_names:
