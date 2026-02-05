@@ -586,9 +586,22 @@ class LofnApp:
         st.subheader("Manual Concept and Medium Input (Optional)")
         st.session_state['manual_input'] = st.checkbox("Manually input Concept and Medium")
         if st.session_state['manual_input']:
-            manual_concept = st.text_input("Enter your Concept")
-            manual_medium = st.text_input("Enter your Medium")
-            if st.button("Generate Image Prompts for Manual Input"):
+            manual_concept = st.text_input(
+                "Enter your Concept",
+                placeholder="e.g., A futuristic city in the clouds",
+                help="The core subject or idea."
+            )
+            manual_medium = st.text_input(
+                "Enter your Medium",
+                placeholder="e.g., Oil painting, Cyberpunk digital art",
+                help="The artistic style or medium."
+            )
+            if st.button(
+                "Generate Image Prompts for Manual Input",
+                type="primary",
+                icon=":material/edit_note:",
+                help="Generate prompts using the manually entered concept and medium."
+            ):
                 if manual_concept.strip() == "" or manual_medium.strip() == "":
                     st.warning("Please provide both a concept and a medium.")
                 else:
@@ -596,13 +609,24 @@ class LofnApp:
 
         # Process Flow Control
         st.markdown("<div class='sticky-action-bar'>", unsafe_allow_html=True)
-        if st.button("Generate Concepts"):
+        if st.button(
+            "Generate Concepts",
+            type="primary",
+            icon=":material/lightbulb:",
+            help="Generates multiple art concepts based on your idea."
+        ):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
                 style_axes, creativity_spectrum = self.generate_concepts()
 
-        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_competition"):
+        if st.session_state.get('competition_mode') and st.button(
+            "Run Competition",
+            key="run_competition",
+            type="primary",
+            icon=":material/trophy:",
+            help="Runs a panel debate to select the best concept."
+        ):
             if not st.session_state['input'].strip():
                 st.warning("Please provide a description of your idea.")
             else:
