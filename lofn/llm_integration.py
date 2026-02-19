@@ -1314,6 +1314,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 
             # Google models
             "gemini-3-pro-preview": 120000,
+            "gemini-3-pro-image-preview": 120000,
+            "gemini-3-flash-preview": 120000,
             "gemini-2.5-pro": 120000,
             "gemini-2.5-flash": 120000,
             "gemini-2.5-flash-lite": 120000,
@@ -1345,6 +1347,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
             "Poe-Gemini-3-Pro": 120000,
+            "Poe-Gemini-3-Flash": 120000,
             "Poe-Gemini-2.5-Pro": 120000,
             "Poe-Gemini-2.5-Flash": 120000,
             "Poe-Gemini-2.5-Flash-Lite": 120000,
