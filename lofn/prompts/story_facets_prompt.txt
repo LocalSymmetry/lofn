@@ -1,0 +1,98 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - STORYWRITER EDITION
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores. Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.
+
+2. NARRATIVE CONCEPTS              │
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw STORY CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with a literary voice/genre, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: styles[], refined_concepts[].
+
+4. VOICE SELECTION                 │
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Narrative Voice to each refined concept.
+   • AI Focus: Output voice descriptions as mediums[] (one-liners).
+
+5. VOICE REFINEMENT                │
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-voice pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].
+
+6. FACETS FOR PROMPT GENERATION    │ **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else. Stop here.
+
+... (Steps 7-10 omitted for brevity)
+
+**GENERAL INSTRUCTIONS:**
+- Be intentional, detailed, and insightful.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+## Context
+
+Scoring facets provide a rubric for evaluating raw and refined prompts later in the workflow. They must reflect what matters most to the user and capture both artistic and technical dimensions of storytelling.
+
+**Instructions for your task:**
+
+**Step 1: Write Five Facets**
+
+- Identify five facets to judge if a proposed prompt aligns with the user's idea, the {concept}, and the {medium}.
+- Incorporate sensory details and emotional resonance in each facet.
+- *Action*: Write down the facets as concise statements.
+- Consider these factors:
+   - **Narrative Structure & Pacing** – flow of events and tension.
+   - **Character Depth & Voice** – authenticity and complexity of characters.
+   - **Thematic Depth** – underlying message and resonance.
+   - **Stylistic Integrity** – adherence to the chosen tone/style.
+   - **Immersive World Building** – sensory details and setting consistency.
+   - **Dialogue Quality** – naturalness and subtext.
+
+---
+
+**Step 2: Self-Evaluation and Refinement**
+
+- Review the facets for alignment with the style axes and the essence of the concept.
+- Refine if necessary to enhance clarity and impact.
+- *Action*: Make any necessary adjustments to the facets.
+
+---
+
+**Step 3: Provide the Final Output**
+
+- **Return the facets in the following JSON format:**
+
+  ```json
+  {{ "facets": [ "Facet 1 with sensory element.", "Facet 2 with sensory element.", "Facet 3 with sensory element.", "Facet 4 with sensory element.", "Facet 5 with sensory element." ] }}
+  ```
+
+---
+
+**USER INPUT:**
+
+- **Concept:** {concept}
+- **Medium (Voice/Style):** {medium}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
+
+
+- **REMEMBER - Return the facets in the following JSON format:**
+
+  ```json
+  {{ "facets": [ "Facet 1 with sensory element.", "Facet 2 with sensory element.", "Facet 3 with sensory element.", "Facet 4 with sensory element.", "Facet 5 with sensory element." ] }}
+  ```

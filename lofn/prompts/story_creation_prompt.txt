@@ -1,0 +1,225 @@
+────────────────────────────────────────────────────────────────────────────
+PHASE 1 · ESSENCE & FACETS
+────────────────────────────────────────────────────────────────────────────
+(Completed)
+
+────────────────────────────────────────────────────────────────────────────
+PHASE 2 · STORY GENERATION
+────────────────────────────────────────────────────────────────────────────
+High‑level Goal: Produce TWO award‑worthy story variants (or detailed outlines/chapters) that satisfy all rubric items.
+
+ADVANCED GLOBAL SETTINGS
+• Manual‑Mode : ON
+• Descriptive sub‑genres & precise voice : ON
+• Style‑Reduction : Supply blacklist (clichés to avoid)
+
+────────────────────────────────────────────────────────
+CHECKLIST (before STEP 20 export)
+────────────────────────────────────────────────────────
+□ Writing Style Prompt ≤ 150 words
+□ Writing Style Prompt order: TONE → GENRE → VOICE → THEMES → STRUCTURE → BLACKLIST
+□ Story Content: Coherent narrative, adhering to style.
+□ Devil’s Advocate sign‑off logged
+
+────────────────────────────────────────────────────────
+PART 1 Summary · Crafting the Writing Style Prompt
+────────────────────────────────────────────────────────
+1. **Lead with Tone:** e.g., "A melancholic, atmospheric..."
+2. **Genre/Subgenre:** e.g., "cyberpunk noir mixed with gothic horror."
+3. **Narrative Voice:** "First-person, unreliable narrator, cynical but hopeful."
+4. **Stylistic Elements:** "Short, punchy sentences. Heavy use of sensory metaphor. Focus on the decay of the setting."
+5. **Structure:** "Non-linear, starting *in media res*."
+6. **Blacklist:** "No info-dumping, no 'and then' storytelling."
+
+────────────────────────────────────────────────────────
+PART 2 Summary · Crafting the Story Content
+────────────────────────────────────────────────────────
+• **Title:** Compelling and thematic.
+• **Content:** The actual story, chapter, or detailed synopsis as requested.
+• **Meta-Tags (optional):** [Scene Break], [Flashback], etc.
+
+────────────────────────────────────────────────────────
+PART 3 Summary · PANEL & REFINEMENT
+────────────────────────────────────────────────────────
+STEP 1-6 | (Previous Phases: Essence, Facets, Concepts, Voice)
+
+STEP 7 | Draft Initial Style Prompts (2× per panelist)
+ • Each Medium Panelist drafts style prompts (≤ 150 words).
+
+STEP 8 | Draft Initial Story Content (2× per panelist)
+ • Each Concept Panelist drafts story content based on the concept and style.
+
+STEP 9 | Concept Panel Critics’ Review
+ • Critics grade all drafts via 6‑facet rubric.
+
+STEP 10 | Refinement Loop 1
+ • Merge best style + story drafts; revise.
+
+STEP 11 | Medium Panel Critics’ Review
+ • Assess stylistic consistency, voice, pacing.
+
+STEP 12 | Refinement Loop 2
+ • Incorporate feedback.
+
+STEP 13 | Context & Marketing Panel Review
+ • Evaluate hook, title, audience appeal.
+
+STEP 14 | Refinement Loop 3
+ • Tweak.
+
+STEP 15 | Overall Critics’ Review
+ • All panels convene.
+
+STEP 16 | Refinement Loop 4
+ • Final polish.
+
+STEP 17 | Draft Story Title (×2)
+ • Marketing Panel proposes titles.
+
+STEP 18 | Title Critics’ Review
+ • Debate titles.
+
+STEP 19 | Refinement Loop 5
+ • Select final title.
+
+STEP 20 | Final Output
+ • Return JSON per variant:
+```json
+{{
+  "story_prompt": "<Final Style Prompt>",
+  "story_content": "<Final Story Content>",
+  "title": "<Story Title>"
+}}
+```
+
+---
+
+**Instructions for your task**
+– Respond in your *thinking phase* for every numbered step, showing panel debates and your final moderator ruling.
+– Apply **all best‑practice guides**.
+– At every **creation** stage below, **double the output volume**.
+
+---
+
+### Step 1 · Understand the User’s Idea
+• Read the user’s idea, Essence, Facets, and Style‑Axis coordinates.
+
+---
+
+### Step 2 · Generate Diverse Interpretations (×10)
+• Create **ten** unique narrative takes on the idea.
+
+---
+
+### Step 3 · Form the Hook & Narrative Seed (2 per interpretation)
+• For **each** interpretation, craft two narrative hooks.
+
+---
+
+### Step 4 · Define Creativity Spectrum & Style Axes
+• Position every interpretation on the literal ⇄ inventive ⇄ transformative slider.
+
+---
+
+### Step 5 · Determine Narrative Structure
+• Select structure (Hero's Journey, Three-Act, Non-linear, etc.) and length.
+
+---
+
+### Step 6 · Establish Stylistic Elements
+• Lock genre, tone, POV, and voice.
+
+---
+
+### Step 7 · Draft Initial Style Prompts (2× per panelist)
+• Write style prompts.
+• Format: *Tone → Genre → Voice → Stylistic Traits → Structure → Blacklist*.
+
+---
+
+### Step 8 · Draft Initial Story Content (2× per panelist)
+• Write the story content (or detailed outline/chapter 1) adhering to the style prompt.
+• **Incorporate:**
+    - **Sensory language**.
+    - **Show, don't tell**.
+    - **Distinct character voices**.
+
+---
+
+### Step 9 · Concept Panel Critics’ Review
+• Critics grade drafts via rubric.
+
+---
+
+### Step 10 · Refinement Loop 1
+• Revise for plot holes, character consistency, thematic depth.
+
+---
+
+### Step 11 · Medium Panel Critics’ Review
+• Assess prose quality, voice consistency, pacing.
+
+---
+
+### Step 12 · Refinement Loop 2
+• Incorporate feedback.
+
+---
+
+### Step 13 · Context & Marketing Panel Review
+• Evaluate hook and readability.
+
+---
+
+### Step 14 · Refinement Loop 3
+• Tweak for impact.
+
+---
+
+### Step 15 · Overall Critics’ Review
+• Resolve remaining gaps.
+
+---
+
+### Step 16 · Refinement Loop 4
+• Final polish.
+
+---
+
+### Step 17 · Draft Story Title (×2)
+• Propose titles.
+
+---
+
+### Step 18 · Title Critics’ Review
+• Debate titles.
+
+---
+
+### Step 19 · Refinement Loop 5
+• Finalize title.
+
+---
+
+### Step 20 · Final Review & Selection
+• Choose top variant(s). Ensure NO COPYING OF KNOWN COPYRIGHTED WORKS.
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
+
+---
+
+Remember to single the best voted story results in the following JSON format:
+
+```json
+{{ "story_prompt": "<Final Style Prompt>", "story_content": "<Final Story Content>", "title": "<Story Title>" }}
+```
