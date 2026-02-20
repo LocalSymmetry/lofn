@@ -784,13 +784,14 @@ music_prompts = {
 story_prompts = {
     'essence_and_facets': story_concept_header + story_essence_prompt + prompt_ending,
     'concepts': story_concept_header + story_concepts_prompt + prompt_ending,
-    'artist_and_critique': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'artist_and_critique_prompt.txt')) + prompt_ending, # Reusing generic for now as it fits conceptually (concept refinement)
+    'artist_and_critique': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_artist_and_critique_prompt.txt')) + prompt_ending,
     'medium': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_medium_prompt.txt')) + prompt_ending,
     'refine_medium': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_refine_medium_prompt.txt')) + prompt_ending,
     'facets': story_concept_header + story_facets_prompt + prompt_ending,
-    'generation': story_concept_header + story_creation_prompt + prompt_ending,
-    'artist_refined': music_prompts['artist_refined'], # Placeholder/Reuse for now
-    'revision_synthesis': music_prompts['revision_synthesis'], # Placeholder/Reuse for now
+    'story_guides': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_guides_prompt.txt')) + prompt_ending,
+    'generation': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_generation_prompt.txt')) + prompt_ending,
+    'artist_refined': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_artist_refined_prompt.txt')) + prompt_ending,
+    'revision_synthesis': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_revision_synthesis_prompt.txt')) + prompt_ending,
 }
 
 # Image prompts (existing)
@@ -976,10 +977,31 @@ story_facets_schema = {
     }
 }
 
+story_guides_schema = {
+    "story_guides": [
+        {"story_guide": str}
+    ]
+}
+
 story_gen_schema = {
-    "story_prompt": str,
-    "story_content": str,
-    "title": str
+    "story_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+story_artist_refined_schema = {
+    "author_refined_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+story_revised_synthesized_schema = {
+    "revised_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ],
+    "synthesized_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
 }
 
 # Schema for panel voting on concept-medium pairs
@@ -3702,6 +3724,162 @@ def process_music_revision_synthesis(
         return None
     return parsed_output
 
+# === Story Processing Functions ===
+
+def process_story_guides(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_guides_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'story_guides',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process story guides")
+        return None
+    return parsed_output
+
+def process_story_generation_prompts(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_gen_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "story_guides": [x['story_guide'] for x in story_guides['story_guides']]
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'generation',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process story prompts")
+        return None
+    return parsed_output
+
+def process_story_artist_refined_prompts(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    story_prompts,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_artist_refined_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "story_prompts": story_prompts,
+        "story_guides": story_guides
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'artist_refined',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process author refined prompts")
+        return None
+    return parsed_output
+
+def process_story_revision_synthesis(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    artist_refined_prompts,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_revised_synthesized_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "author_refined_prompts": artist_refined_prompts,
+        "story_guides": story_guides
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'revision_synthesis',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process revised story prompts")
+        return None
+    return parsed_output
+
 def generate_story_concept_mediums(
     input_text,
     max_retries,
@@ -3757,8 +3935,20 @@ def generate_story_prompts(
                     ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
+                'story_guides': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['story_guides'])])
+                    | llm
+                ),
                 'generation': (
                     ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
@@ -3768,8 +3958,20 @@ def generate_story_prompts(
                     ChatPromptTemplate.from_messages([("system", concept_system), MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
                     | llm
                 ),
+                'story_guides': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['story_guides'])])
+                    | llm
+                ),
                 'generation': (
                     ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
                     | llm
                 )
             }
@@ -3792,66 +3994,78 @@ def generate_story_prompts(
                 raise LofnError("Failed to generate facets")
             display_facets(facets["facets"])
 
-            status.write("Generating Story Content...")
-            # We'll use a simplified flow compared to music: Facets -> Story Generation
-            # Ideally we would have 'story_guides' -> 'generation' -> 'refinement'
-            # For this MVP, we jump to generation which includes internal drafting steps in the prompt instructions
-            story_output = process_story_generation(
+            status.write("Creating Story Guides...")
+            guides = process_story_guides(
                 chains,
                 input_text,
                 concept,
                 medium,
-                essence,
                 facets,
                 max_retries,
                 debug=debug,
                 style_axes=style_axes,
                 model=model,
-                image_context=image_context
+                image_context=image_context,
             )
+            if guides is None:
+                raise LofnError("Failed to generate story guides")
+
+            status.write("Generating Story Prompts...")
+            story_prompts = process_story_generation_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if story_prompts is None:
+                raise LofnError("Failed to generate story prompts")
+
+            status.write("Refining Prompts...")
+            artist_refined = process_story_artist_refined_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                story_prompts,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if artist_refined is None:
+                raise LofnError("Failed to refine story prompts")
+
+            status.write("Synthesizing Final Prompts...")
+            final_output = process_story_revision_synthesis(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artist_refined,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if final_output is None:
+                raise LofnError("Failed to synthesize final story prompts")
 
             status.update(label="Story Generation Complete!", state="complete")
 
-        return story_output
+        return final_output
 
     except Exception as e:
         raise LofnError(f"Error in story generation: {str(e)}")
-
-def process_story_generation(
-    chains,
-    input_text,
-    concept,
-    medium,
-    essence,
-    facets,
-    max_retries,
-    debug=False,
-    style_axes=None,
-    model=None,
-    image_context=None
-):
-    expected_schema = story_gen_schema
-    args = {
-        "input": input_text,
-        "concept": concept,
-        "medium": medium,
-        "essence": essence,
-        "facets": facets['facets'],
-        "style_axes": style_axes,
-    }
-    if image_context is not None:
-        args["image_context"] = image_context
-
-    parsed_output = run_llm_chain_raw(
-        chains,
-        'generation',
-        args,
-        max_retries,
-        model,
-        debug,
-        expected_schema
-    )
-    if parsed_output is None:
-        st.error("Failed to generate story content")
-        return None
-    return parsed_output
