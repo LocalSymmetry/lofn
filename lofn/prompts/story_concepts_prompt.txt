@@ -14,7 +14,48 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
      ratios, and style axes.
    • AI Focus: Return an array of 12 concept strings only. Stop here.
 
-... (Steps 3-10 omitted for brevity)
+3. CONCEPT REFINEMENT              │
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure author/genre, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: authors[], refined_concepts[].
+
+4. MEDIUM SELECTION                │
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Narrative Style to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-narrative pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].
+
+6. FACETS FOR PROMPT GENERATION    │
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full story guide (Narrative Arc, Character Voice, Setting & Atmosphere, Pacing, Themes).  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW STORY PROMPT GENERATION     │
+   ─────────────────────────────────┤
+   • Purpose: Convert each story guide into a ready-to-use writing prompt.
+   • AI Focus: One prompt per guide.  Keep it concise.
+
+9. AUTHOR-REFINED PROMPT           │
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt pair in a chosen author’s signature style
+     (critic/author loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No story generation yet.
 
 **GENERAL INSTRUCTIONS:**
 - Be intentional, detailed, and insightful.
