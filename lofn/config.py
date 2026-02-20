@@ -25,7 +25,7 @@ class Config:
 
 
 # Load overrides from a user-provided YAML file if available
-CUSTOM_CONFIG_PATH = '/lofn/custom_configs.yaml'
+CUSTOM_CONFIG_PATH = 'lofn/custom_configs.yaml'
 if os.path.exists(CUSTOM_CONFIG_PATH):
     try:
         with open(CUSTOM_CONFIG_PATH, 'r') as f:

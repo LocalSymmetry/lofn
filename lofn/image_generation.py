@@ -44,17 +44,17 @@ image_title_schema = {
     "seo_keywords": str
 }
 
-prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
+prompt_system = read_prompt('lofn/prompts/prompt_system.txt')
 
-prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
+prompt_ending = read_prompt('lofn/prompts/prompt_ending.txt')
 
-prompt_header_part1 = read_prompt("/lofn/prompts/prompt_header.txt")
+prompt_header_part1 = read_prompt("lofn/prompts/prompt_header.txt")
 
-prompt_header_part2 = read_prompt("/lofn/prompts/prompt_header_pt2.txt")
+prompt_header_part2 = read_prompt("lofn/prompts/prompt_header_pt2.txt")
 
 prompt_header = prompt_header_part1 + prompt_header_part2
 
-image_title_prompt_middle = read_prompt("/lofn/prompts/image_title_prompt.txt")
+image_title_prompt_middle = read_prompt("lofn/prompts/image_title_prompt.txt")
 
 image_title_prompt = prompt_header + image_title_prompt_middle + prompt_ending 
 
@@ -1120,3 +1120,35 @@ def save_video_metadata(metadata):
         json.dump(metadata, f, indent=2, default=json_serializable)
 
     st.write(f"Video metadata saved as {metadata_filename}")
+
+def save_story_metadata(metadata):
+    """Persist story prompt metadata to disk."""
+    try:
+        os.makedirs('stories', exist_ok=True)
+    except Exception as e:
+        st.error(f"An error occurred while making the stories directory: {str(e)}")
+
+    safe_title = metadata.get('title', 'Untitled')[0:20].replace('/', '_').replace(' ', '_')
+    timestamp_str = metadata['timestamp'].strftime("%Y%m%d_%H%M%S") if isinstance(metadata['timestamp'], datetime) else str(metadata['timestamp'])
+    metadata_filename = f"stories/{timestamp_str}_{safe_title}.json"
+
+    def json_serializable(obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        raise TypeError(f'Type {type(obj)} not serializable')
+
+    metadata['input_settings'] = get_input_settings()
+    panel = st.session_state.get('custom_panel')
+    if panel:
+        metadata['panel_prompt'] = panel
+    personality = st.session_state.get('custom_personality')
+    if personality:
+        metadata['personality_prompt'] = personality
+    meta_prompt = st.session_state.get('meta_prompt')
+    if meta_prompt:
+        metadata['meta_prompt'] = meta_prompt
+
+    with open(metadata_filename, 'w') as f:
+        json.dump(metadata, f, indent=2, default=json_serializable)
+
+    st.write(f"Story metadata saved as {metadata_filename}")

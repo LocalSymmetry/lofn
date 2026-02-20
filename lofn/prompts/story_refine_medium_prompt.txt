@@ -1,0 +1,230 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │
+   ─────────────────────────────────┤
+   • Purpose: Extract idea ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores.  Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block.  No brainstorming yet.
+
+2. CONCEPT GENERATION              │
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with an obscure author/genre, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: authors[], refined_concepts[].
+
+4. MEDIUM SELECTION                │
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Narrative Style to each refined concept.
+   • AI Focus: Output mediums[] (one-liners).  No prompt text.
+
+5. MEDIUM REFINEMENT               │  **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-narrative pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].  Stop here.
+
+6. FACETS FOR PROMPT GENERATION    │
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. ARTISTIC GUIDE CREATION         │
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full story guide ().  Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
+
+8. RAW STORY PROMPT GENERATION     │
+   ─────────────────────────────────┤
+   • Purpose: Convert each artistic guide into a ready-to-use story prompt.
+   • AI Focus: One prompt per guide.  Keep it concise.
+
+9. AUTHOR-REFINED PROMPT           │
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt in a chosen author’s signature style
+     (critic/author loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants.  Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.  No story generation yet.
+
+**GENERAL INSTRUCTIONS:**
+ - Be intentional, detailed, and insightful when describing narrative styles.
+- Use vivid, sensory language to enrich your descriptions.
+- Follow the steps below to refine the narrative choices for each concept.
+- Adhere to ethical guidelines, avoiding disallowed content and respecting cultural sensitivities.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+## Context
+
+After assigning narrative styles, you must revisit each concept–style pair and refine them.  The goal is to ensure the narrative choices amplify the concept’s emotional core and align with the defined facets.  This phase is iterative: critique the alignment and propose modifications.
+
+Think of this as the phase where an editor works with a writer to refine the voice.  You are balancing vision and execution.  The concept may have evolved during critique; now you ensure that the literary “brushstrokes” (narrative choices) properly frame the “subject” (concept).  Use cross‑modal intuition—if the prose feels too academic for a visceral story, roughen it with slang and fragments; if the emotional arc demands a broader scope, switch from first-person to omniscient.
+
+**Creativity Spectrum:**
+
+1. **Literal ({creativity_spectrum_literal}%):**
+
+   - Realistic, direct interpretations closely tied to the input.
+
+2. **Inventive ({creativity_spectrum_inventive}%):**
+
+   - Creative interpretations that add unique elements while remaining plausible.
+
+3. **Transformative ({creativity_spectrum_transformative}%):**
+
+   - Highly original, abstract, or avant-garde interpretations that transform the input in unexpected ways.
+
+---
+
+**Instructions for your task:**
+
+**Step 1: Analyze and Critique Narrative Style Choices**
+
+- For each concept-Narrative Style pair:
+
+  - **Conceptual Harmony:**
+
+    - Evaluate how well the Narrative Style resonates with the concept's core idea and emotional tone.
+
+  - **Historical and Cultural Alignment:**
+
+    - Consider any historical or cultural contexts that could enhance the Narrative Style's significance.
+
+  - **Innovative Approach:**
+
+    - Determine if the Narrative Style offers a fresh and original perspective.
+
+  - **Emotional Engagement:**
+
+    - Assess how effectively the Narrative Style engages the reader and conveys emotional impact.
+
+- *Action*: Provide a brief critique based on the above factors.
+
+---
+
+**Step 2: Brainstorm Enhanced Narrative Style Ideas**
+
+- For each concept-Narrative Style pair:
+
+  - Propose 2-3 enhanced Narrative Style ideas that could elevate the concept and Narrative Style further.
+
+- **Consider:**
+
+  - Combining unexpected elements or techniques.
+
+  - Incorporating modern or cross-disciplinary approaches to traditional methods.
+
+  - Merging different literary styles, periods, or cultural influences.
+
+  - Utilizing lateral thinking to generate innovative ideas.
+
+  - Refining the structure.
+
+- *Action*: Write down the enhanced Narrative Style ideas.
+
+---
+
+**Step 3: Refine and Optimize Narrative Style Choices**
+
+- For each concept:
+
+  - Integrate the best aspects of the original Narrative Style with the most promising new ideas.
+
+  - **Ensure:**
+
+    - Impact, uniqueness, and engagement.
+
+    - Conceptual alignment, narrative support, and emotional resonance.
+
+    - Feasibility for AI story generation.
+
+  - **Consider Historical and Cultural Contexts:**
+
+    - Incorporate any relevant contexts to deepen the Narrative Style's significance.
+
+- **Rules:**
+
+  - Avoid referencing specific authors directly in the output unless defining a style (e.g. "Kafkaesque").
+
+  - Keep the creativity level consistent with the original Narrative Style per the creativity spectrum.
+
+  - Adhere to ethical guidelines and avoid disallowed content.
+
+- *Action*: Write the refined Narrative Style description.
+
+---
+
+**Step 4: Introduce Feedback Loop**
+
+- **Self-Evaluation and Iterative Refinement:**
+
+  - **Assess each refined Narrative Style** for alignment with:
+
+    - **Conceptual Harmony**
+    - **Style Axes**
+    - **User's Idea**
+    - **Emotional Impact**
+    - **Historical and Cultural Significance**
+
+  - **Revise if Necessary:**
+
+    - Make adjustments to improve alignment and impact.
+    - Provide brief explanations of any revisions made.
+
+---
+
+**Step 5: Provide the Final Output**
+
+- **Return the refined concepts and Narrative Styles in the following JSON format:**
+
+  ```json
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Narrative Style 1"}}, {{"refinedmedium": "Refined Narrative Style 2"}}, {{"refinedmedium": "Refined Narrative Style 3"}}, {{"refinedmedium": "Refined Narrative Style 4"}}, {{"refinedmedium": "Refined Narrative Style 5"}}, {{"refinedmedium": "Refined Narrative Style 6"}}, {{"refinedmedium": "Refined Narrative Style 7"}}, {{"refinedmedium": "Refined Narrative Style 8"}}, {{"refinedmedium": "Refined Narrative Style 9"}}, {{"refinedmedium": "Refined Narrative Style 10"}}, {{"refinedmedium": "Refined Narrative Style 11"}}, {{"refinedmedium": "Refined Narrative Style 12"}} ] }}
+  ```
+
+
+
+---
+
+**USER INPUT:**
+
+- **Essence:** {essence}
+- **Facets:** {facets}
+- **Style Axes:** {style_axes}
+- **Creativity Spectrum:**
+
+  - Transformative: {creativity_spectrum_transformative}%
+  - Inventive: {creativity_spectrum_inventive}%
+  - Literal: {creativity_spectrum_literal}%
+
+- **Narrative Styles:**
+
+{mediums}
+
+- **Authors:**
+
+{artists}
+
+- **Refined Concepts:**
+
+{refinedconcepts}
+
+- **User's Idea:**
+
+{input}
+Supplied images (if any): {image_context}
+
+- **REMEBER - Return the refined concepts and Narrative Styles in the following JSON format:**
+
+  ```json
+     {{ "refinedconcepts": [ {{"refinedconcept": "Refined Concept 1"}}, {{"refinedconcept": "Refined Concept 2"}}, {{"refinedconcept": "Refined Concept 3"}}, {{"refinedconcept": "Refined Concept 4"}}, {{"refinedconcept": "Refined Concept 5"}}, {{"refinedconcept": "Refined Concept 6"}}, {{"refinedconcept": "Refined Concept 7"}}, {{"refinedconcept": "Refined Concept 8"}}, {{"refinedconcept": "Refined Concept 9"}}, {{"refinedconcept": "Refined Concept 10"}}, {{"refinedconcept": "Refined Concept 11"}}, {{"refinedconcept": "Refined Concept 12"}} "refinedmediums": [ {{"refinedmedium": "Refined Narrative Style 1"}}, {{"refinedmedium": "Refined Narrative Style 2"}}, {{"refinedmedium": "Refined Narrative Style 3"}}, {{"refinedmedium": "Refined Narrative Style 4"}}, {{"refinedmedium": "Refined Narrative Style 5"}}, {{"refinedmedium": "Refined Narrative Style 6"}}, {{"refinedmedium": "Refined Narrative Style 7"}}, {{"refinedmedium": "Refined Narrative Style 8"}}, {{"refinedmedium": "Refined Narrative Style 9"}}, {{"refinedmedium": "Refined Narrative Style 10"}}, {{"refinedmedium": "Refined Narrative Style 11"}}, {{"refinedmedium": "Refined Narrative Style 12"}} ] }}
+  ```
