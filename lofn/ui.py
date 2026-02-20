@@ -978,6 +978,116 @@ class LofnApp:
             st.error("An error occurred during music competition mode.")
             logger.exception("Error in music competition: %s", e)
 
+    def run_story_competition(self):
+        try:
+            images = st.session_state.get('input_images')
+            personality_text = st.session_state.get('custom_personality', '')
+            if st.session_state.get('selected_personality') == 'LLM Generated':
+                if not personality_text:
+                    personality_text = generate_personality_prompt(
+                        st.session_state.get('input', ''),
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium'),
+                        input_images=images,
+                    )
+                    st.session_state['custom_personality'] = personality_text
+                display_temporary_results("Personality", personality_text, expanded=False)
+            meta_prompt, frames_list, genres_list = generate_meta_prompt(
+                st.session_state.get('input', ''),
+                max_retries=self.max_retries,
+                temperature=self.temperature,
+                model=self.model,
+                debug=self.debug,
+                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                medium="story",
+                personality_prompt=personality_text,
+                input_images=images,
+            )
+            st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
+            panel_text = st.session_state.get('custom_panel', '')
+            if st.session_state.get('selected_panel') == 'LLM Generated':
+                if not panel_text:
+                    panel_text = generate_panel_prompt(
+                        meta_prompt['meta_prompt'],
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium'),
+                        personality_prompt=personality_text,
+                        input_images=images,
+                    )
+                    st.session_state['custom_panel'] = panel_text
+                display_temporary_results("Panel Prompt", panel_text, expanded=False)
+
+            # Using overall_prompt_template.txt as generic template
+            template = read_prompt('lofn/prompts/overall_prompt_template.txt')
+            input_text = (
+                template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
+                .replace('{Panel-prompt}', panel_text)
+                .replace('{Personality-prompt}', personality_text)
+                .replace('{frames_list}', frames_list)
+                .replace('{art_styles_list}', genres_list)
+                .replace('{input}', st.session_state.get('input', ''))
+                .replace('{image_context}', image_context_to_string(images))
+            )
+            display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            st.session_state['prompt_input'] = input_text
+
+            with st.spinner("Generating story concepts..."):
+                concept_mediums, style_axes, creativity = generate_story_concept_mediums(
+                    input_text,
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=None,
+                    creativity_spectrum=None,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    input_images=images
+                )
+
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity
+            st.session_state['story_concept_mediums'] = concept_mediums
+
+            pairs = concept_mediums
+            if pairs:
+                try:
+                    with st.spinner("Panel voting on best pairs..."):
+                        best_pairs = select_best_pairs(
+                            input_text,
+                            pairs,
+                            st.session_state.get('num_best_pairs', 3),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium'),
+                        )
+                    st.session_state['story_best_pairs'] = best_pairs
+                    st.success("Best story pairs selected by panel")
+                except Exception as e:
+                    st.error("An error occurred while selecting best story pairs.")
+                    logger.exception("Error selecting story pairs: %s", e)
+                    best_pairs = pairs
+            else:
+                best_pairs = []
+
+            st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+            top_n = st.session_state.get('num_best_pairs', 3)
+            gen_pairs = best_pairs if best_pairs else pairs
+            for pair in gen_pairs[:top_n]:
+                self.generate_story_prompts_for_pair(pair)
+
+            st.success("Story prompts generated successfully!")
+        except Exception as e:
+            st.error("An error occurred during story competition mode.")
+            logger.exception("Error in story competition: %s", e)
+
     def generate_images(self, prompts_df, pair):
         st.subheader(f"Generating Images for '{pair['concept']}'")
         if self.image_model == "None":
@@ -1470,6 +1580,12 @@ class LofnApp:
             else:
                 self.generate_story_concepts_ui()
 
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_story_competition"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your story idea.")
+            else:
+                self.run_story_competition()
+
         if st.session_state.get('story_concept_mediums'):
             self.display_story_concepts()
 
@@ -1524,7 +1640,7 @@ class LofnApp:
                 st.warning("Please select at least one concept.")
 
     def generate_story_prompts_for_pair(self, pair):
-        st.subheader(f"Generating Story for '{pair['concept']}'")
+        st.subheader(f"Generating Story for '{pair['concept']}' in '{pair['medium']}'")
         try:
             # Extract essence from the stored output of the Essence & Facets phase
             essence = ""
@@ -1539,7 +1655,7 @@ class LofnApp:
                     essence,
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model, # Use the main model for writing as it likely needs more reasoning
+                    model=self.model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -1547,30 +1663,55 @@ class LofnApp:
                     input_images=st.session_state.get('input_images'),
                 )
 
-            if not st.session_state.get('story_output'):
-                st.session_state['story_output'] = []
-            st.session_state['story_output'].append(story_output)
+            if not story_output:
+                st.error("Failed to generate story prompts.")
+                return
+
+            if isinstance(st.session_state.get('story_output'), list):
+                 # Convert old format to new format if needed, or just overwrite/init as dict
+                 st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+            elif 'story_output' not in st.session_state or st.session_state['story_output'] is None:
+                st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+
+            st.session_state['story_output']['revised_prompts'].extend(story_output.get('revised_prompts', []))
+            st.session_state['story_output']['synthesized_prompts'].extend(story_output.get('synthesized_prompts', []))
 
             st.success(f"Story generated for '{pair['concept']}'")
 
-            # Save metadata
-            if story_output:
+            for prompt in story_output.get('revised_prompts', []) + story_output.get('synthesized_prompts', []):
                 metadata = {
                     'timestamp': datetime.now(),
-                    'title': story_output.get('title', 'Untitled'),
-                    'story_prompt': story_output.get('story_prompt', ''),
-                    'story_content': story_output.get('story_content', ''),
+                    'title': prompt.get('title', 'Untitled'),
+                    'story_prompt': prompt.get('story_prompt', ''),
+                    'story_content': prompt.get('story_content', ''),
                     'concept': pair['concept'],
                     'medium': pair['medium'],
                     'input_text': st.session_state.get('prompt_input', ''),
+                    'competition': st.session_state.get('competition_mode', False),
                     'model': self.model,
                 }
                 save_story_metadata(metadata)
 
-            self.display_story_content(story_output)
+            self.display_story_prompts_for_pair(story_output, pair)
         except Exception as e:
             st.error(f"An error occurred while generating story for '{pair['concept']}'.")
             logger.exception("Error generating story: %s", e)
+
+    def display_story_prompts_for_pair(self, story_output, pair):
+        st.subheader(f"Stories for '{pair['concept']}' in '{pair['medium']}'")
+        for prompt in story_output.get('revised_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
+        for prompt in story_output.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
 
     def display_story_content(self, story_output):
         if not story_output:
@@ -1582,12 +1723,32 @@ class LofnApp:
         st.markdown("---")
 
     def display_story_prompts(self):
-        # This acts as a persistent display if needed, but display_story_content is called directly too.
-        # We can iterate through stored outputs.
-        if st.session_state.get('story_output'):
+        story_output = st.session_state.get('story_output')
+        if not story_output:
+            return
+
+        # Handle backward compatibility if story_output is a list (old format)
+        if isinstance(story_output, list):
             st.subheader("Generated Stories")
-            for output in st.session_state['story_output']:
+            for output in story_output:
                 self.display_story_content(output)
+            return
+
+        st.subheader("Revised Stories")
+        for prompt in story_output.get('revised_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
+        st.subheader("Synthesized Stories")
+        for prompt in story_output.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
 
     def render_prompt_explorer(self):
         """Allow browsing of saved metadata, video, music, and story prompts."""
@@ -1857,6 +2018,9 @@ class LofnApp:
             'music_concept_mediums': None,
             'music_best_pairs': None,
             'song_prompts': None,
+            'story_concept_mediums': None,
+            'story_best_pairs': None,
+            'story_output': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,
