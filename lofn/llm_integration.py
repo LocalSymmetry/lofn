@@ -162,8 +162,10 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
+        "claude-sonnet-4-6",
+        "claude-opus-4-6",
         "claude-sonnet-4-5",
         "claude-haiku-4-5",
         "claude-3-7-sonnet-20250219", 
@@ -178,6 +180,8 @@ VISION_MODELS = {
         "claude-3-haiku-20240307"
     },
     "google": {
+        "gemini-3.1-pro",
+        "gemini-3-flash",
         "gemini-2.5-pro",
         "gemini-2.5-flash",
         "gemini-2.5-flash-image-preview",
@@ -1344,6 +1348,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o4-mini": 100000,
 
             # Anthropic models
+            "claude-sonnet-4-6": 32000,
+            "claude-opus-4-6": 32000,
             "claude-sonnet-4-5": 32000,
             "claude-haiku-4-5": 32000,
             "claude-3-7-sonnet-20250219": 32000,
@@ -1358,6 +1364,8 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
+            "gemini-3.1-pro": 120000,
+            "gemini-3-flash": 120000,
             "gemini-3-pro-preview": 120000,
             "gemini-3-pro-image-preview": 120000,
             "gemini-3-flash-preview": 120000,
@@ -1386,11 +1394,14 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-o3": 100000,
             "Poe-o3-pro": 100000,
             "Poe-o4-mini": 100000,
+            "Poe-Claude-Opus-4.6": 32000,
+            "Poe-Claude-Sonnet-4.6": 32000,
             "Poe-Claude-Opus-4.5": 32000,
             "Poe-Claude-Opus-4.1": 32000,
             "Poe-Claude-Sonnet-4.5": 32000,
             "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
+            "Poe-Gemini-3.1-Pro": 120000,
             "Poe-Gemini-3-Pro": 120000,
             "Poe-Gemini-3-Flash": 120000,
             "Poe-Gemini-2.5-Pro": 120000,
@@ -1421,7 +1432,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         max_tokens = model_max_tokens.get(model, 4096)
 
         if model.startswith("claude"):
-            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-haiku-4-5", "claude-sonnet-4-5"]:
+            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-haiku-4-5", "claude-sonnet-4-5", "claude-sonnet-4-6", "claude-opus-4-6"]:
                 return ChatAnthropic(
                     model=model,
                     max_tokens=max_tokens,
