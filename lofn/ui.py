@@ -183,8 +183,8 @@ class LofnApp:
         # Add Google models if GOOGLE_API_KEY is available
         if Config.GOOGLE_API_KEY:
             models.extend([
-                "gemini-3.1-pro", "gemini-3-flash",
-                "gemini-3-pro-preview", "gemini-3-flash-preview", "gemini-3-pro-image-preview", "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
+                "gemini-3.1-pro-preview", "gemini-3-flash-preview",
+                "gemini-3-pro-preview", "gemini-3-pro-image-preview", "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
                 "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
                 "gemini-1.5-pro", "gemini-1.5-flash",
             ])
@@ -226,7 +226,7 @@ class LofnApp:
 
         # Prioritize the most powerful models if available
         priority_order = [
-            "gemini-3.1-pro",
+            "gemini-3.1-pro-preview",
             "claude-opus-4-6",
             "claude-sonnet-4-6",
             "gemini-3-pro-preview",

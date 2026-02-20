@@ -180,8 +180,8 @@ VISION_MODELS = {
         "claude-3-haiku-20240307"
     },
     "google": {
-        "gemini-3.1-pro",
-        "gemini-3-flash",
+        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview",
         "gemini-2.5-pro",
         "gemini-2.5-flash",
         "gemini-2.5-flash-image-preview",
@@ -1364,11 +1364,10 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "claude-3-haiku-20240307": 4096,
 
             # Google models
-            "gemini-3.1-pro": 120000,
-            "gemini-3-flash": 120000,
+            "gemini-3.1-pro-preview": 120000,
+            "gemini-3-flash-preview": 120000,
             "gemini-3-pro-preview": 120000,
             "gemini-3-pro-image-preview": 120000,
-            "gemini-3-flash-preview": 120000,
             "gemini-2.5-pro": 120000,
             "gemini-2.5-flash": 120000,
             "gemini-2.5-flash-lite": 120000,

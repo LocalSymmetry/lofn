@@ -1,6 +1,6 @@
 art:
   concept_medium:
-    - gemini-3.1-pro
+    - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
     - gpt-5.2
@@ -16,7 +16,7 @@ art:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3-flash
+    - gemini-3-flash-preview
     - Poe-Gemini-3-Flash
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
@@ -30,7 +30,7 @@ art:
     - o4-mini
 video:
   concept_medium:
-    - gemini-3.1-pro
+    - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
     - gpt-5.2
@@ -46,7 +46,7 @@ video:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3-flash
+    - gemini-3-flash-preview
     - Poe-Gemini-3-Flash
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
@@ -59,7 +59,7 @@ video:
     - o4-mini
 music:
   concept_medium:
-    - gemini-3.1-pro
+    - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
     - gpt-5.2
@@ -75,7 +75,7 @@ music:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3-flash
+    - gemini-3-flash-preview
     - Poe-Gemini-3-Flash
     - gpt-5.1
     - gemini-2.5-pro
