@@ -100,7 +100,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 **Story Content Requirements**
 
 * Each Concept Panelist produces **two** full story content drafts
-* Use **meta‑tags** and **narrative structure**, max **appropriate length**
+* Use **meta‑tags** and **narrative structure**, target **~1500 words** (approx. 3 pages) (unless user specifies otherwise)
 * Embed:
   * Emotion tags (e.g. EMO\:Joy)
   * Sensory cues
