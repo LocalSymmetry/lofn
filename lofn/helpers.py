@@ -88,6 +88,33 @@ def sample_video_frames(min_count: int = 40, max_count: int = 50) -> str:
     return "\n".join(frames)
 
 
+def sample_story_genres(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected literary genres."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'story_genres.txt')
+    with open(path, 'r') as file:
+        genres = [line.strip() for line in file.readlines() if line.strip()]
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(genres, count)
+    return "\n".join(sampled)
+
+
+def sample_story_frames(min_count: int = 40, max_count: int = 50) -> str:
+    """Return a newline-separated list of randomly selected narrative frames."""
+    path = os.path.join(os.path.dirname(__file__), 'prompts', 'story_frames.csv')
+    with open(path, newline='') as csvfile:
+        reader = csv.DictReader(row for row in csvfile if row.strip())
+        rows = list(reader)
+
+    count = random.randint(min_count, max_count)
+    sampled = random.sample(rows, count)
+    frames = [
+        f"{row['Category']}{row['Technique']}{row['Description']}"
+        for row in sampled
+    ]
+    return "\n".join(frames)
+
+
 def sample_music_genres(min_count: int = 40, max_count: int = 50) -> str:
     """Return a newline-separated list of randomly selected music genres."""
     path = os.path.join(os.path.dirname(__file__), 'prompts', 'genres.txt')

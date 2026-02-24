@@ -43,6 +43,8 @@ try:
         sample_music_genres,
         sample_art_styles,
         sample_film_styles,
+        sample_story_frames,
+        sample_story_genres,
         compress_image_bytes,
     )
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
@@ -57,6 +59,8 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         sample_music_genres,
         sample_art_styles,
         sample_film_styles,
+        sample_story_frames,
+        sample_story_genres,
         compress_image_bytes,
     )
 from parsing import (
@@ -2551,6 +2555,9 @@ def generate_meta_prompt(
         elif medium == "video":
             frames_list = sample_video_frames()
             styles_list = sample_film_styles()
+        elif medium == "story":
+            frames_list = sample_story_frames()
+            styles_list = sample_story_genres()
         else:
             frames_list = sample_artistic_frames()
             styles_list = sample_art_styles()
