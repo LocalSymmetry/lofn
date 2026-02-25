@@ -104,7 +104,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 **Story Content Requirements**
 
 * Each Concept Panelist produces **two** full story content drafts
-* Use **meta‑tags** and **narrative structure**, max **appropriate length**
+* Use **meta‑tags** and **narrative structure**, target **~1500 words** (approx. 3 pages) (unless user specifies otherwise)
 * Embed:
   * Emotion tags (e.g. EMO\:Joy)
   * Sensory cues
@@ -185,7 +185,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
   - Ensure alignment with the style axes if they are provided.
 
   - **Rules:**
-      1. **Maintain critical information.**  Preserve all essential elements of the raw prompt: emotional lead, genre(s), voice, character details, plot sections, writing style, pacing and advanced feature instructions.  Do not omit or reorder these sections. Keep the same length, plot structure, and do not shorten it unless the critics explicitly said to!
+      1. **Maintain critical information.**  Preserve all essential elements of the raw prompt: emotional lead, genre(s), voice, character details, plot sections, writing style, pacing and advanced feature instructions.  Do not omit or reorder these sections. Keep the same length, plot structure, and do not shorten it unless the critics explicitly said to! Ensure the content remains substantial (aiming for the ~1500 word target if possible without fluff).
 
       2. **Adopt the influence’s lexicon.**  Think of how the chosen influence would describe a story.  For example:
          * A **Magical Realist** influence might emphasise mundane details infused with the fantastical, cyclical time, and political allegory.  It would use words like “dreamlike logic” or “ancestral echoes.”

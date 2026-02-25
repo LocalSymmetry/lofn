@@ -363,7 +363,7 @@ Continue all steps on each of the six story guides individually to generate full
 
 ### Step 5 · Determine Narrative Structure
 - For each of the hooks:
-  • Medium Panel selects structure map ([Act 1], [Act 2], [Act 3], etc.), length target, and genre blend.
+  • Medium Panel selects structure map ([Act 1], [Act 2], [Act 3], etc.), length target (default to ~1500 words/3 pages unless user requested otherwise), and genre blend.
         - Using the medium panel, decide on the **story structure**.
         - Follow the story guide and style for this step, but determine where the hook is placed within the structure as its core.
 
@@ -388,7 +388,7 @@ Continue all steps on each of the six story guides individually to generate full
 
 ### Step 8 · Draft Initial Story Content (2× per panelist)
 • Each Concept Panelist writes full story content drafts (or detailed outlines/key scenes).
-• Embed emotion tags, sensory cues, and narrative discipline; zero plagiarism.
+• Embed emotion tags, sensory cues, and narrative discipline; zero plagiarism. Ensure the content meets the length target (~1500 words default unless user specifies otherwise).
   - **Incorporate:**
     - **All story guide instructions**.
     - **Follow the structure**.
