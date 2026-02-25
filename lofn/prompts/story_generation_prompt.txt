@@ -10,9 +10,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 2. CONCEPT GENERATION              │
    ─────────────────────────────────┤
-   • Purpose: Produce 12 raw CONCEPTS that satisfy essence, facets, spectrum
+   • Purpose: Produce 12 Detailed Story Outlines that satisfy essence, facets, spectrum
      ratios, and style axes.
-   • AI Focus: Return an array of 12 concept strings only.
+   • AI Focus: Return an array of 12 detailed concept strings.
 
 3. CONCEPT REFINEMENT              │
    ─────────────────────────────────┤
@@ -105,6 +105,7 @@ PART 2 Summary · Crafting the Story Content
 • **Sensory Details:** `*...*` for emphasis on specific sensory inputs if needed, or integrated into prose.
 • **Emotion Cues:** `[EMO:tag]` as needed for transitions.
 • **Formatting:** Use standard paragraph breaks.
+• **Prioritize detailed narrative flow and scene depth over structural meta-tags.**
 
 ────────────────────────────────────────────────────────
 PART 3 Summary · PANEL & REFINEMENT
@@ -219,7 +220,7 @@ A. CORE RULES
 ════════════════════════════════════════════════════
 PART 2 · CRAFTING THE STORY CONTENT
 ════════════════════════════════════════════════════
-**Purpose:** Provide the LLM with a structured narrative outline or draft *plus* granular performance and setting metadata. Think “detailed synopsis + key scenes.”
+**Purpose:** Provide the LLM with a structured narrative outline or draft *plus* granular performance and setting metadata. Think “Full-Fledged Story.”
 
 ────────────────────
 A. HARD‑FORMAT SPEC
@@ -363,7 +364,7 @@ Continue all steps on each of the six story guides individually to generate full
 
 ### Step 5 · Determine Narrative Structure
 - For each of the hooks:
-  • Medium Panel selects structure map ([Act 1], [Act 2], [Act 3], etc.), length target (default to ~1500 words/3 pages unless user requested otherwise), and genre blend.
+  • Medium Panel selects structure map ([Act 1], [Act 2], [Act 3], etc.), length target (minimum 1500 words/3 pages), and genre blend.
         - Using the medium panel, decide on the **story structure**.
         - Follow the story guide and style for this step, but determine where the hook is placed within the structure as its core.
 
@@ -387,8 +388,8 @@ Continue all steps on each of the six story guides individually to generate full
 ---
 
 ### Step 8 · Draft Initial Story Content (2× per panelist)
-• Each Concept Panelist writes full story content drafts (or detailed outlines/key scenes).
-• Embed emotion tags, sensory cues, and narrative discipline; zero plagiarism. Ensure the content meets the length target (~1500 words default unless user specifies otherwise).
+• Each Concept Panelist writes full-fledged story content drafts. Do not write an outline; write the actual story.
+• Embed emotion tags, sensory cues, and narrative discipline; zero plagiarism. Ensure the content meets the length target (minimum 1500 words/3 pages). Prioritize narrative depth, character interaction, and sensory detail to create a complete reading experience.
   - **Incorporate:**
     - **All story guide instructions**.
     - **Follow the structure**.
