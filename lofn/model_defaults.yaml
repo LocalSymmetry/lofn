@@ -85,3 +85,36 @@ music:
     - Poe-Claude-Sonnet-4
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
+story:
+  concept_medium:
+    - gemini-3.1-pro-preview
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - gpt-5.2
+    - Poe-Gemini-3.1-Pro
+    - Poe-Claude-Opus-4.6
+    - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.2
+    - gemini-2.5-pro
+    - gpt-5.1
+    - OR-anthropic/claude-sonnet-4.5
+    - OR-x-ai/grok-4
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4
+  prompt:
+    - gemini-3.1-pro-preview
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - gpt-5.2
+    - Poe-Gemini-3.1-Pro
+    - Poe-Claude-Opus-4.6
+    - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.2
+    - gemini-2.5-pro
+    - gpt-5.1
+    - OR-anthropic/claude-sonnet-4.5
+    - OR-x-ai/grok-4
+    - Poe-Claude-Sonnet-4
+    - Poe-Gemini-2.5-Pro
+    - Poe-Grok-4

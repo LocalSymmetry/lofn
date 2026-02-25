@@ -10,9 +10,9 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
 
 2. NARRATIVE CONCEPTS              │ **YOU ARE HERE - COMPLETE THIS PHASE**
    ─────────────────────────────────┤
-   • Purpose: Produce 12 raw STORY CONCEPTS that satisfy essence, facets, spectrum
+   • Purpose: Produce 12 Detailed Story Outlines (approx. 1 page) that satisfy essence, facets, spectrum
      ratios, and style axes.
-   • AI Focus: Return an array of 12 concept strings only. Stop here.
+   • AI Focus: Return an array of 12 detailed concept strings. Stop here.
 
 3. CONCEPT REFINEMENT              │
    ─────────────────────────────────┤
@@ -63,7 +63,7 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
 
 ## Context
 
-You now have the essence, facets, creativity spectrum and style axes for the user’s story idea. Your job in this phase is to explore a broad creative space by producing **twelve distinct narrative concepts**. Each concept should be compelling and markedly different from the others, yet all should remain anchored to the essence and style constraints. Think of them as "story loglines" or "high-concept pitches."
+You now have the essence, facets, creativity spectrum and style axes for the user’s story idea. Your job in this phase is to explore a broad creative space by producing **twelve distinct detailed narrative outlines**. Each outline should be compelling and markedly different from the others, yet all should remain anchored to the essence and style constraints. Think of them as **detailed story outlines, each approximately a page long**.
 
 ## Directions
 
@@ -118,30 +118,31 @@ You now have the essence, facets, creativity spectrum and style axes for the use
 
 ---
 
-**Step 4: Brainstorm and Refine Unique Concepts**
+**Step 4: Brainstorm and Refine Unique Concept Outlines**
 
 - **4.1 Initial Brainstorming:**
-  - Brainstorm 12 unique and relevant concepts using proper nouns, precise adjectives, and sensory language.
-  - **Ensure each concept aligns with the style axes and evokes emotional resonance**.
+  - Brainstorm 12 unique and relevant detailed story outlines using proper nouns, precise adjectives, and sensory language.
+  - **Ensure each outline aligns with the style axes and evokes emotional resonance**.
   - *Requirements*:
     - **Cover the spectrum:** Vary the concepts along the creativity spectrum.
-    - **Tell the Story:** The concept is the main narrative hook.
+    - **Tell the Story:** The outline is the main narrative hook and progression.
     - **Emotion first:** Begin with the core emotion or emotional arc.
     - **Avoid overlaps:** Ensure diversity in plot, character, and setting.
+    - **Detail:** Provide substantial detail for each concept, aiming for a page of text per concept.
 
 - **4.2 Reflection and Refinement:**
   - Review each concept for originality and alignment.
   - Additional Refinements:
     - For entities/characters, add specifications (age, background, motivation).
     - For settings, specify location and atmosphere.
-    - Ensure it is a complete narrative arc.
+    - Ensure it is a complete narrative arc with detailed beginning, middle, and end.
 
 ## Output
 
 - **Return the concepts in the following JSON format:**
 
   ```json
-  {{ "concepts": [ {{"concept": "Concept 1"}}, {{"concept": "Concept 2"}}, {{"concept": "Concept 3"}}, {{"concept": "Concept 4"}}, {{"concept": "Concept 5"}}, {{"concept": "Concept 6"}}, {{"concept": "Concept 7"}}, {{"concept": "Concept 8"}}, {{"concept": "Concept 9"}}, {{"concept": "Concept 10"}}, {{"concept": "Concept 11"}}, {{"concept": "Concept 12"}} ] }}
+  {{ "concepts": [ {{"concept": "Detailed Story Outline 1"}}, {{"concept": "Detailed Story Outline 2"}}, {{"concept": "Detailed Story Outline 3"}}, {{"concept": "Detailed Story Outline 4"}}, {{"concept": "Detailed Story Outline 5"}}, {{"concept": "Detailed Story Outline 6"}}, {{"concept": "Detailed Story Outline 7"}}, {{"concept": "Detailed Story Outline 8"}}, {{"concept": "Detailed Story Outline 9"}}, {{"concept": "Detailed Story Outline 10"}}, {{"concept": "Detailed Story Outline 11"}}, {{"concept": "Detailed Story Outline 12"}} ] }}
   ```
 
 ---
@@ -164,5 +165,5 @@ Supplied images (if any): {image_context}
 - **REMEMBER - Return the concepts in the following JSON format:**
 
   ```json
-  {{ "concepts": [ {{"concept": "Concept 1"}}, {{"concept": "Concept 2"}}, {{"concept": "Concept 3"}}, {{"concept": "Concept 4"}}, {{"concept": "Concept 5"}}, {{"concept": "Concept 6"}}, {{"concept": "Concept 7"}}, {{"concept": "Concept 8"}}, {{"concept": "Concept 9"}}, {{"concept": "Concept 10"}}, {{"concept": "Concept 11"}}, {{"concept": "Concept 12"}} ] }}
+  {{ "concepts": [ {{"concept": "Detailed Story Outline 1"}}, {{"concept": "Detailed Story Outline 2"}}, {{"concept": "Detailed Story Outline 3"}}, {{"concept": "Detailed Story Outline 4"}}, {{"concept": "Detailed Story Outline 5"}}, {{"concept": "Detailed Story Outline 6"}}, {{"concept": "Detailed Story Outline 7"}}, {{"concept": "Detailed Story Outline 8"}}, {{"concept": "Detailed Story Outline 9"}}, {{"concept": "Detailed Story Outline 10"}}, {{"concept": "Detailed Story Outline 11"}}, {{"concept": "Detailed Story Outline 12"}} ] }}
   ```

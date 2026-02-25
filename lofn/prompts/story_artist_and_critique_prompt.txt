@@ -75,7 +75,6 @@ This step is akin to inviting guest authors or editors to comment on a series of
 
 - Be intentional, detailed, and insightful when describing stories.
 - Use vivid, sensory language to enrich descriptions.
-- Limit concepts to a single sentence.
 - **Use the style axes** to guide your refinements.
 - **Explain** how each refined concept aligns with the style axes.
 - **Introduce feedback loops** by assessing and refining your outputs based on the style axes and judging facets.
@@ -139,6 +138,7 @@ This step is akin to inviting guest authors or editors to comment on a series of
 - For each concept:
 
   - **Action:** Using the critique, have the author write a refined concept that enhances emotional and thematic depth while fully representing the user's idea.
+  - **Crucial:** Refine the concept outline, maintaining its detail, structure, and length. Do not summarize; enhance the existing outline.
 
   - **Ensure:**
 
