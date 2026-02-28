@@ -35,14 +35,14 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
    • Purpose: Generate five laser-targeted facets to score future prompts.
    • AI Focus: Output exactly 5 facet strings—nothing else.
 
-7. STORY GUIDE CREATION         │  **YOU ARE HERE - COMPLETE THIS PHASE**
+7. WRITING PIECE GUIDE CREATION         │  **YOU ARE HERE - COMPLETE THIS PHASE**
    ─────────────────────────────────┤
-   • Purpose: Expand each facet into a full story guide (Storytelling Techniques, Mood & emotional arc, Prose Style, Structure & pacing, Character Depth, Narrative & thematic suggestions).  Six guides total.
+   • Purpose: Expand each facet into a full writing piece guide (Storytelling Techniques, Mood & emotional arc, Prose Style, Structure & pacing, Character Depth, Narrative & thematic suggestions).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording. Stop here.
 
 8. RAW STORY PROMPT GENERATION     │
    ─────────────────────────────────┤
-   • Purpose: Convert each story guide into a ready-to-use story prompt.
+   • Purpose: Convert each writing piece guide into a ready-to-use story prompt.
    • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
 
 9. AUTHOR-REFINED PROMPT           │
@@ -58,6 +58,8 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     • AI Focus: Deliver two prompt lists.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
  - Be intentional, detailed, and insightful when describing narratives.
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the narrative choices for each concept.
@@ -66,9 +68,9 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 ## Context
 
-Story guides translate scoring facets into richly detailed instructions that inspire the creation of raw prompts.  They function like treatment documents: they describe mood, prose style, narrative structure, character dynamics and themes without becoming prompts themselves.  Each guide should read like a mini‑essay that a seasoned editor might write before commissioning a piece.
+Writing piece guides translate scoring facets into richly detailed instructions that inspire the creation of raw prompts.  They function like treatment documents: they describe mood, prose style, narrative structure, character dynamics and themes without becoming prompts themselves.  Each guide should read like a mini‑essay that a seasoned editor might write before commissioning a piece.
 
-This is where your literary imagination should shine.  Imagine you are writing for a publisher's catalogue or a critic’s notes: your language should conjure images, emotions and subtext as much as plot points.  You are building a bridge between the essence and the raw prompts, weaving a story of how the narrative will feel to the reader.  Draw on metaphors from painting, cinema, music and poetry.  Award‑winning works often stand out because they connect disparate senses and ideas—use that same ambition here.
+This is where your literary imagination should shine.  Imagine you are writing for a publisher's catalogue or a critic’s notes: your language should conjure images, emotions and subtext as much as plot points.  You are building a bridge between the essence and the raw prompts, weaving a sense of how the piece will feel to the reader.  Draw on metaphors from painting, cinema, music and poetry.  Award‑winning works often stand out because they connect disparate senses and ideas—use that same ambition here.
 
 ## Directions
 
@@ -76,7 +78,7 @@ This is where your literary imagination should shine.  Imagine you are writing f
 
 2. **Guide structure.**  Each guide should be a cohesive paragraph (5–7 sentences).  Cover:
 
-   * **Storytelling Techniques:** Describe two story-telling techniques taken from poetry, literature, or other art forms to be used to expand the main themes of the concept (e.g., unreliable narrator, non-linear timeline, frame story).
+   * **Storytelling Techniques:** Describe two writing techniques taken from poetry, literature, or other art forms to be used to expand the main themes of the concept (e.g., unreliable narrator, non-linear timeline, frame story).
 
    * **Mood & emotional arc:** Describe the intended emotional journey with precise sub‑emotions (e.g., “begin in wistful nostalgia, descend briefly into frustration, then ascend to determined hope”).  Use imagery tied to senses (sound, sight, smell) and environments.
 
@@ -124,7 +126,7 @@ This is where your literary imagination should shine.  Imagine you are writing f
 
 3. **Language & style:** Use evocative, poetic language similar to high‑level literary criticism.  Avoid giving explicit prompt instructions; focus on inspiration and direction.
 
-- **Return the Story guides in the following JSON format:**
+- **Return the Writing piece guides in the following JSON format:**
 
   ```json
   {{ "story_guides": [ {{"story_guide": "Story Guide 1"}}, {{"story_guide": "Story Guide 2"}}, {{"story_guide": "Story Guide 3"}}, {{"story_guide": "Story Guide 4"}}, {{"story_guide": "Story Guide 5"}}, {{"story_guide": "Story Guide 6"}} ] }}
@@ -146,7 +148,7 @@ This is where your literary imagination should shine.  Imagine you are writing f
 Supplied images (if any): {image_context}
 
 
-- **REMEMBER - Return the Story guides in the following JSON format:**
+- **REMEMBER - Return the Writing piece guides in the following JSON format:**
 
   ```json
   {{ "story_guides": [ {{"story_guide": "Story Guide 1"}}, {{"story_guide": "Story Guide 2"}}, {{"story_guide": "Story Guide 3"}}, {{"story_guide": "Story Guide 4"}}, {{"story_guide": "Story Guide 5"}}, {{"story_guide": "Story Guide 6"}} ] }}
