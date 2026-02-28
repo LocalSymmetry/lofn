@@ -434,7 +434,7 @@ class LofnApp:
             )
             st.session_state['prompt_model'] = self.prompt_model
 
-            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
+            if self.model and (self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4')):
                 # Reasoning Level for o1
                 # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
                 st.session_state['reasoning_level'] = st.selectbox(
@@ -1287,7 +1287,7 @@ class LofnApp:
                     pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -1349,7 +1349,7 @@ class LofnApp:
                     pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -1497,7 +1497,7 @@ class LofnApp:
                         first['medium'],
                         max_retries=self.max_retries,
                         temperature=self.temperature,
-                        model=self.model,
+                        model=self.prompt_model,
                         debug=self.debug,
                         style_axes=style_axes,
                         creativity_spectrum=creativity,
