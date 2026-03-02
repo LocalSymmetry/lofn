@@ -993,7 +993,19 @@ story_gen_schema = {
     ]
 }
 
+single_story_gen_schema = {
+    "story_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
 story_artist_refined_schema = {
+    "author_refined_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+single_story_artist_refined_schema = {
     "author_refined_prompts": [
         {"story_prompt": str, "story_content": str, "title": str}
     ]
@@ -3769,6 +3781,8 @@ def process_story_guides(
         return None
     return parsed_output
 
+from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
+
 def process_story_generation_prompts(
     chains,
     input_text,
@@ -3782,30 +3796,67 @@ def process_story_generation_prompts(
     model=None,
     image_context=None
 ):
-    expected_schema = story_gen_schema
-    args = {
-        "input": input_text,
-        "concept": concept,
-        "medium": medium,
-        "facets": facets['facets'],
-        "style_axes": style_axes,
-        "story_guides": [x['story_guide'] for x in story_guides['story_guides']]
-    }
-    if image_context is not None:
-        args["image_context"] = image_context
-    parsed_output = run_llm_chain_raw(
-        chains,
-        'generation',
-        args,
-        max_retries,
-        model,
-        debug,
-        expected_schema
-    )
-    if parsed_output is None:
+    expected_schema = single_story_gen_schema
+    ctx = get_script_run_ctx()
+
+    async def generate_single(guide):
+        args = {
+            "input": input_text,
+            "concept": concept,
+            "medium": medium,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "story_guide": guide['story_guide']
+        }
+        if image_context is not None:
+            args["image_context"] = image_context
+
+        def thread_func():
+            if ctx:
+                add_script_run_ctx(ctx=ctx)
+            return run_llm_chain_raw(
+                chains,
+                'generation',
+                args,
+                max_retries,
+                model,
+                debug,
+                expected_schema
+            )
+
+        # Wrapping synchronous run_llm_chain_raw in asyncio.to_thread
+        return await asyncio.to_thread(thread_func)
+
+    async def gather_all():
+        tasks = [generate_single(g) for g in story_guides['story_guides']]
+        return await asyncio.gather(*tasks)
+
+    # Use asyncio.run if there is no running loop, else create and run a new loop.
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = None
+
+    if loop and loop.is_running():
+        # Typically we shouldn't be here in Streamlit, but handle it just in case
+        task = loop.create_task(gather_all())
+        # The script will continue running without blocking for task completion in this rare case
+        # (Though Streamlit is synchronous by default, so we shouldn't hit this).
+        st.error("Asyncio loop is already running. Cannot wait for gather_all()")
+        return None
+    else:
+        results = asyncio.run(gather_all())
+
+    combined_prompts = []
+    for r in results:
+        if r is not None and "story_prompts" in r:
+            combined_prompts.extend(r["story_prompts"])
+
+    if not combined_prompts:
         st.error("Failed to process story prompts")
         return None
-    return parsed_output
+
+    return {"story_prompts": combined_prompts}
 
 def process_story_artist_refined_prompts(
     chains,
@@ -3821,31 +3872,70 @@ def process_story_artist_refined_prompts(
     model=None,
     image_context=None
 ):
-    expected_schema = story_artist_refined_schema
-    args = {
-        "input": input_text,
-        "concept": concept,
-        "medium": medium,
-        "facets": facets['facets'],
-        "style_axes": style_axes,
-        "story_prompts": story_prompts,
-        "story_guides": story_guides
-    }
-    if image_context is not None:
-        args["image_context"] = image_context
-    parsed_output = run_llm_chain_raw(
-        chains,
-        'artist_refined',
-        args,
-        max_retries,
-        model,
-        debug,
-        expected_schema
-    )
-    if parsed_output is None:
+    expected_schema = single_story_artist_refined_schema
+    ctx = get_script_run_ctx()
+
+    async def refine_single(prompt, guide):
+        # We need to pass "story_prompts" parameter as a formatted string to match {story_prompts} in template
+        prompt_str = json.dumps([prompt], indent=2)
+        args = {
+            "input": input_text,
+            "concept": concept,
+            "medium": medium,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "story_prompts": prompt_str,
+            "story_guide": guide['story_guide']
+        }
+        if image_context is not None:
+            args["image_context"] = image_context
+
+        def thread_func():
+            if ctx:
+                add_script_run_ctx(ctx=ctx)
+            return run_llm_chain_raw(
+                chains,
+                'artist_refined',
+                args,
+                max_retries,
+                model,
+                debug,
+                expected_schema
+            )
+
+        return await asyncio.to_thread(thread_func)
+
+    # Zip the generated prompts with the guides they originated from
+    prompts_list = story_prompts.get('story_prompts', [])
+    guides_list = story_guides.get('story_guides', [])
+
+    async def gather_all():
+        tasks = []
+        for i in range(min(len(prompts_list), len(guides_list))):
+            tasks.append(refine_single(prompts_list[i], guides_list[i]))
+        return await asyncio.gather(*tasks)
+
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = None
+
+    if loop and loop.is_running():
+        st.error("Asyncio loop is already running. Cannot wait for gather_all()")
+        return None
+    else:
+        results = asyncio.run(gather_all())
+
+    combined_refined = []
+    for r in results:
+        if r is not None and "author_refined_prompts" in r:
+            combined_refined.extend(r["author_refined_prompts"])
+
+    if not combined_refined:
         st.error("Failed to process author refined prompts")
         return None
-    return parsed_output
+
+    return {"author_refined_prompts": combined_refined}
 
 def process_story_revision_synthesis(
     chains,

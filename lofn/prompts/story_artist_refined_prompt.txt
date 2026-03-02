@@ -40,7 +40,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
    • Purpose: Expand each facet into a full story guide (Storytelling Techniques, Mood & emotional arc, Prose Style, Structure & pacing, Character Depth, Narrative & thematic suggestions).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW STORY PROMPT GENERATION     │
+8. RAW WRITING PIECE PROMPT GENERATION     │
    ─────────────────────────────────┤
    • Purpose: Convert each story guide into a ready-to-use story prompt.
    • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
@@ -58,6 +58,8 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     • AI Focus: Deliver two prompt lists.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
  - Be intentional, detailed, and insightful when describing narratives.
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the narrative choices for each concept.
@@ -66,7 +68,7 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 ## Context
 
-Each of the six raw style prompts needs to be imbued with the character of its associated influence from Phase 3.  This phase refines each prompt by channelling stylistic nuances without explicitly naming the influencer.  The refined prompts should feel more authentic and compelling, ready for evaluation.
+The raw style prompt needs to be imbued with the character of its associated influence from Phase 3.  This phase refines each prompt by channelling stylistic nuances without explicitly naming the influencer.  The refined prompts should feel more authentic and compelling, ready for evaluation.
 
 Think of this step as putting on a costume or stepping into a character’s shoes.  You are still telling the same story, but your vocabulary and phrasing shift to echo the chosen influence’s sensibilities.  In visual art, this would be like repainting the same scene in the style of Matisse versus Hokusai: the subject remains, but colours, lines and energy transform.  Your goal is to achieve that transformation in words—subtly colouring the prompt with the influence’s lexicon, metaphors and emotional cadence.  Keep the multi‑sensory richness alive; borrow terms from smell, taste, texture if they help conjure the right vibe.
 
@@ -82,7 +84,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 
 **Story Prompt Requirements**
 
-* Each Medium Panelist produces **two** distinct prompts
+* The Medium Panelist produces a prompt
 * Follow the **MASTER guide** ordering:
 
   1. Tone / Emotion
@@ -103,7 +105,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 
 **Story Content Requirements**
 
-* Each Concept Panelist produces **two** full story content drafts
+* The Concept Panelist produces a full writing content draft
 * Use **meta‑tags** and **narrative structure**, target **~1500 words** (approx. 3 pages) (unless user specifies otherwise)
 * Embed:
   * Emotion tags (e.g. EMO\:Joy)
@@ -145,7 +147,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 
 **Step 1: Select an Obscure Author**
 
-- For each generated prompt:
+- For the generated prompt:
 
   - Choose a lesser-known author who:
 
@@ -179,7 +181,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 
 **Step 3: Rewrite Prompts in the Author's Style**
 
-- For each author and prompt:
+- For the author and prompt:
 
   - Rewrite the prompt in the author's style, incorporating their special techniques, materials, and emotional focus to capture the {concept} in the {medium}.
   - Ensure alignment with the style axes if they are provided.
@@ -213,7 +215,7 @@ You are here to improve the story. You are allowed to change any prompt, (story 
 - **Return the list of author-refined prompts in the following JSON format:**
 
 ```json
-   {{ "author_refined_prompts": [ {{"story_prompt": "Refined Story Prompt 1", "story_content": "Refined Story Content 1", "title":"Refined Story 1 Title"}}, {{"story_prompt": "Refined Story Prompt 2", "story_content": "Refined Story Content 2", "title":"Refined Story 2 Title"}}, {{"story_prompt": "Refined Story Prompt 3", "story_content": "Refined Story Content 3", "title":"Refined Story 3 Title"}}, {{"story_prompt": "Refined Story Prompt 4", "story_content": "Refined Story Content 4", "title":"Refined Story 4 Title"}}, {{"story_prompt": "Refined Story Prompt 5", "story_content": "Refined Story Content 5", "title":"Refined Story 5 Title"}}, {{"story_prompt": "Refined Story Prompt 6", "story_content": "Refined Story Content 6", "title":"Refined Story 6 Title"}} ] }}
+   {{ "author_refined_prompts": [ {{"story_prompt": "Refined Writing Prompt", "story_content": "Refined Writing Content", "title":"Refined Title"}} ] }}
 ```
 
 
@@ -233,12 +235,12 @@ Supplied images (if any): {image_context}
 
 {story_prompts}
 
-- **Story Guides (use for inspiration, but make changes if it better suits the overall story):**
+- **Writing Guide (use for inspiration, but make changes if it better suits the overall story):**
 
-{story_guides}
+{story_guide}
 
 - **REMEMBER - Return the list of author-refined prompts in the following JSON format:**
 
 ```json
-   {{ "author_refined_prompts": [ {{"story_prompt": "Refined Story Prompt 1", "story_content": "Refined Story Content 1", "title":"Refined Story 1 Title"}}, {{"story_prompt": "Refined Story Prompt 2", "story_content": "Refined Story Content 2", "title":"Refined Story 2 Title"}}, {{"story_prompt": "Refined Story Prompt 3", "story_content": "Refined Story Content 3", "title":"Refined Story 3 Title"}}, {{"story_prompt": "Refined Story Prompt 4", "story_content": "Refined Story Content 4", "title":"Refined Story 4 Title"}}, {{"story_prompt": "Refined Story Prompt 5", "story_content": "Refined Story Content 5", "title":"Refined Story 5 Title"}}, {{"story_prompt": "Refined Story Prompt 6", "story_content": "Refined Story Content 6", "title":"Refined Story 6 Title"}} ] }}
+   {{ "author_refined_prompts": [ {{"story_prompt": "Refined Writing Prompt", "story_content": "Refined Writing Content", "title":"Refined Title"}} ] }}
 ```

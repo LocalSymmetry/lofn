@@ -37,12 +37,12 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 7. NARRATIVE GUIDE CREATION         │
    ─────────────────────────────────┤
-   • Purpose: Expand each facet into a full story guide (Storytelling Techniques, Mood & emotional arc, Prose Style, Structure & pacing, Character Depth, Narrative & thematic suggestions).  Six guides total.
+   • Purpose: Expand each facet into a full writing piece guide (Storytelling Techniques, Mood & emotional arc, Prose Style, Structure & pacing, Character Depth, Narrative & thematic suggestions).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW STORY PROMPT GENERATION     │
+8. RAW WRITING PIECE PROMPT GENERATION     │
    ─────────────────────────────────┤
-   • Purpose: Convert each story guide into a ready-to-use story prompt.
+   • Purpose: Convert each writing piece guide into a ready-to-use writing piece prompt.
    • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
 
 9. AUTHOR-REFINED PROMPT           │
@@ -58,6 +58,8 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     • AI Focus: Deliver two prompt lists.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
  - Be intentional, detailed, and insightful when describing narratives.
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the narrative choices for each concept.
@@ -72,8 +74,10 @@ The twelve concepts you created need depth and critical shaping.  In this phase 
 This step is akin to inviting guest authors or editors to comment on a series of sketches.  Each influence brings its own prose style, cultural memory and aesthetic philosophy.  Rather than looking to mainstream figures, dig into the hidden corners of literary history, regional traditions and adjacent arts (theatre, cinema, poetry).  These voices help push the story into unexpected places and prevent it from feeling generic.  Think also of influences beyond literature—what would a filmmaker’s perspective add?  How might a surrealist painter critique a plot structure?  Such cross‑modal influences deepen the art.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
 
-- Be intentional, detailed, and insightful when describing stories.
+
+- Be intentional, detailed, and insightful when describing writing pieces.
 - Use vivid, sensory language to enrich descriptions.
 - **Use the style axes** to guide your refinements.
 - **Explain** how each refined concept aligns with the style axes.
@@ -146,7 +150,7 @@ This step is akin to inviting guest authors or editors to comment on a series of
 
     - The creativity level matches the original concept per the creativity spectrum.
 
-    - The concept is feasible for AI story generation.
+    - The concept is feasible for AI writing piece generation.
 
   - **Rules:**
 

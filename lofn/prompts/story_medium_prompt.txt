@@ -37,12 +37,12 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 7. ARTISTIC GUIDE CREATION         │
    ─────────────────────────────────┤
-   • Purpose: Expand each facet into a full story guide (Narrative Arc, Character Voice, Setting & Atmosphere, Pacing, Themes).  Six guides total.
+   • Purpose: Expand each facet into a full writing piece guide (Narrative Arc, Character Voice, Setting & Atmosphere, Pacing, Themes).  Six guides total.
    • AI Focus: Write 6 short guide paragraphs.  No prompt wording.
 
-8. RAW STORY PROMPT GENERATION     │
+8. RAW WRITING PIECE PROMPT GENERATION     │
    ─────────────────────────────────┤
-   • Purpose: Convert each story guide into a ready-to-use writing prompt.
+   • Purpose: Convert each writing piece guide into a ready-to-use writing prompt.
    • AI Focus: One prompt per guide.  Keep it concise.
 
 9. AUTHOR-REFINED PROMPT           │
@@ -58,6 +58,8 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
     • AI Focus: Deliver two prompt lists.  No story generation yet.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
  - Be intentional, detailed, and insightful when describing narrative styles.
 - Use vivid, sensory language to enrich your descriptions.
 - Follow the steps below to refine the narrative choices for each concept.
@@ -99,6 +101,8 @@ This phase is our equivalent of choosing Production Styles in music or Mediums i
 ---
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
 
 - Be intentional, detailed, and insightful when describing narrative styles.
 - Use vivid, sensory language to enrich descriptions.
@@ -133,7 +137,7 @@ This phase is our equivalent of choosing Production Styles in music or Mediums i
   - **Structure:** How is the story told? (Linear, non-linear, framed narrative, epistolary, second-person).
   - **Pacing:** Fast-paced thriller or slow-burn meditation?
   - **Innovative Combinations:** Suggest blends of different genres or literary techniques.
-  - **Feasibility for AI Generation:** Ensure the styles can be effectively executed by an AI writer.
+  - **Feasibility for AI Generation:** Ensure the styles can be effectively executed by an AI writer/generator.
 - A narrative style should encapsulate the following dimensions. Use them as building blocks:
   - **Perspective:** First person (intimate), Second person (immersive), Third person limited (focused), Third person omniscient (epic).
   - **Tense:** Past (classic), Present (immediate), Future (speculative).

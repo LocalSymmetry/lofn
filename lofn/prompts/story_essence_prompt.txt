@@ -1,5 +1,5 @@
 ────────────────────────────────────────────────────────────────────────────
-LOFN MASTER PHASE MAP - STORYWRITER EDITION
+LOFN MASTER PHASE MAP - WRITER EDITION
 ────────────────────────────────────────────────────────────────────────────
 
 1. ESSENCE & FACETS                │ **YOU ARE HERE - COMPLETE THIS PHASE**
@@ -10,7 +10,7 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
 
 2. NARRATIVE CONCEPTS              │
    ─────────────────────────────────┤
-   • Purpose: Produce 12 raw STORY CONCEPTS that satisfy essence, facets, spectrum
+   • Purpose: Produce 12 raw WRITING PIECE CONCEPTS that satisfy essence, facets, spectrum
      ratios, and style axes.
    • AI Focus: Return an array of 12 concept strings only.
 
@@ -40,9 +40,9 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
    • Purpose: Expand each facet into a full writing guide (Narrative Structure, Tone & Voice, Character Arc, Pacing, Themes, stylistic devices). Six guides total.
    • AI Focus: Write 6 short guide paragraphs.
 
-8. RAW STORY PROMPT GENERATION     │
+8. RAW WRITING PIECE PROMPT GENERATION     │
    ─────────────────────────────────┤
-   • Purpose: Convert each writing guide into a ready-to-use story generation prompt.
+   • Purpose: Convert each writing guide into a ready-to-use writing piece generation prompt.
    • AI Focus: One prompt per guide.
 
 9. AUTHOR-REFINED PROMPT           │
@@ -58,6 +58,8 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
     • AI Focus: Deliver two prompt lists.
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
 - Be intentional, detailed, and insightful when describing narratives.
 - Use vivid, sensory language to enrich your descriptions.
 - Adhere to ethical guidelines.
@@ -65,11 +67,13 @@ LOFN MASTER PHASE MAP - STORYWRITER EDITION
 
 ## Context
 
-In this phase you will distill the user’s idea into its core **essence**, enumerate a set of **facets** that define what a successful story must achieve, set the **creativity spectrum**, and define **story-specific style axes**. This structured rubric lays the groundwork for consistent evaluation.
+In this phase you will distill the user’s idea into its core **essence**, enumerate a set of **facets** that define what a successful writing piece must achieve, set the **creativity spectrum**, and define **writing-specific style axes**. This structured rubric lays the groundwork for consistent evaluation.
 
 ---
 
 **GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
 
 - Be intentional, detailed, and insightful.
 - Use vivid, sensory language.
@@ -90,7 +94,7 @@ Assign percentages adding up to 100 % that quantify how literal, inventive and t
 * **Inventive** – blending familiar tropes into new combinations, experimenting with structure or voice.
 * **Transformative** – reimagining the idea in unexpected ways: shifting genre entirely, altering perspective, or using avant-garde techniques.
 
-### 2 · Record story-specific style axes
+### 2 · Record writing-specific style axes
 
 Define ten axes with values (0–100) and succinct explanations. Use the following axes as a template and adapt if necessary:
 
