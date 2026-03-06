@@ -166,7 +166,7 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.4", "gpt-5.3", "gpt-5.3-instant", "gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
         "claude-sonnet-4-6",
         "claude-opus-4-6",
@@ -185,6 +185,7 @@ VISION_MODELS = {
     },
     "google": {
         "gemini-3.1-pro-preview",
+        "gemini-3.1-flash",
         "gemini-3-flash-preview",
         "gemini-2.5-pro",
         "gemini-2.5-flash",
@@ -1371,6 +1372,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5.4": 128000,
+            "gpt-5.3": 128000,
+            "gpt-5.3-instant": 128000,
             "gpt-5.2": 128000,
             "gpt-5.2-pro": 128000,
             "gpt-5.2-chat-latest": 128000,
@@ -1403,6 +1407,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 
             # Google models
             "gemini-3.1-pro-preview": 120000,
+            "gemini-3.1-flash": 120000,
             "gemini-3-flash-preview": 120000,
             "gemini-3-pro-preview": 120000,
             "gemini-3-pro-image-preview": 120000,
@@ -1419,6 +1424,9 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Poe models
             "Poe-Assistant": 32768,
             "Poe-App-Creator": 32768,
+            "Poe-GPT-5.4": 128000,
+            "Poe-GPT-5.3": 128000,
+            "Poe-GPT-5.3-Instant": 128000,
             "Poe-GPT-5.2": 32768,
             "Poe-GPT-5.1": 32768,
             "Poe-GPT-5": 32768,
@@ -1439,6 +1447,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
             "Poe-Gemini-3.1-Pro": 120000,
+            "Poe-Gemini-3.1-Flash": 120000,
             "Poe-Gemini-3-Pro": 120000,
             "Poe-Gemini-3-Flash": 120000,
             "Poe-Gemini-2.5-Pro": 120000,
