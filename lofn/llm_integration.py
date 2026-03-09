@@ -166,7 +166,7 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5.4", "gpt-5.3", "gpt-5.3-instant", "gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.4", "gpt-5.3", "gpt-5.3-chat-latest", "gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
         "claude-sonnet-4-6",
         "claude-opus-4-6",
@@ -185,7 +185,7 @@ VISION_MODELS = {
     },
     "google": {
         "gemini-3.1-pro-preview",
-        "gemini-3.1-flash",
+        "gemini-3.1-flash-lite-preview",
         "gemini-3-flash-preview",
         "gemini-2.5-pro",
         "gemini-2.5-flash",
@@ -1374,7 +1374,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # OpenAI models
             "gpt-5.4": 128000,
             "gpt-5.3": 128000,
-            "gpt-5.3-instant": 128000,
+            "gpt-5.3-chat-latest": 128000,
             "gpt-5.2": 128000,
             "gpt-5.2-pro": 128000,
             "gpt-5.2-chat-latest": 128000,
@@ -1407,7 +1407,7 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
 
             # Google models
             "gemini-3.1-pro-preview": 120000,
-            "gemini-3.1-flash": 120000,
+            "gemini-3.1-flash-lite-preview": 120000,
             "gemini-3-flash-preview": 120000,
             "gemini-3-pro-preview": 120000,
             "gemini-3-pro-image-preview": 120000,

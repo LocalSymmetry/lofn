@@ -20,11 +20,11 @@ art:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3.1-flash
+    - gemini-3.1-flash-lite-preview
     - gemini-3-flash-preview
     - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
-    - gpt-5.3-instant
+    - gpt-5.3-chat-latest
     - Poe-GPT-5.3-Instant
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
@@ -58,11 +58,11 @@ video:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3.1-flash
+    - gemini-3.1-flash-lite-preview
     - gemini-3-flash-preview
     - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
-    - gpt-5.3-instant
+    - gpt-5.3-chat-latest
     - Poe-GPT-5.3-Instant
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
@@ -95,11 +95,11 @@ music:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3.1-flash
+    - gemini-3.1-flash-lite-preview
     - gemini-3-flash-preview
     - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
-    - gpt-5.3-instant
+    - gpt-5.3-chat-latest
     - Poe-GPT-5.3-Instant
     - gpt-5.1
     - gemini-2.5-pro
@@ -131,14 +131,14 @@ story:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
-    - gemini-3.1-flash
+    - gemini-3.1-flash-lite-preview
     - gemini-3.1-pro-preview
     - Poe-Gemini-3.1-Flash
     - claude-opus-4-6
     - claude-sonnet-4-6
     - gpt-5.4
     - gpt-5.3
-    - gpt-5.3-instant
+    - gpt-5.3-chat-latest
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
