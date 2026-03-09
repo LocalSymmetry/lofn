@@ -113,7 +113,7 @@
        • AI Focus: return a single JSON block with essence, axes and facets.
 
     2. **Concept Generation**
-       • Purpose: generate twelve concise song concepts that satisfy the
+       • Purpose: generate twelve descriptive song concepts that satisfy the
          essence and facets across the creativity spectrum.  
        • AI Focus: output an array of concept strings.
 
@@ -207,13 +207,13 @@ LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
 CHECKLIST 
 ────────────────────────────────────────────────────────
-□ MusicPrompt ≤ 1000 characters
+□ MusicPrompt ≤ 1500 characters
 □ MusicPrompt order: EMOTION → GENRE → instruments → vocals → progression  
 □ Progression broken into sequential sentences or mini‑sections  
 □ No artist names or section labels in MusicPrompt  
 □ Lyrics sections bracketed (`[Verse]`, `[Chorus]`, etc.)  
 □ Section‑specific meta‑tags present in lyrics (`[Female Vocalist]`, `[No beats]`)  
-□ ≤ 6 lines per 30 sec; consistent line lengths  
+□ ≤ 8 lines per 30 sec; consistent line lengths
 □ Style‑Reduction list included if requested  
 □ Devil’s Advocate sign‑off logged
 
@@ -231,7 +231,7 @@ Cheat Sheet · Crafting the Music (Style) Prompt
    - `[Chorus]` full band with gospel harmonies  
    - `[Bridge]` a cappella whispered monologue `[No beats]`  
    - `[Outro]` fades on sustained vocal  
-7. **Keep It Concise:** ~50–100 words.  
+7. **Be Descriptive:** ~80-150 words.
 8. **Blacklist Clichés:** e.g., “no trap hi‑hat rolls.”  
 9. **Avoid Artist Names:** describe style traits instead.  
 10. **Use Natural, Precise Language:** minimize comma‑sprawl.
@@ -249,7 +249,7 @@ Cheat Sheet · Crafting the Lyrics Prompt
 • **Call‑and‑Response:** `(response)` inline.  
 • **Sound Effects:** `*…*` on standalone lines.  
 • **Emotion Cues:** `[EMO:tag]` as needed.  
-• **Line Limits:** ≤ 6 lines per 30 sec; keep uniform lengths per section.  
+• **Line Limits:** ≤ 8 lines per 30 sec; keep uniform lengths per section.
 • **Non‑Lexical Hook:** e.g., “La‑la‑la” or “Oh‑oh‑oh.”  
 • **Multilingual (optional):** `[Chorus – Spanish]` for a foreign phrase.  
 • **Cleanup:** remove internal rhyme letters & `|` breaks before final.
