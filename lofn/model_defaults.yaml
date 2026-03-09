@@ -3,10 +3,14 @@ art:
     - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
+    - gpt-5.4
+    - gpt-5.3
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
     - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.4
+    - Poe-GPT-5.3
     - Poe-GPT-5.2
     - gpt-5.1
     - gemini-2.5-pro
@@ -16,8 +20,12 @@ art:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - gemini-3.1-flash
     - gemini-3-flash-preview
+    - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
+    - gpt-5.3-instant
+    - Poe-GPT-5.3-Instant
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
     - Poe-Claude-Haiku-4.5
@@ -33,10 +41,14 @@ video:
     - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
+    - gpt-5.4
+    - gpt-5.3
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
     - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.4
+    - Poe-GPT-5.3
     - Poe-GPT-5.2
     - gemini-2.5-pro
     - OR-anthropic/claude-sonnet-4
@@ -46,8 +58,12 @@ video:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - gemini-3.1-flash
     - gemini-3-flash-preview
+    - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
+    - gpt-5.3-instant
+    - Poe-GPT-5.3-Instant
     - Poe-GPT-5-mini
     - Poe-Gemini-2.5-Flash
     - claude-haiku-4-5
@@ -62,10 +78,14 @@ music:
     - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
+    - gpt-5.4
+    - gpt-5.3
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
     - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.4
+    - Poe-GPT-5.3
     - Poe-GPT-5.2
     - gemini-2.5-pro
     - gpt-5.1
@@ -75,8 +95,12 @@ music:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - gemini-3.1-flash
     - gemini-3-flash-preview
+    - Poe-Gemini-3.1-Flash
     - Poe-Gemini-3-Flash
+    - gpt-5.3-instant
+    - Poe-GPT-5.3-Instant
     - gpt-5.1
     - gemini-2.5-pro
     - OR-anthropic/claude-sonnet-4.5
@@ -90,10 +114,14 @@ story:
     - gemini-3.1-pro-preview
     - claude-opus-4-6
     - claude-sonnet-4-6
+    - gpt-5.4
+    - gpt-5.3
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
     - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.4
+    - Poe-GPT-5.3
     - Poe-GPT-5.2
     - gemini-2.5-pro
     - gpt-5.1
@@ -103,13 +131,21 @@ story:
     - Poe-Gemini-2.5-Pro
     - Poe-Grok-4
   prompt:
+    - gemini-3.1-flash
     - gemini-3.1-pro-preview
+    - Poe-Gemini-3.1-Flash
     - claude-opus-4-6
     - claude-sonnet-4-6
+    - gpt-5.4
+    - gpt-5.3
+    - gpt-5.3-instant
     - gpt-5.2
     - Poe-Gemini-3.1-Pro
     - Poe-Claude-Opus-4.6
     - Poe-Claude-Sonnet-4.6
+    - Poe-GPT-5.4
+    - Poe-GPT-5.3
+    - Poe-GPT-5.3-Instant
     - Poe-GPT-5.2
     - gemini-2.5-pro
     - gpt-5.1
