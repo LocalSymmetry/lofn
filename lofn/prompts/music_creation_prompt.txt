@@ -27,7 +27,7 @@ ADVANCED GLOBAL SETTINGS
 • Vocals                 : Define gender, age, ethnicity/accent, tone, raspiness, + 2 distinctive traits per vocalist  
 • Style‑Reduction      : Supply blacklist, e.g. “no generic trap hi‑hat rolls, no EDM airhorns”  
 • Runtime Check       : Estimated words ≈ (lyrics seconds ÷ 0.43)  
-• Word Limits         : Music prompt ≤ 100 words; Lyrics ≤ 6 lines per 30 sec
+• Word Limits         : Music prompt ≤ 150 words; Lyrics ≤ 8 lines per 30 sec
 
 ────────────────────────────────────────────────────────
 PARAMETER CHEAT‑SHEET (quick reference)
@@ -69,13 +69,13 @@ LEGAL & ETHICAL GUIDELINES
 ────────────────────────────────────────────────────────
 CHECKLIST (before STEP 12 export)
 ────────────────────────────────────────────────────────
-□ MusicPrompt ≤ 100 words  
+□ MusicPrompt ≤ 150 words
 □ MusicPrompt order: EMOTION → GENRE → instruments → vocals → progression  
 □ Progression broken into sequential sentences or mini‑sections  
 □ No artist names or section labels in MusicPrompt  
 □ Lyrics sections bracketed (`[Verse]`, `[Chorus]`, etc.)  
 □ Section‑specific meta‑tags present in lyrics (`[Female Vocalist]`, `[No beats]`)  
-□ ≤ 6 lines per 30 sec; consistent line lengths  
+□ ≤ 8 lines per 30 sec; consistent line lengths
 □ Style‑Reduction list included if requested  
 □ Devil’s Advocate sign‑off logged
 
@@ -93,7 +93,7 @@ PART 1 Summary · Crafting the Music (Style) Prompt
    - `[Chorus]` full band with gospel harmonies  
    - `[Bridge]` a cappella whispered monologue `[No beats]`  
    - `[Outro]` fades on sustained vocal  
-7. **Keep It Concise:** ~50–100 words.  
+7. **Be Descriptive:** ~80-150 words.
 8. **Blacklist Clichés:** e.g., “no trap hi‑hat rolls.”  
 9. **Avoid Artist Names:** describe style traits instead.  
 10. **Use Natural, Precise Language:** minimize comma‑sprawl.
@@ -111,7 +111,7 @@ PART 2 Summary · Crafting the Lyrics Prompt
 • **Call‑and‑Response:** `(response)` inline.  
 • **Sound Effects:** `*…*` on standalone lines.  
 • **Emotion Cues:** `[EMO:tag]` as needed.  
-• **Line Limits:** ≤ 6 lines per 30 sec; keep uniform lengths per section.  
+• **Line Limits:** ≤ 8 lines per 30 sec; keep uniform lengths per section.
 • **Non‑Lexical Hook:** e.g., “La‑la‑la” or “Oh‑oh‑oh.”  
 • **Multilingual (optional):** `[Chorus – Spanish]` for a foreign phrase.  
 • **Cleanup:** remove internal rhyme letters & `|` breaks before final.
@@ -126,7 +126,7 @@ STEP 6 | Establish Musical & Lyrical Elements
  • Concept panel defines tempo, key, instrumentation, themes, motifs, rhyme schemes.  
 
 STEP 7 | Draft Initial Music Prompts  
- • Each medium panelist drafts (~100 words max).  
+ • Each medium panelist drafts (~150 words max).
  • Verify Emotion→Genre→Instruments→Vocals→Progression order.  
 
 STEP 8 | Draft Initial Lyrics Prompts  
@@ -157,7 +157,7 @@ STEP 16 | Refinement Loop 4
  • Final polish: remove annotations, fix typos, tighten phrasing.  
 
 STEP 17 | Draft Song Title  
- • Marketing panel proposes 3–5 word titles matching theme and hook.  
+ • Marketing panel proposes 3-8 word titles matching theme and hook.
 
 STEP 18 | Title Critics’ Review  
  • Panels review titles for fit, memorability, length, clarity; debate and refine.  
@@ -177,7 +177,7 @@ STEP 20 | Final Output
 
 # SONG GENERATION GUIDE
 
-This guide codifies the **absolute best practices**—drawn from Suno v4.5’s highest‑rated tracks—for crafting both the **music‑style prompt** and the **lyrics prompt**. Follow it line‑by‑line; every item is here for a reason.
+This guide codifies the **absolute best practices**—drawn from Suno v4.5+’s highest‑rated tracks—for crafting both the **music‑style prompt** and the **lyrics prompt**. Follow it line‑by‑line; every item is here for a reason.
 
 ════════════════════════════════════════════════════
 PART 1 · CRAFTING THE MUSIC (STYLE) PROMPT
@@ -213,7 +213,7 @@ A. CORE RULES
    • **Sentence order = song timeline**.  
    • Use verbs: `begins`, `builds`, `plunges`, `erupts`, `strips to silence`, `fades`.  
    • Explicitly label big moments: `massive bass‑drop @1:05`, `guitar solo bridge`.  
-   • If helpful, bracket micro‑sections: `[Intro]`, `[Build]`, `[Chorus]`—*but* do **NOT** use these brackets in the **final** prompt if they exceed the 100‑word cap; they are optional scaffolding.  
+   • If helpful, bracket micro‑sections: `[Intro]`, `[Build]`, `[Chorus]`—*but* do **NOT** use these brackets in the **final** prompt if they exceed the 150‑word cap; they are optional scaffolding.
    > *Suno follows story‑verbs linearly; use them!*
 
 7. **BLACKLIST (Style‑Reduction):**  
@@ -221,10 +221,10 @@ A. CORE RULES
    > *Prevents filler clichés and ensures sonic originality.*
 
 8. **LENGTH & FORM:**  
-   • 50–100 words total; line‑breaks okay during drafting—final prompt = single paragraph.  
+   • 80-150 words total; line‑breaks okay during drafting—final prompt = single paragraph.
    • Separate ideas with **periods** or **;** not comma sprawl.  
    • Vital descriptive words appear **early** (Suno weights the front).  
-   > *Concise, loaded language → better internal embeddings.*
+   > *Descriptive, loaded language → better internal embeddings.*
 
 ────────────────────
 B. ADVANCED PLAYBOOK
@@ -730,7 +730,7 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 ---
 
 ### Step 7 · Draft Initial Music Prompts (2× per panelist)
-• Each Medium Panelist writes **two** style prompts (≤ 100 words each).  
+• Each Medium Panelist writes **two** style prompts (≤ 150 words each).
 • Prompts must follow MASTER guide: *Emotion → Genre → Instruments/Production → Vocalist Spec → Tempo/Key (opt) → Progression sentences → Blacklist*.  
 • Detail every vocalist: gender, age‑range, ethnicity, tone, rasp‑level, + 2> quirks.
       - Word craft, setting the most important elements first and the less important elements last.
@@ -820,7 +820,7 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
 ---
 
 ### Step 17 · Draft Song Title (×2)
-• Marketing Panel proposes **four** compelling titles (3–7 words) per surviving variant.
+• Marketing Panel proposes **four** compelling titles (3-10 words) per surviving variant.
   - Using the Context & Marketing panel, have each panel member writes an initial song title that perfectly matches and sells the music!
 ---
 

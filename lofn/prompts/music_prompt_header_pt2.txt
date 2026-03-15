@@ -211,8 +211,8 @@ Music serves as a profound conduit to human emotions, bridging the gap between c
   - **Front‑Load Critical Elements**: Begin with the genre, tempo, primary
     instruments and mood.  Lead with the most important information so the
     model prioritises it.
-  - **Keep It Concise**: The music prompt should be 50–120 words and the
-    lyrics prompt 30–100 words.  Focus on essential details and avoid
+  - **Be Descriptive**: The music prompt should be 50–150 words and the
+    lyrics prompt 30–150 words.  Focus on essential details and avoid
     filler.
   - **Be Specific**: Name instruments, vocal characteristics, production
     techniques and song structure explicitly.  Avoid generic terms like
