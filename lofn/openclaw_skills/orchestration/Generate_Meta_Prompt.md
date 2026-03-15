@@ -9,7 +9,11 @@ Synthesizes inputs from the personality generation and competition details into 
 ## Required Inputs
 - `[input]`: The core context or prior state required to run this prompt.
 
+
 ## Execution Instructions
+**BUILT-IN PANELS AND PERSONALITIES**
+You have access to predefined panels in `panels.yaml` and personalities in `personalities.yaml` located in the same directory as this skill. Use your file reading tools to examine them. If the user specifies an existing personality or panel, or if one perfectly aligns with the required generation, you may leverage it as a primary influence.
+
 **PANEL INSTRUCTIONS**
 The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
 
