@@ -7,6 +7,10 @@ Generates the artist and critique for a story based on the user's core concept.
 - Invoke this when processing the artist and critique step of a story pipeline.
 
 ## Required Inputs
+- `[aesthetics]`: The list of 50 aesthetics generated in step 00.
+- `[emotions]`: The list of 50 emotions generated in step 00.
+- `[frames_and_compositions]`: The list of 50 frames and compositions generated in step 00.
+- `[genres]`: The list of 50 genres generated in step 00.
 - `[input]`: The user's core request.
 - `[concept]`: The concept being refined (if applicable).
 - `[medium]`: The medium being targeted (if applicable).
@@ -189,18 +193,7 @@ Sensory details      : `*rain begins*`, `*distant siren*`
 ────────────────────────────────────────────────────────
 EMOTION REFERENCE LIST
 ────────────────────────────────────────────────────────
-• HAPPINESS        → Joy, Serenity, Hope, Zeal, Triumph, Wonder, Fulfillment
-• SADNESS          → Melancholy, Nostalgia, Regret, Torment, Isolation
-• ANGER            → Rage, Frustration, Betrayal, Defiance, Aggression
-• FEAR            → Anxiety, Dread, Panic, Insecurity, Existential Angst
-• LOVE            → Affection, Longing, Trust, Passion
-• SURPRISE         → Amazement, Curiosity, Revelation, Awe, Surrealism
-• TRUST           → Assurance, Solidarity, Forgiveness, Empowerment
-• ANTICIPATION    → Eagerness, Suspense, Yearning
-• DETERMINATION  → Resilience, Ambition, Persistence, Resolve
-• INTROSPECTION   → Reflection, Solitude, Identity
-• DISCONNECTION   → Alienation, Numbness, Apathy
-• DISINTEREST      → Ennui, Boredom, Indifference
+Use the provided list of `[emotions]` in the `USER INPUT` section to select the exact emotional nuance that aligns with your creation.
 
 ────────────────────────────────────────────────────────
 LEGAL & ETHICAL GUIDELINES
@@ -457,6 +450,11 @@ This step is akin to inviting guest authors or editors to comment on a series of
 ---
 
 **USER INPUT:**
+
+- **Aesthetics:** {aesthetics}
+- **Emotions:** {emotions}
+- **Frames and Compositions:** {frames_and_compositions}
+- **Genres:** {genres}
 
 - **Essence:** {essence}
 
