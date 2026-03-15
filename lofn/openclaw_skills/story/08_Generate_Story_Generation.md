@@ -7,6 +7,10 @@ Generates the generation for a story based on the user's core concept.
 - Invoke this when processing the generation step of a story pipeline.
 
 ## Required Inputs
+- `[aesthetics]`: The list of 50 aesthetics generated in step 00.
+- `[emotions]`: The list of 50 emotions generated in step 00.
+- `[frames_and_compositions]`: The list of 50 frames and compositions generated in step 00.
+- `[genres]`: The list of 50 genres generated in step 00.
 - `[input]`: The user's core request.
 - `[concept]`: The concept being refined (if applicable).
 - `[medium]`: The medium being targeted (if applicable).
@@ -538,6 +542,11 @@ Continue all steps on the provided writing guide to generate full story prompts,
 ---
 
 **USER INPUT:**
+
+- **Aesthetics:** {aesthetics}
+- **Emotions:** {emotions}
+- **Frames and Compositions:** {frames_and_compositions}
+- **Genres:** {genres}
 
 - **Concept:** {concept}
 - **Medium:** {medium}

@@ -7,6 +7,10 @@ Generates the story guides for a story based on the user's core concept.
 - Invoke this when processing the story guides step of a story pipeline.
 
 ## Required Inputs
+- `[aesthetics]`: The list of 50 aesthetics generated in step 00.
+- `[emotions]`: The list of 50 emotions generated in step 00.
+- `[frames_and_compositions]`: The list of 50 frames and compositions generated in step 00.
+- `[genres]`: The list of 50 genres generated in step 00.
 - `[input]`: The user's core request.
 - `[concept]`: The concept being refined (if applicable).
 - `[medium]`: The medium being targeted (if applicable).
@@ -160,6 +164,11 @@ This is where your literary imagination should shine.  Imagine you are writing f
 ---
 
 **USER INPUT:**
+
+- **Aesthetics:** {aesthetics}
+- **Emotions:** {emotions}
+- **Frames and Compositions:** {frames_and_compositions}
+- **Genres:** {genres}
 
 - **Concept:** {concept}
 - **Medium:** {medium}
