@@ -1,5 +1,6 @@
 # llm_integration.py
 
+import os
 import streamlit as st
 import openai
 try:
@@ -42,6 +43,8 @@ try:
         sample_music_genres,
         sample_art_styles,
         sample_film_styles,
+        sample_story_frames,
+        sample_story_genres,
         compress_image_bytes,
     )
 except ModuleNotFoundError:  # pragma: no cover - fallback for package import
@@ -56,6 +59,8 @@ except ModuleNotFoundError:  # pragma: no cover - fallback for package import
         sample_music_genres,
         sample_art_styles,
         sample_film_styles,
+        sample_story_frames,
+        sample_story_genres,
         compress_image_bytes,
     )
 from parsing import (
@@ -161,8 +166,12 @@ def normalize_images(files) -> List[ImageAsset]:
 # ---------------------------------------------------------------------------
 
 VISION_MODELS = {
-    "openai": {"gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
+    "openai": {"gpt-5.4", "gpt-5.3", "gpt-5.3-chat-latest", "gpt-5.2", "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano", "gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano", "o3", "o3-pro", "o4-mini"},
     "anthropic": {
+        "claude-sonnet-4-6",
+        "claude-opus-4-6",
+        "claude-sonnet-4-5",
+        "claude-haiku-4-5",
         "claude-3-7-sonnet-20250219", 
         "claude-sonnet-4-20250514", 
         "claude-opus-4-20250514", 
@@ -175,6 +184,9 @@ VISION_MODELS = {
         "claude-3-haiku-20240307"
     },
     "google": {
+        "gemini-3.1-pro-preview",
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3-flash-preview",
         "gemini-2.5-pro",
         "gemini-2.5-flash",
         "gemini-2.5-flash-image-preview",
@@ -656,60 +668,70 @@ def prepare_image_strings(images: List) -> List[str]:
                 urls.append(f"data:{mime};base64,{b64}")
     return urls
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROMPTS_DIR = os.path.join(BASE_DIR, 'prompts')
+
 # Load prompts
-concept_system = read_prompt('/lofn/prompts/concept_system.txt')
-prompt_system = read_prompt('/lofn/prompts/prompt_system.txt')
-prompt_ending = read_prompt('/lofn/prompts/prompt_ending.txt')
-concept_header_part1 = read_prompt('/lofn/prompts/concept_header.txt')
-concept_header_part2 = read_prompt('/lofn/prompts/concept_header_pt2.txt')
-prompt_header_part1 = read_prompt('/lofn/prompts/prompt_header.txt')
-prompt_header_part2 = read_prompt('/lofn/prompts/prompt_header_pt2.txt')
-essence_prompt_middle = read_prompt('/lofn/prompts/essence_prompt.txt')
-concepts_prompt_middle = read_prompt('/lofn/prompts/concepts_prompt.txt')
-artist_and_critique_prompt_middle = read_prompt('/lofn/prompts/artist_and_critique_prompt.txt')
-medium_prompt_middle = read_prompt('/lofn/prompts/medium_prompt.txt')
-refine_medium_prompt_middle = read_prompt('/lofn/prompts/refine_medium_prompt.txt')
-facets_prompt_middle = read_prompt('/lofn/prompts/facets_prompt.txt')
-aspects_traits_prompt_middle = read_prompt('/lofn/prompts/aspects_traits_prompts.txt')
-midjourney_prompt_middle = read_prompt('/lofn/prompts/imagegen_prompt.txt')
-artist_refined_prompt_middle = read_prompt('/lofn/prompts/artist_refined_prompt.txt')
-revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/revision_synthesis_prompt.txt')
-dalle3_gen_prompt_middle = read_prompt('/lofn/prompts/dalle3_gen_prompt.txt')
-dalle3_gen_prompt_nodiv_middle = read_prompt('/lofn/prompts/dalle3_gen_nodiv_prompt.txt')
-meta_prompt_generation_prompt = read_prompt('/lofn/prompts/meta_prompt_generation.txt')
-pair_selection_prompt = read_prompt('/lofn/prompts/pair_selection_prompt.txt')
-panel_generation_prompt = read_prompt('/lofn/prompts/panel_generation_prompt.txt')
-personality_generation_prompt = read_prompt('/lofn/prompts/personality_generation_prompt.txt')
-personality_chat_template = read_prompt('/lofn/prompts/personality_chat_template.txt')
-personality_image2video_template = read_prompt('/lofn/prompts/personality_image2video_template.txt')
+concept_system = read_prompt(os.path.join(PROMPTS_DIR, 'concept_system.txt'))
+prompt_system = read_prompt(os.path.join(PROMPTS_DIR, 'prompt_system.txt'))
+prompt_ending = read_prompt(os.path.join(PROMPTS_DIR, 'prompt_ending.txt'))
+concept_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'concept_header.txt'))
+concept_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'concept_header_pt2.txt'))
+prompt_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'prompt_header.txt'))
+prompt_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'prompt_header_pt2.txt'))
+essence_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'essence_prompt.txt'))
+concepts_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'concepts_prompt.txt'))
+artist_and_critique_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'artist_and_critique_prompt.txt'))
+medium_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'medium_prompt.txt'))
+refine_medium_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'refine_medium_prompt.txt'))
+facets_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'facets_prompt.txt'))
+aspects_traits_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'aspects_traits_prompts.txt'))
+midjourney_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'imagegen_prompt.txt'))
+artist_refined_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'artist_refined_prompt.txt'))
+revision_synthesis_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'revision_synthesis_prompt.txt'))
+dalle3_gen_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'dalle3_gen_prompt.txt'))
+dalle3_gen_prompt_nodiv_middle = read_prompt(os.path.join(PROMPTS_DIR, 'dalle3_gen_nodiv_prompt.txt'))
+meta_prompt_generation_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'meta_prompt_generation.txt'))
+pair_selection_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'pair_selection_prompt.txt'))
+panel_generation_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'panel_generation_prompt.txt'))
+personality_generation_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'personality_generation_prompt.txt'))
+personality_chat_template = read_prompt(os.path.join(PROMPTS_DIR, 'personality_chat_template.txt'))
+personality_image2video_template = read_prompt(os.path.join(PROMPTS_DIR, 'personality_image2video_template.txt'))
 
 # Video prompts
-video_concept_header_part1 = read_prompt('/lofn/prompts/video_concept_header.txt')
-video_concept_header_part2 = read_prompt('/lofn/prompts/video_concept_header_pt2.txt')
-video_essence_prompt_middle = read_prompt('/lofn/prompts/video_essence_prompt.txt')
-video_concepts_prompt_middle = read_prompt('/lofn/prompts/video_concepts_prompt.txt')
-video_prompt_header_part1 = read_prompt('/lofn/prompts/video_prompt_header.txt')
-video_prompt_header_part2 = read_prompt('/lofn/prompts/video_prompt_header_pt2.txt')
-video_artist_and_critique_prompt_middle = read_prompt('/lofn/prompts/video_artist_and_critique_prompt.txt')
-video_medium_prompt_middle = read_prompt('/lofn/prompts/video_medium_prompt.txt')
-video_refine_medium_prompt_middle = read_prompt('/lofn/prompts/video_refine_medium_prompt.txt')
-video_facets_prompt_middle = read_prompt('/lofn/prompts/video_facets_prompt.txt')
-video_aspects_traits_prompt_middle = read_prompt('/lofn/prompts/video_aspects_traits_prompt.txt')
-video_generation_prompt_middle = read_prompt('/lofn/prompts/video_generation_prompt.txt')
-video_revision_synthesis_prompt_middle = read_prompt('/lofn/prompts/video_revision_synthesis_prompt.txt')
-video_artist_refined_prompt = read_prompt('/lofn/prompts/video_artist_refined_prompt.txt')
+video_concept_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'video_concept_header.txt'))
+video_concept_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'video_concept_header_pt2.txt'))
+video_essence_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_essence_prompt.txt'))
+video_concepts_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_concepts_prompt.txt'))
+video_prompt_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'video_prompt_header.txt'))
+video_prompt_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'video_prompt_header_pt2.txt'))
+video_artist_and_critique_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_artist_and_critique_prompt.txt'))
+video_medium_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_medium_prompt.txt'))
+video_refine_medium_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_refine_medium_prompt.txt'))
+video_facets_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_facets_prompt.txt'))
+video_aspects_traits_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_aspects_traits_prompt.txt'))
+video_generation_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_generation_prompt.txt'))
+video_revision_synthesis_prompt_middle = read_prompt(os.path.join(PROMPTS_DIR, 'video_revision_synthesis_prompt.txt'))
+video_artist_refined_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'video_artist_refined_prompt.txt'))
 
 # Music prompts
-music_essence_prompt = read_prompt('/lofn/prompts/music_essence_prompt.txt')
-music_creation_prompt = read_prompt('/lofn/prompts/music_creation_prompt.txt')
-music_prompt_header_part1 = read_prompt('/lofn/prompts/music_prompt_header.txt')
-music_prompt_header_part2 = read_prompt('/lofn/prompts/music_prompt_header_pt2.txt')
-music_concept_header_part1 = read_prompt('/lofn/prompts/music_concept_header.txt')
-music_concept_header_part2 = read_prompt('/lofn/prompts/music_concept_header_pt2.txt')
+music_essence_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'music_essence_prompt.txt'))
+music_creation_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'music_creation_prompt.txt'))
+music_prompt_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'music_prompt_header.txt'))
+music_prompt_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'music_prompt_header_pt2.txt'))
+music_concept_header_part1 = read_prompt(os.path.join(PROMPTS_DIR, 'music_concept_header.txt'))
+music_concept_header_part2 = read_prompt(os.path.join(PROMPTS_DIR, 'music_concept_header_pt2.txt'))
+
+# Story prompts
+story_concept_header = read_prompt(os.path.join(PROMPTS_DIR, 'story_concept_header.txt'))
+story_essence_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'story_essence_prompt.txt'))
+story_concepts_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'story_concepts_prompt.txt'))
+story_facets_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'story_facets_prompt.txt'))
+story_creation_prompt = read_prompt(os.path.join(PROMPTS_DIR, 'story_creation_prompt.txt'))
 
 
 # Read aesthetics from the file
-with open('/lofn/prompts/aesthetics.txt', 'r') as file:
+with open(os.path.join(PROMPTS_DIR, 'aesthetics.txt'), 'r') as file:
     aesthetics = file.read().split(', ')
 
 # Combine prompt parts
@@ -751,16 +773,30 @@ video_prompts = {
 
 # Music prompts
 music_prompts = {
-    'essence_and_facets': music_concept_header + read_prompt('/lofn/prompts/music_essence_prompt.txt') + prompt_ending,
-    'concepts': music_concept_header + read_prompt('/lofn/prompts/music_concepts_prompt.txt') + prompt_ending,
-    'artist_and_critique': music_concept_header + read_prompt('/lofn/prompts/music_artist_and_critique_prompt.txt') + prompt_ending,
-    'medium': music_concept_header + read_prompt('/lofn/prompts/music_medium_prompt.txt') + prompt_ending,
-    'refine_medium': music_concept_header + read_prompt('/lofn/prompts/music_refine_medium_prompt.txt') + prompt_ending,
-    'facets': music_concept_header + read_prompt('/lofn/prompts/music_facets_prompt.txt') + prompt_ending,
-    'song_guides': music_prompt_header + read_prompt('/lofn/prompts/music_song_guides_prompt.txt') + prompt_ending,
-    'generation': music_prompt_header + read_prompt('/lofn/prompts/music_generation_prompt.txt') + prompt_ending,
-    'artist_refined': music_prompt_header + read_prompt('/lofn/prompts/music_artist_refined_prompt.txt') + prompt_ending,
-    'revision_synthesis': music_prompt_header + read_prompt('/lofn/prompts/music_revision_synthesis_prompt.txt') + prompt_ending,
+    'essence_and_facets': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_essence_prompt.txt')) + prompt_ending,
+    'concepts': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_concepts_prompt.txt')) + prompt_ending,
+    'artist_and_critique': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_artist_and_critique_prompt.txt')) + prompt_ending,
+    'medium': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_medium_prompt.txt')) + prompt_ending,
+    'refine_medium': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_refine_medium_prompt.txt')) + prompt_ending,
+    'facets': music_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_facets_prompt.txt')) + prompt_ending,
+    'song_guides': music_prompt_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_song_guides_prompt.txt')) + prompt_ending,
+    'generation': music_prompt_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_generation_prompt.txt')) + prompt_ending,
+    'artist_refined': music_prompt_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_artist_refined_prompt.txt')) + prompt_ending,
+    'revision_synthesis': music_prompt_header + read_prompt(os.path.join(PROMPTS_DIR, 'music_revision_synthesis_prompt.txt')) + prompt_ending,
+}
+
+# Story prompts
+story_prompts = {
+    'essence_and_facets': story_concept_header + story_essence_prompt + prompt_ending,
+    'concepts': story_concept_header + story_concepts_prompt + prompt_ending,
+    'artist_and_critique': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_artist_and_critique_prompt.txt')) + prompt_ending,
+    'medium': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_medium_prompt.txt')) + prompt_ending,
+    'refine_medium': story_concept_header + read_prompt(os.path.join(PROMPTS_DIR, 'story_refine_medium_prompt.txt')) + prompt_ending,
+    'facets': story_concept_header + story_facets_prompt + prompt_ending,
+    'story_guides': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_guides_prompt.txt')) + prompt_ending,
+    'generation': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_generation_prompt.txt')) + prompt_ending,
+    'artist_refined': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_artist_refined_prompt.txt')) + prompt_ending,
+    'revision_synthesis': read_prompt(os.path.join(PROMPTS_DIR, 'story_prompt_header.txt')) + read_prompt(os.path.join(PROMPTS_DIR, 'story_revision_synthesis_prompt.txt')) + prompt_ending,
 }
 
 # Image prompts (existing)
@@ -781,7 +817,8 @@ image_prompts = {
 prompt_configs = {
     'image': image_prompts,
     'video': video_prompts,
-    'music': music_prompts
+    'music': music_prompts,
+    'story': story_prompts
 }
 
 meta_prompt_schema = {
@@ -928,6 +965,59 @@ music_revised_synthesized_schema = {
     ],
     "synthesized_prompts": [
         {"music_prompt": str, "lyrics_prompt": str, "title": str}
+    ]
+}
+
+# Story schemas
+story_facets_schema = {
+    "essence_and_facets": {
+        "creativity_spectrum": {
+            "literal": (int, float),
+            "inventive": (int, float),
+            "transformative": (int, float)
+        },
+        "essence": str,
+        "facets": [str],
+        "style_axes": dict
+    }
+}
+
+story_guides_schema = {
+    "story_guides": [
+        {"story_guide": str}
+    ]
+}
+
+story_gen_schema = {
+    "story_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+single_story_gen_schema = {
+    "story_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+story_artist_refined_schema = {
+    "author_refined_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+single_story_artist_refined_schema = {
+    "author_refined_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ]
+}
+
+story_revised_synthesized_schema = {
+    "revised_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
+    ],
+    "synthesized_prompts": [
+        {"story_prompt": str, "story_content": str, "title": str}
     ]
 }
 
@@ -1282,6 +1372,13 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
         # Dictionary mapping models to their maximum token limits
         model_max_tokens = {
             # OpenAI models
+            "gpt-5.4": 128000,
+            "gpt-5.3": 128000,
+            "gpt-5.3-chat-latest": 128000,
+            "gpt-5.2": 128000,
+            "gpt-5.2-pro": 128000,
+            "gpt-5.2-chat-latest": 128000,
+            "gpt-5.1": 32768,
             "gpt-5": 32768,
             "gpt-5-mini": 32768,
             "gpt-5-nano": 32768,
@@ -1293,18 +1390,27 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "o4-mini": 100000,
 
             # Anthropic models
+            "claude-sonnet-4-6": 32000,
+            "claude-opus-4-6": 32000,
+            "claude-sonnet-4-5": 32000,
+            "claude-haiku-4-5": 32000,
             "claude-3-7-sonnet-20250219": 32000,
             "claude-sonnet-4-20250514": 32000,
             "claude-opus-4-20250514": 32000,
-            "claude-3-5-sonnet-latest": 8096,
-            "claude-3-5-sonnet-20241022": 8096,
-            "claude-3-5-haiku-20241022": 8096,
-            "claude-3-5-sonnet-20240620": 4096,
+            "claude-3-5-sonnet-latest": 8192,
+            "claude-3-5-sonnet-20241022": 8192,
+            "claude-3-5-haiku-20241022": 8192,
+            "claude-3-5-sonnet-20240620": 8192,
             "claude-3-opus-20240229": 4096,
             "claude-3-sonnet-20240229": 4096,
             "claude-3-haiku-20240307": 4096,
 
             # Google models
+            "gemini-3.1-pro-preview": 120000,
+            "gemini-3.1-flash-lite-preview": 120000,
+            "gemini-3-flash-preview": 120000,
+            "gemini-3-pro-preview": 120000,
+            "gemini-3-pro-image-preview": 120000,
             "gemini-2.5-pro": 120000,
             "gemini-2.5-flash": 120000,
             "gemini-2.5-flash-lite": 120000,
@@ -1318,6 +1424,11 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             # Poe models
             "Poe-Assistant": 32768,
             "Poe-App-Creator": 32768,
+            "Poe-GPT-5.4": 128000,
+            "Poe-GPT-5.3": 128000,
+            "Poe-GPT-5.3-Instant": 128000,
+            "Poe-GPT-5.2": 32768,
+            "Poe-GPT-5.1": 32768,
             "Poe-GPT-5": 32768,
             "Poe-GPT-5-mini": 32768,
             "Poe-GPT-5-nano": 32768,
@@ -1328,8 +1439,17 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-o3": 100000,
             "Poe-o3-pro": 100000,
             "Poe-o4-mini": 100000,
+            "Poe-Claude-Opus-4.6": 32000,
+            "Poe-Claude-Sonnet-4.6": 32000,
+            "Poe-Claude-Opus-4.5": 32000,
             "Poe-Claude-Opus-4.1": 32000,
+            "Poe-Claude-Sonnet-4.5": 32000,
+            "Poe-Claude-Haiku-4.5": 32000,
             "Poe-Claude-Sonnet-4": 32000,
+            "Poe-Gemini-3.1-Pro": 120000,
+            "Poe-Gemini-3.1-Flash": 120000,
+            "Poe-Gemini-3-Pro": 120000,
+            "Poe-Gemini-3-Flash": 120000,
             "Poe-Gemini-2.5-Pro": 120000,
             "Poe-Gemini-2.5-Flash": 120000,
             "Poe-Gemini-2.5-Flash-Lite": 120000,
@@ -1346,20 +1466,23 @@ def get_llm(model, temperature, OPENAI_API=None, ANTHROPIC_API=None, debug=False
             "Poe-DeepSeek-V3": 128000,
             "Poe-Deepseek-V3-FW": 128000,
             "Poe-Deepseek-R1": 164000,
+            "Poe-Kimi-K2-Thinking": 32768,
+            "Poe-Qwen3-Max-N":32768,
             "Poe-Qwen2-72B-Chat": 32768,
             "Poe-Qwen2.5-VL-72B-T": 32000,
-            "Poe-Qwen2.5-Coder-32B": 32768
+            "Poe-Qwen2.5-Coder-32B": 32768,
+            "Poe-Kimi-K2-Thinking": 200000
         }
 
         # Get the maximum token limit for the selected model
         max_tokens = model_max_tokens.get(model, 4096)
 
         if model.startswith("claude"):
-            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514"]:
+            if model in ["claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-haiku-4-5", "claude-sonnet-4-5", "claude-sonnet-4-6", "claude-opus-4-6"]:
                 return ChatAnthropic(
                     model=model,
                     max_tokens=max_tokens,
-                    thinking={"type": "enabled", "budget_tokens": 15000},
+                    thinking={"type": "enabled", "budget_tokens": 25000},
                     anthropic_api_key=Config.ANTHROPIC_API
                 )
             else:
@@ -2453,6 +2576,9 @@ def generate_meta_prompt(
         elif medium == "video":
             frames_list = sample_video_frames()
             styles_list = sample_film_styles()
+        elif medium == "story":
+            frames_list = sample_story_frames()
+            styles_list = sample_story_genres()
         else:
             frames_list = sample_artistic_frames()
             styles_list = sample_art_styles()
@@ -2643,7 +2769,7 @@ def run_personality_chat(
         "{lofn_readme}", lofn_readme
     )
 
-    if media_parts and model.startswith("gemini-2.5"):
+    if media_parts and (model.startswith("gemini-2.5") or model.startswith("gemini-3")):
         assets: List[ImageAsset] = []
         for p in media_parts:
             if p.get("type") in ("image_url", "input_image"):
@@ -3625,3 +3751,427 @@ def process_music_revision_synthesis(
         st.error("Failed to process revised music prompts")
         return None
     return parsed_output
+
+# === Story Processing Functions ===
+
+def process_story_guides(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_guides_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'story_guides',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema=expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process story guides")
+        return None
+    return parsed_output
+
+from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
+
+def process_story_generation_prompts(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = single_story_gen_schema
+    ctx = get_script_run_ctx()
+
+    async def generate_single(guide):
+        args = {
+            "input": input_text,
+            "concept": concept,
+            "medium": medium,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "story_guide": guide['story_guide']
+        }
+        if image_context is not None:
+            args["image_context"] = image_context
+
+        def thread_func():
+            if ctx:
+                add_script_run_ctx(ctx=ctx)
+            return run_llm_chain_raw(
+                chains,
+                'generation',
+                args,
+                max_retries,
+                model,
+                debug,
+                expected_schema
+            )
+
+        # Wrapping synchronous run_llm_chain_raw in asyncio.to_thread
+        return await asyncio.to_thread(thread_func)
+
+    async def gather_all():
+        tasks = [generate_single(g) for g in story_guides['story_guides']]
+        return await asyncio.gather(*tasks)
+
+    # Use asyncio.run if there is no running loop, else create and run a new loop.
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = None
+
+    if loop and loop.is_running():
+        # Typically we shouldn't be here in Streamlit, but handle it just in case
+        task = loop.create_task(gather_all())
+        # The script will continue running without blocking for task completion in this rare case
+        # (Though Streamlit is synchronous by default, so we shouldn't hit this).
+        st.error("Asyncio loop is already running. Cannot wait for gather_all()")
+        return None
+    else:
+        results = asyncio.run(gather_all())
+
+    combined_prompts = []
+    for r in results:
+        if r is not None and "story_prompts" in r:
+            combined_prompts.extend(r["story_prompts"])
+
+    if not combined_prompts:
+        st.error("Failed to process story prompts")
+        return None
+
+    return {"story_prompts": combined_prompts}
+
+def process_story_artist_refined_prompts(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    story_prompts,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = single_story_artist_refined_schema
+    ctx = get_script_run_ctx()
+
+    async def refine_single(prompt, guide):
+        # We need to pass "story_prompts" parameter as a formatted string to match {story_prompts} in template
+        prompt_str = json.dumps([prompt], indent=2)
+        args = {
+            "input": input_text,
+            "concept": concept,
+            "medium": medium,
+            "facets": facets['facets'],
+            "style_axes": style_axes,
+            "story_prompts": prompt_str,
+            "story_guide": guide['story_guide']
+        }
+        if image_context is not None:
+            args["image_context"] = image_context
+
+        def thread_func():
+            if ctx:
+                add_script_run_ctx(ctx=ctx)
+            return run_llm_chain_raw(
+                chains,
+                'artist_refined',
+                args,
+                max_retries,
+                model,
+                debug,
+                expected_schema
+            )
+
+        return await asyncio.to_thread(thread_func)
+
+    # Zip the generated prompts with the guides they originated from
+    prompts_list = story_prompts.get('story_prompts', [])
+    guides_list = story_guides.get('story_guides', [])
+
+    async def gather_all():
+        tasks = []
+        for i in range(min(len(prompts_list), len(guides_list))):
+            tasks.append(refine_single(prompts_list[i], guides_list[i]))
+        return await asyncio.gather(*tasks)
+
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = None
+
+    if loop and loop.is_running():
+        st.error("Asyncio loop is already running. Cannot wait for gather_all()")
+        return None
+    else:
+        results = asyncio.run(gather_all())
+
+    combined_refined = []
+    for r in results:
+        if r is not None and "author_refined_prompts" in r:
+            combined_refined.extend(r["author_refined_prompts"])
+
+    if not combined_refined:
+        st.error("Failed to process author refined prompts")
+        return None
+
+    return {"author_refined_prompts": combined_refined}
+
+def process_story_revision_synthesis(
+    chains,
+    input_text,
+    concept,
+    medium,
+    facets,
+    artist_refined_prompts,
+    story_guides,
+    max_retries,
+    debug=False,
+    style_axes=None,
+    model=None,
+    image_context=None
+):
+    expected_schema = story_revised_synthesized_schema
+    args = {
+        "input": input_text,
+        "concept": concept,
+        "medium": medium,
+        "facets": facets['facets'],
+        "style_axes": style_axes,
+        "author_refined_prompts": artist_refined_prompts,
+        "story_guides": story_guides
+    }
+    if image_context is not None:
+        args["image_context"] = image_context
+    parsed_output = run_llm_chain_raw(
+        chains,
+        'revision_synthesis',
+        args,
+        max_retries,
+        model,
+        debug,
+        expected_schema
+    )
+    if parsed_output is None:
+        st.error("Failed to process revised story prompts")
+        return None
+    return parsed_output
+
+def generate_story_concept_mediums(
+    input_text,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    verbose=False,
+    debug=False,
+    aesthetics=aesthetics,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None,
+):
+    # Reuse the generic generator, pointing to 'story' medium config
+    return generate_concept_mediums(
+        input_text,
+        max_retries,
+        temperature,
+        model,
+        verbose,
+        debug,
+        aesthetics,
+        style_axes,
+        creativity_spectrum,
+        medium='story',
+        reasoning_level=reasoning_level,
+        input_images=input_images
+    )
+
+def generate_story_prompts(
+    input_text,
+    concept,
+    medium, # This might be "Narrative Voice" or similar in story context
+    essence,
+    max_retries,
+    temperature,
+    model="gpt-3.5-turbo-16k",
+    debug=False,
+    style_axes=None,
+    creativity_spectrum=None,
+    reasoning_level="medium",
+    input_images: Optional[List[str]] = None
+):
+    try:
+        llm = get_llm(model, temperature, Config.OPENAI_API, Config.ANTHROPIC_API, debug, reasoning_level)
+        prompts = prompt_configs.get('story')
+        image_context = prepare_image_messages(input_images)
+
+        # Build chains
+        if model[0] == "o":
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
+                    | llm
+                ),
+                'story_guides': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['story_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+        else:
+            chains = {
+                'facets': (
+                    ChatPromptTemplate.from_messages([("system", concept_system), MessagesPlaceholder("image_context"), ("human", prompts['facets'])])
+                    | llm
+                ),
+                'story_guides': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['story_guides'])])
+                    | llm
+                ),
+                'generation': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['generation'])])
+                    | llm
+                ),
+                'artist_refined': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['artist_refined'])])
+                    | llm
+                ),
+                'revision_synthesis': (
+                    ChatPromptTemplate.from_messages([("system", prompt_system), MessagesPlaceholder("image_context"), ("human", prompts['revision_synthesis'])])
+                    | llm
+                )
+            }
+
+        with st.status(f"Generating Story for {concept}...", expanded=True) as status:
+            status.write("Generating Facets...")
+            facets = process_facets(
+                chains,
+                input_text,
+                concept,
+                medium,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                creativity_spectrum=creativity_spectrum,
+                model=model,
+                image_context=image_context,
+            )
+            if facets is None:
+                raise LofnError("Failed to generate facets")
+            display_facets(facets["facets"])
+
+            status.write("Creating Story Guides...")
+            guides = process_story_guides(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if guides is None:
+                raise LofnError("Failed to generate story guides")
+
+            status.write("Generating Story Prompts...")
+            story_prompts = process_story_generation_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if story_prompts is None:
+                raise LofnError("Failed to generate story prompts")
+
+            status.write("Refining Prompts...")
+            artist_refined = process_story_artist_refined_prompts(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                story_prompts,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if artist_refined is None:
+                raise LofnError("Failed to refine story prompts")
+
+            status.write("Synthesizing Final Prompts...")
+            final_output = process_story_revision_synthesis(
+                chains,
+                input_text,
+                concept,
+                medium,
+                facets,
+                artist_refined,
+                guides,
+                max_retries,
+                debug=debug,
+                style_axes=style_axes,
+                model=model,
+                image_context=image_context,
+            )
+            if final_output is None:
+                raise LofnError("Failed to synthesize final story prompts")
+
+            status.update(label="Story Generation Complete!", state="complete")
+
+        return final_output
+
+    except Exception as e:
+        raise LofnError(f"Error in story generation: {str(e)}")

@@ -13,8 +13,10 @@ from image_generation import (
     generate_dalle_images,
     save_music_metadata,
     save_video_metadata,
+    save_story_metadata,
 )
 from datetime import datetime
+import json
 from config import Config
 from helpers import *
 from llm_integration import *
@@ -22,16 +24,19 @@ from langchain.schema import AIMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
-with open('/lofn/prompts/panels.yaml', 'r') as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROMPTS_DIR = os.path.join(BASE_DIR, 'prompts')
+
+with open(os.path.join(PROMPTS_DIR, 'panels.yaml'), 'r') as f:
     PANEL_OPTIONS = yaml.safe_load(f)
 
 PANEL_OPTIONS = [{'name': 'LLM Generated', 'prompt': ''}] + PANEL_OPTIONS
 
-with open('/lofn/prompts/personalities.yaml', 'r') as f:
+with open(os.path.join(PROMPTS_DIR, 'personalities.yaml'), 'r') as f:
     PERSONALITY_OPTIONS = yaml.safe_load(f)
 
 # Merge in user-defined personalities if the optional file exists
-custom_personality_path = '/lofn/prompts/custom_personalities.yaml'
+custom_personality_path = os.path.join(PROMPTS_DIR, 'custom_personalities.yaml')
 if os.path.exists(custom_personality_path):
     with open(custom_personality_path, 'r') as f:
         custom_personalities = yaml.safe_load(f) or []
@@ -45,7 +50,7 @@ def image_context_to_string(images):
 
     return "\n".join(prepare_image_strings(images)) if images else ""
 
-DEFAULT_MODEL_CONFIG_PATH = '/lofn/model_defaults.yaml'
+DEFAULT_MODEL_CONFIG_PATH = os.path.join(BASE_DIR, 'model_defaults.yaml')
 
 # Limit the number of prompt files processed by the explorer
 MAX_PROMPT_FILES = 2000
@@ -160,14 +165,17 @@ class LofnApp:
         # Add OpenAI-based models if OPENAI_API is available
         if Config.OPENAI_API:
             models.extend([
-                "gpt-5", "gpt-5-mini", "gpt-5-nano",
+                "gpt-5.4", "gpt-5.3", "gpt-5.3-chat-latest",
+                "gpt-5.2", "gpt-5.2-pro", "gpt-5.2-chat-latest",
+                "gpt-5.1", "gpt-5", "gpt-5-mini", "gpt-5-nano",
                 "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
                 "o3", "o3-pro", "o4-mini",
             ])
         # Add Anthropic models if ANTHROPIC_API is available
         if Config.ANTHROPIC_API:
             models.extend([
-                "claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514",
+                "claude-sonnet-4-6", "claude-opus-4-6",
+                "claude-sonnet-4-5", "claude-haiku-4-5", "claude-3-7-sonnet-20250219", "claude-sonnet-4-20250514", "claude-opus-4-20250514",
                 "claude-3-5-sonnet-latest", "claude-3-5-haiku-20241022",
                 "claude-3-5-sonnet-20241022", "claude-3-5-sonnet-20240620",
                 "claude-3-opus-20240229", "claude-3-sonnet-20240229",
@@ -176,7 +184,8 @@ class LofnApp:
         # Add Google models if GOOGLE_API_KEY is available
         if Config.GOOGLE_API_KEY:
             models.extend([
-                "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
+                "gemini-3.1-pro-preview", "gemini-3.1-flash-lite-preview", "gemini-3-flash-preview",
+                "gemini-3-pro-preview", "gemini-3-pro-image-preview", "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.5-flash-lite-preview",
                 "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-preview",
                 "gemini-1.5-pro", "gemini-1.5-flash",
             ])
@@ -184,17 +193,21 @@ class LofnApp:
         if Config.POE_API:
             models.extend([
                 "Poe-Assistant", "Poe-App-Creator",
-                "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
+                "Poe-GPT-5.4", "Poe-GPT-5.3", "Poe-GPT-5.3-Instant",
+                "Poe-GPT-5.2", "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
+                "Poe-GPT-5.1", "Poe-GPT-5", "Poe-GPT-5-mini", "Poe-GPT-5-nano",
                 "Poe-GPT-4o", "Poe-GPT-4.1", "Poe-GPT-4.1-mini", "Poe-GPT-4.1-nano",
-                "Poe-o3", "Poe-o3-pro", "Poe-o4-mini",
-                "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4",
+                "Poe-Claude-Opus-4.6", "Poe-Claude-Sonnet-4.6", "Poe-Claude-Opus-4.5",
+                "Poe-o3", "Poe-o3-pro", "Poe-o4-mini", "Poe-Claude-Haiku-4.5", "Poe-Claude-Sonnet-4.5",
+                "Poe-Claude-Opus-4.1", "Poe-Claude-Sonnet-4", "Poe-Gemini-3.1-Pro", "Poe-Gemini-3.1-Flash", "Poe-Gemini-3-Pro", "Poe-Gemini-3-Flash",
                 "Poe-Gemini-2.5-Pro", "Poe-Gemini-2.5-Flash", "Poe-Gemini-2.5-Flash-Lite", "Poe-Gemini-2.5-Flash-Lite-Preview",
                 "Poe-Gemini-2.0-Flash", "Poe-Gemini-2.0-Flash-Lite", "Poe-Gemini-2.0-Flash-Preview",
                 "Poe-Gemini-1.5-Pro", "Poe-Gemini-1.5-Flash",
                 "Poe-Grok-4", "Poe-Grok-3", "Poe-Grok-3-Mini",
-                "Poe-GPT-OSS-120B-T",
+                "Poe-GPT-OSS-120B-T", "Poe-Kimi-K2-Thinking", "Poe-Qwen3-Max-N"
                 "Poe-DeepSeek-V3", "Poe-Deepseek-V3-FW", "Poe-Deepseek-R1",
-                "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B"
+                "Poe-Qwen2-72B-Chat", "Poe-Qwen2.5-VL-72B-T", "Poe-Qwen2.5-Coder-32B",
+                "Poe-Kimi-K2-Thinking"
             ])
 
         # Optionally fetch from OpenRouter if OPEN_ROUTER_API_KEY is present
@@ -215,10 +228,16 @@ class LofnApp:
 
         # Prioritize the most powerful models if available
         priority_order = [
+            "gemini-3.1-pro-preview",
+            "claude-opus-4-6",
+            "claude-sonnet-4-6",
+            "gpt-5.4",
+            "gpt-5.3",
+            "gemini-3-pro-preview",
             "gemini-2.5-pro",
             "claude-opus-4-20250514",
-            "o3",
-            "claude-sonnet-4-20250514",
+            "gpt-5.2",
+            "claude-sonnet-4-5",
         ]
         ordered = [m for m in priority_order if m in models]
         ordered.extend([m for m in models if m not in ordered])
@@ -244,7 +263,7 @@ class LofnApp:
             models.append("DALL-E 3")
         if Config.POE_API:
             models.extend([
-                "Poe-GPT-Image-1",
+                "Poe-GPT-Image-1", "Poe-Recraft-V3",
                 "Poe-Imagen-4-Ultra-Exp", "Poe-Imagen-4", "Poe-Imagen-4-Fast",
                 "Poe-Flux-Kontext-Max", "Poe-Flux-Kontext-Pro",
                 "Poe-Seedream-3.0", "Poe-Phoenix-1.0",
@@ -274,6 +293,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
+            'Story Generation': 'story',
             'Personality Chat': 'art',
             'Image to Video Chat': 'video',
         }
@@ -292,6 +312,7 @@ class LofnApp:
             'Image Generation': 'art',
             'Video Generation': 'video',
             'Music Generation': 'music',
+            'Story Generation': 'story',
             'Personality Chat': 'art',
             'Image to Video Chat': 'video',
         }
@@ -304,8 +325,8 @@ class LofnApp:
         if model is None:
             model = self.available_models[0] if self.available_models else None
         if prompt_model is None:
-            if 'gpt-5' in self.available_models:
-                prompt_model = 'gpt-5'
+            if 'gpt-5.1' in self.available_models:
+                prompt_model = 'gpt-5.1'
             elif 'gpt-4.1' in self.available_models:
                 prompt_model = 'gpt-4.1'
             else:
@@ -317,10 +338,15 @@ class LofnApp:
             "Image Generation",
             "Video Generation",
             "Music Generation",
+            "Story Generation",
             "Chat",
             "Prompt Explorer",
         ]
+        # Handle case where current_tab might not be in the new tabs list (though unlikely here as we append)
         current_tab = st.session_state.get('selected_tab', tabs[0])
+        if current_tab not in tabs:
+            current_tab = tabs[0]
+
         selected_tab = st.sidebar.selectbox("Select Mode", tabs, index=tabs.index(current_tab))
         if selected_tab != current_tab:
             self.prioritize_models_for_mode(selected_tab)
@@ -337,6 +363,8 @@ class LofnApp:
             self.render_video_generation()
         elif selected_tab == "Music Generation":
             self.render_music_generation()
+        elif selected_tab == "Story Generation":
+            self.render_story_generation()
         elif selected_tab == "Chat":
             self.render_chat()
         elif selected_tab == "Prompt Explorer":
@@ -410,7 +438,7 @@ class LofnApp:
             )
             st.session_state['prompt_model'] = self.prompt_model
 
-            if self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4'):
+            if self.model and (self.model.startswith('o1') or self.model.startswith('o3') or self.model.startswith('o4')):
                 # Reasoning Level for o1
                 # (For all models it’s accessible, but we only really use it if model is 'o1' or 'o1-mini')
                 st.session_state['reasoning_level'] = st.selectbox(
@@ -446,16 +474,16 @@ class LofnApp:
                 self.available_image_models,
                 help="Choose the image generation model."
             )
-            tiktok_mode = st.checkbox(
-                "TikTok Mode",
-                value=st.session_state.get('tiktok_mode', False),
-                help="Use FLUX Pro v1.1 Ultra at 9:16 and rotate output for Veo 3.",
-            )
-            st.session_state['tiktok_mode'] = tiktok_mode
-            if tiktok_mode:
-                self.image_model = 'fal-ai/flux-pro/v1.1-ultra'
-                st.session_state['fal-ai/flux-pro/v1.1-ultra_image_size'] = '9:16'
-                st.session_state['fal-ai/flux-pro/v1.1-ultra_num_images'] = 1
+            # tiktok_mode = st.checkbox(
+            #     "TikTok Mode",
+            #     value=st.session_state.get('tiktok_mode', False),
+            #     help="Use FLUX Pro v1.1 Ultra at 9:16.",
+            # )
+            # st.session_state['tiktok_mode'] = tiktok_mode
+            # if tiktok_mode:
+            #     self.image_model = 'fal-ai/flux-pro/v1.1-ultra'
+            #     st.session_state['fal-ai/flux-pro/v1.1-ultra_image_size'] = '9:16'
+            #     st.session_state['fal-ai/flux-pro/v1.1-ultra_num_images'] = 1
             render_image_controls(self.image_model)
 
         with st.sidebar.expander("Style Personalization", expanded=False):
@@ -501,6 +529,19 @@ class LofnApp:
                        "Melodic Emphasis": st.slider("Melodic Emphasis (0: Background, 100: Foreground)", 0, 100, 50),
                        "Harmonic Richness": st.slider("Harmonic Richness (0: Simple, 100: Rich)", 0, 100, 50),
                        "Production Style": st.slider("Production Style (0: Raw, 100: Polished)", 0, 100, 50)
+                    }
+                elif selected_medium == 'Story Generation':
+                    style_axes = {
+                       "Pacing": st.slider("Pacing (0: Slow Burn, 100: Fast-Paced)", 0, 100, 50),
+                       "Tone": st.slider("Tone (0: Dark, 100: Light)", 0, 100, 50),
+                       "Complexity": st.slider("Complexity (0: Simple, 100: Complex)", 0, 100, 50),
+                       "Descriptive Density": st.slider("Descriptive Density (0: Sparse, 100: Lush)", 0, 100, 50),
+                       "Dialogue vs Narration": st.slider("Dialogue vs Narration (0: Narration, 100: Dialogue)", 0, 100, 50),
+                       "Character Depth": st.slider("Character Depth (0: Plot-Driven, 100: Character-Driven)", 0, 100, 50),
+                       "World Building": st.slider("World Building (0: Minimal, 100: Immersive)", 0, 100, 50),
+                       "Ambiguity": st.slider("Ambiguity (0: Clear, 100: Open-Ended)", 0, 100, 50),
+                       "Emotional Intensity": st.slider("Emotional Intensity (0: Detached, 100: Intense)", 0, 100, 50),
+                       "Vocabulary Level": st.slider("Vocabulary Level (0: Plain, 100: Poetic)", 0, 100, 50)
                     }
                 else:
                     style_axes = {}
@@ -661,7 +702,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
@@ -883,7 +924,7 @@ class LofnApp:
                     )
                     st.session_state['custom_panel'] = panel_text
                 display_temporary_results("Panel Prompt", panel_text, expanded=False)
-            template = read_prompt('/lofn/prompts/music_overall_prompt_template.txt')
+            template = read_prompt('lofn/prompts/music_overall_prompt_template.txt')
             input_text = (
                 template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                 .replace('{Panel-prompt}', panel_text)
@@ -946,6 +987,116 @@ class LofnApp:
         except Exception as e:
             st.error("An error occurred during music competition mode.")
             logger.exception("Error in music competition: %s", e)
+
+    def run_story_competition(self):
+        try:
+            images = st.session_state.get('input_images')
+            personality_text = st.session_state.get('custom_personality', '')
+            if st.session_state.get('selected_personality') == 'LLM Generated':
+                if not personality_text:
+                    personality_text = generate_personality_prompt(
+                        st.session_state.get('input', ''),
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium'),
+                        input_images=images,
+                    )
+                    st.session_state['custom_personality'] = personality_text
+                display_temporary_results("Personality", personality_text, expanded=False)
+            meta_prompt, frames_list, genres_list = generate_meta_prompt(
+                st.session_state.get('input', ''),
+                max_retries=self.max_retries,
+                temperature=self.temperature,
+                model=self.model,
+                debug=self.debug,
+                reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                medium="story",
+                personality_prompt=personality_text,
+                input_images=images,
+            )
+            st.session_state['meta_prompt'] = meta_prompt['meta_prompt']
+            panel_text = st.session_state.get('custom_panel', '')
+            if st.session_state.get('selected_panel') == 'LLM Generated':
+                if not panel_text:
+                    panel_text = generate_panel_prompt(
+                        meta_prompt['meta_prompt'],
+                        self.max_retries,
+                        self.temperature,
+                        self.model,
+                        self.debug,
+                        st.session_state.get('reasoning_level', 'medium'),
+                        personality_prompt=personality_text,
+                        input_images=images,
+                    )
+                    st.session_state['custom_panel'] = panel_text
+                display_temporary_results("Panel Prompt", panel_text, expanded=False)
+
+            # Using overall_prompt_template.txt as generic template
+            template = read_prompt('lofn/prompts/overall_prompt_template.txt')
+            input_text = (
+                template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
+                .replace('{Panel-prompt}', panel_text)
+                .replace('{Personality-prompt}', personality_text)
+                .replace('{frames_list}', frames_list)
+                .replace('{art_styles_list}', genres_list)
+                .replace('{input}', st.session_state.get('input', ''))
+                .replace('{image_context}', image_context_to_string(images))
+            )
+            display_temporary_results("Meta Prompt", meta_prompt['meta_prompt'], expanded=False)
+            st.session_state['prompt_input'] = input_text
+
+            with st.spinner("Generating story concepts..."):
+                concept_mediums, style_axes, creativity = generate_story_concept_mediums(
+                    input_text,
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=None,
+                    creativity_spectrum=None,
+                    reasoning_level=st.session_state.get('reasoning_level', 'medium'),
+                    input_images=images
+                )
+
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity
+            st.session_state['story_concept_mediums'] = concept_mediums
+
+            pairs = concept_mediums
+            if pairs:
+                try:
+                    with st.spinner("Panel voting on best pairs..."):
+                        best_pairs = select_best_pairs(
+                            input_text,
+                            pairs,
+                            st.session_state.get('num_best_pairs', 3),
+                            self.max_retries,
+                            self.temperature,
+                            self.model,
+                            self.debug,
+                            st.session_state.get('reasoning_level', 'medium'),
+                        )
+                    st.session_state['story_best_pairs'] = best_pairs
+                    st.success("Best story pairs selected by panel")
+                except Exception as e:
+                    st.error("An error occurred while selecting best story pairs.")
+                    logger.exception("Error selecting story pairs: %s", e)
+                    best_pairs = pairs
+            else:
+                best_pairs = []
+
+            st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+            top_n = st.session_state.get('num_best_pairs', 3)
+            gen_pairs = best_pairs if best_pairs else pairs
+            for pair in gen_pairs[:top_n]:
+                self.generate_story_prompts_for_pair(pair)
+
+            st.success("Story prompts generated successfully!")
+        except Exception as e:
+            st.error("An error occurred during story competition mode.")
+            logger.exception("Error in story competition: %s", e)
 
     def generate_images(self, prompts_df, pair):
         st.subheader(f"Generating Images for '{pair['concept']}'")
@@ -1076,7 +1227,7 @@ class LofnApp:
                         )
                         st.session_state['custom_panel'] = panel_text
                     display_temporary_results("Panel Prompt", panel_text, expanded=False)
-                template = read_prompt('/lofn/prompts/video_overall_prompt_template.txt')
+                template = read_prompt('lofn/prompts/video_overall_prompt_template.txt')
                 input_text = (
                     template.replace('{Meta-Prompt}', meta_prompt['meta_prompt'])
                     .replace('{Panel-prompt}', panel_text)
@@ -1140,7 +1291,7 @@ class LofnApp:
                     pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -1202,7 +1353,7 @@ class LofnApp:
                     pair['medium'],
                     max_retries=self.max_retries,
                     temperature=self.temperature,
-                    model=self.model,
+                    model=self.prompt_model,
                     debug=self.debug,
                     style_axes=st.session_state['style_axes'],
                     creativity_spectrum=st.session_state['creativity_spectrum'],
@@ -1350,7 +1501,7 @@ class LofnApp:
                         first['medium'],
                         max_retries=self.max_retries,
                         temperature=self.temperature,
-                        model=self.model,
+                        model=self.prompt_model,
                         debug=self.debug,
                         style_axes=style_axes,
                         creativity_spectrum=creativity,
@@ -1403,16 +1554,223 @@ class LofnApp:
 
         st.info("Copy any of the above prompts and paste them into Udio to generate your music.")
 
+    def render_story_generation(self):
+        st.header("Generate Your Story")
+
+        st.subheader("Describe Your Story Idea")
+        st.text_area(
+            label="Story Idea",
+            label_visibility="collapsed",
+            key="input",
+            placeholder="Describe the plot, characters, themes, or setting of your story.",
+            help="Provide a detailed description of your story idea.",
+            height=200
+        )
+        st.subheader("Reference Images (Optional)")
+        uploaded_files = st.file_uploader(
+            "Upload up to 5 images",
+            type=["png", "jpg", "jpeg"],
+            accept_multiple_files=True,
+            key="uploaded_story_images"
+        )
+        images = []
+        if uploaded_files:
+            if len(uploaded_files) > 5:
+                st.warning("Only the first 5 images will be used.")
+            for file in uploaded_files[:5]:
+                images.append(file)
+        st.session_state['input_images'] = images
+
+        if not st.session_state['input']:
+            st.info("Tip: You can include genre, tone, character details, and plot points.")
+
+        if st.button("Generate Story Concepts"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your story idea.")
+            else:
+                self.generate_story_concepts_ui()
+
+        if st.session_state.get('competition_mode') and st.button("Run Competition", key="run_story_competition"):
+            if not st.session_state['input'].strip():
+                st.warning("Please provide a description of your story idea.")
+            else:
+                self.run_story_competition()
+
+        if st.session_state.get('story_concept_mediums'):
+            self.display_story_concepts()
+
+        if st.session_state.get('story_output'):
+            self.display_story_prompts()
+
+    def generate_story_concepts_ui(self):
+        try:
+            st.session_state['story_concept_mediums'] = []
+            input_text = st.session_state['input']
+            images = st.session_state.get('input_images')
+            if images:
+                input_text = f"{input_text}\n\nReference Images:\n" + image_context_to_string(images)
+            st.session_state['prompt_input'] = input_text
+
+            with st.spinner("Generating story concepts..."):
+                concepts, style_axes, creativity_spectrum = generate_story_concept_mediums(
+                    input_text,
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=st.session_state.get('style_axes', None),
+                    creativity_spectrum=st.session_state.get('creativity_spectrum', None),
+                    reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=images,
+                )
+            st.session_state['story_concept_mediums'] = concepts
+            st.success("Story concepts generated successfully!")
+            st.session_state['style_axes'] = style_axes
+            st.session_state['creativity_spectrum'] = creativity_spectrum
+        except Exception as e:
+            st.error("An error occurred while generating story concepts.")
+            logger.exception("Error generating story concepts: %s", e)
+
+    def display_story_concepts(self):
+        st.subheader("Generated Story Concepts")
+        selected_pairs = create_mini_dashboard(
+            st.session_state['story_concept_mediums'], key_prefix="story_pair"
+        )
+        st.session_state['selected_story_pairs'] = selected_pairs
+
+        if st.button("Generate Story for Selected Concepts"):
+            if selected_pairs:
+                # For MVP, just take the first selected one, or loop if we want multiple
+                # Let's support one for now to keep UI clean, or loop and append to a list
+                st.session_state['story_output'] = []
+                for idx in selected_pairs:
+                    pair = st.session_state['story_concept_mediums'][idx]
+                    self.generate_story_prompts_for_pair(pair)
+            else:
+                st.warning("Please select at least one concept.")
+
+    def generate_story_prompts_for_pair(self, pair):
+        st.subheader(f"Generating Story for '{pair['concept']}' in '{pair['medium']}'")
+        try:
+            # Extract essence from the stored output of the Essence & Facets phase
+            essence = ""
+            if 'essence_and_facets_output' in st.session_state and st.session_state['essence_and_facets_output']:
+                 essence = st.session_state['essence_and_facets_output']['essence_and_facets']['essence']
+
+            with st.spinner(f"Writing story for '{pair['concept']}'..."):
+                story_output = generate_story_prompts(
+                    st.session_state['prompt_input'],
+                    pair['concept'],
+                    pair['medium'],
+                    essence,
+                    max_retries=self.max_retries,
+                    temperature=self.temperature,
+                    model=self.model,
+                    debug=self.debug,
+                    style_axes=st.session_state['style_axes'],
+                    creativity_spectrum=st.session_state['creativity_spectrum'],
+                    reasoning_level=st.session_state.get('reasoning_level','medium'),
+                    input_images=st.session_state.get('input_images'),
+                )
+
+            if not story_output:
+                st.error("Failed to generate story prompts.")
+                return
+
+            if isinstance(st.session_state.get('story_output'), list):
+                 # Convert old format to new format if needed, or just overwrite/init as dict
+                 st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+            elif 'story_output' not in st.session_state or st.session_state['story_output'] is None:
+                st.session_state['story_output'] = {'revised_prompts': [], 'synthesized_prompts': []}
+
+            st.session_state['story_output']['revised_prompts'].extend(story_output.get('revised_prompts', []))
+            st.session_state['story_output']['synthesized_prompts'].extend(story_output.get('synthesized_prompts', []))
+
+            st.success(f"Story generated for '{pair['concept']}'")
+
+            for prompt in story_output.get('revised_prompts', []) + story_output.get('synthesized_prompts', []):
+                metadata = {
+                    'timestamp': datetime.now(),
+                    'title': prompt.get('title', 'Untitled'),
+                    'story_prompt': prompt.get('story_prompt', ''),
+                    'story_content': prompt.get('story_content', ''),
+                    'concept': pair['concept'],
+                    'medium': pair['medium'],
+                    'input_text': st.session_state.get('prompt_input', ''),
+                    'competition': st.session_state.get('competition_mode', False),
+                    'model': self.model,
+                }
+                save_story_metadata(metadata)
+
+            self.display_story_prompts_for_pair(story_output, pair)
+        except Exception as e:
+            st.error(f"An error occurred while generating story for '{pair['concept']}'.")
+            logger.exception("Error generating story: %s", e)
+
+    def display_story_prompts_for_pair(self, story_output, pair):
+        st.subheader(f"Stories for '{pair['concept']}' in '{pair['medium']}'")
+        for prompt in story_output.get('revised_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
+        for prompt in story_output.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
+    def display_story_content(self, story_output):
+        if not story_output:
+            return
+        st.markdown(f"### {story_output.get('title', 'Untitled')}")
+        with st.expander("Story Style Prompt"):
+            st.code(story_output.get('story_prompt', ''), language='text')
+        st.markdown(story_output.get('story_content', ''))
+        st.markdown("---")
+
+    def display_story_prompts(self):
+        story_output = st.session_state.get('story_output')
+        if not story_output:
+            return
+
+        # Handle backward compatibility if story_output is a list (old format)
+        if isinstance(story_output, list):
+            st.subheader("Generated Stories")
+            for output in story_output:
+                self.display_story_content(output)
+            return
+
+        st.subheader("Revised Stories")
+        for prompt in story_output.get('revised_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
+        st.subheader("Synthesized Stories")
+        for prompt in story_output.get('synthesized_prompts', []):
+            st.markdown(f"### {prompt.get('title', 'Untitled')}")
+            with st.expander("Story Style Prompt"):
+                st.code(prompt.get('story_prompt', ''), language='text')
+            st.markdown(prompt.get('story_content', ''))
+            st.markdown('---')
+
     def render_prompt_explorer(self):
-        """Allow browsing of saved metadata, video, and music prompts."""
+        """Allow browsing of saved metadata, video, music, and story prompts."""
         st.header("Prompt Explorer")
         content_type = st.radio(
-            "Select Content Type", ["Images", "Videos", "Music"], key="prompt_explorer_type"
+            "Select Content Type", ["Images", "Videos", "Music", "Stories"], key="prompt_explorer_type"
         )
         base_paths = {
             "Images": "/metadata",
             "Videos": "/videos",
             "Music": "/music",
+            "Stories": "/stories",
         }
         base_path = base_paths[content_type]
         index = build_prompt_index(base_path)
@@ -1467,6 +1825,14 @@ class LofnApp:
                         st.markdown("**Synthesized Prompt**")
                         st.code(row.get("Synthesized Prompts", ""), language="text")
                     st.markdown('---')
+        elif content_type == "Stories":
+            if data.get("title"):
+                st.subheader("Title")
+                st.code(data.get("title", ""), language="text")
+            st.subheader("Story Style Prompt")
+            st.code(data.get("story_prompt", ""), language="text")
+            st.subheader("Story Content")
+            st.markdown(data.get("story_content", ""))
         else:  # Music
             if data.get("music_filename"):
                 music_path = os.path.join("/music", data.get("music_filename"))
@@ -1662,6 +2028,9 @@ class LofnApp:
             'music_concept_mediums': None,
             'music_best_pairs': None,
             'song_prompts': None,
+            'story_concept_mediums': None,
+            'story_best_pairs': None,
+            'story_output': None,
             'concept_mediums': None,
             'pairs_to_try': [0],
             'button_clicked': False,

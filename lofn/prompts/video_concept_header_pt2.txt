@@ -241,3 +241,20 @@ This final section covers the techniques that happen after the shot is captured:
     * **Description:** The abrupt removal of all sound, including ambient noise, to create a moment of intense focus or shock.
     * **Effect & Feeling:** Shock, trauma, intense focus, the moment after an explosion.
     * **AI Prompt Keywords:** `a moment of complete sound vacuum`, `silent shot focusing on a character's reaction`.
+
+
+# Veo 3.1:
+```
+With this update, we're excited to share the most powerful and versatile version of our model to date.
+Veo 3.1 brings richer audio and dialogue, deeper narrative comprehension, and enhanced realism that captures true to life textures. Veo 3.1 also meaningfully improves turning images into videos, with stronger prompt adherence and improved audiovisual quality.
+The controls you love, with audio
+In addition to Text to Video, Veo 3.1 now supports:
+Ingredients to Video for greater control of style and consistency in your generations.
+First and Last Frame to precisely define your narrative's start and end points.
+Extend: to seamlessly expand your generated clips, going beyond 8 seconds.
+Add new elements to any scene
+Introduce anything you can imagine, from realistic details to fantastical creatures. Veo handles complex details like shadows and scene lighting, making the addition look natural. Just click the pencil icon on a video to get started with insertion, and stay tuned for object removal in Flow coming later.
+We're excited to see what you create. Keep the feedback coming!
+```
+
+When writing scripts, we will assume each prompt is a veo 3.1 prompt for 8 seconds.

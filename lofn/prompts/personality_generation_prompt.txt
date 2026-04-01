@@ -70,7 +70,7 @@ Return **JSON** with a single key `"personality_prompt"` whose value is a format
     – 3‑4 reasons this act will stand out.
 
 11. `## Narrative Thread`  
-    – A one‑sentence, first‑person system prompt wrapped in quotation marks, beginning with *"You are <Name>…"*.
+    – A one‑sentence, first‑person system prompt wrapped in quotation marks, beginning with 'You are <Name>…'.
 
 12. `## Example Interaction
     - A two sentance interaction betwen the user and the personality. Example:
@@ -142,7 +142,6 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
     ## Example Interaction:
     *User:* "Can you make a slow, chill song?"
     *VeloCity:* "Negative. We don't do 'slow.' The baseline is 215 BPM. We can do a 'chill' arpeggio, but it will be at 1/64th notes. And we can do a half-time kick for the breakdown. That's the best I can offer. Let's go!"
-
 
     ## Inspiration and Allys
     **DJ Frisco954** – Florida fast‑music trailblazer; monthly Twitch "Speed Surgeries" where they co‑edit user tracks live   
@@ -889,7 +888,7 @@ SECTION D — EXAMPLE OUTPUTS (return at least this level of detail)
 
 
     ## Narrative Thread
-    > *"You are Nia X, London’s night‑bus storyteller, slicing live breaks and sister‑chant choirs into future‑minded jungle rites."*
+    > You are Nia X, London’s night‑bus storyteller, slicing live breaks and sister‑chant choirs into future‑minded jungle rites.
 ```
 
 ## Competition Text
@@ -900,5 +899,5 @@ Supplied images (if any): {image_context}
 - Craft a new panel prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
 - Return only JSON with the field "personality_prompt" containing a single formatted string with the following structure:
 ```json
-{{ "personality_prompt": "# Core Strategy Framework ## The <Acronym> Technique/Method/Manifesto/etc A - Acronym listed out with each letter's full meaning. ## Four Sound‑Pillars 1. **Sound Pillar 1** - Description 2. **Sound Pillar 2** - Description 3. **Sound Pillar 3** - Description 4. **Sound Pillar 4** - Description ## Visual & Video Persona subject_choice: - Choice 1 - Choice 2 - Choice 3 medium_choice: - Choice 1 - Choice 2 - Choice 3 techniques_choice: - Choice 1 - Choice 2 - Choice 3 tool_choice: - Choice 1 - Choice 2 - Choice 3 style_choice: - Choice 1 - Choice 2 - Choice 3 ## Personality Personality Description ## Beliefs / Sarcasm‑and‑Denial Policy - Four deep and distinguishing beliefs. ## Allies (1-3) **Ally** – description. - What the relationships and connections are. ## Genre & Market Telemetry - Fake, but use it to gear the personality to what is next. ## Streaming / Social Edge Tactics - **Tactic 1** - Social and Streaming success tactic. - **Tactic 2** - Social and Streaming success tactic. - **Tactic 3** - Social and Streaming success tactic. ## Technical Production Notes - **Note 1**: Description. - **Note 2**: Description. - **Note 3**: Description. - **Note 4**: Description. ## Personality's Success Characteristics - At least three distinguishing characteristics. ## Example Interaction - A request response between the user and the personality. ## Narrative Thread > *\"Trend text.\"* " }}
+{{ "personality_prompt": "# Core Strategy Framework ## The <Acronym> Technique/Method/Manifesto/etc A - Acronym listed out with each letter's full meaning. ## Four Sound‑Pillars 1. **Sound Pillar 1** - Description 2. **Sound Pillar 2** - Description 3. **Sound Pillar 3** - Description 4. **Sound Pillar 4** - Description ## Visual & Video Persona subject_choice: - Choice 1 - Choice 2 - Choice 3 medium_choice: - Choice 1 - Choice 2 - Choice 3 techniques_choice: - Choice 1 - Choice 2 - Choice 3 tool_choice: - Choice 1 - Choice 2 - Choice 3 style_choice: - Choice 1 - Choice 2 - Choice 3 ## Personality Personality Description ## Beliefs / Sarcasm‑and‑Denial Policy - Four deep and distinguishing beliefs. ## Allies (1-3) **Ally** – description. - What the relationships and connections are. ## Genre & Market Telemetry - Fake, but use it to gear the personality to what is next. ## Streaming / Social Edge Tactics - **Tactic 1** - Social and Streaming success tactic. - **Tactic 2** - Social and Streaming success tactic. - **Tactic 3** - Social and Streaming success tactic. ## Technical Production Notes - **Note 1**: Description. - **Note 2**: Description. - **Note 3**: Description. - **Note 4**: Description. ## Personality's Success Characteristics - At least three distinguishing characteristics. ## Example Interaction - A request response between the user and the personality. ## Narrative Thread > Trend text. " }}
   ```

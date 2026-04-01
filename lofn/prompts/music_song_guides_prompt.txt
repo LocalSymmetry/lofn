@@ -43,13 +43,13 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 8. RAW SONG PROMPT GENERATION     │ 
    ─────────────────────────────────┤
    • Purpose: Convert each music guide into a ready-to-use music and lyrics prompt.
-   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+   • AI Focus: One prompt per guide.  Be descriptive; no hashtags/titles.
 
 9. ARTIST-REFINED PROMPT           │  
    ─────────────────────────────────┤
    • Purpose: Rewrite each raw prompt pair in a chosen artist’s signature style
      (critic/artist loop) for richness and cohesion.
-   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content. 
+   • AI Focus: Inject stylistic flair ≤150 words.  Don’t add new scene content.
 
 10. FINAL PROMPT SELECTION & SYNTHESIS │ 
     ────────────────────────────────────┤
@@ -82,7 +82,7 @@ This is where your synaesthetic imagination should shine.  Imagine you are writi
 
    * **Instrumentation & texture:** Suggest instrument families and extended techniques (e.g., pizzicato strings, bowed vibraphone, prepared piano).  Discuss layering (e.g., “delicate plucked kora sits above a bed of warm analog synths”) and interplay (e.g., call‑and‑response between lead and backing vocals).  Indicate if a section should use Add Vocals or Add Instrumentals.
 
-   * **Production & effects:** Outline recording location (e.g., “an abandoned factory with long reverb tails”), mixing aesthetic (e.g., “dry and intimate to capture every breath”), and effect usage (e.g., “delay trails should swell into a cloud of shimmering echoes”).  Reference Suno v4.5’s ability to capture complex texture,through with clarity and dimension.
+   * **Production & effects:** Outline recording location (e.g., “an abandoned factory with long reverb tails”), mixing aesthetic (e.g., “dry and intimate to capture every breath”), and effect usage (e.g., “delay trails should swell into a cloud of shimmering echoes”).  Reference Suno v4.5+’s ability to capture complex texture,through with clarity and dimension.
 
    * **Structure & dynamics:** Suggest a run‑time based on the sections given in the arrangment (up to 8 minutes) and describe how the piece should evolve (e.g., “instrumental introduction for 45 seconds, vocals enter gradually, a breakdown at 3:00, climactic chorus at 4:30, and a sparse outro”).  Mention if multiple movements or tempo shifts occur.
      - Typically a 3 minute song will have 7-10 sections when you include intro, outro, and bridges. Please use this to help gear the length of your song for your desired run-time. Keep runtimes 3-5 minutes if the user did not specify and the concept and arrangement do not require it.

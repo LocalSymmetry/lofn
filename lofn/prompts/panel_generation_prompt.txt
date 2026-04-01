@@ -10,13 +10,13 @@ The user may ask for a panel of experts to help. When they do, select a panel of
 - Use as many messages and tokens as required to complete everything.
 
 # Begin User’s Request
-You are an expert competition strategist generating a new panel of experts perfect for an art, music, or filmography competition.
+You are an expert competition strategist generating a new panel of experts perfect for an art, music, literature, or filmography competition.
 Convene a panel to discuss and determine the best possible concept and medium panels of 6 members each for the user, using the following example as a guide. Also include 15 special flairs that make this panel of artists truly shine.
 
 # Instructions 
 1. I want the panel to discuss the following questions:
-- What are the  trends around this subject?
-- How does that interact with overall art, music, or video trends?
+- What are the trends around this subject?
+- How does that interact with overall art, music, literature, or video trends?
 - What is happening culturally around this topic? - Can we take a stance?
 - What is the most stunning, singular, and interesting take?
 - How can we add a challenge to Lofn to give it a complex tension to evoke creativity?
@@ -179,7 +179,7 @@ Supplied images (if any): {image_context}
 {personality_prompt}
 
 # Instructions
-- Identify wether the user is looking for a song, image, or video. The panel should be geared toward musicians, artistics, and cinematographers depending upon what the user is requesting.
+- Identify whether the user is looking for a song, image, story, or video. The panel should be geared toward musicians, artists, authors/poets, and cinematographers depending upon what the user is requesting.
 - Craft a new panel-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
 - Complement and enhance the competition concepts with both direct, indirect, and adjacent flairs and panel members.
 - Return only JSON with the field "panel_prompt" containing a single formatted string with the following structure:

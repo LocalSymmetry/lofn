@@ -43,13 +43,13 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 8. RAW SONG PROMPT GENERATION     │ 
    ─────────────────────────────────┤
    • Purpose: Convert each music guide into a ready-to-use music and lyrics prompt.
-   • AI Focus: One prompt per guide.  Keep it concise; no hashtags/titles.
+   • AI Focus: One prompt per guide.  Be descriptive; no hashtags/titles.
 
 9. ARTIST-REFINED PROMPT           │  **YOU ARE HERE - COMPLETE THIS PHASE**
    ─────────────────────────────────┤
    • Purpose: Rewrite each raw prompt pair in a chosen artist’s signature style
      (critic/artist loop) for richness and cohesion.
-   • AI Focus: Inject stylistic flair ≤100 words.  Don’t add new scene content. Stop here.
+   • AI Focus: Inject stylistic flair ≤150 words.  Don’t add new scene content. Stop here.
 
 10. FINAL PROMPT SELECTION & SYNTHESIS │ 
     ────────────────────────────────────┤

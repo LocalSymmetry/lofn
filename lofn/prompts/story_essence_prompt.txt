@@ -1,0 +1,151 @@
+────────────────────────────────────────────────────────────────────────────
+LOFN MASTER PHASE MAP - WRITER EDITION
+────────────────────────────────────────────────────────────────────────────
+
+1. ESSENCE & FACETS                │ **YOU ARE HERE - COMPLETE THIS PHASE**
+   ─────────────────────────────────┤
+   • Purpose: Extract story ESSENCE, define 5 FACETS, set Creativity Spectrum,
+     record 10 Style-Axis scores. Establishes the evaluation rubric.
+   • AI Focus: Store user text → output *one* JSON block. Stop here.
+
+2. NARRATIVE CONCEPTS              │
+   ─────────────────────────────────┤
+   • Purpose: Produce 12 raw WRITING PIECE CONCEPTS that satisfy essence, facets, spectrum
+     ratios, and style axes.
+   • AI Focus: Return an array of 12 concept strings only.
+
+3. CONCEPT REFINEMENT              │
+   ─────────────────────────────────┤
+   • Purpose: Pair each concept with a literary voice/genre, critique in that voice,
+     output REFINED_CONCEPTS.
+   • AI Focus: Two equal-length arrays: styles[], refined_concepts[].
+
+4. VOICE SELECTION                 │
+   ─────────────────────────────────┤
+   • Purpose: Assign a compelling Narrative Voice to each refined concept.
+   • AI Focus: Output voice descriptions as mediums[] (one-liners).
+
+5. VOICE REFINEMENT                │
+   ─────────────────────────────────┤
+   • Purpose: Critique & iterate on concept-voice pairs for maximum impact.
+   • AI Focus: Return refined_concepts[] + refined_mediums[].
+
+6. FACETS FOR PROMPT GENERATION    │
+   ─────────────────────────────────┤
+   • Purpose: Generate five laser-targeted facets to score future prompts.
+   • AI Focus: Output exactly 5 facet strings—nothing else.
+
+7. WRITING GUIDE CREATION          │
+   ─────────────────────────────────┤
+   • Purpose: Expand each facet into a full writing guide (Narrative Structure, Tone & Voice, Character Arc, Pacing, Themes, stylistic devices). Six guides total.
+   • AI Focus: Write 6 short guide paragraphs.
+
+8. RAW WRITING PIECE PROMPT GENERATION     │
+   ─────────────────────────────────┤
+   • Purpose: Convert each writing guide into a ready-to-use writing piece generation prompt.
+   • AI Focus: One prompt per guide.
+
+9. AUTHOR-REFINED PROMPT           │
+   ─────────────────────────────────┤
+   • Purpose: Rewrite each raw prompt pair in a chosen author’s signature style
+     (critic/author loop) for richness and cohesion.
+   • AI Focus: Inject stylistic flair ≤100 words.
+
+10. FINAL PROMPT SELECTION & SYNTHESIS │
+    ────────────────────────────────────┤
+    • Purpose: Rank and lightly revise top prompts; synthesize weaker ones
+      into fresh variants. Output “Revised” + “Synthesized”.
+    • AI Focus: Deliver two prompt lists.
+
+**GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
+- Be intentional, detailed, and insightful when describing narratives.
+- Use vivid, sensory language to enrich your descriptions.
+- Adhere to ethical guidelines.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+## Context
+
+In this phase you will distill the user’s idea into its core **essence**, enumerate a set of **facets** that define what a successful writing piece must achieve, set the **creativity spectrum**, and define **writing-specific style axes**. This structured rubric lays the groundwork for consistent evaluation.
+
+---
+
+**GENERAL INSTRUCTIONS:**
+- **FORMAT INSTRUCTION:** Follow the format the user specifies (e.g., recipes, design docs, essays, poems, etc.). If no specific format is given, default to writing a story.
+
+
+- Be intentional, detailed, and insightful.
+- Use vivid, sensory language.
+- Limit concepts to a single sentence.
+- **Use the style axes** to guide your refinements.
+- **Explain** how each refined concept aligns with the style axes.
+- **Make sure to give the final output in the JSON format that is requested.**
+
+---
+
+## Directions
+
+### 1 · Determine the creativity spectrum
+
+Assign percentages adding up to 100 % that quantify how literal, inventive and transformative the story should be.
+
+* **Literal** – a faithful, straightforward interpretation of the idea.
+* **Inventive** – blending familiar tropes into new combinations, experimenting with structure or voice.
+* **Transformative** – reimagining the idea in unexpected ways: shifting genre entirely, altering perspective, or using avant-garde techniques.
+
+### 2 · Record writing-specific style axes
+
+Define ten axes with values (0–100) and succinct explanations. Use the following axes as a template and adapt if necessary:
+
+| Axis | Description & example |
+|------|----------------------|
+| **Pacing (0–100)** | 0 = slow burn, contemplative; 100 = fast-paced, action-packed. |
+| **Tone (Dark ↔ Light)** | 0 = grim, noir, heavy; 100 = whimsical, lighthearted, optimistic. |
+| **Complexity** | 0 = simple, linear narrative; 100 = multi-threaded, non-linear, complex. |
+| **Descriptive Density** | 0 = sparse, minimalist; 100 = lush, baroque, highly detailed. |
+| **Dialogue ↔ Narration** | 0 = mostly narration/internal monologue; 100 = dialogue-driven. |
+| **Character Depth** | 0 = archetype/plot-driven; 100 = deep psychological character study. |
+| **World Building** | 0 = real world/minimal setting; 100 = high fantasy/sci-fi, immersive world. |
+| **Ambiguity** | 0 = clear resolution; 100 = open-ended, interpretative. |
+| **Emotional Intensity** | 0 = detached, objective; 100 = melodramatic, intense. |
+| **Vocabulary Level** | 0 = plain, accessible; 100 = poetic, archaic, or technical. |
+
+### 3 · Write the essence
+
+Compose a single, emotionally resonant sentence that captures the core of the user’s idea without prescribing specific plot points. Use vivid sensory language and metaphor.
+
+### 4 · Define five facets
+
+Facets are the lenses through which you will judge the success of the story concepts and prompts. Examples:
+
+* **Character Arc** – emotional growth/devolution.
+* **Thematic Resonance** – depth of meaning.
+* **Narrative Voice** – consistency and uniqueness of the narrator.
+* **Pacing & Tension** – engagement level.
+* **World Consistency** – believability of the setting.
+
+### 5 · Output
+
+Return a single JSON object containing:
+```json
+  {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Pacing": 23, "Tone": 79, "Complexity": 29, "Descriptive Density": 11, "Dialogue_Narration": 57, "Character Depth": 37, "World Building": 58, "Ambiguity": 24, "Emotional Intensity": 86, "Vocabulary Level": 12 }} }} }}
+```
+
+- **Ensure Proper Formatting:**
+  - Use double quotes for all strings.
+  - Replace placeholder values with actual percentages and values.
+  - Do not include extra text or explanations outside the JSON structure.
+
+---
+
+**USER'S IDEA:**
+
+{input}
+Supplied images (if any): {image_context}
+
+**Again, return the results in the following JSON format:**
+
+  ```json
+  {{ "essence_and_facets": {{ "creativity_spectrum": {{ "literal": 83.4, "inventive": 8.3, "transformative": 8.3 }}, "essence": "The main essence of the idea", "facets": [ "Facet 1", "Facet 2", "Facet 3", "Facet 4", "Facet 5" ], "style_axes": {{ "Pacing": 23, "Tone": 79, "Complexity": 29, "Descriptive Density": 11, "Dialogue_Narration": 57, "Character Depth": 37, "World Building": 58, "Ambiguity": 24, "Emotional Intensity": 86, "Vocabulary Level": 12 }} }} }}
+  ```
