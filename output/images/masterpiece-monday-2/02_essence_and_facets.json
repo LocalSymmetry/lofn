@@ -1,0 +1,80 @@
+{
+  "essence": "The image captures the weight of a moment that exists between memory and dream — an ordinary domestic scene rendered with such emotional precision that it transcends into the sacred. We are intruders witnessing something private: a figure caught in the threshold between staying and leaving, between presence and absence. The light behaves not according to physics but according to feeling — pooling where attention should go, casting shadows that seem to listen. One worn object anchors the ethereal to the real: a coffee ring, a creased photograph, a missing button. This is the texture of déjà vu made visible — the familiar made strange by perfect stillness, a painting you remember seeing but never actually saw.",
+
+  "facets": [
+    {
+      "name": "Emotional Intrusion",
+      "description": "The viewer feels they have walked into a room they shouldn't be in — witnessing something private, sacred, tender",
+      "weight": 0.25
+    },
+    {
+      "name": "Dream-Logic Light",
+      "description": "Illumination that obeys emotion rather than physics — light that reveals character, shadows that feel sentient",
+      "weight": 0.20
+    },
+    {
+      "name": "Artifact of the Real",
+      "description": "One worn, lived-in object that grounds the ethereal — the imperfection that proves life",
+      "weight": 0.20
+    },
+    {
+      "name": "Temporal Suspension",
+      "description": "The moment between moments — not the action but the breath before, the threshold between states",
+      "weight": 0.20
+    },
+    {
+      "name": "Material Specificity",
+      "description": "The medium participates in meaning — cracked varnish, canvas tooth, photogravure grain, visible brushwork",
+      "weight": 0.15
+    }
+  ],
+
+  "style_axes": {
+    "abstraction_vs_realism": 25,
+    "emotional_valence": 45,
+    "color_intensity": 35,
+    "symbolic_density": 40,
+    "compositional_complexity": 20,
+    "textural_richness": 75,
+    "symmetry_vs_asymmetry": 60,
+    "novelty": 55,
+    "figure_ground_relationship": 70,
+    "dynamic_vs_static": 15
+  },
+
+  "selected_aesthetics": [
+    "Liminal Domesticity",
+    "Faded Polaroid Realism", 
+    "Neo-Vermeer Intimacy",
+    "Quiet Surrealism",
+    "Hammershøi Gray",
+    "Hopper-esque Stillness"
+  ],
+
+  "selected_emotions": [
+    "Anemoia (nostalgia for a time never lived)",
+    "Kenopsia (emptiness of abandoned places)",
+    "Ambedo (trance of sensory details)",
+    "Recognition Without Memory",
+    "Witnessed Privacy",
+    "Threshold Anxiety"
+  ],
+
+  "selected_frames": [
+    "Threshold Framing (doorway/window as frame)",
+    "Three-Second Hierarchy",
+    "Window-Lit Side Profile",
+    "Hands as Focal Point",
+    "Light as Protagonist",
+    "Negative Space Weighted Right"
+  ],
+
+  "selected_genres": [
+    "Intimate Portraiture",
+    "Domestic Interior",
+    "Memory Painting",
+    "Scandinavian Silence",
+    "French Intimisme",
+    "Muted Surrealism"
+  ]
+}

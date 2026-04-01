@@ -1,0 +1,75 @@
+{
+  "selection_rationale": "Selected based on: (1) emotional impact at first glance, (2) thumbnail readability, (3) narrative incompleteness that rewards viewing, (4) medium-concept harmony, (5) avoidance of AI art clichés, (6) competition viability",
+
+  "selected_pairs": [
+    {
+      "pair_id": "A",
+      "concept_id": 2,
+      "title": "The Door Left Open",
+      "artist": "Andrew Wyeth",
+      "medium": "Tempera on panel, dry-brush technique",
+      "why_selected": "Strongest threshold imagery. Back-lit silhouette is immediately striking. The tension between leaving and staying is universal. Tempera's matte quality perfect for stillness.",
+      "emotional_core": "The weight of a decision unmade",
+      "thumbnail_hook": "High contrast silhouette against bright doorway"
+    },
+    {
+      "pair_id": "B",
+      "concept_id": 6,
+      "title": "His Father's Chair",
+      "artist": "Lucian Freud",
+      "medium": "Oil on canvas with visible brushwork",
+      "why_selected": "REVISED to remove figure — empty chair as portrait is more powerful and less literal. The leather wear-marks tell decades of story. Richest texture opportunity.",
+      "emotional_core": "Presence in absence — the shape a life leaves",
+      "thumbnail_hook": "Golden afternoon light on empty leather chair"
+    },
+    {
+      "pair_id": "C",
+      "concept_id": 9,
+      "title": "The Meal Set for Two",
+      "artist": "Edward Hopper",
+      "medium": "Oil with warm underlayer visible",
+      "why_selected": "Hopper's DNA is perfect here. The tender acceptance rather than tragedy elevates it. Burned-down candles and dust are visually specific. Two-person composition creates natural focal hierarchy.",
+      "emotional_core": "Memory as comfort, not wound",
+      "thumbnail_hook": "Warm candlelight on woman's face, empty place setting"
+    },
+    {
+      "pair_id": "D",
+      "concept_id": 3,
+      "title": "Mother's Hands, Flour Dusted",
+      "artist": "Chardin",
+      "medium": "Classical oil with impasto highlights",
+      "why_selected": "Close-crop intimacy is unexpected for competitions. The paused hands with wedding ring is immediately readable. Chardin's treatment of domestic sacred is timeless.",
+      "emotional_core": "The pause when the body remembers what the mind tried to forget",
+      "thumbnail_hook": "Weathered hands on flour, single sharp wedding ring"
+    },
+    {
+      "pair_id": "E",
+      "concept_id": 7,
+      "title": "The Photograph in the Drawer",
+      "artist": "Gerhard Richter",
+      "medium": "Photo-painting technique",
+      "why_selected": "The withheld image is a powerful device — we see only the white back. Richter's blur language is sophisticated but accessible. The posture carries the emotion.",
+      "emotional_core": "The past held but not looked at",
+      "thumbnail_hook": "Sharp hands holding blurred white rectangle, slumped posture"
+    },
+    {
+      "pair_id": "F",
+      "concept_id": 12,
+      "title": "The Book She Stopped Reading",
+      "artist": "Rinko Kawauchi",
+      "medium": "Soft-focus photographic quality",
+      "why_selected": "The pre-dawn blue palette is distinctive. The fallen bookmark is a perfect narrative detail. Kawauchi's gentle light is deeply NightCafe-friendly.",
+      "emotional_core": "A night that changed direction",
+      "thumbnail_hook": "Pre-dawn blue light on sleeping face, book open beside her"
+    }
+  ],
+
+  "eliminated_concepts": [
+    {"id": 1, "reason": "Too quiet — lacks thumbnail hook"},
+    {"id": 4, "reason": "Partial figure risks gimmickry"},
+    {"id": 5, "reason": "Fogged mirror is too common in AI art"},
+    {"id": 8, "reason": "Surreal elements too overt for 'familiar uncanny'"},
+    {"id": 10, "reason": "Waiting-by-door too similar to concept 2"},
+    {"id": 11, "reason": "Season dichotomy too fantastical"}
+  ]
+}
