@@ -1,0 +1,100 @@
+{
+  "concept_pairs": [
+    {
+      "concept_id": 1,
+      "title": "The Letter She Never Sent",
+      "artist_influence": "Vilhelm Hammershøi — Danish master of muted domestic interiors, figures turning away, light through gauze",
+      "medium": "Oil on linen canvas with visible tooth, muted gray-gold palette, soft edges, cracked varnish effect",
+      "critique": "Strong emotional core but risks being too quiet for competition. Needs the letter itself to be a visual anchor — perhaps a touch of red in the stamp?",
+      "refined_direction": "Lean into the Hammershøi gray but add one warm element — the morning coffee steam catching light"
+    },
+    {
+      "concept_id": 2,
+      "title": "The Door Left Open",
+      "artist_influence": "Andrew Wyeth — American loneliness, threshold moments, the poetry of leaving",
+      "medium": "Tempera on panel, dry-brush technique, high contrast between interior shadow and exterior light",
+      "critique": "The silhouette is powerful but may lose face detail. Consider showing just enough face — the edge of a profile, the tension in the jaw.",
+      "refined_direction": "Back-lit figure with rim light defining the edge of face/shoulder, tempera's matte quality enhances the stillness"
+    },
+    {
+      "concept_id": 3,
+      "title": "Mother's Hands, Flour Dusted",
+      "artist_influence": "Chardin — French master of domestic still life, the sacred in the ordinary",
+      "medium": "Classical oil technique with impasto in flour highlights, warm kitchen palette, chiaroscuro from single window",
+      "critique": "Risk of being too sentimental. The paused hands must feel arrested by memory, not posed for sentiment.",
+      "refined_direction": "The wedding ring should be the sharpest element — everything else slightly soft, as if seen through tear-blurred eyes"
+    },
+    {
+      "concept_id": 4,
+      "title": "The Last Light in the Hall",
+      "artist_influence": "Gregory Crewdson — cinematic staging, suburban uncanny, psychological narratives in light",
+      "medium": "Photorealistic digital painting with film grain, cinematic aspect ratio implied, practical light source effect",
+      "critique": "The partial figure risks being gimmicky. The shadow and dress edge must feel inevitable, not clever.",
+      "refined_direction": "Let the hallway itself be the subject — the doors, the wood floor, the dust — with the human presence as punctuation"
+    },
+    {
+      "concept_id": 5,
+      "title": "The Mirror Knows",
+      "artist_influence": "Francesca Woodman — self-portraiture, blur, presence and absence, the female gaze",
+      "medium": "Photogravure simulation, soft focus at edges, bathroom tiles rendered with porcelain precision",
+      "critique": "The fogged mirror is visually strong but conceptually common. Needs a detail that makes it specific — the single toothbrush, the cracked tile.",
+      "refined_direction": "The cleared space in the fog should be imperfect — palm print visible, as if she just did it"
+    },
+    {
+      "concept_id": 6,
+      "title": "His Father's Chair",
+      "artist_influence": "Lucian Freud — psychological weight of objects, flesh and furniture equally intimate",
+      "medium": "Oil on canvas with visible brushwork in leather texture, muted palette with leather brown as warmest note",
+      "critique": "Strong concept but risks literalness. The man in the doorway could be too obvious — consider removing him entirely, leaving only the chair's wear-marks to imply decades of presence.",
+      "refined_direction": "The chair as portrait of the absent father. No figure. Just the afternoon light and the impression of a body long gone."
+    },
+    {
+      "concept_id": 7,
+      "title": "The Photograph in the Drawer",
+      "artist_influence": "Gerhard Richter — the blurred photograph, memory as incomplete image",
+      "medium": "Photo-painting technique, sharp hands holding soft/blurred photo back, bed soft in background",
+      "critique": "The withheld image is powerful but needs the posture to carry the emotion. The slump of shoulders, the stillness of spine.",
+      "refined_direction": "Her posture should echo the unseen photo — perhaps she's looking at a picture of herself at this exact age"
+    },
+    {
+      "concept_id": 8,
+      "title": "The Window She Watches From",
+      "artist_influence": "Rene Magritte — the uncanny ordinary, surrealism through stillness, impossible light",
+      "medium": "Oil on canvas, hyper-realistic rendering of mundane objects, surreal light logic, smooth surface",
+      "critique": "The upward rain and out-of-sync reflection may be too overtly surreal for 'familiar uncanny.' Subtlety is key.",
+      "refined_direction": "Keep only one surreal element — the reflection turned toward us. Let everything else be naturalistic."
+    },
+    {
+      "concept_id": 9,
+      "title": "The Meal Set for Two",
+      "artist_influence": "Edward Hopper — loneliness that isn't lonely, stillness that speaks, American quiet",
+      "medium": "Oil with warm underlayer visible through cool surface, dramatic tonal contrast, brushwork visible in candlelight",
+      "critique": "The burned-down candles and dust are excellent but risk melodrama. Her expression must be tender, not tragic.",
+      "refined_direction": "She has accepted, not resigned. The light should be golden, not funereal. This is memory as comfort, not wound."
+    },
+    {
+      "concept_id": 10,
+      "title": "The Suitcase by the Door",
+      "artist_influence": "Balthus — suspended moments, the weight of interior spaces, figures caught between",
+      "medium": "Tempera on board, muted earth tones, slightly flattened perspective, formal composition",
+      "critique": "The sitting-on-stairs is visually compelling but the 'waiting' needs specificity. What is she waiting FOR?",
+      "refined_direction": "Perhaps a taxi visible through the door's glass panel — headlights suggesting presence, but she doesn't move toward it"
+    },
+    {
+      "concept_id": 11,
+      "title": "The Garden Through Glass",
+      "artist_influence": "Édouard Vuillard — pattern, memory, the domestic as theatre, layered intimacy",
+      "medium": "Oil with decorative patterning in interior elements, vivid garden rendered in near-impressionist strokes",
+      "critique": "The winter/summer dichotomy is beautiful but may read as too fantastical. Ground it with specificity.",
+      "refined_direction": "Her breath fog on the glass should be the only truly visible breath — she is exhaling memory"
+    },
+    {
+      "concept_id": 12,
+      "title": "The Book She Stopped Reading",
+      "artist_influence": "Rinko Kawauchi — soft light, intimate scale, the sacred in small things",
+      "medium": "Soft-focus photographic quality, pre-dawn blue palette, shallow depth of field simulation, grain",
+      "critique": "The dried tears risk sentimentality. Better: the tear-tracks have dried but her face is peaceful — she's processed something.",
+      "refined_direction": "The bookmark on the floor is crucial — it speaks of intention abandoned, of a night that changed direction"
+    }
+  ]
+}
