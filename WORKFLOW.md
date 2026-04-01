@@ -13,7 +13,7 @@ When I try to "save time" by writing prompts myself, I throw away 3 years of tun
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  1. READ SEEDS                                                  │
-│     vault/PROMPT_SEEDS.md — ALWAYS read first                   │
+│     lofn-core/GOLDEN_SEEDS.md — ALWAYS read first                   │
 │     Select the seed that best fits the task                     │
 └─────────────────────────────────────────────────────────────────┘
                               │
