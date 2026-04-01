@@ -1,2 +1,4 @@
 */config.yaml
-lofn/prompts/custom_personalities.yaml
+__pycache__/
+*.pyc
+
