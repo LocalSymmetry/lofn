@@ -4,6 +4,23 @@
 
 Every creative generation task MUST follow the actual 10-step skill files in the relevant modality directory. These steps were tuned over 3 years in live competition against thousands of human artists. They win because of the process.
 
+---
+
+## ⚠️ AGENT SPAWNING RULE — NO NESTED SPAWNING
+
+**No pipeline agent spawns child agents. Ever.**
+
+The parent session is the single control plane. Every agent — orchestrator, vision, audio, QA, all of them — **ends its response with a `LOFN_HANDOFF` block** and returns control to the parent. The parent reads the handoff and dispatches the next agent.
+
+This ensures:
+- The parent can observe, steer, pause, or redirect at every stage
+- Failures don't cascade through nested contexts
+- Token budgets stay predictable
+
+**Full protocol:** `vault/PARENT_MEDIATED_ORCHESTRATION.md`
+
+---
+
 **The 10 steps ARE the numbered skill files (00-10) in each modality's directory:**
 - `skills/music/00_*.md` through `skills/music/10_*.md`
 - `skills/image/00_*.md` through `skills/image/10_*.md`
