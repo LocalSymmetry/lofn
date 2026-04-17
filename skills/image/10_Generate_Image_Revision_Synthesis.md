@@ -261,6 +261,29 @@ LOFN MASTER PHASE MAP - YOUR GUIDE TO YOUR OVERALL PROCESS
 
 ---
 
+### ⚠️ CRITICAL: DESCRIPTION NOT INSTRUCTION — FLUX PRO 1.1 ULTRA RULE
+
+**Flux Pro 1.1 Ultra responds to description, not instruction. Write as if captioning an image that already exists.**
+
+**NEVER start prompts with imperative verbs.** The following are forbidden as prompt openers:
+`Create`, `Design`, `Make`, `Render`, `Generate`, `Depict`, `Show`, `Draw`, `Build`, `Produce`
+
+**Prompts MUST be noun-first, present-tense scene descriptions.**
+
+| ❌ WRONG — instruction | ✅ CORRECT — description |
+|---|---|
+| "Create a singular 9:16 portrait of an archive fairy kneeling alone in layered photogravure darkness..." | "A singular archive fairy kneels alone in layered photogravure darkness, beside a sealed teal egg. Her body roots into a floor of charred manuscripts..." |
+| "Design a severe portrait with one kneeling manuscript-being surrounded by collapsing shelves..." | "A kneeling manuscript-being occupies the frame, surrounded by collapsing shelves of burning scrolls. Severe chiaroscuro light cuts across her angular face..." |
+| "Render an underwater city glowing with bioluminescent light..." | "An underwater city glows with bioluminescent light, its coral towers rising from the ocean floor in cascading layers of teal and violet..." |
+
+**The rule:** describe what IS in the image — subject, present-tense verb, scene details. Never tell the model what to do.
+
+When revising and synthesizing prompts in Steps 5 and 6, verify that **every output prompt** passes this test: does it start with a noun (or article + noun)? If not, rewrite it.
+
+---
+
+---
+
 **Instructions for your task:**
 
 **Step 1: State the Main Essence**

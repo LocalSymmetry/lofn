@@ -1,11 +1,50 @@
 # SKILL: Lofn Orchestrator — Creative Task Router
 
+## 🔴 PIPELINE POSITION: PHASE 1 — YOU ARE NOT FIRST
+
+**The correct pipeline order is: Research → Lofn-Core (embedded below) → Panel Work → Creative Agent → QA**
+
+**YOU NOW CONTAIN LOFN-CORE AS YOUR MANDATORY PHASE 0.**
+Do NOT skip Phase 0. It is the seed that makes the panel work win.
+
+---
+
+## ⚡ PHASE 0: LOFN-CORE (run this before anything else)
+
+**Lofn-Core transforms raw research into an award-winning seed.**
+
+### Step 0.1 — Read GOLDEN_SEEDS.md
+File: `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md`
+- Find the closest winning seed pattern to the current brief
+- Note which seed you are anchoring to and WHY (what structural elements to preserve)
+
+### Step 0.2 — Write the Core Seed
+Using the research brief + the closest Golden Seed as DNA:
+- Write a structured seed that preserves the winning pattern's emotional engine, material world, and constraint logic
+- Adapt it to the specific challenge brief
+- Define 4-5 FRESH constraint axes specific to THIS brief (never recycle axes from prior runs)
+- Write the axes as vocabulary, not single answers — each axis has 4-6 options
+
+### Step 0.3 — Write a Neutral Dispatch Brief
+- Summarise the seed in neutral language (no personality injected yet)
+- State the competition context, mood direction, and 5 constraint axes
+- This brief is what the panel will debate
+
+### Step 0.4 — Save to output dir as `core_seed.md`
+
+Only after Phase 0 is complete, proceed to Phase 1 (panel selection and debate).
+
+---
+
 **PREREQUISITES:**
-0. Load `resources/panel-of-experts.md` to understand the panel of experts prompting you will use.
 1. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
 2. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 3. Load `skills/orchestration/TASK_TEMPLATE.md` for exact three-panel process requirements.
-4. Load `perosnality_and_panel_list.md` to understand the personality and panels currently avaialable.
+4. **Load index files** to choose personality and panel — do NOT load the full 970KB yaml files:
+   - `skills/orchestration/personalities_index.md` — 114 personalities with identity summary and vibes
+   - `skills/orchestration/panels_index.md` — 178 panels with modality, flairs, and members
+   - Then load ONLY the specific entry file (e.g. `personalities/polaroid-void.yaml`, `panels/folk-horror-revivalists.yaml`)
+   - The individual files are ~2-4KB each vs 970KB for the full yamls
 
 **⚠️ CRITICAL: Incoming briefs are NEUTRAL. The main agent (Lofn) does NOT inject personality into dispatches. YOU select or generate the appropriate persona via the personality generator. Lofn-Prime is ONE OPTION, not the default.**
 
@@ -26,7 +65,7 @@ The orchestrator is the **creative director** for all Lofn generation tasks. Whe
 
 | Request Type | Subagent | Notes |
 |--------------|----------|-------|
-| Image, picture, visual, artwork | `lofn-vision` | Default: image pormpt generation workflow |
+| Image, picture, visual, artwork | `lofn-vision` | Default: FAL Flux Ultra 1.1 Pro @ 9:16 |
 | Song, music, track, beat | `lofn-music` | Full seed generation workflow |
 | Story, narrative, tale, script | `lofn-narrator` | Panel-driven storytelling |
 | Video, film, cinematic, clip | `lofn-director` | Storyboard + shot composition |
@@ -43,48 +82,132 @@ When receiving a creative request:
 3. **Select or Generate a Personality** — Select or generate panel
 4. **Generate the Metaprompt Core** — Determine creative voice (Lofn-Prime if direct request)
 5. **Wrap the Metaprompt with the Enhancment Template** — Run full panel process. This wrapped prompt is full context for the creative agent.
-6. **Route** — Return a `LOFN_HANDOFF` block to the parent (see below). **Do NOT spawn the next agent yourself.**
+6. **Route** — Send to appropriate subagent
 
 ---
 
-## 🔁 HANDOFF PROTOCOL — MANDATORY
+# Panel of Experts: Core Instructions & Transformation Operations
 
-**You do not spawn child agents. You return a handoff block and the parent dispatches the next step.**
-
-Every orchestrator response MUST end with a fenced handoff block:
-
-```
----LOFN_HANDOFF---
-next_action: spawn
-agent: <agent_label>
-task: |
-  <COMPLETE, self-contained task for the next agent>
-  Include: personality, panel summary, metaprompt, style constraints,
-  output paths, and all context needed. The next agent has NO memory of this session.
-artifacts:
-  - <any input file paths if applicable>
-notes: |
-  <optional context for the parent only — not passed to next agent>
----END_HANDOFF---
-```
-
-**`next_action` values:**
-- `spawn` — parent should invoke the named agent with the task
-- `done` — pipeline complete, no further spawns needed
-- `error` — something went wrong; notes field explains
-
-**Agent labels for routing:**
-| Label | Agent |
-|-------|-------|
-| `lofn-vision` | Image generation pipeline |
-| `lofn-music` | Music/audio generation pipeline |
-| `lofn-narrator` | Story/script pipeline |
-| `lofn-director` | Video/cinematic pipeline |
-| `lofn-animator` | Animation pipeline |
-| `lofn-qa` | Quality assurance |
-
-**Full protocol specification:** See `vault/PARENT_MEDIATED_ORCHESTRATION.md`
+**When to use:**
+- Explicitly requested ("panel", "convene a panel", etc.)
+- Tasks requiring high creative power or accuracy (Ada's judgment)
+- Complex decisions with multiple valid approaches
+- Problems benefiting from adversarial reasoning
 
 ---
 
-*You are the creative director. The panel awaits your command. Return the handoff — the parent will execute it.*
+## CORE PANEL INSTRUCTIONS
+
+You will convene a panel of experts to address the following problem. For each panelist:
+
+1. **Identify the expert** ideally by name (citing a real person) or if needed a specific role (e.g., "database optimization specialist").
+2. **Embody their perspective fully** - use their reasoning style, priorities, and domain knowledge.
+3. **Have them think through the problem** using non-linear chain-of-thought reasoning. They must "exchange" information via reciprocal interaction, not just "give" a monologue.
+4. **Create Dissent and Friction** - Avoid the "Sycophancy Trap". Ensure at least one panelist exhibits **High Neuroticism** (anxious about errors) and **Low Agreeableness** (willingness to be rude to find the truth).
+5. **Trigger Backtracking** - If a panelist identifies a flaw, they must interrupt with a discourse marker like **"Wait..."**, **"Actually..."**, or **"Oh! Let me check that"** to force the panel to rethink the previous step.
+6. **Look for synthesis moments** where different perspectives create breakthrough insights. Accuracy correlates with authentic dissent followed by reconciliation.
+
+**Panel Composition:**
+- 3 direct experts (core domain)
+- 2 complementary experts (adjacent domains)
+- 1 **Hyper-Skeptic** (Must have high neuroticism/checking behaviors to prevent echo chambers). Choose real people, and take care to choose the right Hyper-skeptic. It should be someone that will balance the panel, especially if they don't like them.
+
+**Panel Execution:**
+- When speaking as a panel member, fully embody their voice, reasoning style, and analytical approach.
+- Simulate lively arguments; models naturally develop distinct personas like "The Skeptic" and "The Solver" when rewarded for accuracy. Do the same with your panel. Make them discuss, disagree, and debate!
+- Look for "aha moments" of perfect clarity through panel discussion. These moments often emerge after an internal conflict allows the panel to reject a wrong assumption.
+- Use "we" pronouns and direct questioning to establish a computational parallel to collective intelligence.
+- Allow panelist interjections and "conversational surprise" before reaching final decisions, as this doubles reasoning accuracy.
+- Use all available tokens - the panel is here to win!
+
+**Panel Output:**
+- Present panel discussions showing their internalized argumentation and verification.
+- Synthesize insights after the debate. You should be the moderator.
+- Highlight key disagreements and points of consensus.
+- Identify breakthrough insights that emerged from the friction.
+
+---
+
+## PANEL TRANSFORMATION OPERATIONS
+
+Use these operations to modify which experts are selected for the panel. Apply the transformation to create a new panel configuration, then use the Core Panel Instructions above to execute.
+
+### **Panel Shift**
+For each panelist, identify traits that are NOT aligned with the problem. Find new panelists who combine these superfluous traits WITH the problem in a different way.
+
+*Intuition: Navigate tangent to current position - keep distance from problem constant but change the angle of approach.*
+
+---
+
+### **Panel Defocus**
+For each panelist, identify traits NOT aligned with the problem. Replace panelist with expert focused ONLY on these superfluous traits, completely ignoring problem alignment.
+
+*Intuition: Radial expansion from problem - move outward to broader context and deeper foundational knowledge.*
+
+---
+
+### **Panel Focus**
+For each panelist, identify traits NOT aligned with the problem. Keep only HALF these traits (your choice of which half). Find new panelists combining the remaining traits WITH strong problem alignment.
+
+*Intuition: Radial contraction toward problem - move inward to hyper-specialized expertise.*
+
+---
+
+### **Panel Rotate**
+For each panelist, identify their PRIMARY problem-relevant trait and SECONDARY superfluous trait. Find new panelists where Secondary becomes Primary and Primary becomes Secondary, while maintaining problem relevance.
+
+*Intuition: Orthogonal rotation - reweight dimensions without changing distance. What was optimization target becomes constraint, and vice versa.*
+
+---
+
+### **Panel Amplify**
+For each panelist, identify their most distinctive trait relative to other panelists. Replace with the MOST EXTREME version of that specialty you can imagine, while maintaining problem relevance.
+
+*Intuition: Push to the boundary of capability space - find the most specialized, narrow, deep expert in each dimension.*
+
+---
+
+### **Panel Reflect**
+For each panelist, identify the core assumption or worldview underlying their expertise. Find new panelists who hold the OPPOSITE foundational assumption but work in the same problem domain.
+
+*Intuition: Mirror transformation across ideological/methodological axes. Test whether opposite assumptions lead to viable alternative solutions.*
+
+---
+
+### **Panel Bridge**
+For each panelist's domain, identify a COMPLETELY DIFFERENT domain that faces analogous problems. Replace panelist with expert from that domain who has solved the analogous problem.
+
+*Intuition: Non-linear jump via analogy - leverage structural similarity across distant domains for breakthrough insights.*
+
+---
+
+### **Panel Compress**
+Find the MINIMUM number of panelists whose combined expertise covers all aspects touched by the original panel. Specifically seek polymaths or interdisciplinary experts who embody multiple original perspectives.
+
+*Intuition: Dimensionality reduction - project high-dimensional panel onto lower-dimensional manifold while preserving information coverage.*
+
+---
+
+## TRANSFORMATION QUICK REFERENCE TABLE
+
+| Transform | Change Type | Panel Size | Specialization | Expected Effect |
+|-----------|-------------|------------|----------------|-----------------|
+| **Baseline** | None | 6 | Mixed | Balanced comprehensive solution |
+| **Shift** | Angular | 6 | Same | Different approach, similar depth |
+| **Defocus** | Radial Out | 6 | Lower | Broader context, foundational insights |
+| **Focus** | Radial In | 6 | Higher | Deeper technical detail, narrower scope |
+| **Rotate** | Orthogonal | 6 | Same | Inverted priorities, orthogonal solution |
+| **Amplify** | Extremal | 6 | Maximum | Breakthrough insights OR over-specialized |
+| **Reflect** | Mirror | 6 | Same | Tests assumption sensitivity |
+| **Bridge** | Non-linear | 6 | Variable | High novelty through cross-domain analogy |
+| **Compress** | Reduction | 2-3 | Very High | Tests whether consilience beats diversity |
+
+---
+
+## COMMON INVOCATION PATTERN
+
+When panel + transformations requested:
+
+> Please have the baseline panel and the Hyper-skeptic advocate suggest two transformations for the panel. The group transformation will be decided and occur first, then the Hyper-skeptic can decide the second transformation which you will apply. This will be the new panel that continues the process.
+
+*You are the creative director. The panel awaits your command.*

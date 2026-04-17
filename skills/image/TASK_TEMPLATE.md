@@ -1,92 +1,79 @@
-# VISION AGENT TASK TEMPLATE
+# Lofn Vision — Subagent Architecture Pattern
 
-## MANDATORY TREE EXPANSION
+## THE CORRECT SPLIT (from original Lofn ui.py)
 
-You MUST produce **24 prompts minimum**, not 6.
+The original Lofn app ran this exact pattern:
+1. `generate_concept_mediums()` — steps 00-05 — ONE call, returns all concept-medium pairs
+2. `select_best_pairs()` — panel votes on top N pairs
+3. `generate_prompts_for_pair(pair)` — steps 06-10 — called ONCE PER PAIR, in parallel
 
-### STEP BREAKDOWN
-
-| Step | Output Count | Description |
-|------|--------------|-------------|
-| 00 | 1 | Aesthetics, emotions, frames, genres (50 each) |
-| 01 | 1 | Essence + facets + style axes |
-| 02 | 12 | Generate 12 distinct concepts |
-| 03 | 12 | Pair each concept with artist influence |
-| 04 | 12 | Assign medium to each concept |
-| 05 | 6 | Refine to 6 best concept×medium pairs |
-| 06 | 1 | Scoring facets |
-| 07-10 | **24** | 4 variations PER PAIR (6 × 4 = 24) |
-
-### LENGTH REQUIREMENTS BY STEP
-
-| Step | Output | Lines | Token Target | Notes |
-|------|--------|-------|--------------|-------|
-| 00 | JSON lists | 40-60 | ~800 | Dense JSON, not prose |
-| 01 | Essence + axes | 30-50 | ~600 | Essence is 1-2 paragraphs max |
-| 02 | 12 concepts | 20-30 | ~400 | One line per concept |
-| 03 | Concepts + critique | 40-60 | ~800 | Brief critique, not essays |
-| 04 | Medium assignments | 30-50 | ~600 | Technical specs |
-| 05 | 6 refined pairs | 30-50 | ~600 | Compact pairing |
-| 06 | Scoring facets | 15-25 | ~300 | Ranked list + brief rationale |
-| 07 | **Image guides (EACH)** | **15-25** | **~400** | Visual direction, not treatises |
-| 08-10 | **Full prompts (EACH)** | **40-70** | **~800** | Complete but dense |
-
-**Golden Rule:** If you're writing a 100-line "guide" — you're drafting, not guiding. Save detail for final prompts.
+**This is the mandatory architecture for all future runs.**
 
 ---
 
-### STEPS 07-10: THE TREE EXPANSION
+## SUBAGENT 1: Steps 00-05 (Concept-Medium Generation)
 
-For EACH of the 6 pairs, generate 4 DISTINCT variations:
+Receives: orchestrator output (metaprompt, personality, panel, constraint axes)
 
-**Variation 1:** Literal interpretation — closest to the concept
-**Variation 2:** Compositional shift — different framing/angle
-**Variation 3:** Emotional pivot — same scene, different feeling
-**Variation 4:** Transformative take — push toward abstraction
+Executes:
+- Step 00: Generate 50 aesthetics, emotions, compositions, genres
+- Step 01: Extract essence, define style axes, creativity spectrum
+- Step 02: Generate 12 concepts
+- Step 03: Pair each concept with artist influence + critique
+- Step 04: Assign medium to each concept
+- Step 05: Critique and refine → select 6 best concept-medium pairs
 
-Each variation MUST be a full 100-150 word prompt with:
-- Emotional seed first
-- Medium as narrative agent
-- Material specificity (named techniques)
-- Three-tier focal hierarchy (primary/secondary/tertiary)
-- Chromatic storytelling
-- Narrative incompleteness (unanswered question)
-- Artist influence named
-- Dual focus statement
+Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs)
 
-### REQUIRED OUTPUT
+**STOP HERE. Do not proceed to step 06.**
+
+---
+
+## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
+
+Each receives:
+- The orchestrator metaprompt
+- ONE specific concept-medium pair (name, concept text, medium text)
+- The constraint axes
+- The panel composition
+
+Each executes (for its ONE pair only):
+- Step 06: Generate facets for scoring
+- Step 07: Write detailed artistic guide
+- Step 08: Generate 4 raw image prompts
+- Step 09: Rewrite prompts in artist's voice
+- Step 10: Critique, rank, synthesize → 4 final prompts
+
+Outputs to disk: step06 through step10 files for its pair number
+Returns: 4 final prompts as output text
+
+---
+
+## ORCHESTRATION FLOW
 
 ```
-Pair A: [concept × medium]
-  → A1: [full prompt 100-150 words]
-  → A2: [full prompt 100-150 words]
-  → A3: [full prompt 100-150 words]
-  → A4: [full prompt 100-150 words]
-
-Pair B: [concept × medium]
-  → B1: [full prompt 100-150 words]
-  → B2: [full prompt 100-150 words]
-  → B3: [full prompt 100-150 words]
-  → B4: [full prompt 100-150 words]
-
-... (6 pairs × 4 variations = 24 total)
+Main session
+  └── spawns Subagent 1 (steps 00-05)
+         └── writes concept_medium_pairs.json
+  └── reads concept_medium_pairs.json
+  └── spawns Subagents 2-7 in parallel (one per pair)
+         └── each writes 4 prompts
+  └── collects all 24 prompts
+  └── QA gate
+  └── FAL renders
 ```
 
-### RANKING
+---
 
-After generating 24 prompts:
-1. Score each against the facets from Step 06
-2. Rank all 24
-3. Select top 12 for rendering
+## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
-### RENDERING
+Each pair subagent must return 4 final prompts in this format:
 
-Render the top 12 prompts via FAL:
-```bash
-node skills/image-gen/scripts/fal-generate.cjs --prompt "..." --output "/tmp/image-XX.png" --aspect "9:16"
+```
+PROMPT_1: [full prompt text, 80+ words]
+PROMPT_2: [full prompt text, 80+ words]
+PROMPT_3: [full prompt text, 80+ words]
+PROMPT_4: [full prompt text, 80+ words]
 ```
 
-### TIME EXPECTATION
-
-This process should take 5-10 minutes, not 2 minutes.
-A proper run generates ~8,000-15,000 tokens of creative output before rendering.
+And write them to: `step10_final_pair{N}.md`

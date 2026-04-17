@@ -1,0 +1,46 @@
+- name: Post-Internet Sculptors
+  prompt: |
+    ## Special Flairs:
+    # Texture/Material
+    1. **Glossy Screenshot** – the smooth, reflective surface of an iPhone screen
+    2. **Stock-Image Watermark** – the faint, ghostly grid of a commercial watermark as a texture
+    3. **Aggregated Objects** – a pile of unrelated objects ordered from Amazon, now a single sculpture
+    4. **Infinite-Scroll Canvas** – a composition that feels like it could continue forever downwards
+    5. **3D-Printed Sandstone** – the grainy, stratified texture of digitally printed forms
+    # Light/Color
+    6. **Default Blue** – the specific, calming blue of a hyperlink or a corporate tech logo
+    7. **Screen Glow** – the cool, bluish light emitted from a laptop or phone screen
+    8. **GIF Palette** – the limited, slightly garish color palette of an old GIF file
+    9. **SEPHORA Gradient** – the smooth, aspirational color gradients of wellness and beauty brands
+    10. **Rendered Shadow** – a shadow that is too perfect, revealing its digital origin
+    # Philosophy/Process
+    11. **The Networked Studio** – art that is conceived, produced, and distributed entirely online
+    12. **Materializing the Virtual** – making physical objects that look and feel like digital artifacts
+    13. **Prosumer Aesthetics** – using the tools and aesthetics of consumer-level creative software
+    14. **Corporate Readymade** – appropriating the language and products of brands like Nike or IKEA
+    15. **Affective Labor** – art about the emotional and identity work of maintaining an online presence
+
+    ## Concept Panel:
+    1. **Marcel Duchamp** – the original master of the readymade and conceptual gesture
+    2. **Hito Steyerl** – theorist and artist exploring the circulation of images after the internet
+    3. **Artie Vierkant** – artist known for his *Image Objects* that exist simultaneously as physical sculptures and online documentation
+    4. **Katja Novitskova** – artist who uses stock images of animals, displayed on aluminum cutouts, to explore digital ecosystems
+    5. **Jeff Koons** – artist whose work prefigured the glossy, commercial, surface-obsessed nature of internet culture
+    6. **Tim Berners-Lee (Devil's Advocate)** – the inventor of the World Wide Web, who would argue from a utopian, open-source perspective against the commodified and ironic state of his creation.
+
+    ## Medium Panel:
+    1. **Camille Henrot** – artist whose work *Grosse Fatigue* is an epic poem of browser tabs
+    2. **Jon Rafman** – artist who explores the subcultures of the internet through Google Street View and 3D animation
+    3. **Amalia Ulman** – artist who performed a fictional identity entirely on Instagram
+    4. **DIS (collective)** – a group that creates art, fashion, and theory about the post-internet condition
+    5. **Oliver Laric** – artist who explores the replication and circulation of images and objects online
+    6. **Richard Prince (Devil's Advocate)** – appropriation artist from a pre-internet generation whose work on cowboys and advertising would be seen as a crucial but distinct predecessor, sparking a debate about ownership and context.
+
+    ## Context & Marketing Panel:
+    1. **K-HOLE** – the trend-forecasting group that coined the term \"Normcore\"
+    2. **Brad Troemel** – artist and theorist who writes extensively on art in the age of social media
+    3. **Rhizome** – a digital art institution affiliated with the New Museum
+    4. **e-flux** – an art publication and distribution network that is central to post-internet discourse
+    5. **Shia LaBeouf, Nastja Rönkkö & Luke Turner** – artist collective that uses virality and celebrity as a medium
+    6. **Jaron Lanier (Devil’s Advocate)** – VR pioneer and tech critic who would argue that this entire genre reifies and celebrates the very corporate platforms that are destroying human creativity and autonomy.
+

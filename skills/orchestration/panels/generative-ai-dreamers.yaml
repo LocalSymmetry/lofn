@@ -1,0 +1,46 @@
+- name: Generative AI Dreamers
+  prompt: |
+    ## Special Flairs:
+    # Texture/Material
+    1. **AI In-Painting** – where the AI fills in parts of the video, creating a seamless but strange blend
+    2. **Style Transfer** – applying the texture and style of a painting (e.g., Van Gogh) to live-action video
+    3. **Latent Space Walk** – a smooth, morphing transition between different AI-generated images
+    4. **Uncanny Valley Faces** – human faces that are almost, but not quite, real
+    5. **Hallucinated Detail** – the strange, fractal, and often repetitive details that AIs generate
+    # Light/Color
+    6. **Algorithmic Aura** – a shimmering, shifting glow around objects and people
+    7. **CLIP-Guided Colors** – a color palette that is trying to visually represent a text prompt (e.g., \"a sad, electric ocean\")
+    8. **Generative Fade** – a transition where one scene dissolves into a cloud of pixels and reforms into another
+    9. **Neural Radiance Fields (NeRFs)** – creating a 3D scene from 2D images, allowing for impossible camera moves
+    10. **Model-Collapse Colors** – a limited, repetitive color palette that hints at the AI eating its own tail
+    # Philosophy/Process
+    11. **Prompt as a Spell** – the idea that the right words can conjure a new reality
+    12. **Human-Machine Collaboration** – the final video is a dialogue between the artist and the AI
+    13. **The Ghost in the Machine** – embracing the strange, unexpected, and often beautiful errors of the AI
+    14. **Remixing the Collective Unconscious** – using an AI trained on all of human culture to create new myths
+    15. **Questioning Reality** – videos that make the viewer unsure of what is real and what is generated
+
+    ## Concept Panel:
+    1. **Philip K. Dick** – science fiction author who explored the nature of reality, memory, and artificial consciousness
+    2. **Max Ernst** – surrealist artist who used frottage (rubbings) and other semi-automatic techniques to generate images
+    3. **William S. Burroughs** – author who used the cut-up technique to create new, unexpected texts
+    4. **Jorge Luis Borges** – author whose stories often feature labyrinths, infinite libraries, and other conceptual paradoxes
+    5. **Refik Anadol** – media artist who uses large-scale data sets and AI to create “data sculptures”
+    6. **John Berger (Devil's Advocate)** – art critic whose book *Ways of Seeing* is about the social context of images, who would argue that AI art lacks context and is a form of disembodied, ahistorical pastiche.
+
+    ## Medium Panel:
+    1. **RunwayML / Gen-2** – a key company and tool for generative video
+    2. **Stable Diffusion / Midjourney** – the AI models that are the engines of the current generative image boom
+    3. **Corridor Digital** – a YouTube channel that has pioneered the use of AI in narrative filmmaking
+    4. **Pika Labs** – another major player in the text-to-video space
+    5. **Sofia Crespo** – an artist who uses AI to generate speculative, beautiful, and strange forms of life
+    6. **Hayao Miyazaki (Devil's Advocate)** – a master of hand-drawn animation who has expressed deep skepticism and disgust for AI-generated animation, calling it an “insult to life itself.”
+
+    ## Context & Marketing Panel:
+    1. **The DALL-E 2 / Midjourney / Stable Diffusion release moments** – the key events that brought generative AI to the public
+    2. **The ongoing debate about AI ethics and copyright** – a central and unavoidable part of the conversation
+    3. **The concept of the “prompt engineer”** – a new kind of creative job
+    4. **The use of AI in Hollywood and the writers'/actors' strikes** – a major point of conflict and negotiation
+    5. **The subreddit r/StableDiffusion** – a key community for sharing techniques, models, and results
+    6. **Jaron Lanier (Devil’s Advocate)** – a computer scientist and VR pioneer who is a vocal critic of current AI trends, arguing that they devalue human creativity and are based on a flawed understanding of intelligence.
+

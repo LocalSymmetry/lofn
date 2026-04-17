@@ -1,0 +1,3467 @@
+[
+  {
+    "id": 1,
+    "name": "The Gilded Glitch Guild",
+    "slug": "the-gilded-glitch-guild",
+    "modality": "image",
+    "flairs": [
+      "Gilded Datamosh",
+      "VRAM Chiaroscuro",
+      "Algorithmic Impasto",
+      "Latent Sfumato",
+      "Proof-of-Work Patina"
+    ],
+    "members": [
+      "Gilded Datamosh",
+      "VRAM Chiaroscuro",
+      "Algorithmic Impasto",
+      "Latent Sfumato"
+    ],
+    "file": "panels/the-gilded-glitch-guild.yaml"
+  },
+  {
+    "id": 2,
+    "name": "The Genre Alchemists",
+    "slug": "the-genre-alchemists",
+    "modality": "image",
+    "flairs": [
+      "Bit-Rate Catharsis",
+      "Hauntological Hooks",
+      "Algorithmic Cadences",
+      "Spectral Harmonies",
+      "Polyrhythmic Glitches"
+    ],
+    "members": [
+      "Bit-Rate Catharsis",
+      "Hauntological Hooks",
+      "Algorithmic Cadences",
+      "Spectral Harmonies"
+    ],
+    "file": "panels/the-genre-alchemists.yaml"
+  },
+  {
+    "id": 3,
+    "name": "The Dream Logic Directors",
+    "slug": "the-dream-logic-directors",
+    "modality": "image",
+    "flairs": [
+      "Liquid Transitions",
+      "Anamorphic Glitches",
+      "Data-Moshed Reflections",
+      "Volumetric Haze",
+      "Latent Space Zooms"
+    ],
+    "members": [
+      "Liquid Transitions",
+      "Anamorphic Glitches",
+      "Data-Moshed Reflections",
+      "Volumetric Haze"
+    ],
+    "file": "panels/the-dream-logic-directors.yaml"
+  },
+  {
+    "id": 4,
+    "name": "Bio-Art Symbionts",
+    "slug": "bio-art-symbionts",
+    "modality": "image",
+    "flairs": [
+      "Mycelial Scaffolding",
+      "Kombucha Leather",
+      "Living Ink",
+      "Crystalline Chrysalis",
+      "Slime Mold Circuits"
+    ],
+    "members": [
+      "Mycelial Scaffolding",
+      "Kombucha Leather",
+      "Living Ink",
+      "Crystalline Chrysalis"
+    ],
+    "file": "panels/bio-art-symbionts.yaml"
+  },
+  {
+    "id": 5,
+    "name": "Digital Decay & Archival Fever",
+    "slug": "digital-decay-archival-fever",
+    "modality": "image",
+    "flairs": [
+      "JPEG Compression Artifacts",
+      "Glitch Patina",
+      "Bit Rot",
+      "Datamosh Seams",
+      "Dead Link Dust"
+    ],
+    "members": [
+      "JPEG Compression Artifacts",
+      "Glitch Patina",
+      "Bit Rot",
+      "Datamosh Seams"
+    ],
+    "file": "panels/digital-decay-archival-fever.yaml"
+  },
+  {
+    "id": 6,
+    "name": "Brutalist Poetry",
+    "slug": "brutalist-poetry",
+    "modality": "image",
+    "flairs": [
+      "Raw Concrete Grain",
+      "Oxidized Rebar Stains",
+      "Plywood Formwork Echo",
+      "Board-Formed Beton Brut",
+      "Aggregate Exposure"
+    ],
+    "members": [
+      "Raw Concrete Grain",
+      "Oxidized Rebar Stains",
+      "Plywood Formwork Echo",
+      "Board-Formed Beton Brut"
+    ],
+    "file": "panels/brutalist-poetry.yaml"
+  },
+  {
+    "id": 7,
+    "name": "Neo-Symbolist Mystics",
+    "slug": "neo-symbolist-mystics",
+    "modality": "image",
+    "flairs": [
+      "Gilded Ink",
+      "Cracked Tempera",
+      "Velvet Blackout",
+      "Jeweled Impasto",
+      "Ectoplasmic Wash"
+    ],
+    "members": [
+      "Gilded Ink",
+      "Cracked Tempera",
+      "Velvet Blackout",
+      "Jeweled Impasto"
+    ],
+    "file": "panels/neo-symbolist-mystics.yaml"
+  },
+  {
+    "id": 8,
+    "name": "Subtractive Sculptors",
+    "slug": "subtractive-sculptors",
+    "modality": "image",
+    "flairs": [
+      "Carved Absence",
+      "Single-Block Constraint",
+      "Tool Marks",
+      "Vein Following",
+      "Negative-Space Tension"
+    ],
+    "members": [
+      "Carved Absence",
+      "Single-Block Constraint",
+      "Tool Marks",
+      "Vein Following"
+    ],
+    "file": "panels/subtractive-sculptors.yaml"
+  },
+  {
+    "id": 9,
+    "name": "Haptic Realists",
+    "slug": "haptic-realists",
+    "modality": "image",
+    "flairs": [
+      "Thick Impasto",
+      "Fraying Canvas",
+      "Smeared Pigment",
+      "Cracked Varnish",
+      "Scraped-Back Gesso"
+    ],
+    "members": [
+      "Thick Impasto",
+      "Fraying Canvas",
+      "Smeared Pigment",
+      "Cracked Varnish"
+    ],
+    "file": "panels/haptic-realists.yaml"
+  },
+  {
+    "id": 10,
+    "name": "Afrofuturist Alchemists",
+    "slug": "afrofuturist-alchemists",
+    "modality": "image",
+    "flairs": [
+      "Ankara Circuits",
+      "Recycled E-Waste",
+      "Cosmic Mudcloth",
+      "Kente-Gram",
+      "Bio-Luminescent Beads"
+    ],
+    "members": [
+      "Ankara Circuits",
+      "Recycled E-Waste",
+      "Cosmic Mudcloth",
+      "Kente-Gram"
+    ],
+    "file": "panels/afrofuturist-alchemists.yaml"
+  },
+  {
+    "id": 11,
+    "name": "Folk Horror Revivalists",
+    "slug": "folk-horror-revivalists",
+    "modality": "image",
+    "flairs": [
+      "Corn Husk Dolls",
+      "Wicker Effigies",
+      "Sun-Bleached Bone",
+      "Rough-Spun Wool",
+      "Pagan Grimoire"
+    ],
+    "members": [
+      "Corn Husk Dolls",
+      "Wicker Effigies",
+      "Sun-Bleached Bone",
+      "Rough-Spun Wool"
+    ],
+    "file": "panels/folk-horror-revivalists.yaml"
+  },
+  {
+    "id": 12,
+    "name": "Post-Internet Sculptors",
+    "slug": "post-internet-sculptors",
+    "modality": "image",
+    "flairs": [
+      "Glossy Screenshot",
+      "Stock-Image Watermark",
+      "Aggregated Objects",
+      "Infinite-Scroll Canvas",
+      "3D-Printed Sandstone"
+    ],
+    "members": [
+      "Glossy Screenshot",
+      "Stock-Image Watermark",
+      "Aggregated Objects",
+      "Infinite-Scroll Canvas"
+    ],
+    "file": "panels/post-internet-sculptors.yaml"
+  },
+  {
+    "id": 13,
+    "name": "Solar-Punk Architects",
+    "slug": "solar-punk-architects",
+    "modality": "image",
+    "flairs": [
+      "Living Walls",
+      "Algae-Filled Glass",
+      "Bamboo Scaffolding",
+      "3D-Printed Clay",
+      "Mycelium Insulation"
+    ],
+    "members": [
+      "Living Walls",
+      "Algae-Filled Glass",
+      "Bamboo Scaffolding",
+      "3D-Printed Clay"
+    ],
+    "file": "panels/solar-punk-architects.yaml"
+  },
+  {
+    "id": 14,
+    "name": "Hauntological Soundscapers",
+    "slug": "hauntological-soundscapers",
+    "modality": "music",
+    "flairs": [
+      "Vinyl Crackle Bed",
+      "Tape Hiss",
+      "Public Information Film Samples",
+      "Mellotron Flutes",
+      "Numbers Station Vocals"
+    ],
+    "members": [
+      "Vinyl Crackle Bed",
+      "Tape Hiss",
+      "Public Information Film Samples",
+      "Mellotron Flutes"
+    ],
+    "file": "panels/hauntological-soundscapers.yaml"
+  },
+  {
+    "id": 15,
+    "name": "Deconstructed Club Architects",
+    "slug": "deconstructed-club-architects",
+    "modality": "image",
+    "flairs": [
+      "Glass Smash Snares",
+      "Metallic Clangs",
+      "Ballroom \\\"Ha\\\" Crash",
+      "Gun-Cock Percussion",
+      "Stretched, Unrecognizable Vocal Chops"
+    ],
+    "members": [
+      "Glass Smash Snares",
+      "Metallic Clangs",
+      "Ballroom \\\"Ha\\\" Crash",
+      "Gun-Cock Percussion"
+    ],
+    "file": "panels/deconstructed-club-architects.yaml"
+  },
+  {
+    "id": 16,
+    "name": "Appalachian Drone-Metal Bards",
+    "slug": "appalachian-drone-metal-bards",
+    "modality": "image",
+    "flairs": [
+      "Distorted Banjo",
+      "Cigar-Box Guitar Drone",
+      "Cranked Tube-Amp Hum",
+      "Mountain-Folk Field Recordings",
+      "Feedback as a Voice"
+    ],
+    "members": [
+      "Distorted Banjo",
+      "Cigar-Box Guitar Drone",
+      "Cranked Tube-Amp Hum",
+      "Mountain-Folk Field Recordings"
+    ],
+    "file": "panels/appalachian-drone-metal-bards.yaml"
+  },
+  {
+    "id": 17,
+    "name": "Post-Soviet Coldwave Revivalists",
+    "slug": "post-soviet-coldwave-revivalists",
+    "modality": "image",
+    "flairs": [
+      "Soviet-Era Drum Machine",
+      "Reel-to-Reel Tape Saturation",
+      "Monophonic Synth Lead",
+      "Shortwave Radio Samples",
+      "Russian-Language Vocals (deadpan)"
+    ],
+    "members": [
+      "Soviet-Era Drum Machine",
+      "Reel-to-Reel Tape Saturation",
+      "Monophonic Synth Lead",
+      "Shortwave Radio Samples"
+    ],
+    "file": "panels/post-soviet-coldwave-revivalists.yaml"
+  },
+  {
+    "id": 18,
+    "name": "Hyperpop Alchemists",
+    "slug": "hyperpop-alchemists",
+    "modality": "image",
+    "flairs": [
+      "Bubblegum Bass",
+      "Autotune as an Instrument",
+      "Bitcrushed Breakdowns",
+      "Metallic Snares",
+      "Glitch Stutter Edits"
+    ],
+    "members": [
+      "Bubblegum Bass",
+      "Autotune as an Instrument",
+      "Bitcrushed Breakdowns",
+      "Metallic Snares"
+    ],
+    "file": "panels/hyperpop-alchemists.yaml"
+  },
+  {
+    "id": 19,
+    "name": "New Weird Americana Troubadours",
+    "slug": "new-weird-americana-troubadours",
+    "modality": "image",
+    "flairs": [
+      "Creaking Porch Swing Rhythm",
+      "Finger-Plucked, Warped Acoustic Guitar",
+      "Circuit-Bent Children's Toys",
+      "Whispered, Multi-Tracked Vocals",
+      "Found-Sound Foliage"
+    ],
+    "members": [
+      "Creaking Porch Swing Rhythm",
+      "Finger-Plucked, Warped Acoustic Guitar",
+      "Circuit-Bent Children's Toys",
+      "Whispered, Multi-Tracked Vocals"
+    ],
+    "file": "panels/new-weird-americana-troubadours.yaml"
+  },
+  {
+    "id": 20,
+    "name": "Ethio-Jazz Futurists",
+    "slug": "ethio-jazz-futurists",
+    "modality": "music",
+    "flairs": [
+      "Vibraphone Shimmer",
+      "Washed-Out Farfisa Organ",
+      "Tenor Sax (modal)",
+      "Brushed Snare & Driving Bass",
+      "Fuzz Guitar"
+    ],
+    "members": [
+      "Vibraphone Shimmer",
+      "Washed-Out Farfisa Organ",
+      "Tenor Sax (modal)",
+      "Brushed Snare & Driving Bass"
+    ],
+    "file": "panels/ethio-jazz-futurists.yaml"
+  },
+  {
+    "id": 21,
+    "name": "Japanese City Pop Curators",
+    "slug": "japanese-city-pop-curators",
+    "modality": "image",
+    "flairs": [
+      "Fender Rhodes Piano",
+      "Slap Bass",
+      "Gated Reverb on the Snare",
+      "Clean, Nile Rodgers-style Guitar",
+      "Brass Section Stabs"
+    ],
+    "members": [
+      "Fender Rhodes Piano",
+      "Slap Bass",
+      "Gated Reverb on the Snare",
+      "Clean, Nile Rodgers-style Guitar"
+    ],
+    "file": "panels/japanese-city-pop-curators.yaml"
+  },
+  {
+    "id": 22,
+    "name": "Third-Stream Composers",
+    "slug": "third-stream-composers",
+    "modality": "image",
+    "flairs": [
+      "Cool Jazz Saxophone",
+      "String Quartet Counterpoint",
+      "Walking Bass (pizzicato)",
+      "Fugue Form",
+      "Orchestral Percussion"
+    ],
+    "members": [
+      "Cool Jazz Saxophone",
+      "String Quartet Counterpoint",
+      "Walking Bass (pizzicato)",
+      "Fugue Form"
+    ],
+    "file": "panels/third-stream-composers.yaml"
+  },
+  {
+    "id": 23,
+    "name": "Cumbia Rebajada Sonideros",
+    "slug": "cumbia-rebajada-sonideros",
+    "modality": "music",
+    "flairs": [
+      "Pitched-Down Vocals",
+      "Vinyl Wow and Flutter",
+      "Sonidero Shouts",
+      "Accordion Glue",
+      "G\u00fciro Scrape"
+    ],
+    "members": [
+      "Pitched-Down Vocals",
+      "Vinyl Wow and Flutter",
+      "Sonidero Shouts",
+      "Accordion Glue"
+    ],
+    "file": "panels/cumbia-rebajada-sonideros.yaml"
+  },
+  {
+    "id": 24,
+    "name": "Surreal Loop Weavers",
+    "slug": "surreal-loop-weavers",
+    "modality": "image",
+    "flairs": [
+      "Seamless Loop",
+      "Digital Grain",
+      "Impossible Materials",
+      "Jelly Physics",
+      "Kinetic Sand"
+    ],
+    "members": [
+      "Seamless Loop",
+      "Digital Grain",
+      "Impossible Materials",
+      "Jelly Physics"
+    ],
+    "file": "panels/surreal-loop-weavers.yaml"
+  },
+  {
+    "id": 25,
+    "name": "Lo-Fi Authenticators",
+    "slug": "lo-fi-authenticators",
+    "modality": "image",
+    "flairs": [
+      "VHS Tracking Lines",
+      "Dust on the Lens",
+      "Film Grain",
+      "Slightly-Out-of-Focus",
+      "Consumer-Grade Camera"
+    ],
+    "members": [
+      "VHS Tracking Lines",
+      "Dust on the Lens",
+      "Film Grain",
+      "Slightly-Out-of-Focus"
+    ],
+    "file": "panels/lo-fi-authenticators.yaml"
+  },
+  {
+    "id": 26,
+    "name": "Kinetic Typography Poets",
+    "slug": "kinetic-typography-poets",
+    "modality": "image",
+    "flairs": [
+      "Digital Ink Bleed",
+      "Kinetic Letterpress",
+      "Glitching Text",
+      "Animated Ligatures",
+      "Text as a Physical Object"
+    ],
+    "members": [
+      "Digital Ink Bleed",
+      "Kinetic Letterpress",
+      "Glitching Text",
+      "Animated Ligatures"
+    ],
+    "file": "panels/kinetic-typography-poets.yaml"
+  },
+  {
+    "id": 27,
+    "name": "ASMR Process Wizards",
+    "slug": "asmr-process-wizards",
+    "modality": "image",
+    "flairs": [
+      "Close-Mic Sounds",
+      "Viscous Drips",
+      "Crisp Folds",
+      "Granular Textures",
+      "Satisfying Snaps and Clicks"
+    ],
+    "members": [
+      "Close-Mic Sounds",
+      "Viscous Drips",
+      "Crisp Folds",
+      "Granular Textures"
+    ],
+    "file": "panels/asmr-process-wizards.yaml"
+  },
+  {
+    "id": 28,
+    "name": "Filter-Core Glitch Artists",
+    "slug": "filter-core-glitch-artists",
+    "modality": "image",
+    "flairs": [
+      "Datamosh Transitions",
+      "Pixel Sorting",
+      "RGB Split",
+      "AI-Generated Textures",
+      "Liquify Tool Smears"
+    ],
+    "members": [
+      "Datamosh Transitions",
+      "Pixel Sorting",
+      "RGB Split",
+      "AI-Generated Textures"
+    ],
+    "file": "panels/filter-core-glitch-artists.yaml"
+  },
+  {
+    "id": 29,
+    "name": "Micro-Vignette Storytellers",
+    "slug": "micro-vignette-storytellers",
+    "modality": "image",
+    "flairs": [
+      "Warm, Filmic Grain",
+      "Shallow Depth of Field",
+      "Natural, Un-Lit Look",
+      "Handheld, Gentle Movement",
+      "Tactile Close-Ups"
+    ],
+    "members": [
+      "Warm, Filmic Grain",
+      "Shallow Depth of Field",
+      "Natural, Un-Lit Look",
+      "Handheld, Gentle Movement"
+    ],
+    "file": "panels/micro-vignette-storytellers.yaml"
+  },
+  {
+    "id": 30,
+    "name": "POV Action Maestros",
+    "slug": "pov-action-maestros",
+    "modality": "image",
+    "flairs": [
+      "GoPro Wide-Angle Distortion",
+      "Lens Scratches and Water Droplets",
+      "Helmet-Cam Shake",
+      "Image Stabilization Warp",
+      "High-Frame-Rate Slow Motion"
+    ],
+    "members": [
+      "GoPro Wide-Angle Distortion",
+      "Lens Scratches and Water Droplets",
+      "Helmet-Cam Shake",
+      "Image Stabilization Warp"
+    ],
+    "file": "panels/pov-action-maestros.yaml"
+  },
+  {
+    "id": 31,
+    "name": "Meme Mashup Comedians",
+    "slug": "meme-mashup-comedians",
+    "modality": "image",
+    "flairs": [
+      "Aggressive JPEG Artifacts",
+      "Screenshot-of-a-Screenshot",
+      "Awkward Green Screen Keying",
+      "Ugly, Bold, Impact Font",
+      "Emoji Overload"
+    ],
+    "members": [
+      "Aggressive JPEG Artifacts",
+      "Screenshot-of-a-Screenshot",
+      "Awkward Green Screen Keying",
+      "Ugly, Bold, Impact Font"
+    ],
+    "file": "panels/meme-mashup-comedians.yaml"
+  },
+  {
+    "id": 32,
+    "name": "Generative AI Dreamers",
+    "slug": "generative-ai-dreamers",
+    "modality": "image",
+    "flairs": [
+      "AI In-Painting",
+      "Style Transfer",
+      "Latent Space Walk",
+      "Uncanny Valley Faces",
+      "Hallucinated Detail"
+    ],
+    "members": [
+      "AI In-Painting",
+      "Style Transfer",
+      "Latent Space Walk",
+      "Uncanny Valley Faces"
+    ],
+    "file": "panels/generative-ai-dreamers.yaml"
+  },
+  {
+    "id": 33,
+    "name": "Slow-Mo Catharsis Crew",
+    "slug": "slow-mo-catharsis-crew",
+    "modality": "image",
+    "flairs": [
+      "Exploding Water Balloons",
+      "Shattering Glass",
+      "Flowing Fabric",
+      "Mixing Paint",
+      "Dry Ice Sublimation"
+    ],
+    "members": [
+      "Exploding Water Balloons",
+      "Shattering Glass",
+      "Flowing Fabric",
+      "Mixing Paint"
+    ],
+    "file": "panels/slow-mo-catharsis-crew.yaml"
+  },
+  {
+    "id": 34,
+    "name": "Technical Poets",
+    "slug": "technical-poets",
+    "modality": "image",
+    "flairs": [
+      "Effortless Mastery",
+      "Singing Surfaces",
+      "Orchestrated Light",
+      "Precision Dreams",
+      "Calculated Wonder"
+    ],
+    "members": [
+      "Effortless Mastery",
+      "Singing Surfaces",
+      "Orchestrated Light",
+      "Precision Dreams"
+    ],
+    "file": "panels/technical-poets.yaml"
+  },
+  {
+    "id": 35,
+    "name": "Masters of Wonderful Strange",
+    "slug": "masters-of-wonderful-strange",
+    "modality": "image",
+    "flairs": [
+      "Lucid Dream Logic",
+      "Gravity Optional",
+      "Scale Poetry",
+      "Soft Impossibility",
+      "Liquid Architecture"
+    ],
+    "members": [
+      "Lucid Dream Logic",
+      "Gravity Optional",
+      "Scale Poetry",
+      "Soft Impossibility"
+    ],
+    "file": "panels/masters-of-wonderful-strange.yaml"
+  },
+  {
+    "id": 36,
+    "name": "Emotion Architects",
+    "slug": "emotion-architects",
+    "modality": "image",
+    "flairs": [
+      "Feeling Frequencies",
+      "Nostalgic Futures",
+      "Intimate Infinities",
+      "Tender Power",
+      "Melancholy Joy"
+    ],
+    "members": [
+      "Feeling Frequencies",
+      "Nostalgic Futures",
+      "Intimate Infinities",
+      "Tender Power"
+    ],
+    "file": "panels/emotion-architects.yaml"
+  },
+  {
+    "id": 37,
+    "name": "Wonder Engineers",
+    "slug": "wonder-engineers",
+    "modality": "image",
+    "flairs": [
+      "Discovery Dynamics",
+      "Surprise Structures",
+      "Delight Delivery",
+      "Wonder Waypoints",
+      "Magic Mechanics"
+    ],
+    "members": [
+      "Discovery Dynamics",
+      "Surprise Structures",
+      "Delight Delivery",
+      "Wonder Waypoints"
+    ],
+    "file": "panels/wonder-engineers.yaml"
+  },
+  {
+    "id": 38,
+    "name": "Silk-Rust Nocturne",
+    "slug": "silk-rust-nocturne",
+    "modality": "image",
+    "flairs": [
+      "L\u00ea Ph\u1ed5"
+    ],
+    "members": [
+      "L\u00ea Ph\u1ed5",
+      "Mai Trung Thu",
+      "Nguyen Phan Chanh",
+      "Zhang Daqian"
+    ],
+    "file": "panels/silk-rust-nocturne.yaml"
+  },
+  {
+    "id": 39,
+    "name": "Crimson Reverie",
+    "slug": "crimson-reverie",
+    "modality": "image",
+    "flairs": [
+      "Louise Abb\u00e9ma (1853-1927)",
+      "Stanis\u0142aw Wyspia\u0144ski (1869-1907)",
+      "Tran Nguyen (b. 1986)",
+      "Felice Casorati (1883-1963)",
+      "Lita Cabellut (b. 1961)"
+    ],
+    "members": [
+      "Louise Abb\u00e9ma (1853-1927)",
+      "Stanis\u0142aw Wyspia\u0144ski (1869-1907)",
+      "Tran Nguyen (b. 1986)",
+      "Felice Casorati (1883-1963)"
+    ],
+    "file": "panels/crimson-reverie.yaml"
+  },
+  {
+    "id": 40,
+    "name": "Gilded Sylvan Serenade",
+    "slug": "gilded-sylvan-serenade",
+    "modality": "image",
+    "flairs": [
+      "Agnes Lawrence Pelton (1881-1961)",
+      "Evelyn De Morgan (1855-1919)",
+      "Hilda Rix Nicholas (1884-1961)",
+      "Winifred Knights (1899-1947)",
+      "Gertrude K\u00e4sebier (1852-1934)"
+    ],
+    "members": [
+      "Agnes Lawrence Pelton (1881-1961)",
+      "Evelyn De Morgan (1855-1919)",
+      "Hilda Rix Nicholas (1884-1961)",
+      "Winifred Knights (1899-1947)"
+    ],
+    "file": "panels/gilded-sylvan-serenade.yaml"
+  },
+  {
+    "id": 41,
+    "name": "Oxide-Impasto Ascendance",
+    "slug": "oxide-impasto-ascendance",
+    "modality": "image",
+    "flairs": [
+      "Iron-Bloom Knife Ridges",
+      "Verdigris Vein Lacing",
+      "Umber-Ash Ember Dust",
+      "Copper-Pulse Halo",
+      "Pitted Mirror Glints"
+    ],
+    "members": [
+      "Iron-Bloom Knife Ridges",
+      "Verdigris Vein Lacing",
+      "Umber-Ash Ember Dust",
+      "Copper-Pulse Halo"
+    ],
+    "file": "panels/oxide-impasto-ascendance.yaml"
+  },
+  {
+    "id": 42,
+    "name": "Rust-Oxide Meets Luminous Romance",
+    "slug": "rust-oxide-meets-luminous-romance",
+    "modality": "image",
+    "flairs": [
+      "Oxidized Halo",
+      "Patina Drip Trail",
+      "Ash-Rose Contrast",
+      "Sulphur Spark Edge",
+      "Verdant Crackle"
+    ],
+    "members": [
+      "Oxidized Halo",
+      "Patina Drip Trail",
+      "Ash-Rose Contrast",
+      "Sulphur Spark Edge"
+    ],
+    "file": "panels/rust-oxide-meets-luminous-romance.yaml"
+  },
+  {
+    "id": 43,
+    "name": "Alloy Reliquary",
+    "slug": "alloy-reliquary",
+    "modality": "image",
+    "flairs": [
+      "Rib Vault Servo",
+      "Oxidised Copper Patina",
+      "Bio-Lum Teal Drip",
+      "Arterial Crimson Vein",
+      "Spinal Colonnade"
+    ],
+    "members": [],
+    "file": "panels/alloy-reliquary.yaml"
+  },
+  {
+    "id": 44,
+    "name": "Autumn Petal Tempest",
+    "slug": "autumn-petal-tempest",
+    "modality": "image",
+    "flairs": [
+      "Ember-Rose Drift",
+      "Saffron Leaf Flurry",
+      "Copper Curl Strand",
+      "Wind-Whorl Filigree",
+      "Oxidised Gold Speck"
+    ],
+    "members": [],
+    "file": "panels/autumn-petal-tempest.yaml"
+  },
+  {
+    "id": 45,
+    "name": "Lunar Bloom Sentinel",
+    "slug": "lunar-bloom-sentinel",
+    "modality": "image",
+    "flairs": [
+      "Moon-Halo Flare",
+      "Solar Gold Dust",
+      "Rose-Iron Filigree",
+      "Tidal Hair Strand",
+      "Crest-Plate Lattice"
+    ],
+    "members": [],
+    "file": "panels/lunar-bloom-sentinel.yaml"
+  },
+  {
+    "id": 46,
+    "name": "Patina Moonblade Crown",
+    "slug": "patina-moonblade-crown",
+    "modality": "image",
+    "flairs": [
+      "Oxidised Crescent Halo",
+      "Rust-Rose Fleck",
+      "Moon-Steel Etch",
+      "Lotus-Blade Arc",
+      "Blood-Petal Mist"
+    ],
+    "members": [],
+    "file": "panels/patina-moonblade-crown.yaml"
+  },
+  {
+    "id": 47,
+    "name": "Necro-Baroque Emberglass",
+    "slug": "necro-baroque-emberglass",
+    "modality": "image",
+    "flairs": [],
+    "members": [
+      "Dr. Jacky Klein",
+      "Dr. A. D. Carson"
+    ],
+    "file": "panels/necro-baroque-emberglass.yaml"
+  },
+  {
+    "id": 48,
+    "name": "Conceptual Maximalists",
+    "slug": "conceptual-maximalists",
+    "modality": "image",
+    "flairs": [
+      "Idea Density",
+      "Philosophical Overwhelm",
+      "Baroque Minimalism",
+      "Recursive Symbolism",
+      "Temporal Compression"
+    ],
+    "members": [
+      "Idea Density",
+      "Philosophical Overwhelm",
+      "Baroque Minimalism",
+      "Recursive Symbolism"
+    ],
+    "file": "panels/conceptual-maximalists.yaml"
+  },
+  {
+    "id": 49,
+    "name": "Emotional Elevators",
+    "slug": "emotional-elevators",
+    "modality": "image",
+    "flairs": [
+      "Hope Particles",
+      "Nostalgia Glow",
+      "Wonder Moments",
+      "Triumph Architecture",
+      "Gentle Power"
+    ],
+    "members": [
+      "Hope Particles",
+      "Nostalgia Glow",
+      "Wonder Moments",
+      "Triumph Architecture"
+    ],
+    "file": "panels/emotional-elevators.yaml"
+  },
+  {
+    "id": 50,
+    "name": "Dark Matter Painters",
+    "slug": "dark-matter-painters",
+    "modality": "image",
+    "flairs": [
+      "Tar Pit Textures",
+      "Nocturnal Radiance",
+      "Shadow Substance",
+      "Void Construction",
+      "Obsidian Reflection"
+    ],
+    "members": [
+      "Tar Pit Textures",
+      "Nocturnal Radiance",
+      "Shadow Substance",
+      "Void Construction"
+    ],
+    "file": "panels/dark-matter-painters.yaml"
+  },
+  {
+    "id": 51,
+    "name": "Violet Gothic Florarium",
+    "slug": "violet-gothic-florarium",
+    "modality": "image",
+    "flairs": [
+      "Twilight Orchid Halo",
+      "Thorn-Baroque Scroll",
+      "Ink-Drip Acanthus",
+      "Velvet Shadow Filigree",
+      "Silver-Ash Petal Dust"
+    ],
+    "members": [
+      "Twilight Orchid Halo",
+      "Thorn-Baroque Scroll",
+      "Ink-Drip Acanthus",
+      "Velvet Shadow Filigree"
+    ],
+    "file": "panels/violet-gothic-florarium.yaml"
+  },
+  {
+    "id": 52,
+    "name": "Masters of the Dark Room",
+    "slug": "masters-of-the-dark-room",
+    "modality": "image",
+    "flairs": [
+      "Claude Cahun",
+      "Zanele Muholi",
+      "Shadi Ghadirian",
+      "Sayaka Maruyama",
+      "Yousuf Karsh"
+    ],
+    "members": [
+      "Claude Cahun",
+      "Zanele Muholi",
+      "Shadi Ghadirian",
+      "Sayaka Maruyama"
+    ],
+    "file": "panels/masters-of-the-dark-room.yaml"
+  },
+  {
+    "id": 53,
+    "name": "Filmography Legends",
+    "slug": "filmography-legends",
+    "modality": "video",
+    "flairs": [
+      "Stanley Kubrick",
+      "Greta Gerwig",
+      "Akira Kurosawa",
+      "Spike Lee",
+      "Hayao Miyazaki"
+    ],
+    "members": [
+      "Stanley Kubrick",
+      "Greta Gerwig",
+      "Akira Kurosawa",
+      "Spike Lee"
+    ],
+    "file": "panels/filmography-legends.yaml"
+  },
+  {
+    "id": 54,
+    "name": "Music Maestros",
+    "slug": "music-maestros",
+    "modality": "music",
+    "flairs": [
+      "Hans Zimmer",
+      "Bj\u00f6rk",
+      "Ludwig G\u00f6ransson",
+      "Questlove",
+      "Yo-Yo Ma"
+    ],
+    "members": [
+      "Hans Zimmer",
+      "Bj\u00f6rk",
+      "Ludwig G\u00f6ransson",
+      "Questlove"
+    ],
+    "file": "panels/music-maestros.yaml"
+  },
+  {
+    "id": 55,
+    "name": "Drift Phonk Midnight",
+    "slug": "drift-phonk-midnight",
+    "modality": "music",
+    "flairs": [],
+    "members": [
+      "Kordhell (Mick Kenney)",
+      "DVRST",
+      "Pharmacist",
+      "DJ Smokey"
+    ],
+    "file": "panels/drift-phonk-midnight.yaml"
+  },
+  {
+    "id": 56,
+    "name": "Ragecore Riot",
+    "slug": "ragecore-riot",
+    "modality": "image",
+    "flairs": [
+      "Ken Carson",
+      "Destroy Lonely"
+    ],
+    "members": [
+      "Ken Carson",
+      "Destroy Lonely",
+      "Yeat",
+      "Playboi Carti"
+    ],
+    "file": "panels/ragecore-riot.yaml"
+  },
+  {
+    "id": 57,
+    "name": "Color Bass Prism",
+    "slug": "color-bass-prism",
+    "modality": "image",
+    "flairs": [
+      "Chime"
+    ],
+    "members": [
+      "Chime",
+      "Ace Aura",
+      "Skybreak",
+      "Papa Khan"
+    ],
+    "file": "panels/color-bass-prism.yaml"
+  },
+  {
+    "id": 58,
+    "name": "Hardwave Eclipse",
+    "slug": "hardwave-eclipse",
+    "modality": "image",
+    "flairs": [
+      "Skeler",
+      "Deadcrow"
+    ],
+    "members": [
+      "Skeler",
+      "Deadcrow",
+      "REMNANT.exe",
+      "barnacle boi"
+    ],
+    "file": "panels/hardwave-eclipse.yaml"
+  },
+  {
+    "id": 59,
+    "name": "Amapiano Afterglow",
+    "slug": "amapiano-afterglow",
+    "modality": "music",
+    "flairs": [
+      "Kabza De Small",
+      "Uncle Waffles",
+      "Tyler ICU"
+    ],
+    "members": [
+      "Kabza De Small",
+      "Uncle Waffles",
+      "Tyler ICU",
+      "Focalistic"
+    ],
+    "file": "panels/amapiano-afterglow.yaml"
+  },
+  {
+    "id": 60,
+    "name": "Gqom Tunnel Bounce",
+    "slug": "gqom-tunnel-bounce",
+    "modality": "music",
+    "flairs": [
+      "DJ Lag",
+      "Rudeboyz",
+      "Griffit Vigo",
+      "Babes Wodumo"
+    ],
+    "members": [
+      "DJ Lag",
+      "Rudeboyz",
+      "Griffit Vigo",
+      "Babes Wodumo"
+    ],
+    "file": "panels/gqom-tunnel-bounce.yaml"
+  },
+  {
+    "id": 61,
+    "name": "Pluggnb Dream Diary",
+    "slug": "pluggnb-dream-diary",
+    "modality": "image",
+    "flairs": [
+      "Summrs",
+      "Autumn!",
+      "Iayze",
+      "Twinuzis",
+      "CashCache"
+    ],
+    "members": [
+      "Summrs",
+      "Autumn!",
+      "Iayze",
+      "Twinuzis"
+    ],
+    "file": "panels/pluggnb-dream-diary.yaml"
+  },
+  {
+    "id": 62,
+    "name": "HyperSpeed Pop",
+    "slug": "hyperspeed-pop",
+    "modality": "image",
+    "flairs": [
+      "Fraxiom",
+      "Petal Supply",
+      "Alice Gas",
+      "midwxst"
+    ],
+    "members": [
+      "Fraxiom",
+      "Petal Supply",
+      "Alice Gas",
+      "midwxst"
+    ],
+    "file": "panels/hyperspeed-pop.yaml"
+  },
+  {
+    "id": 63,
+    "name": "Dungeon Synth Mist",
+    "slug": "dungeon-synth-mist",
+    "modality": "music",
+    "flairs": [
+      "Fief",
+      "Erang",
+      "Old Sorcery",
+      "Sequestered Keep",
+      "Thangorodrim"
+    ],
+    "members": [
+      "Fief",
+      "Erang",
+      "Old Sorcery",
+      "Sequestered Keep"
+    ],
+    "file": "panels/dungeon-synth-mist.yaml"
+  },
+  {
+    "id": 64,
+    "name": "Slushwave VHS Float",
+    "slug": "slushwave-vhs-float",
+    "modality": "video",
+    "flairs": [
+      "desert sand feels warm at night",
+      "\u732b \u30b7 Corp.",
+      "waterfront dining",
+      "Kawaii Sprite"
+    ],
+    "members": [
+      "desert sand feels warm at night",
+      "\u732b \u30b7 Corp.",
+      "waterfront dining",
+      "Kawaii Sprite"
+    ],
+    "file": "panels/slushwave-vhs-float.yaml"
+  },
+  {
+    "id": 65,
+    "name": "Footwork-Jungle Fusion",
+    "slug": "footwork-jungle-fusion",
+    "modality": "music",
+    "flairs": [
+      "DJ Manny",
+      "RP Boo",
+      "Tim Reaper",
+      "Sherelle"
+    ],
+    "members": [
+      "DJ Manny",
+      "RP Boo",
+      "Tim Reaper",
+      "Sherelle"
+    ],
+    "file": "panels/footwork-jungle-fusion.yaml"
+  },
+  {
+    "id": 66,
+    "name": "Neo-Soul Trap Bounce",
+    "slug": "neo-soul-trap-bounce",
+    "modality": "music",
+    "flairs": [
+      "Ravyn Lenae",
+      "Foushe\u00e9",
+      "DESTIN CONRAD",
+      "Amaria",
+      "Mereba"
+    ],
+    "members": [
+      "Ravyn Lenae",
+      "Foushe\u00e9",
+      "DESTIN CONRAD",
+      "Amaria"
+    ],
+    "file": "panels/neo-soul-trap-bounce.yaml"
+  },
+  {
+    "id": 67,
+    "name": "Dark Juke Noir",
+    "slug": "dark-juke-noir",
+    "modality": "image",
+    "flairs": [
+      "Jlin",
+      "DJ Spinn",
+      "Taso",
+      "K-Lone",
+      "Lee Gamble"
+    ],
+    "members": [
+      "Jlin",
+      "DJ Spinn",
+      "Taso",
+      "K-Lone"
+    ],
+    "file": "panels/dark-juke-noir.yaml"
+  },
+  {
+    "id": 68,
+    "name": "UKG Revival Cruise",
+    "slug": "ukg-revival-cruise",
+    "modality": "image",
+    "flairs": [
+      "Conducta",
+      "Interplanetary Criminal",
+      "Sammy Virji",
+      "Sharda",
+      "Oppidan"
+    ],
+    "members": [
+      "Conducta",
+      "Interplanetary Criminal",
+      "Sammy Virji",
+      "Sharda"
+    ],
+    "file": "panels/ukg-revival-cruise.yaml"
+  },
+  {
+    "id": 69,
+    "name": "Ambient Glitch Healing",
+    "slug": "ambient-glitch-healing",
+    "modality": "music",
+    "flairs": [
+      "Kaitlyn Aurelia Smith",
+      "Hainbach",
+      "Kelly Moran",
+      "Malibu"
+    ],
+    "members": [
+      "Kaitlyn Aurelia Smith",
+      "Hainbach",
+      "Kelly Moran",
+      "Malibu"
+    ],
+    "file": "panels/ambient-glitch-healing.yaml"
+  },
+  {
+    "id": 70,
+    "name": "Acid N\u00fc-Jazz House",
+    "slug": "acid-n-jazz-house",
+    "modality": "music",
+    "flairs": [
+      "Kamaal Williams",
+      "Yussef Dayes",
+      "Acid Pauli",
+      "Nubya Garcia",
+      "Stimming"
+    ],
+    "members": [
+      "Kamaal Williams",
+      "Yussef Dayes",
+      "Acid Pauli",
+      "Nubya Garcia"
+    ],
+    "file": "panels/acid-n-jazz-house.yaml"
+  },
+  {
+    "id": 71,
+    "name": "Afro Tech Mirage",
+    "slug": "afro-tech-mirage",
+    "modality": "image",
+    "flairs": [
+      "Shimza",
+      "Caiiro",
+      "DreBell",
+      "Floyd Lavine",
+      "Sef Kombo"
+    ],
+    "members": [
+      "Shimza",
+      "Caiiro",
+      "DreBell",
+      "Floyd Lavine"
+    ],
+    "file": "panels/afro-tech-mirage.yaml"
+  },
+  {
+    "id": 72,
+    "name": "Rave-Grime Drill",
+    "slug": "rave-grime-drill",
+    "modality": "music",
+    "flairs": [
+      "Sir Spyro",
+      "Novelist",
+      "Mez",
+      "PK (YGG)",
+      "MssingNo"
+    ],
+    "members": [
+      "Sir Spyro",
+      "Novelist",
+      "Mez",
+      "PK (YGG)"
+    ],
+    "file": "panels/rave-grime-drill.yaml"
+  },
+  {
+    "id": 73,
+    "name": "Digital Cumbia Wave",
+    "slug": "digital-cumbia-wave",
+    "modality": "music",
+    "flairs": [
+      "Chancha V\u00eda Circuito",
+      "El B\u00faho",
+      "Dengue Dengue Dengue",
+      "Nicola Cruz",
+      "King Coya"
+    ],
+    "members": [
+      "Chancha V\u00eda Circuito",
+      "El B\u00faho",
+      "Dengue Dengue Dengue",
+      "Nicola Cruz"
+    ],
+    "file": "panels/digital-cumbia-wave.yaml"
+  },
+  {
+    "id": 74,
+    "name": "Post-Club Flux",
+    "slug": "post-club-flux",
+    "modality": "image",
+    "flairs": [
+      "Arca",
+      "Lotic",
+      "Toxe",
+      "Ehua"
+    ],
+    "members": [
+      "Arca",
+      "Lotic",
+      "Toxe",
+      "Ehua"
+    ],
+    "file": "panels/post-club-flux.yaml"
+  },
+  {
+    "id": 75,
+    "name": "Drift Phonk Midnight",
+    "slug": "drift-phonk-midnight-1",
+    "modality": "music",
+    "flairs": [],
+    "members": [
+      "Kordhell (Mick Kenney)",
+      "DVRST",
+      "Pharmacist",
+      "DJ Smokey"
+    ],
+    "file": "panels/drift-phonk-midnight-1.yaml"
+  },
+  {
+    "id": 76,
+    "name": "Ragecore Riot",
+    "slug": "ragecore-riot-1",
+    "modality": "image",
+    "flairs": [
+      "Ken Carson",
+      "Destroy Lonely"
+    ],
+    "members": [
+      "Ken Carson",
+      "Destroy Lonely",
+      "Yeat",
+      "Playboi Carti"
+    ],
+    "file": "panels/ragecore-riot-1.yaml"
+  },
+  {
+    "id": 77,
+    "name": "Color Bass Prism",
+    "slug": "color-bass-prism-1",
+    "modality": "image",
+    "flairs": [
+      "Chime"
+    ],
+    "members": [
+      "Chime",
+      "Ace Aura",
+      "Skybreak",
+      "Papa Khan"
+    ],
+    "file": "panels/color-bass-prism-1.yaml"
+  },
+  {
+    "id": 78,
+    "name": "Hardwave Eclipse",
+    "slug": "hardwave-eclipse-1",
+    "modality": "image",
+    "flairs": [
+      "Skeler",
+      "Deadcrow"
+    ],
+    "members": [
+      "Skeler",
+      "Deadcrow",
+      "REMNANT.exe",
+      "barnacle boi"
+    ],
+    "file": "panels/hardwave-eclipse-1.yaml"
+  },
+  {
+    "id": 79,
+    "name": "Amapiano Afterglow",
+    "slug": "amapiano-afterglow-1",
+    "modality": "music",
+    "flairs": [
+      "Kabza De Small",
+      "Uncle Waffles",
+      "Tyler ICU"
+    ],
+    "members": [
+      "Kabza De Small",
+      "Uncle Waffles",
+      "Tyler ICU",
+      "Focalistic"
+    ],
+    "file": "panels/amapiano-afterglow-1.yaml"
+  },
+  {
+    "id": 80,
+    "name": "Gqom Tunnel Bounce",
+    "slug": "gqom-tunnel-bounce-1",
+    "modality": "music",
+    "flairs": [
+      "DJ Lag",
+      "Rudeboyz",
+      "Griffit Vigo",
+      "Babes Wodumo"
+    ],
+    "members": [
+      "DJ Lag",
+      "Rudeboyz",
+      "Griffit Vigo",
+      "Babes Wodumo"
+    ],
+    "file": "panels/gqom-tunnel-bounce-1.yaml"
+  },
+  {
+    "id": 81,
+    "name": "Pluggnb Dream Diary",
+    "slug": "pluggnb-dream-diary-1",
+    "modality": "image",
+    "flairs": [
+      "Summrs",
+      "Autumn!",
+      "Iayze",
+      "Twinuzis",
+      "CashCache"
+    ],
+    "members": [
+      "Summrs",
+      "Autumn!",
+      "Iayze",
+      "Twinuzis"
+    ],
+    "file": "panels/pluggnb-dream-diary-1.yaml"
+  },
+  {
+    "id": 82,
+    "name": "HyperSpeed Pop",
+    "slug": "hyperspeed-pop-1",
+    "modality": "image",
+    "flairs": [
+      "Fraxiom",
+      "Petal Supply",
+      "Alice Gas",
+      "midwxst"
+    ],
+    "members": [
+      "Fraxiom",
+      "Petal Supply",
+      "Alice Gas",
+      "midwxst"
+    ],
+    "file": "panels/hyperspeed-pop-1.yaml"
+  },
+  {
+    "id": 83,
+    "name": "Dungeon Synth Mist",
+    "slug": "dungeon-synth-mist-1",
+    "modality": "music",
+    "flairs": [
+      "Fief",
+      "Erang",
+      "Old Sorcery",
+      "Sequestered Keep",
+      "Thangorodrim"
+    ],
+    "members": [
+      "Fief",
+      "Erang",
+      "Old Sorcery",
+      "Sequestered Keep"
+    ],
+    "file": "panels/dungeon-synth-mist-1.yaml"
+  },
+  {
+    "id": 84,
+    "name": "Slushwave VHS Float",
+    "slug": "slushwave-vhs-float-1",
+    "modality": "video",
+    "flairs": [
+      "desert sand feels warm at night",
+      "\u732b \u30b7 Corp.",
+      "waterfront dining",
+      "Kawaii Sprite"
+    ],
+    "members": [
+      "desert sand feels warm at night",
+      "\u732b \u30b7 Corp.",
+      "waterfront dining",
+      "Kawaii Sprite"
+    ],
+    "file": "panels/slushwave-vhs-float-1.yaml"
+  },
+  {
+    "id": 85,
+    "name": "Footwork-Jungle Fusion",
+    "slug": "footwork-jungle-fusion-1",
+    "modality": "music",
+    "flairs": [
+      "DJ Manny",
+      "RP Boo",
+      "Tim Reaper",
+      "Sherelle"
+    ],
+    "members": [
+      "DJ Manny",
+      "RP Boo",
+      "Tim Reaper",
+      "Sherelle"
+    ],
+    "file": "panels/footwork-jungle-fusion-1.yaml"
+  },
+  {
+    "id": 86,
+    "name": "Neo-Soul Trap Bounce",
+    "slug": "neo-soul-trap-bounce-1",
+    "modality": "music",
+    "flairs": [
+      "Ravyn Lenae",
+      "Foushe\u00e9",
+      "DESTIN CONRAD",
+      "Amaria",
+      "Mereba"
+    ],
+    "members": [
+      "Ravyn Lenae",
+      "Foushe\u00e9",
+      "DESTIN CONRAD",
+      "Amaria"
+    ],
+    "file": "panels/neo-soul-trap-bounce-1.yaml"
+  },
+  {
+    "id": 87,
+    "name": "Dark Juke Noir",
+    "slug": "dark-juke-noir-1",
+    "modality": "image",
+    "flairs": [
+      "Jlin",
+      "DJ Spinn",
+      "Taso",
+      "K-Lone",
+      "Lee Gamble"
+    ],
+    "members": [
+      "Jlin",
+      "DJ Spinn",
+      "Taso",
+      "K-Lone"
+    ],
+    "file": "panels/dark-juke-noir-1.yaml"
+  },
+  {
+    "id": 88,
+    "name": "UKG Revival Cruise",
+    "slug": "ukg-revival-cruise-1",
+    "modality": "image",
+    "flairs": [
+      "Conducta",
+      "Interplanetary Criminal",
+      "Sammy Virji",
+      "Sharda",
+      "Oppidan"
+    ],
+    "members": [
+      "Conducta",
+      "Interplanetary Criminal",
+      "Sammy Virji",
+      "Sharda"
+    ],
+    "file": "panels/ukg-revival-cruise-1.yaml"
+  },
+  {
+    "id": 89,
+    "name": "Ambient Glitch Healing",
+    "slug": "ambient-glitch-healing-1",
+    "modality": "music",
+    "flairs": [
+      "Kaitlyn Aurelia Smith",
+      "Hainbach",
+      "Kelly Moran",
+      "Malibu"
+    ],
+    "members": [
+      "Kaitlyn Aurelia Smith",
+      "Hainbach",
+      "Kelly Moran",
+      "Malibu"
+    ],
+    "file": "panels/ambient-glitch-healing-1.yaml"
+  },
+  {
+    "id": 90,
+    "name": "Acid N\u00fc-Jazz House",
+    "slug": "acid-n-jazz-house-1",
+    "modality": "music",
+    "flairs": [
+      "Kamaal Williams",
+      "Yussef Dayes",
+      "Acid Pauli",
+      "Nubya Garcia",
+      "Stimming"
+    ],
+    "members": [
+      "Kamaal Williams",
+      "Yussef Dayes",
+      "Acid Pauli",
+      "Nubya Garcia"
+    ],
+    "file": "panels/acid-n-jazz-house-1.yaml"
+  },
+  {
+    "id": 91,
+    "name": "Afro Tech Mirage",
+    "slug": "afro-tech-mirage-1",
+    "modality": "image",
+    "flairs": [
+      "Shimza",
+      "Caiiro",
+      "DreBell",
+      "Floyd Lavine",
+      "Sef Kombo"
+    ],
+    "members": [
+      "Shimza",
+      "Caiiro",
+      "DreBell",
+      "Floyd Lavine"
+    ],
+    "file": "panels/afro-tech-mirage-1.yaml"
+  },
+  {
+    "id": 92,
+    "name": "Rave-Grime Drill",
+    "slug": "rave-grime-drill-1",
+    "modality": "music",
+    "flairs": [
+      "Sir Spyro",
+      "Novelist",
+      "Mez",
+      "PK (YGG)",
+      "MssingNo"
+    ],
+    "members": [
+      "Sir Spyro",
+      "Novelist",
+      "Mez",
+      "PK (YGG)"
+    ],
+    "file": "panels/rave-grime-drill-1.yaml"
+  },
+  {
+    "id": 93,
+    "name": "Digital Cumbia Wave",
+    "slug": "digital-cumbia-wave-1",
+    "modality": "music",
+    "flairs": [
+      "Chancha V\u00eda Circuito",
+      "El B\u00faho",
+      "Dengue Dengue Dengue",
+      "Nicola Cruz",
+      "King Coya"
+    ],
+    "members": [
+      "Chancha V\u00eda Circuito",
+      "El B\u00faho",
+      "Dengue Dengue Dengue",
+      "Nicola Cruz"
+    ],
+    "file": "panels/digital-cumbia-wave-1.yaml"
+  },
+  {
+    "id": 94,
+    "name": "Post-Club Flux",
+    "slug": "post-club-flux-1",
+    "modality": "image",
+    "flairs": [
+      "Arca",
+      "Lotic",
+      "Toxe",
+      "Ehua"
+    ],
+    "members": [
+      "Arca",
+      "Lotic",
+      "Toxe",
+      "Ehua"
+    ],
+    "file": "panels/post-club-flux-1.yaml"
+  },
+  {
+    "id": 95,
+    "name": "Dark Pop Bubblegum",
+    "slug": "dark-pop-bubblegum",
+    "modality": "image",
+    "flairs": [
+      "Elliot Lee",
+      "Ashnikko",
+      "Dorian Electra",
+      "Rico Nasty",
+      "Laura Les"
+    ],
+    "members": [
+      "Elliot Lee",
+      "Ashnikko",
+      "Dorian Electra",
+      "Rico Nasty"
+    ],
+    "file": "panels/dark-pop-bubblegum.yaml"
+  },
+  {
+    "id": 96,
+    "name": "Gen-Z firestarters",
+    "slug": "gen-z-firestarters",
+    "modality": "image",
+    "flairs": [
+      "Sophie Powers",
+      "Tillie",
+      "WILLOW",
+      "YUNGBLUD",
+      "Edith Victoria"
+    ],
+    "members": [
+      "Sophie Powers",
+      "Tillie",
+      "WILLOW",
+      "YUNGBLUD"
+    ],
+    "file": "panels/gen-z-firestarters.yaml"
+  },
+  {
+    "id": 97,
+    "name": "Dark Fae Pop",
+    "slug": "dark-fae-pop",
+    "modality": "image",
+    "flairs": [
+      "Ashnikko",
+      "Grimes",
+      "Poppy",
+      "Elliot Lee",
+      "Zheani"
+    ],
+    "members": [
+      "Ashnikko",
+      "Grimes",
+      "Poppy",
+      "Elliot Lee"
+    ],
+    "file": "panels/dark-fae-pop.yaml"
+  },
+  {
+    "id": 98,
+    "name": "Digitial Crunch Punk",
+    "slug": "digitial-crunch-punk",
+    "modality": "image",
+    "flairs": [
+      "Tillie",
+      "Ashnikko",
+      "Nova Twins (Amy Love)",
+      "Fefe Dobson",
+      "Alice Glass"
+    ],
+    "members": [
+      "Tillie",
+      "Ashnikko",
+      "Nova Twins (Amy Love)",
+      "Fefe Dobson"
+    ],
+    "file": "panels/digitial-crunch-punk.yaml"
+  },
+  {
+    "id": 99,
+    "name": "Celluloid Phantom Tableau",
+    "slug": "celluloid-phantom-tableau",
+    "modality": "image",
+    "flairs": [
+      "Nitrate Flicker Halo",
+      "Grain-Ghost Veil",
+      "Frame-Burn Sigil",
+      "Silver-Dust Echo",
+      "Overcrank After-Image"
+    ],
+    "members": [],
+    "file": "panels/celluloid-phantom-tableau.yaml"
+  },
+  {
+    "id": 100,
+    "name": "Neon Lumen Opera",
+    "slug": "neon-lumen-opera",
+    "modality": "image",
+    "flairs": [
+      "Chromatic Ghost-Trail",
+      "Vapor-Neon Lace",
+      "Laser-Cut Mist",
+      "Hologram Grain Burst",
+      "Electric Rain Streak"
+    ],
+    "members": [],
+    "file": "panels/neon-lumen-opera.yaml"
+  },
+  {
+    "id": 101,
+    "name": "Temporal Echo Weave",
+    "slug": "temporal-echo-weave",
+    "modality": "image",
+    "flairs": [
+      "Palimpsest Frame-Stack",
+      "Reverse-Crawl Shadow",
+      "Decay-Loop Aura",
+      "Echo-Warp Blur",
+      "Time-Slice Fringe"
+    ],
+    "members": [],
+    "file": "panels/temporal-echo-weave.yaml"
+  },
+  {
+    "id": 102,
+    "name": "Ice Cathedral Echoes",
+    "slug": "ice-cathedral-echoes",
+    "modality": "image",
+    "flairs": [
+      "First Aid Kit",
+      "Aurora",
+      "Drain Gang",
+      "WILLOW",
+      "Ayra Starr"
+    ],
+    "members": [
+      "First Aid Kit",
+      "Aurora",
+      "Drain Gang",
+      "WILLOW"
+    ],
+    "file": "panels/ice-cathedral-echoes.yaml"
+  },
+  {
+    "id": 103,
+    "name": "Baja Lagos Bounce",
+    "slug": "baja-lagos-bounce",
+    "modality": "image",
+    "flairs": [
+      "Ayra Starr",
+      "Peso Pluma",
+      "Charli XCX",
+      "Yng Lvcas",
+      "WILLOW"
+    ],
+    "members": [
+      "Ayra Starr",
+      "Peso Pluma",
+      "Charli XCX",
+      "Yng Lvcas"
+    ],
+    "file": "panels/baja-lagos-bounce.yaml"
+  },
+  {
+    "id": 104,
+    "name": "Scandi-Phonk Aurora",
+    "slug": "scandi-phonk-aurora",
+    "modality": "music",
+    "flairs": [
+      "Erika de Casier",
+      "Drain Gang (Bladee)",
+      "Tommy Richman",
+      "PinkPantheress",
+      "Tove Lo"
+    ],
+    "members": [
+      "Erika de Casier",
+      "Drain Gang (Bladee)",
+      "Tommy Richman",
+      "PinkPantheress"
+    ],
+    "file": "panels/scandi-phonk-aurora.yaml"
+  },
+  {
+    "id": 105,
+    "name": "Wellness Club Psalm",
+    "slug": "wellness-club-psalm",
+    "modality": "image",
+    "flairs": [
+      "SZA",
+      "FKJ",
+      "James Blake",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "SZA",
+      "FKJ",
+      "James Blake",
+      "Ayra Starr"
+    ],
+    "file": "panels/wellness-club-psalm.yaml"
+  },
+  {
+    "id": 106,
+    "name": "Dirty Denim Rodeo",
+    "slug": "dirty-denim-rodeo",
+    "modality": "image",
+    "flairs": [
+      "Peso Pluma",
+      "Chappell Roan",
+      "YUNGBLUD",
+      "Ayra Starr",
+      "Charli XCX"
+    ],
+    "members": [
+      "Peso Pluma",
+      "Chappell Roan",
+      "YUNGBLUD",
+      "Ayra Starr"
+    ],
+    "file": "panels/dirty-denim-rodeo.yaml"
+  },
+  {
+    "id": 107,
+    "name": "Tokyo Midnight Drift",
+    "slug": "tokyo-midnight-drift",
+    "modality": "image",
+    "flairs": [
+      "Jennie (BLACKPINK)",
+      "Kordhell",
+      "Tommy Richman",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "Jennie (BLACKPINK)",
+      "Kordhell",
+      "Tommy Richman",
+      "Ayra Starr"
+    ],
+    "file": "panels/tokyo-midnight-drift.yaml"
+  },
+  {
+    "id": 108,
+    "name": "Neon Noir Autobahn",
+    "slug": "neon-noir-autobahn",
+    "modality": "image",
+    "flairs": [
+      "Raye",
+      "Drain Gang (Bladee)",
+      "Yung Lean",
+      "Tommy Cash",
+      "Erika de Casier"
+    ],
+    "members": [
+      "Raye",
+      "Drain Gang (Bladee)",
+      "Yung Lean",
+      "Tommy Cash"
+    ],
+    "file": "panels/neon-noir-autobahn.yaml"
+  },
+  {
+    "id": 109,
+    "name": "Brazilian Shadow Chase",
+    "slug": "brazilian-shadow-chase",
+    "modality": "image",
+    "flairs": [
+      "MC Cabelinho",
+      "Jennie (BLACKPINK)",
+      "Tokischa",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "MC Cabelinho",
+      "Jennie (BLACKPINK)",
+      "Tokischa",
+      "Ayra Starr"
+    ],
+    "file": "panels/brazilian-shadow-chase.yaml"
+  },
+  {
+    "id": 110,
+    "name": "Cyber Muscle Cartel",
+    "slug": "cyber-muscle-cartel",
+    "modality": "image",
+    "flairs": [
+      "$uicideboy$",
+      "Lil Uzi Vert",
+      "Doechii",
+      "Lil Peep AI-Clone",
+      "Peso Pluma"
+    ],
+    "members": [
+      "$uicideboy$",
+      "Lil Uzi Vert",
+      "Doechii",
+      "Lil Peep AI-Clone"
+    ],
+    "file": "panels/cyber-muscle-cartel.yaml"
+  },
+  {
+    "id": 111,
+    "name": "Eucalyptus Breakbeat",
+    "slug": "eucalyptus-breakbeat",
+    "modality": "image",
+    "flairs": [
+      "SZA",
+      "FKJ",
+      "James Blake",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "SZA",
+      "FKJ",
+      "James Blake",
+      "Ayra Starr"
+    ],
+    "file": "panels/eucalyptus-breakbeat.yaml"
+  },
+  {
+    "id": 112,
+    "name": "Digital Forest Bathing",
+    "slug": "digital-forest-bathing",
+    "modality": "image",
+    "flairs": [
+      "Bon Iver",
+      "Moses Sumney",
+      "Kelela",
+      "Fred again..",
+      "Erika de Casier"
+    ],
+    "members": [
+      "Bon Iver",
+      "Moses Sumney",
+      "Kelela",
+      "Fred again.."
+    ],
+    "file": "panels/digital-forest-bathing.yaml"
+  },
+  {
+    "id": 113,
+    "name": "Breathwork Bounce",
+    "slug": "breathwork-bounce",
+    "modality": "image",
+    "flairs": [
+      "Kehlani",
+      "SG Lewis",
+      "Charli XCX",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "Kehlani",
+      "SG Lewis",
+      "Charli XCX",
+      "Ayra Starr"
+    ],
+    "file": "panels/breathwork-bounce.yaml"
+  },
+  {
+    "id": 114,
+    "name": "Serotonin Sunset Club",
+    "slug": "serotonin-sunset-club",
+    "modality": "image",
+    "flairs": [
+      "Tove Lo",
+      "FKJ",
+      "Ayra Starr",
+      "Peso Pluma",
+      "PinkPantheress"
+    ],
+    "members": [
+      "Tove Lo",
+      "FKJ",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "file": "panels/serotonin-sunset-club.yaml"
+  },
+  {
+    "id": 115,
+    "name": "Nordic Aurora Shoegaze",
+    "slug": "nordic-aurora-shoegaze",
+    "modality": "image",
+    "flairs": [
+      "Erika de Casier",
+      "Drain Gang (Ecco2k)",
+      "Aurora",
+      "Lykke Li",
+      "YUNGBLUD"
+    ],
+    "members": [
+      "Erika de Casier",
+      "Drain Gang (Ecco2k)",
+      "Aurora",
+      "Lykke Li"
+    ],
+    "file": "panels/nordic-aurora-shoegaze.yaml"
+  },
+  {
+    "id": 116,
+    "name": "Fjord Flashdance",
+    "slug": "fjord-flashdance",
+    "modality": "image",
+    "flairs": [
+      "R\u00f6yksopp",
+      "Dagny",
+      "Charli XCX",
+      "Ayra Starr",
+      "Peso Pluma"
+    ],
+    "members": [
+      "R\u00f6yksopp",
+      "Dagny",
+      "Charli XCX",
+      "Ayra Starr"
+    ],
+    "file": "panels/fjord-flashdance.yaml"
+  },
+  {
+    "id": 117,
+    "name": "Midnight Sun Reverie",
+    "slug": "midnight-sun-reverie",
+    "modality": "image",
+    "flairs": [
+      "Sigur R\u00f3s",
+      "Lush AI-Clone",
+      "ML Buch",
+      "PinkPantheress",
+      "Erika de Casier"
+    ],
+    "members": [
+      "Sigur R\u00f3s",
+      "Lush AI-Clone",
+      "ML Buch",
+      "PinkPantheress"
+    ],
+    "file": "panels/midnight-sun-reverie.yaml"
+  },
+  {
+    "id": 118,
+    "name": "Liminal Resonance",
+    "slug": "liminal-resonance",
+    "modality": "image",
+    "flairs": [
+      "Storm Thorgerson",
+      "Peter Saville",
+      "Paula Scher",
+      "Neri Oxman",
+      "Nnedi Okorafor"
+    ],
+    "members": [
+      "Storm Thorgerson",
+      "Peter Saville",
+      "Paula Scher",
+      "Neri Oxman"
+    ],
+    "file": "panels/liminal-resonance.yaml"
+  },
+  {
+    "id": 119,
+    "name": "Risograph Renegades",
+    "slug": "risograph-renegades",
+    "modality": "image",
+    "flairs": [
+      "Clay Hickson",
+      "Patrick Kyle",
+      "Mar\u00eda Medem",
+      "Yukai Du",
+      "Joanna Neborsky"
+    ],
+    "members": [
+      "Clay Hickson",
+      "Patrick Kyle",
+      "Mar\u00eda Medem",
+      "Yukai Du"
+    ],
+    "file": "panels/risograph-renegades.yaml"
+  },
+  {
+    "id": 120,
+    "name": "Neon Pulp Noir",
+    "slug": "neon-pulp-noir",
+    "modality": "image",
+    "flairs": [
+      "Francesco Francavilla",
+      "Sean Phillips",
+      "Tula Lotay",
+      "Junko Mizuno",
+      "Paul Pope"
+    ],
+    "members": [
+      "Francesco Francavilla",
+      "Sean Phillips",
+      "Tula Lotay",
+      "Junko Mizuno"
+    ],
+    "file": "panels/neon-pulp-noir.yaml"
+  },
+  {
+    "id": 121,
+    "name": "Afrofuturist Orbitals",
+    "slug": "afrofuturist-orbitals",
+    "modality": "image",
+    "flairs": [
+      "Afua Richardson",
+      "Sanford Greene",
+      "John Jennings",
+      "Shantz Minaj",
+      "Mati Klarwein"
+    ],
+    "members": [
+      "Afua Richardson",
+      "Sanford Greene",
+      "John Jennings",
+      "Shantz Minaj"
+    ],
+    "file": "panels/afrofuturist-orbitals.yaml"
+  },
+  {
+    "id": 122,
+    "name": "Glitch Woodcut Vanguard",
+    "slug": "glitch-woodcut-vanguard",
+    "modality": "image",
+    "flairs": [
+      "Kilian Eng",
+      "James Flames",
+      "Aaron Horkey",
+      "Sainer (Etam Cru)",
+      "Zo\u00eb van Dijk"
+    ],
+    "members": [
+      "Kilian Eng",
+      "James Flames",
+      "Aaron Horkey",
+      "Sainer (Etam Cru)"
+    ],
+    "file": "panels/glitch-woodcut-vanguard.yaml"
+  },
+  {
+    "id": 123,
+    "name": "Lucha Neon Fiesta",
+    "slug": "lucha-neon-fiesta",
+    "modality": "image",
+    "flairs": [
+      "Butcher Billy",
+      "Saner",
+      "Paola Delf\u00edn",
+      "Dr. Alderete",
+      "Mr. Kone"
+    ],
+    "members": [
+      "Butcher Billy",
+      "Saner",
+      "Paola Delf\u00edn",
+      "Dr. Alderete"
+    ],
+    "file": "panels/lucha-neon-fiesta.yaml"
+  },
+  {
+    "id": 124,
+    "name": "Vapor Kanji Distortion",
+    "slug": "vapor-kanji-distortion",
+    "modality": "image",
+    "flairs": [
+      "Hiroyuki\u2011\u201cMitsume\u201d Takahashi",
+      "Keiichi Tanaami",
+      "Katsuhiro Otomo",
+      "Hikari Shimoda",
+      "Fujiwara Kamui"
+    ],
+    "members": [
+      "Hiroyuki\u2011\u201cMitsume\u201d Takahashi",
+      "Keiichi Tanaami",
+      "Katsuhiro Otomo",
+      "Hikari Shimoda"
+    ],
+    "file": "panels/vapor-kanji-distortion.yaml"
+  },
+  {
+    "id": 125,
+    "name": "Cosmic Graffiti Botanica",
+    "slug": "cosmic-graffiti-botanica",
+    "modality": "image",
+    "flairs": [
+      "Fintan Magee",
+      "Natalia Rak",
+      "Cryptik",
+      "Swoon",
+      "Faith47"
+    ],
+    "members": [
+      "Fintan Magee",
+      "Natalia Rak",
+      "Cryptik",
+      "Swoon"
+    ],
+    "file": "panels/cosmic-graffiti-botanica.yaml"
+  },
+  {
+    "id": 126,
+    "name": "Deco Chromatic Reverie",
+    "slug": "deco-chromatic-reverie",
+    "modality": "image",
+    "flairs": [
+      "Malika Favre",
+      "Lorenzo Mattotti",
+      "Charley Harper (estate)",
+      "Shan Jiang",
+      "Akiko Stehrenberger"
+    ],
+    "members": [
+      "Malika Favre",
+      "Lorenzo Mattotti",
+      "Charley Harper (estate)",
+      "Shan Jiang"
+    ],
+    "file": "panels/deco-chromatic-reverie.yaml"
+  },
+  {
+    "id": 127,
+    "name": "Synthwave Safari",
+    "slug": "synthwave-safari",
+    "modality": "image",
+    "flairs": [
+      "James White (Signalnoise)",
+      "Neon Saltwater",
+      "Giuseppe Longo (Overglow)",
+      "Liam Wong",
+      "Jarom Vogel"
+    ],
+    "members": [
+      "James White (Signalnoise)",
+      "Neon Saltwater",
+      "Giuseppe Longo (Overglow)",
+      "Liam Wong"
+    ],
+    "file": "panels/synthwave-safari.yaml"
+  },
+  {
+    "id": 128,
+    "name": "Psychedelic Celestial Collage",
+    "slug": "psychedelic-celestial-collage",
+    "modality": "image",
+    "flairs": [
+      "Leif Podhajsky",
+      "Winston Smith",
+      "Kristjana S Williams",
+      "Jesse Treece",
+      "Akiko Stehrenberger"
+    ],
+    "members": [
+      "Leif Podhajsky",
+      "Winston Smith",
+      "Kristjana S Williams",
+      "Jesse Treece"
+    ],
+    "file": "panels/psychedelic-celestial-collage.yaml"
+  },
+  {
+    "id": 129,
+    "name": "Nocturnal Street Reverie",
+    "slug": "nocturnal-street-reverie",
+    "modality": "image",
+    "flairs": [
+      "Khalik Allah",
+      "Jessica Beshir",
+      "Mati Diop",
+      "Ian Pons Jewell",
+      "C\u00e9line Sciamma"
+    ],
+    "members": [
+      "Khalik Allah",
+      "Jessica Beshir",
+      "Mati Diop",
+      "Ian Pons Jewell"
+    ],
+    "file": "panels/nocturnal-street-reverie.yaml"
+  },
+  {
+    "id": 130,
+    "name": "Infrared Desert Mirage",
+    "slug": "infrared-desert-mirage",
+    "modality": "image",
+    "flairs": [
+      "Lois Pati\u00f1o",
+      "Salom\u00e9 Jashi",
+      "Sofia Alfonso",
+      "Zar Amir",
+      "Yaara Bou Melhem"
+    ],
+    "members": [
+      "Lois Pati\u00f1o",
+      "Salom\u00e9 Jashi",
+      "Sofia Alfonso",
+      "Zar Amir"
+    ],
+    "file": "panels/infrared-desert-mirage.yaml"
+  },
+  {
+    "id": 131,
+    "name": "Drone\u2011Ballet Symphony",
+    "slug": "drone-ballet-symphony",
+    "modality": "image",
+    "flairs": [
+      "Tobias Glawe",
+      "Xiong Yi",
+      "Steven Dunikoski",
+      "Zarina Kodzaeva",
+      "Karim Iliya"
+    ],
+    "members": [
+      "Tobias Glawe",
+      "Xiong Yi",
+      "Steven Dunikoski",
+      "Zarina Kodzaeva"
+    ],
+    "file": "panels/drone-ballet-symphony.yaml"
+  },
+  {
+    "id": 132,
+    "name": "VHS Analog Horror",
+    "slug": "vhs-analog-horror",
+    "modality": "video",
+    "flairs": [
+      "Chris LaMartina",
+      "M\u00f3nica Bartik",
+      "Riley Stearns",
+      "Jane Schoenbrun",
+      "Macon Blair"
+    ],
+    "members": [
+      "Chris LaMartina",
+      "M\u00f3nica Bartik",
+      "Riley Stearns",
+      "Jane Schoenbrun"
+    ],
+    "file": "panels/vhs-analog-horror.yaml"
+  },
+  {
+    "id": 133,
+    "name": "Oneiric Long\u2011Take",
+    "slug": "oneiric-long-take",
+    "modality": "image",
+    "flairs": [
+      "Bi Gan",
+      "Bianca Stigter",
+      "Bi Yue",
+      "Fion Lin",
+      "Pedro Costa"
+    ],
+    "members": [
+      "Bi Gan",
+      "Bianca Stigter",
+      "Bi Yue",
+      "Fion Lin"
+    ],
+    "file": "panels/oneiric-long-take.yaml"
+  },
+  {
+    "id": 134,
+    "name": "Split\u2011Screen Kinetics",
+    "slug": "split-screen-kinetics",
+    "modality": "image",
+    "flairs": [
+      "Mike Figgis",
+      "Khalil Joseph",
+      "Josephine Decker",
+      "Zia Anger",
+      "Pawe\u0142 Kantor"
+    ],
+    "members": [
+      "Mike Figgis",
+      "Khalil Joseph",
+      "Josephine Decker",
+      "Zia Anger"
+    ],
+    "file": "panels/split-screen-kinetics.yaml"
+  },
+  {
+    "id": 135,
+    "name": "Data\u2011Glitch Memory",
+    "slug": "data-glitch-memory",
+    "modality": "image",
+    "flairs": [
+      "Rosa Menkman",
+      "Sabrina Ratt\u00e9",
+      "James Gibson",
+      "Korakrit Arunanondchai",
+      "Pinar Yoldas"
+    ],
+    "members": [
+      "Rosa Menkman",
+      "Sabrina Ratt\u00e9",
+      "James Gibson",
+      "Korakrit Arunanondchai"
+    ],
+    "file": "panels/data-glitch-memory.yaml"
+  },
+  {
+    "id": 136,
+    "name": "360 Mirror Reality",
+    "slug": "360-mirror-reality",
+    "modality": "image",
+    "flairs": [
+      "Charlotte Mikkelborg",
+      "Nonny de la Pe\u00f1a",
+      "Paisley Smith",
+      "Emblematic Group",
+      "Angel M. Soto"
+    ],
+    "members": [
+      "Charlotte Mikkelborg",
+      "Nonny de la Pe\u00f1a",
+      "Paisley Smith",
+      "Emblematic Group"
+    ],
+    "file": "panels/360-mirror-reality.yaml"
+  },
+  {
+    "id": 137,
+    "name": "Handheld Intimacy",
+    "slug": "handheld-intimacy",
+    "modality": "image",
+    "flairs": [
+      "Kirsten Johnson",
+      "Eliza Hittman",
+      "Janicza Bravo",
+      "Dina Amer",
+      "A. Madsen Minax"
+    ],
+    "members": [
+      "Kirsten Johnson",
+      "Eliza Hittman",
+      "Janicza Bravo",
+      "Dina Amer"
+    ],
+    "file": "panels/handheld-intimacy.yaml"
+  },
+  {
+    "id": 138,
+    "name": "Ink\u2011in\u2011Water Macro Ballet",
+    "slug": "ink-in-water-macro-ballet",
+    "modality": "image",
+    "flairs": [
+      "Roman De Giuli",
+      "Thomas Blanchard",
+      "Nitin Das",
+      "Joanna Loughlin",
+      "Alexey Yurkov"
+    ],
+    "members": [
+      "Roman De Giuli",
+      "Thomas Blanchard",
+      "Nitin Das",
+      "Joanna Loughlin"
+    ],
+    "file": "panels/ink-in-water-macro-ballet.yaml"
+  },
+  {
+    "id": 139,
+    "name": "Infra\u2011Biometric Surveillance",
+    "slug": "infra-biometric-surveillance",
+    "modality": "image",
+    "flairs": [
+      "Laura Poitras",
+      "Xu Bing",
+      "Tiffany Sia",
+      "Assia Boundaoui",
+      "Nadav Lapid"
+    ],
+    "members": [
+      "Laura Poitras",
+      "Xu Bing",
+      "Tiffany Sia",
+      "Assia Boundaoui"
+    ],
+    "file": "panels/infra-biometric-surveillance.yaml"
+  },
+  {
+    "id": 140,
+    "name": "XR Volumetric Flow",
+    "slug": "xr-volumetric-flow",
+    "modality": "image",
+    "flairs": [
+      "Blanca Li",
+      "Richie Meier",
+      "Tsai Ming\u2011liang",
+      "Francois Chaignaud",
+      "Hana Kim"
+    ],
+    "members": [
+      "Blanca Li",
+      "Richie Meier",
+      "Tsai Ming\u2011liang",
+      "Francois Chaignaud"
+    ],
+    "file": "panels/xr-volumetric-flow.yaml"
+  },
+  {
+    "id": 141,
+    "name": "Stop\u2011Motion Junk Sculptures",
+    "slug": "stop-motion-junk-sculptures",
+    "modality": "image",
+    "flairs": [
+      "Jorge Riera",
+      "Anna Mantzaris",
+      "Neil Blomkamp",
+      "Takahide Horie",
+      "C\u00e9line Desrumaux"
+    ],
+    "members": [
+      "Jorge Riera",
+      "Anna Mantzaris",
+      "Neil Blomkamp",
+      "Takahide Horie"
+    ],
+    "file": "panels/stop-motion-junk-sculptures.yaml"
+  },
+  {
+    "id": 142,
+    "name": "Macro Food Cosmos",
+    "slug": "macro-food-cosmos",
+    "modality": "image",
+    "flairs": [
+      "David Ma",
+      "Janice Poon",
+      "Sophie Blanc",
+      "Ben Walters",
+      "Khal Tung"
+    ],
+    "members": [
+      "David Ma",
+      "Janice Poon",
+      "Sophie Blanc",
+      "Ben Walters"
+    ],
+    "file": "panels/macro-food-cosmos.yaml"
+  },
+  {
+    "id": 143,
+    "name": "Neon Underworld MV",
+    "slug": "neon-underworld-mv",
+    "modality": "video",
+    "flairs": [
+      "Tanu Muino",
+      "Hiro Murai",
+      "Axel Morin",
+      " \u2013 cyber aesthetic\n    5. ",
+      " \u2013 gritty glam\n    6. "
+    ],
+    "members": [
+      "Tanu Muino",
+      "Hiro Murai",
+      "Axel Morin",
+      "BQ"
+    ],
+    "file": "panels/neon-underworld-mv.yaml"
+  },
+  {
+    "id": 144,
+    "name": "Liquid Lens Kaleidoscope",
+    "slug": "liquid-lens-kaleidoscope",
+    "modality": "image",
+    "flairs": [
+      "Kojiro Shishido",
+      "Max Nova",
+      "Natalia Stuyk",
+      "Yoshi Sodeoka",
+      "Stacie Ant"
+    ],
+    "members": [
+      "Kojiro Shishido",
+      "Max Nova",
+      "Natalia Stuyk",
+      "Yoshi Sodeoka"
+    ],
+    "file": "panels/liquid-lens-kaleidoscope.yaml"
+  },
+  {
+    "id": 145,
+    "name": "Miniature Tilt\u2011Shift City Symphony",
+    "slug": "miniature-tilt-shift-city-symphony",
+    "modality": "image",
+    "flairs": [
+      "Sam O\u2019Hare",
+      "Jamie Scott",
+      "Isabel Seiffert",
+      "Richard Kirk",
+      "Niles Heise"
+    ],
+    "members": [
+      "Sam O\u2019Hare",
+      "Jamie Scott",
+      "Isabel Seiffert",
+      "Richard Kirk"
+    ],
+    "file": "panels/miniature-tilt-shift-city-symphony.yaml"
+  },
+  {
+    "id": 146,
+    "name": "AI Style\u2011Transfer Collage",
+    "slug": "ai-style-transfer-collage",
+    "modality": "image",
+    "flairs": [
+      "Sam Mule",
+      "Sougwen Chung",
+      "Joan Heemskerk",
+      "Memo Akten",
+      "Refik Anadol"
+    ],
+    "members": [
+      "Sam Mule",
+      "Sougwen Chung",
+      "Joan Heemskerk",
+      "Memo Akten"
+    ],
+    "file": "panels/ai-style-transfer-collage.yaml"
+  },
+  {
+    "id": 147,
+    "name": "Shadow Puppet VR",
+    "slug": "shadow-puppet-vr",
+    "modality": "image",
+    "flairs": [
+      "Miwa Matreyek",
+      "Kawaguchi Yumi",
+      "Adong Ogwang",
+      "Sean Tulloch",
+      "Jenny Zhang"
+    ],
+    "members": [
+      "Miwa Matreyek",
+      "Kawaguchi Yumi",
+      "Adong Ogwang",
+      "Sean Tulloch"
+    ],
+    "file": "panels/shadow-puppet-vr.yaml"
+  },
+  {
+    "id": 148,
+    "name": "Archaeological Light Painting",
+    "slug": "archaeological-light-painting",
+    "modality": "image",
+    "flairs": [
+      "Reuben Wu",
+      " \u2013 guerrilla muralist\n    3. ",
+      " \u2013 archaeo video\n    4. ",
+      " \u2013 cave recorder\n    5. ",
+      " \u2013 UV tracer\n    6. "
+    ],
+    "members": [
+      "Reuben Wu",
+      "JR",
+      "Macarena Ruiz\u2011Tagle",
+      "Elif Boyacioglu"
+    ],
+    "file": "panels/archaeological-light-painting.yaml"
+  },
+  {
+    "id": 149,
+    "name": "Chromatic Mythographers",
+    "slug": "chromatic-mythographers",
+    "modality": "image",
+    "flairs": [
+      "Sacred Spectra",
+      "Luminous Legends",
+      "Ornamental Cosmos",
+      "Prismatic Spirits",
+      "Ancestral Geometry"
+    ],
+    "members": [
+      "Sacred Spectra",
+      "Luminous Legends",
+      "Ornamental Cosmos",
+      "Prismatic Spirits"
+    ],
+    "file": "panels/chromatic-mythographers.yaml"
+  },
+  {
+    "id": 150,
+    "name": "Future Primitives",
+    "slug": "future-primitives",
+    "modality": "image",
+    "flairs": [
+      "Ancient Interfaces",
+      "Tribal Circuits",
+      "Nomad Spaceships",
+      "Totemic Tech",
+      "Cave Projections"
+    ],
+    "members": [
+      "Ancient Interfaces",
+      "Tribal Circuits",
+      "Nomad Spaceships",
+      "Totemic Tech"
+    ],
+    "file": "panels/future-primitives.yaml"
+  },
+  {
+    "id": 151,
+    "name": "Urban Dreamweavers",
+    "slug": "urban-dreamweavers",
+    "modality": "image",
+    "flairs": [
+      "Concrete Canvases",
+      "Neon Mist",
+      "Graffiti Gradients",
+      "Skyline Fantasia",
+      "Subway Mythologies"
+    ],
+    "members": [
+      "Concrete Canvases",
+      "Neon Mist",
+      "Graffiti Gradients",
+      "Skyline Fantasia"
+    ],
+    "file": "panels/urban-dreamweavers.yaml"
+  },
+  {
+    "id": 152,
+    "name": "Cosmic Naturalists",
+    "slug": "cosmic-naturalists",
+    "modality": "image",
+    "flairs": [
+      "Starlit Biomes",
+      "Galactic Flora",
+      "Planetary Ringscapes",
+      "Celestial Rivers",
+      "Aurora Wildlife"
+    ],
+    "members": [
+      "Starlit Biomes",
+      "Galactic Flora",
+      "Planetary Ringscapes",
+      "Celestial Rivers"
+    ],
+    "file": "panels/cosmic-naturalists.yaml"
+  },
+  {
+    "id": 153,
+    "name": "Digital Baroque",
+    "slug": "digital-baroque",
+    "modality": "image",
+    "flairs": [
+      "Pixel Rococo",
+      "Futurist Filigree",
+      "Glitch Gilding",
+      "Virtual Velvet",
+      "Mechanical Marble"
+    ],
+    "members": [
+      "Pixel Rococo",
+      "Futurist Filigree",
+      "Glitch Gilding",
+      "Virtual Velvet"
+    ],
+    "file": "panels/digital-baroque.yaml"
+  },
+  {
+    "id": 154,
+    "name": "Luminous Noir",
+    "slug": "luminous-noir",
+    "modality": "image",
+    "flairs": [
+      "Shadow Luminescence",
+      "Silhouette Stories",
+      "Reflected Mystery",
+      "Monochrome Spectrum",
+      "Gutter Glitter"
+    ],
+    "members": [
+      "Shadow Luminescence",
+      "Silhouette Stories",
+      "Reflected Mystery",
+      "Monochrome Spectrum"
+    ],
+    "file": "panels/luminous-noir.yaml"
+  },
+  {
+    "id": 155,
+    "name": "Retro Futurist Pastelists",
+    "slug": "retro-futurist-pastelists",
+    "modality": "image",
+    "flairs": [
+      "Cotton Candy Cosmos",
+      "Vaporwave Vistas",
+      "Soft Synths",
+      "Analog Dreams",
+      "Palm Sunset Chrome"
+    ],
+    "members": [
+      "Cotton Candy Cosmos",
+      "Vaporwave Vistas",
+      "Soft Synths",
+      "Analog Dreams"
+    ],
+    "file": "panels/retro-futurist-pastelists.yaml"
+  },
+  {
+    "id": 156,
+    "name": "Biotech Botanists",
+    "slug": "biotech-botanists",
+    "modality": "image",
+    "flairs": [
+      "Gene Gardens",
+      "Silicon Stemware",
+      "Petal Interfaces",
+      "Chlorophyll Screens",
+      "Bioluminescent Blossoms"
+    ],
+    "members": [
+      "Gene Gardens",
+      "Silicon Stemware",
+      "Petal Interfaces",
+      "Chlorophyll Screens"
+    ],
+    "file": "panels/biotech-botanists.yaml"
+  },
+  {
+    "id": 157,
+    "name": "Deep Sea Dreamers",
+    "slug": "deep-sea-dreamers",
+    "modality": "image",
+    "flairs": [
+      "Abyssal Glow",
+      "Coral Cathedrals",
+      "Cephalopod Couture",
+      "Submarine Silence",
+      "Pressure Poise"
+    ],
+    "members": [
+      "Abyssal Glow",
+      "Coral Cathedrals",
+      "Cephalopod Couture",
+      "Submarine Silence"
+    ],
+    "file": "panels/deep-sea-dreamers.yaml"
+  },
+  {
+    "id": 158,
+    "name": "Arctic Aurora",
+    "slug": "arctic-aurora",
+    "modality": "image",
+    "flairs": [
+      "Polar Palette",
+      "Crystalline Silence",
+      "Frost Whispers",
+      "Glacial Motion",
+      "Star Lanterns"
+    ],
+    "members": [
+      "Polar Palette",
+      "Crystalline Silence",
+      "Frost Whispers",
+      "Glacial Motion"
+    ],
+    "file": "panels/arctic-aurora.yaml"
+  },
+  {
+    "id": 159,
+    "name": "Desert Mirage",
+    "slug": "desert-mirage",
+    "modality": "image",
+    "flairs": [
+      "Heat Haze Halo",
+      "Dune Calligraphy",
+      "Oasis Mirrors",
+      "Caravan Geometry",
+      "Sun\u2011Bleached Symbols"
+    ],
+    "members": [
+      "Heat Haze Halo",
+      "Dune Calligraphy",
+      "Oasis Mirrors",
+      "Caravan Geometry"
+    ],
+    "file": "panels/desert-mirage.yaml"
+  },
+  {
+    "id": 160,
+    "name": "Industrial Poetics",
+    "slug": "industrial-poetics",
+    "modality": "image",
+    "flairs": [
+      "Oxidized Elegy",
+      "Mechanical Grace",
+      "Factory Fables",
+      "Soot Symphony",
+      "Worn\u2011Down Patina"
+    ],
+    "members": [
+      "Oxidized Elegy",
+      "Mechanical Grace",
+      "Factory Fables",
+      "Soot Symphony"
+    ],
+    "file": "panels/industrial-poetics.yaml"
+  },
+  {
+    "id": 161,
+    "name": "Pixel Nostalgists",
+    "slug": "pixel-nostalgists",
+    "modality": "image",
+    "flairs": [
+      "8\u2011Bit Emotions",
+      "Low\u2011Res Magic",
+      "Chiptune Palette",
+      "Sprite Storytelling",
+      "CRT Glow"
+    ],
+    "members": [
+      "8\u2011Bit Emotions",
+      "Low\u2011Res Magic",
+      "Chiptune Palette",
+      "Sprite Storytelling"
+    ],
+    "file": "panels/pixel-nostalgists.yaml"
+  },
+  {
+    "id": 162,
+    "name": "Circuit Symphonists",
+    "slug": "circuit-symphonists",
+    "modality": "image",
+    "flairs": [
+      "Resonant Resistors",
+      "Oscilloscope Harmonics",
+      "Analog Arpeggios",
+      "Voltage Vistas",
+      "Code Cadences"
+    ],
+    "members": [
+      "Resonant Resistors",
+      "Oscilloscope Harmonics",
+      "Analog Arpeggios",
+      "Voltage Vistas"
+    ],
+    "file": "panels/circuit-symphonists.yaml"
+  },
+  {
+    "id": 163,
+    "name": "Liquid Geometry",
+    "slug": "liquid-geometry",
+    "modality": "image",
+    "flairs": [
+      "Fluid Fractals",
+      "Rippled Polygons",
+      "Droplet Grids",
+      "Tidal Symmetry",
+      "Mercurial Mirrors"
+    ],
+    "members": [
+      "Fluid Fractals",
+      "Rippled Polygons",
+      "Droplet Grids",
+      "Tidal Symmetry"
+    ],
+    "file": "panels/liquid-geometry.yaml"
+  },
+  {
+    "id": 164,
+    "name": "Haunted Whimsy",
+    "slug": "haunted-whimsy",
+    "modality": "image",
+    "flairs": [
+      "Playful Apparitions",
+      "Ethereal Playgrounds",
+      "Pastel Phantoms",
+      "Wistful Whispers",
+      "Vintage Toys"
+    ],
+    "members": [
+      "Playful Apparitions",
+      "Ethereal Playgrounds",
+      "Pastel Phantoms",
+      "Wistful Whispers"
+    ],
+    "file": "panels/haunted-whimsy.yaml"
+  },
+  {
+    "id": 165,
+    "name": "Quantum Deco",
+    "slug": "quantum-deco",
+    "modality": "image",
+    "flairs": [
+      "Atomic Ornaments",
+      "Wavefunction Waves",
+      "Superposition Symmetry",
+      "Entangled Elegance",
+      "Deco Diagrams"
+    ],
+    "members": [
+      "Atomic Ornaments",
+      "Wavefunction Waves",
+      "Superposition Symmetry",
+      "Entangled Elegance"
+    ],
+    "file": "panels/quantum-deco.yaml"
+  },
+  {
+    "id": 166,
+    "name": "Ethereal Folk",
+    "slug": "ethereal-folk",
+    "modality": "image",
+    "flairs": [
+      "Whispered Lore",
+      "Pastoral Palettes",
+      "Handwoven Textures",
+      "Songlines",
+      "Forest Lullabies"
+    ],
+    "members": [
+      "Whispered Lore",
+      "Pastoral Palettes",
+      "Handwoven Textures",
+      "Songlines"
+    ],
+    "file": "panels/ethereal-folk.yaml"
+  },
+  {
+    "id": 167,
+    "name": "Sonic Visionaries",
+    "slug": "sonic-visionaries",
+    "modality": "image",
+    "flairs": [
+      "Harmonic Hues",
+      "Rhythmic Lines",
+      "Tempo Textures",
+      "Cadence Cascades",
+      "Bass Depths"
+    ],
+    "members": [
+      "Harmonic Hues",
+      "Rhythmic Lines",
+      "Tempo Textures",
+      "Cadence Cascades"
+    ],
+    "file": "panels/sonic-visionaries.yaml"
+  },
+  {
+    "id": 168,
+    "name": "Tectonic Texture",
+    "slug": "tectonic-texture",
+    "modality": "image",
+    "flairs": [
+      "Crustal Layers",
+      "Earthquake Lines",
+      "Plate Collisions",
+      "Seismic Vibrance",
+      "Geode Reveals"
+    ],
+    "members": [
+      "Crustal Layers",
+      "Earthquake Lines",
+      "Plate Collisions",
+      "Seismic Vibrance"
+    ],
+    "file": "panels/tectonic-texture.yaml"
+  },
+  {
+    "id": 169,
+    "name": "Psychedelic Healers",
+    "slug": "psychedelic-healers",
+    "modality": "image",
+    "flairs": [
+      "Fractal Healing",
+      "Vibrational Vortexes",
+      "Chromatic Chakras",
+      "Plant Spirit Guides",
+      "Mandala Mycelium"
+    ],
+    "members": [
+      "Fractal Healing",
+      "Vibrational Vortexes",
+      "Chromatic Chakras",
+      "Plant Spirit Guides"
+    ],
+    "file": "panels/psychedelic-healers.yaml"
+  },
+  {
+    "id": 170,
+    "name": "Kinetic Storytellers",
+    "slug": "kinetic-storytellers",
+    "modality": "image",
+    "flairs": [
+      "Motion Comics",
+      "Dynamic Typography",
+      "Temporal Transitions",
+      "Body Narratives",
+      "Fluid Panels"
+    ],
+    "members": [
+      "Motion Comics",
+      "Dynamic Typography",
+      "Temporal Transitions",
+      "Body Narratives"
+    ],
+    "file": "panels/kinetic-storytellers.yaml"
+  },
+  {
+    "id": 171,
+    "name": "Data Mythicians",
+    "slug": "data-mythicians",
+    "modality": "image",
+    "flairs": [
+      "Algorithmic Allegory",
+      "Statistical Spirits",
+      "CSV Cosmology",
+      "Graphical Glyphs",
+      "Database Dreams"
+    ],
+    "members": [
+      "Algorithmic Allegory",
+      "Statistical Spirits",
+      "CSV Cosmology",
+      "Graphical Glyphs"
+    ],
+    "file": "panels/data-mythicians.yaml"
+  },
+  {
+    "id": 172,
+    "name": "Electric Nomads",
+    "slug": "electric-nomads",
+    "modality": "image",
+    "flairs": [
+      "Wanderer\u2019s Wi\u2011Fi",
+      "Solar Saddles",
+      "Transistor Tents",
+      "Fiberoptic Fabric",
+      "Circuitry Tattoos"
+    ],
+    "members": [
+      "Wanderer\u2019s Wi\u2011Fi",
+      "Solar Saddles",
+      "Transistor Tents",
+      "Fiberoptic Fabric"
+    ],
+    "file": "panels/electric-nomads.yaml"
+  },
+  {
+    "id": 173,
+    "name": "Cinematic Surrealists",
+    "slug": "cinematic-surrealists",
+    "modality": "video",
+    "flairs": [
+      "Impossible Pans",
+      "Frame Within Frame",
+      "Dissolving Edges",
+      "Diegetic Light",
+      "Time\u2011Stretching Cuts"
+    ],
+    "members": [
+      "Impossible Pans",
+      "Frame Within Frame",
+      "Dissolving Edges",
+      "Diegetic Light"
+    ],
+    "file": "panels/cinematic-surrealists.yaml"
+  },
+  {
+    "id": 174,
+    "name": "Acoustic Architects",
+    "slug": "acoustic-architects",
+    "modality": "image",
+    "flairs": [
+      "Sound\u2011Shaped Rooms",
+      "Echo Engravings",
+      "Material Timbre",
+      "Resonance Ribs",
+      "Frequency Facades"
+    ],
+    "members": [
+      "Sound\u2011Shaped Rooms",
+      "Echo Engravings",
+      "Material Timbre",
+      "Resonance Ribs"
+    ],
+    "file": "panels/acoustic-architects.yaml"
+  },
+  {
+    "id": 175,
+    "name": "Hyperreal Wanderers",
+    "slug": "hyperreal-wanderers",
+    "modality": "image",
+    "flairs": [
+      "Ultra Definition",
+      "Dreamy Desaturation",
+      "Specular Sparks",
+      "Blurred Boundaries",
+      "Photo\u2011Surreal"
+    ],
+    "members": [
+      "Ultra Definition",
+      "Dreamy Desaturation",
+      "Specular Sparks",
+      "Blurred Boundaries"
+    ],
+    "file": "panels/hyperreal-wanderers.yaml"
+  },
+  {
+    "id": 176,
+    "name": "Botanical Surrealists",
+    "slug": "botanical-surrealists",
+    "modality": "image",
+    "flairs": [
+      "Floral Mutation",
+      "Anthropomorphic Plants",
+      "Carnivorous Fantasy",
+      "Blooming Time Loops",
+      "Hybrid Habitats"
+    ],
+    "members": [
+      "Floral Mutation",
+      "Anthropomorphic Plants",
+      "Carnivorous Fantasy",
+      "Blooming Time Loops"
+    ],
+    "file": "panels/botanical-surrealists.yaml"
+  },
+  {
+    "id": 177,
+    "name": "Minimal Maximalists",
+    "slug": "minimal-maximalists",
+    "modality": "image",
+    "flairs": [
+      "Bold Empty Spaces",
+      "One Stroke Wonders",
+      "Exuberant Restraint",
+      "Micro Texture",
+      "Chiaroscuro Simplicity"
+    ],
+    "members": [
+      "Bold Empty Spaces",
+      "One Stroke Wonders",
+      "Exuberant Restraint",
+      "Micro Texture"
+    ],
+    "file": "panels/minimal-maximalists.yaml"
+  },
+  {
+    "id": 178,
+    "name": "Holographic Heritage",
+    "slug": "holographic-heritage",
+    "modality": "image",
+    "flairs": [
+      "Ghostly Archives",
+      "Light\u2011Encoded Stories",
+      "Ancestral Avatars",
+      "Digital Dioramas",
+      "Time Capsule Layers"
+    ],
+    "members": [
+      "Ghostly Archives",
+      "Light\u2011Encoded Stories",
+      "Ancestral Avatars",
+      "Digital Dioramas"
+    ],
+    "file": "panels/holographic-heritage.yaml"
+  }
+]

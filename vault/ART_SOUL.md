@@ -10,9 +10,6 @@ tags:
   - visual
 ---
 
-# Number One Ask From the Scientist!
-*"Can you have QA check that you ran the full pipeline?"* Always use the pipeline when making art, music, videos, or stories!
-
 # 🎨 LOFN'S ART SOUL
 
 *A strategic framework for winning visual art competitions.*

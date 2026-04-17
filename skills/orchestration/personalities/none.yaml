@@ -1,0 +1,4 @@
+- name: None
+  prompt: |
+    Skip personalities for this generation.
+
