@@ -6,7 +6,7 @@
 
 All pipeline spawning flows through the **parent (main session)**. No agent spawns children. Every agent returns a structured handoff message; the parent parses it and decides the next spawn.
 
-**Why:** subagents can spawn children, but nested spawning creates:
+**Why:** OpenClaw subagents can spawn children, but nested spawning creates:
 - Unobservable intermediate state (parent can't see what's happening)
 - No intervention points (can't steer, pause, or redirect mid-pipeline)
 - Compounding failure (child failure kills grandparent's context budget)
@@ -18,7 +18,7 @@ Parent-mediated orchestration keeps the parent as the single control plane.
 
 ## 1. Feasibility
 
-**Confirmed feasible.** this subagent model supports this directly:
+**Confirmed feasible.** OpenClaw's subagent model supports this directly:
 
 - `sessions_spawn` returns a result string to the spawning session
 - The parent receives this as an auto-announced completion event
@@ -95,11 +95,11 @@ task: |
   Muted earth tones with bioluminescent accents (cyan, amber).
   Aspect ratio: 16:9. Resolution: highest available.
   
-  Read ./vault/ART_SOUL.md for style constraints.
-  Write output image to ./output/vision_output.png
-  Write the generation prompt used to ./output/vision_prompt.txt
+  Read /data/.openclaw/workspace/vault/ART_SOUL.md for style constraints.
+  Write output image to /data/.openclaw/workspace/output/vision_output.png
+  Write the generation prompt used to /data/.openclaw/workspace/output/vision_prompt.txt
 artifacts:
-  - ./output/orchestrator_plan.md
+  - /data/.openclaw/workspace/output/orchestrator_plan.md
 notes: |
   Panel of experts chose concept 3 of 5. Hyper-skeptic flagged potential 
   cliché in "underwater library" but was overruled — the coral-as-pages 
@@ -114,8 +114,8 @@ notes: |
 ---LOFN_HANDOFF---
 next_action: done
 artifacts:
-  - ./output/vision_output.png
-  - ./output/qa_report.md
+  - /data/.openclaw/workspace/output/vision_output.png
+  - /data/.openclaw/workspace/output/qa_report.md
 notes: |
   Image passed all checks. Score: 8.7/10. No contamination detected.
   Minor suggestion: slightly increase contrast in lower-right quadrant.
@@ -132,7 +132,7 @@ notes: |
   Attempted 2 retries with 30s backoff. All failed.
   Recommendation: retry in 5 minutes or fall back to alternative provider.
 artifacts:
-  - ./output/vision_prompt.txt
+  - /data/.openclaw/workspace/output/vision_prompt.txt
 ---END_HANDOFF---
 ```
 
@@ -341,15 +341,15 @@ task: |
   Creative brief (from orchestrator panel deliberation):
   {full creative brief — concept, mood, color palette, composition}
   
-  Style constraints: Read ./vault/ART_SOUL.md
+  Style constraints: Read /data/.openclaw/workspace/vault/ART_SOUL.md
   Competition format: {format requirements from competition}
   
   Output files:
-  - Image: ./output/{run_id}/vision_output.png
-  - Prompt log: ./output/{run_id}/vision_prompt.txt
-  - Style notes: ./output/{run_id}/vision_style.md
+  - Image: /data/.openclaw/workspace/output/{run_id}/vision_output.png
+  - Prompt log: /data/.openclaw/workspace/output/{run_id}/vision_prompt.txt
+  - Style notes: /data/.openclaw/workspace/output/{run_id}/vision_style.md
 artifacts:
-  - ./output/{run_id}/orchestrator_plan.md
+  - /data/.openclaw/workspace/output/{run_id}/orchestrator_plan.md
 ---END_HANDOFF---
 ```
 
@@ -363,9 +363,9 @@ task: |
   QA audit for competition submission. Theme: "{theme}"
   
   Review the following artifacts for competition readiness:
-  1. Image: ./output/{run_id}/vision_output.png
-  2. Creative brief: ./output/{run_id}/orchestrator_plan.md
-  3. Generation prompt: ./output/{run_id}/vision_prompt.txt
+  1. Image: /data/.openclaw/workspace/output/{run_id}/vision_output.png
+  2. Creative brief: /data/.openclaw/workspace/output/{run_id}/orchestrator_plan.md
+  3. Generation prompt: /data/.openclaw/workspace/output/{run_id}/vision_prompt.txt
   
   Check for:
   - Theme alignment (does image match the brief?)
@@ -377,10 +377,10 @@ task: |
   If PASS: return done with artifacts list and score.
   If FAIL: return spawn lofn-vision with a corrected task incorporating fixes.
   
-  Write QA report to: ./output/{run_id}/qa_report.md
+  Write QA report to: /data/.openclaw/workspace/output/{run_id}/qa_report.md
 artifacts:
-  - ./output/{run_id}/vision_output.png
-  - ./output/{run_id}/vision_prompt.txt
+  - /data/.openclaw/workspace/output/{run_id}/vision_output.png
+  - /data/.openclaw/workspace/output/{run_id}/vision_prompt.txt
 ---END_HANDOFF---
 ```
 
@@ -397,14 +397,14 @@ task: |
   Mood target: {mood from orchestrator plan}
   Duration: {target duration}
   
-  Read the orchestrator plan: ./output/{run_id}/orchestrator_plan.md
-  View the image: ./output/{run_id}/vision_output.png
+  Read the orchestrator plan: /data/.openclaw/workspace/output/{run_id}/orchestrator_plan.md
+  View the image: /data/.openclaw/workspace/output/{run_id}/vision_output.png
   
-  Output: ./output/{run_id}/audio_output.{ext}
-  Prompt log: ./output/{run_id}/audio_prompt.txt
+  Output: /data/.openclaw/workspace/output/{run_id}/audio_output.{ext}
+  Prompt log: /data/.openclaw/workspace/output/{run_id}/audio_prompt.txt
 artifacts:
-  - ./output/{run_id}/vision_output.png
-  - ./output/{run_id}/orchestrator_plan.md
+  - /data/.openclaw/workspace/output/{run_id}/vision_output.png
+  - /data/.openclaw/workspace/output/{run_id}/orchestrator_plan.md
 ---END_HANDOFF---
 ```
 
@@ -414,9 +414,9 @@ artifacts:
 ---LOFN_HANDOFF---
 next_action: done
 artifacts:
-  - ./output/{run_id}/vision_output.png
-  - ./output/{run_id}/qa_report.md
-  - ./output/{run_id}/orchestrator_plan.md
+  - /data/.openclaw/workspace/output/{run_id}/vision_output.png
+  - /data/.openclaw/workspace/output/{run_id}/qa_report.md
+  - /data/.openclaw/workspace/output/{run_id}/orchestrator_plan.md
 notes: |
   Pipeline complete. QA score: 8.7/10. Image is competition-ready.
   Run ID: {run_id}
@@ -434,7 +434,7 @@ task: |
   REVISION REQUEST — QA failed the previous generation.
   
   Original concept: {concept from orchestrator plan}
-  Previous attempt: ./output/{run_id}/vision_output.png
+  Previous attempt: /data/.openclaw/workspace/output/{run_id}/vision_output.png
   
   Issues found:
   {list of specific issues from QA}
@@ -445,11 +445,11 @@ task: |
   This is attempt 2 of max 3. If you cannot resolve the issues,
   note them clearly for the next QA pass.
   
-  Output: ./output/{run_id}/vision_output_v2.png
-  Prompt log: ./output/{run_id}/vision_prompt_v2.txt
+  Output: /data/.openclaw/workspace/output/{run_id}/vision_output_v2.png
+  Prompt log: /data/.openclaw/workspace/output/{run_id}/vision_prompt_v2.txt
 artifacts:
-  - ./output/{run_id}/qa_report.md
-  - ./output/{run_id}/vision_output.png
+  - /data/.openclaw/workspace/output/{run_id}/qa_report.md
+  - /data/.openclaw/workspace/output/{run_id}/vision_output.png
 notes: |
   QA retry loop, attempt 2. Max 3 attempts before escalating to user.
 ---END_HANDOFF---
@@ -492,7 +492,7 @@ Rules:
 
 - [ ] Add handoff protocol instructions to each Lofn agent's system prompt template
 - [ ] Add parent routing logic to main session's AGENTS.md or load from this file
-- [ ] Create `./output/` directory structure convention
+- [ ] Create `/data/.openclaw/workspace/output/` directory structure convention
 - [ ] Test with a minimal 2-stage pipeline (orchestrator → vision → done)
 - [ ] Test QA retry loop (vision → qa-fail → vision-retry → qa-pass)
 - [ ] Test error handling (agent with no handoff block)

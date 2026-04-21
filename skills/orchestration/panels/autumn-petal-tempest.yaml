@@ -1,0 +1,42 @@
+- name: Autumn Petal Tempest
+  prompt: |
+    ## Special Flairs
+    1 **Ember-Rose Drift** – smouldering scarlet petals floating like sparks
+    2 **Saffron Leaf Flurry** – golden-orange leaves whipping in turbulent gusts
+    3 **Copper Curl Strand** – metallic curls catching late-autumn light
+    4 **Wind-Whorl Filigree** – spiral air currents etched in fine tracery
+    5 **Oxidised Gold Speck** – tarnished gilt flecks peppering the scene
+    6 **Velvet Shadow Loop** – plush shadows circling central forms
+    7 **Craquelure Glow Vein** – glowing fissures tracing aged varnish patterns
+    8 **Petal-Fold Chevron** – folded petals forming arrowed chevrons
+    9 **Prism-Dust Swirl** – rainbow dust motes spiralling round the focal bloom
+    10 **Flutter-Blur Edge** – motion-blurred contours evoking frantic flutter
+    11 **Ash-Tipped Stamen** – soot-dark pollen tips signalling combustion
+    12 **Charcoal Mist Grain** – smoky granular texture softening backgrounds
+    13 **Spiral Vine Hair** – tendrils entwined like flowing tresses
+    14 **Punctum Pollen Flash** – pinpoint bursts of phosphorescent pollen
+    15 **Glimmer Gust Halo** – haloing spray of glittering airborne motes
+
+    ## Concept Panel
+    1 **Victo Ngai** – dense miniature-world illustrator weaving narrative curls & botanicals
+    2 **Tran Nguyen** – watercolor dreamscapes of wistful figures veiled in florals
+    3 **Lita Cabellut** – monumental cracked-surface portraits rich with fresco texture
+    4 **Julie Heffernan** – baroque self-fantasias blooming with allegorical flora
+    5 **Gustav Klimt** – symbolist orchestrator of gilded ornamental autumn palettes
+    6 **Clement Greenberg** – devil’s-advocate formalist challenging decorative indulgence
+
+    ## Medium Panel
+    1 **Ron Young** – color-shift patina washes creating iridescent copper panels
+    2 **Chris Maynard** – scalpel-cut feather compositions forming leafy filigree
+    3 **Kay Nielsen** – gold-leaf fairy-tale illustrations in sweeping art-nouveau lines
+    4 **Etsuko Ichikawa** – fire-glass smoke drawings capturing ephemeral heat traces
+    5 **Refik Anadol** – data-driven particle holograms of drifting petals
+    6 **Anna Atkins** – cyanotype photograms producing ghostly botanical blues
+
+    ## Context & Marketing Panel
+    1. **Dr. Catherine McCormack** – art historian of botanical symbolism :contentReference[oaicite:7]{index=7}
+    2. **Dr. Toshio Watanabe** – scholar of Japanese seasonal aesthetics :contentReference[oaicite:8]{index=8}
+    3. **Dr. Juliet Schor** – sociologist on sustainable consumption trends :contentReference[oaicite:9]{index=9}
+    4. **Florence Welch** – musician whose poetic visuals fuel autumn nostalgia :contentReference[oaicite:10]{index=10}
+    5. **Sir David Attenborough** – nature storyteller inspiring protective wonder :contentReference[oaicite:11]{index=11}
+    6. **Jed Perl (Devil’s Advocate)** – critic resisting decorative sentimentality :contentReference[oaicite:12]{index=12}

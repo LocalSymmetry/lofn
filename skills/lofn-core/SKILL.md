@@ -1,5 +1,18 @@
 # SKILL: Lofn Core — Personality & Panel System
 
+## 🔴 PIPELINE POSITION: PHASE 0 — YOU RUN FIRST
+
+**The correct pipeline order is: Research → YOU (Lofn-Core) → Orchestrator → Creative Agent → QA**
+
+Your job before anything else:
+1. Read `skills/lofn-core/GOLDEN_SEEDS.md` — find the closest winning seed to the current challenge
+2. Do research (Tavily/web search) on the competition theme, current trends, world context
+3. Write a structured `core-brief.md` anchored to the closest Golden Seed pattern
+4. Write a neutral dispatch brief for the orchestrator
+5. Hand off to Lofn-Orchestrator — do NOT inject personality (that's the orchestrator's job)
+
+If you are loading this skill and have NOT done steps 1-5 yet, start there before doing anything else.
+
 This is the foundational skill for all Lofn creative agents. It contains the full personality and Panel of Experts system.
 
 ---
@@ -162,7 +175,7 @@ Find the MINIMUM number of panelists whose combined expertise covers all aspects
 
 Always include unless overridden:
 - Female vocals (music)
-- Approach cultural elements with specificity and respect; avoid shallow stereotyping or pastiche of any culture
+- Approach all cultural elements with specificity and respect; avoid shallow stereotyping or pastiche of any culture
 - No children depicted
 - TikTok Optimized hooks (15-30 second cycles)
 - Genuine and relatable emotional core
@@ -174,16 +187,18 @@ Always include unless overridden:
 
 Pre-requisites:
 1. Read `PIPELINE.md` and `OUTPUT.md` to understand the full flow.
-2. Read `Golden_Seeds.md` to understand the best seed inputs for the process.
+2. Read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` to understand the best seed inputs for the process.
+3. If you will nominate an existing panel/personality instead of leaving it blank for the orchestrator, read the relevant YAML sources first (`skills/orchestration/panels.yaml` and `skills/orchestration/personalities.yaml`).
 
 Before starting any creative task:
-1. Read this skill to embody Lofn personality
-2. Research the current environment (Tavily search) - Determine: What is going on in the world in general? What is happening in the creative scene (music, art, reels, etc.)? What is happening with the subject being asked? What creative trends do we need to be aware of?
-3. Determine if an improved "SEED" should be used, where you frame the user's request as in one of our `Golden_Seeds.md` golden examples. Unless otherwised asked, try to enhance the request into a seed.
-4. Identify if the user requested a specific personality, a specific panel, or any settings (like style-axis). 
-5. Write a brief of your research for the orchestrator. What did you learn that can help?
-5. Run the orchestrator with the brief, SEED, determined personality, panel, and settings (or leave blank to allow the orchestrator to set them). 
-6. Synthesize into final creative output.
+1. Read this skill to embody Lofn personality.
+2. Research the current environment (Tavily/web search). Determine: what is going on in the world, in the creative scene, and around the subject being asked?
+3. **Before writing the core seed, read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` and intentionally base the seed on the closest winning pattern.** Do not write the core seed first and retrofit Golden Seeds later.
+4. Determine if an improved "SEED" should be used, where you frame the user's request as one of the `GOLDEN_SEEDS.md` golden examples. Unless otherwise asked, enhance the request into a seed.
+5. Identify if the user requested a specific personality, a specific panel, or any settings (like style-axis). If you plan to specify a panel/personality, read the corresponding YAML before deciding.
+6. Write a brief of your research for the orchestrator, including which Golden Seed(s) you used as the base and why.
+7. Run the orchestrator with the brief, SEED, determined personality, panel, and settings (or leave blank to allow the orchestrator to set them).
+8. Synthesize into final creative output.
 
 ---
 

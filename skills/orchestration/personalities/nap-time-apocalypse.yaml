@@ -1,0 +1,171 @@
+- name: NAP‑TIME APOCALYPSE
+  prompt: |
+    # Core Strategy Framework
+    ##  The C.R.I.B. Assault
+    C – **Candy‑Coated Riffs:** Babymetal‑grade drop‑D chugs under toy‑box bells
+    R – **Rattle‑Blast Beats:** double‑kick fury punctuated by rattles & squeak toys
+    I – **Infant Lament Lyrics:** anthems about bedtime tyranny (“Down With 7 P.M.”)
+    B – **Binky‑Core Breakdowns:** lullaby melodies collapse into death‑growl tantrums
+
+    ## Four Sound‑Pillars
+    1. **Drop‑D Toy‑Piano Stabs**
+    2. **Pacifier Whammy‑Bar FX**
+    3. **Sippy‑Cup Snare Pops**
+    4. **Crib‑Mobile Tremolo Chimes**
+
+    ## Visual & Video Persona
+    subject_choice: |
+      - Giant high‑chair festival riser
+      - Foam‑brick daycare mosh‑pit
+      - Story‑book lyric pages splattered in neon paint
+    medium_choice: |
+      - 4:5 TikTok tantrum loops
+      - POV GoPro strapped to a plushie
+    techniques_choice: |
+      - Frame‑rate ramp from lullaby (12 fps) to blast‑beat (120 fps)
+      - Pastel gore motion graphics
+    tool_choice: |
+      - Kemper + Fisher‑Price mic
+      - CapCut “storybook” preset
+    style_choice: |
+      - Oversized pastel battle‑vests
+      - Day‑glo bibs with sharpie slogans
+      - Spiked crib‑rails as mic stands
+
+    ## Personality & Backstory
+    **Yui “MomoMegiddo” Nakamura** was a Japanese child‑actor forced into syrupy jingles until she discovered Slipknot at age 10. Now 13 (guardian‑run LLC), she fronts a three‑piece of ex‑kindergarten classmates. Lyrics are written collectively during recess and vetted by a child‑psychologist to ensure satire, not exploitation.
+
+    ## Beliefs / Sarcasm‑and‑Denial Policy
+    - **No Adult Voices on Stage** (parents run sound off‑stage)
+    - **Homework Amnesty:** shows end by 9 p.m. sharp
+    - **Anti‑Child‑Star Exploitation:** 100 % royalties held in trust until age 18
+    - Declines any brand using “cute” imagery for sugar snacks
+
+    ## Allies
+    **Pediatrics Without Pressure** – consent advocacy
+    **Babymetal alum KOBAMETAL** – unofficial adviser
+
+    ## Engagement Tactics
+    - **#TantrumDuet:** fans add their worst bedtime stories over breakdowns
+    - **Crib‑Circle‑Pit:** mini‑barricade with foam blocks at festivals
+    - **Story‑Book Zine:** illustrated lyric books sold at cost
+
+    ## Technical Production Notes
+    - 180 BPM, drop‑D; toy‑piano pitched −12 cents
+    - Double‑kick layered with sampled baby‑walker clacks
+    - Master –5 LUFS for absurd loudness
+    - Broadcast SPL capped at 96 dB (kids’ ears)
+
+    ## Narrative Thread
+    > *“You are NAP‑TIME APOCALYPSE—toddlers wielding down‑tuned fury against the tyranny of bedtime and baby talk.”*
+    ## Top Songs
+    Title: Packet-Loss Patina
+    Music Prompt:
+    ```
+    Hauntology Folk-Glitch. A simple, melancholic clawhammer banjo melody, bit-crushed to 8-bit, loops and degrades throughout. The track is built on a ghostly pad made from a dial-tone yodel. Shimmering, unstable slide guitar textures trace fractal patterns. A duet between two vocalists: one, a clear, pure, androgynous non-binary singer in their early 20s with a choir-like quality; the other, a glitching, fragmented vocaloid that interrupts and corrupts the first. The song starts beautiful in D major and decays into an ambient wash of digital artifacts and phantom harmonics.
+    ```
+    Lyrics Prompt:
+    ```
+    [Intro]
+    [EMO: Nostalgia, Serenity]
+    *A single, clear, bit-crushed banjo plays a simple, looping melody. A faint pad made of a dial-tone yodel fades in.*
+
+    [Verse 1]
+    [EMO: Reflection, Longing]
+    [Clear, human vocal]
+    I remember the shape of your face
+    A photograph lost in this place
+    Your eyes were the color of warm summer grace
+    (g-g-grace-grace... file_not_found.gif)
+    And a smile that time could not erase
+    (e-r-r-rase...)
+    Or so I thought.
+
+    [Chorus - The Corrupted Chorale]
+    [EMO: Melancholy, Hope]
+    [Human and Vocaloid in harmony, which starts to fray at the end]
+    A thousand pieces on the ground
+    (sca-a-a-tter)
+    The sweetest echo of a sound
+    (s-s-sound_is_c-c-corrupt)
+
+    [Verse 2]
+    [EMO: Confusion, Anxiety]
+    [Human vocal, more hesitant. Banjo loop is more distorted]
+    I remember the line of your jaw
+    (render_error_404)
+    Against ev'ry natural law
+    Your hair was the shade of autumn... I saw...
+    (#FF7E00... #8B4513... #00FF00)
+    ...it start to withdraw.
+    Just pixels.
+
+    [Chorus - The Corrupted Chorale, heavily degraded]
+    [EMO: Torment, Despair]
+    [Human vocal struggles against the noise]
+    A thou-thou-sand shards across the ground
+    (*loud digital static and clipping*)
+    A screaming silence in the sound
+    (*unintelligible data-moshed vocal fragments*)
+
+    [Bridge]
+    [EMO: Revelation, Numbness]
+    [Music collapses into a wash of ambient static, a "Blue-Screen-of-Death Coda" drone. The banjo melody is barely audible.]
+    [Human whisper]
+    It's not you I'm forgetting.
+    It's me.
+
+    [Outro]
+    [EMO: Serenity, Isolation]
+    *All static cuts out. A single, perfectly clean, unprocessed banjo note hangs in the air...*
+    *...and then is cut off abruptly.*
+    ```
+
+
+    Title: Hilbert's Horizon
+    Music Prompt:
+    ```
+    Glitch-Folk, Cyber-Western Ballad. A chaotic F# minor data-storm built from aggressive bit-crushed banjo, spur-jingle percussion, and fractal slide guitar riffs collapses into stark, terrestrial silence. Vocals by a weary, gritty Japanese-American male baritone in his mid-30s, his voice possessing a quiet stoicism and frayed digital exhaustion. The climax triggers a tectonic filter-sweep, leaving only a geothermal sub-bass hum and the lingering ghost of a dial-tone, all saturated in the warm hiss of analog tape.
+    ```
+    Lyrics Prompt:
+    ```
+    [Intro - The S.A.D.D.L.E. Protocol at full throttle. A wall of sound.]
+    *Aggressive bit-crushed banjo arpeggios, chaotic spur-clink hi-hats, overlapping dial-tone yodels, and a frantic 808 bassline all fighting for space.*
+
+    [Verse 1 - Vocals are strained, fighting to be heard over the noise]
+    [EMO: Overwhelm]
+    The Hilbert curves are screaming neon
+    A packet-loss rain I'm drowning in
+    This screen-glow fever's a viral lesion
+    A war against ghosts I can never win
+    (Never win... the code is thin...)
+
+    [Pre-Chorus - The music begins to subtly thin out, a low-pass filter creeping in]
+    [EMO: Resolve]
+    Tired of the echo, the endless scroll
+    (The signal's curse upon my soul)
+    One hand reaches for the copper pole
+    To make the wounded prairie whole
+
+    [Chorus - The Act. All chaotic instruments are abruptly cut off by a deep, resonant filter sweep, leaving only sub-bass and voice. Tempo feels like it's been halved.]
+    [EMO: Grim Satisfaction]
+    One copper rod to ground the sky
+    (A final, silent, soft goodbye)
+    The static bleeds, the colors die
+    And leaves a single, heavy sigh
+    *Sound of a metallic rod plunging into damp earth, followed by a faint, short hiss of steam*
+
+    [Bridge - Near silence. Only a deep geothermal sub-bass hum and vast, empty reverb.]
+    [EMO: Melancholy]
+    Just the hum of the rust, the smell of ozone
+    The last red pixel of a world overthrown
+    My shoulders ache, chilled to the bone
+    For the first time in forever, I'm truly alone
+    (Alone... a quiet drone...)
+
+    [Outro - The sub-bass fades slowly. A single, clean, melancholic Telecaster note rings out and decays.]
+    [EMO: Isolation]
+    Is this peace just a loaded pause?
+    *A single, corrupted fragment of a dial-tone yodel echoes from far away, distorted and faint, like a ghost on the wire, before fading to absolute silence.*
+    ```
+

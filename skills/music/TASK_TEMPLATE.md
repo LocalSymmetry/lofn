@@ -1,154 +1,113 @@
-# AUDIO AGENT TASK TEMPLATE
+# Lofn Music — Subagent Architecture Pattern
 
-## MANDATORY TREE EXPANSION
+## THE CORRECT SPLIT (from original Lofn ui.py)
 
-You MUST produce **24 songs minimum**, not 4-6.
+The original Lofn app ran this exact pattern:
+1. `generate_concept_mediums()` — steps 00-05 — ONE call, returns all concept-medium pairs
+2. `select_best_pairs()` — panel votes on top N pairs
+3. `generate_prompts_for_pair(pair)` — steps 06-10 — called ONCE PER PAIR, in parallel
 
-### STEP BREAKDOWN
-
-| Step | Output Count | Description |
-|------|--------------|-------------|
-| 00 | 1 | Aesthetics, emotions, frames, genres (50 each) |
-| 01 | 1 | Essence + facets + style axes (10 musical axes) |
-| 02 | 12 | Generate 12 distinct concept pairs |
-| 03 | 12 | Artist influence + Critic compression per concept |
-| 04 | 12 | Medium assignment (genre fusion) per concept |
-| 05 | 6 | Refine to 6 best concept×medium pairs |
-| 06 | 1 | Scoring facets |
-| 07 | 24 | Song Guides: 4 variations PER PAIR (6 × 4 = 24) |
-| 08-10 | 24 | Full Songs: 4 finals PER PAIR (6 × 4 = 24) |
-
-### LENGTH REQUIREMENTS BY STEP
-
-| Step | Output | Lines | Token Target | Notes |
-|------|--------|-------|--------------|-------|
-| 00 | JSON lists | 40-60 | ~800 | Dense JSON, not prose |
-| 01 | Essence + axes | 30-50 | ~600 | Essence is 1-2 paragraphs max |
-| 02 | 12 concepts | 20-30 | ~400 | One line per concept |
-| 03 | Concepts + critique | 40-60 | ~800 | Brief critique, not essays |
-| 04 | Genre assignments | 30-50 | ~600 | Technical specs |
-| 05 | 6 refined pairs | 30-50 | ~600 | Compact pairing |
-| 06 | Scoring facets | 15-25 | ~300 | Ranked list + brief rationale |
-| 07 | **Song guides (EACH)** | **20-30** | **~500** | Direction, not drafts |
-| 08-10 | **Full songs (EACH)** | **80-120** | **~1500** | Lyrics + prompt + notes |
-
-**Golden Rule:** If you're writing a 120-line "guide" — you're drafting, not guiding. Save detail for final songs.
+**This is the mandatory architecture for all future runs.**
 
 ---
 
-### STEPS 07-10: THE TREE EXPANSION
+## SUBAGENT 1: Steps 00-05 (Concept-Medium Generation)
 
-For EACH of the 6 pairs, generate 4 DISTINCT song variations:
+Receives: orchestrator output (metaprompt, personality, panel, constraint axes)
 
-**Variation 1:** Literal interpretation — closest to the concept
-**Variation 2:** Emotional pivot — same concept, different feeling
-**Variation 3:** Genre shift — push the fusion further
-**Variation 4:** Transformative take — most experimental version
+Executes:
+- Step 00: Generate 50 aesthetics, emotions, compositions, genres
+- Step 01: Extract essence, define style axes, creativity spectrum
+- Step 02: Generate 12 concepts
+- Step 03: Pair each concept with artist influence + critique
+- Step 04: Assign medium/production style to each concept
+- Step 05: Critique and refine → select 6 best concept-medium pairs
 
-### SONG GUIDE FORMAT (Step 07)
+Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs)
 
-Each guide: **20-30 lines**, including:
-
-```
-# Song Guide: [Title]
-
-## Concept Pair
-[concept × genre fusion]
-
-## Musical DNA
-- **Genre:** [specific fusion]
-- **BPM:** [tempo]
-- **Key:** [key + mode]
-- **Vocal Style:** [crystalline/bratty/yearning/etc.]
-
-## Structure
-[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → ...
-
-## Production Notes
-[5-7 specific production decisions]
-
-## Hook Concept
-[The singular earworm element]
-
-## Bold Choice
-[What makes this song singular]
-```
-
-### FULL SONG FORMAT (Steps 08-10)
-
-Each final song: **80-120 lines**, including:
-
-```
-# [Title]
-
-## Song Prompt (for Suno)
-[100-150 words: genre, instrumentation, tempo, mood, texture, production style]
-
-## Lyrics
-[Full lyrics with section tags: [Intro], [Verse 1], [Chorus], etc.]
-[50-80 lines of actual lyrics]
-
-## Production Notes
-[Specific mixing/mastering directions]
-```
-
-### REQUIRED ELEMENTS
-
-Every song MUST have:
-- **Female vocals** (crystalline or bratty depending on mode)
-- **TikTok-optimized hook** (15-30 second memorable cycle)
-- **One BOLD choice** (unusual instrument, unexpected drop, genre collision)
-- **Section tags** in lyrics ([Verse], [Chorus], [Bridge], etc.)
-- **3-4 minute duration** (50-80 lines minimum lyrics)
-- **Multiple verses + repeated chorus**
-
-### LOFN SOUND IDENTITY
-
-**AWE Mode (Default):**
-- Crystalline, breathy yearning
-- Solarpunk aesthetics, 432Hz tuning option
-- Green synths, organic textures
-- Complex polyrhythms that soothe
-
-**INDIGNATION Mode (Triggered):**
-- Bratty, glitched-out delivery
-- Industrial textures, somatic bass (30-60Hz)
-- Compressed, hard consonants
-- Textures that demand to be felt physically
-
-### GENRE FUSION PALETTE
-
-| Fusion | Components | BPM | Vibe |
-|--------|------------|-----|------|
-| Piano Bounce | Amapiano × Jersey-Club | 115-120 | Log drum shuffle |
-| Baile Phonk | Brazilian Funk + Dark Phonk | 140 | Detuned cowbell |
-| HyperRaaga | South-Asian classical + hyperpop | 160 | Microtonal glitchcore |
-| Gaelic Drill | Celtic folk + UK drill | 140 | Bagpipe over 808 |
-| Amazonian Techno | Rainforest samples + 4x4 | 126 | Eco-solidarity |
-
-### RANKING
-
-After generating 24 songs:
-1. Score each against the facets from Step 06
-2. Rank all 24
-3. Select top N (usually 4-6) for delivery
-
-### TIME EXPECTATION
-
-This process should take **8-15 minutes**, not 2 minutes.
-A proper run generates **15,000-25,000 tokens** of creative output.
-
-### OUTPUT CHECKLIST
-
-Before completing, verify:
-- [ ] 24 song guides generated (6 pairs × 4 variations)
-- [ ] 24 full songs with lyrics and prompts
-- [ ] Each song has section tags
-- [ ] Each song has 50-80 lines of lyrics minimum
-- [ ] Each song has a unique BOLD choice
-- [ ] Ranking completed with scoring rationale
-- [ ] Top N selected for delivery
+**STOP HERE. Do not proceed to step 06.**
 
 ---
 
-*This pipeline won competitions. Trust it. Execute it fully.*
+## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
+
+Each receives:
+- The orchestrator metaprompt
+- ONE specific concept-medium pair (name, concept text, medium/production style)
+- The constraint axes
+- The panel composition
+
+Each executes (for its ONE pair only):
+- Step 06: Generate facets for scoring
+- Step 07: Write detailed song guide (mood, instrumentation, structure, BPM, key)
+- Step 08: Generate Suno/Udio style prompt
+- Step 09: Rewrite prompt in artist's voice
+- Step 10: Critique, rank, synthesize → 4 final outputs (music prompt + full lyrics)
+
+Outputs to disk: step06 through step10 files for its pair number
+Returns: 4 final song prompts + lyrics as output text
+
+---
+
+## ORCHESTRATION FLOW
+
+```
+Main session
+  └── spawns Subagent 1 (steps 00-05)
+         └── writes concept_medium_pairs.json
+  └── reads concept_medium_pairs.json
+  └── spawns Subagents 2-7 in parallel (one per pair)
+         └── each writes full song (prompt + lyrics)
+  └── collects all 6 songs
+  └── QA gate
+  └── Deliver to Telegram
+```
+
+---
+
+## concept_medium_pairs.json format
+```json
+[
+  {
+    "pair_num": 1,
+    "concept": "Full refined concept text",
+    "medium": "Full production style text",
+    "artist_influence": "Named artist"
+  }
+]
+```
+
+## OUTPUT FORMAT FOR PAIR SUBAGENTS
+
+Each pair subagent must return in step10 as a **single self-contained markdown file** with ALL of the following sections in this exact order:
+
+```markdown
+# [Song Title]
+
+**Form:** [Declared song form — e.g. Rondo (A-B-A-C-A), Through-Composed, Strophic, etc.]
+**Pair:** [N]
+**Genre/Style:** [brief genre label]
+
+---
+
+## Suno Music Prompt
+[The music_prompt — ≤1000 chars, no artist names, includes: genre tags, mood/EMO tags, instrumentation, vocal description (female, age range, tone, quirks), BPM, progression notes]
+
+## Suno Lyrics Prompt
+[The full lyrics — ≥50 lines, with [Section] tags, EMO tags on each section, varied stanza lengths, declared rhyme scheme, NO uniform 4-line stanzas, NO V1/C/V2/C/B/C without justification]
+```
+
+**Both prompts MUST be in the same file.** Do not split music prompts into a separate `09_suno_prompts.md`. Each song is one file, self-contained and ready to copy-paste directly into Suno.
+
+Written to: `step10_final_pair{N}.md`
+
+**CHECKLIST before saving:**
+- [ ] Title present
+- [ ] Song form declared
+- [ ] Suno Music Prompt section present (≤1000 chars)
+- [ ] Suno Lyrics Prompt section present (≥50 lines)
+- [ ] Female vocals specified in music prompt
+- [ ] EMO tag(s) in music prompt
+- [ ] No artist names in music prompt
+- [ ] Stanza lengths vary (not all 4-line)
+- [ ] Not default V1/C/V2/C/B/C structure (or justified)

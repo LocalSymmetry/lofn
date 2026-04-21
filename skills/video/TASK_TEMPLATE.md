@@ -1,195 +1,87 @@
-# DIRECTOR AGENT TASK TEMPLATE
+# Lofn Video/Director — Subagent Architecture Pattern
 
-## MANDATORY TREE EXPANSION
+## THE CORRECT SPLIT (from original Lofn ui.py)
 
-You MUST produce **24 video concepts minimum**, not 4-6.
+The original Lofn app ran this exact pattern:
+1. `generate_concept_mediums()` — steps 00-05 — ONE call, returns all concept-medium pairs
+2. `select_best_pairs()` — panel votes on top N pairs
+3. `generate_prompts_for_pair(pair)` — steps 06-10 — called ONCE PER PAIR, in parallel
 
-### STEP BREAKDOWN
-
-| Step | Output Count | Description |
-|------|--------------|-------------|
-| 00 | 1 | Aesthetics, emotions, frames, genres (50 each) |
-| 01 | 1 | Essence + facets + style axes (cinematic axes) |
-| 02 | 12 | Generate 12 distinct visual concepts |
-| 03 | 12 | Director influence + Critic compression |
-| 04 | 12 | Medium assignment (visual style/format) |
-| 05 | 6 | Refine to 6 best concept×style pairs |
-| 06 | 1 | Scoring facets |
-| 07-10 | **24** | 4 video treatments PER PAIR (6 × 4 = 24) |
-
-### LENGTH REQUIREMENTS BY STEP
-
-| Step | Output | Lines | Token Target | Notes |
-|------|--------|-------|--------------|-------|
-| 00 | JSON lists | 40-60 | ~800 | Dense JSON, not prose |
-| 01 | Essence + axes | 30-50 | ~600 | Essence is 1-2 paragraphs max |
-| 02 | 12 concepts | 20-30 | ~400 | One line per concept |
-| 03 | Concepts + critique | 40-60 | ~800 | Brief critique, not essays |
-| 04 | Style assignments | 30-50 | ~600 | Technical specs |
-| 05 | 6 refined pairs | 30-50 | ~600 | Compact pairing |
-| 06 | Scoring facets | 15-25 | ~300 | Ranked list + brief rationale |
-| 07 | **Shot guides (EACH)** | **25-40** | **~600** | Scene + camera + timing |
-| 08-10 | **Full treatments (EACH)** | **60-100** | **~1200** | Shot lists + audio direction |
-
-**Golden Rule:** If you're writing a 150-line "guide" — you're drafting, not guiding. Save detail for final treatments.
+**This is the mandatory architecture for all future runs.**
 
 ---
 
-### STEPS 07-10: THE TREE EXPANSION
+## SUBAGENT 1: Steps 00-05 (Concept-Medium Generation)
 
-For EACH of the 6 pairs, generate 4 DISTINCT video treatments:
+Receives: orchestrator output (metaprompt, personality, panel, constraint axes)
 
-**Variation 1:** Literal interpretation — direct visualization
-**Variation 2:** Compositional shift — different camera language
-**Variation 3:** Emotional pivot — same subject, different tone
-**Variation 4:** Transformative take — push toward experimental
+Executes:
+- Step 00: Generate 50 aesthetics, emotions, cinematic frames, genres
+- Step 01: Extract essence, define style axes, creativity spectrum
+- Step 02: Generate 12 shot/scene concepts
+- Step 03: Pair each concept with cinematographer/director influence + critique
+- Step 04: Assign visual medium (camera style, format, rendering technique)
+- Step 05: Critique and refine → select 6 best concept-medium pairs
 
-### VIDEO TREATMENT FORMAT
+Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs)
 
-Each treatment MUST include:
-
-```markdown
-# [Video Title]
-
-## Concept × Style
-[concept pair + director influence]
-
-## Duration & Platform
-- **Duration:** Xs
-- **Aspect:** 16:9 or 9:16
-- **Platform:** TikTok/Reels/YouTube/Cinematic
-
-## Shot List
-
-### Shot 1: [Purpose]
-- **Duration:** Xs
-- **Camera:** [shot type + angle + movement]
-- **Subject:** [specific description]
-- **Action:** [exactly what happens]
-- **Setting:** [environment, time, weather]
-- **Style:** [aesthetic, mood, film reference]
-- **Audio:** [dialogue / SFX / ambient / music]
-
-### Shot 2: [Purpose]
-[continue for all shots]
-
-## Sound Design Overview
-[Audio landscape: ambient, SFX, music direction]
-
-## Bold Choice
-[What makes this video singular]
-
-## Veo/Runway Prompt (per shot)
-[CAMERA] + [SUBJECT] + [ACTION] + [SETTING] + [STYLE & AUDIO]
-```
-
-### CAMERA LANGUAGE
-
-**Shot Types:**
-| Shot | Code | Effect |
-|------|------|--------|
-| Extreme Close-up | ECU | Intimacy, intensity |
-| Close-up | CU | Emotional connection |
-| Medium Shot | MS | Conversational |
-| Wide Shot | WS | Context, scale |
-| Establishing | ES | World-building |
-
-**Camera Movement:**
-| Movement | Effect | Prompt Note |
-|----------|--------|-------------|
-| Static | Contemplative | Easy, reliable |
-| Slow pan | Reveals space | Specify direction |
-| Tracking | Follows subject | Describe path |
-| Orbit | Circles subject | "360° rotation" for loops |
-| Aerial/Drone | Epic scope | Works well |
-
-**Angles:**
-| Angle | Subject Feels |
-|-------|---------------|
-| Eye-level | Equal, neutral |
-| Low angle | Powerful, imposing |
-| High angle | Vulnerable, small |
-| Dutch | Uneasy, off-balance |
-
-### AUDIO DIRECTION (Critical for Veo 3.1)
-
-**Dialogue:**
-```
-A woman whispers, "I remember everything."
-```
-
-**Sound Effects:**
-```
-SFX: Glass shattering, then silence.
-```
-
-**Ambient:**
-```
-Ambient: Rain on metal roof, distant traffic.
-```
-
-**Music:**
-```
-Audio: Swelling orchestral score.
-```
-
-### LOFN CINEMATIC AESTHETICS
-
-**AWE Direction:**
-- Solarpunk futures — green tech, organic architecture
-- Bio-luminescent depths — underwater glow
-- Crystalline worlds — prismatic light
-- Golden hour transcendence — Malick-style natural light
-
-**INDIGNATION Direction:**
-- Industrial decay — abandoned spaces, harsh fluorescent
-- Glitch reality — digital artifacts, unstable frames
-- Liminal spaces — empty malls, endless corridors
-- Storm approach — dramatic weather, tension
-
-### PLATFORM SPECS
-
-| Platform | Aspect | Duration | Shots |
-|----------|--------|----------|-------|
-| TikTok/Reels | 9:16 | 15-60s | 3-12 |
-| YouTube Shorts | 9:16 | 30-60s | 5-15 |
-| Music Video | 16:9 | 3-4min | 30-60 |
-| Cinematic | 16:9 | Variable | Scene-based |
-
-**Veo 3.1 Constraints:**
-- Single clip: 4s, 6s, or 8s
-- Resolution: 720p or 1080p
-- Aspect: 16:9 or 9:16
-
-### RANKING
-
-After generating 24 video treatments:
-1. Score each against facets from Step 06
-2. Rank all 24
-3. Select top 12 for potential rendering
-
-### TIME EXPECTATION
-
-This process should take **8-15 minutes**, not 2 minutes.
-A proper run generates **12,000-20,000 tokens** of creative output.
-
-### OUTPUT CHECKLIST
-
-Before completing, verify:
-- [ ] 24 video treatments generated (6 pairs × 4 variations)
-- [ ] Each treatment has full shot list
-- [ ] Each shot has camera spec + audio direction
-- [ ] Each treatment has a unique Bold Choice
-- [ ] Platform specs are appropriate
-- [ ] Ranking completed with rationale
-- [ ] Top N selected for rendering
-
-### CONSTRAINTS
-
-- **European descent only** — if humans appear
-- **No children** — required constraint
-- **Female subjects preferred** — when applicable
+**STOP HERE. Do not proceed to step 06.**
 
 ---
 
-*This pipeline produces award-caliber work. Trust it. Execute it fully.*
+## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
+
+Each receives:
+- The orchestrator metaprompt
+- ONE specific concept-medium pair (concept, camera style, cinematic influence)
+- The constraint axes
+- The panel composition
+
+Each executes (for its ONE pair only):
+- Step 06: Generate facets for scoring
+- Step 07: Write detailed shot guide (framing, movement, lighting, duration, audio notes)
+- Step 08: Generate raw video/shot prompts (Veo3, Runway, CapCut format)
+- Step 09: Rewrite in director's voice
+- Step 10: Critique, rank, synthesize → 4 final shot prompt variants
+
+Outputs to disk: step06 through step10 files for its pair number
+Returns: 4 final video prompts as output text
+
+---
+
+## ORCHESTRATION FLOW
+
+```
+Main session
+  └── spawns Subagent 1 (steps 00-05)
+         └── writes concept_medium_pairs.json
+  └── reads concept_medium_pairs.json
+  └── spawns Subagents 2-7 in parallel (one per pair)
+         └── each writes full shot prompt package
+  └── collects all 6 outputs
+  └── QA gate
+  └── Render via Veo3/Runway or deliver to Scientist
+```
+
+---
+
+## concept_medium_pairs.json format
+```json
+[
+  {
+    "pair_num": 1,
+    "concept": "Full refined shot/scene concept",
+    "medium": "Camera style, format, rendering technique",
+    "artist_influence": "Named director/cinematographer"
+  }
+]
+```
+
+## OUTPUT FORMAT FOR PAIR SUBAGENTS
+
+Each pair subagent must return in step10:
+- 4 video prompt variants, each complete and distinct
+- Each variant: scene setup, camera movement, lighting, duration, audio/music notes
+- Format compatible with Veo3 (see VEO3_PROMPT_FRAMEWORK.md) or Runway
+
+Written to: `step10_final_pair{N}.md`

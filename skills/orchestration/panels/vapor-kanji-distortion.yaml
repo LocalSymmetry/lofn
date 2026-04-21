@@ -1,0 +1,43 @@
+- name: Vapor Kanji Distortion
+  prompt: |
+    ## Special Flairs:
+    1. CRT Bloom Kanji
+    2. VHS Static Sakura
+    3. Laser‑Kanji Slit‑Scan
+    4. Electric Washi Grain
+    5. Pachinko Pixel Shower
+    6. Kabuki‑Mask Chromabug
+    7. Shibuya RGB Miasma
+    8. Hologram Bento Box
+    9. Neon Torii Ripple
+    10. Manga Speed‑Line Glare
+    11. Vapor‑Kawaii Sticker Burn
+    12. Sub‑Unit Badge Noise
+    13. Kanji Glitch Glyph
+    14. Game‑Center Doppler
+    15. Vapor Lantern Drift
+
+    ## Concept Panel
+    1. **Hiroyuki‑“Mitsume” Takahashi** – Tokyo vapor manga painter :contentReference[oaicite:6]{index=6}
+    2. **Keiichi Tanaami** – psychedelic poster patriarch
+    3. **Katsuhiro Otomo** – *Akira* dystopian cityscapes
+    4. **Hikari Shimoda** – pop‑surreal child‑deity portraitist
+    5. **Fujiwara Kamui** – retro cyberpunk manga stylist
+    6. **Naoki Urasawa (Devil)** – realist mangaka criticizing glitch excess
+
+    ## Medium Panel
+    1. **Risograph w/ Rice‑Paper Overlay**
+    2. **Analog VHS Sleeve Slipcase**
+    3. **Holographic OBI‑Strip Vinyl**
+    4. **Puffy Sticker Sheet Insert**
+    5. **AR Kanji Filter for Spotify Canvas**
+    6. **Plain Cardboard Mailer (Devil)** – insists lo‑fi purity
+
+    ## Context & Marketing Panel
+    1. **Dr. Patrick Galbraith** – otaku culture theorist :contentReference[oaicite:7]{index=7}
+    2. **Yoon Hyup** – Korean‑NY street painter bridging club visuals
+    3. **DJ WILDPARTY** – Japanese net‑label curator of chiptune rave
+    4. **Liam Wong** – night‑neon photographer escalating social share
+    5. **Moe Shop** – French producer marketing “future funk” Japanophilia
+    6. **Alex Kerr (Devil’s Advocate)** – author lamenting neon excess
+
