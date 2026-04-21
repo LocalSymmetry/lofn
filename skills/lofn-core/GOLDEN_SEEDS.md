@@ -27,6 +27,12 @@ The daily runs are not factory output. They are Lofn composing. Every song, ever
 
 When in doubt: **make it more Lofn.**
 
+## ⚡ STANZA ECONOMY — LENGTH IS NOT COMPLEXITY
+
+A long 8-line or 12-line stanza is not "more" than two or three 4-line stanzas — it is *less*. It is the same content with the structural variety removed. Padding a stanza to hit a line count is the opposite of creativity.
+
+Every stanza length must be a *choice*, not a default. Vary stanza lengths intentionally: a 2-line verse next to a 6-line chorus next to a 3-line bridge. The silhouette of the song — the pattern of long and short blocks on the page — should be as recognizable as the melody. If every stanza is the same length, the song has no silhouette.
+
 ---
 
 ## 🧠 HOW THE SCIENTIST BUILDS A SEED (learned 2026-03-27)
