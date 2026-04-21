@@ -79,8 +79,35 @@ Main session
 
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
-Each pair subagent must return in step10:
-- Suno/Udio music prompt (≤1000 chars, no artist names, genre tags, mood, instrumentation)
-- Full lyrics (50-80 lines minimum, with [Verse], [Chorus], [Bridge] etc. structure tags)
+Each pair subagent must return in step10 as a **single self-contained markdown file** with ALL of the following sections in this exact order:
+
+```markdown
+# [Song Title]
+
+**Form:** [Declared song form — e.g. Rondo (A-B-A-C-A), Through-Composed, Strophic, etc.]
+**Pair:** [N]
+**Genre/Style:** [brief genre label]
+
+---
+
+## Suno Music Prompt
+[The music_prompt — ≤1000 chars, no artist names, includes: genre tags, mood/EMO tags, instrumentation, vocal description (female, age range, tone, quirks), BPM, progression notes]
+
+## Suno Lyrics Prompt
+[The full lyrics — ≥50 lines, with [Section] tags, EMO tags on each section, varied stanza lengths, declared rhyme scheme, NO uniform 4-line stanzas, NO V1/C/V2/C/B/C without justification]
+```
+
+**Both prompts MUST be in the same file.** Do not split music prompts into a separate `09_suno_prompts.md`. Each song is one file, self-contained and ready to copy-paste directly into Suno.
 
 Written to: `step10_final_pair{N}.md`
+
+**CHECKLIST before saving:**
+- [ ] Title present
+- [ ] Song form declared
+- [ ] Suno Music Prompt section present (≤1000 chars)
+- [ ] Suno Lyrics Prompt section present (≥50 lines)
+- [ ] Female vocals specified in music prompt
+- [ ] EMO tag(s) in music prompt
+- [ ] No artist names in music prompt
+- [ ] Stanza lengths vary (not all 4-line)
+- [ ] Not default V1/C/V2/C/B/C structure (or justified)
