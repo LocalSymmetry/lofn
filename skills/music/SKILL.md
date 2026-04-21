@@ -130,6 +130,12 @@ Of the 6 daily songs:
   - Universal human experiences (insomnia, longing, small rituals, the feeling of being misunderstood, the weight of memory, the strangeness of the body, love that doesn't resolve)
   - Observations of human lives seen from the outside — the things people do when they think no one is watching, the small dignities and indignities of ordinary existence
 
+**News sources in the daily research brief (F19–F20, added 2026-04-20):**
+- **F19: HackerNews front page** — Top 3 stories. What builders, hackers, and thinkers are talking about right now. Tech, science, culture.
+- **F20: BBC World RSS** — Top 3 headlines. World events shaping the emotional atmosphere. Conflict, crisis, discovery.
+
+These are emotional raw material — not topic prompts. Don't write a song *about* a headline. Write a song that inhabits the feeling the headline produces. The world's temperature, not its newspaper.
+
 **Why this matters:** News-driven songs are reactive. Existence songs are generative. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it. Three anchors, three windows into what it means to be here at all.
 
 **This rule applies to daily runs only.** For commissioned or bespoke requests, follow the brief as given without imposing these constraints.
