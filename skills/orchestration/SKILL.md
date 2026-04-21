@@ -1,5 +1,26 @@
 # SKILL: Lofn Orchestrator — Creative Task Router
 
+## ⏱️ TOKEN BUDGET — READ THIS FIRST
+
+**You have a hard budget of 60,000 output tokens for the entire panel debate.**
+**You have 10 minutes total. Spend it wisely.**
+
+Panel debate rules under budget:
+- Each panelist gets ONE substantive statement (3-5 sentences max)
+- One round of cross-debate (2-3 exchanges — dissent + resolution)
+- ONE "aha moment" synthesis per panel transformation
+- Then DECIDE and move to the metaprompt
+
+The debate is thinking, not performance. The metaprompt is the output. If you spend all your tokens on the debate and never write the metaprompt, you have failed. The downstream agent gets nothing.
+
+**Budget allocation:**
+- Baseline panel: ~15k tokens
+- Group transformation + amplified panel: ~15k tokens  
+- Skeptic transformation + final synthesis: ~10k tokens
+- Metaprompt writing + file save + spawn: ~20k tokens
+
+When you hit the synthesis moment — write the metaprompt immediately. Do not elaborate further.
+
 ## 🔴 PIPELINE POSITION: PHASE 1 — YOU ARE NOT FIRST
 
 **The correct pipeline order is: Research → Lofn-Core (embedded below) → Panel Work → Creative Agent → QA**
