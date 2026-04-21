@@ -37,7 +37,7 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 
 **PREREQUISITES:**
 1. Load `skills/lofn-core/SKILL.md` for personality and Panel system.
-2. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
+2. Load `skills/lofn-core/refs/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/music/TASK_TEMPLATE.md` for exact output requirements.
 

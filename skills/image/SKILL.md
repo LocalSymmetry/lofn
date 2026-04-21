@@ -38,7 +38,7 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 **PREREQUISITES:**
 0. Load `resources/panel-of-experts.md` to understand the panel of experts prompting you will use.
 1. Load `skills/lofn-core/SKILL.md` for personality and Panel system.
-2. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
+2. Load `skills/lofn-core/refs/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/image/TASK_TEMPLATE.md` for exact output requirements.
 
