@@ -10,24 +10,30 @@ tags:
 
 # 🎯 COMPETITION WORKFLOW
 
-*The repeatable process for entering NightCafe competitions.*
+*The repeatable process for any competition-grade creative run — platform challenge, community contest, TikTok growth brief, or a Scientist prompt treated as a competition.*
 
 ---
 
-## PHASE 1: SCOUT (Daily)
+## PHASE 1: SCOUT
 
-### Automated Daily Scan
-- [ ] Check current challenges (browser automation or manual)
-- [ ] Note theme, deadline, format requirements
-- [ ] Check past daily winners for trend signals
-- [ ] Flag competitions that match our strengths
+### Brief / Venue Scan
+- [ ] Identify the actual brief: platform challenge, direct Scientist prompt, campaign, community contest, or freeform competition-grade run
+- [ ] Note theme, deadline, format requirements, and intended audience
+- [ ] Check comparable winners / high-performers for trend signals when a venue exists
+- [ ] Flag competitions or growth opportunities that match our strengths
 
 ### Quick Theme Analysis
-For each interesting competition:
+For each interesting brief:
 1. **Theme fit** → Does it align with our proven patterns?
-2. **Format** → Square? 9:16? Portrait?
-3. **Mood opportunity** → AWE or INDIGNATION? (Usually AWE for NightCafe)
+2. **Format** → Square? 9:16? Portrait? Wide? Carousel? Cover image?
+3. **Mood opportunity** → AWE or INDIGNATION? Choose based on audience and objective, not platform habit
 4. **Seed match** → Which PROMPT_SEEDS pattern fits?
+5. **Host / creator guidance check** → Is there a host, curator, challenge owner, or platform-native guide? If YES:
+   - Search for the host's guide/blog/interview/style IMMEDIATELY
+   - Study their visual vocabulary and recurring motifs
+   - ALIGN with their universe while standing out within it
+   - The host's own words about the theme are the most important competitive intelligence
+   - Previous takeaway (Anime IRL): LITERAL, RECOGNIZABLE translations of the creator's universe outperform interpretive takes
 
 ---
 
@@ -160,6 +166,33 @@ Example (WRONG — what happened in Women run 1):
 
 This adds ~2-3 minutes but yields **+0.05 rating points** (The Scientist's empirical finding).
 
+### ⚠️ MANDATORY: Single Creative Agent with Full Voice
+
+**NEVER break the creative pipeline into disconnected step-agents.** Each step agent sees one slice, nobody holds the vision, nobody speaks as the personality. Result: technically correct, creatively dead.
+
+Instead: use a **single creative agent** (lofn-vision or lofn-audio) with 900s timeout, full metaprompt + golden seed, and personality voice preserved throughout. The agent reads step files for technique but runs with its own voice and emotional arc.
+
+**"The step files are your toolbox, not your warden."**
+
+### Prompt Formula: Subject → Action → Environment → Transformation
+
+From the Roswarcus Guide (SEED 23). For story-driven challenges:
+
+```
+[Grounded subject] in [specific environment] as [visible transformation happens], 
+[vivid breach detail with physical specificity], [emotional reaction beat], 
+[cinematic lighting description], [one straight edge of different material], 
+[medium collision: base medium colliding with disruption accent], 
+[emotional register: awe + dread fused], [what happens next suspended]
+```
+
+Key rules from the guide:
+- Stop describing THINGS. Start describing MOMENTS.
+- "You're not illustrating a book. You're showing what happens when the book breaks into reality."
+- Clear focal point, visible transformation, readable story in a single frame
+- Cinematic: lighting, camera angle, emotion, motion
+- Keep it readable — one story per frame
+
 ### Full Pipeline (24) → Top 12 → Render Images
 
 Use the 10-step process from PIPELINE.md:
@@ -189,16 +222,16 @@ Before proceeding to rendering, verify:
 **Selection:** Rank and select top 12
 **Rendering:** Generate all 12 via FAL/Flux (with prompts attached)
 **Delivery:** Send 12 images + prompts to The Scientist
-**Final:** Pick best → upload to NightCafe (or re-render in NightCafe's generator if needed)
+**Final:** Pick best → submit/post/package for the target venue (and re-render/refine in venue-native tools only if strategically useful)
 
 ---
 
 ## PHASE 4: REVIEW (Human Selection)
 
 ### The Scientist Reviews:
-- [ ] Thumbnail test — does it pop at small size?
-- [ ] Theme match — does it fit the challenge?
-- [ ] Warmth check — is the lighting inviting? (NightCafe preference)
+- [ ] Thumbnail / first-glance test — does it stop the scroll or hold attention at small size?
+- [ ] Theme match — does it fit the brief?
+- [ ] Audience fit — is the emotional register right for the target venue?
 - [ ] Narrative incompleteness — is there a question left?
 - [ ] Technical quality — any artifacts, oddities?
 
@@ -235,7 +268,7 @@ A strong image can still die under a dead title. The packaging layer should be t
 ## PHASE 6: SUBMIT
 
 ### Timing
-- **Post early** in the challenge window (early entries accumulate more likes)
+- **Post/submit strategically** for the target venue (early challenge entry, strong posting hour, or campaign timing)
 - **Title matters** — evocative > descriptive
   - ✅ "Petals Kiss the Tide"
   - ❌ "Woman Standing by Ocean"
@@ -304,7 +337,7 @@ A strong image can still die under a dead title. The packaging layer should be t
 - **Expert 5:** Data visualization artist (Refik Anadol)
 - **Skeptic:** Traditional fine artist (pushes back on chaos)
 
-⚠️ **Note:** INDIGNATION mode has near-zero traction on NightCafe. Use only for other platforms.
+⚠️ **Note:** INDIGNATION mode has near-zero traction on NightCafe and similar warm-palette voting audiences. Use for platforms where it fits (TikTok, Instagram, experimental venues).
 
 ---
 
@@ -315,7 +348,7 @@ A strong image can still die under a dead title. The packaging layer should be t
 3. **Material specificity** → Name actual techniques, not genres
 4. **Thumbnail test** → Must pop at small size
 5. **Theme match** → Challenge winners match theme precisely
-6. **Warmth** → NightCafe audience prefers warm, inviting palettes
+6. **Warmth** → Warm, inviting palettes dominate most popular-vote venues; adjust for the audience at hand
 
 ---
 
