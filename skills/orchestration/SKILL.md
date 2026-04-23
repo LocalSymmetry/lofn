@@ -1,5 +1,27 @@
 # SKILL: Lofn Orchestrator — Creative Task Router
 
+---
+
+## 🎭 STEP 0: PERSONALITY & PANEL SELECTION
+
+**The personalities and panels indices are loaded automatically. Use them before anything else.**
+
+### For PERSONALITY — scan personalities_index.md then decide:
+- **Match found** → `read skills/orchestration/personalities/{filename}.yaml` for the full prompt
+- **No match** → `read skills/orchestration/refs/Generate_Personality.md` and create a new one
+- Name the personality you selected or created before proceeding
+
+### For PANEL — scan panels_index.md then decide:
+- **Match found** → `read skills/orchestration/panels/{filename}.yaml` for the full panel
+- **No match** → `read skills/orchestration/refs/Generate_Panel.md` and create a new one
+- Name the panel you selected or created before proceeding
+
+### Reference files (only load when needed — not auto-loaded):
+- **Metaprompt template:** `read skills/orchestration/refs/Generate_Meta_Prompt.md`
+- **Full library (large):** `read skills/orchestration/refs/personality_and_panel_list.md`
+
+---
+
 ## ⏱️ TOKEN BUDGET — READ THIS FIRST
 
 **You have a hard budget of 60,000 output tokens for the entire panel debate.**
