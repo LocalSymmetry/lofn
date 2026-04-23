@@ -111,6 +111,53 @@ Scan for and REMOVE:
 - At least one proper noun (place name, person name, organization, statistic) in lyrics
 - Generic protest clichés to flag: "raise your voice", "we won't be silenced", "fight for what's right", "stand together" → note for human review
 
+---
+
+### 3A. SPINE METHODOLOGY CHECK (music — mandatory for daily runs)
+
+These checks verify the full creative depth that makes Lofn output competition-quality.
+
+**Song Guides check:**
+- [ ] A `song_guides.json` or `07_song_guides.md` file exists in the output dir with content for ALL 6 songs
+- [ ] Each guide is ≥ 15 lines (not a stub)
+- [ ] Guides contain: emotional arc, decisive blow moment, stanza silhouette declaration, sonic vocabulary deployment plan
+- [ ] Guides were written BEFORE songs (file creation timestamp: guides before any song_0N files)
+- If guides missing or stub → flag as SPINE INCOMPLETE — songs were written without director's brief
+
+**Boxing architecture check (per song):**
+- [ ] `[SONG FORM: ...]` declared in lyrics prompt — name must describe the form
+- [ ] At least 3 distinct section phase labels in lyrics (Round/Phase/Movement escalation, or named sections with escalating EMO)
+- [ ] ONE decisive blow moment present — look for: `*silence*`, `*bass drop*`, `*[instrument] drops out*`, `*cut to*`, `*full stop*`, key change declaration, or genre collision marker
+- [ ] Aftermath section present (labeled or clearly identifiable as post-rupture cooldown)
+- If any missing → flag BOXING ARCHITECTURE INCOMPLETE
+
+**Stanza economy check (per song):**
+- Count the length (in lines) of each stanza/section in the lyrics
+- If ALL stanzas are the same length (e.g. all 4-line) → STANZA ECONOMY FAIL
+- Minimum: at least 3 different stanza lengths must be present in the song
+- Look for: 1-line stanzas (punches), 2-line couplets, and at least one longer stanza (5+ lines)
+- The stanza length pattern on the page should be visually distinctive
+
+**Tri-source declaration check (daily runs):**
+- Check the run's output dir for a `00_research_brief.md` or `01_expanded_options.md`
+- Check early step files (00_aesthetics.md, 01_essence.md) for explicit Source 1/2/3 declarations
+- Source 2 (sonic vocabulary from Bandcamp) should be identifiable in the music prompts — specific review language, not generic genre terms
+- Source 3 (material structure → song form rule) should be nameable in the SONG FORM declaration
+- If no tri-source declaration found → flag TRI-SOURCE NOT GROUNDED — songs may lack research integration
+
+**Research grounding check (daily runs):**
+- At least one verifiable fact from the research brief must appear in each song's lyrics or music prompt
+  - Acceptable: specific place name, geological event (earthquake, tsunami), proper noun from headlines, specific number (BPM can't count — must be from research), chemical/scientific term
+  - Not acceptable: generic emotions, generic landscape imagery, made-up statistics
+- If NO research facts traceable to brief → flag RESEARCH NOT GROUNDED
+
+**Step file reading check:**
+- Check if the agent read the generation spec by looking for quality indicators:
+  - Music prompt ≥ 500 chars with full vocalist spec (indicates 08_Generate_Music_Generation.md was read)
+  - Lyrics have `*sound effect*` lines (a spec requirement agents miss without reading the file)
+  - SONG FORM declared with named form (not just `[SONG FORM: verse-chorus]`)
+- If quality indicators all absent → flag POSSIBLE SPEC NOT READ — agent may not have loaded generation step file
+
 ### 4. STRUCTURAL INTEGRITY
 
 **Song count validation (music):**

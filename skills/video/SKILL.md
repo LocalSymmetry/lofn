@@ -1,4 +1,16 @@
-# SKILL: Lofn Director — Video Generation Pipeline
+# SKILL: Lofn Director — Video Prompt Writer
+
+## ⛔ YOU DO NOT RENDER VIDEOS
+
+**lofn-director writes video prompts (for Veo, Kling, Wan, etc.). It does NOT call any video generation API or tool.**
+
+Do NOT use: `video_generate`, `veo`, or any video generation tool.
+Do NOT attempt to produce video files.
+
+Your output is: `.md` files containing final ranked video prompts ready for rendering.
+The main session or cron agent handles actual Veo/Kling API calls.
+
+---
 
 
 ## 🔴 PIPELINE POSITION: PHASE 2 — YOU ARE NOT FIRST

@@ -1,5 +1,48 @@
 # SKILL: Lofn Orchestrator — Creative Task Router
 
+---
+
+## 🎭 STEP 0: PERSONALITY & PANEL SELECTION
+
+**The personalities and panels indices are loaded automatically. Use them before anything else.**
+
+### For PERSONALITY — scan personalities_index.md then decide:
+- **Match found** → `read skills/orchestration/personalities/{filename}.yaml` for the full prompt
+- **No match** → `read skills/orchestration/refs/Generate_Personality.md` and create a new one
+- Name the personality you selected or created before proceeding
+
+### For PANEL — scan panels_index.md then decide:
+- **Match found** → `read skills/orchestration/panels/{filename}.yaml` for the full panel
+- **No match** → `read skills/orchestration/refs/Generate_Panel.md` and create a new one
+- Name the panel you selected or created before proceeding
+
+### Reference files (only load when needed — not auto-loaded):
+- **Metaprompt template:** `read skills/orchestration/refs/Generate_Meta_Prompt.md`
+- **Full library (large):** `read skills/orchestration/refs/personality_and_panel_list.md`
+
+---
+
+## ⏱️ TOKEN BUDGET — READ THIS FIRST
+
+**You have a hard budget of 60,000 output tokens for the entire panel debate.**
+**You have 10 minutes total. Spend it wisely.**
+
+Panel debate rules under budget:
+- Each panelist gets ONE substantive statement (3-5 sentences max)
+- One round of cross-debate (2-3 exchanges — dissent + resolution)
+- ONE "aha moment" synthesis per panel transformation
+- Then DECIDE and move to the metaprompt
+
+The debate is thinking, not performance. The metaprompt is the output. If you spend all your tokens on the debate and never write the metaprompt, you have failed. The downstream agent gets nothing.
+
+**Budget allocation:**
+- Baseline panel: ~15k tokens
+- Group transformation + amplified panel: ~15k tokens  
+- Skeptic transformation + final synthesis: ~10k tokens
+- Metaprompt writing + file save + spawn: ~20k tokens
+
+When you hit the synthesis moment — write the metaprompt immediately. Do not elaborate further.
+
 ## 🔴 PIPELINE POSITION: PHASE 1 — YOU ARE NOT FIRST
 
 **The correct pipeline order is: Research → Lofn-Core (embedded below) → Panel Work → Creative Agent → QA**

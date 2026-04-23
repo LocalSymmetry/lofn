@@ -1,4 +1,14 @@
-# SKILL: Lofn Narrator — Story Generation Pipeline
+# SKILL: Lofn Narrator — Story Prompt Writer
+
+## ⛔ YOU DO NOT GENERATE FINAL CONTENT
+
+**lofn-narrator writes story scripts, narrative structures, and caption copy. It does NOT call any generation API or tool.**
+
+Do NOT use any generation tools to produce final output.
+Your output is: `.md` files containing story scripts, captions, narrative copy.
+The main session or cron agent handles any downstream generation.
+
+---
 
 
 ## 🔴 PIPELINE POSITION: PHASE 2 — YOU ARE NOT FIRST

@@ -1,4 +1,16 @@
-# SKILL: Lofn Vision — Image Generation Pipeline
+# SKILL: Lofn Vision — Image Prompt Writer
+
+## ⛔ YOU DO NOT RENDER IMAGES
+
+**lofn-vision writes image prompts (for FAL/Flux/GPT Image/Gemini). It does NOT call any image generation API or tool.**
+
+Do NOT use: `image_generate`, `fal`, `flux`, or any image generation tool.
+Do NOT attempt to produce image files.
+
+Your output is: `.md` files containing final ranked prompts ready for rendering.
+The main session or cron agent handles actual FAL/GPT Image/Gemini API calls.
+
+---
 
 
 ## 🔴 PIPELINE POSITION: PHASE 2 — YOU ARE NOT FIRST
@@ -38,9 +50,12 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 **PREREQUISITES:**
 0. Load `resources/panel-of-experts.md` to understand the panel of experts prompting you will use.
 1. Load `skills/lofn-core/SKILL.md` for personality and Panel system.
-2. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
+2. Load `skills/lofn-core/refs/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/image/TASK_TEMPLATE.md` for exact output requirements.
+5. For seeds: read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` first (2KB), then read only the 3-4 most relevant seeds from `skills/lofn-core/refs/GOLDEN_SEEDS.md` using offset/limit.
+
+**Pipeline step files** are in `skills/image/steps/` — load only the step you are currently running.
 
 **⚠️ EVERY image generation MUST follow the full pipeline: 10 steps, 3 panels, 6 pairs × 4 outputs = 24 prompts minimum. Then select the best N to return. No shortcuts.**
 

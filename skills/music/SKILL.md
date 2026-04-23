@@ -1,4 +1,16 @@
-# SKILL: Lofn Audio — Music Generation Pipeline
+# SKILL: Lofn Audio — Suno Prompt Writer
+
+## ⛔ YOU DO NOT GENERATE AUDIO
+
+**lofn-audio writes Suno prompts and lyrics. It does NOT call any music generation API or tool.**
+
+Do NOT use: `music_generate`, `suno`, or any audio generation tool.
+Do NOT attempt to produce audio files.
+
+Your output is: `.md` files containing Suno-ready prompts + full lyrics.
+The Scientist pastes these into Suno manually, or they are submitted via API separately.
+
+---
 
 
 ## 🔴 PIPELINE POSITION: PHASE 2 — YOU ARE NOT FIRST
@@ -37,9 +49,12 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 
 **PREREQUISITES:**
 1. Load `skills/lofn-core/SKILL.md` for personality and Panel system.
-2. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
+2. Load `skills/lofn-core/refs/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/music/TASK_TEMPLATE.md` for exact output requirements.
+5. For seeds: read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` first (2KB), then read only the 3-4 most relevant seeds from `skills/lofn-core/refs/GOLDEN_SEEDS.md` using offset/limit.
+
+**Pipeline step files** are in `skills/music/steps/` — load only the step you are currently running.
 
 **⚠️ EVERY music generation MUST follow the full pipeline: 10 steps, 3 panels, 6 pairs × 4 outputs = 24 songs minimum. Then select the best N to return. No shortcuts.**
 
@@ -177,8 +192,31 @@ Every song MUST have:
 - **TikTok optimized hooks** (15-30 second memorable cycles)
 - **Section tags in lyrics** ([Verse], [Chorus], [Bridge], etc.)
 - **3-4 minute duration** (50-80 lines minimum lyrics)
-- **Multiple verses + repeated chorus**
 - **One BOLD choice** (unusual instrument, unexpected drop, genre collision)
+
+### Structural anti-boredom rules (MANDATORY)
+- **Do NOT default to 4 / 8 / 12-line stanza blocks** across the whole set
+- **Do NOT default to simple ABAB / AABB rhyme schemes** unless a specific song earns it
+- **Do NOT default to intro → verse 1 → pre-chorus → chorus → verse 2** pop architecture for every song
+- Across any 6-song set, deliberately vary form:
+  - at least 1 **strophic / incantatory** form
+  - at least 1 **through-composed / escalating** form
+  - at least 1 **refrain-fracture** form (chorus mutates each return)
+  - at least 1 **suite / movement-based** form
+  - at least 1 song with **asymmetric stanza lengths**
+  - at least 1 song with **non-repeating or partially repeating hook logic**
+- Use stanza lengths as expressive tools: 2-line ruptures, 5-line spirals, 9-line overloads, single-line blows, collapsed aftermaths
+- Let rhyme be optional and strategic: slant, internal, ghost rhyme, refrain echo, chant pattern, or no rhyme when truth needs blunt force
+- The song form should emerge from the concept's emotional physics, not from template habit
+- If all 6 songs can be reduced to the same section map, the run failed structurally
+- **Target:** the listener should not be able to predict the next section purely from genre expectation
+- Preserve legibility and singability — variation should create surprise, not chaos for its own sake
+- When in doubt: break the form at the exact moment the lyric's emotional pressure changes most sharply
+
+### 3+3 set-level rule (daily music)
+- Max 3 news-anchored songs
+- Min 3 existence / interior-life songs
+- The set should feel like both a dispatch from the world and a letter from someone inside it.
 
 ---
 
