@@ -75,6 +75,17 @@ Always state the one thing that cannot be abstract or subtle: **the artifact mus
 ### 7. State the lineage explicitly
 "This is Dream Recorder Inventors adapted for..." — this tells the orchestrator which winning DNA to preserve and what to change. It's the diff, not the full rewrite.
 
+### 8. Let the system breathe
+A Golden Seed should usually stay under **2,000 words** unless there is a strong reason to go longer. If prior songs, full lyrics, or reference prompts are needed, append them as a reference package; they do not count against the 2,000-word seed body.
+
+Do not determine everything. Set the environment, pressure, lineage, constraints, and decision space. Let the system choose exact form, hook, structure, and many implementation details.
+
+For music seeds:
+- Do not prescribe exact verse/chorus/bridge structure. You may require “at least 7 diverse sections,” “a repeated hook or equivalent,” or “one bold late-song transformation.”
+- Do not force one fixed genre. Offer exploratory style lanes or constraints, then let the system hybridize.
+- Describe sonic environments and research inspirations rather than micromanaging arrangement.
+- Strong seeds often look outward at a concrete object/scene/relation, then let the core message return through the hook.
+
 ---
 
 # ART SEEDS

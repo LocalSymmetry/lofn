@@ -48,6 +48,39 @@ Never describe a music run as "vision" or an image run as "audio" in the QA repo
 - [ ] ≥ 40 lines of actual sung lyrics (not counting headers/comments)
 - [ ] `## 3. TITLE` section
 - [ ] EMO: tags present in at least 3 sections
+- [ ] LYRICS FORMAT AUDIT (see section 1.5 below)
+
+### 1.5 LYRICS FORMAT AUDIT (MUSIC ONLY — NON-NEGOTIABLE)
+
+**Every lyrics section header MUST follow the PART 2 meta-tag syntax from `skills/music/steps/08_Generate_Music_Generation.md`.**
+
+Descriptive-only headers like `[Verse 1 — Visible Light]` are INSUFFICIENT. Suno interprets meta-tags, not English descriptions.
+
+**Required per header:**
+- [ ] EMO: tag on every verse, chorus, and bridge
+- [ ] Voice assignment on every sung section (Female Vocalist, Layered Self-Harmonies, Whispered, Call/Response Stacks, etc.)
+- [ ] Mix/FX cues where applicable (No beats, Low-pass filter, Beat returns, Half-time, Tape fade, Bit-depth crush, Silence, Filter-sweep)
+
+**Required per song:**
+- [ ] `[Theme: ...]` context tag as the first line of the lyrics section
+- [ ] At least one standalone `*sound effect*` line
+- [ ] Call-and-response formatted as `Lead line (echo)`
+
+**Format examples:**
+```
+✅ CORRECT:
+[Verse 1 – EMO:SurveilledMelancholy – Breath-warmed Female Vocalist – Sparse pulse, low-pass haze]
+[Chorus – EMO:DefiantRevelation – Full Female Stacks – Beat returns, bass bloom]
+[Blackout Drop – Bit-depth crush – 1 beat silence – All drums choke]
+
+❌ INSUFFICIENT (descriptive-only):
+[Verse 1 — Visible Light]
+[Chorus — Hook]
+```
+
+**AUDIT ACTION:** If any song has descriptive-only headers without meta-tags, mark FAIL and list specific songs. Block delivery.
+
+**PAIR AGENT TASK ENFORCEMENT:** The pair agent task prompt must always include: `## LYRICS FORMAT — MANDATORY. Read PART 2 of steps/08_Generate_Music_Generation.md. Every lyrics section header MUST include EMO:, voice, and mix/FX meta-tags. Descriptive-only headers fail QA.`
 - [ ] Vocalist spec in music prompt (gender, age-range, tone descriptors)
 - [ ] Progression map (contains verbs: begins/builds/erupts/strips/fades or equivalents)
 

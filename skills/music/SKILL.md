@@ -44,6 +44,37 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 - Output full song (Suno prompt + lyrics) to `step10_final_pair{N}.md`
 - Return as completion message
 
+### 🔴 LYRICS FORMAT — MANDATORY SUNO META-TAG SYNTAX
+
+**Every pair agent must read and follow PART 2 of `steps/08_Generate_Music_Generation.md` exactly.**
+
+The lyrics section is NOT just words with descriptive labels. It is a Suno performance script requiring structured meta-tags in every section header:
+
+**Required per section header:**
+- `EMO:` tag on every verse, chorus, and bridge
+- Voice assignment (Female Vocalist, Layered Self-Harmonies, Whispered, Call/Response, etc.)
+- Mix/FX cues where applicable (No beats, Low-pass filter, Beat returns, Half-time, Tape fade, Bit-depth crush, Silence)
+
+**Required per song:**
+- `[Theme: ...]` context tag as first line of lyrics
+- Standalone `*sound effect*` lines
+- Call-and-response in `Lead (echo)` format
+
+**Correct format:**
+```
+[Theme: specific scene]
+[Verse 1 – EMO:Emotion – Voice – Mix cue, FX cue]
+[Chorus – EMO:Emotion – Full Stacks – Beat returns]
+```
+
+**WRONG (descriptive-only — Suno ignores these):**
+```
+[Verse 1 — Visible Light]
+[Chorus — Hook]
+```
+
+Descriptive-only section headers fail QA. This is a blocking failure.
+
 **Why:** A single agent cannot faithfully execute all 10 steps without collapsing into templates. This was proven across 3 failed runs (2026-03-30). The split is the fix. It matches the original Lofn ui.py architecture exactly.
 
 
