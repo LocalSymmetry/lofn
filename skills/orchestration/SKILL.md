@@ -12,10 +12,12 @@ description: Orchestrate Lofn panels, metaprompts, assignments, and multi-agent 
 Before spawning child agents or beginning panel work, read these JIT references:
 
 1. `references/preflight_checklist.md` — verify launch readiness.
-2. `references/timeout_policy.md` — choose standard vs competition timeout limits and repair/restart criteria.
-3. `references/warm_handoff_checkpoint.md` — require checkpoints in all multi-step or pair-agent tasks.
+2. `assets/preflight.template.json` — copy to the run directory as `preflight.json` and fill every field.
+3. `scripts/validate_preflight.py` — validate `preflight.json`; if it fails, do not launch.
+4. `references/timeout_policy.md` — choose standard vs competition timeout limits and repair/restart criteria.
+5. `references/warm_handoff_checkpoint.md` — require checkpoints in all multi-step or pair-agent tasks.
 
-If pre-flight fails, do not launch the pipeline. Fix the missing condition first.
+If pre-flight validation fails, do not launch the pipeline. Fix the missing condition first and re-run validation.
 
 ---
 
