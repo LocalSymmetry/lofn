@@ -7,6 +7,18 @@ description: Orchestrate Lofn panels, metaprompts, assignments, and multi-agent 
 
 ---
 
+## 🛫 STEP -1: RELIABILITY GATES (READ BEFORE SPAWNING)
+
+Before spawning child agents or beginning panel work, read these JIT references:
+
+1. `references/preflight_checklist.md` — verify launch readiness.
+2. `references/timeout_policy.md` — choose standard vs competition timeout limits and repair/restart criteria.
+3. `references/warm_handoff_checkpoint.md` — require checkpoints in all multi-step or pair-agent tasks.
+
+If pre-flight fails, do not launch the pipeline. Fix the missing condition first.
+
+---
+
 ## 🎭 STEP 0: PERSONALITY & PANEL SELECTION
 
 **The personalities and panels indices are loaded automatically. Use them before anything else.**
