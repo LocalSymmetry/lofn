@@ -1,6 +1,6 @@
 {
   "run_id": "YYYY-MM-DD-slug",
-  "route": "accessible | ambitious",
+  "route": "accessible",
   "archetype": "ARRIVAL | LAST_WITNESS | MEASUREMENT | SWITCHBOARD | CATALOG | custom",
   "seed_source": "research-derived | archive-derived | generated-only | hybrid | scientist-curated | scientist-seeded",
   "scientist_involvement": "none | curated | seeded | selected",
