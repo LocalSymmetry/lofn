@@ -82,6 +82,18 @@ After the pipeline generates 24 outputs:
 
 ---
 
+## Release / Falsification Logging (ADDED 2026-05-02)
+
+Before any candidate is published or treated as a formula test:
+
+1. Read `references/release_falsification_logging.md`.
+2. Copy `assets/release_record.template.json` into the run/release directory as `release_record.json`.
+3. Fill route, archetype, seed source, AI vocabulary level, pre-release eligibility scores, and hypothesis BEFORE metrics arrive.
+4. Validate with `scripts/validate_release_record.py`.
+5. Update day 7 / 14 / 30 metrics later without rewriting the pre-registered hypothesis.
+
+---
+
 ## ⚡ ACTIVATION
 
 ### For Panel Generation:
