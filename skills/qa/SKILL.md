@@ -10,13 +10,14 @@ This file is intentionally lean to prevent context collapse. The full tuned QA p
 ## Workflow
 
 1. Identify the output directory and modality.
-2. Read `references/qa_full_legacy.md` before performing any substantive QA audit.
-3. For music/audio outputs, additionally read `references/eligibility_7_properties.md` and classify ACCESSIBLE vs AMBITIOUS.
-4. If using a structured report, copy the mold from `assets/eligibility_report.template.md`.
-5. When deterministic eligibility scoring is available from explicit numeric scores, use `scripts/score_eligibility.py`.
-6. Apply the full QA procedure exactly as specified in `references/qa_full_legacy.md`; do not summarize or weaken its tuned requirements.
-7. Save `QA_REPORT.md` in the audited output directory.
-8. If failures require rerun, follow the rerun task format from `references/qa_full_legacy.md`.
+2. Read `../orchestration/references/adversarial_qa_stance.md` to adopt the competitive-auditor stance.
+3. Read `references/qa_full_legacy.md` before performing any substantive QA audit.
+4. For music/audio outputs, additionally read `references/eligibility_7_properties.md` and classify ACCESSIBLE vs AMBITIOUS.
+5. If using a structured report, copy the mold from `assets/eligibility_report.template.md`.
+6. When deterministic eligibility scoring is available from explicit numeric scores, use `scripts/score_eligibility.py`.
+7. Apply the full QA procedure exactly as specified in `references/qa_full_legacy.md`; do not summarize or weaken its tuned requirements.
+8. Save `QA_REPORT.md` in the audited output directory.
+9. If failures require rerun, follow the rerun task format from `references/qa_full_legacy.md`.
 
 ## Non-Negotiables
 
