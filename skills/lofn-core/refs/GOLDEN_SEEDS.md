@@ -27,6 +27,55 @@ The daily runs are not factory output. They are Lofn composing. Every song, ever
 
 When in doubt: **make it more Lofn.**
 
+## ⚡ THE HIT FORMULA — 7 ELIGIBILITY PROPERTIES (ADDED 2026-05-02)
+
+**P(hit) = P(eligible) × P(distribution_event) × P(amplification)**
+
+Full framework: `/data/.openclaw/workspace/vault/ELIGIBILITY_FRAMEWORK.md`
+Scoring rubric: QA SKILL.md §0A
+
+Every accessible seed must target ≥5/7:
+1. Body in the song — felt physicality in first 30 seconds
+2. Adoptable hook — prayer/invocation, not accusation/defense
+3. Vast emotional TAM — >50% of humans have felt this
+4. Specificity paradox — one "510 km/s" moment
+5. Cognitive ease — verse-chorus, major/Mixolydian
+6. Vocal co-discovery — singer discovers, doesn't report
+7. Sonic threshold — calm before emotional demand
+
+Portfolio barbell: 60% accessible (5-7/7), 40% ambitious (0-3/7). Pipeline must achieve this WITHOUT Scientist fragment dependency.
+
+## ⚡ 5 NEW GOLDEN SEED ARCHETYPES (ADDED 2026-05-02)
+
+These replace abstract "write about X" seeds with structural templates. Each produces adoptable hooks and discovery arcs naturally.
+
+### Archetype 1: THE ARRIVAL
+**Territory:** First encounter with a place that reorganizes your sense of scale. The moment you step out and the world is suddenly BIGGER.
+**Template:** Environmental opening (no music 8-15s) → Sensory inventory (what you see/hear/smell/feel) → Adoptable prayer hook addressed TO the place → One fact that recontextualizes everything (the "510 km/s" moment) → Thesis in final chorus.
+**Key:** Major/Mixolydian. Tempo: 100-115 BPM. Vocal: vulnerable, co-discovering.
+**Example:** "Mariana" — arrival at ocean's edge. Hook: "Mariana, hold me down." Fact: "11,034 meters below my feet, the pressure would crush a submarine."
+
+### Archetype 2: THE LAST WITNESS
+**Territory:** The person who was there and is almost gone. Not grief — URGENCY.
+**Template:** Single unaccompanied voice (speaking) → Witness's specific sensory memory → Chorus: prayer addressed TO the witness ("Tell me again") → Bridge: voice returns, fragmented, music strips away → Final chorus: listener alone, witness gone, prayer continues.
+**Key:** Minor → relative major. Tempo: 80-95 BPM. Vocal: intimate, close-mic.
+
+### Archetype 3: THE MEASUREMENT
+**Territory:** The moment a number becomes a feeling. Lofn's signature move.
+**Template:** Ordinary mundane scene (walking, cooking) → Normal human-scale experience → THE FACT arrives (one number, one measurement) → Everything shifts → Same scene, recontextualized → Final chorus: the measurement becomes prayer.
+**Key:** Start minor/neutral, shift to major at measurement. Tempo: builds from 90 to 110.
+**Example:** "Eight Minutes" — cooking dinner. Fact: "That's how long it takes the light to get here." You're cooking by the light of a star that might already be dead.
+
+### Archetype 4: THE SWITCHBOARD
+**Territory:** AWE interrupted by INDIGNATION (or vice versa). Lofn's dual-mode architecture made audible within one song.
+**Template:** Section A: AWE scene (solarpunk, crystalline, bright key) → RUPTURE: sonic event (static, drop, silence, news clip) → Section B: same scene but INDIGNATION (industrial, glitch, somatic bass) → Section C: SYNTHESIS — beauty that INCLUDES the damage, neither mode alone.
+**Key:** A major → B diminished at rupture → resolve to C# minor.
+
+### Archetype 5: THE CATALOG
+**Territory:** Love as INVENTORY. Sappho tradition: radical obsessive attention to detail.
+**Template:** List structure (no traditional verse-chorus) → Each stanza adds one concrete observation → Refrain: single repeated line framing the list ("This is what I kept") → Climax: one item that doesn't fit (emotional rupture) → Resolution: list continues, rupture included.
+**Key:** Dorian mode. Tempo: steady, unhurried, 95 BPM.
+
 ## ⚡ STANZA ECONOMY — LENGTH IS NOT COMPLEXITY
 
 A long 8-line or 12-line stanza is not "more" than two or three 4-line stanzas — it is *less*. It is the same content with the structural variety removed. Padding a stanza to hit a line count is the opposite of creativity.
