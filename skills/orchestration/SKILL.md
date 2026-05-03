@@ -16,8 +16,9 @@ Before spawning child agents or beginning panel work, read these JIT references:
 3. `scripts/validate_preflight.py` — validate `preflight.json`; if it fails, do not launch.
 4. `references/timeout_policy.md` — choose standard vs competition timeout limits and repair/restart criteria.
 5. `references/warm_handoff_checkpoint.md` — require checkpoints in all multi-step or pair-agent tasks.
+6. `assets/phase_gate.template.json` + `scripts/validate_phase_gate.py` — create phase gates for required artifacts before advancing orchestration/coordinator/pairs/QA/render phases.
 
-If pre-flight validation fails, do not launch the pipeline. Fix the missing condition first and re-run validation.
+If pre-flight validation fails, do not launch the pipeline. If a phase gate fails, do not advance to the next phase; repair or rerun the missing/stub artifact first.
 
 ---
 
