@@ -1,3 +1,8 @@
+---
+name: lofn-evaluation
+description: Evaluate, score, rank, and select Lofn outputs using panels, facets, eligibility scoring, and platform fit. Use after 24 outputs exist or when choosing finalists. Do NOT use to generate songs/images or perform QA formatting cleanup.
+---
+
 # SKILL: Lofn Evaluator — Panel of Experts Selection & Ranking
 
 **PREREQUISITES:**

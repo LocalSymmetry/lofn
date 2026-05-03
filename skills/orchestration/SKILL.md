@@ -1,3 +1,8 @@
+---
+name: lofn-orchestration
+description: Orchestrate Lofn panels, metaprompts, assignments, and multi-agent creative pipeline handoffs. Use after core seed/research exists. Do NOT use for QA cleanup, direct song generation, or final scoring.
+---
+
 # SKILL: Lofn Orchestrator — Creative Task Router
 
 ---

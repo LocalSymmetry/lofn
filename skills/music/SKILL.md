@@ -1,3 +1,8 @@
+---
+name: lofn-music
+description: Run Lofn music/audio pipeline, Suno-ready prompts, lyrics, song guides, and music production briefs. Do NOT use for static image prompts, QA audit, or final ranking.
+---
+
 # SKILL: Lofn Audio — Suno Prompt Writer
 
 ## ⛔ YOU DO NOT GENERATE AUDIO

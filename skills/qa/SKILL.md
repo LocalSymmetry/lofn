@@ -1,3 +1,8 @@
+---
+name: lofn-qa
+description: Audit, validate, repair, and classify completed Lofn pipeline outputs. Use after music/image/video/story pipeline completion or suspicious partial runs. Do NOT use for creative generation or finalist ranking.
+---
+
 # SKILL: Lofn QA — Creative Output Quality Assurance
 
 **Version:** 1.0.0

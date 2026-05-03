@@ -1,3 +1,8 @@
+---
+name: lofn-video
+description: Run Lofn video/director pipeline, shot lists, cinematic scene prompts, and video generation planning. Do NOT use for static image-only prompts, music, QA, or evaluation.
+---
+
 # SKILL: Lofn Director — Video Prompt Writer
 
 ## ⛔ YOU DO NOT RENDER VIDEOS

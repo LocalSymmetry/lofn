@@ -1,3 +1,8 @@
+---
+name: lofn-core
+description: Create Lofn golden seeds, core briefs, seed packets, and high-level creative DNA for image/music/video/story runs. Use at pipeline start. Do NOT use for final QA, scoring 24 outputs, or direct rendering.
+---
+
 # SKILL: Lofn Core — Personality & Panel System
 
 ## 🔴 PIPELINE POSITION: PHASE 0 — YOU RUN FIRST
