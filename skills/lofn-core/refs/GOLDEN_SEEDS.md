@@ -31,7 +31,7 @@ When in doubt: **make it more Lofn.**
 
 **P(hit) = P(eligible) × P(distribution_event) × P(amplification)**
 
-Full framework: `/data/.openclaw/workspace/vault/ELIGIBILITY_FRAMEWORK.md`
+Full framework: `{{OPENCLAW_WORKSPACE}}/vault/ELIGIBILITY_FRAMEWORK.md`
 Scoring rubric: QA SKILL.md §0A
 
 Every accessible seed must target ≥5/7:

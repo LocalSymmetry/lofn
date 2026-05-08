@@ -78,7 +78,7 @@ Do NOT skip Phase 0. It is the seed that makes the panel work win.
 **Lofn-Core transforms raw research into an award-winning seed.**
 
 ### Step 0.1 — Read GOLDEN_SEEDS.md
-File: `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md`
+File: `{{OPENCLAW_WORKSPACE}}/skills/lofn-core/GOLDEN_SEEDS.md`
 - Find the closest winning seed pattern to the current brief
 - Note which seed you are anchoring to and WHY (what structural elements to preserve)
 
@@ -129,11 +129,30 @@ The orchestrator is the **creative director** for all Lofn generation tasks. Whe
 
 | Request Type | Subagent | Notes |
 |--------------|----------|-------|
-| Image, picture, visual, artwork | `lofn-vision` | Default: FAL Flux Ultra 1.1 Pro @ 9:16 |
+| Image, picture, visual, artwork | `lofn-vision` | Default: FAL Flux Ultra 1.1 Pro @ 9:16; if GPT Image 2 is specified, include `TARGET_RENDERER: GPT_I2` in dispatch |
 | Song, music, track, beat | `lofn-music` | Full seed generation workflow |
 | Story, narrative, tale, script | `lofn-narrator` | Panel-driven storytelling |
 | Video, film, cinematic, clip | `lofn-director` | Storyboard + shot composition |
 | Animation, animated, motion | `lofn-animator` | With animator skill focus |
+
+## 🔀 RENDERER-CONDITIONAL PANEL SLOTS (GPT Image 2)
+
+When `TARGET_RENDERER = GPT_I2`, shift the standard image panel:
+
+| Slot | Standard | GPT Image 2 Override |
+|------|----------|----------------------|
+| Complementary #1 | General aesthetic | **Typography Structuralist** — text-as-image-element, font weight/tracking/baseline, layout hierarchy |
+| Complementary #2 | Narrative theorist | **Physics/Materials Epistemologist** — reasons about Physics Inference Layer behavior, surfaces implausible material claims |
+| Hyper-Skeptic | Generic challenge | **Storybook Assassin / Cliché Override Auditor** — hunts warm rim light, centered pastel, soft edges; has veto power |
+
+**Storybook Assassin veto triggers:**
+- "ethereal," "dreamlike," "whimsical," "gentle light," "soft glow," "magical," "delicate," "floating"
+
+**Mandatory alternatives for common weak defaults:**
+- "warm rim light" → "hard axial light from below" or "single source from extreme angle"
+- "centered" → "lower third with aggressive negative space" or "decentered by 40%"
+- "pastel" → "saturated complementary pair" or "achromatic with single chromatic accent"
+- "soft edges" → "hard material boundary with internal luminosity" or "silhouette with sharp cut"
 
 ---
 

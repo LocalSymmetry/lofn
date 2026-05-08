@@ -323,7 +323,7 @@ When receiving a music task:
 After writing each step file, run the validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py <step> <file>
 ```
 
 Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
@@ -331,14 +331,14 @@ Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
 ```bash
 # Full music pipeline validation sequence:
 OUTDIR="/your/output/dir"
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
 # For each song file (08_song_*.md), validate individually:
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_song_01.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 08 $OUTDIR/08_song_01.md
 # ... repeat for all 24 song files
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
 ```
 
 The validator catches: stubs, lorem ipsum, template placeholders (Song N, Genre N),

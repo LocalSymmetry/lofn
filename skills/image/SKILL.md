@@ -123,6 +123,18 @@ This "shakes up the creative space" by ensuring every run explores different cor
 | **Prompts Generated** | 24 | 6 pairs × 4 variations |
 | **Images Rendered** | 12 | Top 12 after ranking |
 
+## 🔀 DUAL-MODE PIPELINE (GPT Image 2 support added 2026-04-26)
+
+**When `TARGET_RENDERER = GPT_I2` is set in the orchestrator metaprompt:**
+- Load `skills/image/renderer_gpt_image2_rules.md` before Step 05
+- Load `vault/GPT_IMAGE2_PLAYBOOK.md` when present for competition-grade prompt engineering
+- Steps 05-10 rules are OVERRIDDEN by GPT Image 2 renderer rules (Five-Slot Framework, Storybook Cliché override, additive directing, camera spec language, one-shot commitment)
+- Do NOT use artist names in prompts — use material/technique descriptions directly
+- Do NOT use negative constraints — use additive directing
+- Every prompt must include: camera spec (lens + aperture), lighting source specification, background declaration (VOID/STRUCTURED/MINIMAL), and at least one explicit Storybook Cliché override
+
+**When `TARGET_RENDERER` is not set or is `FLUX`:** use default Flux rules as documented below.
+
 ---
 
 ## 📝 PROMPT STRUCTURE (MANDATORY)
@@ -221,20 +233,20 @@ When receiving an image task:
 After writing each step file, run this validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py <step> <file>
 ```
 
 If it exits with code 1 (FAIL): read the error, fix the file, rerun validation. Do NOT proceed until it passes.
 
 ```bash
 # Run after each step — example for full pipeline:
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_guides.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 06 $OUTDIR/06_facets.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 07 $OUTDIR/07_guides.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 08 $OUTDIR/08_prompts.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
+python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
 ```
 
 **Only declare completion after all validators return exit code 0.**

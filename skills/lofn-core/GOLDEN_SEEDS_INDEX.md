@@ -77,7 +77,7 @@ These replace abstract "write about X" seeds. Each produces adoptable hooks and 
 
 **When to use:** Every accessible music run should select one archetype as its structural foundation. Ambitious runs may deviate. The archetype is NOT the creative constraint — it's the scaffolding that produces eligibility naturally.
 
-**Eligibility framework:** `/data/.openclaw/workspace/vault/ELIGIBILITY_FRAMEWORK.md` — 7-property checklist and barbell strategy.
+**Eligibility framework:** `{{OPENCLAW_WORKSPACE}}/vault/ELIGIBILITY_FRAMEWORK.md` — 7-property checklist and barbell strategy.
 
 ---
 

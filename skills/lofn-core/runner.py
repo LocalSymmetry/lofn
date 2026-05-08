@@ -1,11 +1,16 @@
 import json
-import random
 import os
+from pathlib import Path
 
-with open("/data/.openclaw/workspace/skills/image/00_Generate_Image_Aesthetics_And_Genres.md", "r") as f:
-    text = f.read()
+WORKSPACE = Path(os.environ.get("OPENCLAW_WORKSPACE", Path.cwd()))
 
-# For a quick generation, we just mock the 00 output with standard aesthetics 
+source = WORKSPACE / "skills/image/00_Generate_Image_Aesthetics_And_Genres.md"
+if source.exists():
+    text = source.read_text()
+else:
+    text = ""
+
+# For a quick generation, we just mock the 00 output with standard aesthetics
 # fitting the two-tone constraint. We don't need the LLM to do it if we just write the file.
 out = {
   "aesthetics": ["Minimalism", "Graphic Design", "Ukiyo-e", "Byzantine Iconography", "Op Art", "Color Field", "Suprematism", "Bauhaus", "Constructivism", "De Stijl", "Swiss Style", "Pop Art", "Hard-edge painting", "Neo-Geo", "Tonalism", "Chiaroscuro", "Silkscreen", "Linocut", "Woodblock", "Risograph"] + [f"Two-Tone Aesthetic {i}" for i in range(30)],
@@ -14,7 +19,6 @@ out = {
   "genres": ["Fine Art", "Illustration", "Poster Design", "Editorial Illustration", "Concept Art", "Printmaking", "Surrealism", "Abstract Expressionism", "Symbolism", "Magic Realism", "Dark Fantasy", "Sci-Fi", "Historical Fiction", "Mythology", "Folklore", "Urban Landscape", "Nature Photography", "Architecture", "Portraiture", "Still Life"] + [f"Two-Tone Genre {i}" for i in range(30)]
 }
 
-os.makedirs("/data/.openclaw/workspace/output/images/masterpiece-monday-2026-03-30/v9", exist_ok=True)
-with open("/data/.openclaw/workspace/output/images/masterpiece-monday-2026-03-30/v9/00_aesthetics.md", "w") as f:
-    f.write("# 00 Aesthetics\n\n```json\n" + json.dumps(out, indent=2) + "\n```\n")
-    
+out_dir = WORKSPACE / "output/images/masterpiece-monday-2026-03-30/v9"
+out_dir.mkdir(parents=True, exist_ok=True)
+(out_dir / "00_aesthetics.md").write_text("# 00 Aesthetics\n\n```json\n" + json.dumps(out, indent=2) + "\n```\n")
