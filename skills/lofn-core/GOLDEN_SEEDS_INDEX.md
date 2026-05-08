@@ -63,6 +63,24 @@ updated: "2026-04-21"
 
 ---
 
+## MUSIC SEED ARCHETYPES — 5 STRUCTURAL TEMPLATES (ADDED 2026-05-02)
+
+These replace abstract "write about X" seeds. Each produces adoptable hooks and discovery arcs naturally. Full templates in GOLDEN_SEEDS.md after the First Law section.
+
+| Archetype | Territory | Key Feature | Target Emotion |
+|-----------|-----------|-------------|----------------|
+| **THE ARRIVAL** | First encounter with a place that reorganizes your sense of scale | Environmental opening, adoptable prayer hook TO the place, one recontextualizing fact | Awe → inclusion |
+| **THE LAST WITNESS** | The person who was there and is almost gone | Spoken testimony → prayer addressed TO witness → voice fragments, music strips away | Urgency, tenderness |
+| **THE MEASUREMENT** | The moment a number becomes a feeling | Ordinary scene → FACT arrives → same scene recontextualized → measurement becomes prayer | Wonder, re-enchantment |
+| **THE SWITCHBOARD** | AWE interrupted by INDIGNATION (or vice versa) | Section A (AWE) → RUPTURE → Section B (INDIGNATION) → Section C (SYNTHESIS) | Whiplash → integration |
+| **THE CATALOG** | Love as INVENTORY (Sappho tradition) | List structure, each stanza adds one concrete observation, one item that doesn't fit | Devotional attention |
+
+**When to use:** Every accessible music run should select one archetype as its structural foundation. Ambitious runs may deviate. The archetype is NOT the creative constraint — it's the scaffolding that produces eligibility naturally.
+
+**Eligibility framework:** `/data/.openclaw/workspace/vault/ELIGIBILITY_FRAMEWORK.md` — 7-property checklist and barbell strategy.
+
+---
+
 ## MUSIC METHODOLOGY (always relevant for music runs)
 
 | Section | Content | Lines |

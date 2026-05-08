@@ -1,3 +1,8 @@
+---
+name: lofn-animator
+description: Animate Lofn visual concepts and produce motion/animation plans. Use for animation, motion design, video-transition planning, animated image prompts. Do NOT use for static image generation, music, QA, or evaluation.
+---
+
 # Lofn Quick Animator — Veo 3.1 Edition
 
 **PREREQUISITES:**

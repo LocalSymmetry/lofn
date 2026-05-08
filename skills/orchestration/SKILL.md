@@ -1,4 +1,25 @@
+---
+name: lofn-orchestration
+description: Orchestrate Lofn panels, metaprompts, assignments, and multi-agent creative pipeline handoffs. Use after core seed/research exists. Do NOT use for QA cleanup, direct song generation, or final scoring.
+---
+
 # SKILL: Lofn Orchestrator — Creative Task Router
+
+---
+
+## 🛫 STEP -1: RELIABILITY GATES (READ BEFORE SPAWNING)
+
+Before spawning child agents or beginning panel work, read these JIT references:
+
+1. `references/preflight_checklist.md` — verify launch readiness.
+2. `assets/preflight.template.json` — copy to the run directory as `preflight.json` and fill every field.
+3. `scripts/validate_preflight.py` — validate `preflight.json`; if it fails, do not launch.
+4. `references/timeout_policy.md` and `references/execution_policy.md` — choose standard vs competition timeout limits, staggered pair spawning, and repair/restart criteria.
+5. `assets/spawn_manifest.template.json` + `scripts/validate_spawn_manifest.py` — create and validate spawn manifest before spawning pair agents.
+6. `references/warm_handoff_checkpoint.md` — require checkpoints in all multi-step or pair-agent tasks.
+7. `assets/phase_gate.template.json` + `scripts/validate_phase_gate.py` — create phase gates for required artifacts before advancing orchestration/coordinator/pairs/QA/render phases.
+
+If pre-flight validation fails, do not launch the pipeline. If a phase gate fails, do not advance to the next phase; repair or rerun the missing/stub artifact first.
 
 ---
 

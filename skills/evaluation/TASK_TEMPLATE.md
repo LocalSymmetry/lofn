@@ -94,6 +94,8 @@ For each output:
 - Compute weighted average for each output
 - Sort by score descending
 - Select top N (default: 4-6)
+- **Daily music exception:** do not select the final six from one global ranking. Split candidates by pair arm first: ACCESSIBLE = pairs 1–3, AMBITIOUS = pairs 4–6. Select best 3 within ACCESSIBLE and best 3 within AMBITIOUS, then merge those six. This prevents 5+1 or 6+0 slates.
+- For daily music, also verify the selected six satisfy Axis B: max 3 NEWS/research-anchored and min 3 EXISTENCE/interior-life/universal-experience.
 
 ### Step 5: Document Selection
 For each selected output:

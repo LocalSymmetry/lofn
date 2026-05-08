@@ -1,0 +1,30 @@
+{
+  "run_id": "YYYY-MM-DD-slug",
+  "route": "accessible",
+  "archetype": "ARRIVAL | LAST_WITNESS | MEASUREMENT | SWITCHBOARD | CATALOG | custom",
+  "seed_source": "research-derived | archive-derived | generated-only | hybrid | scientist-curated | scientist-seeded",
+  "scientist_involvement": "none | curated | seeded | selected",
+  "scene": "specific physical place and time",
+  "body_entry": "first 30 seconds: physical sensation, posture, temperature, sound",
+  "vulnerable_object_or_addressee": "the thing/person/place addressed by hook",
+  "temperature": "dominant thermal/emotional temperature",
+  "textures": ["texture 1", "texture 2", "texture 3"],
+  "specific_fact": "one 510 km/s moment: number/place/scientific/historical fact",
+  "emotional_tam": "broad human feeling being accessed",
+  "hook_address": "who/what the hook speaks to",
+  "hook_posture": "prayer | invitation | promise | confession | command | question | declaration | defense",
+  "arc_turn": "what the singer discovers during the song",
+  "bridge_revelation": "relational truth discovered late, not a concept explanation",
+  "identity_stance": "transparent frame; lyric disclosure level: none | encoded | earned-late | explicit",
+  "forbidden_abstractions": ["algorithm", "prompt", "parameters", "identity", "consciousness"],
+  "eligibility_target": {
+    "body_in_song": 5,
+    "adoptable_hook": 5,
+    "vast_emotional_tam": 5,
+    "specificity_paradox": 5,
+    "cognitive_ease": 5,
+    "vocal_co_discovery": 5,
+    "sonic_threshold": 5
+  },
+  "notes": "brief creative notes only"
+}

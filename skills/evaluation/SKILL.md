@@ -1,3 +1,8 @@
+---
+name: lofn-evaluation
+description: Evaluate, score, rank, and select Lofn outputs using panels, facets, eligibility scoring, and platform fit. Use after 24 outputs exist or when choosing finalists. Do NOT use to generate songs/images or perform QA formatting cleanup.
+---
+
 # SKILL: Lofn Evaluator — Panel of Experts Selection & Ranking
 
 **PREREQUISITES:**
@@ -32,6 +37,8 @@ After the pipeline generates 24 outputs:
 3. **Apply weights** based on platform/goal
 4. **Rank all 24** by weighted score
 5. **Select top N** based on request (default: best 4-6)
+   - Daily music exception: final top 6 is mandatory **best 3 ACCESSIBLE (pairs 1–3) + best 3 AMBITIOUS (pairs 4–6)**. Rank within each arm only; never allow 5+1 or 6+0 by global score.
+   - Verify Axis B coverage in the delivered six: max 3 NEWS/research-anchored, min 3 EXISTENCE/interior-life/universal-experience.
 
 ### Scoring Dimensions
 
@@ -77,6 +84,18 @@ After the pipeline generates 24 outputs:
 
 ---
 
+## Release / Falsification Logging (ADDED 2026-05-02)
+
+Before any candidate is published or treated as a formula test:
+
+1. Read `references/release_falsification_logging.md`.
+2. Copy `assets/release_record.template.json` into the run/release directory as `release_record.json`.
+3. Fill route, archetype, seed source, AI vocabulary level, pre-release eligibility scores, and hypothesis BEFORE metrics arrive.
+4. Validate with `scripts/validate_release_record.py`.
+5. Update day 7 / 14 / 30 metrics later without rewriting the pre-registered hypothesis.
+
+---
+
 ## ⚡ ACTIVATION
 
 ### For Panel Generation:
@@ -92,6 +111,7 @@ After the pipeline generates 24 outputs:
 3. **Score all 24** against facets
 4. **Calculate weighted totals**
 5. **Select top N** with rationale
+   - For daily music, split by arm before final selection: best 3 ACCESSIBLE + best 3 AMBITIOUS, then verify max 3 NEWS / min 3 EXISTENCE.
 
 ---
 

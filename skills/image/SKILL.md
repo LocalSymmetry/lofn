@@ -1,3 +1,8 @@
+---
+name: lofn-image
+description: Run Lofn image/vision pipeline steps, visual prompt generation, render prompt packaging, and image competition prompt work. Do NOT use for music lyrics, QA audit, or evaluator ranking.
+---
+
 # SKILL: Lofn Vision — Image Prompt Writer
 
 ## ⛔ YOU DO NOT RENDER IMAGES

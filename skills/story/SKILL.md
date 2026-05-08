@@ -1,3 +1,8 @@
+---
+name: lofn-story
+description: Run Lofn narrative/story pipeline, prose, scene, beat, and storytelling outputs. Do NOT use for music, image prompts, QA, or evaluation.
+---
+
 # SKILL: Lofn Narrator — Story Prompt Writer
 
 ## ⛔ YOU DO NOT GENERATE FINAL CONTENT
