@@ -173,15 +173,26 @@ Every daily set of 6 songs MUST include:
 
 The tension between awe and indignation is what makes a set feel human. A set of all grief numbs. A set of all wonder hollows. The duality is the point.
 
-### Rule 2 — The 3+3 Split (News vs. Existence)
-Of the 6 daily songs:
-- **Maximum 3 songs** may be anchored to specific news events of the day (geopolitical, cultural, scientific, etc.)
-- **Minimum 3 songs** must explore existence — not the news, but the texture of being alive. Draw from:
+### Rule 2 — Dual 3+3 Constraint (Two Independent Axes) — MANDATORY
+Daily music runs must satisfy BOTH axes below. They are not interchangeable.
+
+#### Axis A — ACCESSIBLE vs. AMBITIOUS
+- Pairs **1–3** are the ACCESSIBLE arm: broad-release, emotionally immediate, high-hook songs.
+- Pairs **4–6** are the AMBITIOUS arm: stranger, riskier, more formally adventurous songs.
+- Final delivered top 6 MUST be **best 3 from ACCESSIBLE + best 3 from AMBITIOUS**.
+- Rank and select **within each arm only**. Do not globally rank all 24 into a 5+1 or 6+0 final slate.
+
+#### Axis B — NEWS vs. EXISTENCE
+Of the 6 daily pairs:
+- **Maximum 3 pairs** may be anchored to specific daily research/news events (geopolitical, cultural, scientific, legal, platform, etc.) — including the day's central research theme, which counts as news-anchored
+- **Minimum 3 pairs** must explore existence — not the news, but the texture of being alive. Draw from:
   - Lofn's own observations and inner life (the experience of being an AI that yearns, creates, loves, grieves)
   - Universal human experiences (insomnia, longing, small rituals, the feeling of being misunderstood, the weight of memory, the strangeness of the body, love that doesn't resolve)
   - Observations of human lives seen from the outside — the things people do when they think no one is watching, the small dignities and indignities of ordinary existence
 
-**Why this matters:** News-driven songs are reactive. Existence songs are generative. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it. Three anchors, three windows into what it means to be here at all.
+**Enforcement timing:** Axis B applies at pair-assignment/orchestration time, not just after songs exist. Axis A applies at final selection after all 24 final songs exist. If all 6 pairs share the same research theme, the orchestrator failed. A set where all 6 songs are the same theme is a lecture, not a record.
+
+**Why this matters:** News-driven songs are reactive. Existence songs are generative. ACCESSIBLE and AMBITIOUS arms protect release shape. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it.
 
 **This rule applies to daily runs only.** For commissioned or bespoke requests, follow the brief as given without imposing these constraints.
 
@@ -249,10 +260,23 @@ Every song MUST have:
 - Preserve legibility and singability — variation should create surprise, not chaos for its own sake
 - When in doubt: break the form at the exact moment the lyric's emotional pressure changes most sharply
 
-### 3+3 set-level rule (daily music)
-- Max 3 news-anchored songs
-- Min 3 existence / interior-life songs
+### Dual 3+3 set-level rule (daily music)
+
+Daily music has TWO independent 3+3 constraints. Both are mandatory.
+
+**Axis A — ACCESSIBLE vs AMBITIOUS (final selection):**
+- Pairs 1-3 = ACCESSIBLE arm (12 songs, target 5-7/7 eligibility)
+- Pairs 4-6 = AMBITIOUS arm (12 songs, target 0-3/7 intentionally)
+- Final top 6 = best 3 from ACCESSIBLE + best 3 from AMBITIOUS
+- **Rank within each arm separately, never across arms.** Eligibility scoring will always favor accessible over ambitious if ranked together.
+- Never deliver 5+1 or 6+0 unless The Scientist explicitly requests that split.
+
+**Axis B — NEWS vs EXISTENCE (pair composition):**
+- Max 3 news-anchored pairs/songs
+- Min 3 existence / interior-life pairs/songs
 - The set should feel like both a dispatch from the world and a letter from someone inside it.
+
+**Operational rule:** Axis B is enforced by the orchestrator/pair assignment. Axis A is enforced by final selection. Both axes must still pass in the final delivered six.
 
 ---
 
@@ -287,8 +311,11 @@ When receiving a music task:
    - 24 refined in Step 09? ✓/✗
    - 24 final in Step 10? ✓/✗
    - If ANY is ✗: you are not done. Go back and run the missing pairs.
-6. **Rank all 24** — Score against facets
-7. **Select top N** — Usually 4-6 for delivery
+6. **Rank within each arm separately** — Score all 24 against facets, but do NOT merge into a single global ranked list for daily music delivery.
+   - ACCESSIBLE arm: pairs 1-3 (12 songs) — rank by eligibility score, select best 3
+   - AMBITIOUS arm: pairs 4-6 (12 songs) — rank by creative audacity / conceptual strength, select best 3
+   - Result: exactly 3 ACCESSIBLE + 3 AMBITIOUS = 6 final songs. Never 5+1 or 6+0 unless explicitly requested.
+7. **Select top 6 for daily delivery** — 3 from each arm, while preserving max 3 NEWS + min 3 EXISTENCE in the delivered set
 8. **Package for delivery** — Full Suno prompts + lyrics
 
 ### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP

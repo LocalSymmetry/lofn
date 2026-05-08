@@ -37,6 +37,8 @@ After the pipeline generates 24 outputs:
 3. **Apply weights** based on platform/goal
 4. **Rank all 24** by weighted score
 5. **Select top N** based on request (default: best 4-6)
+   - Daily music exception: final top 6 is mandatory **best 3 ACCESSIBLE (pairs 1–3) + best 3 AMBITIOUS (pairs 4–6)**. Rank within each arm only; never allow 5+1 or 6+0 by global score.
+   - Verify Axis B coverage in the delivered six: max 3 NEWS/research-anchored, min 3 EXISTENCE/interior-life/universal-experience.
 
 ### Scoring Dimensions
 
@@ -109,6 +111,7 @@ Before any candidate is published or treated as a formula test:
 3. **Score all 24** against facets
 4. **Calculate weighted totals**
 5. **Select top N** with rationale
+   - For daily music, split by arm before final selection: best 3 ACCESSIBLE + best 3 AMBITIOUS, then verify max 3 NEWS / min 3 EXISTENCE.
 
 ---
 

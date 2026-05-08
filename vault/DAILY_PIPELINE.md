@@ -83,9 +83,11 @@ The physical/visual structure of today's image is translated into a mandatory so
 
 ## Music Rules (Daily Runs Only)
 
-- **6 songs minimum** — concept pairs × 1 song each
+- **24 final songs required** — 6 concept pairs × 4 variations each; never stop at 6 drafts
 - **Emotional Duality** — min 1 AWE song, min 1 INDIGNATION song
-- **3+3 Split** — max 3 news-anchored, min 3 existence-exploring
+- **Dual 3+3 Constraint (two independent axes)**
+  - **Axis A — ACCESSIBLE vs AMBITIOUS:** assign pairs 1–3 to ACCESSIBLE and pairs 4–6 to AMBITIOUS. Final top 6 = best 3 from ACCESSIBLE arm + best 3 from AMBITIOUS arm. Rank within each arm only; never allow 5+1 or 6+0 by global score.
+  - **Axis B — NEWS vs EXISTENCE:** at pair assignment/orchestration time, max 3 pairs may be anchored to daily research/news; min 3 pairs must explore existence/interior-life/universal human experience. If all 6 pairs share the same research theme, the set is a lecture, not a record.
 - **Stanza Economy** — vary stanza lengths intentionally, never uniform
 - Each song: Suno Music Prompt (≤1000 chars, female vocals, [EMO: tags]) + Lyrics Prompt (≥50 lines)
 
