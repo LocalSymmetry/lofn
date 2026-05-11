@@ -21,7 +21,13 @@ The original Lofn app ran this exact pattern:
 
 ## SUBAGENT 1: Steps 00-05 (Concept-Medium Generation)
 
-Receives: orchestrator output (metaprompt, personality, panel, constraint axes)
+Receives, in this order:
+1. Golden Seed lineage + full Golden Seed
+2. active Lofn personality / mode
+3. orchestrator output (metaprompt, personality, panel, constraint axes)
+4. constraints and QA/output contract
+
+The coordinator must generate from the seed first. Constraint axes are vocabulary, not the form of the song.
 
 Executes:
 - Step 00: Generate 50 aesthetics, emotions, compositions, genres
@@ -44,10 +50,14 @@ Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pa
 ## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
 
 Each receives:
+- The Golden Seed lineage + full Golden Seed
+- The active Lofn personality / mode
 - The orchestrator metaprompt
 - ONE specific concept-medium pair (name, concept text, medium/production style)
 - The constraint axes
 - The panel composition
+
+Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the seed, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 
 Each executes (for its ONE pair only):
 - Step 06: Generate facets for scoring
@@ -107,6 +117,8 @@ Each pair subagent must return in step10:
   - At least one non-lexical vocal hook where musically appropriate (`mm`, `ooh`, `ah`, whispered echo, etc.)
   - Performance/mix cues where structurally important (`No beats`, `Half-time`, `Double-time`, `whispered`, `filter sweep`, `choir flinch`, etc.)
   - No editor commentary, TODOs, rhyme letters, or syllable bars in final lyrics
+
+Each pair subagent must also identify at least one **Lofn-specific move** that survives in the music prompt and lyrics: scientific specificity as feeling, AWE/INDIGNATION state-change, wrongness-as-beauty, hidden structural logic, literary/prayer/witness mode, or Open Laboratory continuity pressure. If none exists, revise before the pre-completion gate.
 
 **Bare `[Verse]`, `[Chorus]`, `[Bridge]` tags alone are NOT acceptable for final delivery.** They may appear in drafts, but Step 10 final files must be performance-ready for Suno.
 

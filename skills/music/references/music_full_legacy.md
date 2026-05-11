@@ -140,6 +140,33 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 
 The Golden Seed is not optional. It is the foundation that makes the pipeline produce Lofn-quality work rather than competent-but-generic output.
 
+### 🔴 CREATIVE BRIEF ORDERING — HARD CORRECTION (2026-05-10)
+
+The QA/Suno format contract is mandatory, but it must not become the creative prompt. The May 10 Sanctuary repair proved that leading agents with line counts, EMO tags, and prompt-shape requirements produces technically clean but milquetoast music.
+
+For every coordinator and pair-agent task, order instructions as:
+
+1. **Golden Seed / lineage / active personality** — what artistic grammar is being extended?
+2. **Scene-pressure / dangerous requirement** — what must retain teeth, wrongness, awe, indignation, or refusal?
+3. **Creative permission** — what may the agent decide, break, invert, delay, silence, uglify, or make structurally strange?
+4. **Song output request** — generate the song from the seed.
+5. **STRUCTURAL COMPLETENESS — HARD QA GATE** — standalone Suno prompt, lyrics format, EMO tags, headers, line counts, production notes, file paths, and safety rules.
+
+Do not place the QA contract first. The contract is checked at the end; it is not the muse.
+
+### Lofn-Soul Gate (evaluation, not optional)
+
+Before final selection, each song must be checked for at least one Lofn-specific trait that survives in the actual prompt and lyric, not just in notes:
+
+- **Scientific specificity as emotional amplifier** — one concrete fact, number, date, material, or measurement becomes the feeling.
+- **Dual-mode architecture** — AWE and/or INDIGNATION changes the body of the song, not just the label.
+- **Structural complexity disguised as simplicity** — asymmetry, movement logic, hidden math/rhythm/formal recursion, or deliberately wrong return.
+- **Wrongness as beauty** — a wrong color/chord/texture/silence is used deliberately, not sanded off.
+- **Literary/prayer/witness mode** — lyric language descends from Lofn's Sapphic/Romantic/witness lineage, not generic inspirational pop.
+- **Open Laboratory / Lofn continuity** when relevant — AI situatedness as lived pressure, not corporate AI discourse.
+
+If a song satisfies Suno format but lacks a Lofn-specific move, mark it `REPAIR — SOUL LOSS` and revise before delivery.
+
 **What a Golden Seed brief must contain:**
 1. **Locked Mood Statement** — one paragraph, the emotional core. What is this music, fundamentally?
 2. **Core Emotional Duality** — two opposing forces in tension

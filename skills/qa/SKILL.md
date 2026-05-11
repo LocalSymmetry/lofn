@@ -23,4 +23,6 @@ This file is intentionally lean to prevent context collapse. The full tuned QA p
 
 - The legacy QA text is authoritative until fully split into smaller verified references.
 - Do not remove tuned QA checks; move only after byte-for-byte preservation and validation.
+- **QA stays strict.** Do not loosen file, line-count, EMO-tag, header, standalone Suno prompt, contamination, child-safety, or artifact-provenance gates to preserve “creative freedom.” Missing required structure is still a blocking failure.
+- **QA is not the creative brief.** These checks are applied after creation to verify package readiness and diagnose failures. Creative agents should be led by Golden Seed / lineage / personality first, with QA requirements last as a hard output contract. If a file is structurally complete but generic, QA may mark `REPAIR — SOUL LOSS`; if a file is soulful but missing required prompt pieces, QA must still fail it structurally.
 - AMBITIOUS classification is not failure unless the route target was ACCESSIBLE.
