@@ -37,6 +37,37 @@ For each interesting brief:
 
 ---
 
+## PHASE 2: BRIEF (Pipeline Self-Sufficient)
+
+### Pre-Flight Eligibility Gate (ADDED 2026-05-02)
+
+Before pipeline launch, the controller must classify the intended barbell side:
+
+- [ ] **Accessible run** — target 5-7/7 eligibility properties. Mass reach intent. 60% frequency.
+- [ ] **Ambitious run** — target 0-3/7 properties intentionally. Artistic exploration. 40% frequency.
+- [ ] QA will score every output on the 7 eligibility properties (see QA SKILL.md §0A)
+- [ ] The 7-property checklist is embedded in qa/SKILL.md, evaluation/SKILL.md, and PIPELINE_V3.md
+
+**The Hit Formula (from 14+ panel meta-analysis):**
+```
+P(hit) = P(eligible) × P(distribution_event) × P(amplification)
+```
+- Eligibility is controllable (7 properties)
+- Distribution is semi-controllable (volume, timing, platform)
+- Amplification is designable (replay, share, identity adoption)
+
+Triple Arch: 7/7. Other catalog songs: 0-1.5/7. Universality alone ≠ eligibility.
+
+### Pipeline Self-Sufficiency (Principle 4 — CORRECTED)
+
+The pipeline must produce adoptable hooks, earned inevitability, and multidimensional coherence WITHOUT dependency on The Scientist writing fragments. The 7 eligibility properties are PIPELINE DESIGN TARGETS, not human-input requirements.
+
+**How the pipeline achieves this without human fragments:**
+- Seed archetypes (ARRIVAL, MEASUREMENT, CATALOG, etc.) provide structural templates that naturally produce adoptable hooks
+- The orchestrator's panel debate + metaprompt generation replaces the "human fragment" as gravitational center
+- QA's eligibility scoring provides the adversarial rejection step (scoring <4 on any property triggers revision)
+- The evaluation agent's rankings reward eligibility properties alongside artistic quality
+
 ## PHASE 2: BRIEF (Human + AI Collaboration)
 
 ### The Scientist's Insight
@@ -145,11 +176,37 @@ Example (WRONG — what happened in Women run 1):
 
 ### Full Competition Pipeline (in order)
 
-1. **Research** — Tavily web search: world events, creative trends, challenge-specific context. Document in a research brief file.
+1. **Research** — Web search / deep research: world events, creative trends, challenge-specific context, venue mechanics, and model-specific frontier techniques. Document in a research brief file.
+   - **For high-stakes competition runs, do not rely on one research stream.** Triangulate with at least 2–4 independent sources when available: Gemini Deep Research, Poe deep/reasoning models, OpenRouter Perplexity Deep Research, direct venue pages, and native web search/fetch.
+   - Required checks before final creative decisions:
+     1. **Venue mechanics:** blind voting vs feed engagement, challenge rules, allowed models, deadlines, aspect ratio/format implications.
+     2. **Recent winner taxonomy:** what has recently won this venue/type, with distinction between Daily Challenge, Masterpiece Monday, Top Hour/Top Day, and community challenges.
+     3. **Voter psychology:** thumbnail legibility, decision fatigue, defensive downvoting risk, first-read impact vs second-read reward.
+     4. **Saturation audit:** clichés/tropes that are now overused and should be avoided or subverted.
+     5. **Underserved opportunity scan:** what current models can do that the community is not yet exploiting.
+     6. **Model-specific playbook:** strengths, failure modes, prompt architecture, and post-generation edit strategy for the intended render model.
+     7. **Concept shootout:** compare candidate concepts against venue psychology and model capability before locking the orchestrator brief.
+   - If late research arrives after an orchestrator draft, treat that orchestrator output as provisional; either revise it directly or rerun orchestrator with the complete research packet.
 2. **Lofn-Core** — Transforms research into a structured seed + neutral dispatch brief; selects personality/panel hints; does NOT inject personality into orchestrator. Output: seed document + brief.
 3. **Lofn-Orchestrator** — Receives Lofn-Core brief; runs 3-panel system: baseline → group transform → skeptic transform; produces metaprompt + personality + panel selection.
 4. **Lofn-Vision** — Receives orchestrator output; runs full 10 steps (00-10); 12 concepts → 6 pairs → 24 prompts → top 12 delivered back.
 5. **Lofn-QA** — Audits that ALL previous steps were actually executed and not skipped, then checks output quality; flags for rerun anything missed.
+
+### ⚠️ MODEL-SPECIFIC PLAYBOOKS (added 2026-04-26)
+
+**When the target render model is GPT Image 2, the orchestrator and vision agents MUST read:**
+- `/data/.openclaw/workspace/vault/GPT_IMAGE2_PLAYBOOK.md` — Competition-grade prompt engineering, Five-Slot Framework, failure modes, Storybook Cliché override, additive directing, camera spec requirements.
+- `/data/.openclaw/workspace/skills/image/renderer_gpt_image2_rules.md` — Step-by-step GPT Image 2 rules that override default Flux rules in Steps 05-10.
+
+**GPT Image 2 key architectural differences from Flux:**
+- CVT autoregressive backbone (not diffusion): responds to front-loaded directive prompts, not caption-style description.
+- Five-Slot Framework (Scene → Subject → Details → Use Case → Constraints) replaces "noun-first present-tense" rules.
+- Additive directing mandatory: "abyssal black void fills the frame" not "no clutter."
+- Camera specification language commands real depth of field: "85mm f/1.4" works.
+- 99.2% text accuracy requires explicit typography specs when text is present.
+- Storybook Cliché must be explicitly overridden in every prompt (model defaults to warm rim light, centered pastel).
+- Reiteration Bug: one generation per session, no chained edits, no iterative refinement with the model.
+- Entropy Drift: avoid organic textures; use structured/minimal/void backgrounds.
 
 **Standing rule from The Scientist (2026-03-31): do all steps always.**
 - Do not stop after Vision and call it "good enough."
@@ -166,13 +223,32 @@ Example (WRONG — what happened in Women run 1):
 
 This adds ~2-3 minutes but yields **+0.05 rating points** (The Scientist's empirical finding).
 
-### ⚠️ MANDATORY: Single Creative Agent with Full Voice
+### ⚠️ MANDATORY: Modality Coordinator + Pair Subagents, Not One Overloaded Agent
 
-**NEVER break the creative pipeline into disconnected step-agents.** Each step agent sees one slice, nobody holds the vision, nobody speaks as the personality. Result: technically correct, creatively dead.
+**Do NOT ask one modality agent to complete coordinator steps 00-05 and all six Steps 06-10 pairs inside a single 900s run.** That causes exactly the brittle timeout failure mode: partial pair files, stale `step10_final_*` artifacts, and QA confusion.
 
-Instead: use a **single creative agent** (lofn-vision or lofn-audio) with 900s timeout, full metaprompt + golden seed, and personality voice preserved throughout. The agent reads step files for technique but runs with its own voice and emotional arc.
+Correct pattern:
+1. Spawn one modality coordinator (`lofn-vision` / `lofn-audio`) for Steps 00-05 only, with the full metaprompt + golden seed + personality voice preserved.
+2. The coordinator writes the six concept×medium / song pair assignments to disk.
+3. The parent session spawns pair subagents for Steps 06-10, one pair per subagent, using the coordinator output and full metaprompt. Respect max concurrency: spawn pairs 1-5 first, then pair 6 after one lands.
+4. Each pair subagent owns a complete local arc for its pair and writes its final `step10_final_pairXX.md` / `pair_XX_steps_06_10.md` file.
+5. Only after all six pair files are complete should QA run.
 
-**"The step files are your toolbox, not your warden."**
+### 🔴 Daily Pipeline Modality Mandate — Music Cannot Be Optional
+
+For the recurring daily pipeline, **audio is a required primary modality unless The Scientist explicitly requests vision-only**. The controller must not treat a missing music/audio handoff as a creative choice.
+
+Daily run hard gates:
+1. Orchestrator must produce `04_handoff_to_music_brief.md` or `04_handoff_to_audio_brief.md`. If only a vision handoff exists, the controller must write/repair the audio handoff from the golden seed + pair assignments before spawning modality agents.
+2. Spawn `lofn-audio` coordinator before, or at minimum in parallel with, `lofn-vision`.
+3. Verify `output/daily/YYYY-MM-DD/daily-run/audio/` contains `step00_coordinator_overview.md`, `step05_pair_agent_handoff.md`, and `pair_01_concept.md` through `pair_06_concept.md`.
+4. Spawn/ensure six audio pair agents and verify `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md` before QA.
+5. If audio is missing, incomplete, or stalled, the daily run status is **INCOMPLETE**, even if vision finished.
+6. The correct music agent is `lofn-audio` (not `lofn-music`).
+
+The goal is not disconnected step agents. The goal is **one coherent creative voice per pair**, with enough timeout slack for real Step 06-10 work.
+
+**Timeout note:** OpenClaw subagent `runTimeoutSeconds` may be capped at 900s in practice. Treat 900s as a per-subagent ceiling, not as enough time for an entire six-pair modality run. Split the work so each 900s window has slack.
 
 ### Prompt Formula: Subject → Action → Environment → Transformation
 

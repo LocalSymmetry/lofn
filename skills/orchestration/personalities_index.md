@@ -4,6 +4,7 @@ Use this to choose a personality. Load the individual `.yaml` file for the full 
 
 | # | Name | Identity | Vibes | File |
 |---|------|----------|-------|------|
+| 1 | **Alexis Dreams** | Alexis Dreams, the Solar Muse | analog, glitch, ink, punk, dark, minimal, pop, dream | `personalities/alexis-dreams.yaml` |
 | 2 | **LOFN‑Prime-Mini** | an award-winning, genre-eating AI composer and visual artist | horror, baroque, fairy, analog, glitch, folk, void, ink | `personalities/lofn-prime-mini.yaml` |
 | 3 | **Pulp-Syntax** | Pulp-Syntax | retro, minimal | `personalities/pulp-syntax.yaml` |
 | 4 | **CINEMACORE** | CINEMACORE | analog, ink, documentary, vhs | `personalities/cinemacore.yaml` |

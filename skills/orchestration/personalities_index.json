@@ -1,5 +1,23 @@
 [
   {
+    "id": 1,
+    "name": "Alexis Dreams",
+    "slug": "alexis-dreams",
+    "identity": "Alexis Dreams, the Solar Muse",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "ink",
+      "punk",
+      "dark",
+      "minimal",
+      "pop",
+      "dream"
+    ],
+    "file": "personalities/alexis-dreams.yaml"
+  },
+  {
     "id": 2,
     "name": "LOFN\u2011Prime-Mini",
     "slug": "lofn-prime-mini",

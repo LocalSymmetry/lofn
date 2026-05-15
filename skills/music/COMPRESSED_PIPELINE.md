@@ -73,12 +73,12 @@ Each song in its own file: `{output_dir}/song_01_<slug>.md` through `song_06_<sl
 ### Step 5: Deliver
 Before delivery, run the 15-point Suno gate on each selected song: body, adoptable hook, emotional TAM, specificity, cognitive ease, vocal co-discovery, sonic threshold, standalone prompt, prompt density/restraint, lyric syntax, 15–30s hook survivability, active personality fidelity, production specificity, anti-slop/cliché burn list, package readiness.
 
-Repair any blocking failure before delivery. Then send each song file to Telegram (channel: telegram, target: {{TELEGRAM_TARGET}}, buttons: []).
+Repair any blocking failure before delivery. Then send each song file to Telegram (channel: telegram, target: <configured-recipient>, buttons: []).
 
 When possible, run the deterministic validator before delivery:
 
 ```bash
-python3 skills/music/scripts/validate_suno_packages.py <output_dir>
+python3 /data/.openclaw/workspace/skills/music/scripts/validate_suno_packages.py <output_dir>
 ```
 
 Treat any `FAIL` result as a repair blocker.

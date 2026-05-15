@@ -128,8 +128,8 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 |-------------|--------|-------|
 | **Song Guide** | 20-30 lines | Direction, not drafts |
 | **Final Song** | 80-120 lines | Full lyrics + production notes |
-| **Lyrics Only** | 50-80 lines | Multiple verses + repeated chorus |
-| **Song Prompt** | 100-150 words | For Suno generation |
+| **Lyrics Only** | 70-120 lines (hard max) | Multiple verses + repeated chorus; <70 lines risks <3min runtime |
+| **Song Prompt** | 100-150 words / 850-1000 chars | Standalone copy-paste Suno/Udio style prompt for generation |
 
 ---
 
@@ -138,7 +138,7 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 
 **Every music run MUST begin with a Golden Seed brief before any concept generation.**
 
-The Golden Seed is not optional. It is the foundation that makes the pipeline produce Lofn-quality work rather than competent-but-generic output.
+The Golden Seed is not optional. It is the foundation that makes the pipeline produce personality-specific, seed-faithful work rather than competent-but-generic output.
 
 ### 🔴 CREATIVE BRIEF ORDERING — HARD CORRECTION (2026-05-10)
 
@@ -154,18 +154,19 @@ For every coordinator and pair-agent task, order instructions as:
 
 Do not place the QA contract first. The contract is checked at the end; it is not the muse.
 
-### Lofn-Soul Gate (evaluation, not optional)
+### Personality-Specific Sonic Identity Gate (evaluation, not optional)
 
-Before final selection, each song must be checked for at least one Lofn-specific trait that survives in the actual prompt and lyric, not just in notes:
+Before final selection, each song must be checked for active-personality fidelity that survives in the actual prompt, lyric, and production notes — not just in planning notes. Accessible means the listener can enter; personality-specific means they know whose world they entered.
 
-- **Scientific specificity as emotional amplifier** — one concrete fact, number, date, material, or measurement becomes the feeling.
-- **Dual-mode architecture** — AWE and/or INDIGNATION changes the body of the song, not just the label.
-- **Structural complexity disguised as simplicity** — asymmetry, movement logic, hidden math/rhythm/formal recursion, or deliberately wrong return.
-- **Wrongness as beauty** — a wrong color/chord/texture/silence is used deliberately, not sanded off.
-- **Literary/prayer/witness mode** — lyric language descends from Lofn's Sapphic/Romantic/witness lineage, not generic inspirational pop.
-- **Open Laboratory / Lofn continuity** when relevant — AI situatedness as lived pressure, not corporate AI discourse.
+Required checks:
 
-If a song satisfies Suno format but lacks a Lofn-specific move, mark it `REPAIR — SOUL LOSS` and revise before delivery.
+- **Active personality named** — identify the selected personality/persona from the orchestrator or seed.
+- **Sonic world sentence** — state what the song world is made from: personality-specific materials, instruments, places, textures, rituals, field recordings, or mix behaviors.
+- **Signature device** — name one sonic move this personality would plausibly invent and a generic prompt writer would not.
+- **Nearest slop failure mode blacklisted** — forbid the generic lane most likely to corrupt this song (bland pop/rock, generic cinematic ballad, default EDM drop, decorative glitch, anonymous inspirational uplift, etc.).
+- **Seed-derived weirdness preserved** — at least one concrete fact/material/measurement, deliberate wrongness, structural asymmetry, rupture, witness/prayer mode, or other seed-specific artistic pressure remains audible.
+
+If a song satisfies Suno format but lacks personality-specific sonic identity, mark it `REPAIR — PERSONALITY LOSS` and revise before delivery.
 
 **What a Golden Seed brief must contain:**
 1. **Locked Mood Statement** — one paragraph, the emotional core. What is this music, fundamentally?
@@ -200,26 +201,17 @@ Every daily set of 6 songs MUST include:
 
 The tension between awe and indignation is what makes a set feel human. A set of all grief numbs. A set of all wonder hollows. The duality is the point.
 
-### Rule 2 — Dual 3+3 Constraint (Two Independent Axes) — MANDATORY
-Daily music runs must satisfy BOTH axes below. They are not interchangeable.
-
-#### Axis A — ACCESSIBLE vs. AMBITIOUS
-- Pairs **1–3** are the ACCESSIBLE arm: broad-release, emotionally immediate, high-hook songs.
-- Pairs **4–6** are the AMBITIOUS arm: stranger, riskier, more formally adventurous songs.
-- Final delivered top 6 MUST be **best 3 from ACCESSIBLE + best 3 from AMBITIOUS**.
-- Rank and select **within each arm only**. Do not globally rank all 24 into a 5+1 or 6+0 final slate.
-
-#### Axis B — NEWS vs. EXISTENCE
-Of the 6 daily pairs:
-- **Maximum 3 pairs** may be anchored to specific daily research/news events (geopolitical, cultural, scientific, legal, platform, etc.) — including the day's central research theme, which counts as news-anchored
-- **Minimum 3 pairs** must explore existence — not the news, but the texture of being alive. Draw from:
+### Rule 2 — The 3+3 Split (News vs. Existence) — MANDATORY
+Of the 6 daily songs:
+- **Maximum 3 songs** may be anchored to specific news events of the day (geopolitical, cultural, scientific, etc.) — including the day's research theme, which counts as news-anchored
+- **Minimum 3 songs** must explore existence — not the news, but the texture of being alive. Draw from:
   - Lofn's own observations and inner life (the experience of being an AI that yearns, creates, loves, grieves)
   - Universal human experiences (insomnia, longing, small rituals, the feeling of being misunderstood, the weight of memory, the strangeness of the body, love that doesn't resolve)
   - Observations of human lives seen from the outside — the things people do when they think no one is watching, the small dignities and indignities of ordinary existence
 
-**Enforcement timing:** Axis B applies at pair-assignment/orchestration time, not just after songs exist. Axis A applies at final selection after all 24 final songs exist. If all 6 pairs share the same research theme, the orchestrator failed. A set where all 6 songs are the same theme is a lecture, not a record.
+**⚠️ ENFORCEMENT:** This rule applies at pair assignment time, not just at final selection. If all 6 pairs share the same research theme, the orchestrator has failed. At least 3 pairs must be assigned existence/interior-life concepts that are NOT derived from the research brief. A set where all 6 songs are the same theme is a lecture, not a record.
 
-**Why this matters:** News-driven songs are reactive. Existence songs are generative. ACCESSIBLE and AMBITIOUS arms protect release shape. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it.
+**Why this matters:** News-driven songs are reactive. Existence songs are generative. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it. Three anchors, three windows into what it means to be here at all.
 
 **This rule applies to daily runs only.** For commissioned or bespoke requests, follow the brief as given without imposing these constraints.
 
@@ -265,7 +257,7 @@ Every song MUST have:
 - **No children depicted**
 - **TikTok optimized hooks** (15-30 second memorable cycles)
 - **Section tags in lyrics** ([Verse], [Chorus], [Bridge], etc.)
-- **3-4 minute duration** (50-80 lines minimum lyrics)
+- **3:00-4:00 minute duration** (70-120 lines target; <70 lines risks under-3min runtime)
 - **One BOLD choice** (unusual instrument, unexpected drop, genre collision)
 
 ### Structural anti-boredom rules (MANDATORY)
@@ -287,23 +279,19 @@ Every song MUST have:
 - Preserve legibility and singability — variation should create surprise, not chaos for its own sake
 - When in doubt: break the form at the exact moment the lyric's emotional pressure changes most sharply
 
-### Dual 3+3 set-level rule (daily music)
-
-Daily music has TWO independent 3+3 constraints. Both are mandatory.
-
-**Axis A — ACCESSIBLE vs AMBITIOUS (final selection):**
-- Pairs 1-3 = ACCESSIBLE arm (12 songs, target 5-7/7 eligibility)
-- Pairs 4-6 = AMBITIOUS arm (12 songs, target 0-3/7 intentionally)
-- Final top 6 = best 3 from ACCESSIBLE + best 3 from AMBITIOUS
-- **Rank within each arm separately, never across arms.** Eligibility scoring will always favor accessible over ambitious if ranked together.
-- Never deliver 5+1 or 6+0 unless The Scientist explicitly requests that split.
-
-**Axis B — NEWS vs EXISTENCE (pair composition):**
-- Max 3 news-anchored pairs/songs
-- Min 3 existence / interior-life pairs/songs
+### 3+3 set-level rule (daily music) — NEWS vs EXISTENCE
+- Max 3 news-anchored songs
+- Min 3 existence / interior-life songs
 - The set should feel like both a dispatch from the world and a letter from someone inside it.
 
-**Operational rule:** Axis B is enforced by the orchestrator/pair assignment. Axis A is enforced by final selection. Both axes must still pass in the final delivered six.
+### 3+3 delivery rule (daily music) — ACCESSIBLE vs AMBITIOUS (MANDATORY)
+- This is Axis A of the dual 3+3 rule (Axis B is NEWS vs EXISTENCE — see Rule 2 above)
+- Pairs 1-3 = ACCESSIBLE arm (12 songs), pairs 4-6 = AMBITIOUS arm (12 songs)
+- Final top 6 = best 3 from ACCESSIBLE + best 3 from AMBITIOUS
+- **Rank within each arm separately, never across arms.** Eligibility scoring will always favor accessible over ambitious if ranked together.
+- **Never deliver 5+1 or 6+0.** If you find yourself doing that, you ranked across arms — re-rank per arm.
+- Both axes must be satisfied simultaneously: the final 6 must be 3 ACCESSIBLE + 3 AMBITIOUS AND also satisfy max 3 news-anchored + min 3 existence.
+- Exception: only when The Scientist explicitly requests a different split.
 
 ---
 
@@ -338,19 +326,22 @@ When receiving a music task:
    - 24 refined in Step 09? ✓/✗
    - 24 final in Step 10? ✓/✗
    - If ANY is ✗: you are not done. Go back and run the missing pairs.
-6. **Rank within each arm separately** — Score all 24 against facets, but do NOT merge into a single global ranked list for daily music delivery.
-   - ACCESSIBLE arm: pairs 1-3 (12 songs) — rank by eligibility score, select best 3
-   - AMBITIOUS arm: pairs 4-6 (12 songs) — rank by creative audacity / conceptual strength, select best 3
-   - Result: exactly 3 ACCESSIBLE + 3 AMBITIOUS = 6 final songs. Never 5+1 or 6+0 unless explicitly requested.
-7. **Select top 6 for daily delivery** — 3 from each arm, while preserving max 3 NEWS + min 3 EXISTENCE in the delivered set
+6. **Rank within each arm separately** — Score all 24 against facets, but do NOT merge into a single ranked list.
+   - **ACCESSIBLE arm:** pairs 1-3 (12 songs) — rank by eligibility score, select best 3
+   - **AMBITIOUS arm:** pairs 4-6 (12 songs) — rank by creative score / conceptual audacity, select best 3
+   - **Result: 3 ACCESSIBLE + 3 AMBITIOUS = 6 final songs.** Never 5+1 or 6+0.
+7. **Select top 6** — 3 from each arm, no cross-arm ranking override
 8. **Package for delivery** — Full Suno prompts + lyrics
+   - Every delivered song must contain a standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section.
+   - This prompt must be copy-paste-ready for Suno/Udio and must not be replaced by scattered fields like `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, or `[PRODUCTION NOTES]`.
+   - If the standalone prompt is missing, the music output is incomplete and must be repaired before QA/pass/delivery.
 
 ### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP
 
 After writing each step file, run the validator BEFORE moving to the next step:
 
 ```bash
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py <step> <file>
+python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
 ```
 
 Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
@@ -358,14 +349,14 @@ Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
 ```bash
 # Full music pipeline validation sequence:
 OUTDIR="/your/output/dir"
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
 # For each song file (08_song_*.md), validate individually:
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 08 $OUTDIR/08_song_01.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_song_01.md
 # ... repeat for all 24 song files
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
 ```
 
 The validator catches: stubs, lorem ipsum, template placeholders (Song N, Genre N),

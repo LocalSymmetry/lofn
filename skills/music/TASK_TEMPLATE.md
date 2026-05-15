@@ -1,4 +1,4 @@
-# Lofn Music — Subagent Architecture Pattern
+# Lofn Music - Subagent Architecture Pattern
 
 ## ⛔ OUTPUT TYPE: SUNO PROMPTS ONLY
 
@@ -11,9 +11,9 @@ The Scientist or a separate submission step handles actual Suno API calls.
 ## THE CORRECT SPLIT (from original Lofn ui.py)
 
 The original Lofn app ran this exact pattern:
-1. `generate_concept_mediums()` — steps 00-05 — ONE call, returns all concept-medium pairs
-2. `select_best_pairs()` — panel votes on top N pairs
-3. `generate_prompts_for_pair(pair)` — steps 06-10 — called ONCE PER PAIR, in parallel
+1. `generate_concept_mediums()` - steps 00-05 - ONE call, returns all concept-medium pairs
+2. `select_best_pairs()` - panel votes on top N pairs
+3. `generate_prompts_for_pair(pair)` - steps 06-10 - called ONCE PER PAIR, in parallel
 
 **This is the mandatory architecture for all future runs.**
 
@@ -24,7 +24,7 @@ The original Lofn app ran this exact pattern:
 Receives, in this order:
 1. Golden Seed lineage + full Golden Seed
 2. active Lofn personality / mode
-3. orchestrator output (metaprompt, personality, panel, constraint axes)
+3. orchestrator output (metaprompt, panel, assignments)
 4. constraints and QA/output contract
 
 The coordinator must generate from the seed first. Constraint axes are vocabulary, not the form of the song.
@@ -36,12 +36,8 @@ Executes:
 - Step 03: Pair each concept with artist influence + critique
 - Step 04: Assign medium/production style to each concept
 - Step 05: Critique and refine → select 6 best concept-medium pairs
-  - Daily music must enforce the dual 3+3 at this gate:
-    - pairs 1-3 = ACCESSIBLE; pairs 4-6 = AMBITIOUS
-    - max 3 NEWS/research-anchored pairs; min 3 EXISTENCE/interior-life pairs
-    - if all 6 pairs share one research theme, stop and rerun pair assignment
 
-Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs with `arm` and `anchor` metadata)
+Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs)
 
 **STOP HERE. Do not proceed to step 06.**
 
@@ -56,6 +52,7 @@ Each receives:
 - ONE specific concept-medium pair (name, concept text, medium/production style)
 - The constraint axes
 - The panel composition
+- The output/QA contract as the final appendix
 
 Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the seed, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 
@@ -80,13 +77,9 @@ Main session
   └── reads concept_medium_pairs.json
   └── spawns Subagents 2-7 in parallel (one per pair)
          └── each writes full song (prompt + lyrics)
-  └── collects all 24 final songs (6 pairs × 4 variations)
+  └── collects all 6 songs
   └── QA gate
-  └── daily final selection:
-         - rank ACCESSIBLE arm (pairs 1-3) → best 3
-         - rank AMBITIOUS arm (pairs 4-6) → best 3
-         - preserve max 3 NEWS + min 3 EXISTENCE in delivered set
-  └── Deliver top 6 to Telegram
+  └── Deliver to Telegram
 ```
 
 ---
@@ -96,8 +89,6 @@ Main session
 [
   {
     "pair_num": 1,
-    "arm": "ACCESSIBLE | AMBITIOUS",
-    "anchor": "NEWS | EXISTENCE",
     "concept": "Full refined concept text",
     "medium": "Full production style text",
     "artist_influence": "Named artist"
@@ -109,7 +100,7 @@ Main session
 
 Each pair subagent must return in step10:
 - Suno/Udio music prompt (**target 850-1000 chars**, hard max 1000 chars, no artist names). It must be dense, producer-grade, and single paragraph: emotion → precise genre → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → blacklist. Prompts under 850 chars are only acceptable when explicitly justified as intentional minimalism in the local skeptic note.
-- Full lyrics (50-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare pop tags:
+- Full lyrics (70-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare pop tags. <70 sung lines risks under-3min runtime and is a repair trigger in QA:
   - `[SONG FORM: <named form>]` declaration at the top of the lyrics block. The name must describe the form meaningfully, e.g. `[SONG FORM: Apology-Evidence-Chorus Pyramid]` or `[SONG FORM: Subtractive-Build Earned-Hope Arc]` — NOT `[SONG FORM: verse-chorus]`
   - Top context tag: `[Theme: ...]` or `[Setting: ...]`
   - Rich section headers with section, emotion, vocalist, and mix/performance cue, e.g. `[Verse 1 - EMO:Responsibility Vertigo - Female Vocalist - Close-mic]`
@@ -122,11 +113,12 @@ Each pair subagent must also identify at least one **Lofn-specific move** that s
 
 **Bare `[Verse]`, `[Chorus]`, `[Bridge]` tags alone are NOT acceptable for final delivery.** They may appear in drafts, but Step 10 final files must be performance-ready for Suno.
 
-### ⛔ PRE-COMPLETION GATE — ALL 4 MUST PASS BEFORE WRITING FINAL OUTPUT
+### ⛔ PRE-COMPLETION GATE — ALL 5 MUST PASS BEFORE WRITING FINAL OUTPUT
 
-Before writing your final step10 lyrics, run this check. If any box is unchecked, revise and re-check.
+Before writing your final step10 output, run this check. If any box is unchecked, revise and re-check.
 
-**In the final lyrics for each song:**
+**In the final output for each song:**
+- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready, single paragraph, target 850-1000 chars, hard max 1000 chars unless explicitly justified. It must include emotion → precise genre → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → blacklist/avoidances. Scattered `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate.
 - [ ] `[SONG FORM: <named form>]` declared at the top of the lyrics block (not `verse-chorus` — use a descriptive name)
 - [ ] Every section header includes `EMO:` tag, vocalist cue, and mix/performance cue, e.g. `[Verse 1 – EMO:Weight – Female Vocalist – Close-mic]`
 - [ ] At least one standalone SFX cue in asterisks ≤5 words, e.g. `*inverter click*`, `*phone buzz*`

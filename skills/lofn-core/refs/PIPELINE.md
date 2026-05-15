@@ -100,7 +100,7 @@ Models will attempt to:
 ## Phase 0: Lofn-core - Determine what to send the orchestrator - the user's input, a seed if needed, any determined personalities, and determined panel groups, and instructions for each agent on what you expect from them. You are the overarching commander of this process.
 
 **Mandatory Phase 0 reads before writing the core seed:**
-1. `{{OPENCLAW_WORKSPACE}}/skills/lofn-core/GOLDEN_SEEDS.md`
+1. `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md`
 2. If specifying rather than delegating them: `skills/orchestration/panels.yaml` and `skills/orchestration/personalities.yaml`
 
 **Rule:** the core seed must be written *after* reading `GOLDEN_SEEDS.md`, and should explicitly anchor itself in the closest proven winning seed pattern. Research should not float free of the Golden Seeds; it should use them as a base and then adapt to the current challenge.
@@ -226,14 +226,14 @@ These are **expectations, not hard limits**. Sometimes a step needs more room; s
 After writing EACH step file to disk, run:
 
 ```bash
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py <step_number> <output_file>
+python3 /data/.openclaw/workspace/scripts/validate_step.py <step_number> <output_file>
 ```
 
 Examples:
 ```bash
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 00 ./output/dir/00_aesthetics.md
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 06 ./output/dir/06_facets.md
-python3 {{OPENCLAW_WORKSPACE}}/scripts/validate_step.py 08 ./output/dir/08_prompts.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 00 ./output/dir/00_aesthetics.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 06 ./output/dir/06_facets.md
+python3 /data/.openclaw/workspace/scripts/validate_step.py 08 ./output/dir/08_prompts.md
 ```
 
 **If exit code is 1 (FAIL):** read the error output, fix the problem, rewrite the file, run validation again. Do NOT proceed to the next step until validation passes.

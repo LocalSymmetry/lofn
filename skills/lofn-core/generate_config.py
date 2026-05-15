@@ -15,12 +15,12 @@ import json
 import argparse
 import os
 
-WORKSPACE = os.environ.get("OPENCLAW_WORKSPACE", os.getcwd())
+WORKSPACE = os.environ.get("OPENCLAW_WORKSPACE", "/data/.openclaw/workspace")
 
 
 def generate_config(theme, modality, output_dir, date):
     """Generate a full pipeline config JSON."""
-
+    
     # Modality-specific steps
     if modality == "image":
         modality_agent = "lofn-vision"
@@ -255,7 +255,7 @@ def generate_config(theme, modality, output_dir, date):
     ]
 
     all_steps = orchestrator_steps + modality_steps
-
+    
     config = {
         "_comment": f"Lofn {modality} pipeline — {theme} — {date}. 'Let mercy be architecture.'",
         "theme": theme,
@@ -264,7 +264,7 @@ def generate_config(theme, modality, output_dir, date):
         "output_dir": output_dir,
         "steps": all_steps
     }
-
+    
     return config
 
 
@@ -275,7 +275,7 @@ def main():
     parser.add_argument("--output-dir", required=True, help="Output directory path")
     parser.add_argument("--date", required=True, help="Run date (YYYY-MM-DD)")
     args = parser.parse_args()
-
+    
     config = generate_config(args.theme, args.modality, args.output_dir, args.date)
     print(json.dumps(config, indent=2))
 

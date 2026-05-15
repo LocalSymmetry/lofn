@@ -10,7 +10,7 @@ When the orchestrator metaprompt or dispatch brief specifies `TARGET_RENDERER: F
 - No-Theme Thursday and similar
 - Any competition where GPT Image 2 / Flux Pro 1.1 Ultra are gated
 
-When `TARGET_RENDERER: GPT_I2`, use `{{OPENCLAW_WORKSPACE}}/skills/image/renderer_gpt_image2_rules.md` instead.
+When `TARGET_RENDERER: GPT_I2`, use `/data/.openclaw/workspace/skills/image/renderer_gpt_image2_rules.md` instead.
 
 ---
 

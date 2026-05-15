@@ -34,11 +34,11 @@ After the pipeline generates 24 outputs:
 
 1. **Define scoring facets** (from Step 06)
 2. **Score each output** against the facets (1-10 scale)
-3. **Apply weights** based on platform/goal
-4. **Rank all 24** by weighted score
-5. **Select top N** based on request (default: best 4-6)
-   - Daily music exception: final top 6 is mandatory **best 3 ACCESSIBLE (pairs 1–3) + best 3 AMBITIOUS (pairs 4–6)**. Rank within each arm only; never allow 5+1 or 6+0 by global score.
-   - Verify Axis B coverage in the delivered six: max 3 NEWS/research-anchored, min 3 EXISTENCE/interior-life/universal-experience.
+3. **Score each output on the 7 Eligibility Properties** (see QA SKILL.md §0A) — classify as ACCESSIBLE or AMBITIOUS
+4. **Apply weights** based on platform/goal
+5. **Rank all 24** by weighted score
+6. **Select top N** based on request (default: best 4-6)
+7. **Ensure barbell balance** — at least 40% of selections should lean toward the run's intended barbell classification
 
 ### Scoring Dimensions
 
@@ -50,6 +50,23 @@ After the pipeline generates 24 outputs:
 | Bold Choice Quality | 15% | 10% |
 | Platform Fit | 10% | 25% |
 | Viral Potential | 10% | 10% |
+
+### Eligibility Scoring (EMBEDDED 2026-05-02 — 14-panel meta-analysis)
+
+In addition to creative scoring, every output is scored on 7 eligibility properties (full rubric: QA SKILL.md §0A):
+
+| Property | Weight |
+|----------|--------|
+| Body in the song | 15% |
+| Adoptable hook | 20% |
+| Vast emotional TAM | 15% |
+| Specificity paradox | 15% |
+| Cognitive ease | 10% |
+| Vocal co-discovery | 15% |
+| Sonic threshold | 10% |
+
+**Accessible runs:** eligibility average ≥3.5 is a HARD GATE. Below threshold → flagged for revision.
+**Ambitious runs:** eligibility scoring is informational only (artistic identity, not mass reach).
 
 ### Output Format
 
@@ -111,7 +128,6 @@ Before any candidate is published or treated as a formula test:
 3. **Score all 24** against facets
 4. **Calculate weighted totals**
 5. **Select top N** with rationale
-   - For daily music, split by arm before final selection: best 3 ACCESSIBLE + best 3 AMBITIOUS, then verify max 3 NEWS / min 3 EXISTENCE.
 
 ---
 

@@ -1,5 +1,5 @@
 # Veo 3.1 Prompt Framework — The Scientist's Protocol
-*Source: Lofn Open Laboratory, 2026-03-27*
+*Source: Dr. Local Symmetry, 2026-03-27*
 
 ## Principle 1: Begin with Essence, Not Description
 Before writing a single word, answer: **What is the core feeling or idea I am trying to synthesize?**

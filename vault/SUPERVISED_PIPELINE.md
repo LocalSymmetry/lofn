@@ -112,19 +112,33 @@ After spawning each subagent, check disk progress every 5 minutes:
 - [ ] If not: is agent still running? Steer it: "Write the metaprompt NOW to [path]"
 - [ ] If timed out: extract insights from announce, write metaprompt manually
 
+### Before spawning modality coordinators — DAILY RUN AUDIO GATE:
+- [ ] Does the run have `04_handoff_to_music_brief.md` or `04_handoff_to_audio_brief.md`?
+- [ ] If NO, but vision handoff exists: write/repair the audio handoff from the golden seed + orchestrator pair assignments. Do not accept vision-only as complete unless The Scientist explicitly requested vision-only.
+- [ ] Spawn `lofn-audio` first or in parallel with vision. Daily music is mandatory; vision is not allowed to crowd it out.
+- [ ] Use `lofn-audio` exactly. `lofn-music` is not a configured agent.
+
 ### After spawning lofn-audio (check at 5, 10, 20, 30 min):
-- [ ] Are step files appearing incrementally? (00→01→02...)
-- [ ] At 20 min: are song files appearing? (song_01, song_02...)
-- [ ] At 30 min: do song files have ≥ 60 lines?
+- [ ] Are coordinator files appearing incrementally? (`step00_coordinator_overview.md`, `pair_01_concept.md`…`pair_06_concept.md`, `step05_pair_agent_handoff.md`)
+- [ ] Are pair files appearing? (`pair_01_steps_06_10.md`…`pair_06_steps_06_10.md`)
+- [ ] At 30 min: do pair files include complete lyrics + Suno-ready prompts, not stubs?
 - [ ] If stalled: steer with "Stop current step, save what you have, continue from step [N]"
 
 ### After lofn-audio completes:
-- [ ] Count song files (expect 6)
-- [ ] Check line counts (min 60 each)
-- [ ] Check for [SONG FORM:] declarations
-- [ ] Spawn QA if all looks viable
+- [ ] Count pair files (expect 6: `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md`)
+- [ ] Check each pair has 4 variants, complete lyrics, Suno-ready prompts, and EMO: section headers
+- [ ] Check for document/form structure declarations when the seed requires form constraints
+- [ ] Spawn QA if all looks viable; otherwise repair audio before declaring the daily run complete
+
+### After lofn-vision completes:
+- [ ] Confirm combined prompt set exists if expected
+- [ ] Confirm per-pair files exist: `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md`
+- [ ] Confirm each pair file has 4 variants / prompts
+- [ ] If pair files are missing: DO NOT RENDER; spawn/steer targeted pair completion before QA
 
 ### After QA:
 - [ ] Read QA_REPORT.md verdict
-- [ ] If FAIL: identify which songs need rerun, spawn targeted step-08 rerun
+- [ ] Confirm QA explicitly inspected per-pair files for image runs, or per-song/pair files for music runs
+- [ ] Confirm QA says `READY TO RENDER` before any image/video generation spend
+- [ ] If FAIL: identify which songs/prompts/pairs need rerun, spawn targeted step-08/step-10 rerun
 - [ ] If PASS: deliver to Telegram with QA certification

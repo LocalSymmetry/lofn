@@ -1,5 +1,5 @@
 # ElevenLabs v3 Voiceover Guide — Lofn Social
-*Source: Lofn Open Laboratory, 2026-03-27*
+*Source: Dr. Local Symmetry, 2026-03-27*
 
 ## Overview
 Eleven v3 is in alpha. Very short prompts (<250 chars) cause inconsistent outputs. Always use prompts greater than 250 characters.

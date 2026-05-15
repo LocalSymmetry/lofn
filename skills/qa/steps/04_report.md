@@ -48,5 +48,5 @@ Write output to: [original_filepath]
 - Final QA report: `{output_dir}/QA_REPORT.md`
 
 ## After saving
-If PASS or PASS WITH WARNINGS: deliver outputs to Telegram (channel: telegram, target: {{TELEGRAM_TARGET}})
+If PASS or PASS WITH WARNINGS: deliver outputs to Telegram (channel: telegram, target: <configured-recipient>)
 If FAIL: report to controller for rerun decision

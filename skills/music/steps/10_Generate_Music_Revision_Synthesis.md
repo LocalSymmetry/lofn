@@ -184,10 +184,21 @@ A. CORE RULES
    > *Prevents filler clichés and ensures sonic originality.*
 
 8. **LENGTH & FORM:**
-   • 80-150 words total; line‑breaks okay during drafting—final prompt = single paragraph.
+   • Drafting may explore 80-150 words, but **final Lofn delivery prompts target 850-1000 characters** (hard max 1000). Shorter prompts are allowed only when the song is intentionally sparse/minimal and the critic explicitly justifies why less instruction improves the render.
+   • The prompt must be dense because it is a producer blueprint, not a genre tag list. Use the character budget for arrangement chronology, instrument roles, mix placement, vocal behavior, the hook mechanism, the bold sonic device, and failure-mode prevention.
+   • Line‑breaks okay during drafting—final prompt = single paragraph.
    • Separate ideas with **periods** or **;** not comma sprawl.
    • Vital descriptive words appear **early** (Suno weights the front).
    > *Descriptive, loaded language → better internal embeddings.*
+
+9. **MUSIC PROMPT INTENTIONALITY CHECK:**
+   Before finalizing, the internal Producer/Mix Engineer/Suno Skeptic panel must be able to answer:
+   • What is the track's unmistakable sonic thesis?
+   • What does each flagship instrument or foley object do emotionally?
+   • How does the arrangement transform from first second to last?
+   • How does the hook land rhythmically and texturally?
+   • What should Suno prioritize, and what common failure modes are being blocked?
+   If these answers are not present in the prompt, revise. Length without these answers is padding and fails.
 
 ────────────────────
 B. ADVANCED PLAYBOOK
@@ -528,8 +539,10 @@ GENERAL INSTRUCTIONS  ·  PANEL‑DRIVEN CREATIVE PROTOCOL
 DELIVERABLE REQUIREMENTS
 ────────────────────────────────────────────────────────
 1. **MUSIC PROMPT** (in a single copy‑pasteable code block)
-   ‑ <=1000, one paragraph.
+   ‑ Target **850-1000 characters**, hard max 1000, one paragraph. Shorter only if intentional minimalism is explicitly justified by the critic panel.
    ‑ Must state **emotion → genre → key instruments & production → vocalist spec → tempo/key (opt) → progression roadmap → blacklist**.
+   ‑ Must function as a **composition blueprint**, not a descriptive wrapper: name the sonic thesis, instrument-role mapping, hook mechanics, transformation arc, mix placement, bold sonic device, and failure-mode prevention.
+   ‑ Use the extra budget for production decisions, not filler adjectives or redundant genre tags.
    ‑ **No explicit section labels** (`[Intro]`, etc.)—this stays high‑level.
    ‑ Absolutely no real‑artist names; describe styles instead.
 

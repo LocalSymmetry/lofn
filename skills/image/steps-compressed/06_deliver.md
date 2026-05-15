@@ -1,8 +1,8 @@
 # Image Pipeline Step 6: Deliver
 
-Send each image to Telegram:
+Send each image through the configured delivery channel:
 - channel: telegram
-- target: {{TELEGRAM_TARGET}}
+- target: <configured-recipient>
 - buttons: []
 
 Then send a summary message with all 6 titles and one-line descriptions.

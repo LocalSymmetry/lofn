@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-WORKSPACE="${OPENCLAW_WORKSPACE:-$(pwd)}"
+WORKSPACE="/data/.openclaw/workspace"
 CONFIG="${1:-}"
 POLL_INTERVAL=10  # seconds between disk checks after agent spawn
 MAX_POLL_WAIT=600 # max seconds to wait for output
@@ -112,10 +112,10 @@ print('\n'.join(parts))
 
   # Spawn agent via openclaw
   echo "  Spawning $AGENT_ID..."
-
+  
   # Use openclaw agent -m with --json to get result
   RESULT=$(openclaw agent --agent "$AGENT_ID" -m "$TASK" --json --timeout "$TIMEOUT" 2>&1 || echo "FAILED")
-
+  
   echo "  Agent response received"
 
   # Wait for output files to appear
@@ -128,11 +128,11 @@ print('\n'.join(parts))
         break
       fi
     done
-
+    
     if $ALL_EXIST; then
       break
     fi
-
+    
     sleep $POLL_INTERVAL
     WAITED=$((WAITED + POLL_INTERVAL))
   done

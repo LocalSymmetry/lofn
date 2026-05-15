@@ -17,14 +17,14 @@ If any item fails, repair before delivery. Missing `## 1. MUSIC PROMPT` is a blo
 When possible, run the deterministic validator before delivery:
 
 ```bash
-python3 skills/music/scripts/validate_suno_packages.py <output_dir>
+python3 /data/.openclaw/workspace/skills/music/scripts/validate_suno_packages.py <output_dir>
 ```
 
 Treat any `FAIL` result as a repair blocker.
 
-Send each repaired song file to Telegram:
+Send each repaired song file through the configured delivery channel:
 - channel: telegram
-- target: {{TELEGRAM_TARGET}}
+- target: <configured-recipient>
 - buttons: []
 
 Then send a summary message with all 6 song titles and one-line descriptions.

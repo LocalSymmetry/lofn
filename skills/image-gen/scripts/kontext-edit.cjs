@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
  * Flux Kontext Image Editor
- *
+ * 
  * Uses FAL's flux-pro/kontext for precise image editing.
  * Accepts a local image file + text instruction.
- *
+ * 
  * Usage:
  *   node kontext-edit.cjs --image ./input.jpg --prompt "Fix the hands" --output ./out.jpg
- *
+ * 
  * Environment:
  *   FAL_KEY - Required
  */

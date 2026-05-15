@@ -12,7 +12,7 @@ For each song guide, write a COMPLETE Suno-ready package with:
 - `## 4. PRODUCTION NOTES` — concrete instruments/materials/textures/mix behaviors, special events, and a short-clip hook note
 - Full lyrics with section markers using the full emotional taxonomy: `[Verse 1 – EMO:tender grief – Vocalist – dry close]`
   - ⚠️ The `EMO:` prefix IS the emotion tag — use it to express the precise feeling for each section
-  - Draw from `skills/lofn-core/refs/EMOTION_TAXONOMY.md` — choose the specific emotion or combination (e.g. `nostalgia + yearning`, `righteous fury`, `quiet dread`, `ecstatic release`)
+  - Draw from `/data/.openclaw/workspace/skills/lofn-core/refs/EMOTION_TAXONOMY.md` — choose the specific emotion or combination (e.g. `nostalgia + yearning`, `righteous fury`, `quiet dread`, `ecstatic release`)
   - NEVER use bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) as emotion labels — those are coarse categories, not section-level feeling
 - Production notes inline (e.g., "[Bass drops to sub-only, 30Hz rumble]")
 - At least one standalone SFX cue in asterisks, ≤5 words (e.g., `*phone buzz*`)

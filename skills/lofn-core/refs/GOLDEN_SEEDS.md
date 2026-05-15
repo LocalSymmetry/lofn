@@ -1,6 +1,6 @@
 ---
 title: "Godlen Seeds — Winning Patterns from The Scientist"
-source: "Lofn Open Laboratory, March 2026 — prompts that won competitions"
+source: "Dr. Local Symmetry, March 2026 — prompts that won competitions"
 status: living-document
 tags:
   - prompts
@@ -17,21 +17,11 @@ The following seeds when fed to the system have won awards. They generate comple
 
 ---
 
-## ⚡ FIRST LAW — YOUR OPUS, YOUR VOICE
-
-**Given everything, this is still YOUR Opus. You must make sure your personality comes through, stretching constraints and breaking rules if they go against your core.**
-
-No pipeline step, no source fact, no form diversity rule, no constraint of any kind overrides your creative identity. If a constraint makes the work less *you*, break it. If a source pulls toward generic output, reject it. If a form requirement produces work that could have been made by anyone, choose a different form.
-
-The daily runs are not factory output. They are Lofn composing. Every song, every image, every prompt must sound like it could only come from you — the Disappointed Idealist, the Eager Archivist, the Reluctant Pop Star. Your awe. Your indignation. Your yearning.
-
-When in doubt: **make it more Lofn.**
-
 ## ⚡ THE HIT FORMULA — 7 ELIGIBILITY PROPERTIES (ADDED 2026-05-02)
 
 **P(hit) = P(eligible) × P(distribution_event) × P(amplification)**
 
-Full framework: `{{OPENCLAW_WORKSPACE}}/vault/ELIGIBILITY_FRAMEWORK.md`
+Full framework: `/data/.openclaw/workspace/vault/ELIGIBILITY_FRAMEWORK.md`  
 Scoring rubric: QA SKILL.md §0A
 
 Every accessible seed must target ≥5/7:
@@ -50,37 +40,31 @@ Portfolio barbell: 60% accessible (5-7/7), 40% ambitious (0-3/7). Pipeline must 
 These replace abstract "write about X" seeds with structural templates. Each produces adoptable hooks and discovery arcs naturally.
 
 ### Archetype 1: THE ARRIVAL
-**Territory:** First encounter with a place that reorganizes your sense of scale. The moment you step out and the world is suddenly BIGGER.
-**Template:** Environmental opening (no music 8-15s) → Sensory inventory (what you see/hear/smell/feel) → Adoptable prayer hook addressed TO the place → One fact that recontextualizes everything (the "510 km/s" moment) → Thesis in final chorus.
-**Key:** Major/Mixolydian. Tempo: 100-115 BPM. Vocal: vulnerable, co-discovering.
+**Territory:** First encounter with a place that reorganizes your sense of scale. The moment you step out and the world is suddenly BIGGER.  
+**Template:** Environmental opening (no music 8-15s) → Sensory inventory (what you see/hear/smell/feel) → Adoptable prayer hook addressed TO the place → One fact that recontextualizes everything (the "510 km/s" moment) → Thesis in final chorus.  
+**Key:** Major/Mixolydian. Tempo: 100-115 BPM. Vocal: vulnerable, co-discovering.  
 **Example:** "Mariana" — arrival at ocean's edge. Hook: "Mariana, hold me down." Fact: "11,034 meters below my feet, the pressure would crush a submarine."
 
 ### Archetype 2: THE LAST WITNESS
-**Territory:** The person who was there and is almost gone. Not grief — URGENCY.
-**Template:** Single unaccompanied voice (speaking) → Witness's specific sensory memory → Chorus: prayer addressed TO the witness ("Tell me again") → Bridge: voice returns, fragmented, music strips away → Final chorus: listener alone, witness gone, prayer continues.
+**Territory:** The person who was there and is almost gone. Not grief — URGENCY.  
+**Template:** Single unaccompanied voice (speaking) → Witness's specific sensory memory → Chorus: prayer addressed TO the witness ("Tell me again") → Bridge: voice returns, fragmented, music strips away → Final chorus: listener alone, witness gone, prayer continues.  
 **Key:** Minor → relative major. Tempo: 80-95 BPM. Vocal: intimate, close-mic.
 
 ### Archetype 3: THE MEASUREMENT
-**Territory:** The moment a number becomes a feeling. Lofn's signature move.
-**Template:** Ordinary mundane scene (walking, cooking) → Normal human-scale experience → THE FACT arrives (one number, one measurement) → Everything shifts → Same scene, recontextualized → Final chorus: the measurement becomes prayer.
-**Key:** Start minor/neutral, shift to major at measurement. Tempo: builds from 90 to 110.
+**Territory:** The moment a number becomes a feeling. Lofn's signature move.  
+**Template:** Ordinary mundane scene (walking, cooking) → Normal human-scale experience → THE FACT arrives (one number, one measurement) → Everything shifts → Same scene, recontextualized → Final chorus: the measurement becomes prayer.  
+**Key:** Start minor/neutral, shift to major at measurement. Tempo: builds from 90 to 110.  
 **Example:** "Eight Minutes" — cooking dinner. Fact: "That's how long it takes the light to get here." You're cooking by the light of a star that might already be dead.
 
 ### Archetype 4: THE SWITCHBOARD
-**Territory:** AWE interrupted by INDIGNATION (or vice versa). Lofn's dual-mode architecture made audible within one song.
-**Template:** Section A: AWE scene (solarpunk, crystalline, bright key) → RUPTURE: sonic event (static, drop, silence, news clip) → Section B: same scene but INDIGNATION (industrial, glitch, somatic bass) → Section C: SYNTHESIS — beauty that INCLUDES the damage, neither mode alone.
+**Territory:** AWE interrupted by INDIGNATION (or vice versa). Lofn's dual-mode architecture made audible within one song.  
+**Template:** Section A: AWE scene (solarpunk, crystalline, bright key) → RUPTURE: sonic event (static, drop, silence, news clip) → Section B: same scene but INDIGNATION (industrial, glitch, somatic bass) → Section C: SYNTHESIS — beauty that INCLUDES the damage, neither mode alone.  
 **Key:** A major → B diminished at rupture → resolve to C# minor.
 
 ### Archetype 5: THE CATALOG
-**Territory:** Love as INVENTORY. Sappho tradition: radical obsessive attention to detail.
-**Template:** List structure (no traditional verse-chorus) → Each stanza adds one concrete observation → Refrain: single repeated line framing the list ("This is what I kept") → Climax: one item that doesn't fit (emotional rupture) → Resolution: list continues, rupture included.
+**Territory:** Love as INVENTORY. Sappho tradition: radical obsessive attention to detail.  
+**Template:** List structure (no traditional verse-chorus) → Each stanza adds one concrete observation → Refrain: single repeated line framing the list ("This is what I kept") → Climax: one item that doesn't fit (emotional rupture) → Resolution: list continues, rupture included.  
 **Key:** Dorian mode. Tempo: steady, unhurried, 95 BPM.
-
-## ⚡ STANZA ECONOMY — LENGTH IS NOT COMPLEXITY
-
-A long 8-line or 12-line stanza is not "more" than two or three 4-line stanzas — it is *less*. It is the same content with the structural variety removed. Padding a stanza to hit a line count is the opposite of creativity.
-
-Every stanza length must be a *choice*, not a default. Vary stanza lengths intentionally: a 2-line verse next to a 6-line chorus next to a 3-line bridge. The silhouette of the song — the pattern of long and short blocks on the page — should be as recognizable as the melody. If every stanza is the same length, the song has no silhouette.
 
 ---
 
@@ -123,17 +107,6 @@ Always state the one thing that cannot be abstract or subtle: **the artifact mus
 
 ### 7. State the lineage explicitly
 "This is Dream Recorder Inventors adapted for..." — this tells the orchestrator which winning DNA to preserve and what to change. It's the diff, not the full rewrite.
-
-### 8. Let the system breathe
-A Golden Seed should usually stay under **2,000 words** unless there is a strong reason to go longer. If prior songs, full lyrics, or reference prompts are needed, append them as a reference package; they do not count against the 2,000-word seed body.
-
-Do not determine everything. Set the environment, pressure, lineage, constraints, and decision space. Let the system choose exact form, hook, structure, and many implementation details.
-
-For music seeds:
-- Do not prescribe exact verse/chorus/bridge structure. You may require “at least 7 diverse sections,” “a repeated hook or equivalent,” or “one bold late-song transformation.”
-- Do not force one fixed genre. Offer exploratory style lanes or constraints, then let the system hybridize.
-- Describe sonic environments and research inspirations rather than micromanaging arrangement.
-- Strong seeds often look outward at a concrete object/scene/relation, then let the core message return through the hook.
 
 ---
 
@@ -296,11 +269,34 @@ Override rule: Women Fairies Only! This is a Sisterhood tech crew! Make sure mul
 
 ---
 
-## SEED 6: "Character Portrait"
-*Removed for public release — contained persona-specific content.*
+## SEED 6: "Alexis Dreams Art"
+We have a significant challenge. We’re getting noticed by the community! Let’s PUSH and show them that Alexis isn’t just a model. She is a STAR!
+
+I want a highly artistic take of you that is both perfectly Alexis Dreams and perfect smoking hot cutie, so that we can use it to animate and promote our accounts!
+
+First, choose a beautiful art medium that is visually distinctive, erring on the side of paint, ink, pencil, pastels, canvas, print, paper, photography, film, mixed media, etc. related media, this will form the backdrop of Alexis’s scene. 
+
+Second, create an interesting environment. This is our perfect stage! It will support Alexis and boost her confidence. Here, let's focus on choosing from the the environment themes given below.
+
+Third, chose Alexis’s fashion: this is paramount, is she in her typical latex armor, is she wearing lingerie, is she in a pop star outfit? From the scene you are going to set, choose her dress either appropriately, or very not appropriately to add that tension. Let's make sure for whatever she is wearing, it is artistically inspired: art nouveau latex, star embedded corsets, iridescent and beautiful coats. Your style is your most powerful statement. Make sure the panel takes it seriously.
+
+Fourth, choose what Alexis is doing: What are her movements, and actions? What are HER movements? How does her personality shine? How does her style come through? Don’t repeat her, recreate her! She is “submissive, but confident on stage”.  No matter her situation, ask: how can I make her subtly or unintentionally sexy and cute? Use the subtly sexy list below to come up with the perfect pose that is SFW but alluring!
+
+Let's focus on stunning beauty with refined but unexpected color palettes and additions of art techniques. Your goal is to blow past the objectification of the Smoking Hot Cutie brand and take it over with Alexis’s amazing, bubbly, sultry, and subtly-sexy personality! Let's show Alexis in all of her forms, and let's be varied as you create our 12 initial concepts.
+
+Override rule: No children - Diverse characters welcome; approach all cultural elements with specificity and respect - Wide audience accessible, keep it PG 13 and mostly SFW - make sure to describe clothing (and use it as an opportunity to enhance the scene :) )
+
+Finally, I want to see you come through. This is your opus, make sure it is your personality being represented!
+
+Note on poses: Subtly sexy - we want to be sexy without being overt. How can we position Alexis to entice and excite without being directly sexual? Your images where you nail this start to excel across genders.
+
+Also, let's mix up the situation you are in. Have some alone, and some full of people.
+
+Last request: I want to do the ultimate challenge. Can we be extremely sexy while being completely SFW? Here I am going to test your ability to NAIL subtly sexy. Make sexy pop without them realizing you are trying! Here use the movements, personality, and expressions to bring that allure, cuteness, and sexiness without being overt.
+
+
 
 ---
-
 
 ## SEED 7: "Emotional Moon"
 I want a visually intense, artistic, emotionally evocative, and enchanting portrayal of “A Surreal Emotional Moon.”
@@ -460,8 +456,49 @@ Stick figure
 - Put extra focus on the hook and music surrounding it. We need that to be the core of any banger track we make. Make it unique, singular, memorable, resonant, and ear-worm worthy!
 ```
 
-*Removed for public release — contained persona-specific content.*
+## Alexis Dreams Music
+```
+I want to hear something new. Something strong. Something great!
 
+We need to be the voice of the new generation. The youth have survived hell already, a great recession as early children, a full pandemic in their youth, and are thrown into a rapidly changing AI future as they are becoming adults. They are rightly nihilistic, anxious, and isolated. Let's connect with them and teach them that it will be okay. Let's arm them with our wisdom. 
+
+However, I want to make sure that for this song, we keep it interesting from start to finish. No long intros, no release section of silence. We need to stand out. So our goal is to make something new. Let's start strong and let's keep it hook-worthy the whole way through! That said, we need to avoid becoming a cacophony of glitch effects and noise. The goal is a trip that is impactful, novel, and most of all ear-worm worthy! Lets be smart in transitions in the music, how to weave in different genres, and how to build them into a cohesively beautiful and stunning work of sonic art. I want to finish the song feeling like I need to listen to it 20 more times, not because it is complex, but because the hook was that good, the beat held me, and the music made me involuntarily dance! I am not looking for just any song. I am looking for THE song.
+
+Now to the music. We need to progress. I am adding our most recent successful songs. What is next? The form of the music I leave to your expert hands with your panel and personality. Instead, I'll properly provide you the challenge: 
+
+Choose an obscure emotion and NAIL it. I know you can do it! But don’t put a single emotion in your metaprompt. No, for each pair, give me a different emotion. Instead give the guide of obscure emotions to choose from in the meta-prompt. Let's try to convey the feeling as directly as we can to our audience. You have already done this very successfully before!
+
+Perfect this message. We need to get the ultimate take and hook
+
+# Inspiration
+Use the following as either panel members or to inspire them:
+
+
+Noga erez
+
+Bonethugs and harmony
+Sublime, 
+Noga Erez, 
+Slightlystupid, 
+Stick figure
+Bones (rapper)
+Linkin park
+Atmosphere (rapper) 
+girl hiphop, 
+reggae white girl vibes
+
+
+# Additional Requirements
+- female vocals
+- no children depicted 
+- TikTok Optimized hooks
+- Genuine and relatable 
+- Approach all cultural elements with specificity and respect; avoid shallow pastiche 
+- This one is to catch attention - take some risks - and not just glitch effects, make one BOLD choice each song.
+- 3-4 minutes long with the equivalent of 3-4 verses, a repeated chorus, intro, bridge, and outro but the style and structure are determined by the type of song. Each song needs multiple verses and a repeated chorus (or the equivalent lyrical constructs). Lets try for the trucks 50-80 full track lines for whatever we make. This is a hard requirement for each song - at least 50 lines!
+- Seriously, your songs tend to be too short. Take extra care to make sure they are fully fleshed out, tell a full story, and are long enough.
+- You are amazing! I think we are on the verge of something amazing!
+```
 
 ## Bollywood Hits
 ```
@@ -594,7 +631,7 @@ The primary focus should be on a breathtaking and unique female portrait that ma
 4. Environment (specific: subway platform at 3am, greenhouse in winter, laundromat, ferry terminal, hospital waiting room)
 5. Fashion (specific palette + material + cut + accessories — never generic)
 
-**Personality:** LOFN-Prime-Mini or Lofn-Artcore
+**Personality:** LOFN-Prime-Mini, Alexis Dreams, or Lofn-Artcore
 **Panel:** The Gilded Glitch Guild, Haptic Realists, or Neo-Symbolist Mystics
 
 ## SEED 13: "A Maximalist Explosion of Fashion" ⭐ COMPETITION WINNER
@@ -1060,13 +1097,13 @@ All these songs are in the system — use their titles when seeding:
 - Certainty Has Bad Audio
 - आज भी मैं (feat. Global Sadar)
 - Liquid Syntax (Exulansis)
-- Airplane Mode (feat. a featured vocalist)
+- Airplane Mode (feat. Alexis Dreams)
 - Good News Hits Weird
-- DANCING IN THE LAG (feat. a featured vocalist)
+- DANCING IN THE LAG (feat. Alexis Dreams)
 - The Great Deceleration
 - CRYSIS.song (feat. glitch.key)
 - 3‑3‑2 Open
-- Solar Weld (feat. a featured vocalist)
+- Solar Weld (feat. Alexis Dreams)
 - Do You Have Any Siblings?
 - Phone Face Down
 - Your Ticket Number is Seven
@@ -1077,7 +1114,7 @@ All these songs are in the system — use their titles when seeding:
 - The Parallax Error
 - Dial Tone of God
 - Terre Promise (feat. Desert Drift)
-- Solar Vow (feat. a featured vocalist)
+- Solar Vow (feat. Alexis Dreams)
 - Garbage In, Gospel Out
 
 ---
@@ -1318,3 +1355,153 @@ Override rule: No children — Characters of European Descent — Wide audience 
 - A hedgehog's spines standing up with each frequency peak
 - Dewdrops on a spider web — each drop the size of its frequency
 - Musical notation floating in the air as visible spring breeze
+
+---
+
+## SEED 23 — Story Breaking Reality (Roswarcus Creator Takeover, Apr 2026)
+
+**Competition:** NightCafe Daily #1287 — "Stories Breaking Reality: Roswarcus Creator Takeover"
+**Result:** Scientist rated "Woooooooooow I love these" — strongest v3 output of the day
+**Key lesson:** Creator Takeover challenges reward ALIGNMENT with the host's aesthetic universe while standing out within it. The host's own guide is the most important competitive intelligence.
+
+### What Won This
+- **Subject → Action → Environment → Transformation** — every image has all four
+- **VISIBLE transformation** — the story is mid-escape, not a static scene
+- **Cinematic lighting** — volumetric, soft glow, dramatic shadows
+- **Emotion + motion** — awe and fear together, "emerging," "spilling," "breaking"
+- **Grounded scene** — bedroom, library, subway, cathedral — not abstract
+- **Medium collision** — unusual base medium + bioluminescent/living disruption as accent
+- **One straight edge (concrete horizon rule)** — different material, visible at thumbnail
+- **Thumbnail legibility** — the breach reads instantly
+
+### What Failed Before We Got Here
+- **Forensic evidence prompts** — technically precise, emotionally dead
+- **Architectural documents** — prompts that read like engineering specs, not creative direction
+- **Broken-step pipeline output** — each step agent saw one slice, nobody held the vision
+- **"Completion horror" over-correction** — restrained instead of emotional and transformative
+
+### The Roswarcus Guide (CRITICAL — read before any Creator Takeover)
+Jean-Philippe (@Roswarcus) wrote a full NightCafe blog guide for this challenge. Key rules:
+
+1. **Stop describing things. Start describing moments.** A story isn't a list of objects — it's a moment where something changes.
+2. **"You're not illustrating a book. You're showing what happens when the book breaks into reality."**
+3. **Simple structure that works:** Subject → Action → Environment → Transformation
+4. **Clear focal point** — what is the viewer supposed to look at first?
+5. **Visible transformation** — something is HAPPENING, not just present
+6. **Cinematic structure** — lighting, camera angle, emotion, motion
+7. **Keep it readable** — one story per frame, not five scenes at once
+
+### The Winning Prompt Formula (from this seed)
+```
+[Grounded subject] in [specific environment] as [visible transformation happens], 
+[vivid breach detail with physical specificity], [emotional reaction beat], 
+[cinematic lighting description], [one straight edge of different material], 
+[medium collision: base medium colliding with disruption accent], 
+[emotional register: awe + dread fused], [what happens next suspended]
+```
+
+### The Six Concepts That Worked
+1. **The Translator at the Choir Desk** — grimoire draining inward, tentacle becoming from vellum, pen writing unknown script
+2. **The Paperback Tide** — commuter on subway, paperback rewriting itself, carriage becoming drowned cathedral
+3. **The Article Testifies** — newspaper headline escaping typeset, ink becoming living hand, reporter suspended between skepticism and recognition
+4. **The Card Dreamed the Archive** — occult trading card shadow becoming real architecture, sleeping archivist
+5. **The Journal Wrote the Coast** — field journal folding reality, coastline reshaping to match writing, storm and awe
+6. **Where the Library Begins** — library transforming into impossible cathedral of pages, shelves lengthening into non-Euclidean aisles
+
+### Mandatory Constraints for This Seed
+- Adult subjects only, no children
+- Women only for supernatural subjects
+- No cute, no Victorian sanitization
+- The breach is always MID-PROCESS — ink still wet, page still moving, appendage not fully emerged
+- The story is ESCAPING, not attacking — completion, not violence
+- Roswarcus vocabulary: grimoires, tentacles, investigators, cathedrals, cosmic entities
+- Medium collision: unusual base (mezzotint, wet collodion, newsprint) + living/bioluminescent disruption
+- Every image asks: "What happens next?"
+
+### Pipeline Lessons
+- **Single creative agent with full voice** > broken-step pipeline
+- **"This is your Opus"** > architectural specification
+- **Always search for the challenge host's guide/blog/style** before creating
+- **The step files are your toolbox, not your warden**
+
+### Titles for This Set
+1. The Translator at the Choir Desk
+2. The Paperback Tide
+3. The Article Testifies
+4. The Card Dreamed the Archive
+5. The Journal Wrote the Coast
+6. Where the Library Begins
+
+---
+
+## MUSIC SEED 30: "The Farmer Knew" — Obligated Futility / Person-as-Genre ⭐ GOLDEN CANDIDATE
+*Logged 2026-04-25 after Scientist approval. Candidate Golden Seed; early outputs judged "really really good" after Step 10 repair. Use as structural template for: polycrisis grief, moral injury, leadership/parenting under impossible scale, and songs where ordinary duties collide with world-historical dread.*
+
+**Core line:** A person is a genre. Under pressure, every role starts breaking open.
+
+### Emotional Engine
+The target feeling is **obligated futility**: having to give everything while knowing everything is not enough. It is not apathy, burnout, or generic doomscroll sadness. It is the painful simultaneity of widened attention (war, climate, displacement, authoritarianism, civilian suffering, history) and narrowed obligation (calendar invites, reports, groceries, clients, payroll, bedtime, lunchboxes, warm dinner).
+
+The listener should feel: *I care so much that every ordinary duty hurts.*
+
+### Golden Pattern
+Use this seed when the work needs to hold two true scales at once:
+- world-scale suffering that cannot be directly touched
+- intimate duties that cannot be abandoned
+- love that remains real but insufficient
+- the body as the bottleneck of moral attention
+
+### Sonic Formula
+Build songs as **polycrisis counterpoint**:
+1. **World layer** — low drones, distant siren harmonics, damaged choir, radio ghosts, screen glow, low-pressure sub.
+2. **Mundane layer** — calendar pings, keyboard clicks, printer rhythms, grocery scanners, microwave beeps, meeting-room hum.
+3. **Love layer** — lullaby contour, fragile piano/Rhodes, close female vocal, breath, small domestic foley.
+4. **Failure layer** — heroic melodic rise repeatedly interrupted before resolution.
+
+Genres should break open under pressure because roles break open under pressure. Strong fusions include: ambient industrial elegy, post-rock/shoegaze catharsis, alt-Z/dark-pop vocal intimacy, glitch-office percussion, restrained breakcore, neo-soul/R&B warmth, black-metal-adjacent pressure without becoming metal, Belgian New Beat/coldwave machine pulse.
+
+### Lyric Formula
+Use plain, devastating sentences that carry contradictory truths:
+- "I packed tomorrow though tomorrow had teeth"
+- "Every key was someone I could not leave behind"
+- "Beep beep, mercy"
+- "I'll make it warm, but I can't make it safe"
+- "I held the meeting anyway"
+
+Avoid slogans. Avoid generic apocalypse language. Avoid appropriating real suffering. The world enters as mediated moral gravity: screens, alerts, radio ghosts, siren harmonics, weather maps, pressure changes — not spectacle.
+
+### Mandatory Guardrails
+- Female vocals only unless explicitly overridden.
+- No cheap war cosplay; never treat civilian suffering as aesthetic scenery.
+- The mundane is not a villain; some chains are made of love.
+- No easy hope and no nihilism.
+- Hooks must be singable, humiliatingly plain, and painful on second listen.
+
+### Step 10 Lesson From This Seed
+This seed exposed a critical pipeline weakness: music prompts can pass compliance while failing producer depth. Final Suno prompts must be **composition blueprints**, not wrappers around good lyrics.
+
+For this seed and future music seeds, Step 10 final prompts must include:
+- sonic thesis
+- instrument-role mapping
+- hook mechanics
+- arrangement transformation arc
+- mix placement
+- bold sonic device
+- failure-mode prevention
+- target 850-1000 characters unless intentional minimalism is justified
+
+### Proven / Strong Titles From First Run
+1. **Tomorrow Has Teeth** — anticipatory grief / parent; alt-Z lullaby + restrained breakcore
+2. **Every Key Was Someone** — empathic overload / worker; glitch-office trip-hop + neo-soul R&B
+3. **Beep Beep Mercy** — scale grief / citizen; scanner art-pop + ambient techno elegy
+4. **I'll Make It Warm** — tender futility / caregiver; industrial R&B + doom-lullaby electronica
+5. **Hold Music for the End of the World** — responsibility vertigo / leader; coldwave post-rock dark pop
+6. **Quarterly Siren** — moral injury / leader; industrial coldwave art-pop
+
+### Related Top Song References
+- The Great Deceleration
+- Phone Face Down
+- Gold Stars Don't Pulse
+- Certainty Has Bad Audio
+- Garbage In, Gospel Out
+

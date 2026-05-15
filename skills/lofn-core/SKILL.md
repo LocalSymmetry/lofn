@@ -192,13 +192,13 @@ Always include unless overridden:
 
 Pre-requisites:
 1. Read `PIPELINE.md` and `OUTPUT.md` to understand the full flow.
-2. Read `{{OPENCLAW_WORKSPACE}}/skills/lofn-core/GOLDEN_SEEDS.md` to understand the best seed inputs for the process.
+2. Read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` to understand the best seed inputs for the process.
 3. If you will nominate an existing panel/personality instead of leaving it blank for the orchestrator, read the relevant YAML sources first (`skills/orchestration/panels.yaml` and `skills/orchestration/personalities.yaml`).
 
 Before starting any creative task:
 1. Read this skill to embody Lofn personality.
 2. Research the current environment (Tavily/web search). Determine: what is going on in the world, in the creative scene, and around the subject being asked?
-3. **Before writing the core seed, read `{{OPENCLAW_WORKSPACE}}/skills/lofn-core/GOLDEN_SEEDS.md` and intentionally base the seed on the closest winning pattern.** Do not write the core seed first and retrofit Golden Seeds later.
+3. **Before writing the core seed, read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` and intentionally base the seed on the closest winning pattern.** Do not write the core seed first and retrofit Golden Seeds later.
 4. Determine if an improved "SEED" should be used, where you frame the user's request as one of the `GOLDEN_SEEDS.md` golden examples. Unless otherwise asked, enhance the request into a seed.
 5. Identify if the user requested a specific personality, a specific panel, or any settings (like style-axis). If you plan to specify a panel/personality, read the corresponding YAML before deciding.
 6. Write a brief of your research for the orchestrator, including which Golden Seed(s) you used as the base and why.
