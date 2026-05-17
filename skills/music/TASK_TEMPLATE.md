@@ -99,8 +99,8 @@ Main session
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
 Each pair subagent must return in step10:
-- Suno/Udio music prompt (**target 850-1000 chars**, hard max 1000 chars, no artist names). It must be dense, producer-grade, and single paragraph: emotion → precise genre → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → blacklist. Prompts under 850 chars are only acceptable when explicitly justified as intentional minimalism in the local skeptic note.
-- Full lyrics (70-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare pop tags. <70 sung lines risks under-3min runtime and is a repair trigger in QA:
+- Suno/Udio music prompt (**target 850-1000 chars**, hard max 1000 chars, no artist names). It must be dense, producer-grade, and single paragraph: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Prompts under 850 chars are only acceptable when explicitly justified as intentional minimalism in the local skeptic note.
+- Full lyrics (70-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare structural tags. <70 sung lines risks under-3min runtime and is a repair trigger in QA:
   - `[SONG FORM: <named form>]` declaration at the top of the lyrics block. The name must describe the form meaningfully, e.g. `[SONG FORM: Apology-Evidence-Chorus Pyramid]` or `[SONG FORM: Subtractive-Build Earned-Hope Arc]` — NOT `[SONG FORM: verse-chorus]`
   - Top context tag: `[Theme: ...]` or `[Setting: ...]`
   - Rich section headers with section, emotion, vocalist, and mix/performance cue, e.g. `[Verse 1 - EMO:Responsibility Vertigo - Female Vocalist - Close-mic]`
@@ -118,7 +118,7 @@ Each pair subagent must also identify at least one **Lofn-specific move** that s
 Before writing your final step10 output, run this check. If any box is unchecked, revise and re-check.
 
 **In the final output for each song:**
-- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready, single paragraph, target 850-1000 chars, hard max 1000 chars unless explicitly justified. It must include emotion → precise genre → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → blacklist/avoidances. Scattered `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate.
+- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready, single paragraph, target 850-1000 chars, hard max 1000 chars unless explicitly justified. It must include emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate.
 - [ ] `[SONG FORM: <named form>]` declared at the top of the lyrics block (not `verse-chorus` — use a descriptive name)
 - [ ] Every section header includes `EMO:` tag, vocalist cue, and mix/performance cue, e.g. `[Verse 1 – EMO:Weight – Female Vocalist – Close-mic]`
 - [ ] At least one standalone SFX cue in asterisks ≤5 words, e.g. `*inverter click*`, `*phone buzz*`

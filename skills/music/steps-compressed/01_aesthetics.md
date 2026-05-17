@@ -2,14 +2,14 @@
 
 Read the orchestrator metaprompt at `{metaprompt_path}`.
 
-Generate 50 aesthetics, 50 emotions, 50 genres relevant to the metaprompt. Use the constraint axes as seeds. Focus on rare combinations.
+Generate 50 aesthetics, 50 emotions, 50 style labels relevant to the metaprompt. Use the constraint axes as seeds. Focus on rare combinations. Do not use global genre examples; style labels must emerge from the current run.
 
 Output valid JSON:
 ```json
 {
   "aesthetics": ["...", ...],
   "emotions": ["...", ...],
-  "genres": ["...", ...]
+  "genres": ["<run-specific style label>", ...]
 }
 ```
 

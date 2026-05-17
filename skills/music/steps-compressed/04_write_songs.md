@@ -6,7 +6,7 @@ Read:
 
 For each song guide, write a COMPLETE Suno-ready package with:
 - `## 0. GATE CHECK` — document: music prompt char count; named song form; EMO header count; one SFX cue; one non-lexical hook; one Lofn-specific move that survives in prompt + lyrics
-- `## 1. MUSIC PROMPT` — REQUIRED standalone copy-paste Suno/Udio prompt, single paragraph, target 850-1000 chars, hard max 1000 unless explicitly justified. It must include: emotion → precise genre → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → blacklist/avoidances. Scattered genre/tempo/key, sonic-world, metadata tables, or production notes do NOT satisfy this requirement.
+- `## 1. MUSIC PROMPT` — REQUIRED standalone copy-paste Suno/Udio prompt, single paragraph, target 850-1000 chars, hard max 1000 unless explicitly justified. It must include: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered style/tempo/key, sonic-world, metadata tables, or production notes do NOT satisfy this requirement.
 - `## 2. LYRICS` — full lyrics, MINIMUM 70 sung lines, target 70-120 lines. Start with `[SONG FORM: <meaningful named form>]` and `[Theme:]` or `[Setting:]`.
 - `## 3. TITLE` — final song title
 - `## 4. PRODUCTION NOTES` — concrete instruments/materials/textures/mix behaviors, special events, and a short-clip hook note
@@ -33,6 +33,6 @@ Before writing each final file, verify and include/mentally enforce:
 - [ ] At least one SFX cue and one non-lexical hook exist
 - [ ] `## 4. PRODUCTION NOTES` exists with concrete production specificity and short-clip hook note
 - [ ] No real artist names in the prompt
-- [ ] Prompt is not replaced by metadata, genre table, or sonic architecture notes
+- [ ] Prompt is not replaced by metadata, style table, or sonic architecture notes
 
 If any item fails, repair before delivery. Missing `## 1. MUSIC PROMPT` is a blocking failure even if lyrics and production notes are excellent.

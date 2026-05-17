@@ -6,7 +6,7 @@ Read:
 
 Generate exactly 6 song concepts. Each MUST specify:
 - A specific emotion from the constraint axes
-- A specific genre fusion (at least 2 genres)
+- A selected style direction from the run's generated style list
 - A specific sonic texture/vocabulary
 - Duration guidance
 - The "decisive blow" — what moment makes the listener stop

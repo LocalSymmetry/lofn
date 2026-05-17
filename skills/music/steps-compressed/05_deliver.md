@@ -9,7 +9,7 @@ Before delivery, run the final package gate on every song file:
 - [ ] Contains `## 4. PRODUCTION NOTES` with concrete production specificity, special events, and short-clip hook note
 - [ ] Lyrics are 70-120 sung lines unless explicitly justified
 - [ ] Lyrics include at least one standalone SFX cue in asterisks and one non-lexical vocal hook where musically appropriate
-- [ ] Prompt is not replaced by metadata, sonic architecture, genre/key/tempo table, or production notes
+- [ ] Prompt is not replaced by metadata, sonic architecture, style/key/tempo table, or production notes
 - [ ] The song passes the Suno 15-point QA delivery core: standalone prompt, prompt density/restraint, performance-ready syntax, hook survivability, personality fidelity, production specificity, anti-slop, package readiness
 
 If any item fails, repair before delivery. Missing `## 1. MUSIC PROMPT` is a blocking failure.
@@ -22,9 +22,9 @@ python3 /data/.openclaw/workspace/skills/music/scripts/validate_suno_packages.py
 
 Treat any `FAIL` result as a repair blocker.
 
-Send each repaired song file through the configured delivery channel:
+Send each repaired song file to Telegram:
 - channel: telegram
-- target: <configured-recipient>
+- target: 5178854207
 - buttons: []
 
 Then send a summary message with all 6 song titles and one-line descriptions.

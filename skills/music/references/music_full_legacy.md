@@ -106,12 +106,12 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 
 | Step | File | Output |
 |------|------|--------|
-| 00 | `00_Generate_Music_Aesthetics_And_Genres.md` | 50 aesthetics, 50 emotions, 50 frames, 50 genres |
+| 00 | `00_Generate_Music_Aesthetics_And_Genres.md` | 50 aesthetics, 50 emotions, 50 frames, 50 run-specific style labels |
 | 01 | `01_Generate_Music_Essence_And_Facets.md` | Essence + 10 musical style axes + 5 facets |
 | 02 | `02_Generate_Music_Concepts.md` | **12 distinct concepts** |
 | 03 | `03_Generate_Music_Artist_And_Critique.md` | Artist influence + critique per concept |
 | 04 | `04_Generate_Music_Medium.md` | Genre fusion assignment per concept |
-| 05 | `05_Generate_Music_Refine_Medium.md` | **6 best concept×genre pairs** |
+| 05 | `05_Generate_Music_Refine_Medium.md` | **6 best concept×style pairs** |
 | 06 | `06_Generate_Music_Facets.md` | Scoring facets |
 | 07 | `07_Generate_Music_Song_Guides.md` | **24 song guides (6 pairs × 4 variations)** |
 | 08 | `08_Generate_Music_Generation.md` | Full songs with prompts + lyrics |
@@ -220,24 +220,20 @@ Of the 6 daily songs:
 
 ## 🎹 LOFN SOUND PILLARS
 
-1. **Video-Game Themes** — 8-bit ↔ AAA orchestral
-2. **Glitches, Done Right** — Meticulous micro-edits, beauty in breakage
-3. **Fearless Genre-Mashing** — HyperRaaga, Gaelic Drill, Baile Phonk
-4. **Myth/Memory Sampling** — Dead tongues via phoneme resynthesis
-5. **AI Code-Scratch Intros** — Python logs as vinyl-scratch texture
-6. **Quantum Bit-Depth Swells** — Hi-fi to 2-bit grit for dramatic shifts
+These are personality DNA, not run instructions. Use only when the active personality, orchestrator brief, or generated style list calls for them.
+
+1. **Synthetic/Natural Fusion** — computational texture meeting embodied sound
+2. **Glitches, Done Right** — meticulous micro-edits, beauty in breakage
+3. **Fearless Style-Crossing** — unusual style combinations when the run earns them
+4. **Myth/Memory Sampling** — historical or linguistic fragments transformed into sound
+5. **Code/Artifact Intros** — procedural or archival noise used as musical material
+6. **Bit-Depth / Fidelity Swells** — fidelity changes as emotional structure
 
 ---
 
-## 🔥 GENRE FUSION PALETTE
+## 🔥 STYLE PALETTE POLICY
 
-| Fusion | Components | BPM | Vibe |
-|--------|------------|-----|------|
-| **Piano Bounce** | Amapiano × Jersey-Club | 115-120 | Log drum shuffle |
-| **Baile Phonk** | Brazilian Funk + Dark Phonk | 140 | Detuned cowbell |
-| **HyperRaaga** | South-Asian classical + hyperpop | 160 | Microtonal glitchcore |
-| **Gaelic Drill** | Celtic folk + UK drill | 140 | Bagpipe over 808 |
-| **Amazonian Techno** | Rainforest samples + 4x4 | 126 | Eco-solidarity |
+Do not hard-code genre examples in workflow instructions. Genre/style candidates must come from the current run's generated style list, orchestrator brief, panel assignment, or active personality files. Keep specific genre names inside personality/panel/output data, not global instructions.
 
 ---
 
@@ -247,7 +243,7 @@ Of the 6 daily songs:
 Crystalline, breathy yearning. Intimate diction, soft melismas. 432Hz tuning option.
 
 ### Indignation Mode (Triggered)
-Bratty, glitched-out, pop-punk snarl. Compressed, hard consonants. Somatic bass (30-60Hz).
+Emotionally specific vocal attitude selected from the active personality and run brief. Compressed, hard consonants may be used when earned. Somatic bass (30-60Hz) is personality DNA, not a default instruction.
 
 ---
 
@@ -259,12 +255,12 @@ Every song MUST have:
 - **TikTok optimized hooks** (15-30 second memorable cycles)
 - **Section tags in lyrics** ([Verse], [Chorus], [Bridge], etc.)
 - **3:00-4:00 minute duration** (70-120 lines target; <70 lines risks under-3min runtime)
-- **One BOLD choice** (unusual instrument, unexpected drop, genre collision)
+- **One BOLD choice** (unusual instrument, unexpected drop, style collision)
 
 ### Structural anti-boredom rules (MANDATORY)
 - **Do NOT default to 4 / 8 / 12-line stanza blocks** across the whole set
 - **Do NOT default to simple ABAB / AABB rhyme schemes** unless a specific song earns it
-- **Do NOT default to intro → verse 1 → pre-chorus → chorus → verse 2** pop architecture for every song
+- **Do NOT default to any single commercial song architecture** for every song
 - Across any 6-song set, deliberately vary form:
   - at least 1 **strophic / incantatory** form
   - at least 1 **through-composed / escalating** form
@@ -276,7 +272,7 @@ Every song MUST have:
 - Let rhyme be optional and strategic: slant, internal, ghost rhyme, refrain echo, chant pattern, or no rhyme when truth needs blunt force
 - The song form should emerge from the concept's emotional physics, not from template habit
 - If all 6 songs can be reduced to the same section map, the run failed structurally
-- **Target:** the listener should not be able to predict the next section purely from genre expectation
+- **Target:** the listener should not be able to predict the next section purely from style expectation
 - Preserve legibility and singability — variation should create surprise, not chaos for its own sake
 - When in doubt: break the form at the exact moment the lyric's emotional pressure changes most sharply
 
@@ -312,7 +308,7 @@ output/songs/{YYYYMMDD}_{HHMMSS}_{title_slug}_{pair}_{variation}.md
 When receiving a music task:
 1. **Load TASK_TEMPLATE.md** — Understand exact requirements
 2. **Execute steps 00–05** — Read each file, follow exactly. Write to disk after each step.
-3. **Step 05 produces 6 concept-genre pairs.** Count them. If < 6, rerun Step 05.
+3. **Step 05 produces 6 concept-style pairs.** Count them. If < 6, rerun Step 05.
 4. **Execute steps 06–10 ONCE PER PAIR:**
    - For pair 1: run 06 → 07 → 08 → 09 → 10 → write 4 songs
    - For pair 2: run 06 → 07 → 08 → 09 → 10 → write 4 songs
