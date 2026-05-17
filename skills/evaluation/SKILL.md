@@ -38,7 +38,7 @@ After the pipeline generates 24 outputs:
 4. **Apply weights** based on platform/goal
 5. **Rank all 24** by weighted score
 6. **Select top N** based on request (default: best 4-6)
-7. **Ensure barbell balance** — at least 40% of selections should lean toward the run's intended barbell classification
+7. **Ensure pattern alignment** — selections must align with the orchestrator's chosen pattern (BARBELL, ALL-ACCESSIBLE, ALL-AMBITIOUS, GRADIENT, CONTRAST-PAIRS). When BARBELL is selected, at least 40% of selections should lean toward the run's intended barbell classification.
 
 ### Scoring Dimensions
 

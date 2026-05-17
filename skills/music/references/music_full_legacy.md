@@ -163,7 +163,7 @@ Required checks:
 - **Active personality named** — identify the selected personality/persona from the orchestrator or seed.
 - **Sonic world sentence** — state what the song world is made from: personality-specific materials, instruments, places, textures, rituals, field recordings, or mix behaviors.
 - **Signature device** — name one sonic move this personality would plausibly invent and a generic prompt writer would not.
-- **Nearest slop failure mode blacklisted** — forbid the generic lane most likely to corrupt this song (bland pop/rock, generic cinematic ballad, default EDM drop, decorative glitch, anonymous inspirational uplift, etc.).
+- **Nearest generic-lane departure named AND countered** — identify the generic version of the chosen genre that this song could collapse into, then specify the personality device, production choice, or sonic material that prevents that collapse. Pop, EDM, glitch, cinematic, and ballad devices are permitted and celebrated when the personality's signature is the most distinctive thing inside them.
 - **Seed-derived weirdness preserved** — at least one concrete fact/material/measurement, deliberate wrongness, structural asymmetry, rupture, witness/prayer mode, or other seed-specific artistic pressure remains audible.
 
 If a song satisfies Suno format but lacks personality-specific sonic identity, mark it `REPAIR — PERSONALITY LOSS` and revise before delivery.

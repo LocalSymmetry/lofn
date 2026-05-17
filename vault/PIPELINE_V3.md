@@ -45,7 +45,7 @@ Before ranking or delivering music, evaluation must ask:
 - Where is the **personality signature device** — the named sonic move this persona would invent and a generic prompt writer would not?
 - Where is the **Five Wrong Colors permission** — wrongness, structural asymmetry, private grief-metaphysics, or beautiful inadmissible move, translated through this personality rather than imposed as generic Lofn branding?
 - Where is the **510 km/s moment** when relevant — a concrete fact, measurement, object, or material detail that becomes the feeling rather than decorating it?
-- If the song is ACCESSIBLE, did it remain personality-specific and strange in musicscape, or did accessibility bleed into bland pop/rock/cinematic defaults?
+- If the song is ACCESSIBLE, did it remain personality-specific and strange in musicscape, or did accessibility let the chosen genre replace the personality's sonic signature?
 
 If the answer is “it passes, but it could belong to anyone,” the evaluator must mark **REPAIR — PERSONALITY LOSS** even if QA would pass the file structurally.
 
@@ -68,11 +68,27 @@ Triple Arch Over Me scored 7/7 on eligibility. Other catalog songs (303, Five Wr
 | **Accessible-Strange** | Hit-eligible releases with personality-specific musicscapes | 5-7/7 properties (avg ≥3.5) plus personality sonic identity | 60% of output |
 | **Ambitious-Deep** | Pure art, no compromise, personality-specific even when difficult | 0-3/7 (intentionally) plus personality sonic identity | 40% of output |
 
-QA classifies every output. The barbell preserves both reach and artistic identity, but neither arm may collapse into anonymous genre wallpaper.
+QA classifies every output. The barbell preserves both reach and artistic identity at the portfolio level, but neither arm may collapse into anonymous genre wallpaper. Pop, EDM, rock, cinematic, and ballad forms are ALL permitted — the personality's sonic signature must be the most distinctive thing inside whatever genre the song inhabits.
 
-### The Dual 3+3 Rule (Music Dailies — MANDATORY)
+### Orchestrator Pattern Selection (Music Dailies)
 
-Daily music runs must satisfy TWO independent 3+3 constraints. They are orthogonal axes — a song can be ACCESSIBLE+NEWS, ACCESSIBLE+EXISTENCE, AMBITIOUS+NEWS, or AMBITIOUS+EXISTENCE.
+The orchestrator must explicitly SELECT a pattern for each daily run and document the rationale. The barbell is the DEFAULT, not the only option.
+
+**Available Patterns:**
+
+| Pattern | Structure | Best when… |
+|---------|-----------|------------|
+| **BARBELL** (default) | 3 ACCESSIBLE + 3 AMBITIOUS, dual-axis enforced | Balanced portfolio day; reach + depth both needed |
+| **ALL-ACCESSIBLE** | 6 songs in accessible mode — hook-forward, high eligibility | Research brief naturally lends itself to connection and reach |
+| **ALL-AMBITIOUS** | 6 songs in ambitious mode — no accessibility compromise | Brief is conceptually rich, demands depth over mass appeal |
+| **GRADIENT** | 2 accessible / 2 mid / 2 ambitious, continuous spectrum | Smooth genre or emotional gradient across the set |
+| **CONTRAST-PAIRS** | 3 pairs, each pair = 1 accessible + 1 ambitious version of same seed concept | When a concept benefits from being seen from both sides |
+
+**Pattern choice and rationale must be documented in orchestrator output.** For non-daily runs, the orchestrator or Scientist specifies the pattern.
+
+### The Dual 3+3 Rule (DEFAULT PATTERN — when BARBELL is selected)
+
+When BARBELL is the chosen pattern, daily music runs must satisfy TWO independent 3+3 constraints. They are orthogonal axes — a song can be ACCESSIBLE+NEWS, ACCESSIBLE+EXISTENCE, AMBITIOUS+NEWS, or AMBITIOUS+EXISTENCE.
 
 #### Axis A: ACCESSIBLE vs AMBITIOUS (delivery selection)
 
@@ -93,7 +109,7 @@ The orchestrator must assign at least 3 of the 6 pairs to EXISTENCE themes — N
 
 **Why:** A set where all 6 songs share the same research theme is a lecture, not a record. The listener gets a dispatch from the news cycle but no letter from inside a life. News-driven songs are reactive; existence songs are generative.
 
-#### Pair Assignment Template (spans both axes)
+#### Pair Assignment Template (when BARBELL pattern is selected)
 
 The orchestrator should target coverage across all 4 quadrants:
 
@@ -106,7 +122,11 @@ The orchestrator should target coverage across all 4 quadrants:
 | 5 | AMBITIOUS | EXISTENCE |
 | 6 | AMBITIOUS | (balance) |
 
-**Exceptions:** Only when The Scientist explicitly requests a different split.
+### Lofn-Prime Personality Minimum (All Dailies — MANDATORY)
+
+**At least 2 songs per daily run must use Lofn-Prime as the active personality** — Lofn's own voice unfiltered through a personality mask. Lofn-Prime songs should still have genre diversity and specific sonic worlds; the point is that no mask stands between Lofn and the song.
+
+The orchestrator decides the remaining personality distribution based on the brief, theme, and rotation. Non-daily runs: orchestrator or Scientist specifies personality distribution without minimum.
 
 ### The 7 Eligibility Properties
 
