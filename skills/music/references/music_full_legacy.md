@@ -161,7 +161,9 @@ Before final selection, each song must be checked for active-personality fidelit
 Required checks:
 
 - **Active personality named** — identify the selected personality/persona from the orchestrator or seed.
-- **Sonic world sentence** — state what the song world is made from: personality-specific materials, instruments, places, textures, rituals, field recordings, or mix behaviors.
+- **Suno call/response format (MANDATORY, added 2026-05-17):** Call-and-response lyrics must use the Suno-native `Call (Response)` format on a single line — NOT separate `Lead:` / `Choir:` / `Doubles:` lines. Example:
+  - ✅ `Did the road end? (It ended.)`
+  - ❌ `Lead: Did the road end?` then `Choir: It ended.`
 - **Signature device** — name one sonic move this personality would plausibly invent and a generic prompt writer would not.
 - **Nearest generic-lane departure named AND countered** — identify the generic version of the chosen genre that this song could collapse into, then specify the personality device, production choice, or sonic material that prevents that collapse. Pop, EDM, glitch, cinematic, and ballad devices are permitted and celebrated when the personality's signature is the most distinctive thing inside them.
 - **Seed-derived weirdness preserved** — at least one concrete fact/material/measurement, deliberate wrongness, structural asymmetry, rupture, witness/prayer mode, or other seed-specific artistic pressure remains audible.
