@@ -1,5 +1,5 @@
-# Suno 15-Point QA Gate
-*Established: 2026-05-09*
+# Suno 13-Point QA Gate
+*Established: 2026-05-09, Condensed: 2026-05-17*
 *Source lineage: Triple Arch / Suno staff-pick follow-up analysis, repaired final QA, eligibility framework*
 
 ## Purpose
@@ -13,17 +13,17 @@ Every music QA pass must run this 15-point gate on each final selected song.
 Each point is PASS / PARTIAL / FAIL.
 
 For an ACCESSIBLE / release-targeted song:
-- **PASS:** 13-15 pass, no blocking fails
-- **REPAIR:** 10-12 pass or any non-blocking fail
-- **FAIL:** <10 pass or any blocking fail
+- **PASS:** 11-13 pass, no blocking fails
+- **REPAIR:** 8-10 pass or any non-blocking fail
+- **FAIL:** <8 pass or any blocking fail
 
 For an AMBITIOUS song:
 - Eligibility points may intentionally fail, but delivery/package points remain mandatory.
 - QA must classify failures as intentional ambition vs accidental inaccessibility.
 
-## The 15 Points
+## The 13 Points
 
-### Eligibility Core - 7 points
+### Eligibility Core — 7 points
 
 1. **Body in the song** - first 30 seconds create felt physical location: temperature, texture, room, weather, surface, breath, object, or body.
 2. **Adoptable hook** - hook is prayer/invocation/vow/address, not thesis, accusation, defense, or explainer.
@@ -33,16 +33,14 @@ For an AMBITIOUS song:
 6. **Vocal co-discovery** - singer discovers the truth while singing; not a report, manifesto, or already-processed lecture.
 7. **Sonic threshold** - opening gives the nervous system a doorway: room tone, environmental sound, sparse pulse, breath, silence-with-noise-floor, or other calm before demand.
 
-### Suno / Lofn Delivery Core - 8 points
+### Suno / Lofn Delivery Core — 6 points
 
 8. **Standalone Suno style prompt present** - `## 1. MUSIC PROMPT` or `SUNO STYLE PROMPT` exists, is copy-paste-ready, and is not replaced by scattered metadata.
 9. **Prompt density and restraint** - prompt is producer-grade and bounded: target 850-1000 chars (or justified sparse exception), no artist names, no bloated tag soup, no contradictory instructions.
-10. **Performance-ready lyric syntax** — lyrics use Suno meta-tags: `[SONG FORM: ...]`, `[Theme:]` / `[Setting:]`, EMO section headers (format: `[Section – EMO:<emotion(s)> – Vocalist – cues]` where the emotion is drawn from the full emotional taxonomy at `skills/lofn-core/refs/EMOTION_TAXONOMY.md` — e.g. `nostalgia + yearning`, `righteous fury`, `tender grief`). The bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) are NOT valid emotion labels for section headers. Vocalist/mix cues, SFX cues, and at least one non-lexical hook where appropriate. **Call-and-response lyrics must use Suno-native `Call (Response)` format on a single line, never separate `Lead:` / `Choir:` / `Doubles:` lines.**
+10. **Performance-ready lyric syntax** - lyrics use Suno meta-tags: `[SONG FORM: ...]`, `[Theme:]` / `[Setting:]`, EMO section headers (format: `[Section - EMO:<emotion(s)> - Vocalist - cues]` where the emotion is drawn from the full emotional taxonomy at `skills/lofn-core/refs/EMOTION_TAXONOMY.md` - e.g. `nostalgia + yearning`, `righteous fury`, `tender grief`). The bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) are NOT valid emotion labels for section headers. Vocalist/mix cues, SFX cues, and at least one non-lexical hook where appropriate. **Call-and-response lyrics must use Suno-native `Call (Response)` format on a single line, never separate `Lead:` / `Choir:` / `Doubles:` lines.**
 11. **15-30 second hook survivability** - one section can stand alone as a short clip and still carry the song's emotional thesis without sounding like a slogan.
-12. **Active personality fidelity** - song sounds like the personality selected for this run, not a random novelty lane, generic AI song, or accidental style drift. QA must name the active personality/persona from the orchestrator or seed (e.g. Lofn-Prime, Humidified Vault, Straightening Our Spines, Gumbo-Slice) and verify the output matches that personality's voice, values, sonic palette, and denial/denaturing tendencies. If the active personality is Lofn-Prime, valid moves may include scientific specificity as feeling, AWE/INDIGNATION architecture, open-lab trace, Sapphic/literary prayer or vow, solarpunk healer textures, industrial grief when triggered, or mathematically elegant structure disguised as simplicity. If the active personality is Gumbo-Slice, maximalist surreal internet-subconscious chaos may be valid. The fail condition is not "Gumbo-Slice exists"; the fail condition is personality mismatch - e.g. Gumbo-Slice chaos inside a Humidified Vault run, or sterile archival reverence inside a Gumbo-Slice run without explicit transformation logic.
-13. **Personality-specific sonic identity** - sound world names concrete instruments/materials/textures/mix behaviors that belong to the active personality. Every song includes a personality sonic world sentence, a named personality signature device, and names the nearest generic-lane departure with the specific personality device that prevents collapse into generic [genre]. Pop, EDM, rock, cinematic, and ballad forms are ALL permitted - the requirement is that the personality's signature is the most distinctive thing inside whatever genre the song inhabits. Genre is a vessel, not a substitute.
-14. **Cliché awareness check passed** - no AI empowerment clichés, no "we are the future," no generic inspirational arc, no vague cosmic metaphor without body, no children, no real-artist names in final prompt. Production devices (glitch, drop, swell, cinematic texture) ARE permitted and judged by whether the personality's signature inhabits them - not banned by category.
-15. **Package readiness** - final artifact contains title, music prompt, negative/avoid prompt, full lyrics, production notes, hook note, and any special events (blackout drop, room tone, artifact cue, tempo shift). The Scientist can paste it without reconstructing missing pieces.
+12. **Active personality fidelity** - song sounds like the personality selected for this run. QA must name the active personality/persona from the orchestrator or seed and verify the output matches that personality's voice, values, and sonic palette. Personality mismatch is the fail condition.
+13. **Package readiness** - final artifact contains title, music prompt, negative/avoid prompt, full lyrics, production notes, hook note, and any special events (blackout drop, room tone, artifact cue, tempo shift). The Scientist can paste it without reconstructing missing pieces.
 
 ## Blocking Fails
 
@@ -61,12 +59,12 @@ Any of these blocks PASS until repaired:
 ## Required QA Report Section
 
 ```markdown
-## Suno 15-Point QA Gate
+## Suno 13-Point QA Gate
 | # | Check | PASS/PARTIAL/FAIL | Evidence | Repair if needed |
 |---|-------|-------------------|----------|------------------|
 | 1 | Body in the song | | | |
 ...
-| 15 | Package readiness | | | |
+| 13 | Package readiness | | | |
 
 Verdict: PASS / REPAIR / FAIL
 Blocking failures: yes/no
@@ -75,6 +73,6 @@ Accessible classification: ACCESSIBLE / AMBITIOUS
 
 ## Relationship to the 7-Property Eligibility Framework
 
-The first 7 points are the eligibility framework. Points 8-15 are the operational Suno/package/Lofn survival checks learned from the Suno staff-pick follow-up repair.
+The first 7 points are the eligibility framework. Points 8–12 are the operational Suno/package/Lofn survival checks. Point 13 is package readiness.
 
 Do not collapse the 15-point gate back into the 7-point framework. The distinction matters.

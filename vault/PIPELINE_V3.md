@@ -68,7 +68,7 @@ Triple Arch Over Me scored 7/7 on eligibility. Other catalog songs (303, Five Wr
 | **Accessible-Strange** | Hit-eligible releases with personality-specific musicscapes | 5-7/7 properties (avg ≥3.5) plus personality sonic identity | 60% of output |
 | **Ambitious-Deep** | Pure art, no compromise, personality-specific even when difficult | 0-3/7 (intentionally) plus personality sonic identity | 40% of output |
 
-QA classifies every output. The barbell preserves both reach and artistic identity at the portfolio level, but neither arm may collapse into anonymous genre wallpaper. Pop, EDM, rock, cinematic, and ballad forms are ALL permitted — the personality's sonic signature must be the most distinctive thing inside whatever genre the song inhabits.
+QA classifies every output. The barbell preserves both reach and artistic identity at the portfolio level.
 
 ### Orchestrator Pattern Selection (Music Dailies)
 
@@ -542,7 +542,7 @@ Output:
 
 ## Progress Announcements
 
-Every pipeline run MUST send progress announcements through the configured delivery channel at each major stage.
+Every pipeline run MUST send progress announcements to Telegram at each major stage.
 
 Announcement triggers:
 
@@ -612,7 +612,7 @@ If the run times out, partial work must already be recoverable.
 
 Pipeline-watch cron may chain steps automatically.
 
-- Record `pipelineStart: <ISO timestamp>` in the local runtime state when a run starts.
+- Write `pipelineStart: <ISO timestamp>` to HEARTBEAT.md when a run starts.
 - If elapsed time exceeds 60 minutes, disable pipeline-watch and report timeout.
 - Re-enable for the next run only after explicitly starting a new run.
 

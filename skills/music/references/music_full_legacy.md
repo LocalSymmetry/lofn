@@ -156,7 +156,7 @@ Do not place the QA contract first. The contract is checked at the end; it is no
 
 ### Personality-Specific Sonic Identity Gate (evaluation, not optional)
 
-Before final selection, each song must be checked for active-personality fidelity that survives in the actual prompt, lyric, and production notes — not just in planning notes. Accessible means the listener can enter; personality-specific means they know whose world they entered.
+Before final selection, each song must be checked for active-personality fidelity that survives in the actual prompt, lyric, and production notes — not just in planning notes.
 
 Required checks:
 
@@ -164,8 +164,7 @@ Required checks:
 - **Suno call/response format (MANDATORY, added 2026-05-17):** Call-and-response lyrics must use the Suno-native `Call (Response)` format on a single line — NOT separate `Lead:` / `Choir:` / `Doubles:` lines. Example:
   - ✅ `Did the road end? (It ended.)`
   - ❌ `Lead: Did the road end?` then `Choir: It ended.`
-- **Signature device** — name one sonic move this personality would plausibly invent and a generic prompt writer would not.
-- **Nearest generic-lane departure named AND countered** — identify the generic version of the chosen genre that this song could collapse into, then specify the personality device, production choice, or sonic material that prevents that collapse. Pop, EDM, glitch, cinematic, and ballad devices are permitted and celebrated when the personality's signature is the most distinctive thing inside them.
+- **Signature device** — name one sonic move this personality would plausibly invent.
 - **Seed-derived weirdness preserved** — at least one concrete fact/material/measurement, deliberate wrongness, structural asymmetry, rupture, witness/prayer mode, or other seed-specific artistic pressure remains audible.
 
 If a song satisfies Suno format but lacks personality-specific sonic identity, mark it `REPAIR — PERSONALITY LOSS` and revise before delivery.
