@@ -6,7 +6,7 @@ Subagents (orchestrator, audio, vision) burn context on thinking/debate and fail
 
 ## The Solution: Active Controller Pattern
 
-The main session (or cron session) is the **controller**, not just the launcher. It checks every 5 minutes, reads disk artifacts to verify progress, and intervenes when an agent is stalled.
+The main session (or cron session) is the **controller**, not just the launcher. It checks continuously, reads disk artifacts to verify progress, and intervenes when an agent is stalled. **Never `sessions_yield` as a default reflex.** Check disk aggressively, spawn in parallel, continue working while agents run.
 
 ---
 
@@ -47,9 +47,19 @@ CONTROLLER (main session / cron)
 
 ---
 
-## Controller Check Protocol (every 5 minutes)
+## Controller Check Protocol (continuous — no passive yielding)
 
-For each active subagent, run this check:
+**CRITICAL: Never `sessions_yield` as a default reflex.** The controller must remain active. Subagent completions arrive as push events regardless of yield state. Yielding is passive waiting — the controller's job is active supervision.
+
+**Instead of yielding:**
+- Check `subagents(action=list)` for status
+- Check disk for new files every 60-120 seconds
+- Spawn next-stage agents while earlier agents still run (parallel pipeline)
+- Continue other work (QA, rendering, file prep) during agent runtime
+- Never end a turn with "Want me to...?" — just execute the next step
+- The only valid yield point is when ALL subagents have completed AND all artifacts are on disk AND the Scientist must approve a cost-gated action
+
+**Disk check pattern (every 1-2 min, not 5):**
 
 ```bash
 # Check what's on disk
@@ -86,7 +96,7 @@ The panel debate is real thinking — it produces better insights than the main 
 The cron prompt includes explicit 5-minute check instructions:
 
 ```
-After spawning each subagent, check disk progress every 5 minutes:
+After spawning each subagent, check disk progress continuously:
 - Run: exec ls -la OUTPUT_DIR/ && wc -l OUTPUT_DIR/song_*.md 2>/dev/null
 - If no progress after 10 min: steer the agent with specific instruction
 - If orchestrator times out without saving metaprompt: extract insights from
