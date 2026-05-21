@@ -39,14 +39,27 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 See `TASK_TEMPLATE.md` for the full specification. Summary:
 
 ### When spawned as the "audio coordinator":
-1. Run steps 00-05 ONLY → produce `concept_medium_pairs.json`
+1. Run steps 00-05 ONLY, as separate prompt/response turns → produce canonical step files plus `concept_medium_pairs.json`:
+   - Step 00 → `step00_aesthetics_and_genres.md`
+   - Step 01 → `step01_essence_and_facets.md`
+   - Step 02 → `step02_concepts.md`
+   - Step 03 → `step03_artist_and_critique.md`
+   - Step 04 → `step04_medium.md`
+   - Step 05 → `step05_refine_medium.md`
 2. Report back to main session with the 6 pairs
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
 - You will receive ONE concept-medium pair
 - Run steps 06-10 for that pair only
-- Output full song (Suno prompt + lyrics) to `step10_final_pair{N}.md`
+- **Run each step as its own model call / prompt-response turn**, matching original `lofn/llm_integration.py`:
+  1. `process_facets` → `pair_{NN}_step06_facets.md`
+  2. `process_song_guides` → `pair_{NN}_step07_song_guides.md`
+  3. `process_music_generation_prompts` → `pair_{NN}_step08_generation.md`
+  4. `process_music_artist_refined_prompts` → `pair_{NN}_step09_artist_refined.md`
+  5. `process_music_revision_synthesis` → `pair_{NN}_step10_revision_synthesis.md`
+- Do not produce only `pair_{NN}_steps_06_10.md`; that file shape is a collapsed shortcut and is not original-Lofn-compliant.
+- Output full song (Suno prompt + lyrics) from Step 10 only after Steps 06–09 artifacts exist.
 - Return as completion message
 
 ### 🔴 LYRICS FORMAT — MANDATORY SUNO META-TAG SYNTAX
@@ -307,15 +320,12 @@ output/songs/{YYYYMMDD}_{HHMMSS}_{title_slug}_{pair}_{variation}.md
 
 When receiving a music task:
 1. **Load TASK_TEMPLATE.md** — Understand exact requirements
-2. **Execute steps 00–05** — Read each file, follow exactly. Write to disk after each step.
+2. **Execute steps 00–05** — Read each file, follow exactly, and make a separate model call for each step. Write canonical files after each step: `step00_aesthetics_and_genres.md`, `step01_essence_and_facets.md`, `step02_concepts.md`, `step03_artist_and_critique.md`, `step04_medium.md`, `step05_refine_medium.md`.
 3. **Step 05 produces 6 concept-style pairs.** Count them. If < 6, rerun Step 05.
-4. **Execute steps 06–10 ONCE PER PAIR:**
-   - For pair 1: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 2: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 3: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 4: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 5: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 6: run 06 → 07 → 08 → 09 → 10 → write 4 songs
+4. **Execute steps 06–10 ONCE PER PAIR, AS SEPARATE MODEL TURNS:**
+   - For pair 1: run 06 → write `pair_01_step06_facets.md`; run 07 → write `pair_01_step07_song_guides.md`; run 08 → write `pair_01_step08_generation.md`; run 09 → write `pair_01_step09_artist_refined.md`; run 10 → write `pair_01_step10_revision_synthesis.md`
+   - Repeat the same five-turn sequence for pairs 2–6.
+   - Never ask a pair agent to “do Steps 06–10” in one response. That collapses the original Lofn chain and fails this pipeline.
 5. **Self-check cardinality before finishing:**
    - 6 facet sets in Step 06? ✓/✗
    - 6 guides in Step 07? ✓/✗
@@ -333,15 +343,17 @@ When receiving a music task:
    - This prompt must be copy-paste-ready for Suno/Udio and must not be replaced by scattered fields like `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, or `[PRODUCTION NOTES]`.
    - If the standalone prompt is missing, the music output is incomplete and must be repaired before QA/pass/delivery.
 
-### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP
+### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP, WITH 3-ATTEMPT RETRY
 
-After writing each step file, run the validator BEFORE moving to the next step:
+After writing each step file, run the retry validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <step> <file> --attempt 1
 ```
 
-Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
+Exit 0 = proceed. Exit 1 = repair the file in place and rerun with `--attempt 2`, then `--attempt 3` if needed. Exit 2 / max attempts exhausted = stop, checkpoint, and escalate to controller/QA. Do not continue with a failed artifact.
+
+This mirrors the original Streamlit retry discipline: failure is expected sometimes, but it must be localized and repaired before the next chain call.
 
 ```bash
 # Full music pipeline validation sequence:
@@ -359,14 +371,29 @@ python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_s
 The validator catches: stubs, lorem ipsum, template placeholders (Song N, Genre N),
 identical pair sections, recycled "Similar arrangement" prompts, short content.
 
-**Only declare completion after all validators return exit code 0.**
+**Only declare completion after all validators return exit code 0. Never treat generated repair prompt files as repaired artifacts; the artifact itself must be revised and revalidated.**
+
+### 🔴 CALL/RESPONSE PROVENANCE GATE
+
+Every canonical step artifact must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md`. This is how OpenClaw proves it actually executed the original Lofn prompt chain rather than backfilling filenames.
+
+Required sections:
+- `## 0. Step Provenance`
+- `## 1. Input Context Digest`
+- `## 2. Step Template Requirements Applied`
+- `## 3. Model Response / Creative Work`
+- `## 4. Self-Critique Against Step Requirements`
+- `## 5. Validation Result`
+
+The creative work section must be substantial and non-repetitive. Placeholder lines like `line 1`, repeated paragraph blocks, or generic summaries fail validation.
 
 ### 🔴 THE RULE THAT GPT-5.4 AND GEMINI WILL TRY TO BREAK
 
 **Steps 06–10 are NOT a single pass over all pairs simultaneously.**
-They are 6 SEPARATE passes, one per pair, each producing 4 songs.
+They are 6 SEPARATE pair passes, and within each pair they are 5 SEPARATE prompt/response steps.
 
 If you find yourself writing one facet set "for all pairs" → STOP. You're collapsing the tree.
+If you find yourself writing `pair_01_steps_06_10.md` as the only pair artifact → STOP. You collapsed five model calls into one file.
 If you find yourself with only 4-6 final songs → STOP. You ran one pass instead of six.
 If you find yourself "selecting the best 6 across all pairs" before running per-pair → STOP. That's skipping the funnel.
 

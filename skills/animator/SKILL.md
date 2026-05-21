@@ -13,6 +13,8 @@ description: Animate Lofn visual concepts and produce motion/animation plans. Us
 
 **⚠️ Animation generation MUST follow the full pipeline: 10 steps, 3 panels, 6+ pairs × 4 outputs minimum. No shortcuts.**
 
+**Original-Lofn step fidelity applies here too.** For competition-grade animation work, use the `lofn-video` step files and artifact contract: Steps 00–05 are six separate model calls with canonical `step00_aesthetics_and_genres.md` ... `step05_refine_medium.md` outputs; Steps 06–10 are five separate model calls per pair with `pair_{NN}_step06_facets.md` ... `pair_{NN}_step10_revision_synthesis.md`. Do not collapse animation into a quick single prompt unless The Scientist explicitly asks for a sketch. Before Step 00, validate the real Lofn-Core + orchestrator packet with `scripts/validate_orchestrator_packet.py`; the packet must include Special Flairs, Concept Panel, Medium Panel, and Context & Marketing Panel with Devil's Advocate / Hyper-Skeptic roles.
+
 Fast animation seeds for Veo 3.1 via Google One Ultra. Cinematic loops, motion studies, viral moments — with synchronized audio.
 
 ## Veo 3.1 Capabilities

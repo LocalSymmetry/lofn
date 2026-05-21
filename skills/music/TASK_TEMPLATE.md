@@ -11,11 +11,40 @@ The Scientist or a separate submission step handles actual Suno API calls.
 ## THE CORRECT SPLIT (from original Lofn ui.py)
 
 The original Lofn app ran this exact pattern:
-1. `generate_concept_mediums()` - steps 00-05 - ONE call, returns all concept-medium pairs
+1. `generate_concept_mediums()` - coordinator phase, internally calls each steps 00-05 chain in sequence and returns all concept-medium pairs
 2. `select_best_pairs()` - panel votes on top N pairs
-3. `generate_prompts_for_pair(pair)` - steps 06-10 - called ONCE PER PAIR, in parallel
+3. `generate_prompts_for_pair(pair)` - pair phase, called ONCE PER PAIR in parallel, internally calls each steps 06-10 chain in sequence
+
+Important correction: “one function call” in the Streamlit UI did **not** mean one creative prompt. It meant a wrapper function that performed multiple LLM chain calls. OpenClaw agents must preserve that internal chain depth.
 
 **This is the mandatory architecture for all future runs.**
+
+---
+
+## PRE-AUDIO ORCHESTRATOR GATE — REQUIRED
+
+Before coordinator Step 00, validate that the run has a real Lofn-Core + orchestrator packet:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+```
+
+The packet must include a substantial seed lineage, Golden Seed/core seed, 3-panel debate (baseline → group transformation → hyper-skeptic/skeptic transformation), metaprompt, pair assignments with rationale, and audio handoff. If this fails, do not proceed to audio. Launch or request `lofn-orchestrator` work instead.
+
+---
+
+## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
+
+Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and include:
+
+1. `## 0. Step Provenance` — exact step file loaded, input artifacts used, model call mode, validation command.
+2. `## 1. Input Context Digest` — concrete digest of prior artifacts; must name actual concepts/facets/media, not generic task text.
+3. `## 2. Step Template Requirements Applied` — specific requirements from the loaded step prompt.
+4. `## 3. Model Response / Creative Work` — the actual creative output.
+5. `## 4. Self-Critique Against Step Requirements` — adversarial check.
+6. `## 5. Validation Result` — paste validator output after pass.
+
+A file with the right filename but without these sections is a backfilled artifact and fails. Do not write “line 1 / line 2” placeholders, repeated paragraphs, or self-check claims contradicted by the artifact body.
 
 ---
 
@@ -29,15 +58,24 @@ Receives, in this order:
 
 The coordinator must generate from the seed first. Constraint axes are vocabulary, not the form of the song.
 
-Executes:
-- Step 00: Generate 50 aesthetics, emotions, compositions, genres
-- Step 01: Extract essence, define style axes, creativity spectrum
-- Step 02: Generate 12 concepts
-- Step 03: Pair each concept with artist influence + critique
-- Step 04: Assign medium/production style to each concept
-- Step 05: Critique and refine → select 6 best concept-medium pairs
+Executes as **six separate LLM turns**, matching original `generate_concept_mediums()` in `lofn/llm_integration.py`:
+- Step 00: read `steps/00_Generate_Music_Aesthetics_And_Genres.md`, call the model, write `step00_aesthetics_and_genres.md` using the canonical provenance template. Provenance must cite the validated orchestrator packet.
+- Step 01: read `steps/01_Generate_Music_Essence_And_Facets.md`, call the model using Step 00 output, write `step01_essence_and_facets.md` using the canonical provenance template
+- Step 02: read `steps/02_Generate_Music_Concepts.md`, call the model using Step 01 output, write `step02_concepts.md` using the canonical provenance template
+- Step 03: read `steps/03_Generate_Music_Artist_And_Critique.md`, call the model using Step 02 output, write `step03_artist_and_critique.md` using the canonical provenance template
+- Step 04: read `steps/04_Generate_Music_Medium.md`, call the model using Step 03 output, write `step04_medium.md` using the canonical provenance template
+- Step 05: read `steps/05_Generate_Music_Refine_Medium.md`, call the model using Step 04 output, write `step05_refine_medium.md` using the canonical provenance template and `concept_medium_pairs.json` (6 pairs)
 
-Outputs to disk: step00 through step05 files + `concept_medium_pairs.json` (6 pairs)
+**Do not combine Steps 00–05 into one prompt, one response, or renamed summary files.** Files like `step00_coordinator_overview.md` or `step03_pair_concept_matrix.md` are summaries, not canonical original-Lofn step outputs.
+
+### Mandatory validation + retry loop for Steps 00–05
+After writing each step artifact, run:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+```
+
+If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop the run, write `TIMEOUT_STATUS.md` or `VALIDATION_BLOCKED.md`, and escalate. Do **not** continue to the next step with a failed artifact.
 
 **STOP HERE. Do not proceed to step 06.**
 
@@ -56,15 +94,26 @@ Each receives:
 
 Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the seed, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 
-Each executes (for its ONE pair only):
-- Step 06: Generate facets for scoring
-- Step 07: Write detailed song guide (mood, instrumentation, structure, BPM, key)
-- Step 08: Generate Suno/Udio style prompt
-- Step 09: Rewrite prompt in artist's voice
-- Step 10: Critique, rank, synthesize → 4 final outputs (music prompt + full lyrics)
+Each executes (for its ONE pair only) as **five separate LLM turns or five externally orchestrated sub-steps**, matching original `generate_music_prompts()` in `lofn/llm_integration.py`. If a single pair-agent cannot prove the five turns happened beyond filenames, the controller should spawn one subtask per step or QA must treat the result as suspect:
+- Step 06: read `steps/06_Generate_Music_Facets.md`, call the model, write `pair_{NN}_step06_facets.md` using the canonical provenance template. Provenance must cite the Golden Seed, orchestrator metaprompt, pair assignment, Step 05 concept-medium pair, and prior coordinator outputs.
+- Step 07: read `steps/07_Generate_Music_Song_Guides.md`, call the model using Step 06 output, write `pair_{NN}_step07_song_guides.md` using the canonical provenance template
+- Step 08: read `steps/08_Generate_Music_Generation.md`, call the model using Step 07 output, write `pair_{NN}_step08_generation.md` using the canonical provenance template
+- Step 09: read `steps/09_Generate_Music_Artist_Refined.md`, call the model using Step 08 output, write `pair_{NN}_step09_artist_refined.md` using the canonical provenance template
+- Step 10: read `steps/10_Generate_Music_Revision_Synthesis.md`, call the model using Step 09 output, write `pair_{NN}_step10_revision_synthesis.md` using the canonical provenance template
 
-Outputs to disk: step06 through step10 files for its pair number
-Returns: 4 final song prompts + lyrics as output text
+**Do not combine Steps 06–10 into one prompt, one response, or one omnibus file.** A convenience rollup may be created afterward as `pair_{NN}_steps_06_10_rollup.md`, but it is not a substitute for the five canonical step files. A file with the right name but shallow content, missing required headers, or self-check claims contradicted by grep is a failure, not a partial pass.
+
+### Mandatory validation + retry loop for Steps 06–10
+After writing each pair step artifact, run:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+```
+
+If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop that pair, save `pair_{NN}_VALIDATION_BLOCKED.md`, and return the exact validator failure. Do **not** write Step 10 or claim the pair is complete if Step 06–09 failed.
+
+Outputs to disk: five separate step files for its pair number
+Returns: Step 10 final song prompts + lyrics as output text
 
 ---
 
@@ -98,7 +147,7 @@ Main session
 
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
-Each pair subagent must return in step10:
+Each pair subagent must return in Step 10 only after Step 06, Step 07, Step 08, and Step 09 have already been written as separate files. Step 10 must include:
 - Suno/Udio music prompt (**target 850-1000 chars**, hard max 1000 chars, no artist names). It must be dense, producer-grade, and single paragraph: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Prompts under 850 chars are only acceptable when explicitly justified as intentional minimalism in the local skeptic note.
 - Full lyrics (70-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare structural tags. <70 sung lines risks under-3min runtime and is a repair trigger in QA:
   - `[SONG FORM: <named form>]` declaration at the top of the lyrics block. The name must describe the form meaningfully, e.g. `[SONG FORM: Apology-Evidence-Chorus Pyramid]` or `[SONG FORM: Subtractive-Build Earned-Hope Arc]` — NOT `[SONG FORM: verse-chorus]`
@@ -119,8 +168,8 @@ Before writing your final step10 output, run this check. If any box is unchecked
 
 **In the final output for each song:**
 - [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready, single paragraph, target 850-1000 chars, hard max 1000 chars unless explicitly justified. It must include emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate.
-- [ ] `[SONG FORM: <named form>]` declared at the top of the lyrics block (not `verse-chorus` — use a descriptive name)
-- [ ] Every section header includes `EMO:` tag, vocalist cue, and mix/performance cue, e.g. `[Verse 1 – EMO:Weight – Female Vocalist – Close-mic]`
+- [ ] `[SONG FORM: <named form>]` declared at the top of **each variant lyrics block** (not plain `SONG FORM:` text; not `verse-chorus` — use a descriptive name)
+- [ ] Every actual song section header includes section name, `EMO:`, vocalist cue, and mix/performance cue, e.g. `[Verse 1 - EMO:Weight - Female Vocalist - Close-mic]`. Bare `[EMO:...]` headers are **not acceptable** because Suno loses section structure.
 - [ ] At least one standalone SFX cue in asterisks ≤5 words, e.g. `*inverter click*`, `*phone buzz*`
 - [ ] At least one non-lexical vocal hook (`ooh`, `mm`, `ah`, whispered echo, call-response fragment)
 

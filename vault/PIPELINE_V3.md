@@ -438,11 +438,12 @@ Generate competition-grade prompt sets from the seed. Prompts must feel like des
 Default output:
 
 - 6 pairs × 4 variations = 24 prompts
-- **one saved per-pair file for each direction/pair**: `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md`
+- **five saved step files per direction/pair**: `pair_01_step06_facets.md` through `pair_01_step10_revision_synthesis.md`, repeated for pairs 01–06
+- optional rollup files only after canonical step files exist
 - top ranked selection set
 - renderer notes
 
-Pair files are not optional. A single combined 24-prompt file is useful, but it does **not** satisfy the pipeline by itself. Each pair file must contain that pair's Step 06 scoring facets, Step 07 guides, Step 08/09 generation/refinement notes, and Step 10 final 4 variants.
+Pair step files are not optional. A single combined 24-prompt file or a single `pair_XX_steps_06_10.md` file is useful as a rollup, but it does **not** satisfy the pipeline by itself. Each pair must show Step 06, Step 07, Step 08, Step 09, and Step 10 as separate artifacts so QA can verify the original Lofn prompt-response chain actually ran.
 
 #### Music
 
@@ -510,8 +511,8 @@ Output:
 QA checks:
 
 - all requested artifacts exist
-- **image runs: per-pair Step 06–10 files exist for all 6 pairs before render approval**
-- **music runs: per-pair/song files exist and include full prompts + full lyrics before delivery approval**
+- **image/music/video/story runs: separate per-pair Step 06, 07, 08, 09, and 10 files exist for all 6 pairs before render/delivery approval**
+- **music runs: Step 10 files include full prompts + full lyrics before delivery approval**
 - all full lyrics/source materials included when required
 - no prohibited content
 - no children by default
@@ -522,15 +523,15 @@ QA checks:
 
 ### QA Render Blocker Rule
 
-QA MUST return **FAIL / BLOCK RENDER** if any required per-pair Step 06–10 artifact is missing, empty, reconstructed after the fact, or only represented inside a single combined prompt file.
+QA MUST return **FAIL / BLOCK RENDER / BLOCK DELIVERY** if any required per-pair Step 06–10 artifact is missing, empty, reconstructed after the fact, or only represented inside a single combined prompt file.
 
-A render may proceed only after QA has verified:
+A render or music delivery may proceed only after QA has verified:
 
-1. `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md` exist;
-2. each pair file contains 4 variants or an explicit approved exception;
-3. each pair file contains step evidence, not just copied final prompts;
+1. each pair has separate `pair_{NN}_step06_facets.md`, `pair_{NN}_step07_song_guides.md`, `pair_{NN}_step08_generation.md`, `pair_{NN}_step09_artist_refined.md`, and `pair_{NN}_step10_revision_synthesis.md` artifacts;
+2. each Step 10 file contains 4 variants or an explicit approved exception;
+3. each step file contains native step evidence, not just copied final prompts;
 4. the QA report names the artifact paths it inspected;
-5. the report gives an explicit `READY TO RENDER` verdict.
+5. the report gives an explicit `READY TO RENDER` or `READY FOR SUNO` verdict.
 
 If render happens before this verdict, the controller must mark the run **pipeline-violating**, even if the images are good.
 

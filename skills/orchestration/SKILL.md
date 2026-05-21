@@ -49,9 +49,12 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 **You have 10 minutes total. Spend it wisely.**
 
 Panel debate rules under budget:
+- Must use the original Lofn panel-object structure from `panels.yaml`: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`.
+- Each of the three functional panels must include its adversarial member: original YAML calls this **Devil's Advocate**; newer language may call it **Hyper-Skeptic**. These are the same role.
 - Each panelist gets ONE substantive statement (3-5 sentences max)
-- One round of cross-debate (2-3 exchanges — dissent + resolution)
-- ONE "aha moment" synthesis per panel transformation
+- One round of cross-debate per functional panel (2-3 exchanges — dissent + resolution)
+- ONE "aha moment" synthesis across the three panels
+- Optional transformations may be applied to the selected panel object, but they must not replace the Concept/Medium/Context panel structure.
 - Then DECIDE and move to the metaprompt
 
 The debate is thinking, not performance. The metaprompt is the output. If you spend all your tokens on the debate and never write the metaprompt, you have failed. The downstream agent gets nothing.
@@ -96,7 +99,7 @@ Using the research brief + the closest Golden Seed as DNA:
 
 ### Step 0.4 — Save to output dir as `core_seed.md`
 
-Only after Phase 0 is complete, proceed to Phase 1 (panel selection and debate).
+Only after Phase 0 is complete, proceed to Phase 1 (panel selection and debate). Save enough detail for downstream validation: seed lineage, why this winning pattern was selected, dangerous permission, and non-negotiable constraints.
 
 ---
 
@@ -164,7 +167,7 @@ When receiving a creative request:
 2. **Select or Generate a Panel of Experts** - If a panel is selected, load `panels.yaml` and select the full panel with flairs. 
 3. **Select or Generate a Personality** — Select or generate panel
 4. **Generate the Metaprompt Core** — Determine creative voice (Lofn-Prime if direct request)
-5. **Wrap the Metaprompt with the Enhancment Template** — Run full panel process. This wrapped prompt is full context for the creative agent.
+5. **Wrap the Metaprompt with the Enhancement Template** — Run the original Lofn 3-panel object: Concept Panel → Medium Panel → Context & Marketing Panel, each with a Devil's Advocate / Hyper-Skeptic. This wrapped prompt is full context for the creative agent.
 6. **Route** — Send to appropriate subagent
 
 ---
