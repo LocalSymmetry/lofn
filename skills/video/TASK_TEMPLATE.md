@@ -30,11 +30,13 @@ Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_st
 1. `## 0. Step Provenance` — exact step file loaded, input artifacts used, model call mode, validation command.
 2. `## 1. Input Context Digest` — concrete digest of prior artifacts; must name actual concepts/facets/media, not generic task text.
 3. `## 2. Step Template Requirements Applied` — specific requirements from the loaded step prompt.
-4. `## 3. Model Response / Creative Work` — the actual creative output.
-5. `## 4. Self-Critique Against Step Requirements` — adversarial check.
-6. `## 5. Validation Result` — paste validator output after pass.
+4. `## 3. Panel / Critic Deliberation Log` — actual debate/friction: concept voice, medium voice, context voice, Devil’s Advocate / Hyper-Skeptic objection, and resolution.
+5. `## 4. Complete Step Output` — full step response, not a summary or plan.
+6. `## 5. Execution Log` — files read, model response written, validation attempts, repairs.
+7. `## 6. Self-Critique Against Step Requirements` — adversarial check.
+8. `## 7. Validation Result` — paste validator output after pass.
 
-A file with the right filename but without these sections is a backfilled artifact and fails. Do not write placeholders, repeated paragraphs, or self-check claims contradicted by the artifact body.
+Every step must preserve complete outputs. A file that says what it would do, summarizes a response, or omits the actual lists/concepts/guides/prompts/lyrics is incomplete. A file with the right filename but without these sections is a backfilled artifact and fails. Do not write placeholders, repeated paragraphs, or self-check claims contradicted by the artifact body.
 
 ---
 

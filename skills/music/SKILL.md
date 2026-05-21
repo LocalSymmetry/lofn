@@ -39,6 +39,7 @@ This router prevents context collapse. The full tuned music pipeline text is pre
 - A song guide with lyrics and production notes but no standalone Suno style prompt is **incomplete**, even if the lyrics are excellent.
 - Validation is inline, not just final QA. Every generated step file must pass `scripts/validate_with_retries.py` before the agent advances to the next step. The retry budget is exactly 3 attempts per artifact, mirroring the original app's retry discipline but applying it to artifact correctness.
 - Provenance is mandatory. If the artifact does not show the loaded step prompt, concrete prior inputs, model response, and self-critique, it is treated as backfilled mimicry even if the output shape looks correct.
+- Portfolio distinctiveness is mandatory. A set can pass every single-file gate and still fail if Step 10 reused the same lyric/prompt skeleton across pairs. After all Step 10 files exist, run `scripts/validate_portfolio_distinctiveness.py <audio_dir>`; failure is **REPAIR — STEP 10 HOMOGENIZATION**.
 - **Design toward the Suno 15-Point QA Gate** (`../qa/references/suno_15_point_qa.md`): 7 eligibility checks plus 8 delivery/creative survival checks. Do not optimize only for research compliance; optimize for body, adoptable hook, active-personality fidelity, 15-30 second survivability, and paste-ready Suno package. A catchy novelty lane is only valid when it matches the run's selected personality/persona; otherwise it is style drift.
 
 ## Creative Ordering Correction - 2026-05-10

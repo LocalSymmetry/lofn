@@ -54,16 +54,42 @@ def main() -> int:
         return fail("collapsed Steps 06-10 file is not a canonical step artifact")
 
     # Provenance gate: every canonical step must prove a real prompt/response chain.
+    # Accept old section names briefly for legacy artifacts, but require the new
+    # stronger sections for all newly generated artifacts when present.
     required_sections = [
         "## 0. Step Provenance",
         "## 1. Input Context Digest",
         "## 2. Step Template Requirements Applied",
-        "## 3. Model Response / Creative Work",
-        "## 4. Self-Critique Against Step Requirements",
     ]
     missing_sections = [sec for sec in required_sections if sec.lower() not in lower]
     if missing_sections:
         return fail("artifact missing step provenance sections: " + ", ".join(missing_sections))
+    has_new_contract = "## 4. complete step output" in lower or "## 5. execution log" in lower
+    if has_new_contract:
+        for sec in [
+            "## 3. Panel / Critic Deliberation Log",
+            "## 4. Complete Step Output",
+            "## 5. Execution Log",
+            "## 6. Self-Critique Against Step Requirements",
+        ]:
+            if sec.lower() not in lower:
+                return fail(f"artifact missing required complete-output section: {sec}")
+    else:
+        for sec in [
+            "## 3. Model Response / Creative Work",
+            "## 4. Self-Critique Against Step Requirements",
+        ]:
+            if sec.lower() not in lower:
+                return fail(f"artifact missing legacy creative/provenance section: {sec}")
+    if "what this step would do" in lower or "would generate" in lower or "would produce" in lower:
+        return fail("artifact describes what the step would do instead of containing complete step output")
+    if "panel / critic deliberation log" in lower:
+        panel_section = re.search(r"## 3\. Panel / Critic Deliberation Log(.*?)(?=\n## 4\.)", text, re.I | re.S)
+        if panel_section:
+            ps = panel_section.group(1).lower()
+            for marker in ["devil", "hyper-skeptic", "resolution"]:
+                if marker not in ps:
+                    return fail(f"panel deliberation log missing marker: {marker}")
     if "step file loaded:" not in lower:
         return fail("artifact missing explicit loaded step file path")
     if "input artifacts used:" not in lower:
