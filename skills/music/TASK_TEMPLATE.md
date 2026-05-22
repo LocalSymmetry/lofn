@@ -184,10 +184,10 @@ Main session
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
 Each pair subagent must return in Step 10 only after Step 06, Step 07, Step 08, and Step 09 have already been written as separate files. Step 10 must include:
-- Suno/Udio Core Music Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and negative prompt logic.
+- Suno/Udio Core Music Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph. Mandatory order: selected genre/style label(s) + tempo/energy → vocalist spec → instrumentation/sound palette/mix → musical arrangement arc → bold sonic device → avoidances. Do not lead with story, theme, or procedural phrases like “Begin in/by/with,” “Use,” “Build the track from,” or “Chronology.” Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and negative prompt logic.
 - Full lyrics using **clean EMO section headers** and legacy runtime length: **70-120 sung lines target; <60 sung lines is a repair trigger.** Song-force improvements change HOW length is earned, not whether the package needs enough sung material for a 3:00-4:00 Suno result. Use hook recurrence, chorus mutation, bridge pressure, call-response, ghost/echo reprises, and embodied image development — never filler or procedural exposition.
-  - Required `[SONG FORM: <named form>]` declaration in the lyrics section for every final song/lyric set.
-  - Optional top context tag: `[Theme: ...]` or `[Setting: ...]` if useful.
+  - Required `[Theme: <specific scene-pressure / emotional operating system>]` as the first line of the Suno lyrics block for every final song. This is a focusing spell for Suno and for the agent: it must be specific, embodied, and musically useful, not a generic topic label.
+  - Required `[SONG FORM: <named form>]` declaration immediately after Theme for every final song/lyric set. The form must be descriptive enough to guide structure (e.g., “Bathroom piano house — breath intro / verse / pre / chorus / dry bridge / call-response final chorus / afterglow”), not just “pop song.”
   - Clean section headers with full performance-script syntax: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
   - At least one standalone SFX cue line is required when validating Suno package readiness.
   - At least one non-lexical vocal hook where musically appropriate (`mm`, `ooh`, `ah`, whispered echo, etc.)
@@ -204,7 +204,7 @@ Before writing your final step10 output, run this check. If any box is unchecked
 
 **In the final output for each song:**
 - [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready Core Music Prompt, single paragraph, **850-1000 characters**, no artist names, and includes emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate; extra detail belongs in sidecars.
-- [ ] Lyrics include `[SONG FORM: <named form>]`, 70-120 sung lines target with <60 repair, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
+- [ ] Lyrics begin with `[Theme: <specific scene-pressure / emotional operating system>]`, immediately followed by `[SONG FORM: <named form>]`; lyrics have 70-120 sung lines target with <60 repair, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
 - [ ] Sung lines contain no prompt/procedure/QA/production-manual debris.
 - [ ] SFX cues / non-lexical hooks are included only if they serve the hook or controlled fracture.
 - [ ] At least one non-lexical vocal hook (`ooh`, `mm`, `ah`, whispered echo, call-response fragment)

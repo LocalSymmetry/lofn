@@ -143,6 +143,7 @@ def main() -> int:
         prompt_count = len(prompt_matches)
         lyric_count = len(re.findall(r"^##\s*2\.\s*lyrics\b", text, re.I | re.M))
         song_form_count = len(re.findall(r"\[song form\s*:[^\]]+\]", text, re.I))
+        theme_count = len(re.findall(r"\[theme\s*:[^\]]+\]", text, re.I))
         full_emo_headers = len(re.findall(r"^\[[^\]\n]+[-–—]\s*EMO\s*:[^\]\n]+[-–—][^\]\n]+[-–—][^\]\n]+\]", text, re.I | re.M))
         bare_emo_headers = len(re.findall(r"^\[\s*EMO\s*:", text, re.I | re.M))
         if prompt_count < 1:
@@ -158,10 +159,21 @@ def main() -> int:
             prompt_chars = len(prompt_body)
             if prompt_chars < 850 or prompt_chars > 1000:
                 return fail(f"music prompt must be 850-1000 characters, found {prompt_chars}")
+            first_prompt_line = next((ln.strip() for ln in prompt_body.splitlines() if ln.strip()), "")
+            if re.match(r"^(begin\s+(in|by|with)\b|use\b|build\s+the\s+track\s+from\b|chronology\s*:|for\s+an\s+adult\s+human\s+singer\b)", first_prompt_line, re.I):
+                return fail("music prompt opens with banned procedural/narrative phrasing; lead with genre/style + tempo/energy + vocalist + instrumentation")
         if lyric_count < 1:
             return fail("music song artifact missing ## 2. LYRICS section")
+        if theme_count < lyric_count:
+            return fail(f"music song artifact missing bracketed [Theme:] declarations ({theme_count}/{lyric_count})")
         if song_form_count < lyric_count:
             return fail(f"music song artifact missing bracketed [SONG FORM:] declarations ({song_form_count}/{lyric_count})")
+        lyrics_section_for_header = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", text, re.I | re.M | re.S)
+        if lyrics_section_for_header:
+            content_lines = [ln.strip() for ln in lyrics_section_for_header.group(1).splitlines() if ln.strip()]
+            non_title_lines = [ln for ln in content_lines if not ln.startswith("#")]
+            if len(non_title_lines) < 2 or not re.match(r"^\[theme\s*:[^\]]+\]$", non_title_lines[0], re.I) or not re.match(r"^\[song form\s*:[^\]]+\]$", non_title_lines[1], re.I):
+                return fail("music lyrics must begin with [Theme: ...] immediately followed by [SONG FORM: ...]")
         if full_emo_headers < max(6, lyric_count * 4):
             return fail(f"music song artifact has too few full section EMO headers ({full_emo_headers}); bare [EMO:...] is not enough")
         if bare_emo_headers:
