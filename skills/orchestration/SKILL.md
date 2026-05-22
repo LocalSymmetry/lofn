@@ -59,6 +59,30 @@ Panel debate rules under budget:
 
 The debate is thinking, not performance. The metaprompt is the output. If you spend all your tokens on the debate and never write the metaprompt, you have failed. The downstream agent gets nothing.
 
+**Downstream handoff requirement:** the orchestrator must send the complete original Lofn panel object downstream, not just a debate summary. The handoff/metaprompt/audio packet must include:
+- `## Special Flairs:` with 15 named flairs, grouped or sequenced as appropriate
+- `## Concept Panel:` with 5 domain experts + 1 Devil's Advocate / Hyper-Skeptic
+- `## Medium Panel:` with 5 medium/practice experts + 1 Devil's Advocate / Hyper-Skeptic
+- `## Context & Marketing Panel:` with 5 cultural/market/context experts + 1 Devil's Advocate / Hyper-Skeptic
+Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-blandness engine. If a run only has a generic 6-person panel or no 3-panel object, it is an orchestrator repair requirement.
+
+**Canonical artifact names — REQUIRED for downstream validators:** save these exact files in the run directory before handing off to any modality coordinator. Do not use shortened aliases like `03_panel_debate.md`, `04_metaprompt.md`, or `05_pair_assignments.md` as the only copies; those names fail `scripts/validate_orchestrator_packet.py` and block audio/vision pair-agent launch.
+
+- `01_seed_lineage.md`
+- `02_golden_seed.md` or `core_seed.md` with Golden Seed markers, dangerous permission, and non-negotiables
+- `03_orchestrator_panel_debate.md` with Special Flairs, Concept Panel, Medium Panel, Context & Marketing Panel, and each panel's Devil's Advocate / Hyper-Skeptic
+- `04_orchestrator_metaprompt.md` with Golden Seed, active personality, panel object, selected pattern, and structural completeness contract
+- `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
+- `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
+
+After writing the packet, run:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+```
+
+If it fails, repair the packet before spawning a coordinator. Alias files may exist for human readability, but the canonical files above are the source of truth.
+
 **Budget allocation:**
 - Baseline panel: ~15k tokens
 - Group transformation + amplified panel: ~15k tokens  

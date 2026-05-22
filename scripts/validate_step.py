@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+import json
 
 
 def fail(msg: str) -> int:
@@ -115,16 +116,48 @@ def main() -> int:
             return fail(f"step {step} artifact missing expected marker: {needle}")
 
     is_music = "music" in str(path).lower() or "song" in lower or "lyrics" in lower
+
+    if step == "05" and is_music:
+        pair_json = path.parent / "concept_medium_pairs.json"
+        if not pair_json.exists():
+            return fail("music Step 05 missing sibling concept_medium_pairs.json")
+        try:
+            data = json.loads(pair_json.read_text(errors="replace"))
+        except Exception as exc:
+            return fail(f"concept_medium_pairs.json is not valid JSON: {exc}")
+        if not isinstance(data, list):
+            return fail("concept_medium_pairs.json must be a top-level list")
+        if not (4 <= len(data) <= 7):
+            return fail(f"concept_medium_pairs.json must contain 4-7 pairs, found {len(data)}")
+        for i, item in enumerate(data, 1):
+            if not isinstance(item, dict):
+                return fail(f"concept_medium_pairs.json item {i} is not an object")
+            for key in ["pair_num", "concept", "medium"]:
+                if key not in item or not str(item[key]).strip():
+                    return fail(f"concept_medium_pairs.json item {i} missing required key: {key}")
+
     if is_music and step in {"08", "10"}:
         if "lyrics" not in lower:
             return fail("music song artifact missing lyrics")
-        prompt_count = len(re.findall(r"^##\s*1\.\s*music prompt\b|^\[suno style prompt\s*:\]", text, re.I | re.M))
+        prompt_matches = list(re.finditer(r"^##\s*1\.\s*music prompt\b|^\[suno style prompt\s*:\]", text, re.I | re.M))
+        prompt_count = len(prompt_matches)
         lyric_count = len(re.findall(r"^##\s*2\.\s*lyrics\b", text, re.I | re.M))
         song_form_count = len(re.findall(r"\[song form\s*:[^\]]+\]", text, re.I))
         full_emo_headers = len(re.findall(r"^\[[^\]\n]+[-–—]\s*EMO\s*:[^\]\n]+[-–—][^\]\n]+[-–—][^\]\n]+\]", text, re.I | re.M))
         bare_emo_headers = len(re.findall(r"^\[\s*EMO\s*:", text, re.I | re.M))
         if prompt_count < 1:
             return fail("music song artifact missing standalone ## 1. MUSIC PROMPT")
+        # Enforce the restored legacy Suno prompt band. Extract text between the
+        # prompt heading and lyrics heading (or next h2) and measure non-heading content.
+        prompt_section = re.search(r"^##\s*1\.\s*music prompt\b\s*(.*?)(?=^##\s*2\.\s*lyrics\b|^##\s+|\Z)", text, re.I | re.M | re.S)
+        if prompt_section:
+            prompt_body = "\n".join(
+                ln.strip() for ln in prompt_section.group(1).splitlines()
+                if ln.strip() and not ln.strip().startswith("#")
+            ).strip()
+            prompt_chars = len(prompt_body)
+            if prompt_chars < 850 or prompt_chars > 1000:
+                return fail(f"music prompt must be 850-1000 characters, found {prompt_chars}")
         if lyric_count < 1:
             return fail("music song artifact missing ## 2. LYRICS section")
         if song_form_count < lyric_count:
@@ -139,6 +172,16 @@ def main() -> int:
             return fail("music song artifact contains plain SONG FORM: text instead of [SONG FORM: ...]")
         if not re.search(r"^\*[^*\n]{1,50}\*\s*$", text, re.M):
             return fail("music song artifact missing standalone SFX cue")
+        lyrics_section = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", text, re.I | re.M | re.S)
+        if lyrics_section:
+            sung_lines = 0
+            for ln in lyrics_section.group(1).splitlines():
+                s = ln.strip()
+                if not s or s.startswith("#") or (s.startswith("[") and s.endswith("]")) or (s.startswith("*") and s.endswith("*")):
+                    continue
+                sung_lines += 1
+            if sung_lines < 60:
+                return fail(f"music lyrics have too few sung lines ({sung_lines}); <60 triggers repair, target 70-120")
 
     print(f"STEP {step} PASSED: {path}")
     return 0

@@ -85,19 +85,40 @@ If validation fails, repair the artifact in place and rerun with `--attempt 2`, 
 
 ## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
 
-Each receives:
-- The Golden Seed lineage + full Golden Seed
-- The active Lofn personality / mode
-- The orchestrator metaprompt
-- ONE specific concept-medium pair (name, concept text, medium/production style)
-- The constraint axes
-- The panel composition
-- The output/QA contract as the final appendix
+### Mandatory parent-mediated pair-agent rule (added after 2026-05-21 collapse)
 
-Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the seed, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
+The coordinator MUST stop after Step 05. It must not write, emulate, summarize, or locally synthesize Steps 06-10 for any pair. The parent/controller must spawn one independent `lofn-audio` child session per pair. Phrases like “spawn or run” are forbidden; the correct instruction is **spawn by parent only**.
+
+Each pair Step 10 artifact must include execution provenance that proves independent execution, not only filename shape:
+
+```markdown
+## Execution Provenance
+agent_label: lofn-audio-pair-NN
+session_key: agent:lofn-audio:subagent:<actual child session key>
+parent_session: <controller/main session key when available>
+model: <model id>
+spawned_by_parent: true
+step_call_mode: separate_child_session
+collapse_guard: no compact direct synthesis; no local emulation of other pairs
+```
+
+A pair package without a real child `session_key` is not pipeline-clean. It may be useful draft material, but QA must mark **Pipeline Integrity: REPAIR REQUIRED** until provenance is repaired or the pair is rerun.
+
+Each receives the lean pair-agent input standard from `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`, not the full upstream packet. Normal pair-agent prompts should be about 50–100 lines and include only:
+- Compact Golden Seed operating excerpt (`source_golden_seed`, 100–250 words; lineage, image/scene-pressure, emotional engine, dangerous permission, must-not-domesticate requirement)
+- Current Step 05 artifact (`step05_refine_medium.md`)
+- Structured pair list (`concept_medium_pairs.json` or equivalent)
+- ONE specific concept-medium pair / pair assignment excerpt
+- The relevant Step 06–10 contract
+- Tiny provenance block (`spawned_by_parent`, `step_call_mode`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, `pair_id`, `model`)
+- Modality-specific QA blockers
+
+The parent/controller validates and retains the full Golden Seed + orchestrator packet; ordinary pair agents should not load the full research, full Golden Seed beyond the compact excerpt, full debate, full metaprompt, or all six assignments unless explicitly doing repair/debug work.
+
+Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the compact pair seed/anchor, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 
 Each executes (for its ONE pair only) as **five separate LLM turns or five externally orchestrated sub-steps**, matching original `generate_music_prompts()` in `lofn/llm_integration.py`. If a single pair-agent cannot prove the five turns happened beyond filenames, the controller should spawn one subtask per step or QA must treat the result as suspect:
-- Step 06: read `steps/06_Generate_Music_Facets.md`, call the model, write `pair_{NN}_step06_facets.md` using the canonical provenance template. Provenance must cite the Golden Seed, orchestrator metaprompt, pair assignment, Step 05 concept-medium pair, and prior coordinator outputs.
+- Step 06: read `steps/06_Generate_Music_Facets.md`, call the model, write `pair_{NN}_step06_facets.md` using the canonical provenance template. Provenance must cite the Golden Seed, orchestrator metaprompt, pair assignment, Step 05 concept-medium pair, and prior coordinator outputs. Step 06 must contain 8–12 pair-specific facets; every facet must include why it matters and a failure mode. Generic rubrics like “preserve concept / preserve medium / maintain hook” are not sufficient.
 - Step 07: read `steps/07_Generate_Music_Song_Guides.md`, call the model using Step 06 output, write `pair_{NN}_step07_song_guides.md` using the canonical provenance template
 - Step 08: read `steps/08_Generate_Music_Generation.md`, call the model using Step 07 output, write `pair_{NN}_step08_generation.md` using the canonical provenance template
 - Step 09: read `steps/09_Generate_Music_Artist_Refined.md`, call the model using Step 08 output, write `pair_{NN}_step09_artist_refined.md` using the canonical provenance template
@@ -113,6 +134,19 @@ python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE>
 ```
 
 If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop that pair, save `pair_{NN}_VALIDATION_BLOCKED.md`, and return the exact validator failure. Do **not** write Step 10 or claim the pair is complete if Step 06–09 failed.
+
+Before writing `pair_{NN}_COMPLETE.md` or returning completion to the parent, also run the pair-level gate:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_pair_artifacts.py <audio_dir> <NN> --attempt 1
+```
+
+If it fails, repair the failing artifact(s) in place and rerun with `--attempt 2`, then `--attempt 3` if needed. `pair_{NN}_COMPLETE.md` must include the final `PAIR VALIDATION PASS` output. A pair completion message without this pass is not accepted as complete.
+
+Cross-pair gates are mandatory:
+- After all pair Step 06 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_step06_distinctiveness.py <audio_dir>`; if it fails, repair Step 06 before Step 07.
+- After all pair Step 09 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_step09_distinctiveness.py <audio_dir>`; if it fails, repair Step 09 before Step 10.
+- After all pair Step 10 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_portfolio_distinctiveness.py <audio_dir>`; if it fails, repair Step 10 before completion.
 
 Outputs to disk: five separate step files for its pair number
 Returns: Step 10 final song prompts + lyrics as output text
@@ -150,12 +184,12 @@ Main session
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
 Each pair subagent must return in Step 10 only after Step 06, Step 07, Step 08, and Step 09 have already been written as separate files. Step 10 must include:
-- Suno/Udio music prompt (**target 850-1000 chars**, hard max 1000 chars, no artist names). It must be dense, producer-grade, and single paragraph: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Prompts under 850 chars are only acceptable when explicitly justified as intentional minimalism in the local skeptic note.
-- Full lyrics (70-120 sung lines, hard maximum 120) using the **full Step 10 Suno performance-script syntax**, not bare structural tags. <70 sung lines risks under-3min runtime and is a repair trigger in QA:
-  - `[SONG FORM: <named form>]` declaration at the top of the lyrics block. The name must describe the form meaningfully, e.g. `[SONG FORM: Apology-Evidence-Chorus Pyramid]` or `[SONG FORM: Subtractive-Build Earned-Hope Arc]` — NOT `[SONG FORM: verse-chorus]`
-  - Top context tag: `[Theme: ...]` or `[Setting: ...]`
-  - Rich section headers with section, emotion, vocalist, and mix/performance cue, e.g. `[Verse 1 - EMO:Responsibility Vertigo - Female Vocalist - Close-mic]`
-  - Standalone short SFX cues in asterisks, ≤5 words, e.g. `*calendar chime*`, `*microwave beeps*`
+- Suno/Udio Core Music Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and negative prompt logic.
+- Full lyrics using **clean EMO section headers** and legacy runtime length: **70-120 sung lines target; <60 sung lines is a repair trigger.** Song-force improvements change HOW length is earned, not whether the package needs enough sung material for a 3:00-4:00 Suno result. Use hook recurrence, chorus mutation, bridge pressure, call-response, ghost/echo reprises, and embodied image development — never filler or procedural exposition.
+  - Required `[SONG FORM: <named form>]` declaration in the lyrics section for every final song/lyric set.
+  - Optional top context tag: `[Theme: ...]` or `[Setting: ...]` if useful.
+  - Clean section headers with full performance-script syntax: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
+  - At least one standalone SFX cue line is required when validating Suno package readiness.
   - At least one non-lexical vocal hook where musically appropriate (`mm`, `ooh`, `ah`, whispered echo, etc.)
   - Performance/mix cues where structurally important (`No beats`, `Half-time`, `Double-time`, `whispered`, `filter sweep`, `choir flinch`, etc.)
   - No editor commentary, TODOs, rhyme letters, or syllable bars in final lyrics
@@ -169,20 +203,20 @@ Each pair subagent must also identify at least one **Lofn-specific move** that s
 Before writing your final step10 output, run this check. If any box is unchecked, revise and re-check.
 
 **In the final output for each song:**
-- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready, single paragraph, target 850-1000 chars, hard max 1000 chars unless explicitly justified. It must include emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate.
-- [ ] `[SONG FORM: <named form>]` declared at the top of **each variant lyrics block** (not plain `SONG FORM:` text; not `verse-chorus` — use a descriptive name)
-- [ ] Every actual song section header includes section name, `EMO:`, vocalist cue, and mix/performance cue, e.g. `[Verse 1 - EMO:Weight - Female Vocalist - Close-mic]`. Bare `[EMO:...]` headers are **not acceptable** because Suno loses section structure.
-- [ ] At least one standalone SFX cue in asterisks ≤5 words, e.g. `*inverter click*`, `*phone buzz*`
+- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready Core Music Prompt, single paragraph, **850-1000 characters**, no artist names, and includes emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate; extra detail belongs in sidecars.
+- [ ] Lyrics include `[SONG FORM: <named form>]`, 70-120 sung lines target with <60 repair, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
+- [ ] Sung lines contain no prompt/procedure/QA/production-manual debris.
+- [ ] SFX cues / non-lexical hooks are included only if they serve the hook or controlled fracture.
 - [ ] At least one non-lexical vocal hook (`ooh`, `mm`, `ah`, whispered echo, call-response fragment)
 
 **Document your check** (save as part of your step10 file or companion `step10_qa_pair{N}.md`):
 ```
 GATE CHECK — Pair {N}, Variation {X}:
-[SONG FORM]: ✓/✗ → [form name]
-EMO tags: ✓/✗ → [count] sections tagged
-SFX cue: ✓/✗ → [the line]
-Non-lexical hook: ✓/✗ → [the line]
+Clean EMO headers: ✓/✗ → [count] sections tagged
+No lyric debris: ✓/✗ → [evidence]
+Hook recurrence / singback: ✓/✗ → [evidence]
+Optional SFX/non-lexical device serves song: ✓/✗/N/A → [line or rationale]
 ```
-If any check is ✗, revise the lyrics before completing. Bare `[Verse]`, `[Chorus]`, `[Bridge]` tags are NOT acceptable in final output.
+If any required check is ✗, revise the lyrics before completing. Bare `[Verse]`, `[Chorus]`, `[Bridge]` tags are not sufficient in final output because the emotional arc disappears.
 
 Written to: `step10_final_pair{N}.md`
