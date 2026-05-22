@@ -1,100 +1,80 @@
-# Suno QA — Simple Surface / Complex Engine 15-Point Gate
+# Suno 13-Point QA Gate
+*Established: 2026-05-09, Condensed: 2026-05-17*
+*Source lineage: Triple Arch / Suno staff-pick follow-up analysis, repaired final QA, eligibility framework*
 
-Read first:
-- `skills/music/references/simple_surface_complex_engine.md`
-- `skills/music/references/triple_arch_benchmark_excerpt.md`
+## Purpose
 
-QA must prove two things:
+The 7 eligibility properties are necessary but not sufficient. They predict whether a song can be broadly felt. They do not fully verify whether a final Suno package is paste-ready, hook-survivable, Lofn-specific, and protected from prompt slop.
 
-1. A listener can sing the surface.
-2. A second listen reveals the cathedral.
+Every music QA pass must run this 15-point gate on each final selected song.
 
-Fail both extremes:
-- impressive obscurity
-- competent blandness
+## Scoring
 
-## Required verdicts
+Each point is PASS / PARTIAL / FAIL.
 
-- **Pipeline Integrity Verdict:** PASS / REPAIR REQUIRED / FAIL
-- **Suno Package Verdict:** PASS / REPAIR REQUIRED / FAIL
-- **Overall Verdict:** SHIP / REPAIR / FAIL
+For an ACCESSIBLE / release-targeted song:
+- **PASS:** 11-13 pass, no blocking fails
+- **REPAIR:** 8-10 pass or any non-blocking fail
+- **FAIL:** <8 pass or any blocking fail
 
-## 15 gates
+For an AMBITIOUS song:
+- Eligibility points may intentionally fail, but delivery/package points remain mandatory.
+- QA must classify failures as intentional ambition vs accidental inaccessibility.
 
-### A. Singer Surface — 7 gates
+## The 13 Points
 
-1. **Human singer** — specific person/body/situation, not system or aesthetic label.
-2. **Body-first opening** — first four sung lines establish body/place/object/sensory pressure.
-3. **Adoptable hook** — title hook is singable, memorable, emotionally clear.
-4. **Hook recurrence / mutation** — hook repeats or mutates recognizably; chorus protects it.
-5. **Chorus clarity** — chorus is emotionally adoptable, not thesis/policy/procedure.
-6. **Voice + pulse survival** — stripped to voice/pulse/hook, song still lands.
-7. **15–30 second clip survival** — a short excerpt can communicate hook, scene, and ache.
+### Eligibility Core — 7 points
 
-### B. Cathedral Engine — 5 gates
+1. **Body in the song** - first 30 seconds create felt physical location: temperature, texture, room, weather, surface, breath, object, or body.
+2. **Adoptable hook** - hook is prayer/invocation/vow/address, not thesis, accusation, defense, or explainer.
+3. **Vast emotional TAM** - emotional field is broadly humanly felt: awe, grief, longing, protection, wonder, tenderness, fear of loss, becoming.
+4. **Specificity paradox** - one precise fact/detail/number/place/date/material unlocks the universal claim.
+5. **Cognitive ease** - structure is legible on first listen; accessible songs favor verse/chorus, major/Mixolydian or emotionally legible harmony, roughly 95-120 BPM unless justified.
+6. **Vocal co-discovery** - singer discovers the truth while singing; not a report, manifesto, or already-processed lecture.
+7. **Sonic threshold** - opening gives the nervous system a doorway: room tone, environmental sound, sparse pulse, breath, silence-with-noise-floor, or other calm before demand.
 
-8. **Golden Seed Alloy pressure** — seed lineage visibly changes hook/image/bridge/production.
-9. **Mythic image ladder** — ordinary -> specific -> strange -> mythic -> return to body appears in lyric or hook, not only sidecar.
-10. **EMO dramaturgy depth** — section EMO headers and arc use precise taxonomy; bridge/final chorus emotionally transform.
-11. **Production dramaturgy** — every unusual sound has a job: cradle, cut, haunt, lift, rupture, contaminate, answer, resurrect, afterglow.
-12. **Panel pressure / anti-blandness** — panel ledger shows dissent forced artifact changes; output is recognizably Lofn, not generic competent pop.
+### Suno / Lofn Delivery Core — 6 points
 
-### C. Suno Package — 3 gates
-
-13. **Clean Suno lyrics** — sung lines are clean; lyrics begin with mandatory `[Theme: <specific scene-pressure / emotional operating system>]` immediately followed by mandatory `[SONG FORM: <named musical form and sequence>]`; section headers use full EMO/performance syntax; no prompt/procedure/QA debris in sung lines.
-14. **Producer-grade Suno prompt** — legacy gate still applies: target 850–1000 characters unless destination explicitly allows otherwise; **must lead with genre/style + tempo/energy, then vocalist, instrumentation/sound palette/mix, musical arrangement arc, signature sonic device, avoidances**; no artist names. Banned prompt openings include “Begin in/by/with…”, “Use…”, “Build the track from…”, “Chronology:”, and “For an adult human singer…” as the first clause. Poe gate adds: no generic tag padding; extra intelligence belongs in Sonic Manifest / Production Cathedral sidecars.
-15. **Full package completeness** — title, hook note, active personality, music prompt, negative prompt, public lyrics, Suno lyrics, vocal fingerprint, style axes, arrangement dramaturgy, production dramaturgy, image ladder, controlled fracture, ghost bank, panel ledger, QA report, dual verdicts.
-
-
-## Legacy QA remains binding
-
-This 15-point gate is additive, not a replacement. Final music PASS still requires the legacy Suno/package gate from `qa_full_legacy.md` and `music_full_legacy.md` unless The Scientist explicitly approves a run-level exception:
-
-- standalone 850–1000 character copy-paste Suno/Udio prompt, no artist names
-- 70–120 sung lines for normal 3:00–4:00 songs; <60 is repair required
-- full Suno performance-script section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`
-- mandatory `[Theme: ...]` followed immediately by mandatory `[SONG FORM: ...]` in every final Suno lyric block
-- SFX/non-lexical hooks when required by the legacy task template or when musically appropriate
-
-The Poe panel repair changes HOW to meet these gates: use recurrence, hook mutation, embodied image development, call-response, reprises, and production dramaturgy — not filler, procedural exposition, or prompt debris.
-
-## Blocking fails
-
-- no human singer
-- no body-first opening
-- hook cannot be sung back
-- chorus is thesis/procedure
-- lyric surface has prompt/procedure debris
-- production is the only reason the song works
-- no mythic image pressure reaches lyric/hook
-- no panel-forced artifact change
-- no full Suno package
-- missing or generic `[Theme: ...]` / `[SONG FORM: ...]` opening
-- music prompt opens with procedural/narrative amateur phrasing instead of producer-grade genre/sound/vocal/instrumentation
-- real artist names in prompt
-
-## Report format
-
-```markdown
-# Suno QA Report
-
-## Verdicts
-- Pipeline Integrity Verdict:
-- Suno Package Verdict:
-- Overall Verdict:
-
-## Score Table
-| # | Gate | Verdict | Evidence | Repair |
+8. **Standalone Suno style prompt present** - `## 1. MUSIC PROMPT` or `SUNO STYLE PROMPT` exists, is copy-paste-ready, and is not replaced by scattered metadata.
+9. **Prompt density and restraint** - prompt is producer-grade and bounded: target 850-1000 chars (or justified sparse exception), no artist names, no bloated tag soup, no contradictory instructions. It must lead with genre/style + tempo/energy, then vocalist, instrumentation/sound palette/mix, musical arrangement arc, signature sonic device, and short concrete avoidances. Banned openings include “Begin in/by/with…”, “Use…”, “Build the track from…”, “Chronology:”, and “For an adult human singer…” as the first clause.
+10. **Performance-ready lyric syntax** - lyrics use Suno meta-tags: mandatory `[Theme: <specific scene-pressure / emotional operating system>]` as the first lyric line immediately followed by mandatory `[SONG FORM: <named musical form and sequence>]`, then EMO section headers (format: `[Section - EMO:<emotion(s)> - Vocalist - cues]` where the emotion is drawn from the full emotional taxonomy at `skills/lofn-core/refs/EMOTION_TAXONOMY.md` - e.g. `nostalgia + yearning`, `righteous fury`, `tender grief`). Theme is not a generic topic; Song Form is not merely “pop” or “dance.” The bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) are NOT valid emotion labels for section headers. Vocalist/mix cues, SFX cues, and at least one non-lexical hook where appropriate. **Call-and-response lyrics must use Suno-native `Call (Response)` format on a single line, never separate `Lead:` / `Choir:` / `Doubles:` lines.**
+11. **15-30 second hook survivability** - one section can stand alone as a short clip and still carry the song's emotional thesis without sounding like a slogan.
+12. **Active personality fidelity** - song sounds like the personality selected for this run. QA must name the active personality/persona from the orchestrator or seed and verify the output matches that personality's voice, values, and sonic palette. Personality mismatch is the fail condition.
+13. **Package readiness** - final artifact contains title, music prompt, negative/avoid prompt, full lyrics, production notes, hook note, and any special events (blackout drop, room tone, artifact cue, tempo shift). The Scientist can paste it without reconstructing missing pieces.
 
 ## Blocking Fails
 
-## Singer Surface Notes
+Any of these blocks PASS until repaired:
 
-## Cathedral Engine Notes
+- Missing standalone Suno style/music prompt.
+- Missing full lyrics.
+- Bare `[Verse]` / `[Chorus]` tags only in final lyrics.
+- Missing or generic `[Theme: ...]` / `[SONG FORM: ...]` opening, or Song Form not immediately after Theme.
+- Music prompt opens with procedural/narrative amateur phrasing instead of producer-grade genre/sound/vocal/instrumentation.
+- Real artist names in final Suno prompt.
+- No hook or no short-clip extractable section for accessible/release-targeted songs.
+- Song is an abstract lecture with no body anchor unless explicitly routed AMBITIOUS and labeled as such.
+- Sung lyric count <60 lines unless the song is routed AMBITIOUS with an explicit runtime/brevity justification. Target 70-120 for 3:00-4:00 runtime.
+- Section headers using bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) as emotion labels instead of drawing from the full emotional taxonomy with `EMO:<emotion(s)>` syntax.
+- QA cannot identify the active run personality or the song's voice/sonic decisions do not match that personality.
 
-## Suno Package Notes
+## Required QA Report Section
 
-## Required Repairs
+```markdown
+## Suno 13-Point QA Gate
+| # | Check | PASS/PARTIAL/FAIL | Evidence | Repair if needed |
+|---|-------|-------------------|----------|------------------|
+| 1 | Body in the song | | | |
+...
+| 13 | Package readiness | | | |
 
-## Final Recommendation
+Verdict: PASS / REPAIR / FAIL
+Blocking failures: yes/no
+Accessible classification: ACCESSIBLE / AMBITIOUS
 ```
+
+## Relationship to the 7-Property Eligibility Framework
+
+The first 7 points are the eligibility framework. Points 8–12 are the operational Suno/package/Lofn survival checks. Point 13 is package readiness.
+
+Do not collapse the 15-point gate back into the 7-point framework. The distinction matters.
