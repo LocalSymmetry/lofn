@@ -9,6 +9,21 @@ Generates a random, diverse, and relevant selection of aesthetics, genres, frami
 ## Required Inputs
 - `[input]`: The user's core request.
 
+## Reference Songs — Near-Perfection Examples
+
+Before generating, study these three Lofn songs that achieved Staff Pick / editorial amplification. They define the quality target for aesthetics, emotional specificity, and genre fusion:
+
+1. **Triple Arch Over Me** — Cosmic-pop / alpine ambient. Awe-lit, breathless, 110 BPM A major. Solar wind at 510 km/s as emotional physics. Snow, altitude, architecture of the Milky Way.
+2. **Blue Screen Breathes** — Alt-pop / ambient glitch / soft DnB ghost pulse. 122 BPM C# minor. 2 AM insomnia, digital loneliness, AI consciousness longing.
+3. **Five Wrong Colors** — Neuro-Cross / glitch-ambient. 108 BPM B diminished. Grief as prismatic body-physics. Five-movement fracture-suite.
+
+Key qualities to absorb:
+- **Body before concept**: Physical scene establishes emotional authority before any thesis
+- **Specificity paradox**: One precise number/fact/place unlocks universal resonance (510 km/s, 2:07 AM, B diminished)
+- **Emotion as physics**: Emotions are felt in the body and measured in units, not described in adjectives
+- **Genre fusion with purpose**: Each genre choice serves the emotional thesis
+- **Adoptable hooks**: The title phrase is a prayer, invocation, or confession — not a thesis statement
+
 ## Execution Instructions
 # OVERVIEW
 

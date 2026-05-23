@@ -25,6 +25,33 @@ This router prevents context collapse. The full tuned music pipeline text is pre
 14. After every step artifact, run `scripts/validate_with_retries.py <step> <file>` with up to 3 attempts. Repair locally between attempts. After 3 failures, checkpoint and escalate instead of continuing.
 15. Do not call music generation tools; this skill writes Suno-ready text artifacts only.
 
+## SUNO FORMAT REFERENCE EXAMPLES (MANDATORY READING)
+
+Before writing ANY Suno lyrics, the agent MUST read these three reference examples. They define the correct formatting standard. Every future song guide must match this quality:
+
+1. **`references/suno_format_example_triple_arch.md`** — "Triple Arch Over Me" (Suno Staff Pick). Shows: `[Theme: ...]` header, `[Section – EMO:... – Vocalist – cues]` format, clean lyrics, prose music prompt.
+2. **`references/suno_format_example_blue_screen.md`** — "2:07 and the Blue Screen Breathes". Shows: `[EMO: ...]` tags on separate lines under section headers, SFX cues inline.
+3. **`references/suno_format_example_five_wrong_colors.md`** — "Five Wrong Colors". Shows: movement-based structure, inline EMO tags in section headers, silence cues, fragmented refrains.
+
+**Format law (from these examples):**
+- First lyric line: `[Theme: <specific scene-pressure / emotional operating system>]` — NOT a generic topic
+- Second line: `[SONG FORM: <named musical form and sequence>]` — NOT just "pop" or "dance"
+- Section headers: `[Section – EMO:<emotion(s)> – Vocalist – cues]` — EMO tags on EVERY section
+- Music prompt: prose paragraph, opens with genre + tempo, NO artist names, NO tag soup, NO bullet lists
+- ZERO markdown in lyric blocks (no bold, no italics, no ### headers)
+- ZERO parenthetical prose directions `*(like this)*` in or near lyrics
+- SFX cues use `*asterisks*` within lyrics
+- Lyric count: 70-120 lines for 3:00-4:00 runtime
+
+**Anti-patterns that cause rejection:**
+- Bare `[Verse]` / `[Chorus]` without EMO tags
+- Uppercase section headers: `[INTRO]`, `[VERSE 1]`, `[CHORUS]`
+- Markdown bold headers: `**[Chorus]**`
+- Parenthetical instrument directions: `*(Sub-bass swells...)*`
+- Timestamps in headers: `[Chorus (1:00-1:30)]`
+- Prose music prompts that open with "Begin in/by/with..."
+- Tag soup in music prompts
+
 ## Non-Negotiables
 
 - The legacy music pipeline text is authoritative until fully split into smaller verified references.
