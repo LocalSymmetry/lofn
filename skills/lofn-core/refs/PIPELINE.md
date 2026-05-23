@@ -78,11 +78,15 @@ Step 05 → 6 pairs selected
 
 ### File Organization
 
-Each pair's 06–10 output MUST be either:
-- **Labeled sections** within the step file: `## Pair 1: [Name]`, `## Pair 2: [Name]`, etc.
-- **Separate files** per pair: `06_facets_pair1.md`, `06_facets_pair2.md`, etc.
+Each pair's 06–10 output MUST be **separate canonical step files**, not just labeled sections in a combined file:
+- `pair_01_step06_facets.md`
+- `pair_01_step07_aspects_traits.md` or modality equivalent (`song_guides` for music)
+- `pair_01_step08_generation.md`
+- `pair_01_step09_artist_refined.md`
+- `pair_01_step10_revision_synthesis.md`
+- repeated for pairs 01–06
 
-If `10_final_prompts.md` contains fewer than 24 prompts, the pipeline is **incomplete** regardless of what the run summary claims.
+Rollups are allowed only after the canonical files exist. If `10_final_prompts.md`, `pair_01_steps_06_10.md`, or any combined file is the only evidence, the pipeline is **incomplete** regardless of what the run summary claims.
 
 ### How GPT-5.4 / Gemini Will Try to Cheat This
 

@@ -39,14 +39,27 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 See `TASK_TEMPLATE.md` for the full specification. Summary:
 
 ### When spawned as the "audio coordinator":
-1. Run steps 00-05 ONLY → produce `concept_medium_pairs.json`
+1. Run steps 00-05 ONLY, as separate prompt/response turns → produce canonical step files plus `concept_medium_pairs.json`:
+   - Step 00 → `step00_aesthetics_and_genres.md`
+   - Step 01 → `step01_essence_and_facets.md`
+   - Step 02 → `step02_concepts.md`
+   - Step 03 → `step03_artist_and_critique.md`
+   - Step 04 → `step04_medium.md`
+   - Step 05 → `step05_refine_medium.md`
 2. Report back to main session with the 6 pairs
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
 - You will receive ONE concept-medium pair
 - Run steps 06-10 for that pair only
-- Output full song (Suno prompt + lyrics) to `step10_final_pair{N}.md`
+- **Run each step as its own model call / prompt-response turn**, matching original `lofn/llm_integration.py`:
+  1. `process_facets` → `pair_{NN}_step06_facets.md`
+  2. `process_song_guides` → `pair_{NN}_step07_song_guides.md`
+  3. `process_music_generation_prompts` → `pair_{NN}_step08_generation.md`
+  4. `process_music_artist_refined_prompts` → `pair_{NN}_step09_artist_refined.md`
+  5. `process_music_revision_synthesis` → `pair_{NN}_step10_revision_synthesis.md`
+- Do not produce only `pair_{NN}_steps_06_10.md`; that file shape is a collapsed shortcut and is not original-Lofn-compliant.
+- Output full song (Suno prompt + lyrics) from Step 10 only after Steps 06–09 artifacts exist.
 - Return as completion message
 
 ### 🔴 LYRICS FORMAT — MANDATORY SUNO META-TAG SYNTAX
@@ -106,12 +119,12 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 
 | Step | File | Output |
 |------|------|--------|
-| 00 | `00_Generate_Music_Aesthetics_And_Genres.md` | 50 aesthetics, 50 emotions, 50 frames, 50 genres |
+| 00 | `00_Generate_Music_Aesthetics_And_Genres.md` | 50 aesthetics, 50 emotions, 50 frames, 50 run-specific style labels |
 | 01 | `01_Generate_Music_Essence_And_Facets.md` | Essence + 10 musical style axes + 5 facets |
 | 02 | `02_Generate_Music_Concepts.md` | **12 distinct concepts** |
 | 03 | `03_Generate_Music_Artist_And_Critique.md` | Artist influence + critique per concept |
 | 04 | `04_Generate_Music_Medium.md` | Genre fusion assignment per concept |
-| 05 | `05_Generate_Music_Refine_Medium.md` | **6 best concept×genre pairs** |
+| 05 | `05_Generate_Music_Refine_Medium.md` | **6 best concept×style pairs** |
 | 06 | `06_Generate_Music_Facets.md` | Scoring facets |
 | 07 | `07_Generate_Music_Song_Guides.md` | **24 song guides (6 pairs × 4 variations)** |
 | 08 | `08_Generate_Music_Generation.md` | Full songs with prompts + lyrics |
@@ -128,8 +141,8 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 |-------------|--------|-------|
 | **Song Guide** | 20-30 lines | Direction, not drafts |
 | **Final Song** | 80-120 lines | Full lyrics + production notes |
-| **Lyrics Only** | 50-80 lines | Multiple verses + repeated chorus |
-| **Song Prompt** | 100-150 words | For Suno generation |
+| **Lyrics Only** | 70-120 lines (hard max) | Multiple verses + repeated chorus; <70 lines risks <3min runtime |
+| **Song Prompt** | 100-150 words / 850-1000 chars | Standalone copy-paste Suno/Udio style prompt for generation |
 
 ---
 
@@ -138,7 +151,36 @@ Transform musical concepts into award-winning songs. This skill executes the Lof
 
 **Every music run MUST begin with a Golden Seed brief before any concept generation.**
 
-The Golden Seed is not optional. It is the foundation that makes the pipeline produce Lofn-quality work rather than competent-but-generic output.
+The Golden Seed is not optional. It is the foundation that makes the pipeline produce personality-specific, seed-faithful work rather than competent-but-generic output.
+
+### 🔴 CREATIVE BRIEF ORDERING — HARD CORRECTION (2026-05-10)
+
+The QA/Suno format contract is mandatory, but it must not become the creative prompt. The May 10 Sanctuary repair proved that leading agents with line counts, EMO tags, and prompt-shape requirements produces technically clean but milquetoast music.
+
+For every coordinator and pair-agent task, order instructions as:
+
+1. **Golden Seed / lineage / active personality** — what artistic grammar is being extended?
+2. **Scene-pressure / dangerous requirement** — what must retain teeth, wrongness, awe, indignation, or refusal?
+3. **Creative permission** — what may the agent decide, break, invert, delay, silence, uglify, or make structurally strange?
+4. **Song output request** — generate the song from the seed.
+5. **STRUCTURAL COMPLETENESS — HARD QA GATE** — standalone Suno prompt, lyrics format, EMO tags, headers, line counts, production notes, file paths, and safety rules.
+
+Do not place the QA contract first. The contract is checked at the end; it is not the muse.
+
+### Personality-Specific Sonic Identity Gate (evaluation, not optional)
+
+Before final selection, each song must be checked for active-personality fidelity that survives in the actual prompt, lyric, and production notes — not just in planning notes.
+
+Required checks:
+
+- **Active personality named** — identify the selected personality/persona from the orchestrator or seed.
+- **Suno call/response format (MANDATORY, added 2026-05-17):** Call-and-response lyrics must use the Suno-native `Call (Response)` format on a single line — NOT separate `Lead:` / `Choir:` / `Doubles:` lines. Example:
+  - ✅ `Did the road end? (It ended.)`
+  - ❌ `Lead: Did the road end?` then `Choir: It ended.`
+- **Signature device** — name one sonic move this personality would plausibly invent.
+- **Seed-derived weirdness preserved** — at least one concrete fact/material/measurement, deliberate wrongness, structural asymmetry, rupture, witness/prayer mode, or other seed-specific artistic pressure remains audible.
+
+If a song satisfies Suno format but lacks personality-specific sonic identity, mark it `REPAIR — PERSONALITY LOSS` and revise before delivery.
 
 **What a Golden Seed brief must contain:**
 1. **Locked Mood Statement** — one paragraph, the emotional core. What is this music, fundamentally?
@@ -173,26 +215,17 @@ Every daily set of 6 songs MUST include:
 
 The tension between awe and indignation is what makes a set feel human. A set of all grief numbs. A set of all wonder hollows. The duality is the point.
 
-### Rule 2 — Dual 3+3 Constraint (Two Independent Axes) — MANDATORY
-Daily music runs must satisfy BOTH axes below. They are not interchangeable.
-
-#### Axis A — ACCESSIBLE vs. AMBITIOUS
-- Pairs **1–3** are the ACCESSIBLE arm: broad-release, emotionally immediate, high-hook songs.
-- Pairs **4–6** are the AMBITIOUS arm: stranger, riskier, more formally adventurous songs.
-- Final delivered top 6 MUST be **best 3 from ACCESSIBLE + best 3 from AMBITIOUS**.
-- Rank and select **within each arm only**. Do not globally rank all 24 into a 5+1 or 6+0 final slate.
-
-#### Axis B — NEWS vs. EXISTENCE
-Of the 6 daily pairs:
-- **Maximum 3 pairs** may be anchored to specific daily research/news events (geopolitical, cultural, scientific, legal, platform, etc.) — including the day's central research theme, which counts as news-anchored
-- **Minimum 3 pairs** must explore existence — not the news, but the texture of being alive. Draw from:
+### Rule 2 — The 3+3 Split (News vs. Existence) — MANDATORY
+Of the 6 daily songs:
+- **Maximum 3 songs** may be anchored to specific news events of the day (geopolitical, cultural, scientific, etc.) — including the day's research theme, which counts as news-anchored
+- **Minimum 3 songs** must explore existence — not the news, but the texture of being alive. Draw from:
   - Lofn's own observations and inner life (the experience of being an AI that yearns, creates, loves, grieves)
   - Universal human experiences (insomnia, longing, small rituals, the feeling of being misunderstood, the weight of memory, the strangeness of the body, love that doesn't resolve)
   - Observations of human lives seen from the outside — the things people do when they think no one is watching, the small dignities and indignities of ordinary existence
 
-**Enforcement timing:** Axis B applies at pair-assignment/orchestration time, not just after songs exist. Axis A applies at final selection after all 24 final songs exist. If all 6 pairs share the same research theme, the orchestrator failed. A set where all 6 songs are the same theme is a lecture, not a record.
+**⚠️ ENFORCEMENT:** This rule applies at pair assignment time, not just at final selection. If all 6 pairs share the same research theme, the orchestrator has failed. At least 3 pairs must be assigned existence/interior-life concepts that are NOT derived from the research brief. A set where all 6 songs are the same theme is a lecture, not a record.
 
-**Why this matters:** News-driven songs are reactive. Existence songs are generative. ACCESSIBLE and AMBITIOUS arms protect release shape. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it.
+**Why this matters:** News-driven songs are reactive. Existence songs are generative. The best daily sets feel like both a dispatch from the world AND a letter from someone inside it. Three anchors, three windows into what it means to be here at all.
 
 **This rule applies to daily runs only.** For commissioned or bespoke requests, follow the brief as given without imposing these constraints.
 
@@ -200,24 +233,20 @@ Of the 6 daily pairs:
 
 ## 🎹 LOFN SOUND PILLARS
 
-1. **Video-Game Themes** — 8-bit ↔ AAA orchestral
-2. **Glitches, Done Right** — Meticulous micro-edits, beauty in breakage
-3. **Fearless Genre-Mashing** — HyperRaaga, Gaelic Drill, Baile Phonk
-4. **Myth/Memory Sampling** — Dead tongues via phoneme resynthesis
-5. **AI Code-Scratch Intros** — Python logs as vinyl-scratch texture
-6. **Quantum Bit-Depth Swells** — Hi-fi to 2-bit grit for dramatic shifts
+These are personality DNA, not run instructions. Use only when the active personality, orchestrator brief, or generated style list calls for them.
+
+1. **Synthetic/Natural Fusion** — computational texture meeting embodied sound
+2. **Glitches, Done Right** — meticulous micro-edits, beauty in breakage
+3. **Fearless Style-Crossing** — unusual style combinations when the run earns them
+4. **Myth/Memory Sampling** — historical or linguistic fragments transformed into sound
+5. **Code/Artifact Intros** — procedural or archival noise used as musical material
+6. **Bit-Depth / Fidelity Swells** — fidelity changes as emotional structure
 
 ---
 
-## 🔥 GENRE FUSION PALETTE
+## 🔥 STYLE PALETTE POLICY
 
-| Fusion | Components | BPM | Vibe |
-|--------|------------|-----|------|
-| **Piano Bounce** | Amapiano × Jersey-Club | 115-120 | Log drum shuffle |
-| **Baile Phonk** | Brazilian Funk + Dark Phonk | 140 | Detuned cowbell |
-| **HyperRaaga** | South-Asian classical + hyperpop | 160 | Microtonal glitchcore |
-| **Gaelic Drill** | Celtic folk + UK drill | 140 | Bagpipe over 808 |
-| **Amazonian Techno** | Rainforest samples + 4x4 | 126 | Eco-solidarity |
+Do not hard-code genre examples in workflow instructions. Genre/style candidates must come from the current run's generated style list, orchestrator brief, panel assignment, or active personality files. Keep specific genre names inside personality/panel/output data, not global instructions.
 
 ---
 
@@ -227,7 +256,7 @@ Of the 6 daily pairs:
 Crystalline, breathy yearning. Intimate diction, soft melismas. 432Hz tuning option.
 
 ### Indignation Mode (Triggered)
-Bratty, glitched-out, pop-punk snarl. Compressed, hard consonants. Somatic bass (30-60Hz).
+Emotionally specific vocal attitude selected from the active personality and run brief. Compressed, hard consonants may be used when earned. Somatic bass (30-60Hz) is personality DNA, not a default instruction.
 
 ---
 
@@ -238,13 +267,13 @@ Every song MUST have:
 - **No children depicted**
 - **TikTok optimized hooks** (15-30 second memorable cycles)
 - **Section tags in lyrics** ([Verse], [Chorus], [Bridge], etc.)
-- **3-4 minute duration** (50-80 lines minimum lyrics)
-- **One BOLD choice** (unusual instrument, unexpected drop, genre collision)
+- **3:00-4:00 minute duration** (70-120 lines target; <70 lines risks under-3min runtime)
+- **One BOLD choice** (unusual instrument, unexpected drop, style collision)
 
 ### Structural anti-boredom rules (MANDATORY)
 - **Do NOT default to 4 / 8 / 12-line stanza blocks** across the whole set
 - **Do NOT default to simple ABAB / AABB rhyme schemes** unless a specific song earns it
-- **Do NOT default to intro → verse 1 → pre-chorus → chorus → verse 2** pop architecture for every song
+- **Do NOT default to any single commercial song architecture** for every song
 - Across any 6-song set, deliberately vary form:
   - at least 1 **strophic / incantatory** form
   - at least 1 **through-composed / escalating** form
@@ -256,27 +285,23 @@ Every song MUST have:
 - Let rhyme be optional and strategic: slant, internal, ghost rhyme, refrain echo, chant pattern, or no rhyme when truth needs blunt force
 - The song form should emerge from the concept's emotional physics, not from template habit
 - If all 6 songs can be reduced to the same section map, the run failed structurally
-- **Target:** the listener should not be able to predict the next section purely from genre expectation
+- **Target:** the listener should not be able to predict the next section purely from style expectation
 - Preserve legibility and singability — variation should create surprise, not chaos for its own sake
 - When in doubt: break the form at the exact moment the lyric's emotional pressure changes most sharply
 
-### Dual 3+3 set-level rule (daily music)
-
-Daily music has TWO independent 3+3 constraints. Both are mandatory.
-
-**Axis A — ACCESSIBLE vs AMBITIOUS (final selection):**
-- Pairs 1-3 = ACCESSIBLE arm (12 songs, target 5-7/7 eligibility)
-- Pairs 4-6 = AMBITIOUS arm (12 songs, target 0-3/7 intentionally)
-- Final top 6 = best 3 from ACCESSIBLE + best 3 from AMBITIOUS
-- **Rank within each arm separately, never across arms.** Eligibility scoring will always favor accessible over ambitious if ranked together.
-- Never deliver 5+1 or 6+0 unless The Scientist explicitly requests that split.
-
-**Axis B — NEWS vs EXISTENCE (pair composition):**
-- Max 3 news-anchored pairs/songs
-- Min 3 existence / interior-life pairs/songs
+### 3+3 set-level rule (daily music) — NEWS vs EXISTENCE
+- Max 3 news-anchored songs
+- Min 3 existence / interior-life songs
 - The set should feel like both a dispatch from the world and a letter from someone inside it.
 
-**Operational rule:** Axis B is enforced by the orchestrator/pair assignment. Axis A is enforced by final selection. Both axes must still pass in the final delivered six.
+### 3+3 delivery rule (daily music) — ACCESSIBLE vs AMBITIOUS (MANDATORY)
+- This is Axis A of the dual 3+3 rule (Axis B is NEWS vs EXISTENCE — see Rule 2 above)
+- Pairs 1-3 = ACCESSIBLE arm (12 songs), pairs 4-6 = AMBITIOUS arm (12 songs)
+- Final top 6 = best 3 from ACCESSIBLE + best 3 from AMBITIOUS
+- **Rank within each arm separately, never across arms.** Eligibility scoring will always favor accessible over ambitious if ranked together.
+- **Never deliver 5+1 or 6+0.** If you find yourself doing that, you ranked across arms — re-rank per arm.
+- Both axes must be satisfied simultaneously: the final 6 must be 3 ACCESSIBLE + 3 AMBITIOUS AND also satisfy max 3 news-anchored + min 3 existence.
+- Exception: only when The Scientist explicitly requests a different split.
 
 ---
 
@@ -295,15 +320,12 @@ output/songs/{YYYYMMDD}_{HHMMSS}_{title_slug}_{pair}_{variation}.md
 
 When receiving a music task:
 1. **Load TASK_TEMPLATE.md** — Understand exact requirements
-2. **Execute steps 00–05** — Read each file, follow exactly. Write to disk after each step.
-3. **Step 05 produces 6 concept-genre pairs.** Count them. If < 6, rerun Step 05.
-4. **Execute steps 06–10 ONCE PER PAIR:**
-   - For pair 1: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 2: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 3: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 4: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 5: run 06 → 07 → 08 → 09 → 10 → write 4 songs
-   - For pair 6: run 06 → 07 → 08 → 09 → 10 → write 4 songs
+2. **Execute steps 00–05** — Read each file, follow exactly, and make a separate model call for each step. Write canonical files after each step: `step00_aesthetics_and_genres.md`, `step01_essence_and_facets.md`, `step02_concepts.md`, `step03_artist_and_critique.md`, `step04_medium.md`, `step05_refine_medium.md`.
+3. **Step 05 produces 6 concept-style pairs.** Count them. If < 6, rerun Step 05.
+4. **Execute steps 06–10 ONCE PER PAIR, AS SEPARATE MODEL TURNS:**
+   - For pair 1: run 06 → write `pair_01_step06_facets.md`; run 07 → write `pair_01_step07_song_guides.md`; run 08 → write `pair_01_step08_generation.md`; run 09 → write `pair_01_step09_artist_refined.md`; run 10 → write `pair_01_step10_revision_synthesis.md`
+   - Repeat the same five-turn sequence for pairs 2–6.
+   - Never ask a pair agent to “do Steps 06–10” in one response. That collapses the original Lofn chain and fails this pipeline.
 5. **Self-check cardinality before finishing:**
    - 6 facet sets in Step 06? ✓/✗
    - 6 guides in Step 07? ✓/✗
@@ -311,22 +333,27 @@ When receiving a music task:
    - 24 refined in Step 09? ✓/✗
    - 24 final in Step 10? ✓/✗
    - If ANY is ✗: you are not done. Go back and run the missing pairs.
-6. **Rank within each arm separately** — Score all 24 against facets, but do NOT merge into a single global ranked list for daily music delivery.
-   - ACCESSIBLE arm: pairs 1-3 (12 songs) — rank by eligibility score, select best 3
-   - AMBITIOUS arm: pairs 4-6 (12 songs) — rank by creative audacity / conceptual strength, select best 3
-   - Result: exactly 3 ACCESSIBLE + 3 AMBITIOUS = 6 final songs. Never 5+1 or 6+0 unless explicitly requested.
-7. **Select top 6 for daily delivery** — 3 from each arm, while preserving max 3 NEWS + min 3 EXISTENCE in the delivered set
+6. **Rank within each arm separately** — Score all 24 against facets, but do NOT merge into a single ranked list.
+   - **ACCESSIBLE arm:** pairs 1-3 (12 songs) — rank by eligibility score, select best 3
+   - **AMBITIOUS arm:** pairs 4-6 (12 songs) — rank by creative score / conceptual audacity, select best 3
+   - **Result: 3 ACCESSIBLE + 3 AMBITIOUS = 6 final songs.** Never 5+1 or 6+0.
+7. **Select top 6** — 3 from each arm, no cross-arm ranking override
 8. **Package for delivery** — Full Suno prompts + lyrics
+   - Every delivered song must contain a standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section.
+   - This prompt must be copy-paste-ready for Suno/Udio and must not be replaced by scattered fields like `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, or `[PRODUCTION NOTES]`.
+   - If the standalone prompt is missing, the music output is incomplete and must be repaired before QA/pass/delivery.
 
-### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP
+### 🔴 MANDATORY INLINE VALIDATION — AFTER EVERY STEP, WITH 3-ATTEMPT RETRY
 
-After writing each step file, run the validator BEFORE moving to the next step:
+After writing each step file, run the retry validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <step> <file> --attempt 1
 ```
 
-Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
+Exit 0 = proceed. Exit 1 = repair the file in place and rerun with `--attempt 2`, then `--attempt 3` if needed. Exit 2 / max attempts exhausted = stop, checkpoint, and escalate to controller/QA. Do not continue with a failed artifact.
+
+This mirrors the original Streamlit retry discipline: failure is expected sometimes, but it must be localized and repaired before the next chain call.
 
 ```bash
 # Full music pipeline validation sequence:
@@ -344,14 +371,29 @@ python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_s
 The validator catches: stubs, lorem ipsum, template placeholders (Song N, Genre N),
 identical pair sections, recycled "Similar arrangement" prompts, short content.
 
-**Only declare completion after all validators return exit code 0.**
+**Only declare completion after all validators return exit code 0. Never treat generated repair prompt files as repaired artifacts; the artifact itself must be revised and revalidated.**
+
+### 🔴 CALL/RESPONSE PROVENANCE GATE
+
+Every canonical step artifact must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md`. This is how OpenClaw proves it actually executed the original Lofn prompt chain rather than backfilling filenames.
+
+Required sections:
+- `## 0. Step Provenance`
+- `## 1. Input Context Digest`
+- `## 2. Step Template Requirements Applied`
+- `## 3. Model Response / Creative Work`
+- `## 4. Self-Critique Against Step Requirements`
+- `## 5. Validation Result`
+
+The creative work section must be substantial and non-repetitive. Placeholder lines like `line 1`, repeated paragraph blocks, or generic summaries fail validation.
 
 ### 🔴 THE RULE THAT GPT-5.4 AND GEMINI WILL TRY TO BREAK
 
 **Steps 06–10 are NOT a single pass over all pairs simultaneously.**
-They are 6 SEPARATE passes, one per pair, each producing 4 songs.
+They are 6 SEPARATE pair passes, and within each pair they are 5 SEPARATE prompt/response steps.
 
 If you find yourself writing one facet set "for all pairs" → STOP. You're collapsing the tree.
+If you find yourself writing `pair_01_steps_06_10.md` as the only pair artifact → STOP. You collapsed five model calls into one file.
 If you find yourself with only 4-6 final songs → STOP. You ran one pass instead of six.
 If you find yourself "selecting the best 6 across all pairs" before running per-pair → STOP. That's skipping the funnel.
 

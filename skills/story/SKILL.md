@@ -30,6 +30,20 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 
 ---
 
+## 🔴 PRE-CREATIVE ORCHESTRATOR PACKET GATE
+
+Before this modality agent begins Step 00, it must validate a real Lofn-Core + orchestrator packet with:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+```
+
+The packet must use the original Lofn panel-object structure: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`, each with a Devil's Advocate / Hyper-Skeptic adversarial role. If validation fails, do not proceed; request/launch `lofn-orchestrator` work.
+
+Every canonical step artifact must use `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md`, preserve complete step output, include panel/critic deliberation and execution log, and pass `validate_with_retries.py` before the next step.
+
+---
+
 ## ⚡ MANDATORY SUBAGENT SPLIT ARCHITECTURE
 
 **YOU MUST ALWAYS USE THIS PATTERN. Never run all 10 steps in a single agent.**

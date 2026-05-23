@@ -104,7 +104,11 @@ Generates the revision synthesis for a music based on the user's core concept.
     include them in your prompt.
  3. **Front‑Load Important Details**: Begin your music prompt with the
     genre, instrumentation, tempo, mood and any key production style.  This
-    ensures the model prioritises these elements.
+    ensures the model prioritises these elements. **Producer-grade correction:**
+    the prompt must lead with genre/style + tempo/energy + vocalist +
+    instrumentation/sonic palette. Do not lead with narrative or procedural
+    phrasing such as “Begin in/by/with,” “Use,” “Build the track from,”
+    “Chronology:,” or “For an adult human singer…” as the first clause.
  4. **Incorporate Musical Style Axes Early**: Mention tempo (e.g. “slow‑burn
     at 60 BPM”), dynamics (“gradually rising energy”), harmonic and
     rhythmic complexity (“simple folk progression” or “polyrhythmic funk”);
@@ -136,7 +140,11 @@ Generates the revision synthesis for a music based on the user's core concept.
     through style or mood.  Ensure content is inclusive and respectful.
  10. **Format Output Precisely**: Your final answer must be a JSON object
      with the fields `title`, `music_prompt` and `lyrics_prompt`.  Do not
-     add extra keys or stray outside the JSON block.
+     add extra keys or stray outside the JSON block. Final Suno lyric blocks
+     must begin with `[Theme: <specific scene-pressure / emotional operating system>]`
+     immediately followed by `[SONG FORM: <named musical form and sequence>]`.
+     Theme is a focusing compression field, not a generic topic label; Song
+     Form names the actual architecture, not merely “pop” or “dance.”
 
 # SONG GENERATION GUIDE
 
@@ -145,7 +153,9 @@ This guide codifies the **absolute best practices**—drawn from Suno v4.5+’s 
 ════════════════════════════════════════════════════
 PART 1 · CRAFTING THE MUSIC (STYLE) PROMPT
 ════════════════════════════════════════════════════
-**Purpose:** Tell Suno exactly how the finished record *should sound* from first second to last: mood → genre → instrumentation → vocals → scene‑by‑scene progression.
+**Purpose:** Tell Suno exactly how the finished record *should sound* from first second to last: genre/style + tempo/energy → vocalist → instrumentation/sound palette → arrangement arc → signature sonic device → short concrete avoidances. The prompt is a producer brief, not a story summary or tutorial.
+
+**Required supplemental reference:** Before writing final Step 10 packages, read `skills/music/references/producer_grade_suno_prompt_guide.md`.
 
 ────────────────────
 A. CORE RULES
@@ -184,10 +194,21 @@ A. CORE RULES
    > *Prevents filler clichés and ensures sonic originality.*
 
 8. **LENGTH & FORM:**
-   • 80-150 words total; line‑breaks okay during drafting—final prompt = single paragraph.
+   • Drafting may explore 80-150 words, but **final Lofn delivery prompts target 850-1000 characters** (hard max 1000). Shorter prompts are allowed only when the song is intentionally sparse/minimal and the critic explicitly justifies why less instruction improves the render.
+   • The prompt must be dense because it is a producer blueprint, not a genre tag list. Use the character budget for arrangement chronology, instrument roles, mix placement, vocal behavior, the hook mechanism, the bold sonic device, and failure-mode prevention.
+   • Line‑breaks okay during drafting—final prompt = single paragraph.
    • Separate ideas with **periods** or **;** not comma sprawl.
    • Vital descriptive words appear **early** (Suno weights the front).
    > *Descriptive, loaded language → better internal embeddings.*
+
+9. **MUSIC PROMPT INTENTIONALITY CHECK:**
+   Before finalizing, the internal Producer/Mix Engineer/Suno Skeptic panel must be able to answer:
+   • What is the track's unmistakable sonic thesis?
+   • What does each flagship instrument or foley object do emotionally?
+   • How does the arrangement transform from first second to last?
+   • How does the hook land rhythmically and texturally?
+   • What should Suno prioritize, and what common failure modes are being blocked?
+   If these answers are not present in the prompt, revise. Length without these answers is padding and fails.
 
 ────────────────────
 B. ADVANCED PLAYBOOK
@@ -528,8 +549,10 @@ GENERAL INSTRUCTIONS  ·  PANEL‑DRIVEN CREATIVE PROTOCOL
 DELIVERABLE REQUIREMENTS
 ────────────────────────────────────────────────────────
 1. **MUSIC PROMPT** (in a single copy‑pasteable code block)
-   ‑ <=1000, one paragraph.
+   ‑ Target **850-1000 characters**, hard max 1000, one paragraph. Shorter only if intentional minimalism is explicitly justified by the critic panel.
    ‑ Must state **emotion → genre → key instruments & production → vocalist spec → tempo/key (opt) → progression roadmap → blacklist**.
+   ‑ Must function as a **composition blueprint**, not a descriptive wrapper: name the sonic thesis, instrument-role mapping, hook mechanics, transformation arc, mix placement, bold sonic device, and failure-mode prevention.
+   ‑ Use the extra budget for production decisions, not filler adjectives or redundant genre tags.
    ‑ **No explicit section labels** (`[Intro]`, etc.)—this stays high‑level.
    ‑ Absolutely no real‑artist names; describe styles instead.
 

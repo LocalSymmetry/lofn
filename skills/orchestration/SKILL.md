@@ -49,12 +49,39 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 **You have 10 minutes total. Spend it wisely.**
 
 Panel debate rules under budget:
+- Must use the original Lofn panel-object structure from `panels.yaml`: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`.
+- Each of the three functional panels must include its adversarial member: original YAML calls this **Devil's Advocate**; newer language may call it **Hyper-Skeptic**. These are the same role.
 - Each panelist gets ONE substantive statement (3-5 sentences max)
-- One round of cross-debate (2-3 exchanges — dissent + resolution)
-- ONE "aha moment" synthesis per panel transformation
+- One round of cross-debate per functional panel (2-3 exchanges — dissent + resolution)
+- ONE "aha moment" synthesis across the three panels
+- Optional transformations may be applied to the selected panel object, but they must not replace the Concept/Medium/Context panel structure.
 - Then DECIDE and move to the metaprompt
 
 The debate is thinking, not performance. The metaprompt is the output. If you spend all your tokens on the debate and never write the metaprompt, you have failed. The downstream agent gets nothing.
+
+**Downstream handoff requirement:** the orchestrator must send the complete original Lofn panel object downstream, not just a debate summary. The handoff/metaprompt/audio packet must include:
+- `## Special Flairs:` with 15 named flairs, grouped or sequenced as appropriate
+- `## Concept Panel:` with 5 domain experts + 1 Devil's Advocate / Hyper-Skeptic
+- `## Medium Panel:` with 5 medium/practice experts + 1 Devil's Advocate / Hyper-Skeptic
+- `## Context & Marketing Panel:` with 5 cultural/market/context experts + 1 Devil's Advocate / Hyper-Skeptic
+Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-blandness engine. If a run only has a generic 6-person panel or no 3-panel object, it is an orchestrator repair requirement.
+
+**Canonical artifact names — REQUIRED for downstream validators:** save these exact files in the run directory before handing off to any modality coordinator. Do not use shortened aliases like `03_panel_debate.md`, `04_metaprompt.md`, or `05_pair_assignments.md` as the only copies; those names fail `scripts/validate_orchestrator_packet.py` and block audio/vision pair-agent launch.
+
+- `01_seed_lineage.md`
+- `02_golden_seed.md` or `core_seed.md` with Golden Seed markers, dangerous permission, and non-negotiables
+- `03_orchestrator_panel_debate.md` with Special Flairs, Concept Panel, Medium Panel, Context & Marketing Panel, and each panel's Devil's Advocate / Hyper-Skeptic
+- `04_orchestrator_metaprompt.md` with Golden Seed, active personality, panel object, selected pattern, and structural completeness contract
+- `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
+- `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
+
+After writing the packet, run:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+```
+
+If it fails, repair the packet before spawning a coordinator. Alias files may exist for human readability, but the canonical files above are the source of truth.
 
 **Budget allocation:**
 - Baseline panel: ~15k tokens
@@ -96,7 +123,7 @@ Using the research brief + the closest Golden Seed as DNA:
 
 ### Step 0.4 — Save to output dir as `core_seed.md`
 
-Only after Phase 0 is complete, proceed to Phase 1 (panel selection and debate).
+Only after Phase 0 is complete, proceed to Phase 1 (panel selection and debate). Save enough detail for downstream validation: seed lineage, why this winning pattern was selected, dangerous permission, and non-negotiable constraints.
 
 ---
 
@@ -129,11 +156,30 @@ The orchestrator is the **creative director** for all Lofn generation tasks. Whe
 
 | Request Type | Subagent | Notes |
 |--------------|----------|-------|
-| Image, picture, visual, artwork | `lofn-vision` | Default: FAL Flux Ultra 1.1 Pro @ 9:16 |
-| Song, music, track, beat | `lofn-music` | Full seed generation workflow |
+| Image, picture, visual, artwork | `lofn-vision` | Default: FAL Flux Ultra 1.1 Pro @ 9:16; if GPT Image 2 specified, use `TARGET_RENDERER: GPT_I2` in dispatch |
+| Song, music, track, beat, audio | `lofn-audio` | Full music/song-guide workflow. **Do not use `lofn-music`; no such configured agent exists in this workspace.** |
 | Story, narrative, tale, script | `lofn-narrator` | Panel-driven storytelling |
 | Video, film, cinematic, clip | `lofn-director` | Storyboard + shot composition |
 | Animation, animated, motion | `lofn-animator` | With animator skill focus |
+
+## 🔀 RENDERER-CONDITIONAL PANEL SLOTS (added 2026-04-26)
+
+**When TARGET_RENDERER = GPT_I2, standard panel composition must shift:**
+
+| Slot | Standard | GPT Image 2 Override |
+|------|----------|----------------------|
+| Complementary #1 | General aesthetic | **Typography Structuralist** — text-as-image-element, font weight/tracking/baseline, layout hierarchy |
+| Complementary #2 | Narrative theorist | **Physics/Materials Epistemologist** — reasons about Physics Inference Layer behavior, surfaces implausible material claims |
+| Hyper-Skeptic | Generic challenge | **Storybook Assassin / Cliché Override Auditor** — hunts warm rim light, centered pastel, soft edges; has veto power |
+
+**Storybook Assassin veto triggers (auto-fail if present in any GPT Image 2 prompt):**
+- "ethereal," "dreamlike," "whimsical," "gentle light," "soft glow," "magical," "delicate," "floating"
+
+**Required mandatory alternatives for overridden defaults:**
+- "warm rim light" → "hard axial light from below" or "single source from extreme angle"
+- "centered" → "lower third with aggressive negative space" or "decentered by 40%"
+- "pastel" → "saturated complementary pair" or "achromatic with single chromatic accent"
+- "soft edges" → "hard material boundary with internal luminosity" or "silhouette with sharp cut"
 
 ---
 
@@ -145,7 +191,7 @@ When receiving a creative request:
 2. **Select or Generate a Panel of Experts** - If a panel is selected, load `panels.yaml` and select the full panel with flairs. 
 3. **Select or Generate a Personality** — Select or generate panel
 4. **Generate the Metaprompt Core** — Determine creative voice (Lofn-Prime if direct request)
-5. **Wrap the Metaprompt with the Enhancment Template** — Run full panel process. This wrapped prompt is full context for the creative agent.
+5. **Wrap the Metaprompt with the Enhancement Template** — Run the original Lofn 3-panel object: Concept Panel → Medium Panel → Context & Marketing Panel, each with a Devil's Advocate / Hyper-Skeptic. This wrapped prompt is full context for the creative agent.
 6. **Route** — Send to appropriate subagent
 
 ---

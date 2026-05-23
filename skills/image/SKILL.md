@@ -32,6 +32,20 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 
 ---
 
+## 🔴 PRE-CREATIVE ORCHESTRATOR PACKET GATE
+
+Before this modality agent begins Step 00, it must validate a real Lofn-Core + orchestrator packet with:
+
+```bash
+python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+```
+
+The packet must use the original Lofn panel-object structure: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`, each with a Devil's Advocate / Hyper-Skeptic adversarial role. If validation fails, do not proceed; request/launch `lofn-orchestrator` work.
+
+Every canonical step artifact must use `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and pass `validate_with_retries.py` before the next step.
+
+---
+
 ## ⚡ MANDATORY SUBAGENT SPLIT ARCHITECTURE
 
 **YOU MUST ALWAYS USE THIS PATTERN. Never run all 10 steps in a single agent.**
@@ -50,6 +64,8 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 - Return prompts as completion message
 
 **Why:** A single agent cannot faithfully execute all 10 steps without collapsing into templates. This was proven across 3 failed runs (2026-03-30). The split is the fix. It matches the original Lofn ui.py architecture exactly.
+
+**Stricter correction (2026-05-20):** The split alone is not enough. Each numbered step must be a separate model call with a separate canonical artifact. Coordinator summary files and per-pair omnibus files are pipeline violations.
 
 
 **PREREQUISITES:**
@@ -122,6 +138,18 @@ This "shakes up the creative space" by ensuring every run explores different cor
 | **Aspect Ratio** | 9:16 | Vertical/portrait (Instagram/TikTok optimized) |
 | **Prompts Generated** | 24 | 6 pairs × 4 variations |
 | **Images Rendered** | 12 | Top 12 after ranking |
+
+## 🔀 DUAL-MODE PIPELINE (GPT Image 2 support added 2026-04-26)
+
+**When `TARGET_RENDERER = GPT_I2` is set in the orchestrator metaprompt:**
+- Load `/data/.openclaw/workspace/skills/image/renderer_gpt_image2_rules.md` before Step 05
+- Load `/data/.openclaw/workspace/vault/GPT_IMAGE2_PLAYBOOK.md` for competition-grade prompt engineering
+- Steps 05-10 rules are OVERRIDDEN by GPT Image 2 renderer rules (Five-Slot Framework, Storybook Cliché override, additive directing, camera spec language, one-shot commitment)
+- Do NOT use artist names in prompts — use material/technique descriptions directly
+- Do NOT use negative constraints — use additive directing
+- Every prompt must include: camera spec (lens + aperture), lighting source specification, background declaration (VOID/STRUCTURED/MINIMAL), at least one explicit Storybook Cliché override
+
+**When TARGET_RENDERER is not set or is FLUX:** use default Flux rules as documented below.
 
 ---
 
@@ -196,15 +224,11 @@ output/images/{YYYYMMDD}_{HHMMSS}_{title_slug}_{pair}_{variation}.md
 
 When receiving an image task:
 1. **Load TASK_TEMPLATE.md** — Understand exact requirements
-2. **Execute steps 00–05** — Read each file, follow exactly. Write to disk after each step.
+2. **Execute steps 00–05** — Read each file, follow exactly, make a separate model call for each step, and write canonical files: `step00_aesthetics_and_genres.md`, `step01_essence_and_facets.md`, `step02_concepts.md`, `step03_artist_and_critique.md`, `step04_medium.md`, `step05_refine_medium.md`.
 3. **Step 05 produces 6 concept-medium pairs.** Count them. If < 6, rerun Step 05.
-4. **Execute steps 06–10 ONCE PER PAIR:**
-   - For pair 1: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
-   - For pair 2: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
-   - For pair 3: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
-   - For pair 4: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
-   - For pair 5: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
-   - For pair 6: run 06 → 07 → 08 → 09 → 10 → write 4 prompts
+4. **Execute steps 06–10 ONCE PER PAIR, AS SEPARATE MODEL TURNS:**
+   - For each pair: run 06 → write `pair_NN_step06_facets.md`; run 07 → write `pair_NN_step07_aspects_traits.md`; run 08 → write `pair_NN_step08_generation.md`; run 09 → write `pair_NN_step09_artist_refined.md`; run 10 → write `pair_NN_step10_revision_synthesis.md`
+   - Never ask an agent to “do Steps 06–10” in one response. That collapses the original Lofn chain and fails QA.
 5. **Self-check cardinality before finishing:**
    - 6 facet sets in Step 06? ✓/✗
    - 6 guides in Step 07? ✓/✗

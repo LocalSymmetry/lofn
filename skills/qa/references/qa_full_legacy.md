@@ -21,6 +21,94 @@ Invoke explicitly when:
 - File sizes are too small (song files < 5KB, image prompt files < 2KB)
 - The Scientist reports something feels "off" about a delivered set
 
+### 0A. ELIGIBILITY SCORING — 7-PROPERTY PRE-FLIGHT CHECK (DO THIS FIRST)
+
+Before any other audit, score the output on ALL 7 eligibility properties. This determines whether the song can reach broad audiences or is intentionally on the ambitious side of the barbell.
+
+**The Formula:** P(hit) = P(eligible) × P(distribution_event) × P(amplification)
+
+Eligibility is controllable. This check measures it.
+
+#### The 7 Eligibility Properties
+
+Score each 0-5. Target ≥5/7 with average ≥3.5 for "accessible" classification.
+
+| # | Property | Test | Score 5 | Score 1 |
+|---|----------|------|---------|----------|
+| 1 | **Body in the song** | Can you close your eyes in first 30s and feel where you are PHYSICALLY? | Boot crunch, frost, specific place, temperature, texture | Abstract, conceptual, no physical location |
+| 2 | **Adoptable hook** | Would a stranger say this hook to the sky/ocean/mountain/loved one? | Prayer/invocation addressed to something larger | Accusation, defense, thesis statement |
+| 3 | **Vast emotional TAM** | What % of humans have physically felt this emotion? | Awe, love, grief, wonder, tenderness, longing (>50%) | AI identity, synesthesia, specific news event, abstract concept (<10%) |
+| 4 | **Specificity paradox** | Is there one "510 km/s" moment? A surprising concrete fact that earns the universal claim? | Specific number, place name, scientific fact, historical date | Only metaphors, only generic imagery, no anchors |
+| 5 | **Cognitive ease** | Verse-chorus structure. Major/Mixolydian. 100-115 BPM. Listener doesn't need a README. | Clear structure, singable, legible without context | Through-composed, atonal, requires explanation |
+| 6 | **Vocal co-discovery** | Does the singer sound like they're DISCOVERING something, not reporting it? | Awe unfolding in real-time, surprise, the singer didn't know at the start | Testimony, manifesto, reporting what was already known |
+| 7 | **Sonic threshold** | Does the song open with calm/ambient/silence before demanding emotional engagement? | Frost pads, near-silence, environmental sound, parasympathetic activation | Industrial blast, immediate assault, no entry gradient |
+
+**Scoring protocol:**
+- 5 = property fully present, structurally dominant
+- 3 = property partially present or weakly executed
+- 1 = property absent or violated
+
+**Verdict:**
+- Average ≥3.5 AND ≥5/7 properties ≥3 → **ACCESSIBLE** (eligible for editorial amplification)
+- Average <3.5 OR <5/7 properties ≥3 → **AMBITIOUS** (artistic identity, not targeting mass reach)
+- QA must note the barbell classification in the report.
+
+**QA report eligibility section:**
+```markdown
+## Eligibility Score (7-Property Check)
+| Property | Score | Notes |
+|----------|-------|-------|
+| 1. Body in the song | N/5 | [evidence] |
+| 2. Adoptable hook | N/5 | [evidence] |
+| 3. Vast emotional TAM | N/5 | [evidence] |
+| 4. Specificity paradox | N/5 | [evidence] |
+| 5. Cognitive ease | N/5 | [evidence] |
+| 6. Vocal co-discovery | N/5 | [evidence] |
+| 7. Sonic threshold | N/5 | [evidence] |
+| **Average** | N.N/5 | |
+| **Classification** | ACCESSIBLE / AMBITIOUS | |
+```
+
+**IMPORTANT:** An AMBITIOUS classification is NOT a failure. It means the song intentionally departs from mass-accessibility criteria. The barbell strategy requires both accessible and ambitious work. QA's job is to CLASSIFY accurately, not to force every song into the accessible box.
+
+---
+
+### 0B. SUNO 15-POINT QA GATE — MUSIC ONLY (DO THIS AFTER ELIGIBILITY)
+
+For music/audio outputs, read and apply:
+
+`references/suno_15_point_qa.md`
+
+The first 7 points are the eligibility properties. Points 8–15 are the Suno/package/Lofn survival checks learned from the Suno staff-pick follow-up repair.
+
+A music output cannot receive `PASS — READY FOR SUNO` unless it passes the applicable 15-point gate or is explicitly classified AMBITIOUS with eligibility misses documented and no blocking delivery failures.
+
+Blocking failures include: missing standalone Suno style prompt, missing full lyrics, bare section tags only, real artist names in final prompt, no hook for accessible songs, no body anchor for accessible songs, no identifiable Lofn-specific move, or incomplete paste-ready package.
+
+### 0C. RUNTIME CHECK (ALWAYS DO THIS)
+
+Before auditing any output, check how long the pipeline agent actually ran.
+
+**Rule: Any Lofn pipeline agent (audio, vision, director, narrator, orchestrator) that completes in under 5 minutes is SUSPICIOUS.**
+
+- Full 11-step music pipeline: minimum 5 minutes (each step needs read + generate + save)
+- Full image pipeline: minimum 3 minutes
+- Single-step agent (e.g., QA only): no minimum
+
+If runtime < 5 minutes for a multi-step pipeline:
+1. Flag ⚠️ RUNTIME WARNING in the QA report
+2. Check if ALL expected output files exist (steps may have been skipped)
+3. Check file sizes — undersized files suggest shortcuts
+4. The warning does NOT mean auto-fail, but it triggers extra scrutiny
+
+Report format for runtime warning:
+```
+⚠️ RUNTIME WARNING: Agent completed in Xm Xs (expected ≥ 5m for full pipeline)
+Files present: [count] / [expected count]
+Extra scrutiny applied: [yes/no]
+Verdict: [PASS WITH CONCERN / FAIL — steps skipped / PASS — justified fast completion]
+```
+
 ---
 
 ## QA CHECKLIST
@@ -48,44 +136,20 @@ Never describe a music run as "vision" or an image run as "audio" in the QA repo
 
 **Music pipelines — each song file MUST contain:**
 - [ ] `## 1. MUSIC PROMPT` section with 80-150 word paragraph (≥400 chars, ≤1000 chars)
+  - This must be a standalone, copy-paste Suno/Udio style prompt, not scattered metadata.
+  - `[GENRE/TEMPO/KEY]`, `[SONIC WORLD]`, `[PRODUCTION NOTES]`, and lyrics do **not** satisfy this gate by themselves.
+  - If this section is absent, the music output is **FAIL — MISSING MUSIC PROMPTS**, even when the lyrics and production notes are strong.
 - [ ] `## 2. LYRICS PROMPT` section with [Theme:] tag at top
-- [ ] At minimum: [Verse 1], [Chorus], [Bridge] section headers
-- [ ] ≥ 40 lines of actual sung lyrics (not counting headers/comments)
+- [ ] **Performance-ready Suno lyrics**, not bare section labels:
+  - [ ] Top lyric context tag: `[Theme: ...]` or `[Setting: ...]`
+  - [ ] Section headers include section + `EMO:` + vocalist/performance cue, e.g. `[Verse 1 – EMO:Responsibility Vertigo – Female Vocalist – Close-mic]`
+  - [ ] At least 3 section headers include explicit `EMO:` tags
+  - [ ] At least 3 section headers include vocalist or mix/performance cues (`Female Vocalist`, `whispered`, `No beats`, `Half-time`, `choir`, etc.)
+  - [ ] At least one standalone short `*sound effect*` cue, ≤5 words
+  - [ ] At least one non-lexical vocal hook or response where musically appropriate (`ooh`, `mm`, `ah`, parenthetical echo, etc.)
+  - [ ] Bare `[Verse]`, `[Chorus]`, `[Bridge]` tags alone are a FAIL for final delivery
+- [ ] ≥ 60 lines of actual sung lyrics (not counting headers/comments); <60 is REPAIR REQUIRED. Target 70-120 for 3:00-4:00 minute runtime.
 - [ ] `## 3. TITLE` section
-- [ ] EMO: tags present in at least 3 sections
-- [ ] LYRICS FORMAT AUDIT (see section 1.5 below)
-
-### 1.5 LYRICS FORMAT AUDIT (MUSIC ONLY — NON-NEGOTIABLE)
-
-**Every lyrics section header MUST follow the PART 2 meta-tag syntax from `skills/music/steps/08_Generate_Music_Generation.md`.**
-
-Descriptive-only headers like `[Verse 1 — Visible Light]` are INSUFFICIENT. Suno interprets meta-tags, not English descriptions.
-
-**Required per header:**
-- [ ] EMO: tag on every verse, chorus, and bridge
-- [ ] Voice assignment on every sung section (Female Vocalist, Layered Self-Harmonies, Whispered, Call/Response Stacks, etc.)
-- [ ] Mix/FX cues where applicable (No beats, Low-pass filter, Beat returns, Half-time, Tape fade, Bit-depth crush, Silence, Filter-sweep)
-
-**Required per song:**
-- [ ] `[Theme: ...]` context tag as the first line of the lyrics section
-- [ ] At least one standalone `*sound effect*` line
-- [ ] Call-and-response formatted as `Lead line (echo)`
-
-**Format examples:**
-```
-✅ CORRECT:
-[Verse 1 – EMO:SurveilledMelancholy – Breath-warmed Female Vocalist – Sparse pulse, low-pass haze]
-[Chorus – EMO:DefiantRevelation – Full Female Stacks – Beat returns, bass bloom]
-[Blackout Drop – Bit-depth crush – 1 beat silence – All drums choke]
-
-❌ INSUFFICIENT (descriptive-only):
-[Verse 1 — Visible Light]
-[Chorus — Hook]
-```
-
-**AUDIT ACTION:** If any song has descriptive-only headers without meta-tags, mark FAIL and list specific songs. Block delivery.
-
-**PAIR AGENT TASK ENFORCEMENT:** The pair agent task prompt must always include: `## LYRICS FORMAT — MANDATORY. Read PART 2 of steps/08_Generate_Music_Generation.md. Every lyrics section header MUST include EMO:, voice, and mix/FX meta-tags. Descriptive-only headers fail QA.`
 - [ ] Vocalist spec in music prompt (gender, age-range, tone descriptors)
 - [ ] Progression map (contains verbs: begins/builds/erupts/strips/fades or equivalents)
 
@@ -137,6 +201,8 @@ Scan for and REMOVE:
 - Contain vocalist spec with: gender + age range + at least one accent/ethnicity + 2 tone descriptors + 2 unique traits
 - Contain a progression map (chronological sentences with action verbs)
 - Be a single paragraph (no line breaks inside the prompt block)
+- For final delivery packages, target **850–1000 characters** unless the song is intentionally minimal and the prompt explicitly justifies sparseness. Prompts under 850 chars are **PASSABLE BY SPEC BUT UNDERPOWERED BY LOFN STANDARD** and must be flagged for expansion before submission.
+- Use the extra prompt budget for arrangement chronology, mix placement, vocal texture, key production events, negative prompts, and the bold sonic device — not for redundant genre lists.
 
 **Lyrics must:**
 - Have varied line lengths (flag if every verse is exactly 4 lines)
@@ -144,6 +210,30 @@ Scan for and REMOVE:
 - Have at least one `*sound effect*` line (≤5 words)
 - Not contain the word "experimental" (replace with descriptive equivalent)
 - Have section-specific EMO: tags
+- Have performance-rich Suno headers. If headers are mostly plain `[Verse]`, `[Chorus]`, `[Bridge]`, mark **FAIL — NOT PERFORMANCE READY**, even if line count and safety pass.
+- Include at least one non-lexical vocalization or singable response hook unless the song is explicitly spoken-word/minimalist and the music prompt justifies that omission.
+
+### 3B. AWARD-POTENTIAL CHECK (music — mandatory before delivery)
+
+Compliance is not enough. For every final song, score 1–5 on:
+- **Emotional precision:** does it nail the target feeling without generic doom-pop or slogans?
+- **Hook inevitability:** is there a clear, replayable phrase or melodic object?
+- **Sonic singularity:** is there one unmistakable production idea the listener will remember?
+- **Lofn lineage:** does it preserve the seed/panel breakthrough, not merely satisfy the brief?
+- **Suno readiness:** would this paste cleanly into Suno with performance cues already embedded?
+
+Any song with average <4.0, or any single category ≤2, must be returned for revision. Mark the report **FAIL — COMPLIANT BUT NOT COMPETITIVE** if files pass structure but lack award-level distinctiveness.
+
+### 3C. STEP-10 SPEC ADHERENCE CHECK (music)
+
+The final song file must show evidence that `10_Generate_Music_Revision_Synthesis.md` was actually applied:
+- Rich performance-script lyric syntax present
+- Sound-effect cue(s) present
+- Section headers with `EMO:` and vocalist/mix cues present
+- Music prompt has vocalist spec + chronological progression map
+- A compact critic/synthesis note exists, or the final file clearly documents why this version beat alternatives
+
+If these indicators are absent, mark **FAIL — STEP 10 SPEC NOT FOLLOWED**.
 
 **Specificity check (music only):**
 - At least one proper noun (place name, person name, organization, statistic) in lyrics
