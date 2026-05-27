@@ -1,6 +1,7 @@
 # Step 11 — Enhancement: Strong Model Final Polish
 
 Read first:
+- `skills/music/references/quality_curriculum.md` — our four benchmark songs (Triple Arch Over Me, Five Wrong Colors, I Will Stop the Almost, The Blue Screen Breathes). Your enhanced output must try to match or beat this standard.
 - `skills/qa/references/suno_15_point_qa.md`
 - `skills/music/references/producer_grade_suno_prompt_guide.md`
 - `skills/music/references/simple_surface_complex_engine.md`

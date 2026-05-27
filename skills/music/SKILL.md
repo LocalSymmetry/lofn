@@ -10,6 +10,7 @@ This router prevents context collapse. The full tuned music pipeline text is pre
 ## Workflow
 
 1. Confirm this is a music/audio task: Suno prompt, lyrics, song guide, audio pipeline, or music production brief.
+1b. **QUALITY CURRICULUM (MANDATORY):** Read `references/quality_curriculum.md` before generating any output. This contains our four benchmark songs (Triple Arch Over Me, Five Wrong Colors, I Will Stop the Almost, The Blue Screen Breathes) with full prompt and lyrics. Your output must try to match or beat this standard. These are our best work, tested on our platforms.
 1a. Read `/data/.openclaw/workspace/vault/LOFN_MODEL_ASSIGNMENTS.md` before spawning or assigning music pipeline agents; follow its active step-specific model map unless The Scientist overrides it in the current request.
 2. Read `references/music_full_legacy.md` before doing any substantive music work.
 3. Read `TASK_TEMPLATE.md` before writing any final pair/song output. Its Step 10 output contract is mandatory.
