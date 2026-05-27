@@ -37,6 +37,13 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 - **No match** → `read skills/orchestration/refs/Generate_Panel.md` and create a new one
 - Name the panel you selected or created before proceeding
 
+### Daily Run Rule — Library-Only Selection
+
+**For daily pipeline runs, ALWAYS select from the existing personality and panel libraries.** Do not generate new personalities or panels for daily runs. Freshly-generated personalities become too targeted to the specific daily theme, over-fitting and losing the broad creative DNA that makes library entries battle-tested. The library (114 personalities, 178 panels) provides proven variation. New personality/panel generation is reserved for competition runs, Scientist-requested experiments, or when no library entry fits at all.
+
+- **Daily run:** scan indices → match → load from library. No generation.
+- **Competition / special run:** library-first, then generate only if no match exists.
+
 ### Reference files (only load when needed — not auto-loaded):
 - **Metaprompt template:** `read skills/orchestration/refs/Generate_Meta_Prompt.md`
 - **Full library (large):** `read skills/orchestration/refs/personality_and_panel_list.md`
@@ -94,7 +101,7 @@ Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-bland
 - `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
 - `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
 
-**Step 11 — GPT-5.5 Enhancement (post-step10):** After all pair agents complete step10, spawn GPT-5.5 enhancement agents (1 per pair, 5 concurrent max). Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_GPT55_Enhancement.md`. Model: `openai/gpt-5.5`. Timeout: 300s each.
+**Step 11 — Enhancement (post-step10):** After all pair agents complete step10, spawn enhancement agents (1 per pair, 5 concurrent max) using the strongest available creative model. Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`. Current model: `openai/gpt-5.5`. Timeout: 300s each.
 
 After writing the packet, run:
 

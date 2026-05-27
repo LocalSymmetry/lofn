@@ -28,7 +28,7 @@ Status: Active — Gemini 3.5 Flash full pair pipeline, DeepSeek V4 Pro coordina
 |-----------|-------|------|
 | 06-09 | `google/gemini-3.5-flash` | Facets, Song Guides, Generation, Refinement |
 | 10 | `google/gemini-3.5-flash` | Final Synthesis — Suno-ready package with EMO enforcement |
-| 11 | `openai/gpt-5.5` | GPT-5.5 Enhancement — QA-gated polish, 15-point gate verification, producer-grade prompt |
+| 11 | `openai/gpt-5.5` | Enhancement — strong model final polish, 15-point gate verification, producer-grade prompt |
 
 ## Rationale
 
