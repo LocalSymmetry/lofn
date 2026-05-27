@@ -112,5 +112,20 @@ For each pair:
 ## Output File
 Write: `pair_0X_step10_final_package_enhanced.md` to the run directory.
 
+## Mandatory Delivery Checks — VERIFY BEFORE WRITING
+
+Before writing the final file, verify these TWO gates. Missing either = BLOCKING FAIL.
+
+### Gate 13a — Theme + Song Form
+Lyrics MUST open with:
+```
+[Theme: <specific scene-pressure / emotional operating system>]
+[SONG FORM: <named musical form and sequence>]
+```
+Theme is not a generic topic — it is a focusing compression field. Song Form names the actual architecture and key transitions. Missing or generic blocks = FAIL.
+
+### Gate 14a — Producer-Grade Prompt Opening
+Prompt MUST lead with genre/style + tempo/energy + key/tuning. First clause example: "Industrial Grief × Glitch-Core, 132 BPM, C# minor." Then: vocalist → instrumentation → arrangement → sonic device → avoidances. BANNED openings: "Compose", "Create", "Begin in/by/with…", "Use…", "Build the track from…", "Chronology:". If the output prompt opens with any of these, rewrite it before saving.
+
 ## Integration
 This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
