@@ -37,6 +37,13 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 - **No match** → `read skills/orchestration/refs/Generate_Panel.md` and create a new one
 - Name the panel you selected or created before proceeding
 
+### Daily Run Rule — Library-Only Selection
+
+**For daily pipeline runs, ALWAYS select from the existing personality and panel libraries.** Do not generate new personalities or panels for daily runs. Freshly-generated personalities become too targeted to the specific daily theme, over-fitting and losing the broad creative DNA that makes library entries battle-tested. The library (114 personalities, 178 panels) provides proven variation. New personality/panel generation is reserved for competition runs, Scientist-requested experiments, or when no library entry fits at all.
+
+- **Daily run:** scan indices → match → load from library. No generation.
+- **Competition / special run:** library-first, then generate only if no match exists.
+
 ### Reference files (only load when needed — not auto-loaded):
 - **Metaprompt template:** `read skills/orchestration/refs/Generate_Meta_Prompt.md`
 - **Full library (large):** `read skills/orchestration/refs/personality_and_panel_list.md`
