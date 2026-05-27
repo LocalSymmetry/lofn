@@ -73,7 +73,7 @@ Each song in its own file: `{output_dir}/song_01_<slug>.md` through `song_06_<sl
 ### Step 5: Deliver (after Step 11 Enhancement)
 Before delivery, run the 15-point Suno gate on each selected song: body, adoptable hook, emotional TAM, specificity, cognitive ease, vocal co-discovery, sonic threshold, standalone prompt, prompt density/restraint, lyric syntax, 15–30s hook survivability, active personality fidelity, production specificity, anti-slop/cliché burn list, package readiness.
 
-**Step 11 — GPT-5.5 Enhancement:** After Step 10 completes for all pairs, run a GPT-5.5 enhancement pass on each pair's Step 10 output (1 agent per pair, `openai/gpt-5.5`, 300s timeout). See `steps/11_Generate_Music_GPT55_Enhancement.md`. This produces `pair_0X_step10_final_package_enhanced.md` with full 15-gate QA verification. Do not skip.
+**Step 11 — Enhancement:** After Step 10 completes for all pairs, run a strong model enhancement pass on each pair's Step 10 output (1 agent per pair, currently `openai/gpt-5.5`, 300s timeout). See `steps/11_Generate_Music_Enhancement.md`. This produces `pair_0X_step10_final_package_enhanced.md` with full 15-gate QA verification. Do not skip.
 
 Repair any blocking failure before delivery. Then send each song file to Telegram.
 

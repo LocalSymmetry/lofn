@@ -94,7 +94,7 @@ Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-bland
 - `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
 - `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
 
-**Step 11 — GPT-5.5 Enhancement (post-step10):** After all pair agents complete step10, spawn GPT-5.5 enhancement agents (1 per pair, 5 concurrent max). Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_GPT55_Enhancement.md`. Model: `openai/gpt-5.5`. Timeout: 300s each.
+**Step 11 — Enhancement (post-step10):** After all pair agents complete step10, spawn enhancement agents (1 per pair, 5 concurrent max) using the strongest available creative model. Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`. Current model: `openai/gpt-5.5`. Timeout: 300s each.
 
 After writing the packet, run:
 

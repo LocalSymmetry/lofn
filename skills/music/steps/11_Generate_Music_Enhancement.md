@@ -1,4 +1,4 @@
-# Step 11 — GPT-5.5 Enhancement: Final QA-Gated Polish
+# Step 11 — Enhancement: Strong Model Final Polish
 
 Read first:
 - `skills/qa/references/suno_15_point_qa.md`
@@ -9,14 +9,14 @@ Read first:
 
 ## Purpose
 
-Step 11 takes the Gemini 3.5 Flash step10 output and runs a **GPT-5.5 enhancement pass** with the full 15-point QA checklist as context. This is NOT a rewrite — it is a quality elevation. GPT-5.5 applies stronger judgment to:
+Step 11 takes the Gemini 3.5 Flash step10 output and runs a **strong model enhancement pass** with the full 15-point QA checklist as context. This is NOT a rewrite — it is a quality elevation. The enhancement model applies stronger judgment to:
 - Sharpen poetic language in lyrics
 - Tighten the combined prompt to producer-grade density
 - Ensure every QA gate is met or exceeded
 - Elevate body noise placement and function
 - Deepen EMO dramaturgy across sections
 
-**Model:** `openai/gpt-5.5`
+**Model:** strongest available creative model (currently `openai/gpt-5.5`)
 **Max runtime:** 300 seconds per pair
 **Spawning:** 1 agent per pair, 5 concurrent max
 
@@ -113,4 +113,4 @@ For each pair:
 Write: `pair_0X_step10_final_package_enhanced.md` to the run directory.
 
 ## Integration
-This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 GPT-5.5 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
+This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
