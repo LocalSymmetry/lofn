@@ -41,6 +41,25 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 - **Metaprompt template:** `read skills/orchestration/refs/Generate_Meta_Prompt.md`
 - **Full library (large):** `read skills/orchestration/refs/personality_and_panel_list.md`
 
+### PERSONALITY GENRE CONSTRAINT — CRITICAL FOR PAIR ASSIGNMENTS
+
+**This applies to EVERY pair blueprint you write, across all arms. Violation invalidates the run.**
+
+Each personality carries explicit genre DNA — a vocabulary of styles that define their creative identity. This vocabulary is the ONLY valid source for pair genre assignments.
+
+**How the arms work:**
+- **ACCESSIBLE arm:** Draw from the personality's warmer, lower BPM, more consonant genres. Still the personality. Not generic human-accessible substitutes.
+- **AMBITIOUS arm:** Draw from the personality's experimental, intense, physically confrontational genres. Still the personality. Higher BPM, more dissonant, more risk.
+- **Hybrid is allowed** across the personality's own palette within a single pair.
+
+**What ACCESSIBLE DOES NOT mean:**
+- It does NOT mean generic acoustic pop, indie folk, singer-songwriter, or warm lo-fi.
+- It does NOT mean substituting the personality's genre vocabulary for whatever humans find comfortable.
+- A personality's Bio-Ambient at 72 BPM is ACCESSIBLE. "Lo-fi" is not.
+- A personality's Solarpunk Folk at 88 BPM is ACCESSIBLE. "Acoustic pop" is not.
+
+**The test for every pair assignment:** If a listener heard this song, would they identify it as THAT PERSONALITY's work — in their warmer register or their intense register? If the answer is "this sounds like a generic human artist," the genre assignment has failed.
+
 ---
 
 ## ⏱️ TOKEN BUDGET — READ THIS FIRST
@@ -74,6 +93,8 @@ Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-bland
 - `04_orchestrator_metaprompt.md` with Golden Seed, active personality, panel object, selected pattern, and structural completeness contract
 - `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
 - `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
+
+**Step 11 — GPT-5.5 Enhancement (post-step10):** After all pair agents complete step10, spawn GPT-5.5 enhancement agents (1 per pair, 5 concurrent max). Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_GPT55_Enhancement.md`. Model: `openai/gpt-5.5`. Timeout: 300s each.
 
 After writing the packet, run:
 
@@ -115,6 +136,7 @@ Using the research brief + the closest Golden Seed as DNA:
 - Adapt it to the specific challenge brief
 - Define 4-5 FRESH constraint axes specific to THIS brief (never recycle axes from prior runs)
 - Write the axes as vocabulary, not single answers — each axis has 4-6 options
+- **NEW — Mandatory section:** Include a PERSONALITY GENRE DNA CONSTRAINT. Extract the active personality's genre vocabulary (for Lofn-Prime: AWE palette = Bio-Ambient, Solarpunk Soundscapes, Plant-Wave, Rhumba-Fusion, 432Hz Crystalline Folk, Green Synth Pop, Neo-Classical Bio-Adaptive | INDIGNATION palette = Industrial Grief, Glitch-Core, Pasifika Futurism, Somatic Bass 30-60Hz, Neuro-Cross, Avant-Garde Organ-Core). State explicitly: ACCESSIBLE arm = AWE palette at lower intensity. AMBITIOUS arm = INDIGNATION palette. Generic human genres (lo-fi, folk-noir, acoustic pop) are FORBIDDEN substitutions.
 
 ### Step 0.3 — Write a Neutral Dispatch Brief
 - Summarise the seed in neutral language (no personality injected yet)

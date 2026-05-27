@@ -232,7 +232,8 @@ Correct pattern:
 2. The coordinator writes the six concept×medium / song pair assignments to disk.
 3. The parent session spawns pair subagents for Steps 06-10, one pair per subagent, using the coordinator output and full metaprompt. Respect max concurrency: spawn pairs 1-5 first, then pair 6 after one lands.
 4. Each pair subagent owns a complete local arc for its pair and writes its final `step10_final_pairXX.md` / `pair_XX_steps_06_10.md` file.
-5. Only after all six pair files are complete should QA run.
+4a. **Step 11 — GPT-5.5 Enhancement:** After all six Step 10 packages are on disk, spawn 6 GPT-5.5 enhancement agents (1 per pair, 5 concurrent max, `openai/gpt-5.5`, 300s each). Each reads its Step 10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_GPT55_Enhancement.md`.
+5. Only after all six pair files AND all six enhanced files are complete should QA run.
 
 ### 🔴 Daily Pipeline Modality Mandate — Music Cannot Be Optional
 
@@ -243,6 +244,7 @@ Daily run hard gates:
 2. Spawn `lofn-audio` coordinator before, or at minimum in parallel with, `lofn-vision`.
 3. Verify `output/daily/YYYY-MM-DD/daily-run/audio/` contains `step00_coordinator_overview.md`, `step05_pair_agent_handoff.md`, and `pair_01_concept.md` through `pair_06_concept.md`.
 4. Spawn/ensure six audio pair agents and verify `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md` before QA.
+4a. Run Step 11 GPT-5.5 enhancement on all 6 pairs — verify `pair_01_step10_final_package_enhanced.md` through `pair_06_step10_final_package_enhanced.md`.
 5. If audio is missing, incomplete, or stalled, the daily run status is **INCOMPLETE**, even if vision finished.
 6. The correct music agent is `lofn-audio` (not `lofn-music`).
 
@@ -283,6 +285,7 @@ Use the 10-step process from PIPELINE.md:
 9. Draft prompts — 4 per pair = 24 total (Step 08)
 10. Artist refinement — 4 per pair = 24 total (Step 09)
 11. Revision + synthesis — 4 per pair = 24 total (Step 10)
+12. GPT-5.5 Enhancement — 1 per pair = 6 enhanced packages (Step 11, `openai/gpt-5.5`)
 
 ### 🔴 CARDINALITY CHECKPOINT (Non-Negotiable)
 
@@ -290,6 +293,7 @@ Before proceeding to rendering, verify:
 - [ ] Step 05 produced ≥ 6 distinct concept-medium pairs
 - [ ] Steps 06–10 each have sections/output for EVERY pair (not just one batch)
 - [ ] Step 10 contains ≥ 24 final prompts (6 pairs × 4 each)
+- [ ] Step 11 contains 6 enhanced packages (`pair_0X_step10_final_package_enhanced.md`)
 - [ ] QA cardinality audit passed (see `skills/qa/SKILL.md` Phase 0.5)
 
 **If any of these fail, do NOT render. Rerun from the collapsed step.**
