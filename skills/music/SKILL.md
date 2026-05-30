@@ -31,6 +31,60 @@ This router prevents context collapse. The full tuned music pipeline text is pre
 14. After every step artifact, run `scripts/validate_with_retries.py <step> <file>` with up to 3 attempts.
 15. Do not call music generation tools; this skill writes Suno-ready text artifacts only.
 
+
+## Validator-Aligned Artifact Rules — 2026-05-29
+
+These rules exist because the validator is literal. Follow them exactly; do not infer alternate names or headings.
+
+### Canonical filenames
+
+- Step 08 canonical file is `pair_{NN}_step08_generation.md`. Do not write only `pair_{NN}_step08_music_prompts.md`; that name is a compatibility sidecar only.
+- Step 10 canonical file is `pair_{NN}_step10_revision_synthesis.md`.
+- Step 11 canonical file is `pair_{NN}_step10_final_package_enhanced.md`.
+
+### Step 08 and Step 10 required section shape
+
+For every Step 08 or Step 10 artifact, include these exact top-level sections in this order where possible:
+
+1. `## 0. Step Provenance`
+2. `## 1. Input Context Digest`
+3. `## Continuity Payload Used`
+4. `## 1. MUSIC PROMPT`
+5. `## 2. LYRICS` or `## 2. SUNO LYRICS`
+6. Production / notes / self-critique / validation sections
+
+The validator extracts the music prompt from the text between `## 1. MUSIC PROMPT` and the next lyrics heading or next `##` heading. Therefore:
+
+- Put exactly ONE standalone generator prompt body under `## 1. MUSIC PROMPT`.
+- The extracted prompt body must be **850-1000 characters**. Count characters before saving.
+- Do not put four long variation prompts under the same `## 1. MUSIC PROMPT` heading; that creates a 3000-6000 character prompt and fails validation.
+- If preserving 4 variations, put portfolio notes outside the validated prompt section, e.g. `## Variation Portfolio Notes`, after the lyrics or production notes.
+- The first prompt line must begin with genre/style + tempo/energy + vocalist/instrumentation, not narrative/procedural phrasing.
+
+### Lyrics validator requirements
+
+- Lyrics section must begin immediately with `[Theme: ...]` then `[SONG FORM: ...]`.
+- Use full EMO headers: `[Section - EMO:<emotion> - <Role> - <cue>]`. Bare `[EMO: ...]` fails.
+- Include at least one standalone SFX cue line like `*steam hiss*`.
+- Lyrics need at least 60 sung lines; target 70-120. Step 08 drafts must still satisfy this if they include lyrics.
+
+### Provenance validator requirements
+
+Every step artifact must include:
+
+- `## 1. Input Context Digest`
+- validation command provenance, e.g. `Validation command: python3 scripts/validate_with_retries.py 08 <file>`
+- `Continuity Payload Used` with the plural marker `Special Flairs`
+- self-critique and validation result
+
+Avoid the literal words `placeholder` or `template` in final artifacts, even in self-critique/provenance, because validator gates may flag them. Use `stub text` or `scaffold text` instead.
+
+### Subagent behavior
+
+- Do not read validator source files unless explicitly asked to debug the validator. Use the validation command, not the source.
+- Write the artifact early, then repair in place. Do not spend the whole run reading references.
+- For repair tasks, change only the failing section unless the prompt explicitly asks for broader repair.
+
 ## Non-Negotiables
 
 - The legacy music pipeline text is authoritative until fully split into smaller verified references.
