@@ -37,6 +37,20 @@ This router prevents context collapse. The full tuned music pipeline text is pre
 
 These rules exist because the validator is literal. Follow them exactly; do not infer alternate names or headings.
 
+
+### Actual music step template paths
+
+Use these exact files. Do not invent alternate step filenames.
+
+- Step 06: `steps/06_Generate_Music_Facets.md`
+- Step 07: `steps/07_Generate_Music_Song_Guides.md`
+- Step 08: `steps/08_Generate_Music_Generation.md`
+- Step 09: `steps/09_Generate_Music_Artist_Refined.md`
+- Step 10: `steps/10_Generate_Music_Revision_Synthesis.md`
+- Step 11: `steps/11_Generate_Music_Enhancement.md`
+
+There is no `08_Generate_Music_Generation_Artifact.md`. If you look for it, stop and use `steps/08_Generate_Music_Generation.md`.
+
 ### Canonical filenames
 
 - Step 08 canonical file is `pair_{NN}_step08_generation.md`. Do not write only `pair_{NN}_step08_music_prompts.md`; that name is a compatibility sidecar only.
