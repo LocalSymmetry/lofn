@@ -117,6 +117,7 @@ Rules:
 - Do NOT change genre, BPM, key, tuning, unnecessary element, or invariant hook
 - Do NOT translate the Lofn genre to any generic label
 - Do NOT remove, shorten, or relocate the unnecessary element
+- Do NOT output non-verbal phoneme placeholders as lyrics (e.g., "ka-te-sa lo-ni-va"). Every variation must contain actual singable English words.
 - No generic human genres (lo-fi, folk-noir, acoustic pop, indie folk, singer-songwriter, ambient pop, art pop, cinematic, soundtrack, epic, ethereal, dreamlike, magical, whimsical)
 
 ## Output File
