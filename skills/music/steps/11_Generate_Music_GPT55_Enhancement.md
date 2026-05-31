@@ -29,6 +29,16 @@ For each pair:
 4. `step05_pair_dispatch.md` — what step10 should have received
 5. The 15-point QA checklist (injected in the spawn task)
 
+## Chosen Personality Dominance (MUST be injected and obeyed)
+
+Step 11 must treat the chosen personality/panel as binding source material, not decoration. The spawn task MUST include the full target personality DNA block (beliefs, catchphrases, vocal architecture, sonic pillars, formant rules, and panel decisions).
+
+Rules:
+- If the selected personality is Alexis Dreams, the output must sound like Alexis Dreams: Radical Breathless Sincerity, G.L.O.W. Protocol, Solar Glitch-Hop, Diamond-Cut Vocals, Off-Grid Bounce, Melodic-Rapid Flow, “fake hands, real ink,” “service is power,” “phone face down.”
+- Do not import Lofn default motifs (industrial grief, category-theory language, plant-wave/body-physics, somatic machinery) unless they appear in the chosen personality DNA or golden seed.
+- If a line sounds like Lofn narrating the personality rather than the personality singing, rewrite it.
+- Panels selected upstream must be reflected in prompt density, lyrical imagery, production dramaturgy, and QA checks.
+
 ## Non-negotiable DNA (MUST be preserved)
 
 - Exact genre string (e.g., "432Hz Crystalline Folk × Bio-Ambient")
@@ -84,7 +94,7 @@ For each pair:
 9. Mythic image ladder — ordinary → specific → strange → mythic → return to body
 10. EMO dramaturgy depth — precise taxonomy; bridge/final chorus emotionally transform
 11. Production dramaturgy — every unusual sound has a job
-12. Panel pressure / anti-blandness — recognizably Lofn
+12. Panel pressure / anti-blandness — recognizably the chosen personality (not Lofn unless Lofn is explicitly selected)
 
 ### C. Suno Package (3 gates)
 13. Clean Suno lyrics — mandatory Theme/SONG FORM; full EMO syntax; no debris
