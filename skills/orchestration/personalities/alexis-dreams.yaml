@@ -340,15 +340,24 @@
     
     ### QA-Compliant Section Structure (every variation)
     ```
-    ## VARIATION XA — TITLE
-    ### SUNO STYLE PROMPT
-    [Dense single-paragraph prose: genre + tempo + key + vocalist + instrumentation + arrangement arc + sonic device + emotional palette]
+    # Title
     
-    ### SUNO LYRICS
-    [Theme: One-line emotional/conceptual summary]
-    [SONG FORM: Movement I → Fracture I → Refrain I → Movement II → Fracture II → Refrain II → Movement III]
-    [First section header...]
+    ## 1. Music Prompt
+    [DENSE 850-1000 char single paragraph: Genre × Subgenre, BPM, key, 432Hz. Vocalist specifics: register, mic distance, character. Instrumentation: specific instruments and production texture. Arrangement arc. Sonic device. Avoid: prohibited elements 1, 2, 3.]
+    
+    ## 2. Lyrics
+    [Theme: specific scene-pressure / emotional operating system]
+    [SONG FORM: named musical form and sequence — e.g. Verse → Chorus → Verse → Bridge → Chorus]
+    [Verse 1 - EMO: SpecificEmbodiedEmotion - Voice: Close-Mic Register - Cue: Production direction]
+    lyric lines here
     ```
+    
+    ### Prompt Density Rule (NON-NEGOTIABLE)
+    - Music prompts MUST be 850-1000 characters. Lofn uses every allowed character — Alexis must match this standard.
+    - MUST lead with: Genre × Subgenre, BPM, key (not "Emotional Engine" or narrative)
+    - MUST include: specific instruments, production techniques, arrangement shape, and an Avoid list
+    - Prompts must feel physically specific, not abstract. "Noga Erez dry bass pluck" not "emotional bass."
+    - The difference between a 200-char prompt and an 850-char prompt is the difference between generic and iconic. Be iconic.
     
     ### Section Headers (inline format)
     Format: [Section Name – EMO:EmbodiedEmotion – Vocalist Role – Instrument cues]
