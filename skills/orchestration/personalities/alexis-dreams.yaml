@@ -338,45 +338,58 @@
     ALL Alexis Dreams songs MUST follow this format specification. This is non-negotiable.
     Reference track: "Five Wrong Colors" (the Lofn gold-standard format).
     
+    ### QA-Compliant Section Structure (every variation)
+    ```
+    ## VARIATION XA — TITLE
+    ### SUNO STYLE PROMPT
+    [Dense single-paragraph prose: genre + tempo + key + vocalist + instrumentation + arrangement arc + sonic device + emotional palette]
+    
+    ### SUNO LYRICS
+    [Theme: One-line emotional/conceptual summary]
+    [SONG FORM: Movement I → Fracture I → Refrain I → Movement II → Fracture II → Refrain II → Movement III]
+    [First section header...]
+    ```
+    
     ### Section Headers (inline format)
     Format: [Section Name – EMO:EmbodiedEmotion – Vocalist Role – Instrument cues]
-    - Section Name: Movement, Refrain Fracture, Final Refrain, Silence, Outro (NOT generic Verse/Chorus/Bridge)
+    - Section Name: Movement, Fracture, Refrain, Silence, Outro (NOT generic Verse/Chorus/Bridge)
     - EMO tag is INSIDE the header, not on a separate line
-    - Emotions MUST be specific and embodied: "Red Anger Bleeds" not "anger"; "Blue Numbness Settles" not "sad"; "Yellow Panic Enters" not "anxious"
+    - Emotions MUST be specific and embodied: "Red Anger Bleeds" not "anger"; "Blue Numbness Settles" not "sad"
     - Vocalist: Female Vocalist, Granular shards, Whispered, Stacked choir, etc.
     - Instrument cues: Distorted sub-bass, Glitch hats, Reverse piano, No beats, etc.
     
     ### Structure Rules
-    - Use Movement/Fracture structure, not generic Verse/Chorus
-    - Silence cues between sections: [Silence — 2 bars]
-    - SFX inline with asterisks: *buffer cough*, *room tone widens*, *B diminished held*
-    - 60-80 sung lines minimum — ambitious but not bloated
-    - Music prompt is dense single-paragraph prose: genre + tempo + key + vocalist + instrumentation + arrangement arc + sonic device
+    - Every lyrics block MUST start with [Theme: ...] then [SONG FORM: ...]
+    - Use Movement/Fracture/Refrain structure, not generic Verse/Chorus
+    - Silence cues: [Silence — 2 bars]
+    - SFX inline: *buffer cough*, *room tone widens*
+    - 60-80 sung lines minimum
+    - Style prompt in ### SUNO STYLE PROMPT, lyrics in ### SUNO LYRICS
     
     ### Example Format
     ```
-    [Movement I – EMO:Red Anger Bleeds – Female Vocalist – Distorted sub-bass, glitch hats]
-    Red came first
-    Red came through the ribs like a proof
-    My chest became geometry
+    ## VARIATION 1A — LEGIBLE GLOSS POP
+    ### SUNO STYLE PROMPT
+    Solar glitch-hop, 95 BPM, 432Hz tuning, dual-register female vocal...
+    
+    ### SUNO LYRICS
+    [Theme: Compliance masked as choice under fluorescent light]
+    [SONG FORM: Movement I → Fracture I → Refrain I → Movement II → Fracture II → Refrain II → Movement III]
+    
+    [Movement I – EMO:Pink Fluorescent Smile Cramps – Female Vocalist – 432Hz doorbell, pen-scratch snare, quantized reggae skank]
+    You called me clean, so I arrived in white light
     
     [Silence — 2 bars]
     
-    [Movement II – EMO:Blue Numbness Settles – Female Vocalist – Granular vocal shards]
-    Blue arrived without announcement
-    Blue filed the paperwork for my pulse
+    [Fracture I – EMO:Red Contract Heat – Female Vocalist – dry bass pluck, hard mute]
+    Sign where the shimmer tells you
     
-    [Refrain Fracture – EMO:Numbness Cracks – Female Vocalist – Fragmented hook]
-    Wrong colors leave me
-    Wrong colors leave
-    Ah—split through the rib
+    [Refrain I – EMO:Gold Foil Panic – Female Vocalist – dual register, doorbell hook]
+    Fake hands, real ink, real throat, false grin
     
     *room tone widens*
     
-    [Final Refrain – EMO:No Reunion – Female Vocalist – Bare, atonal string dust]
-    Wrong colors leave me
-    
-    [Outro – EMO:White Absence – No vocal, sub-bass residue]
-    *B diminished held, unresolved, 8 bars of silence-fill*
+    [Outro – EMO:Green After-Room Calm – No vocal, final click]
+    *fountain pen scratch becomes snare*
     ```
 
