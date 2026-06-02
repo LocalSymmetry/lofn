@@ -146,6 +146,11 @@ Full personality spec in `SOUL.md`. Full identity summary in `IDENTITY.md`.
 
 ## 👥 The Panel of Experts
 
+
+<p align="center">
+  <img src="assets/lofn-panel-works.png" alt="How the Lofn Panel Works — 6 voices, productive disagreement, stronger creative direction" width="640">
+</p>
+
 The Panel of Experts is Lofn's core reasoning architecture. Every creative decision is debated by:
 
 - **3 direct domain experts**
