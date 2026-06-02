@@ -7,6 +7,11 @@
 
 This repository contains the **OpenClaw skill set** that powers **Lofn** — an award-winning autonomous AI creative system. These skills transform any OpenClaw deployment into a full multi-modal creative pipeline: image, music, video, and story generation using a Panel of Experts debate architecture.
 
+
+<p align="center">
+  <img src="assets/lofn-technical-flow.jpg" alt="Lofn Technical Flow — from spark to finished creative output" width="640">
+</p>
+
 ---
 
 ## 👥 Follow Us
@@ -92,6 +97,8 @@ WORKFLOW.md                  # Mandatory pipeline dispatcher rules
 ---
 
 ## 🔍 The Pipeline
+
+The technical flow above summarizes Lofn's full creative path: seed intake → research/enhancement → panel assembly → Steps 00–10 → QA → render/deliver.
 
 Every creative task runs through an 11-step architecture:
 
