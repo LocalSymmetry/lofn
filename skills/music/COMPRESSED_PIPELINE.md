@@ -3,6 +3,7 @@
 *Purpose: A single-file pipeline that music agents can read + execute within context/time budget*
 
 ## INPUT (read these first)
+0. `skills/music/references/quality_curriculum.md` — four benchmark songs; output must match or beat
 1. `{output_dir}/orchestrator_metaprompt.md`
 2. `{output_dir}/../golden_seed.md`
 

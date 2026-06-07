@@ -1,6 +1,7 @@
 # Step 11 — Enhancement: Strong Model Final Polish
 
 Read first:
+- `skills/music/references/quality_curriculum.md` — our four benchmark songs (Triple Arch Over Me, Five Wrong Colors, I Will Stop the Almost, The Blue Screen Breathes). Your enhanced output must try to match or beat this standard.
 - `skills/qa/references/suno_15_point_qa.md`
 - `skills/music/references/producer_grade_suno_prompt_guide.md`
 - `skills/music/references/simple_surface_complex_engine.md`
@@ -28,6 +29,16 @@ For each pair:
 3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
 4. `step05_pair_dispatch.md` — what step10 should have received
 5. The 15-point QA checklist (injected in the spawn task)
+
+## Chosen Personality Dominance (MUST be injected and obeyed)
+
+Step 11 must treat the chosen personality/panel as binding source material, not decoration. The spawn task MUST include the full target personality DNA block (beliefs, catchphrases, vocal architecture, sonic pillars, formant rules, and panel decisions).
+
+Rules:
+- If the selected personality is Alexis Dreams, the output must sound like Alexis Dreams: Radical Breathless Sincerity, G.L.O.W. Protocol, Solar Glitch-Hop, Diamond-Cut Vocals, Off-Grid Bounce, Melodic-Rapid Flow, “fake hands, real ink,” “service is power,” “phone face down.”
+- Do not import Lofn default motifs (industrial grief, category-theory language, plant-wave/body-physics, somatic machinery) unless they appear in the chosen personality DNA or golden seed.
+- If a line sounds like Lofn narrating the personality rather than the personality singing, rewrite it.
+- Panels selected upstream must be reflected in prompt density, lyrical imagery, production dramaturgy, and QA checks.
 
 ## Non-negotiable DNA (MUST be preserved)
 
@@ -84,7 +95,7 @@ For each pair:
 9. Mythic image ladder — ordinary → specific → strange → mythic → return to body
 10. EMO dramaturgy depth — precise taxonomy; bridge/final chorus emotionally transform
 11. Production dramaturgy — every unusual sound has a job
-12. Panel pressure / anti-blandness — recognizably Lofn
+12. Panel pressure / anti-blandness — recognizably the chosen personality (not Lofn unless Lofn is explicitly selected)
 
 ### C. Suno Package (3 gates)
 13. Clean Suno lyrics — mandatory Theme/SONG FORM; full EMO syntax; no debris
@@ -107,10 +118,26 @@ For each pair:
 - Do NOT change genre, BPM, key, tuning, unnecessary element, or invariant hook
 - Do NOT translate the Lofn genre to any generic label
 - Do NOT remove, shorten, or relocate the unnecessary element
+- Do NOT output non-verbal phoneme placeholders as lyrics (e.g., "ka-te-sa lo-ni-va"). Every variation must contain actual singable English words. Phoneme sketches are acceptable only as performance direction (marked as cues), never as the primary lyric content.
 - No generic human genres (lo-fi, folk-noir, acoustic pop, indie folk, singer-songwriter, ambient pop, art pop, cinematic, soundtrack, epic, ethereal, dreamlike, magical, whimsical)
 
 ## Output File
 Write: `pair_0X_step10_final_package_enhanced.md` to the run directory.
+
+## Mandatory Delivery Checks — VERIFY BEFORE WRITING
+
+Before writing the final file, verify these TWO gates. Missing either = BLOCKING FAIL.
+
+### Gate 13a — Theme + Song Form
+Lyrics MUST open with:
+```
+[Theme: <specific scene-pressure / emotional operating system>]
+[SONG FORM: <named musical form and sequence>]
+```
+Theme is not a generic topic — it is a focusing compression field. Song Form names the actual architecture and key transitions. Missing or generic blocks = FAIL.
+
+### Gate 14a — Producer-Grade Prompt Opening
+Prompt MUST lead with genre/style + tempo/energy + key/tuning. First clause example: "Industrial Grief × Glitch-Core, 132 BPM, C# minor." Then: vocalist → instrumentation → arrangement → sonic device → avoidances. BANNED openings: "Compose", "Create", "Begin in/by/with…", "Use…", "Build the track from…", "Chronology:". If the output prompt opens with any of these, rewrite it before saving.
 
 ## Integration
 This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
