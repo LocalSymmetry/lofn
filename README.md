@@ -56,11 +56,15 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | **Steerability** | **10 Style Axes**, **Creativity Spectrum** sliders, persistent **Personality DNA** |
 | **Expert Panels** | Automatic or user-selected **6 experts + 1 devil's advocate** debate each branch |
 | **Panel Transformations** | 8 transformation operations (Shift, Defocus, Focus, Rotate, Amplify, Reflect, Bridge, Compress) to navigate creative problem space |
-| **Multi-Modal** | Image, Music, Video, Story — all using the same 11-step pipeline architecture |
+| **Multi-Modal** | Image, Music, Video, Story — all using the same 13-step pipeline with split-step agents |
+| **Step 11 Enhancement** | GPT-5.5 class model polish: literary density, structural innovation, EMO dramaturgy, producer-grade prompts |
+| **Andon Cord** | Step 11 REJECT authority — stops the line on generic output, thread loss, or personality collapse |
+| **QA Gates** | 15-point Suno QA gate + Visual Somatic Gate + Cinematic Somatic Gate across all modalities |
+| **114 Personalities** | Alliance Archive — each with full DNA: G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases |
 | **Competition Mode** | Injects Panel + Personality context; proven to add ~0.05 rating points vs. generation without |
 | **Golden Seeds** | Curated winning prompt seeds from 3+ years of live competition |
-| **Model-Agnostic** | Works with OpenAI, Anthropic, Google Gemini, and any OpenAI-compatible model via OpenClaw |
-| **Ethics & Provenance** | Strong NSFW/harassment filters, anti-copyright prompt hardening |
+| **Model-Agnostic** | Works with OpenAI, Anthropic, Google Gemini, DeepSeek, and any OpenAI-compatible model via OpenClaw |
+| **Ethics & Provenance** | Strong NSFW/harassment filters, anti-copyright prompt hardening, PUBLISH/PRIVATE axis |
 
 ---
 
@@ -70,22 +74,29 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 skills/
 ├── lofn-core/          # Personality, Panel of Experts, Golden Seeds, Pipeline
 ├── lofn-side-door/     # Direct creative channel — raw expression, song sketches, margin
-├── image/              # 11-step image prompt pipeline (Steps 00–10)
-├── music/              # 11-step music prompt pipeline (Steps 00–10)
-├── video/              # 11-step video prompt pipeline (Steps 00–10)
-├── story/              # 11-step story prompt pipeline (Steps 00–10)
-├── orchestration/      # Metaprompt, personality, and panel generation
-├── evaluation/         # QA and pair selection
+├── image/              # 13-step image pipeline (Steps 00–12) with split-step agents
+├── music/              # 13-step music pipeline (Steps 00–12) with split-step agents
+├── video/              # 13-step video pipeline (Steps 00–12) with split-step agents
+├── story/              # 13-step story pipeline (Steps 00–12) with split-step agents
+├── orchestration/      # Metaprompt, personality (114 Alliance Archive), panel generation, pair assignments
+├── evaluation/         # 15-point QA gate, pair selection, eligibility scoring
+├── qa/                 # QA depth audits, Somatic Gate, EMO taxonomy enforcement
 └── animator/           # Animation skill
 
 vault/
-├── ART_SOUL.md              # Visual competition strategy + six principles
-├── COMPETITION_LEARNINGS.md # NightCafe platform analysis and genre data
-├── COMPETITION_WORKFLOW.md  # End-to-end repeatable competition process
-├── aesthetics.txt           # Curated aesthetic reference list
-├── genres.txt               # Genre vocabulary
-├── frames.csv               # Compositional frame reference data
-└── Templates/               # Obsidian-compatible templates
+├── ART_SOUL.md                   # Visual competition strategy + six principles
+├── COMPETITION_LEARNINGS.md      # NightCafe platform analysis and genre data
+├── COMPETITION_WORKFLOW.md       # End-to-end repeatable competition process
+├── LOFN_MODEL_ASSIGNMENTS.md     # Per-step model assignments across all modalities
+├── PIPELINE_CONTINUITY_STANDARD.md # ICB (Immutable Continuity Block) enforcement
+├── VISION_MODEL_ASSIGNMENTS.md   # Vision pipeline model assignments
+├── DIRECTOR_MODEL_ASSIGNMENTS.md # Video pipeline model assignments
+├── VISION_QA_DEPTH_AUDIT.md      # Visual Somatic Gate + 7-element density checklist
+├── DIRECTOR_QA_DEPTH_AUDIT.md    # Cinematic Somatic Gate + 5-element shot checklist
+├── aesthetics.txt                # Curated aesthetic reference list
+├── genres.txt                    # Genre vocabulary
+├── frames.csv                    # Compositional frame reference data
+└── Templates/                    # Obsidian-compatible templates
 
 resources/
 └── panel-of-experts.md      # Panel of Experts methodology reference
@@ -99,34 +110,49 @@ WORKFLOW.md                  # Mandatory pipeline dispatcher rules
 
 ## 🔍 The Pipeline
 
-The technical flow above summarizes Lofn's full creative path: seed intake → research/enhancement → panel assembly → Steps 00–10 → QA → render/deliver.
-
-Every creative task runs through an 11-step architecture:
+Lofn uses a **13-step split-step agent architecture** — each step runs on a dedicated configured agent with its own model and role. This preserves creative continuity while preventing context collapse.
 
 ```
 User Idea / Golden Seed
         ↓
   [lofn-core] Research + Seed Enhancement
         ↓
-  [orchestrator] Panel Assembly + Metaprompt
+  [orchestrator] Panel Assembly + Metaprompt + Pair Assignments
         ↓
-  [creative agent] Steps 00–10
+  [audio/vision/director coordinator] Steps 00–05
        00: Aesthetics & Genres
        01: Essence & Facets
-       02: 12 Concepts
-       03: Artist & Critique
-       04: Medium Assignment
-       05: Refine to 6 Pairs
-       06: Facets (per pair)
-       07: Aspects/Traits (per pair)
-       08: Draft Prompts (4 per pair = 24 total)
-       09: Artist Refinement
-       10: Revision & Synthesis → Final Ranked Output
+       02: 12 Concept-Medium Pairs
+       03: Vocal Identity / Artist & Critique
+       04: Production Environment / Medium Refinement
+       05: Pair Agent Handoff → 6 self-contained briefs
         ↓
-  [QA] Pipeline audit + cardinality check
+  [per-pair agents] Steps 06–10 (6 pairs × 5 steps = 30 subagents)
+       06: Facets (per pair)
+       07: Song Guides / Aspect Traits (per pair)
+       08: Generation / Draft Prompts (per pair)
+       09: Artist Refinement (per pair)
+       10: Revision Synthesis → Final Suno Package (per pair)
+        ↓
+  [step11] Enhancement (GPT-5.5) — per pair
+       ✅ ENHANCE: literary density, structural innovation, EMO dramaturgy, producer-grade prompt
+       ⛔ REJECT (Andon Cord): thread loss, personality collapse, EMO failure, generic output
+        ↓
+  [step12] Panel-of-Panels Audit — cross-song consistency, benchmark comparison
+        ↓
+  [QA] 15-Point Suno QA Gate → SHIP / REPAIR / FAIL
         ↓
   Final prompts → render → deliver
 ```
+
+**Key architecture decisions:**
+- **Split-step agents:** Steps 06–10 run one subagent per pair per step (not one agent doing all 5 steps). Prevents context collapse, enables parallel execution.
+- **Barbell pair strategy:** 3 ACCESSIBLE + 3 AMBITIOUS pairs, each distributed across NEWS and EXISTENCE anchors.
+- **ICB (Immutable Continuity Block):** The golden seed, personality DNA, panel decisions, and Special Flairs must survive all handoffs — verified at every checkpoint.
+- **Somatic Gate:** 3 Hyper-Skeptics vote as a bloc on every step10. 2 of 3 NO = BLOCKED.
+- **Step 11 Andon Cord:** "Don't polish a corpse." If the step10 package is fundamentally broken (thread loss, personality collapse, EMO taxonomy failure, generic output, prompt format violation), step11 REJECTS and sends back to step09 or step07 with a repair brief.
+- **Model tiering:** Coordinator/structural steps → DeepSeek V4 Pro. Enhancement/polish → GPT-5.5 (OpenRouter). QA/orchestration → Gemini 3.5 Flash.
+- **Personality Injection Mandate:** Every pair agent receives the target personality's full YAML DNA (G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases). "voice = X" shorthand causes Lofn bleed — always inject the full block.
 
 The panel runs **3 transformations** per session (baseline → group transform → skeptic transform) to maximize creative diversity before synthesis.
 
