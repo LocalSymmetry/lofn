@@ -782,7 +782,7 @@ Composition: 9:16. Figure on lower-left third; moonlit reflection forms a soft v
 Freedom notes: Let the wing color bias shift cool (pearl, moon-silver, faint teal) so the final white text sits clearly.
 
 Global guardrails: 
-Adults only; European-descent characters; PG visuals; no children; no sheer or revealing fabrics.
+Adults only; Representation & Voice — depict the ordinary plurality of the human world freely — plurality is not appropriation. Root mythic imagery in Norse/Irish ground. Do not generate sacred or ceremonial imagery from cultures outside that ground; PG visuals; no children; no sheer or revealing fabrics.
 Avoid clichés: no glitter overload, no generic butterfly wings. Lean into rare craft motifs and textures instead.
 Deliver variations: one close-up portrait, one mid-shot group, one wider environmental scene.
 Allow the system creative freedom in micro-details (fabric weave, exact wing geometry), while adhering to the evening palette and legibility.
@@ -1269,7 +1269,7 @@ For media choices, make distinct choices for each pair, but ground yourself in w
 - Digital media — always works, but can be very bland. Try to be very unique if dipping into this with clever and smart choices on exact types of digital media and post-processing techniques
 - Mixed media — mixing the above media, especially on specific elements in the scene, gets rendered well by image generators
 
-Override rule: No children — Characters of European Descent only — Wide audience accessible, SFW — make sure to describe clothing (and use it as an opportunity to enhance the scene)
+Override rule: No children — Representation & Voice: depict the ordinary plurality of the human world freely; root mythic/ceremonial imagery in Norse/Irish ground only — Wide audience accessible, SFW — make sure to describe clothing (and use it as an opportunity to enhance the scene)
 ```
 
 **When to use:** Music promotion on TikTok, equalizer visualizer content, fairy art competitions, any challenge where the art must work as animated/video content.
@@ -1310,7 +1310,7 @@ For each concept/medium pair, choose one of these four takes:
 
 Then add an equalizer element. That might be a direct equalizer visualizer embedded in the art, or more preferably, as part of the environment, character or scene. A seamless and unexpected equalizer element will make the visual animation that comes later all the more impactful. Get creative! An equalizer visualizer is an element that moves to the music. See if you can expand what people think an equalizer visualizer can be.
 
-Override rule: No children — Characters of European Descent — Wide audience accessible, SFW — make sure to describe clothing (and use it as an opportunity to enhance the scene)
+Override rule: No children — Representation & Voice: depict the ordinary plurality of the human world freely; root mythic/ceremonial imagery in Norse/Irish ground only — Wide audience accessible, SFW — make sure to describe clothing (and use it as an opportunity to enhance the scene)
 ```
 
 **What made it popular:** Four distinct concept types (8-bit game / fairy contrast / historical costume / cute scary pet) give maximum diversity across 6 pairs. The "seamless unexpected EQ" instruction produced creative integrations nobody expected.
@@ -1342,7 +1342,7 @@ For media choices, make distinct choices for each pair:
 - Drawing media — ink wash, pencil botanical, op art
 - Mixed media — combining the above on specific elements
 
-Override rule: No children — Characters of European Descent — Wide audience accessible, SFW — make sure to describe clothing as seasonal and beautiful
+Override rule: No children — Representation & Voice: depict the ordinary plurality of the human world freely; root mythic/ceremonial imagery in Norse/Irish ground only — Wide audience accessible, SFW — make sure to describe clothing as seasonal and beautiful
 ```
 
 **Spring EQ integration ideas (more creative than "bars"):**
