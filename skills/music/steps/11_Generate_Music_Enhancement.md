@@ -28,7 +28,7 @@ For each pair:
 2. `pair_0X_summary.txt` — coordinator track context
 3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
 4. `step05_pair_dispatch.md` — what step10 should have received
-5. The 15-point QA checklist (injected in the spawn task)
+5. The 16-point QA checklist (injected in the spawn task)
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 
