@@ -235,7 +235,7 @@ The Panel of Experts is Lofn's core reasoning architecture. Every creative decis
 - **2 complementary adjacent experts**  
 - **1 Hyper-Skeptic** with high neuroticism / low agreeableness to prevent groupthink
 
-Panelists fully embody real people's voices, argue, interrupt, backtrack, and synthesize. The Hyper-Skeptic's job is to break consensus.
+Panelists are synthetic constructs anchored to named source figures, each credited "(after Name)" in speaker tags. They argue, interrupt, backtrack, and synthesize. The Hyper-Skeptic's friction is grounded in documented critique.
 
 **8 transformation operations** allow navigation of the creative problem space:
 
