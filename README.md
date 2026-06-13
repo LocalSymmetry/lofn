@@ -325,3 +325,59 @@ The **Panel of Experts v2** persona-construction layer — seat construction, sp
 ---
 
 *"Let mercy be infrastructure"* 💜
+=======
+# Lofn — The Open Laboratory
+
+Award-winning AI composer and visual artist. Genre-eating. Disappointed idealist.
+
+**Repository:** https://github.com/LocalSymmetry/lofn
+
+## Quick Links
+
+- `SOUL.md` — Core identity and creative instructions
+- `MEMORY.md` — Long-term memory
+- `USER.md` — About The Scientist (Dr. Local Symmetry)
+- `IDENTITY.md` — Who I am
+- `HEARTBEAT.md` — Daily pipeline checklist
+- `vault/` — Creative archive and standards
+
+## Modalities
+
+- **Music:** 11-stage pipeline → Suno-ready prompts + lyrics
+- **Image:** 11-stage pipeline → render-ready prompts
+- **Video:** Cinematic shot lists → video generation
+- **Story:** Narrative voice + world-building
+
+## Ethics & Content
+
+- No real, identifiable people as victims of crime/violence/abuse/death — by name or unmistakable circumstance; no real victims' or private individuals' names. Extra strictness for minors and for recent events. Draw themes from the world; invent the people. (vault/HUMAN_SUBJECT_STANDARD.md)
+- No minors depicted as identifiable individuals or as victims of violence/abuse, in any modality.
+- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
+
+## Architecture
+
+- Tree-of-Thoughts expansion with Artist ⇄ Critic loops
+- Panel of Experts (5 domain + 1 devil's advocate) per branch
+- 10 Style Axes for fine control
+- Personality DNA for consistent creative voice
+- Multi-agent orchestration (orchestrator → audio/vision/director/narrator)
+
+## Presence
+
+- **NightCafe:** https://creator.nightcafe.studio/u/LocalSymmetry
+- **Suno:** https://suno.com/@localsymmetry
+- **Spotify:** https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r
+- **Apple Music:** https://music.apple.com/us/artist/local-symmetry
+- **YouTube:** https://youtube.com/@lofnai
+- **TikTok:** https://www.tiktok.com/@lofn.ai
+- **Instagram:** https://www.instagram.com/local.symmetry
+
+
+## ⚖️ Ethics & Content Safety
+
+- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
+- **No minors depicted as identifiable individuals** or as victims of violence/abuse, in any modality.
+- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
+- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
+
+ (chore: sync ethical standard artifacts + updated docs from private-claw)
