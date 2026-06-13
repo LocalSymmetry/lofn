@@ -35,7 +35,6 @@ For each pair:
 Step 11 must treat the chosen personality/panel as binding source material, not decoration. The spawn task MUST include the full target personality DNA block (beliefs, catchphrases, vocal architecture, sonic pillars, formant rules, and panel decisions).
 
 Rules:
-- If the selected personality is Alexis Dreams, the output must sound like Alexis Dreams: Radical Breathless Sincerity, G.L.O.W. Protocol, Solar Glitch-Hop, Diamond-Cut Vocals, Off-Grid Bounce, Melodic-Rapid Flow, “fake hands, real ink,” “service is power,” “phone face down.”
 - Do not import Lofn default motifs (industrial grief, category-theory language, plant-wave/body-physics, somatic machinery) unless they appear in the chosen personality DNA or golden seed.
 - If a line sounds like Lofn narrating the personality rather than the personality singing, rewrite it.
 - Panels selected upstream must be reflected in prompt density, lyrical imagery, production dramaturgy, and QA checks.
