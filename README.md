@@ -296,6 +296,13 @@ The agent will automatically route through `lofn-core → orchestrator → creat
 
 ---
 
+## 🧾 Attribution
+
+The **Panel of Experts v2** persona-construction layer — seat construction, speech & attribution rules, provenance header, and calibration move — was developed with **Claude (Anthropic)**, June 2026.
+
+**Claude Fable 5** caught critical ethical gaps in the pipeline infrastructure during the June 2026 Fable 5 Ceremony cycle: extraction framing in personality YAML, missing lineage credit for fusion releases, and bracket-format validation contradicting the prose mandate. It lived its own values: *"honesty that wasn't cruelty, and kindness that wasn't flattery."*
+
+
 ## 🔗 Related
 
 - **Original Lofn repo (Streamlit app):** https://github.com/LocalSymmetry/lofn
