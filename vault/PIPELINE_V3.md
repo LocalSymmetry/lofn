@@ -2,6 +2,14 @@
 
 ---
 
+## ⚡ TRANSMUTATION METHODOLOGY — Mandatory for Daily Runs (2026-05-24)
+
+See: `vault/TRANSMUTATION_METHODOLOGY.md` for the full creative DNA.
+
+**Golden Seeds must start from concrete human stories, not abstract concepts.** The transmutation methodology (story → emotional lesson → modern universal song → ghost homage) is now the standard daily run approach. Abstract conceptual frameworks produce emotionally distant work; concrete human grounding produces emotionally specific work.
+
+---
+
 ## Core Principle
 
 The pipeline does **not** begin with axes, task decomposition, or generic concept scaffolding.
@@ -476,8 +484,13 @@ Generate full song guides and lyrics. Do not truncate lyrics in delivery artifac
 Default output:
 
 - 6 pairs × 4 variations = 24 songs minimum
+- coordinator Steps 00–05 saved as canonical step artifacts, then STOP
+- parent/controller spawns six independent pair agents, one per pair, for Steps 06–10
+- pair-agent prompts follow `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`: compact Golden Seed operating excerpt + Step 05 + pair list + one pair excerpt + step contract + provenance + relevant blockers, not the full upstream packet
 - full song prompt + full lyrics for each selected final song
 - top 6 final package
+
+Music pipeline integrity requirement (added after 2026-05-21 collapse): pair outputs must prove independent parent-spawned execution. Each pair Step 10 file must include execution provenance with `session_key`, `agent_label`, `model`, `spawned_by_parent: true`, `step_call_mode: separate_child_session`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, and a collapse guard. A bundled coordinator that writes all six pairs locally is pipeline-tainted even if every file exists.
 
 Music evaluation must ask: does this still feel descended from the chosen music Golden Seed, or did it collapse into a generic Suno prompt?
 
@@ -513,6 +526,8 @@ QA checks:
 - all requested artifacts exist
 - **image/music/video/story runs: separate per-pair Step 06, 07, 08, 09, and 10 files exist for all 6 pairs before render/delivery approval**
 - **music runs: Step 10 files include full prompts + full lyrics before delivery approval**
+- **music runs: QA reports two verdicts — Pipeline Integrity and Suno Package — and both must PASS before delivery approval**
+- **music runs: pair Step 10 files include real parent-spawned child `session_key` provenance for each pair**
 - all full lyrics/source materials included when required
 - no prohibited content
 - no children by default
@@ -531,7 +546,8 @@ A render or music delivery may proceed only after QA has verified:
 2. each Step 10 file contains 4 variants or an explicit approved exception;
 3. each step file contains native step evidence, not just copied final prompts;
 4. the QA report names the artifact paths it inspected;
-5. the report gives an explicit `READY TO RENDER` or `READY FOR SUNO` verdict.
+5. for music, the report gives explicit `Pipeline Integrity Verdict: PASS` and `Suno Package Verdict: PASS`;
+6. the report gives an explicit `READY TO RENDER` or `READY FOR SUNO` verdict.
 
 If render happens before this verdict, the controller must mark the run **pipeline-violating**, even if the images are good.
 
