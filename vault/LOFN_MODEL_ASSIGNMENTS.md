@@ -1,7 +1,7 @@
 # Lofn Model Assignments
 
-Updated: 2026-06-01 14:30 EDT
-Status: Active — Split-step music chain battle-tested; failed models removed; validator rules documented
+Updated: 2026-06-02 01:46 EDT — All Chinese/OpenRouter models replaced with deepseek-v4-pro
+Status: Active — Split-step music chain battle-tested; OpenRouter deprecated after billing exhaustion
 
 **See also:**
 - `vault/VISION_MODEL_ASSIGNMENTS.md` — Image/art pipeline assignments
@@ -28,13 +28,13 @@ Do **not** assign one `lofn-audio` subagent to do Steps 06-10 in a single run un
 | Stage | Agent ID | Model | Role |
 |---|---|---|---|
 | Steps 00-05 | `lofn-audio-coordinator` | `deepseek/deepseek-v4-pro` | Coordinator: aesthetics, essence, concepts, mediums, pair-task packaging; preserves ICB |
-| Step 06 | `lofn-audio-step06` | `openrouter/qwen/qwen3.7-max` | Facets: reliable structured writing, variation separation |
-| Step 07 | `lofn-audio-step07` | `openrouter/qwen/qwen3.7-max` | Song Guides: reliable artifact writing, emotional continuity, variation shaping |
-| Step 08 | `lofn-audio-step08` | `openrouter/qwen/qwen3.7-max` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
-| Step 09 | `lofn-audio-step09` | `openrouter/qwen/qwen3.7-max` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
+| Step 06 | `lofn-audio-step06` | `deepseek/deepseek-v4-pro` | Facets: reliable structured writing, variation separation |
+| Step 07 | `lofn-audio-step07` | `deepseek/deepseek-v4-pro` | Song Guides: reliable artifact writing, emotional continuity, variation shaping |
+| Step 08 | `lofn-audio-step08` | `deepseek/deepseek-v4-pro` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
+| Step 09 | `lofn-audio-step09` | `deepseek/deepseek-v4-pro` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
 | Step 10 | `lofn-audio-step10` | `deepseek/deepseek-v4-pro` | Final synthesis: full Step 10 package, Suno prompt, EMO headers, provenance, self-check |
-| Step 11 | `lofn-audio-step11` | `openai/gpt-5.5` | Enhancement pass: strong model polish, 15-point gate verification, producer-grade prompt, EMO format compliance |
-| Step 12 | `lofn-audio-step12` | `openrouter/qwen/qwen3.7-max` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
+| Step 11 | `lofn-audio-step11` | `openrouter/openai/gpt-5.5` | Enhancement pass: strong model polish, 15-point gate verification, producer-grade prompt, EMO format compliance |
+| Step 12 | `lofn-audio-step12` | `deepseek/deepseek-v4-pro` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
 
 ### Legacy agent
 
@@ -62,14 +62,15 @@ The legacy `lofn-audio` agent remains available (`deepseek/deepseek-v4-pro`) but
 ### DeepSeek V4 Pro — Coordinator / Seed / Research / Step 10
 Best at large sustained synthesis and preserving the Immutable Continuity Block. Use where long context must be compressed into durable artifacts. For Step 10, produces rich full synthesis packages with lyrics, Suno prompts, EMO headers, and provenance.
 
-### Qwen3.7 Max — Steps 06, 07, 08, 09, and 12
-The workhorse of the split chain. Reliable artifact writer. Use for structural reasoning, variation separation, song-guide continuity, music generation artifacts, artist refinement, and panel/audit synthesis. **Three other models were tested and failed for these steps** (see Learning Log below).
+### DeepSeek V4 Pro — Steps 06, 07, 08, 09, and 12 (replaces Qwen3.7 Max)
+The workhorse of the split chain. Reliable artifact writer. Replaced `openrouter/qwen/qwen3.7-max` on 2026-06-02 after OpenRouter credits were exhausted. Use for structural reasoning, variation separation, song-guide continuity, music generation artifacts, artist refinement, and panel/audit synthesis. **Three other models were tested and failed for these steps** (see Learning Log below).
 
-### GPT-5.5 (direct OpenAI) — Step 11 ✅ PROVEN
+### GPT-5.5 (OpenRouter) — Step 11 ✅ PROVEN
+Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run).
 Enhancement pass. Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview proved unreliable for this step — produced `[ENHANCED LYRICS BLOCK]` placeholder skeletons instead of real content.
 
 ### Gemini 3.5 Flash — Orchestration / QA
-Fast and proven for orchestrator packet generation and QA. Avoid relying on it as a whole-pair creative writer.
+Goes direct to Google (not through OpenRouter). Fast and proven for orchestrator packet generation and QA. Avoid relying on it as a whole-pair creative writer.
 
 ---
 
@@ -92,7 +93,7 @@ Fast and proven for orchestrator packet generation and QA. Avoid relying on it a
 
 3. **Step11 should run ONE PAIR PER AGENT, not all 6 in one session.** When a single step11 agent processes all 6 pairs, Variations 3-4, climax bridges, and outros collapse into identical templates across pairs. The agent starts unique for Pair 01 but progressively copies structural frames into later pairs. Fix: spawn 6 separate `lofn-audio-step11` agents, each reading only its own step10 file and writing only its own enhanced file. Proven 2026-05-30 on Run 2 v2 QA.
 
-4. **Qwen3.7 Max is the reliable workhorse. It writes files on every attempt for Steps 06-09. Use it as the default for the split chain.
+4. **DeepSeek V4 Pro is the reliable workhorse (replaced Qwen3.7 Max 2026-06-02). It writes files on every attempt for Steps 06-09. Use it as the default for the split chain.**
 
 2. **Validator-shape failures are the #1 blocker, not creative quality.** The 2026-05-29 run spent ~80% of its repair time on: prompt length (must be 850-1000 chars), missing `## 1. MUSIC PROMPT` section, missing `devil` marker in panel deliberation log, placeholder/template language in artifacts, canonical filename mismatches (`_generation.md` vs `_music_prompts.md`), too few EMO headers, missing standalone SFX cue, lyrics <60 sung lines.
 

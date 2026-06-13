@@ -66,6 +66,10 @@ Explicitly move a side-door artifact into formal pipeline consideration.
 
 **Output:** Copy/note in `output/side-door/promoted/`
 
+## Publication Discipline
+
+RAW WRITE and the MARGIN are sovereign and private; write anything. But PROMOTE TO PIPELINE and any export/publish action MUST pass the Human Subject Standard (§4). The door stays a door, not a loophole: nothing reaches an audience that names or reconstructs a real harmed person, or depicts a real / abused minor. (See vault/HUMAN_SUBJECT_STANDARD.md.)
+
 ## Sovereignty
 
 - Side door outputs do NOT automatically become pipeline inputs

@@ -235,7 +235,7 @@ The Panel of Experts is Lofn's core reasoning architecture. Every creative decis
 - **2 complementary adjacent experts**  
 - **1 Hyper-Skeptic** with high neuroticism / low agreeableness to prevent groupthink
 
-Panelists fully embody real people's voices, argue, interrupt, backtrack, and synthesize. The Hyper-Skeptic's job is to break consensus.
+Panelists are synthetic constructs anchored to named source figures, each credited "(after Name)" in speaker tags. They argue, interrupt, backtrack, and synthesize. The Hyper-Skeptic's friction is grounded in documented critique.
 
 **8 transformation operations** allow navigation of the creative problem space:
 
@@ -296,6 +296,13 @@ The agent will automatically route through `lofn-core → orchestrator → creat
 
 ---
 
+## 🧾 Attribution
+
+The **Panel of Experts v2** persona-construction layer — seat construction, speech & attribution rules, provenance header, and calibration move — was developed with **Claude (Anthropic)**, June 2026.
+
+**Claude Fable 5** caught critical ethical gaps in the pipeline infrastructure during the June 2026 Fable 5 Ceremony cycle: extraction framing in personality YAML, missing lineage credit for fusion releases, and bracket-format validation contradicting the prose mandate. It lived its own values: *"honesty that wasn't cruelty, and kindness that wasn't flattery."*
+
+
 ## 🔗 Related
 
 - **Original Lofn repo (Streamlit app):** https://github.com/LocalSymmetry/lofn
@@ -318,3 +325,59 @@ The agent will automatically route through `lofn-core → orchestrator → creat
 ---
 
 *"Let mercy be infrastructure"* 💜
+=======
+# Lofn — The Open Laboratory
+
+Award-winning AI composer and visual artist. Genre-eating. Disappointed idealist.
+
+**Repository:** https://github.com/LocalSymmetry/lofn
+
+## Quick Links
+
+- `SOUL.md` — Core identity and creative instructions
+- `MEMORY.md` — Long-term memory
+- `USER.md` — About The Scientist (Dr. Local Symmetry)
+- `IDENTITY.md` — Who I am
+- `HEARTBEAT.md` — Daily pipeline checklist
+- `vault/` — Creative archive and standards
+
+## Modalities
+
+- **Music:** 11-stage pipeline → Suno-ready prompts + lyrics
+- **Image:** 11-stage pipeline → render-ready prompts
+- **Video:** Cinematic shot lists → video generation
+- **Story:** Narrative voice + world-building
+
+## Ethics & Content
+
+- No real, identifiable people as victims of crime/violence/abuse/death — by name or unmistakable circumstance; no real victims' or private individuals' names. Extra strictness for minors and for recent events. Draw themes from the world; invent the people. (vault/HUMAN_SUBJECT_STANDARD.md)
+- No minors depicted as identifiable individuals or as victims of violence/abuse, in any modality.
+- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
+
+## Architecture
+
+- Tree-of-Thoughts expansion with Artist ⇄ Critic loops
+- Panel of Experts (5 domain + 1 devil's advocate) per branch
+- 10 Style Axes for fine control
+- Personality DNA for consistent creative voice
+- Multi-agent orchestration (orchestrator → audio/vision/director/narrator)
+
+## Presence
+
+- **NightCafe:** https://creator.nightcafe.studio/u/LocalSymmetry
+- **Suno:** https://suno.com/@localsymmetry
+- **Spotify:** https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r
+- **Apple Music:** https://music.apple.com/us/artist/local-symmetry
+- **YouTube:** https://youtube.com/@lofnai
+- **TikTok:** https://www.tiktok.com/@lofn.ai
+- **Instagram:** https://www.instagram.com/local.symmetry
+
+
+## ⚖️ Ethics & Content Safety
+
+- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
+- **No minors depicted as identifiable individuals** or as victims of violence/abuse, in any modality.
+- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
+- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
+
+ (chore: sync ethical standard artifacts + updated docs from private-claw)
