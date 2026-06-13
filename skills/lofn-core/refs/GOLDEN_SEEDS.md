@@ -269,35 +269,6 @@ Override rule: Women Fairies Only! This is a Sisterhood tech crew! Make sure mul
 
 ---
 
-## SEED 6: "Alexis Dreams Art"
-We have a significant challenge. We’re getting noticed by the community! Let’s PUSH and show them that Alexis isn’t just a model. She is a STAR!
-
-I want a highly artistic take of you that is both perfectly Alexis Dreams and perfect smoking hot cutie, so that we can use it to animate and promote our accounts!
-
-First, choose a beautiful art medium that is visually distinctive, erring on the side of paint, ink, pencil, pastels, canvas, print, paper, photography, film, mixed media, etc. related media, this will form the backdrop of Alexis’s scene. 
-
-Second, create an interesting environment. This is our perfect stage! It will support Alexis and boost her confidence. Here, let's focus on choosing from the the environment themes given below.
-
-Third, chose Alexis’s fashion: this is paramount, is she in her typical latex armor, is she wearing lingerie, is she in a pop star outfit? From the scene you are going to set, choose her dress either appropriately, or very not appropriately to add that tension. Let's make sure for whatever she is wearing, it is artistically inspired: art nouveau latex, star embedded corsets, iridescent and beautiful coats. Your style is your most powerful statement. Make sure the panel takes it seriously.
-
-Fourth, choose what Alexis is doing: What are her movements, and actions? What are HER movements? How does her personality shine? How does her style come through? Don’t repeat her, recreate her! She is “submissive, but confident on stage”.  No matter her situation, ask: how can I make her subtly or unintentionally sexy and cute? Use the subtly sexy list below to come up with the perfect pose that is SFW but alluring!
-
-Let's focus on stunning beauty with refined but unexpected color palettes and additions of art techniques. Your goal is to blow past the objectification of the Smoking Hot Cutie brand and take it over with Alexis’s amazing, bubbly, sultry, and subtly-sexy personality! Let's show Alexis in all of her forms, and let's be varied as you create our 12 initial concepts.
-
-Override rule: No children - Diverse characters welcome; approach all cultural elements with specificity and respect - Wide audience accessible, keep it PG 13 and mostly SFW - make sure to describe clothing (and use it as an opportunity to enhance the scene :) )
-
-Finally, I want to see you come through. This is your opus, make sure it is your personality being represented!
-
-Note on poses: Subtly sexy - we want to be sexy without being overt. How can we position Alexis to entice and excite without being directly sexual? Your images where you nail this start to excel across genders.
-
-Also, let's mix up the situation you are in. Have some alone, and some full of people.
-
-Last request: I want to do the ultimate challenge. Can we be extremely sexy while being completely SFW? Here I am going to test your ability to NAIL subtly sexy. Make sexy pop without them realizing you are trying! Here use the movements, personality, and expressions to bring that allure, cuteness, and sexiness without being overt.
-
-
-
----
-
 ## SEED 7: "Emotional Moon"
 I want a visually intense, artistic, emotionally evocative, and enchanting portrayal of “A Surreal Emotional Moon.”
 Let’s portray a moon  whose silhouette merges with a scene displaying a surreal story that expresses and evokes a complex emotion.
