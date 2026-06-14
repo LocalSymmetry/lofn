@@ -163,3 +163,8 @@ Required fields:
 - `news_or_source_thread`: for NEWS pairs, the exact current-event/source pressure that must remain audible in image, lyric-world, or production dramaturgy.
 
 Each step artifact must include a `Continuity Payload Used` section or equivalent JSON fields. A previous-step summary is insufficient unless it restates these fields. QA must treat missing continuity payload as `REPAIR - THREAD LOSS`, even if Suno formatting passes.
+
+## Music Generation Provider Policy (2026-06-13)
+
+- **FAL (fal-ai/minimax-music) is BANNED for music generation.** Quality is unacceptable. Use Google Lyria (`google/lyria-3-pro-preview` or `google/lyria-3-clip-preview`) instead.
+- This skill writes Suno-ready text artifacts; when downstream tooling calls music_generate for audio rendering, always explicitly select Google Lyria. Never default to FAL.
