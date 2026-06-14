@@ -51,7 +51,7 @@ Step 11 takes the deepseek-v4-pro step10 output and runs a **GPT-5.5 class model
 
 **Why a stronger model matters here:** DeepSeek V4 Pro is fast and genre-obedient but poetically shallow — it defaults to functional quatrains and predictable rhyme. GPT-5.5-level models bring literary intelligence: they understand why "the stones were colder than language" lands harder than "the stones were cold." The enhancement pass is where craft becomes art.
 
-**Model:** `openrouter/fusion` via the dedicated `lofn-audio-step11` agent. Intended Fusion panel: `anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`; preferred judge/finalizer `openai/gpt-5.5` when exact plugin routing is available. Never use a generic subagent for step11 — generic subagents lack EMO taxonomy awareness, personality injection context, and QA gate knowledge.
+**Model / invocation:** use this dedicated Step 11 contract. For routine automated pipeline runs, do **not** invoke `openrouter/fusion` as live per-pair child agents. Fusion is an optional packaged single-request path, like the manual Opus/Fable enhancement prompt: build one complete prompt package and let The Scientist approve/send the costly request. Intended Fusion panel for that manual/single request: `anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`; preferred judge/finalizer `openai/gpt-5.5` when exact plugin routing is available. Never use a generic subagent prompt for Step 11 — generic prompts lack EMO taxonomy awareness, personality injection context, and QA gate knowledge.
 **Max runtime:** 300 seconds per pair
 **Spawning:** 1 agent per pair, 5 concurrent max
 
@@ -230,4 +230,14 @@ Prompt MUST be paragraph form, 850-1000 chars. Lead with genre/style + tempo + k
 The package MUST include `## 1B. SUNO EXCLUDE PROMPT` or `[SUNO EXCLUDE PROMPT:]`. Exclude prompt target 400-900 chars, hard max 1000. Use concrete blacklist terms/failure classes; Suno applies them as negative tokens, so do not spend characters on `avoid`, `do not`, or explanatory prose. The exclude field should carry bans formerly placed at the end of the style prompt.
 
 ## Integration
-This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
+This step runs AFTER step 10 and BEFORE QA. Enhanced packages are then fed to QA for final gate verification.
+
+Default automated path:
+- Use the dedicated Step 11 contract and write one enhanced package per pair.
+- Keep pair contexts isolated.
+- Do not call `openrouter/fusion` automatically.
+
+Fusion/manual path:
+- Build a single paste-ready Fusion request bundle with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
+- Send/invoke Fusion only when The Scientist explicitly approves the cost.
+- If processing all six pairs in one prompt, mark each pair as isolated and forbid cross-pair structural copying.

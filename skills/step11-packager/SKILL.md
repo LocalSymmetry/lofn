@@ -1,11 +1,13 @@
 ---
 name: step11-packager
-description: "Build complete Claude-Fable-5 refinement prompts from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
+description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus or OpenRouter Fusion single-request use from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
 ---
 
-# Step 11 Packager — Fable-5 Refinement Prompt Builder
+# Step 11 Packager — Manual Opus/Fable/Fusion Refinement Prompt Builder
 
-Takes a pair directory containing `step10_suno_ready_production_wrap.md` and `step11_enhanced.md`, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates, and produces a single paste-ready prompt file for Claude-Fable-5 refinement.
+Takes Step 10 + Step 11 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement or a single approved OpenRouter Fusion request.
+
+**Cost rule:** Do not invoke live Fusion child agents from this skill. Fusion is packaged here as text for one manual/single request only. The Scientist decides whether to send it.
 
 ## Workflow
 
@@ -15,8 +17,9 @@ Takes a pair directory containing `step10_suno_ready_production_wrap.md` and `st
 4. Read `vault/SUNO_PROMPT_CONSTRUCTION_GUIDE.md` and use `references/suno_rules_condensed.md` for the inline rules block.
 5. Read the production mandates from the handoff file or use defaults.
 6. Run `scripts/build_fable_prompt.py <pair_dir> <personality_yaml> <output_path>` or construct manually.
-7. Verify: full personality YAML present, Suno construction rules present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
-8. Output to `<pair_dir>/step11_fable_prompt.md`.
+7. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "This is a single packaged request, not an agent loop."
+8. Verify: full personality YAML present, Suno construction rules present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
+9. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_single_request_prompt.md`.
 
 ## Personality Matching
 
@@ -36,6 +39,19 @@ Every prompt file must contain:
 6. Critical preservation rules
 7. **Full step10 output — the ENTIRE file. All sections: hook note, personality note, continuity payload, music prompt, negative prompt, public lyrics, suno lyrics, vocal fingerprint, style-axis lock, arrangement dramaturgy, production dramaturgy, image ladder audit, controlled fracture, ghost verse bank, panel ledger, QA report.** Do not extract only music prompt + lyrics.
 8. **Full step11 output — the ENTIRE file.** For per-pair step11 files: complete. For single cross-pair synthesis: embed the full synthesis.
+9. **Suno two-field mandate (2026-06-14):** final output must include a positive `style` / `[SUNO STYLE PROMPT:]` field and a separate `exclude` / `[SUNO EXCLUDE PROMPT:]` field. Style stays positive, 850-1000 chars. Exclude is concrete comma-separated negative-control terms, 400-900 chars, hard max 1000.
+
+## Fusion Mode
+
+Use Fusion mode when The Scientist asks for "Fusion" but does not want live OpenClaw child-agent spending.
+
+Fusion mode produces one prompt bundle, not six automatic model calls:
+
+- For a single pair: one complete `step11_fusion_single_request_prompt.md`.
+- For all six pairs: one archive containing six isolated pair prompts, or one combined prompt with hard pair isolation blocks.
+- The prompt may name the intended Fusion deliberation panel, but the local agent must not call OpenRouter by itself.
+- Include "do not cross-pollinate pair structures" when more than one pair appears in the same request.
+- Include the current Suno two-field rule at the top of the prompt.
 
 ## Size Expectations
 

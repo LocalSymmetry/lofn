@@ -232,7 +232,7 @@ Correct pattern:
 2. The coordinator writes the six concept×medium / song pair assignments to disk.
 3. The parent session spawns pair subagents for Steps 06-10, one pair per subagent, using the coordinator output and full metaprompt. Respect max concurrency: spawn pairs 1-5 first, then pair 6 after one lands.
 4. Each pair subagent owns a complete local arc for its pair and writes its final `step10_final_pairXX.md` / `pair_XX_steps_06_10.md` file.
-4a. **Step 11 — Enhancement:** After all six Step 10 packages are on disk, spawn 6 enhancement agents (1 per pair, 5 concurrent max, currently `openai/gpt-5.5`, 300s each). Each reads its Step 10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`.
+4a. **Step 11 — Enhancement:** After all six Step 10 packages are on disk, produce six enhanced packages using the dedicated Step 11 contract. Do **not** spawn live `openrouter/fusion` children by default. Fusion is a packaged single-request/manual path only, like the Opus/Fable enhancement prompt, and requires The Scientist's explicit cost approval. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`.
 5. Only after all six pair files AND all six enhanced files are complete should QA run.
 
 ### 🔴 Daily Pipeline Modality Mandate — Music Cannot Be Optional
@@ -243,7 +243,7 @@ Daily run hard gates:
 1. Before launching, check for active stale daily lanes for the same date and stop them. Only one controller may write to `output/daily/YYYY-MM-DD/` at a time.
 2. Orchestrator must produce the canonical packet: `01_seed_lineage.md`, `02_golden_seed.md`, `03_orchestrator_panel_debate.md`, `04_orchestrator_metaprompt.md`, `05_orchestrator_pair_assignments.md`, and `06_audio_handoff.md`. Validate it with `scripts/validate_orchestrator_packet.py <run_dir>` before audio work.
 3. Spawn the configured `lofn-audio-coordinator` for coordinator Steps 00-05. It must write `step00_aesthetics_and_genres.md` through `step05_refine_medium.md` plus `concept_medium_pairs.json`, then stop.
-4. Parent/controller, not the coordinator, spawns dedicated split-step agents from `vault/LOFN_MODEL_ASSIGNMENTS.md`: `lofn-audio-step06`, `lofn-audio-step07`, `lofn-audio-step08`, `lofn-audio-step09`, `lofn-audio-step10`, then `lofn-audio-step11`.
+4. Parent/controller, not the coordinator, spawns dedicated split-step agents from `vault/LOFN_MODEL_ASSIGNMENTS.md`: `lofn-audio-step06`, `lofn-audio-step07`, `lofn-audio-step08`, `lofn-audio-step09`, and `lofn-audio-step10`. Step 11 uses the dedicated enhancement contract or a packaged manual Fusion request; do not auto-spawn live Fusion children.
 5. Verify canonical pair files exist: `pair_01_step06_facets.md` through `pair_06_step10_revision_synthesis.md`, then Step 11 files `pair_01_step10_final_package_enhanced.md` through `pair_06_step10_final_package_enhanced.md`.
 6. If audio is missing, incomplete, stale, or stalled, the daily run status is **INCOMPLETE**. Do not treat filename shape, completion messages, or rollup files as proof.
 7. The correct configured agents are the `lofn-audio-*` agents. Do not use generic `main` subagents for production music steps except as a parent/controller wrapper.
@@ -285,7 +285,7 @@ Use the 10-step process from PIPELINE.md:
 9. Draft prompts — 4 per pair = 24 total (Step 08)
 10. Artist refinement — 4 per pair = 24 total (Step 09)
 11. Revision + synthesis — 4 per pair = 24 total (Step 10)
-12. Enhancement — 1 per pair = 6 enhanced packages (Step 11, currently `openai/gpt-5.5`)
+12. Enhancement — 1 per pair = 6 enhanced packages (Step 11 contract; Fusion only as packaged/manual request)
 
 ### 🔴 CARDINALITY CHECKPOINT (Non-Negotiable)
 
