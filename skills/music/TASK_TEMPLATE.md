@@ -48,6 +48,19 @@ Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_st
 
 Every step must preserve complete outputs. A file that says what it would do, summarizes a response, or omits the actual lists/concepts/guides/prompts/lyrics is incomplete. A file with the right filename but without these sections is a backfilled artifact and fails. Do not write “line 1 / line 2” placeholders, repeated paragraphs, or self-check claims contradicted by the artifact body.
 
+## CONTINUITY PAYLOAD — REQUIRED FOR EVERY STEP
+
+Every coordinator and pair-agent LLM call must include a compact continuity payload. It must be visible in the step artifact under `## Continuity Payload Used` or equivalent JSON fields, not merely assumed from prior files.
+
+Required fields:
+1. `special_flairs` — orchestrator Special Flairs that must color the artifact.
+2. `panel_pressures` — Concept Panel, Medium Panel, Context & Marketing Panel, and Devil's Advocate / Hyper-Skeptic demands relevant to this step.
+3. `seed_excerpt` — full Golden Seed for Steps 00-05; 100-250 word pair-specific Golden Seed operating excerpt for Steps 06-10.
+4. `active_personality` — named personality/persona, sonic world sentence, signature device, and what would count as personality loss.
+5. `source_thread` — for NEWS pairs, the exact current-event/source pressure that must survive as image, lyric-world, fact, or production dramaturgy.
+
+The immediately previous step output is never enough by itself. If a step lacks panels/flairs, seed excerpt, or personality, stop and repair/rerun before advancing. Missing continuity payload = `REPAIR — THREAD LOSS`.
+
 ---
 
 ## SUBAGENT 1: Steps 00-05 (Concept-Medium Generation)
@@ -104,16 +117,21 @@ collapse_guard: no compact direct synthesis; no local emulation of other pairs
 
 A pair package without a real child `session_key` is not pipeline-clean. It may be useful draft material, but QA must mark **Pipeline Integrity: REPAIR REQUIRED** until provenance is repaired or the pair is rerun.
 
-Each receives the lean pair-agent input standard from `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`, not the full upstream packet. Normal pair-agent prompts should be about 50–100 lines and include only:
-- Compact Golden Seed operating excerpt (`source_golden_seed`, 100–250 words; lineage, image/scene-pressure, emotional engine, dangerous permission, must-not-domesticate requirement)
+Each receives the full-context pair-agent injection standard from `skills/music/SKILL.md` Workflow item 9. This supersedes the former lean input standard in `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`.
+
+Normal pair-agent prompts must inject the complete upstream context needed for the current pair and step:
+- Full personality DNA block for the assigned personality: core identity, sonic world, signature device, catchphrases, G.L.O.W. Protocol where applicable, and vocal architecture
+- Pair-specific Golden Seed operating excerpt plus the full invariant hook / dangerous requirement that must not be domesticated
+- Complete continuity payload: `special_flairs`, Concept/Medium/Context panel pressures, Devil's Advocate / Hyper-Skeptic objections, active personality/persona sonic world sentence, signature device, and source/news thread when applicable
+- Production Mandates and Forbidden Substitutions table
 - Current Step 05 artifact (`step05_refine_medium.md`)
 - Structured pair list (`concept_medium_pairs.json` or equivalent)
 - ONE specific concept-medium pair / pair assignment excerpt
 - The relevant Step 06–10 contract
-- Tiny provenance block (`spawned_by_parent`, `step_call_mode`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, `pair_id`, `model`)
+- Provenance block (`spawned_by_parent`, `step_call_mode`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, `pair_id`, `model`)
 - Modality-specific QA blockers
 
-The parent/controller validates and retains the full Golden Seed + orchestrator packet; ordinary pair agents should not load the full research, full Golden Seed beyond the compact excerpt, full debate, full metaprompt, or all six assignments unless explicitly doing repair/debug work.
+The parent/controller validates and retains the complete Golden Seed + orchestrator packet, then injects the relevant full payload into each pair-agent task. Do not make the task shallow to save tokens; preserve depth while preventing agents from pulling broad, unbounded context themselves.
 
 Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the compact pair seed/anchor, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 

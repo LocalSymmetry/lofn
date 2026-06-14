@@ -1,7 +1,7 @@
 # Lofn Model Assignments
 
-Updated: 2026-06-02 01:46 EDT — All Chinese/OpenRouter models replaced with deepseek-v4-pro
-Status: Active — Split-step music chain battle-tested; OpenRouter deprecated after billing exhaustion
+Updated: 2026-06-14 05:47 UTC — Step 11 moved to OpenRouter Fusion backend
+Status: Active — Split-step music chain battle-tested; Step 11 now uses Fusion enhancement when OpenRouter billing is available
 
 **See also:**
 - `vault/VISION_MODEL_ASSIGNMENTS.md` — Image/art pipeline assignments
@@ -33,7 +33,7 @@ Do **not** assign one `lofn-audio` subagent to do Steps 06-10 in a single run un
 | Step 08 | `lofn-audio-step08` | `deepseek/deepseek-v4-pro` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
 | Step 09 | `lofn-audio-step09` | `deepseek/deepseek-v4-pro` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
 | Step 10 | `lofn-audio-step10` | `deepseek/deepseek-v4-pro` | Final synthesis: full Step 10 package, Suno prompt, EMO headers, provenance, self-check |
-| Step 11 | `lofn-audio-step11` | `openrouter/openai/gpt-5.5` | Enhancement pass: strong model polish, 15-point gate verification, producer-grade prompt, EMO format compliance |
+| Step 11 | `lofn-audio-step11` | `openrouter/fusion` | Fusion enhancement pass: Opus 4.8 + GPT-5.5 + Gemini 3.1 Pro deliberation, GPT-5.5 judge/finalizer where exact plugin routing is available |
 | Step 12 | `lofn-audio-step12` | `deepseek/deepseek-v4-pro` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
 
 ### Legacy agent
@@ -65,9 +65,16 @@ Best at large sustained synthesis and preserving the Immutable Continuity Block.
 ### DeepSeek V4 Pro — Steps 06, 07, 08, 09, and 12 (replaces Qwen3.7 Max)
 The workhorse of the split chain. Reliable artifact writer. Replaced `openrouter/qwen/qwen3.7-max` on 2026-06-02 after OpenRouter credits were exhausted. Use for structural reasoning, variation separation, song-guide continuity, music generation artifacts, artist refinement, and panel/audit synthesis. **Three other models were tested and failed for these steps** (see Learning Log below).
 
-### GPT-5.5 (OpenRouter) — Step 11 ✅ PROVEN
-Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run).
-Enhancement pass. Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview proved unreliable for this step — produced `[ENHANCED LYRICS BLOCK]` placeholder skeletons instead of real content.
+### OpenRouter Fusion — Step 11 ✅ ACTIVE EXPERIMENT
+Step 11 now uses OpenRouter Fusion as the backend. The intended exact panel is:
+
+- `anthropic/claude-opus-4.8`
+- `openai/gpt-5.5`
+- `google/gemini-3.1-pro-preview`
+
+Preferred judge/finalizer: `openai/gpt-5.5`. The live OpenClaw agent backend is `openrouter/fusion`; exact panel selection requires the OpenRouter Fusion plugin/server-tool request body with `analysis_models` and judge `model` set explicitly. If the runtime only permits model-slug routing, `openrouter/fusion` may fall back to OpenRouter's Quality preset. Treat the first daily run as a validation run and inspect Step 11 artifacts closely.
+
+Rationale: GPT-5.5 alone is proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview alone proved unreliable for this step, producing scaffold-like enhanced blocks instead of real content, but as one deliberative panel voice it may contribute useful structural critique without owning the final artifact. Opus 4.8 is reserved for enhancement/deliberation because direct artifact-writing attempts timed out in earlier pair steps.
 
 ### Gemini 3.5 Flash — Orchestration / QA
 Goes direct to Google (not through OpenRouter). Fast and proven for orchestrator packet generation and QA. Avoid relying on it as a whole-pair creative writer.
@@ -173,7 +180,7 @@ After Step 05 completes:
 1. Spawn up to 5 pair agents for **Step 06 only** using `lofn-audio-step06`.
 2. Verify files on disk. Validate. Then spawn Step 07 agents using `lofn-audio-step07`.
 3. Continue one step at a time through Step 10.
-4. Step 11 enhancement uses `lofn-audio-step11`.
+4. Step 11 enhancement uses `lofn-audio-step11` / `openrouter/fusion`. When invoking OpenRouter directly or through a runner that supports plugins, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`.
 5. Step 12 uses `lofn-audio-step12` when triggered.
 
 Each call has a narrow objective and is much less likely to timeout.
