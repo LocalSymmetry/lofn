@@ -1,13 +1,13 @@
 ---
 name: step11-packager
-description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus or OpenRouter Fusion single-request use from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
+description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus or OpenRouter Fusion per-pair use from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
 ---
 
 # Step 11 Packager — Manual Opus/Fable/Fusion Refinement Prompt Builder
 
-Takes Step 10 + Step 11 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement or a single approved OpenRouter Fusion request.
+Takes Step 10 + Step 11 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement or explicitly approved OpenRouter Fusion use.
 
-**Cost rule:** Do not invoke live Fusion child agents from this skill. Fusion is packaged here as text for one manual/single request only. The Scientist decides whether to send it.
+**Cost rule:** Do not invoke Fusion from this skill by default. Fusion is packaged here as text. If The Scientist explicitly approves direct Fusion spend, use six isolated per-pair requests with the leanest direct/model-wrapper route available; do not resurrect the old persistent Step 11 agent loop.
 
 ## Workflow
 
@@ -17,9 +17,9 @@ Takes Step 10 + Step 11 source artifacts, wraps them with full archive personali
 4. Read `vault/SUNO_PROMPT_CONSTRUCTION_GUIDE.md` and use `references/suno_rules_condensed.md` for the inline rules block.
 5. Read the production mandates from the handoff file or use defaults.
 6. Run `scripts/build_fable_prompt.py <pair_dir> <personality_yaml> <output_path>` or construct manually.
-7. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "This is a single packaged request, not an agent loop."
+7. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "Use one isolated Fusion request for this pair; this is not an agent loop."
 8. Verify: full personality YAML present, Suno construction rules present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
-9. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_single_request_prompt.md`.
+9. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_pair_request_prompt.md`.
 
 ## Personality Matching
 
@@ -43,14 +43,15 @@ Every prompt file must contain:
 
 ## Fusion Mode
 
-Use Fusion mode when The Scientist asks for "Fusion" but does not want live OpenClaw child-agent spending.
+Use Fusion mode when The Scientist asks for "Fusion" but wants controlled, explicit spend.
 
-Fusion mode produces one prompt bundle, not six automatic model calls:
+Fusion mode produces isolated pair prompts:
 
-- For a single pair: one complete `step11_fusion_single_request_prompt.md`.
-- For all six pairs: one archive containing six isolated pair prompts, or one combined prompt with hard pair isolation blocks.
-- The prompt may name the intended Fusion deliberation panel, but the local agent must not call OpenRouter by itself.
-- Include "do not cross-pollinate pair structures" when more than one pair appears in the same request.
+- For a single pair: one complete `step11_fusion_pair_request_prompt.md`.
+- For all six pairs: one archive containing six isolated pair prompts; invoke as six Fusion calls, one pair per request, when explicitly approved.
+- One combined all-pairs prompt is a fallback packaging artifact only, not the preferred invocation.
+- The prompt may name the intended Fusion deliberation panel, but the local agent must not call OpenRouter by itself unless The Scientist explicitly approves the spend in the current turn.
+- Include "do not cross-pollinate pair structures" whenever more than one pair appears in the same archive or fallback combined prompt.
 - Include the current Suno two-field rule at the top of the prompt.
 
 ## Size Expectations

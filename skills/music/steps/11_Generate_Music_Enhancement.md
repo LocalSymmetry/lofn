@@ -51,7 +51,7 @@ Step 11 takes the deepseek-v4-pro step10 output and runs a **GPT-5.5 class model
 
 **Why a stronger model matters here:** DeepSeek V4 Pro is fast and genre-obedient but poetically shallow — it defaults to functional quatrains and predictable rhyme. GPT-5.5-level models bring literary intelligence: they understand why "the stones were colder than language" lands harder than "the stones were cold." The enhancement pass is where craft becomes art.
 
-**Model / invocation:** use this dedicated Step 11 contract. For routine automated pipeline runs, do **not** invoke `openrouter/fusion` as live per-pair child agents. Fusion is an optional packaged single-request path, like the manual Opus/Fable enhancement prompt: build one complete prompt package and let The Scientist approve/send the costly request. Intended Fusion panel for that manual/single request: `anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`; preferred judge/finalizer `openai/gpt-5.5` when exact plugin routing is available. Never use a generic subagent prompt for Step 11 — generic prompts lack EMO taxonomy awareness, personality injection context, and QA gate knowledge.
+**Model / invocation:** use this dedicated Step 11 contract. For routine automated pipeline runs, do **not** invoke `openrouter/fusion`; produce non-Fusion enhanced packages or paste-ready Fusion prompt files. When The Scientist explicitly approves Fusion spend, invoke Fusion **six times, one isolated request per pair**, using the leanest available direct/model-wrapper call rather than the old persistent Step 11 agent loop. Do not send one combined all-pairs prompt as the actual Fusion invocation unless The Scientist explicitly asks for that cost-saving compromise; it risks cross-pair structural copying. Intended Fusion panel: `anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`; preferred judge/finalizer `openai/gpt-5.5` when exact plugin routing is available. Never use a generic subagent prompt for Step 11 — generic prompts lack EMO taxonomy awareness, personality injection context, and QA gate knowledge.
 **Max runtime:** 300 seconds per pair
 **Spawning:** 1 agent per pair, 5 concurrent max
 
@@ -238,6 +238,7 @@ Default automated path:
 - Do not call `openrouter/fusion` automatically.
 
 Fusion/manual path:
-- Build a single paste-ready Fusion request bundle with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
+- Build paste-ready Fusion request files with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
 - Send/invoke Fusion only when The Scientist explicitly approves the cost.
-- If processing all six pairs in one prompt, mark each pair as isolated and forbid cross-pair structural copying.
+- Preferred approved invocation: six Fusion calls, one pair per request, with one output markdown per pair.
+- One all-pairs prompt is allowed only as a packaging convenience or an explicit cost-saving compromise; if used, mark each pair as isolated and forbid cross-pair structural copying.
