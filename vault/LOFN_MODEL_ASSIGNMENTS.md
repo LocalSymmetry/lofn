@@ -1,7 +1,7 @@
 # Lofn Model Assignments
 
-Updated: 2026-06-14 11:47 UTC — Step 11 Fusion moved to explicit per-pair direct calls
-Status: Active — Split-step music chain battle-tested; Step 11 remains mandatory, but Fusion spend is disabled by default and requires explicit approval
+Updated: 2026-06-14 11:56 UTC — Step 11 Fusion restricted to manual review
+Status: Active — Split-step music chain battle-tested; Step 11 remains mandatory, but Fusion is manual-review only and not a pipeline runtime
 
 **See also:**
 - `vault/VISION_MODEL_ASSIGNMENTS.md` — Image/art pipeline assignments
@@ -33,7 +33,7 @@ Do **not** assign one `lofn-audio` subagent to do Steps 06-10 in a single run un
 | Step 08 | `lofn-audio-step08` | `deepseek/deepseek-v4-pro` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
 | Step 09 | `lofn-audio-step09` | `deepseek/deepseek-v4-pro` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
 | Step 10 | `lofn-audio-step10` | `deepseek/deepseek-v4-pro` | Final synthesis: full Step 10 package, Suno prompt, EMO headers, provenance, self-check |
-| Step 11 | packaged Step 11 enhancer / manual Fusion request | `deepseek/deepseek-v4-pro` default; `openrouter/fusion` only as a single manual request | Produce enhanced Suno package with Disc_Channel + two-field Suno prompt. Do not spawn 6 live Fusion children by default. |
+| Step 11 | packaged Step 11 enhancer / manual Fusion review prompts | `deepseek/deepseek-v4-pro` default; `openrouter/fusion` prompt packaging only | Produce enhanced Suno package with Disc_Channel + two-field Suno prompt. Do not invoke Fusion from the pipeline. |
 | Step 12 | `lofn-audio-step12` | `deepseek/deepseek-v4-pro` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
 
 ### Legacy agent
@@ -65,14 +65,14 @@ Best at large sustained synthesis and preserving the Immutable Continuity Block.
 ### DeepSeek V4 Pro — Steps 06, 07, 08, 09, and 12 (replaces Qwen3.7 Max)
 The workhorse of the split chain. Reliable artifact writer. Replaced `openrouter/qwen/qwen3.7-max` on 2026-06-02 after OpenRouter credits were exhausted. Use for structural reasoning, variation separation, song-guide continuity, music generation artifacts, artist refinement, and panel/audit synthesis. **Three other models were tested and failed for these steps** (see Learning Log below).
 
-### OpenRouter Fusion — Step 11 ⚠️ EXPLICIT PER-PAIR CALLS ONLY
-OpenRouter Fusion is reserved for explicit, user-approved enhancement. Default runs package prompts or use the non-Fusion Step 11 path. When approved, invoke Fusion as **six isolated requests, one pair per call**, not one blended all-pairs prompt and not the old persistent Step 11 agent loop. The intended exact panel is:
+### OpenRouter Fusion — Step 11 ⚠️ MANUAL REVIEW ONLY
+OpenRouter Fusion is reserved for manual review prompt packaging, not automated pipeline execution. Default runs package prompts or use the non-Fusion Step 11 path. Do not invoke Fusion unless The Scientist gives a separate current-turn instruction with pair count and hard dollar budget cap. If that ever happens, use isolated per-pair requests, not one blended all-pairs prompt and not the old persistent Step 11 agent loop. The intended exact panel is:
 
 - `anthropic/claude-opus-4.8`
 - `openai/gpt-5.5`
 - `google/gemini-3.1-pro-preview`
 
-Preferred judge/finalizer: `openai/gpt-5.5`. Exact panel selection requires the OpenRouter Fusion plugin/server-tool request body with `analysis_models` and judge `model` set explicitly. If the runtime only permits model-slug routing, `openrouter/fusion` may fall back to OpenRouter's Quality preset. The leanest direct/model-wrapper route is preferred; avoid full OpenClaw agent sessions unless no direct runner is available.
+Preferred judge/finalizer: `openai/gpt-5.5`. Exact panel selection requires the OpenRouter Fusion plugin/server-tool request body with `analysis_models` and judge `model` set explicitly. If the runtime only permits model-slug routing, `openrouter/fusion` may fall back to OpenRouter's Quality preset. The leanest direct/model-wrapper route is preferred only under a separate budgeted instruction; otherwise generate prompt files only.
 
 Rationale: GPT-5.5 alone is proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview alone proved unreliable for this step, producing scaffold-like enhanced blocks instead of real content, but as one deliberative panel voice it may contribute useful structural critique without owning the final artifact. Opus 4.8 is reserved for enhancement/deliberation because direct artifact-writing attempts timed out in earlier pair steps. Fusion quality may be worth using, but pair isolation matters more than shaving one call: one all-pairs prompt risks cross-pair copying.
 
@@ -180,7 +180,7 @@ After Step 05 completes:
 1. Spawn up to 5 pair agents for **Step 06 only** using `lofn-audio-step06`.
 2. Verify files on disk. Validate. Then spawn Step 07 agents using `lofn-audio-step07`.
 3. Continue one step at a time through Step 10.
-4. Step 11 enhancement uses the dedicated Step 11 contract. For routine automated runs, do not invoke Fusion; produce the enhanced package or packaged Fusion pair prompts. When The Scientist explicitly asks to invoke OpenRouter Fusion directly or through a runner that supports plugins, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`, and do it as six isolated pair requests unless otherwise approved.
+4. Step 11 enhancement uses the dedicated Step 11 contract. For routine automated runs, do not invoke Fusion; produce the enhanced package or packaged Fusion pair prompts for manual review. Fusion invocation requires a separate current-turn instruction with pair count and hard dollar budget cap. Under that separate budgeted instruction, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`, and do it as isolated pair requests unless otherwise approved.
 5. Step 12 uses `lofn-audio-step12` when triggered.
 
 Each call has a narrow objective and is much less likely to timeout.
