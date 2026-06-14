@@ -21,7 +21,21 @@ Selected for this review:
 2. **Five wrong colors** — https://suno.com/song/f175f806-b1a3-40f0-8984-0c92667209dc
    - Calibrates Lofn's INDIGNATION mode: formal risk, bodily fracture, wrongness as hook, industrial/glitch pressure without generic rage.
    - Learn from its refusal of consolation and physical distinctiveness. Do not copy its five-color premise, refrain, or movement structure.
+
+WARNING: This fallback is incomplete. If `skills/music/references/golden_songs_index.md` exists, use the full index payload instead so manual prompts receive style/music prompt, lyrics, and exclude prompt status.
 """
+
+RUN_CONTEXT_FILES = [
+    ("00_research_brief.md", "USER INPUT / RESEARCH BRIEF"),
+    ("ORCHESTRATOR_BRIEF.md", "ORCHESTRATOR BRIEF"),
+    ("01_seed_lineage.md", "SEED LINEAGE"),
+    ("02_golden_seed.md", "FULL GOLDEN SEED"),
+    ("03_orchestrator_panel_debate.md", "FULL ORCHESTRATOR PANEL — 18 VOICES + SPECIAL FLAIRS"),
+    ("04_orchestrator_metaprompt.md", "ORCHESTRATOR METAPROMPT"),
+    ("05_orchestrator_pair_assignments.md", "PAIR ASSIGNMENTS"),
+    ("06_audio_handoff.md", "AUDIO HANDOFF / ICB"),
+    ("concept_medium_pairs.json", "CONCEPT MEDIUM PAIRS JSON"),
+]
 
 DEFAULT_MANDATES = """1. SOMATIC BASS GATE: Every pair must contain at least one passage where bass operates in the 30-60Hz somatic range.
 2. BLEED ENFORCEMENT: Solarpunk-primary pairs must contain Industrial Grief production. Industrial Grief-primary must contain Solarpunk.
@@ -56,9 +70,17 @@ HEADER = """# FABLE-5 REFINEMENT — {title}
 
 ## GOLDEN SONG REFERENCES — PRIOR PUBLIC SUCCESSES
 
-These are examples of what has worked for Lofn before. Use them to calibrate quality, identity pressure, hook clarity, sonic courage, and listener legibility. Do not copy hooks, titles, lyrics, melodies, premises, or signature devices.
+These are examples of what has worked for Lofn before. Use them to calibrate quality, identity pressure, hook clarity, sonic courage, and listener legibility. The full available payload is embedded because manual review cannot depend on opening external links. Do not copy hooks, titles, lyrics, melodies, premises, or signature devices.
 
 {golden_references}
+
+---
+
+## FULL RUN CONTEXT — DO NOT SUMMARIZE
+
+Manual review is air-gapped. The reviewer must receive the complete upstream packet: user input/research, Golden Seed, all three panels with all 18 expert voices and Special Flairs, metaprompt, pair assignments, audio handoff, and selected Golden Song payloads.
+
+{run_context}
 
 ---
 
@@ -165,6 +187,7 @@ def main():
     parser.add_argument("--title", default="", help="Song title")
     parser.add_argument("--mandates", help="Path to production mandates file (optional)")
     parser.add_argument("--golden-references", help="Path to selected Golden Song References markdown (optional)")
+    parser.add_argument("--run-dir", help="Run directory containing research, seed, panel, metaprompt, assignments, and handoff files")
     args = parser.parse_args()
 
     # Resolve personality YAML
@@ -204,10 +227,23 @@ def main():
     if args.golden_references and os.path.exists(args.golden_references):
         with open(args.golden_references) as f:
             golden_references = f.read()
+    elif os.path.exists(GOLDEN_INDEX_PATH):
+        with open(GOLDEN_INDEX_PATH) as f:
+            golden_references = f.read()
     else:
         golden_references = DEFAULT_GOLDEN_REFERENCES
-        if os.path.exists(GOLDEN_INDEX_PATH):
-            golden_references += "\n\nFull index available at: `skills/music/references/golden_songs_index.md`.\n"
+
+    run_dir = args.run_dir or os.path.dirname(os.path.abspath(args.pair_dir))
+    run_context_parts = []
+    for filename, label in RUN_CONTEXT_FILES:
+        path = os.path.join(run_dir, filename)
+        if os.path.exists(path):
+            with open(path) as f:
+                content = f.read()
+            run_context_parts.append(f"### {label} — `{filename}`\n\n```text\n{content}\n```")
+        else:
+            run_context_parts.append(f"### {label} — `{filename}`\n\n[Not found in run directory: {run_dir}]")
+    run_context = "\n\n---\n\n".join(run_context_parts)
 
     # Determine title
     title = args.title
@@ -232,6 +268,7 @@ def main():
         personality_content=personality_content,
         SUNO_CONSTRUCTION_RULES=suno_rules,
         golden_references=golden_references,
+        run_context=run_context,
         production_mandates=mandates,
         step10_content=step10_content,
         step11_content=step11_content,

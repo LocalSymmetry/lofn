@@ -58,12 +58,16 @@ Step 11 takes the deepseek-v4-pro step10 output and runs a **GPT-5.5 class model
 ## Context (what the step11 agent reads)
 
 For each pair:
-1. `pair_0X_step10_revision_synthesis.md` — canonical existing deepseek-v4-pro step10 output. `pair_0X_step10_final_package.md` is legacy fallback only when a previous run used older naming.
-2. `pair_0X_summary.txt` — coordinator track context
-3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
-4. `step05_pair_dispatch.md` — what step10 should have received
-5. The 16-point QA checklist (injected in the spawn task)
+0. Full user input / research brief, if present.
+1. `pair_0X_step10_revision_synthesis.md` — canonical existing deepseek-v4-pro Step 10 output. `pair_0X_step10_final_package.md` is legacy fallback only when a previous run used older naming.
+2. `pair_0X_summary.txt` — coordinator track context.
+3. Full `02_golden_seed.md` — invariant hook, story anchor, rare/forgotten lesson, and PERSONALITY GENRE DNA CONSTRAINT.
+4. Full `03_orchestrator_panel_debate.md` — all Special Flairs, Concept Panel, Medium Panel, Context & Marketing Panel, all 18 expert voices, and all Devil's Advocate / Hyper-Skeptic objections.
+5. `04_orchestrator_metaprompt.md` and `05_orchestrator_pair_assignments.md`.
 6. `06_audio_handoff.md` — selected `## Golden Song References`. If the handoff is missing them, read `skills/music/references/golden_songs_index.md` and select the two most relevant public Golden Songs yourself.
+7. The 16-point QA checklist (injected in the spawn task).
+
+The Step 11/manual Step 11 prompt must embed the complete packet above. Do not pass links or filenames alone. Golden Song References must include each selected song's full available style/music prompt, lyrics, and exclude prompt status; if no archived exclude prompt exists, say so.
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 
@@ -237,7 +241,7 @@ Default automated path:
 - Use the dedicated Step 11 contract and write one enhanced package per pair.
 - Keep pair contexts isolated.
 - Do not call `openrouter/fusion` automatically.
-- Include the two selected Golden Song References in the output as calibration examples only.
+- Include the two selected Golden Song References in the output as calibration examples only. Each selected reference must include full available style/music prompt, lyrics, and exclude prompt status, not just title/URL.
 
 Fusion manual-review path:
 - Build paste-ready Fusion request files with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
@@ -249,7 +253,7 @@ Fusion manual-review path:
 ## Output MUST include
 
 1. Original ICB / continuity summary
-2. `## Golden Song References` with the two selected public Suno examples and how they calibrate this pair
+2. `## Golden Song References` with the two selected public Suno examples and how they calibrate this pair, including embedded style/music prompt, lyrics, and exclude prompt status
 3. Dense `## 1. MUSIC PROMPT` (positive style only, 850-1000 chars)
 4. Separate `## 1B. SUNO EXCLUDE PROMPT` (negative controls only, 400-900 chars)
 5. Disc_Channel lyric package

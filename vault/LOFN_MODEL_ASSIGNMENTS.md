@@ -33,7 +33,7 @@ Do **not** assign one `lofn-audio` subagent to do Steps 06-10 in a single run un
 | Step 08 | `lofn-audio-step08` | `deepseek/deepseek-v4-pro` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
 | Step 09 | `lofn-audio-step09` | `deepseek/deepseek-v4-pro` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
 | Step 10 | `lofn-audio-step10` | `deepseek/deepseek-v4-pro` | Final synthesis: full Step 10 package, Suno prompt, EMO headers, provenance, self-check |
-| Step 11 | packaged Step 11 enhancer / manual Fusion review prompts | `deepseek/deepseek-v4-pro` default; `openrouter/fusion` prompt packaging only | Produce enhanced Suno package with Disc_Channel + two-field Suno prompt, Golden Song References, and Major Deviations. Do not invoke Fusion from the pipeline. |
+| Step 11 | packaged Step 11 enhancer / manual Fusion review prompts | `deepseek/deepseek-v4-pro` default; `openrouter/fusion` prompt packaging only | Produce enhanced Suno package with Disc_Channel + two-field Suno prompt, embedded Golden Song payloads, and Major Deviations. Do not invoke Fusion from the pipeline. |
 | Step 12 | `lofn-audio-step12` | `deepseek/deepseek-v4-pro` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
 
 ### Legacy agent
@@ -180,7 +180,7 @@ After Step 05 completes:
 1. Spawn up to 5 pair agents for **Step 06 only** using `lofn-audio-step06`.
 2. Verify files on disk. Validate. Then spawn Step 07 agents using `lofn-audio-step07`.
 3. Continue one step at a time through Step 10.
-4. Step 11 enhancement uses the dedicated Step 11 contract. It must receive the two Golden Song References selected in `06_audio_handoff.md` and output a `## Major Deviations` section where the smart model states any refusal, change, intensification, or anti-conformity choice. For routine automated runs, do not invoke Fusion; produce the enhanced package or packaged Fusion pair prompts for manual review. Fusion invocation requires a separate current-turn instruction with pair count and hard dollar budget cap. Under that separate budgeted instruction, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`, and do it as isolated pair requests unless otherwise approved.
+4. Step 11 enhancement uses the dedicated Step 11 contract. It must receive full run context (user input/research, Golden Seed, all 18 panel voices plus Special Flairs, metaprompt, pair assignments, handoff, production mandates), the full Step 10 artifact, and the two Golden Song References selected in `06_audio_handoff.md` with embedded style/music prompt, lyrics, and exclude prompt status. It must output a `## Major Deviations` section where the smart model states any refusal, change, intensification, or anti-conformity choice. For routine automated runs, do not invoke Fusion; produce the enhanced package or packaged Fusion pair prompts for manual review. Fusion invocation requires a separate current-turn instruction with pair count and hard dollar budget cap. Under that separate budgeted instruction, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`, and do it as isolated pair requests unless otherwise approved.
 5. Step 12 uses `lofn-audio-step12` when triggered.
 
 Each call has a narrow objective and is much less likely to timeout.
@@ -204,7 +204,7 @@ Each call has a narrow objective and is much less likely to timeout.
 | After Pair Step 06 | `validate_step06_distinctiveness.py <audio_dir>` |
 | After Pair Step 09 | `validate_step09_distinctiveness.py <audio_dir>` |
 | After Pair Step 10 | `validate_step.py 10 <file>` per pair |
-| After Pair Step 11 | 15-point QA self-check in enhanced package; verify `## Golden Song References` and `## Major Deviations` |
+| After Pair Step 11 | 15-point QA self-check in enhanced package; verify embedded Golden Song payloads and `## Major Deviations` |
 | After Step 12 | `STEP12_MUSIC_PROMPT_AUDIT.md` |
 | Before QA | `validate_pair_artifacts.py` for all pairs |
 | QA Gate | Somatic Gate + full 15-point check |
