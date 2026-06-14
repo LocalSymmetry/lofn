@@ -31,6 +31,12 @@ python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_d
 
 The packet must include a substantial seed lineage, Golden Seed/core seed, original Lofn panel object (`Special Flairs`, `Concept Panel`, `Medium Panel`, `Context & Marketing Panel`) with Devil’s Advocate / Hyper-Skeptic roles, metaprompt, pair assignments with rationale, and audio handoff. If this fails, do not proceed to audio. Launch or request `lofn-orchestrator` work instead.
 
+## DAILY CONTROLLER GUARD — REQUIRED
+
+For daily runs, do not launch a new vN lane into the same output directory while an older lane is active. The parent/controller must inspect active subagents, stop stale lanes explicitly, and write a status note before resuming. Completion messages are not authority; disk artifacts plus validators are authority.
+
+The controller is the only phase router. Coordinator and pair agents write their assigned artifacts and stop. They do not spawn the next phase, continue from a sibling's completion event, or locally emulate downstream agents.
+
 ---
 
 ## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
@@ -93,6 +99,8 @@ python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE>
 If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop the run, write `TIMEOUT_STATUS.md` or `VALIDATION_BLOCKED.md`, and escalate. Do **not** continue to the next step with a failed artifact.
 
 **STOP HERE. Do not proceed to step 06.**
+
+Return a structured handoff to the parent/controller that names `step05_refine_medium.md`, `concept_medium_pairs.json`, and the validation result. Do not spawn pair agents from inside the coordinator.
 
 ---
 

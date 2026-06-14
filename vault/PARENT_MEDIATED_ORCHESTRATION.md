@@ -138,6 +138,26 @@ artifacts:
 
 ---
 
+## 2A. Pair-Agent Standard (mandatory after 2026-05-21, updated 2026-06-14)
+
+For music/audio, image/art, video/animation, and story pair-agent runs, parent-mediated orchestration is not optional:
+
+1. The modality coordinator may run Steps 00–05 only.
+2. The coordinator must stop and hand the parent `concept_medium_pairs.json` / Step 05 outputs.
+3. The parent spawns one independent modality child session per pair for Steps 06–10.
+4. Pair agents must not work on other pairs and must not emulate sibling agents.
+5. Pair-agent prompts must follow the full-context injection standard in `/data/.openclaw/workspace/skills/music/SKILL.md`: full personality DNA, pair-specific Golden Seed excerpt, complete continuity payload, production mandates, forbidden substitutions, Step 05, pair list, one pair assignment excerpt, the exact step contract, and provenance. `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md` is deprecated and must not be used for production music runs.
+6. Each pair Step 10 artifact must record actual execution provenance: `session_key`, `agent_label`, `model`, `spawned_by_parent: true`, `step_call_mode: separate_child_session`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, and collapse guard.
+7. QA must issue separate pipeline-integrity and deliverable-quality verdicts. Music specifically uses `Pipeline Integrity` and `Suno Package` verdicts.
+
+The phrase “spawn or run six pair agents” is banned because it allowed a single subagent to locally simulate the pair lattice. Use “parent must spawn six independent pair agents.”
+
+### 2B. Daily Lane Lock (incident rule, 2026-06-14)
+
+Before launching or resuming a daily music lane, the parent/controller must check active subagents for the same date. If an older lane is active, mark it stale and send it an explicit STOP message before launching the next lane. Do not run v3/v4/v5 daily lanes concurrently against the same output directory.
+
+The parent/controller must be the control plane. A subagent may complete its assigned step and write artifacts, but it must not launch the next coordinator/pair/QA phase on its own. Nested spawning is allowed only for tightly bounded internal repairs inside the same assigned step, and the parent must still validate disk artifacts before advancing.
+
 ## 3. Parent Routing Logic
 
 The parent (main session) uses this logic after each subagent completion.

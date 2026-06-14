@@ -240,17 +240,17 @@ Correct pattern:
 For the recurring daily pipeline, **audio is a required primary modality unless The Scientist explicitly requests vision-only**. The controller must not treat a missing music/audio handoff as a creative choice.
 
 Daily run hard gates:
-1. Orchestrator must produce `04_handoff_to_music_brief.md` or `04_handoff_to_audio_brief.md`. If only a vision handoff exists, the controller must write/repair the audio handoff from the golden seed + pair assignments before spawning modality agents.
-2. Spawn `lofn-audio` coordinator before, or at minimum in parallel with, `lofn-vision`.
-3. Verify `output/daily/YYYY-MM-DD/daily-run/audio/` contains `step00_coordinator_overview.md`, `step05_pair_agent_handoff.md`, and `pair_01_concept.md` through `pair_06_concept.md`.
-4. Spawn/ensure six audio pair agents and verify `pair_01_steps_06_10.md` through `pair_06_steps_06_10.md` before QA.
-4a. Run Step 11 enhancement on all 6 pairs — verify `pair_01_step10_final_package_enhanced.md` through `pair_06_step10_final_package_enhanced.md`.
-5. If audio is missing, incomplete, or stalled, the daily run status is **INCOMPLETE**, even if vision finished.
-6. The correct music agent is `lofn-audio` (not `lofn-music`).
+1. Before launching, check for active stale daily lanes for the same date and stop them. Only one controller may write to `output/daily/YYYY-MM-DD/` at a time.
+2. Orchestrator must produce the canonical packet: `01_seed_lineage.md`, `02_golden_seed.md`, `03_orchestrator_panel_debate.md`, `04_orchestrator_metaprompt.md`, `05_orchestrator_pair_assignments.md`, and `06_audio_handoff.md`. Validate it with `scripts/validate_orchestrator_packet.py <run_dir>` before audio work.
+3. Spawn the configured `lofn-audio-coordinator` for coordinator Steps 00-05. It must write `step00_aesthetics_and_genres.md` through `step05_refine_medium.md` plus `concept_medium_pairs.json`, then stop.
+4. Parent/controller, not the coordinator, spawns dedicated split-step agents from `vault/LOFN_MODEL_ASSIGNMENTS.md`: `lofn-audio-step06`, `lofn-audio-step07`, `lofn-audio-step08`, `lofn-audio-step09`, `lofn-audio-step10`, then `lofn-audio-step11`.
+5. Verify canonical pair files exist: `pair_01_step06_facets.md` through `pair_06_step10_revision_synthesis.md`, then Step 11 files `pair_01_step10_final_package_enhanced.md` through `pair_06_step10_final_package_enhanced.md`.
+6. If audio is missing, incomplete, stale, or stalled, the daily run status is **INCOMPLETE**. Do not treat filename shape, completion messages, or rollup files as proof.
+7. The correct configured agents are the `lofn-audio-*` agents. Do not use generic `main` subagents for production music steps except as a parent/controller wrapper.
 
 The goal is not disconnected step agents. The goal is **one coherent creative voice per pair**, with enough timeout slack for real Step 06-10 work.
 
-**Timeout note:** OpenClaw subagent `runTimeoutSeconds` may be capped at 900s in practice. Treat 900s as a per-subagent ceiling, not as enough time for an entire six-pair modality run. Split the work so each 900s window has slack.
+**Timeout note:** OpenClaw subagent `runTimeoutSeconds` should be at least 1200s for the modern validation-heavy coordinator and pair-step agents. Treat 900s as a historical cap that is too tight for full-context ICB + provenance + validation work. Split the work so every window has slack.
 
 ### Prompt Formula: Subject → Action → Environment → Transformation
 
