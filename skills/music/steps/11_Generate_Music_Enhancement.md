@@ -135,16 +135,19 @@ lyrics...
 - Cross-domain processing vocabulary where applicable (e.g., `cassette_tape_saturation` on synth textures, `Wall_Of_Sound_Spector_Layering` on choral pads)
 - Lyrics + Disc_Channel + section headers should remain compact enough for Suno handling while preserving full song length: at least 60 sung lines, target 70-120. Reduce bloat through tighter language, not by collapsing the song.
 
-### 2. Style Prompt — MAX PARAGRAPH FORM (MANDATORY — 2026-06-09)
+### 2. Style Prompt + Exclude Prompt — MAX SUNO TWO-FIELD FORM (MANDATORY — 2026-06-14)
 
 **DO NOT produce a blank style prompt.** Style prompts must be dense paragraph form.
 
 - Sharpen every sonic descriptor — more evocative, more physical, more specific
 - Target 850–1000 characters
 - MUST lead with genre/style + tempo + key/tuning (e.g., "432Hz Crystalline Folk × Bio-Ambient, 76 BPM, G# minor, A=432Hz.")
-- Then: vocalist, instrumentation/sound palette, musical arrangement arc, signature sonic device, avoidances
+- Then: vocalist, instrumentation/sound palette, musical arrangement arc, signature sonic device
 - NO narrative/procedural openings ("Begin in/by/with…", "Use…", "Build the track from…")
 - NO artist names
+- NO avoidances in the style paragraph. Suno now provides a separate Exclude field with its own 1000-character budget; do not waste positive style space on negations.
+- Add `## 1B. SUNO EXCLUDE PROMPT` immediately after `## 1. MUSIC PROMPT`. Target 400–900 characters, hard max 1000.
+- Exclude field format: concrete comma-separated blacklist/failure classes only. Suno internally treats entries as negative tokens (`style -exclude`), so write `EDM drop, male vocals, child vocals, autotune gloss, lofi beat`, not prose like `avoid EDM`.
 - Body noise placed in Intro, Bridge, or Outro — at least 3 instances, each with clear dramatic function
 - The paragraph form is NON-OPTIONAL. Every pair ships with a dense paragraph prompt.
 
@@ -178,7 +181,7 @@ lyrics...
 
 ### C. Suno Package (3 gates)
 13. Clean Suno lyrics — mandatory Theme/SONG FORM; full EMO syntax; no debris
-14. Producer-grade Suno v5.5 prompt — dense paragraph prose, 850–1000 chars; all four hooks present in prose; no categorized key:value brackets; no real artist names
+14. Producer-grade Suno v5.5 two-field prompt — dense positive style paragraph, 850–1000 chars; separate exclude prompt ≤1000 chars; all four hooks present in style prose; no categorized key:value brackets; no real artist names
 15. Full package completeness — all required sections present
 
 ## Blocking Fails (output MUST NOT have these)
@@ -221,7 +224,10 @@ Lyrics MUST open with:
 Theme is not a generic topic — it is a focusing compression field. Song Form names the actual architecture and key transitions. Disc_Channel headers provide token-level Suno addressing. Missing Disc_Channel = FAIL.
 
 ### Gate 14a — Producer-Grade Style Prompt (MAX)
-Prompt MUST be paragraph form, 850-1000 chars. Lead with genre/style + tempo + key/tuning. Then vocalist, instrumentation, arrangement arc, signature device, avoidances. NO narrative/procedural openings. NO artist names. NO categorized key:value bracket format — paragraph prose only. BANNED openings: "Compose", "Create", "Begin in/by/with…", "Use…", "Build the track from…".
+Prompt MUST be paragraph form, 850-1000 chars. Lead with genre/style + tempo + key/tuning. Then vocalist, instrumentation, arrangement arc, signature device. NO narrative/procedural openings. NO artist names. NO categorized key:value bracket format — paragraph prose only. NO avoidances in the style paragraph. BANNED openings: "Compose", "Create", "Begin in/by/with…", "Use…", "Build the track from…".
+
+### Gate 14b — Suno Exclude Prompt
+The package MUST include `## 1B. SUNO EXCLUDE PROMPT` or `[SUNO EXCLUDE PROMPT:]`. Exclude prompt target 400-900 chars, hard max 1000. Use concrete blacklist terms/failure classes; Suno applies them as negative tokens, so do not spend characters on `avoid`, `do not`, or explanatory prose. The exclude field should carry bans formerly placed at the end of the style prompt.
 
 ## Integration
 This step runs AFTER step 10 and BEFORE QA. The audio coordinator or main session spawns 6 enhancement agents (one per pair) after all step10 packages are on disk. Enhanced packages are then fed to QA for final gate verification.
