@@ -16,10 +16,11 @@ Takes Step 10 + Step 11 source artifacts, wraps them with full archive personali
 3. Read the full personality YAML from `skills/orchestration/personalities/<persona>.yaml`.
 4. Read `vault/SUNO_PROMPT_CONSTRUCTION_GUIDE.md` and use `references/suno_rules_condensed.md` for the inline rules block.
 5. Read the production mandates from the handoff file or use defaults.
-6. Run `scripts/build_fable_prompt.py <pair_dir> <personality_yaml> <output_path>` or construct manually.
-7. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "Manual review only; do not invoke Fusion from this packaging step."
-8. Verify: full personality YAML present, Suno construction rules present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
-9. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_pair_request_prompt.md`.
+6. Read `skills/music/references/golden_songs_index.md` and the run handoff's `## Golden Song References` if present.
+7. Run `scripts/build_fable_prompt.py <pair_dir> <personality_yaml> <output_path>` or construct manually.
+8. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "Manual review only; do not invoke Fusion from this packaging step."
+9. Verify: full personality YAML present, Suno construction rules present, Golden Song References present, Major Deviations output requirement present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
+10. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_pair_request_prompt.md`.
 
 ## Personality Matching
 
@@ -34,12 +35,14 @@ Every prompt file must contain:
 1. Context header (run, theme, constraint, pair, focus)
 2. **Full personality YAML content — the ENTIRE file, zero bytes trimmed.** For LOFN-PRIME this is `lofn-prime-mini.yaml` (~1800 lines, ~50KB). Never substitute a compact/abbreviated block.
 3. Suno Prompt Construction Guide condensed rules (7 principles + 7-position order + character limits + format rules) — embed the FULL `references/suno_rules_condensed.md` file
-4. Production mandates — embed the FULL mandate text, not summaries
-5. Refinement instructions with non-negotiable technical constraints (1K/5K, Disc_Channel, EMO, intro/prod)
-6. Critical preservation rules
-7. **Full step10 output — the ENTIRE file. All sections: hook note, personality note, continuity payload, music prompt, negative prompt, public lyrics, suno lyrics, vocal fingerprint, style-axis lock, arrangement dramaturgy, production dramaturgy, image ladder audit, controlled fracture, ghost verse bank, panel ledger, QA report.** Do not extract only music prompt + lyrics.
-8. **Full step11 output — the ENTIRE file.** For per-pair step11 files: complete. For single cross-pair synthesis: embed the full synthesis.
-9. **Suno two-field mandate (2026-06-14):** final output must include a positive `style` / `[SUNO STYLE PROMPT:]` field and a separate `exclude` / `[SUNO EXCLUDE PROMPT:]` field. Style stays positive, 850-1000 chars. Exclude is concrete comma-separated negative-control terms, 400-900 chars, hard max 1000.
+4. Golden Song References — exactly two public Suno examples selected by the orchestrator, or selected from `skills/music/references/golden_songs_index.md` if the handoff is missing them
+5. Production mandates — embed the FULL mandate text, not summaries
+6. Refinement instructions with non-negotiable technical constraints (1K/5K, Disc_Channel, EMO, intro/prod)
+7. Critical preservation rules
+8. Major Deviations requirement — the smart model must have a place to state disagreements, refusals, changes, and anti-conformity choices
+9. **Full step10 output — the ENTIRE file. All sections: hook note, personality note, continuity payload, music prompt, negative prompt, public lyrics, suno lyrics, vocal fingerprint, style-axis lock, arrangement dramaturgy, production dramaturgy, image ladder audit, controlled fracture, ghost verse bank, panel ledger, QA report.** Do not extract only music prompt + lyrics.
+10. **Full step11 output — the ENTIRE file.** For per-pair step11 files: complete. For single cross-pair synthesis: embed the full synthesis.
+11. **Suno two-field mandate (2026-06-14):** final output must include a positive `style` / `[SUNO STYLE PROMPT:]` field and a separate `exclude` / `[SUNO EXCLUDE PROMPT:]` field. Style stays positive, 850-1000 chars. Exclude is concrete comma-separated negative-control terms, 400-900 chars, hard max 1000.
 
 ## Fusion Mode
 

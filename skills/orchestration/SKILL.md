@@ -27,8 +27,24 @@ If pre-flight validation fails, do not launch the pipeline. If a phase gate fail
 
 **The personalities and panels indices are loaded automatically. Use them before anything else.**
 
+### ⛔ PERSONALITY FILE GATE — MANDATORY (2026-06-13)
+
+**A personality name is INVALID unless a corresponding YAML file exists** in `skills/orchestration/personalities/`. LOFN-PRIME's internal emotional descriptors ("Eager Archivist," "Reluctant Pop Star") are sub-mode labels, NOT standalone personalities — they have no vocal architecture, no sonic pillars, no G.L.O.W. Protocol, no YAML file. Assigning them as if they were personalities causes personality collapse to generic LOFN default.
+
+**Valid assignment format:**
+- ✅ `LOFN-PRIME (AWE mode — documentary, intimate)` — LOFN-PRIME with mode context
+- ✅ `LOFN-PRIME (INDIGNATION mode — industrial, confrontational)` — LOFN-PRIME with mode context
+- ✅ `Polaroid-Void` — has YAML file at `personalities/polaroid-void.yaml`
+- ✅ Any name from `personalities_index.md` with a corresponding `.yaml` file
+- ❌ `Eager Archivist` — ghost name, no YAML file, LOFN-PRIME sub-mode only
+- ❌ `Reluctant Pop Star` — ghost name, no YAML file, LOFN-PRIME sub-mode only
+- ❌ `Emotional Moon` — invented on the fly, no YAML file
+- ❌ `Glitch Petal Oracle` — invented on the fly, no YAML file
+
+**Before assigning any personality to a pair, verify:** `ls skills/orchestration/personalities/<name>.yaml` exists.
+
 ### For PERSONALITY — scan personalities_index.md then decide:
-- **Match found** → `read skills/orchestration/personalities/{filename}.yaml` for the full prompt
+- **Match found** → verify YAML file EXISTS, then `read skills/orchestration/personalities/{filename}.yaml` for the full prompt
 - **No match** → `read skills/orchestration/refs/Generate_Personality.md` and create a new one
 - Name the personality you selected or created before proceeding
 
@@ -101,7 +117,9 @@ Audio Steps 05, 07, 09, 10, and QA consume this as the Panel Ledger / anti-bland
 - `05_orchestrator_pair_assignments.md` with Pair 01–Pair 06, accessibility/ambition routing, Lofn-Prime/personality assignment, and rationale
 - `06_audio_handoff.md` / `06_vision_handoff.md` / modality handoff as applicable; each handoff must contain `read first`, `orchestrator`, `golden seed`, `pair agents`, and `qa contract` markers
 
-**Step 11 — Enhancement (post-step10):** After all pair agents complete step10, spawn enhancement agents (1 per pair, 5 concurrent max) using the strongest available creative model. Each reads its step10 output + coordinator context + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`. Current model: `openai/gpt-5.5`. Timeout: 300s each.
+**Golden Song References — REQUIRED FOR MUSIC (2026-06-14):** For every music run, read `skills/music/references/golden_songs_index.md`, select exactly two public Golden Songs relevant to the run, and pass them forward in `06_audio_handoff.md` under `## Golden Song References`. Include title, Suno URL, why each was chosen, and what downstream agents may learn from it. These are calibration examples of Lofn's proven style and past success, not templates to copy. Step 11/manual Step 11 must receive the same two references.
+
+**Step 11 — Enhancement (post-step10):** After all pair agents complete step10, spawn enhancement agents (1 per pair, 5 concurrent max) using the strongest available non-Fusion creative model. Each reads its step10 output + coordinator context + selected Golden Song References + 15-point QA checklist. Produces `pair_0X_step10_final_package_enhanced.md`. Reference: `skills/music/steps/11_Generate_Music_Enhancement.md`. Current model: `openai/gpt-5.5`. Timeout: 300s each. Fusion is manual-review prompt packaging only; do not invoke Fusion from orchestration.
 
 After writing the packet, run:
 
@@ -131,6 +149,10 @@ Do NOT skip Phase 0. It is the seed that makes the panel work win.
 ## ⚡ PHASE 0: LOFN-CORE (run this before anything else)
 
 **Lofn-Core transforms raw research into an award-winning seed.**
+
+### ⚠️ NEWS ANCHOR DISCIPLINE — MANDATORY FOR ALL PAIR ASSIGNMENTS
+
+Anchor to the CHARGE of the moment (feeling, systemic pattern, public mood), never to the identifiable people in it. Do NOT use real victims' or private individuals' names. Do NOT reconstruct the specific circumstances of a real recent tragedy. If a concept would name or identify a real harmed person (esp. a minor, esp. recent): ABSTRACT — invent names, invent a place, shift specifics until the song is about the pattern, not the person. Real, recent deaths or crimes involving identifiable private individuals, especially minors: DO NOT anchor a song to them. Draw the theme; drop the case. (See vault/HUMAN_SUBJECT_STANDARD.md.)
 
 ### Step 0.1 — Read GOLDEN_SEEDS.md
 File: `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md`

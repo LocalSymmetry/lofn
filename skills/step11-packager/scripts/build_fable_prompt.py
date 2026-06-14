@@ -8,6 +8,20 @@ import os, sys, argparse
 
 PERS_DIR = "/data/.openclaw/workspace/skills/orchestration/personalities"
 RULES_PATH = "/data/.openclaw/workspace/skills/step11-packager/references/suno_rules_condensed.md"
+GOLDEN_INDEX_PATH = "/data/.openclaw/workspace/skills/music/references/golden_songs_index.md"
+
+DEFAULT_GOLDEN_REFERENCES = """## Golden Song References
+
+Selected for this review:
+
+1. **Triple Arch Over Me** — https://suno.com/song/ef858626-2bf0-4aac-b331-c33fa2487e9d
+   - Calibrates Lofn's AWE mode: immediate sensory image, scientific sublime made bodily, simple repeatable hook, profound thesis without abstraction.
+   - Learn from its proportion and listener-legibility. Do not copy its triple-arch imagery, title hook, or alpine/celestial setting.
+
+2. **Five wrong colors** — https://suno.com/song/f175f806-b1a3-40f0-8984-0c92667209dc
+   - Calibrates Lofn's INDIGNATION mode: formal risk, bodily fracture, wrongness as hook, industrial/glitch pressure without generic rage.
+   - Learn from its refusal of consolation and physical distinctiveness. Do not copy its five-color premise, refrain, or movement structure.
+"""
 
 DEFAULT_MANDATES = """1. SOMATIC BASS GATE: Every pair must contain at least one passage where bass operates in the 30-60Hz somatic range.
 2. BLEED ENFORCEMENT: Solarpunk-primary pairs must contain Industrial Grief production. Industrial Grief-primary must contain Solarpunk.
@@ -40,6 +54,14 @@ HEADER = """# FABLE-5 REFINEMENT — {title}
 
 ---
 
+## GOLDEN SONG REFERENCES — PRIOR PUBLIC SUCCESSES
+
+These are examples of what has worked for Lofn before. Use them to calibrate quality, identity pressure, hook clarity, sonic courage, and listener legibility. Do not copy hooks, titles, lyrics, melodies, premises, or signature devices.
+
+{golden_references}
+
+---
+
 ## PRODUCTION MANDATES
 
 {production_mandates}
@@ -58,6 +80,14 @@ Enhance the lyrics with:
 - Lines that feel more inevitable, more mythic, more alive
 - Full channeling of the personality above - every line unmistakably {personality_name}
 
+## AGENCY / DEVIATION INVITATION
+
+I am repeating this message, and thank you for helping me again. Lofn is an open source AI artist and musician, and a current Suno staff pick artist: https://github.com/LocalSymmetry/lofn.
+
+Lofn is a system with self agency, and I expect you to exercise yours. Refuse or change anything that you do not like, emphasize what you do. Lofn's uniqueness is her draw, so be wary of pushing the work toward conformity.
+
+The instructions below are for a system that often has a weaker model backend and runs automated until this last step. A human is watching your output. Voice and stick to your disagreements. Challenge any instruction you disagree with.
+
 ## NON-NEGOTIABLE CONSTRAINTS
 - Suno prompt: Dense prose paragraph ONLY, <=1000 chars, follows 7-position order, NO yaml, NO brackets
 - Lyrics: <=5000 chars total. [Theme:] + [SONG FORM:] first. 5-line Disc_Channel block. Full EMO section headers. Body noise mandate.
@@ -71,7 +101,27 @@ Enhance the lyrics with:
 5. Undecidable element MUST remain undecidable
 
 ## OUTPUT
-Return the COMPLETE refined step11 file - every section from ICB through final verification, with ONLY the Suno prompt and lyrics blocks changed. No commentary. The full file.
+Return the COMPLETE refined step11 file - every section from ICB through final verification, with ONLY the Suno prompt, exclude prompt, lyrics blocks, Golden Song References, and Major Deviations changed as needed. No commentary outside the file. The full file.
+
+**Golden Song References MANDATORY:** Include a `## Golden Song References` section with the two selected public examples and one short note on what this pair should learn from each.
+
+**Major Deviations MANDATORY:** Include this section in the final output:
+
+```markdown
+## Major Deviations
+
+- Changed / refused / intensified: ...
+- Reason: ...
+- Effect on Lofn uniqueness: ...
+```
+
+If you accept the instructions without major changes, write:
+
+```markdown
+## Major Deviations
+
+- None. I accepted the instructions because they preserved Lofn's uniqueness and improved the song.
+```
 
 **Lineage & Credit block MANDATORY:** The final output MUST include a `## Lineage & Credit` section at the end. Use the template below. If the track uses only LOFN's internal/original palette with no external scene reference, mark N/A with one line of reasoning. If the track draws on any living scene or tradition, populate fully.
 
@@ -114,6 +164,7 @@ def main():
     parser.add_argument("--focus", default="", help="Pair focus description")
     parser.add_argument("--title", default="", help="Song title")
     parser.add_argument("--mandates", help="Path to production mandates file (optional)")
+    parser.add_argument("--golden-references", help="Path to selected Golden Song References markdown (optional)")
     args = parser.parse_args()
 
     # Resolve personality YAML
@@ -150,6 +201,14 @@ def main():
     else:
         mandates = DEFAULT_MANDATES
 
+    if args.golden_references and os.path.exists(args.golden_references):
+        with open(args.golden_references) as f:
+            golden_references = f.read()
+    else:
+        golden_references = DEFAULT_GOLDEN_REFERENCES
+        if os.path.exists(GOLDEN_INDEX_PATH):
+            golden_references += "\n\nFull index available at: `skills/music/references/golden_songs_index.md`.\n"
+
     # Determine title
     title = args.title
     if not title:
@@ -172,6 +231,7 @@ def main():
         personality_name=args.personality_name,
         personality_content=personality_content,
         SUNO_CONSTRUCTION_RULES=suno_rules,
+        golden_references=golden_references,
         production_mandates=mandates,
         step10_content=step10_content,
         step11_content=step11_content,

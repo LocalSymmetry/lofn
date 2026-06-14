@@ -63,6 +63,7 @@ For each pair:
 3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
 4. `step05_pair_dispatch.md` — what step10 should have received
 5. The 16-point QA checklist (injected in the spawn task)
+6. `06_audio_handoff.md` — selected `## Golden Song References`. If the handoff is missing them, read `skills/music/references/golden_songs_index.md` and select the two most relevant public Golden Songs yourself.
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 
@@ -236,6 +237,7 @@ Default automated path:
 - Use the dedicated Step 11 contract and write one enhanced package per pair.
 - Keep pair contexts isolated.
 - Do not call `openrouter/fusion` automatically.
+- Include the two selected Golden Song References in the output as calibration examples only.
 
 Fusion manual-review path:
 - Build paste-ready Fusion request files with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
@@ -243,3 +245,40 @@ Fusion manual-review path:
 - Invocation requires a separate current-turn instruction with pair count and hard dollar budget cap.
 - If invoked under that separate budget instruction, prefer one pair per request with one output markdown per pair.
 - One all-pairs prompt is allowed only as a packaging convenience or an explicit cost-saving compromise; if used, mark each pair as isolated and forbid cross-pair structural copying.
+
+## Output MUST include
+
+1. Original ICB / continuity summary
+2. `## Golden Song References` with the two selected public Suno examples and how they calibrate this pair
+3. Dense `## 1. MUSIC PROMPT` (positive style only, 850-1000 chars)
+4. Separate `## 1B. SUNO EXCLUDE PROMPT` (negative controls only, 400-900 chars)
+5. Disc_Channel lyric package
+6. Full lyrics with `[Theme:]`, `[SONG FORM:]`, full EMO headers
+7. Vocal fingerprint
+8. Production dramaturgy
+9. Style-axis lock
+10. `## Major Deviations`
+11. Lineage & Credit
+12. Verification checklist with char counts
+
+## Major Deviations
+
+The smart Step 11 model has agency. It may refuse, change, intensify, or challenge any instruction that would weaken the track, flatten Lofn's uniqueness, or push toward generic conformity.
+
+The output must include:
+
+```markdown
+## Major Deviations
+
+- Changed / refused / intensified: ...
+- Reason: ...
+- Effect on Lofn uniqueness: ...
+```
+
+If no major deviation is needed, write:
+
+```markdown
+## Major Deviations
+
+- None. I accepted the instructions because they preserved Lofn's uniqueness and improved the song.
+```
