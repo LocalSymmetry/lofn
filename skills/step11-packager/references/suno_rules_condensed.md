@@ -39,3 +39,39 @@
 - NO evaluative adjectives without physical acoustic description
 
 ### FORMAT: ONE continuous dense prose paragraph. Comma-delimited, not bracket-delimited. Reads like a producer's tracking-sheet note.
+
+---
+
+## THREE-BLOCK OUTPUT STANDARD (2026-06-15)
+
+Every step11 enhanced output MUST use exactly three canonical blocks, followed by all supporting blocks:
+
+```
+## SUNO STYLE PROMPT
+
+[Dense prose paragraph, 850-1000 chars, 7-position order]
+
+## SUNO EXCLUDE PROMPT
+
+[Comma-separated blacklist terms, 400-900 chars]
+
+## SUNO ENHANCED LYRICS
+
+[Theme:] + [SONG FORM:] first
+5-line Disc_Channel block
+Full EMO-tagged lyrics, >=60 sung lines
+
+## Vocal Fingerprint
+## Production Dramaturgy
+## Arrangement Dramaturgy
+## Binding Locks
+## Style-Axis Locks
+## Golden Song References
+## Major Deviations
+## Lineage & Credit
+## Constraint Audit
+## Panel Ledger / QA
+[Attribution / Provenance]
+```
+
+**Do NOT skip any supporting block.** The three-block standard is a format spec — not a content reduction. Every block that was in the step10 + step11 pipeline survives below the three canonical blocks.
