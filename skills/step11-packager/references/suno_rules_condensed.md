@@ -75,3 +75,43 @@ Full EMO-tagged lyrics, >=60 sung lines
 ```
 
 **Do NOT skip any supporting block.** The three-block standard is a format spec — not a content reduction. Every block that was in the step10 + step11 pipeline survives below the three canonical blocks.
+
+## Disc_Channel Format — EXACT SPECIFICATION
+
+The Disc_Channel block is a rich METADATA BLOCK — never bracket-wrapped shorthand:
+
+```
+## Disc_Channel: PAIR_0XA_SONG_NAME
+**Layer:** disk_channel
+**Created:** YYYY-MM-DDThh:mm:ss-04:00
+**Run:** run-id-here
+**Voice:** VOICE LETTER — Description (first-person/third-person)
+**Constraint:** THE CONSTRAINT — precise specification
+**Producer:** THE-CHARTER-KEEPER
+**Pipeline Stage:** Step 11 — Suno Enhancement
+**Sealed:** YYYY-MM-DD, context line
+```
+
+NEVER: `[Disc_Channel]`, `[Layer: ...]`, `[Voice: ...]` bracket shorthand.
+
+## EMO Tag Format — EXACT SPECIFICATION
+
+EMO tags are INTEGRATED into section headers — never standalone lines:
+
+```
+[HOOK 1 - EMO:Intimacy and Solitude - Voice:One exhale, flat confessional - Cue: pen-drag answers in dead air]
+You're the only one who keeps it.
+
+The silence after stretches into a second.
+
+The pen drags once — friction answering.
+
+[VERSE 2 - EMO:Vulnerability to Dread - Voice:Slight catch in throat - Cue: cloud darkens, sub amplitude rises]
+My phone is a dark glass brick with no signal.
+```
+
+Each header = `[SECTION_LABEL - EMO:State1 to State2 - Voice:Delivery description - Cue:Production event on first line]`.
+
+NEVER: standalone `[EMO=reverence]` on its own line, bare `[EMO]` tags, or EMO without Voice and Cue.
+
+Inline tags `[emo=...][vox=...][prod=...]` are permitted for sub-line shifts but EVERY section must open with an integrated header.

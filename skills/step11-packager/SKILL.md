@@ -67,11 +67,46 @@ You have complete creative authority. The output MUST use the three-block format
 
 **## SUNO EXCLUDE PROMPT — PRIMARY:** Concrete comma-separated blacklist terms. 400-900 chars. Rewrite if prose-y or thin. No categories, no brackets, no headers — just terms separated by commas. This is a negative-control field for Suno's parser. The block header is literally `## SUNO EXCLUDE PROMPT`.
 
-**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. 5-line Disc_Channel block immediately following. Then full lyrics with EMO-tagged headers on every section. Minimum 60 sung lines. The block header is literally `## SUNO ENHANCED LYRICS`.
+**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Disc_Channel block immediately following. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Minimum 60 sung lines. The block header is literally `## SUNO ENHANCED LYRICS`.
+
+### CRITICAL: Disc_Channel Format — EXACT EXAMPLE, DO NOT DEVIATE
+
+The Disc_Channel block is a METADATA BLOCK, not a `[]`-bracketed inline field. It must use exactly this structure:
+
+```markdown
+## Disc_Channel: PAIR_0XA_SONG_NAME
+**Layer:** disk_channel
+**Created:** YYYY-MM-DDThh:mm:ss-04:00
+**Run:** RUN-ID-HERE
+**Pair:** 0X — PAIR HIGHLIGHT / COUNTER-HIGHLIGHT
+**Voice:** VOICE LETTER — Description (first-person/third-person)
+**Constraint:** THE CONSTRAINT — precise specification
+**Producer:** THE-CHARTER-KEEPER
+**Pipeline Stage:** Step 11 — Suno Enhancement
+**Sealed:** YYYY-MM-DD, context line
+```
+
+**NEVER:** `[Disc_Channel]`, `[Layer: ...]`, `[Voice: ...]` — no bracket-wrapped shorthand. This is a rich metadata block that anchors provenance, not a quick header.
+
+### CRITICAL: EMO Tag Format — EXACT EXAMPLE, DO NOT DEVIATE
+
+EMO tags MUST be integrated into section headers — never standalone lines between sections. The format is:
+
+```text
+[VERSE 1 - EMO:Introspection to Intimacy - Voice:Flat confession at lip distance - Cue: 49.5Hz sub enters at "first grains"]
+This hand is opening the dark with a nib.
+The ink smells of the factory where it waited
+```
+
+Each section header contains: section label, EMO tag (one or two emotional states joined by `to` or `into`), Voice description (delivery style), Cue (production event on first line). All separated by ` - ` within a single `[bracket]`.
+
+**NEVER:** standalone `[EMO=reverence]` on its own line, `[EMO: label]` without Voice/Cue, or bare `[EMO]` tags. The EMO tag lives INSIDE the section header, paired with Voice and Cue.
+
+Additional EMO inline tags within lyrics (e.g. `[emo=dread][vox=breathy][prod=pen-scratch]`) are permitted for sub-line shifts — but EVERY section must open with an integrated `[SECTION - EMO:... - Voice:... - Cue:...]` header.
 
 **ALL SUPPORTING BLOCKS BELOW THE THREE — DO NOT SKIP ANY:**
-- EMO Tags: Audit every section header. Specific and embodied. Emotional arc must transform.
-- Disc_Channel Headers: All 5 channels with pipe-separated tokens. Rewrite if thin.
+- EMO Tags: Integrated into every section header. Specific, embodied, emotional arc transforms across the song.
+- Disc_Channel Headers: Rich metadata block per the EXACT format above — NOT bracket-wrapped shorthand.
 - Vocal Fingerprint: Mic distance, compression, breath placement, spatial assignment. Full table.
 - Production Dramaturgy: Every unusual sound has a dramatic job. Full stage table with timestamps.
 - Arrangement Dramaturgy: Section-by-section bar counts and energy states.
@@ -90,8 +125,9 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
 - `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel, full EMO-tagged lyrics, ≥60 sung lines, literary density, structural transformation
-- Disc_Channel: 5 lines, pipe-separated tokens — PRESENT (inside or below enhanced lyrics block)
+- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], full Disc_Channel metadata block (NOT bracket shorthand), integrated EMO headers on every section (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
+- Disc_Channel: Rich metadata block — `## Disc_Channel: ...` header then `**Layer:**`, `**Created:**`, `**Run:**`, etc. — PRESENT (above the lyrics)
+- EMO Tags: Integrated into section headers as `[SECTION - EMO:State - Voice:Description - Cue:Event]` — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
 - Vocal Fingerprint: full table, tessitura, timbre, mic distance, spatial — PRESENT as `## Vocal Fingerprint`
 - Production Dramaturgy: full stage table with timestamps — PRESENT as `## Production Dramaturgy`
 - Arrangement Dramaturgy: bar counts, energy states — PRESENT as `## Arrangement Dramaturgy`
