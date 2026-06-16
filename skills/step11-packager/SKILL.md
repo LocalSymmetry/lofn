@@ -44,7 +44,7 @@ Every prompt file must contain:
 9. Major Deviations requirement — the smart model must have a place to state disagreements, refusals, changes, and anti-conformity choices
 10. **Full step10 output — the ENTIRE file. All sections: hook note, personality note, continuity payload, music prompt, negative prompt, public lyrics, suno lyrics, vocal fingerprint, style-axis lock, arrangement dramaturgy, production dramaturgy, image ladder audit, controlled fracture, ghost verse bank, panel ledger, QA report.** Do not extract only music prompt + lyrics.
 11. **Full step11 output — the ENTIRE file.** For per-pair step11 files: must use the three-block format (`## SUNO STYLE PROMPT`, `## SUNO EXCLUDE PROMPT`, `## SUNO ENHANCED LYRICS`) with all supporting blocks below. For single cross-pair synthesis: embed the full synthesis.
-12. **Suno Three-Block mandate (2026-06-15):** final output MUST use exactly three canonical blocks: `## SUNO STYLE PROMPT` (850-1000 chars, dense prose paragraph), `## SUNO EXCLUDE PROMPT` (400-900 chars, comma-separated terms, no categories), `## SUNO ENHANCED LYRICS` ([Theme:] + [SONG FORM:], Disc_Channel, full EMO-tagged lyrics). ALL supporting blocks (vocal fingerprint, production dramaturgy, arrangement dramaturgy, binding locks, style-axis locks, lineage & credit, major deviations, golden song references, constraint audit, panel ledger, QA report, attribution/provenance) MUST be present below the three canonical blocks — never skipped. This replaces the older two-field mandate — the inline `[field:]` style is now the `##` block style.
+12. **Suno Three-Block mandate (2026-06-15):** final output MUST use exactly three canonical blocks: `## SUNO STYLE PROMPT` (850-1000 chars, dense prose paragraph), `## SUNO EXCLUDE PROMPT` (400-900 chars, comma-separated terms, no categories), `## SUNO ENHANCED LYRICS` ([Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip with pipe-separated `[Disc_NAME: ...]` brackets, integrated EMO section headers using `–` em dashes). ALL supporting blocks below — never skipped. This replaces the older two-field mandate.
 
 ### Manual Refinement Block — Specification
 
@@ -71,38 +71,45 @@ You have complete creative authority. The output MUST use the three-block format
 
 ### CRITICAL: Disc_Channel Format — EXACT EXAMPLE, DO NOT DEVIATE
 
-The Disc_Channel block is a METADATA BLOCK, not a `[]`-bracketed inline field. It must use exactly this structure:
+The Disc_Channel block is a 5-line producer channel strip — each line is a `[Disc_NAME: token | token | ...]` bracket. Pipe-separated production tokens within a single bracket per channel:
 
-```markdown
-## Disc_Channel: PAIR_0XA_SONG_NAME
-**Layer:** disk_channel
-**Created:** YYYY-MM-DDThh:mm:ss-04:00
-**Run:** RUN-ID-HERE
-**Pair:** 0X — PAIR HIGHLIGHT / COUNTER-HIGHLIGHT
-**Voice:** VOICE LETTER — Description (first-person/third-person)
-**Constraint:** THE CONSTRAINT — precise specification
-**Producer:** THE-CHARTER-KEEPER
-**Pipeline Stage:** Step 11 — Suno Enhancement
-**Sealed:** YYYY-MM-DD, context line
+```text
+[Disc_Rhythm: Genre_BPM | groove_signature | production_style | no_fills | spatial]
+[Disc_Vocal: delivery_descriptor | mic_technique | attitude | breath_placement | spatial]
+[Disc_Sub: oscillator_type_freq_range | behavior_curve | NEVER_RESOLVES | Mono_Sub_Lock]
+[Disc_Pad: synth_color_Hz | mood_descriptor | attack_shape | Stereo_Width_Maximum]
+[Disc_Texture: processing_chain | filter_movement | layering_strategy | Pan_Position]
 ```
 
-**NEVER:** `[Disc_Channel]`, `[Layer: ...]`, `[Voice: ...]` — no bracket-wrapped shorthand. This is a rich metadata block that anchors provenance, not a quick header.
+Five channels minimum: Rhythm, Vocal, Sub, Pad, Texture. Every token is a concrete production decision — oscillator type, BPM, mic technique, processing chain. NOT run metadata. NOT markdown headers.
+
+**FULL REAL EXAMPLE — "The Water Warms Slowly":**
+
+```text
+[Disc_Rhythm: LinnDrum_100BPM | Gqom_3-3-2_broken_kick | bone_dry_no_fills | Center_Mono]
+[Disc_Vocal: dry_sardonic_delivery | ASMR_close_mic | anti-diva_deadpan | breath_on_capsule | Center_Front]
+[Disc_Sub: FM_sine_38-42Hz | continuous_swell_+0.5dB_per_8bars | NEVER_RESOLVES | Mono_Sub_Lock]
+[Disc_Pad: green_synth_432Hz | El_Niño_Deep_Blue | slow_attack_swell | Stereo_Width_Maximum]
+[Disc_Texture: cassette_tape_saturation | telephone_bandpass_break | Wall_of_Sound_layering | Hard_Pan_Right]
+```
+
+**NEVER:** `## Disc_Channel:` markdown headers, `**Layer:** disk_channel`, timestamps, run IDs, or provenance metadata. This is a tracking-sheet channel strip for the producer — concrete production decisions, not pipeline history.
 
 ### CRITICAL: EMO Tag Format — EXACT EXAMPLE, DO NOT DEVIATE
 
-EMO tags MUST be integrated into section headers — never standalone lines between sections. The format is:
+EMO tags MUST be integrated into section headers using `–` (em dash) separators. Emotional states use commas, not `to` connectors. `[11]` markers embed where step11 enhancement touched that section:
 
 ```text
-[VERSE 1 - EMO:Introspection to Intimacy - Voice:Flat confession at lip distance - Cue: 49.5Hz sub enters at "first grains"]
-This hand is opening the dark with a nib.
-The ink smells of the factory where it waited
+[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth [11] – Reluctant Pop Star, dry close-mic, slow internal rhymes]
+the water took a breath so slow you thought your skin
+had loosed itself and let the silence in
 ```
 
-Each section header contains: section label, EMO tag (one or two emotional states joined by `to` or `into`), Voice description (delivery style), Cue (production event on first line). All separated by ` - ` within a single `[bracket]`.
+Header structure: `[SECTION LABEL – VARIANT/CUE – EMO:State1, State2 [11] – PERSONA NAME, vocal style, delivery notes]` — all separated by ` – ` (space-emdash-space) within a single bracket. EMO values use commas between related emotional states. `[11]` markers embed where the step11 enhancement touched.
 
-**NEVER:** standalone `[EMO=reverence]` on its own line, `[EMO: label]` without Voice/Cue, or bare `[EMO]` tags. The EMO tag lives INSIDE the section header, paired with Voice and Cue.
+**NEVER:** standalone `[EMO=reverence]` on its own line, EMO without persona and delivery style, bare `[EMO]` tags, or `-` (hyphen) where `–` (em dash) is the separator.
 
-Additional EMO inline tags within lyrics (e.g. `[emo=dread][vox=breathy][prod=pen-scratch]`) are permitted for sub-line shifts — but EVERY section must open with an integrated `[SECTION - EMO:... - Voice:... - Cue:...]` header.
+Micro inline tags like `[emo=dread][vox=breathy][prod=pen-scratch]` are permitted for sub-line shifts but EVERY section MUST open with an integrated header: `[Section – Label – EMO:State, State [11] – Persona, delivery notes]`.
 
 **ALL SUPPORTING BLOCKS BELOW THE THREE — DO NOT SKIP ANY:**
 - EMO Tags: Integrated into every section header. Specific, embodied, emotional arc transforms across the song.
@@ -125,9 +132,9 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
 - `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], full Disc_Channel metadata block (NOT bracket shorthand), integrated EMO headers on every section (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
-- Disc_Channel: Rich metadata block — `## Disc_Channel: ...` header then `**Layer:**`, `**Created:**`, `**Run:**`, etc. — PRESENT (above the lyrics)
-- EMO Tags: Integrated into section headers as `[SECTION - EMO:State - Voice:Description - Cue:Event]` — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
+- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
+- Disc_Channel: 5-line channel strip — `[Disc_Rhythm: ...]` `[Disc_Vocal: ...]` `[Disc_Sub: ...]` `[Disc_Pad: ...]` `[Disc_Texture: ...]` — pipe-separated tokens in bracket-wrapped lines — PRESENT (above the lyrics)
+- EMO Tags: Integrated into section headers as `[Section – Label – EMO:State1, State2 [11] – Persona, delivery notes]` using `–` (em dash) separators — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
 - Vocal Fingerprint: full table, tessitura, timbre, mic distance, spatial — PRESENT as `## Vocal Fingerprint`
 - Production Dramaturgy: full stage table with timestamps — PRESENT as `## Production Dramaturgy`
 - Arrangement Dramaturgy: bar counts, energy states — PRESENT as `## Arrangement Dramaturgy`
@@ -193,7 +200,7 @@ Every step11 output MUST use exactly three canonical blocks for the Suno-facing 
 
 ## SUNO ENHANCED LYRICS
 
-[Theme:] + [SONG FORM:] at top, 5-line Disc_Channel block, full EMO-tagged lyrics with section headers, minimum 60 sung lines]
+[Theme:] + [SONG FORM:] at top, 5-line Disc_Channel channel strip (pipe-separated `[Disc_NAME: ...]` brackets), full EMO-tagged lyrics with `–` (em dash) section headers, minimum 60 sung lines]
 ```
 
 **All other blocks MUST remain present below these three.** Do not skip: vocal fingerprint, production dramaturgy, binding locks, lineage & credit, major deviations, golden song references, style-axis locks, arrangement dramaturgy, panel ledger, QA report, constraint audit. The three-block standard is a FORMAT SPEC — not a content reduction. Everything that was in the step10 + step11 pipeline survives; it just flows into a clean, Suno-ready handoff with the three canonical blocks at the top.

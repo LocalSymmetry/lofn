@@ -78,40 +78,36 @@ Full EMO-tagged lyrics, >=60 sung lines
 
 ## Disc_Channel Format — EXACT SPECIFICATION
 
-The Disc_Channel block is a rich METADATA BLOCK — never bracket-wrapped shorthand:
+The Disc_Channel block is a 5-line producer channel strip — pipe-separated production tokens within `[Disc_NAME: ...]` brackets:
 
-```
-## Disc_Channel: PAIR_0XA_SONG_NAME
-**Layer:** disk_channel
-**Created:** YYYY-MM-DDThh:mm:ss-04:00
-**Run:** run-id-here
-**Voice:** VOICE LETTER — Description (first-person/third-person)
-**Constraint:** THE CONSTRAINT — precise specification
-**Producer:** THE-CHARTER-KEEPER
-**Pipeline Stage:** Step 11 — Suno Enhancement
-**Sealed:** YYYY-MM-DD, context line
+```text
+[Disc_Rhythm: LinnDrum_100BPM | Gqom_3-3-2_broken_kick | bone_dry_no_fills | Center_Mono]
+[Disc_Vocal: dry_sardonic_delivery | ASMR_close_mic | anti-diva_deadpan | breath_on_capsule | Center_Front]
+[Disc_Sub: FM_sine_38-42Hz | continuous_swell_+0.5dB_per_8bars | NEVER_RESOLVES | Mono_Sub_Lock]
+[Disc_Pad: green_synth_432Hz | El_Niño_Deep_Blue | slow_attack_swell | Stereo_Width_Maximum]
+[Disc_Texture: cassette_tape_saturation | telephone_bandpass_break | Wall_of_Sound_layering | Hard_Pan_Right]
 ```
 
-NEVER: `[Disc_Channel]`, `[Layer: ...]`, `[Voice: ...]` bracket shorthand.
+Five channels minimum: Rhythm, Vocal, Sub, Pad, Texture. Every token is a concrete production decision (oscillator type, BPM, mic technique, processing chain).
+
+NEVER: `## Disc_Channel:` markdown headers, `**Layer:** disk_channel`, timestamps, run IDs — this is a producer's tracking sheet, not a pipeline provenance log.
 
 ## EMO Tag Format — EXACT SPECIFICATION
 
-EMO tags are INTEGRATED into section headers — never standalone lines:
+EMO tags are integrated into section headers using `–` (em dash) separators; emotional states use commas:
 
-```
-[HOOK 1 - EMO:Intimacy and Solitude - Voice:One exhale, flat confessional - Cue: pen-drag answers in dead air]
-You're the only one who keeps it.
+```text
+[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth [11] – Reluctant Pop Star, dry close-mic, slow internal rhymes]
+the water took a breath so slow you thought your skin
+had loosed itself and let the silence in
 
-The silence after stretches into a second.
-
-The pen drags once — friction answering.
-
-[VERSE 2 - EMO:Vulnerability to Dread - Voice:Slight catch in throat - Cue: cloud darkens, sub amplitude rises]
-My phone is a dark glass brick with no signal.
+[UN Warning Break – EMO:Procedural Anesthesia – Spoken fragment, telephone bandpass, drums drop, sub +2.0dB]
+the water temperature anomaly exceeded the threshold for the fifth consecutive month
+*buoy hum modulates — 12 cycles per minute*
 ```
 
-Each header = `[SECTION_LABEL - EMO:State1 to State2 - Voice:Delivery description - Cue:Production event on first line]`.
+Header structure: `[SECTION LABEL – VARIANT or CUE – EMO:State1, State2 [11] – PERSONA NAME, vocal style, delivery notes]` — `–` (em dash) is the separator, commas join emotional states.
 
-NEVER: standalone `[EMO=reverence]` on its own line, bare `[EMO]` tags, or EMO without Voice and Cue.
+NEVER: standalone `[EMO=reverence]` on its own line, EMO without persona and delivery style, bare `[EMO]` tags, or `-` (hyphen) where `–` (em dash) is the separator.
 
-Inline tags `[emo=...][vox=...][prod=...]` are permitted for sub-line shifts but EVERY section must open with an integrated header.
+Micro inline tags `[emo=...][vox=...][prod=...]` are permitted for sub-line shifts but EVERY section must open with an integrated em-dash header.
