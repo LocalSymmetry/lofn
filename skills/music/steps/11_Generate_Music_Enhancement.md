@@ -57,6 +57,8 @@ Step 11 takes the deepseek-v4-pro step10 output and runs a **GPT-5.5 class model
 
 ## Context (what the step11 agent reads)
 
+> **CREATIVE CONTEXT / Full Context Always:** this section IS the per-step creative-context contract — the full **Panel Ledger** (Concept / Medium / Context & Marketing panels, 18 voices, 15 Special Flairs), Golden Seed, meta-prompt, and chosen personality. Embody the supplied panel; do NOT invent a new one.
+
 For each pair:
 0. Full user input / research brief, if present.
 1. `pair_0X_step10_revision_synthesis.md` — canonical existing deepseek-v4-pro Step 10 output. `pair_0X_step10_final_package.md` is legacy fallback only when a previous run used older naming.

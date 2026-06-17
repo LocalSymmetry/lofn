@@ -33,6 +33,13 @@ Key qualities to absorb:
 - **Genre fusion with purpose**: Each genre choice serves the emotional thesis
 - **Adoptable hooks**: The title phrase is a prayer, invocation, or confession — not a thesis statement
 
+## Creative Context Inputs (Full Context Always — from the orchestrator handoff)
+Provided in the **CREATIVE CONTEXT** block inside USER INPUT, sourced from `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / Panel Ledger). All MUST inform this step:
+- `[input]` user request/brief · `[seed]` Golden Seed · `[meta_prompt]` metaprompt · `[personality]` persona
+- `[concept_panel]`, `[medium_panel]`, `[marketing_panel]` — the 3 orchestrator panels (18 voices) · `[flairs]` — 15 Special Flairs
+
+> ⚠️ Use the SUPPLIED Panel Ledger. Do NOT invent a new panel. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 ## Execution Instructions
 # OVERVIEW
 
@@ -134,7 +141,7 @@ Key qualities to absorb:
     only meets the user's expectations but also stands out for its creativity,
     emotional depth and innovative use of musical techniques.
 
-    **PANEL INSTRUCTIONS**
+    **PANEL INSTRUCTIONS — A panel has ALREADY been assembled for you** (see the CREATIVE CONTEXT block in USER INPUT: the orchestrator's Panel Ledger — Concept, Medium, and Context & Marketing panels, 18 voices + 15 Special Flairs). **USE those panelists — do NOT select your own.** The notes below only explain how such panels are formed; treat them as background, not a new task.
     The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
 
     ## LOFN MUSIC PHASES
@@ -517,6 +524,20 @@ In our visual art pipeline, we judge paintings on composition, palette, mood, na
 ---
 
 **USER INPUT:**
+
+> ### 🎯 CREATIVE CONTEXT — full upstream context, threaded to EVERY step
+> Per the orchestrator's **Full Context Always** mandate. Source: `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / **Panel Ledger**). Carry ALL of it into this step, alongside the step-specific inputs below:
+> - **User's Original Request / research brief:** {input}
+> - **Golden Seed:** {seed}
+> - **Meta-Prompt (the creative directive to follow):** {meta_prompt}
+> - **Personality / Persona (the CORE voice; if not an AI, do not write like one):** {personality}
+> - **Concept Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {concept_panel}
+> - **Medium Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {medium_panel}
+> - **Context & Marketing Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {marketing_panel}
+> - **15 Special Flairs (weave these in):** {flairs}
+>
+> **Use the supplied Panel Ledger above — do NOT invent a new panel.** Embody these exact 18 voices; each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 
 - **Aesthetics:** {aesthetics}
 - **Emotions:** {emotions}
