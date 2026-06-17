@@ -6,11 +6,13 @@ Usage:
 
 Checks final delivery structure, not creative quality:
 - ## 1. MUSIC PROMPT exists and is 850-1000 chars by default
+- ## 1B. SUNO EXCLUDE PROMPT exists and is <=1000 chars
 - ## 2. LYRICS exists
 - ## 3. TITLE exists
 - [SONG FORM:] exists in lyrics
-- EMO: section headers exist and no bare architectural EMO labels are used
+- full EMO performance-script section headers exist and no bare architectural EMO labels are used
 - at least one short *sfx cue* exists
+- no prompt/procedure/QA debris in sung lines
 - no obvious real-artist prompt contamination from a small common list
 """
 from __future__ import annotations
@@ -26,6 +28,8 @@ ARTIST_BLOCKLIST = {
 }
 
 PROMPT_RE = re.compile(r"^## 1\. MUSIC PROMPT\s*\n(?P<body>.*?)(?=^## 2\. LYRICS\s*$)", re.M | re.S)
+PROMPT_WITH_EXCLUDE_RE = re.compile(r"^## 1\. MUSIC PROMPT\s*\n(?P<body>.*?)(?=^## 1B\. SUNO EXCLUDE PROMPT\s*$)", re.M | re.S)
+EXCLUDE_RE = re.compile(r"^## 1B\. SUNO EXCLUDE PROMPT\s*\n(?P<body>.*?)(?=^## 2\. LYRICS\s*$)", re.M | re.S)
 LYRICS_RE = re.compile(r"^## 2\. LYRICS\s*\n(?P<body>.*?)(?=^## 3\. TITLE\s*$)", re.M | re.S)
 TITLE_RE = re.compile(r"^## 3\. TITLE\s*\n(?P<body>.*?)(?=^## |\Z)", re.M | re.S)
 
@@ -49,7 +53,8 @@ def validate(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
     errs: list[str] = []
 
-    pm = PROMPT_RE.search(text)
+    pm = PROMPT_WITH_EXCLUDE_RE.search(text) or PROMPT_RE.search(text)
+    em = EXCLUDE_RE.search(text)
     lm = LYRICS_RE.search(text)
     tm = TITLE_RE.search(text)
     if not pm:
@@ -63,8 +68,20 @@ def validate(path: Path) -> list[str]:
         hits = sorted(a for a in ARTIST_BLOCKLIST if a in low)
         if hits:
             errs.append("artist names in prompt: " + ", ".join(hits))
-        if "avoid" not in low and "blacklist" not in low and "no " not in low:
-            errs.append("music prompt lacks explicit avoid/blacklist language")
+        if any(term in low for term in ("avoid:", "avoid ", "do not ", "no male", "no child", "blacklist")):
+            errs.append("style prompt appears to contain avoid/exclude language; use ## 1B. SUNO EXCLUDE PROMPT")
+
+    if not em:
+        errs.append("missing ## 1B. SUNO EXCLUDE PROMPT before ## 2. LYRICS")
+    else:
+        exclude = strip_md(em.group("body"))
+        n = len(exclude)
+        if n == 0:
+            errs.append("empty Suno exclude prompt")
+        if n > 1000:
+            errs.append(f"Suno exclude prompt length {n}, expected <=1000")
+        if re.search(r"\b(avoid|do not|don't|must not|please|the song should not)\b", exclude, re.I):
+            errs.append("exclude prompt contains prose negation; use concrete comma-separated terms")
 
     if not lm:
         errs.append("missing ## 2. LYRICS before ## 3. TITLE")
@@ -78,6 +95,8 @@ def validate(path: Path) -> list[str]:
             errs.append("bare architectural EMO label used")
         if not re.search(r"^\*[^*\n]{1,40}\*\s*$", lyrics, re.M):
             errs.append("missing standalone short *SFX cue*")
+        if re.search(r"\b(prompt|QA gate|taxonomy|production manual|this song is about)\b", lyrics, re.I):
+            errs.append("possible prompt/procedure/QA debris in lyrics")
         sung_lines = [ln for ln in lyrics.splitlines() if ln.strip() and not ln.strip().startswith("[") and not ln.strip().startswith("*") and not ln.strip().startswith("#")]
         if len(sung_lines) < 60:
             errs.append(f"only {len(sung_lines)} probable sung lines, expected >=60")

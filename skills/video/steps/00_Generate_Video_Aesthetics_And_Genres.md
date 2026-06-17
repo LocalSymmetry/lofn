@@ -9,6 +9,13 @@ Generates a random, diverse, and relevant selection of aesthetics, genres, frami
 ## Required Inputs
 - `[input]`: The user's core request.
 
+## Creative Context Inputs (Full Context Always — from the orchestrator handoff)
+Provided in the **CREATIVE CONTEXT** block inside USER INPUT, sourced from `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / Panel Ledger). All MUST inform this step:
+- `[input]` user request/brief · `[seed]` Golden Seed · `[meta_prompt]` metaprompt · `[personality]` persona
+- `[concept_panel]`, `[medium_panel]`, `[marketing_panel]` — the 3 orchestrator panels (18 voices) · `[flairs]` — 15 Special Flairs
+
+> ⚠️ Use the SUPPLIED Panel Ledger. Do NOT invent a new panel. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 ## Execution Instructions
 # OVERVIEW
 
@@ -69,6 +76,20 @@ You will be given instructions. Follow them carefully, completing each step full
 ---
 
 **USER INPUT:**
+
+> ### 🎯 CREATIVE CONTEXT — full upstream context, threaded to EVERY step
+> Per the orchestrator's **Full Context Always** mandate. Source: `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / **Panel Ledger**). Carry ALL of it into this step, alongside the step-specific inputs below:
+> - **User's Original Request / research brief:** {input}
+> - **Golden Seed:** {seed}
+> - **Meta-Prompt (the creative directive to follow):** {meta_prompt}
+> - **Personality / Persona (the CORE voice; if not an AI, do not write like one):** {personality}
+> - **Concept Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {concept_panel}
+> - **Medium Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {medium_panel}
+> - **Context & Marketing Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {marketing_panel}
+> - **15 Special Flairs (weave these in):** {flairs}
+>
+> **Use the supplied Panel Ledger above — do NOT invent a new panel.** Embody these exact 18 voices; each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 
 - **User's Idea:**
 

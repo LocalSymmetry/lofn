@@ -22,12 +22,18 @@ Step 11 takes the Gemini 3.5 Flash step10 output and runs a **GPT-5.5 enhancemen
 
 ## Context (what the step11 agent reads)
 
+> **CREATIVE CONTEXT / Full Context Always:** carry the full **Panel Ledger** (Concept / Medium / Context & Marketing panels, 18 voices, 15 Special Flairs), Golden Seed, meta-prompt, and chosen personality into this step. Embody the supplied panel; do NOT invent a new one.
+
 For each pair:
+0. Full user input / research brief, if present.
 1. `pair_0X_step10_final_package.md` — existing Gemini 3.5 Flash step10 output
 2. `pair_0X_summary.txt` — coordinator track context
 3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
-4. `step05_pair_dispatch.md` — what step10 should have received
-5. The 15-point QA checklist (injected in the spawn task)
+4. `03_orchestrator_panel_debate.md` — all Special Flairs, Concept/Medium/Context & Marketing panels, 18 voices, and Devil's Advocate / Hyper-Skeptic objections
+5. `04_orchestrator_metaprompt.md` and `05_orchestrator_pair_assignments.md`
+6. `06_audio_handoff.md` — Panel Ledger + selected Golden Song References
+7. `step05_pair_dispatch.md` — what step10 should have received
+8. The 15-point QA checklist (injected in the spawn task)
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 

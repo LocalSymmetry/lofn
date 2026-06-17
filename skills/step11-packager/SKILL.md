@@ -1,17 +1,53 @@
 ---
 name: step11-packager
+
 description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus or OpenRouter Fusion per-pair use from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
 ---
-
 # Step 11 Packager — Manual Opus/Fable/Fusion Refinement Prompt Builder
 
 Takes full run context + Step 10 + Step 11 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates + embedded Golden Song payloads, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement or manual-review OpenRouter Fusion use.
 
 **Cost rule:** Do not invoke Fusion from this skill. Fusion is packaged here as text for manual review only. A separate current-turn instruction with pair count and hard dollar budget cap is required before any agent may spend on Fusion.
 
-## Workflow
+**⛔ FUSION IS PERMANENTLY BANNED.** It drained all OpenRouter credits. Never invoke, mention, or offer it.
 
-1. Confirm `step10_suno_ready_production_wrap.md` and `step11_enhanced.md` exist in the pair directory.
+## Primary Workflow — Scripted (Recommended)
+
+**Use the `scripts/build_fable_prompt.py` script.** It auto-discovers everything:
+
+```bash
+# Build all 6 pairs (auto-detect everything):
+python3 skills/step11-packager/scripts/build_fable_prompt.py output/daily/YYYY-MM-DD
+
+# Fusion mode:
+python3 skills/step11-packager/scripts/build_fable_prompt.py output/daily/YYYY-MM-DD --mode fusion
+
+# Specific pairs only:
+python3 skills/step11-packager/scripts/build_fable_prompt.py output/daily/YYYY-MM-DD --pairs 1,3,5
+
+# Custom output:
+python3 skills/step11-packager/scripts/build_fable_prompt.py output/daily/YYYY-MM-DD --output-dir /tmp/my-prompts
+
+# Personality override (when auto-detect fails):
+python3 skills/step11-packager/scripts/build_fable_prompt.py output/daily/YYYY-MM-DD --personality lofn-prime-mini.yaml
+```
+
+**What it does:**
+1. Auto-discovers all `pair_XX_step10_production_wrap.md` files in `audio/`.
+2. Reads orchestrator brief to resolve per-pair personalities.
+3. Loads the full personality YAML from `skills/orchestration/personalities/`.
+4. Embeds Suno construction rules, Golden Songs index, Golden Seed, Orchestrator Brief.
+5. Embeds the full step10 production wrap for each pair.
+6. Appends the canonical Manual Refinement Instructions block (three-block output, Disc_Channel, EMO format specs).
+7. Writes `pair_XX_step11_fable_prompt.md` (or fusion/opus variant) per pair.
+
+**No step11 file needed for fable/opus mode** — the script builds prompts that ask the model to PRODUCE the step11 output from step10. For Fusion mode, step11 is also optional.
+
+## Fallback Workflow — Manual
+
+If the script cannot be used, build manually:
+
+1. Confirm `step10_suno_ready_production_wrap.md` exists in the pair directory.
 2. Identify the assigned personality for this pair (from orchestrator pair assignments or handoff).
 3. Read the full personality YAML from `skills/orchestration/personalities/<persona>.yaml`.
 4. Read `vault/SUNO_PROMPT_CONSTRUCTION_GUIDE.md` and use `references/suno_rules_condensed.md` for the inline rules block.
@@ -132,7 +168,7 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
 - `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
+- `## SUNO ENHANCED LYRICS`: [Theme:  ...] + [SONG FORM: ...], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
 - Disc_Channel: 5-line channel strip — `[Disc_Rhythm: ...]` `[Disc_Vocal: ...]` `[Disc_Sub: ...]` `[Disc_Pad: ...]` `[Disc_Texture: ...]` — pipe-separated tokens in bracket-wrapped lines — PRESENT (above the lyrics)
 - EMO Tags: Integrated into section headers as `[Section – Label – EMO:State1, State2 [11] – Persona, delivery notes]` using `–` (em dash) separators — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
 - Vocal Fingerprint: full table, tessitura, timbre, mic distance, spatial — PRESENT as `## Vocal Fingerprint`
@@ -209,18 +245,19 @@ Every step11 output MUST use exactly three canonical blocks for the Suno-facing 
 
 Do not bury the task. The instructions block is the reason the prompt exists — everything else is context for the task. Section 5 embeds the Suno rules INSIDE the executable task block so they are applied at the moment of creation, not just referenced from elsewhere in the document.
 
-## Fusion Mode
+## ⛔ FUSION IS BANNED — PERMANENT
 
-Use Fusion mode when The Scientist asks for Fusion prompt packaging for manual review.
+**OpenRouter Fusion (`openrouter/fusion`) drained all OpenRouter credits. It is permanently banned.**
 
-Fusion mode produces isolated pair prompts:
+- Do NOT invoke Fusion as a model
+- Do NOT mention Fusion in prompts
+- Do NOT offer Fusion as an option
+- Do NOT build Fusion-mode prompts
+- The `--mode fusion` argument was removed from the build script
+- The Fusion model was removed from the OpenRouter provider config
+- `lofn-audio-step11` agent model was changed from `openrouter/fusion` to `openrouter/openai/gpt-5.5`
 
-- For a single pair: one complete `step11_fusion_pair_request_prompt.md`.
-- For all six pairs: one archive containing six isolated pair prompts for manual review.
-- One combined all-pairs prompt is a fallback packaging artifact only, not the preferred invocation.
-- The prompt may name the intended Fusion deliberation panel, but the local agent must not call OpenRouter by itself. Any later invocation requires a separate current-turn instruction with pair count and hard dollar budget cap.
-- Include "do not cross-pollinate pair structures" whenever more than one pair appears in the same archive or fallback combined prompt.
-- Include the current Suno three-block standard at the top of the prompt.
+These rules are written into the build script, SKILL.md, MEMORY.md, and gateway config. No exceptions.
 
 ## Size Expectations
 
@@ -236,9 +273,8 @@ A properly built prompt file is **120-200KB** (2000-3000 lines). If your output 
 
 ## Reference Implementation
 
-The gold-standard reference is the Fable 5 Ceremony run:
-`output/daily/2026-06-10/daily-run/audio/pair_XX/pair_XX_fable_prompt.md`
-These files are 135-189KB each and contain the complete pipeline output. Use them as your template.
+The gold-standard reference is the Fable 5 Ceremony prompts or any run built with `scripts/build_fable_prompt.py`.
+These files are 200-300KB each and contain the complete pipeline output. Use them as your template.
 
 ## References
 

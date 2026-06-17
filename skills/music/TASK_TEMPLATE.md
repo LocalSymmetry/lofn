@@ -31,6 +31,12 @@ python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_d
 
 The packet must include a substantial seed lineage, Golden Seed/core seed, original Lofn panel object (`Special Flairs`, `Concept Panel`, `Medium Panel`, `Context & Marketing Panel`) with Devil’s Advocate / Hyper-Skeptic roles, metaprompt, pair assignments with rationale, and audio handoff. If this fails, do not proceed to audio. Launch or request `lofn-orchestrator` work instead.
 
+## DAILY CONTROLLER GUARD — REQUIRED
+
+For daily runs, do not launch a new vN lane into the same output directory while an older lane is active. The parent/controller must inspect active subagents, stop stale lanes explicitly, and write a status note before resuming. Completion messages are not authority; disk artifacts plus validators are authority.
+
+The controller is the only phase router. Coordinator and pair agents write their assigned artifacts and stop. They do not spawn the next phase, continue from a sibling's completion event, or locally emulate downstream agents.
+
 ---
 
 ## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
@@ -47,6 +53,19 @@ Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_st
 8. `## 7. Validation Result` — paste validator output after pass.
 
 Every step must preserve complete outputs. A file that says what it would do, summarizes a response, or omits the actual lists/concepts/guides/prompts/lyrics is incomplete. A file with the right filename but without these sections is a backfilled artifact and fails. Do not write “line 1 / line 2” placeholders, repeated paragraphs, or self-check claims contradicted by the artifact body.
+
+## CONTINUITY PAYLOAD — REQUIRED FOR EVERY STEP
+
+Every coordinator and pair-agent LLM call must include a compact continuity payload. It must be visible in the step artifact under `## Continuity Payload Used` or equivalent JSON fields, not merely assumed from prior files.
+
+Required fields:
+1. `special_flairs` — orchestrator Special Flairs that must color the artifact.
+2. `panel_pressures` — Concept Panel, Medium Panel, Context & Marketing Panel, and Devil's Advocate / Hyper-Skeptic demands relevant to this step.
+3. `seed_excerpt` — full Golden Seed for Steps 00-05; 100-250 word pair-specific Golden Seed operating excerpt for Steps 06-10.
+4. `active_personality` — named personality/persona, sonic world sentence, signature device, and what would count as personality loss.
+5. `source_thread` — for NEWS pairs, the exact current-event/source pressure that must survive as image, lyric-world, fact, or production dramaturgy.
+
+The immediately previous step output is never enough by itself. If a step lacks panels/flairs, seed excerpt, or personality, stop and repair/rerun before advancing. Missing continuity payload = `REPAIR — THREAD LOSS`.
 
 ---
 
@@ -81,6 +100,8 @@ If validation fails, repair the artifact in place and rerun with `--attempt 2`, 
 
 **STOP HERE. Do not proceed to step 06.**
 
+Return a structured handoff to the parent/controller that names `step05_refine_medium.md`, `concept_medium_pairs.json`, and the validation result. Do not spawn pair agents from inside the coordinator.
+
 ---
 
 ## SUBAGENTS 2-7: Steps 06-10 (One Per Pair)
@@ -104,16 +125,21 @@ collapse_guard: no compact direct synthesis; no local emulation of other pairs
 
 A pair package without a real child `session_key` is not pipeline-clean. It may be useful draft material, but QA must mark **Pipeline Integrity: REPAIR REQUIRED** until provenance is repaired or the pair is rerun.
 
-Each receives the lean pair-agent input standard from `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`, not the full upstream packet. Normal pair-agent prompts should be about 50–100 lines and include only:
-- Compact Golden Seed operating excerpt (`source_golden_seed`, 100–250 words; lineage, image/scene-pressure, emotional engine, dangerous permission, must-not-domesticate requirement)
+Each receives the full-context pair-agent injection standard from `skills/music/SKILL.md` Workflow item 9. This supersedes the former lean input standard in `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`.
+
+Normal pair-agent prompts must inject the complete upstream context needed for the current pair and step:
+- Full personality DNA block for the assigned personality: core identity, sonic world, signature device, catchphrases, G.L.O.W. Protocol where applicable, and vocal architecture
+- Pair-specific Golden Seed operating excerpt plus the full invariant hook / dangerous requirement that must not be domesticated
+- Complete continuity payload: `special_flairs`, Concept/Medium/Context panel pressures, Devil's Advocate / Hyper-Skeptic objections, active personality/persona sonic world sentence, signature device, and source/news thread when applicable
+- Production Mandates and Forbidden Substitutions table
 - Current Step 05 artifact (`step05_refine_medium.md`)
 - Structured pair list (`concept_medium_pairs.json` or equivalent)
 - ONE specific concept-medium pair / pair assignment excerpt
 - The relevant Step 06–10 contract
-- Tiny provenance block (`spawned_by_parent`, `step_call_mode`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, `pair_id`, `model`)
+- Provenance block (`spawned_by_parent`, `step_call_mode`, `source_golden_seed`, `golden_seed_excerpt_included: true`, `source_step05`, `source_pair_list`, `pair_id`, `model`)
 - Modality-specific QA blockers
 
-The parent/controller validates and retains the full Golden Seed + orchestrator packet; ordinary pair agents should not load the full research, full Golden Seed beyond the compact excerpt, full debate, full metaprompt, or all six assignments unless explicitly doing repair/debug work.
+The parent/controller validates and retains the complete Golden Seed + orchestrator packet, then injects the relevant full payload into each pair-agent task. Do not make the task shallow to save tokens; preserve depth while preventing agents from pulling broad, unbounded context themselves.
 
 Pair-agent task prompts MUST NOT begin with line counts, EMO tags, or prompt-shape requirements. Begin with the compact pair seed/anchor, then the pair's dangerous requirement / Lofn-specific wrongness, then creative permission, then the required Suno structure. The QA contract remains blocking, but it is not the muse.
 
@@ -184,7 +210,8 @@ Main session
 ## OUTPUT FORMAT FOR PAIR SUBAGENTS
 
 Each pair subagent must return in Step 10 only after Step 06, Step 07, Step 08, and Step 09 have already been written as separate files. Step 10 must include:
-- Suno/Udio Core Music Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph. Mandatory order: selected genre/style label(s) + tempo/energy → vocalist spec → instrumentation/sound palette/mix → musical arrangement arc → bold sonic device → avoidances. Do not lead with story, theme, or procedural phrases like “Begin in/by/with,” “Use,” “Build the track from,” or “Chronology.” Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and negative prompt logic.
+- Suno/Udio Core Style Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph. Mandatory order: selected genre/style label(s) + tempo/energy → vocalist spec → instrumentation/sound palette/mix → musical arrangement arc → bold sonic device. Do not lead with story, theme, or procedural phrases like “Begin in/by/with,” “Use,” “Build the track from,” or “Chronology.” Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and positive prompt logic.
+- Suno Exclude Prompt (**separate field, target 400-900 characters, hard max 1000**). It must be concrete comma-separated negative controls/failure classes only. Suno prepends `-` to this field internally, so write `EDM drop, male vocals, child vocals, autotune gloss`, not explanatory "avoid/do not" prose.
 - Full lyrics using **clean EMO section headers** and legacy runtime length: **70-120 sung lines target; <60 sung lines is a repair trigger.** Song-force improvements change HOW length is earned, not whether the package needs enough sung material for a 3:00-4:00 Suno result. Use hook recurrence, chorus mutation, bridge pressure, call-response, ghost/echo reprises, and embodied image development — never filler or procedural exposition.
   - Required `[Theme: <specific scene-pressure / emotional operating system>]` as the first line of the Suno lyrics block for every final song. This is a focusing spell for Suno and for the agent: it must be specific, embodied, and musically useful, not a generic topic label.
   - Required `[SONG FORM: <named form>]` declaration immediately after Theme for every final song/lyric set. The form must be descriptive enough to guide structure (e.g., “Bathroom piano house — breath intro / verse / pre / chorus / dry bridge / call-response final chorus / afterglow”), not just “pop song.”
@@ -203,7 +230,8 @@ Each pair subagent must also identify at least one **Lofn-specific move** that s
 Before writing your final step10 output, run this check. If any box is unchecked, revise and re-check.
 
 **In the final output for each song:**
-- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready Core Music Prompt, single paragraph, **850-1000 characters**, no artist names, and includes emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate; extra detail belongs in sidecars.
+- [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready Core Music Prompt, single paragraph, **850-1000 characters**, no artist names, and includes emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate; extra detail belongs in sidecars.
+- [ ] Standalone `## 1B. SUNO EXCLUDE PROMPT` or `[SUNO EXCLUDE PROMPT:]` section exists: concrete comma-separated negative controls, target 400-900 characters, hard max 1000. Suno prepends `-` to these terms internally; do not write explanatory "avoid/do not" prose and do not put exclude terms in the style prompt.
 - [ ] Lyrics begin with `[Theme: <specific scene-pressure / emotional operating system>]`, immediately followed by `[SONG FORM: <named form>]`; lyrics have 70-120 sung lines target with <60 repair, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
 - [ ] Sung lines contain no prompt/procedure/QA/production-manual debris.
 - [ ] SFX cues / non-lexical hooks are included only if they serve the hook or controlled fracture.

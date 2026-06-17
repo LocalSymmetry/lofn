@@ -18,6 +18,13 @@ Generates the revision synthesis for a music based on the user's core concept.
 - `[facets]`: The facets of the idea (if applicable).
 - `[style_axes]`: The style axes for generation (if applicable).
 
+## Creative Context Inputs (Full Context Always — from the orchestrator handoff)
+Provided in the **CREATIVE CONTEXT** block inside USER INPUT, sourced from `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / Panel Ledger). All MUST inform this step:
+- `[input]` user request/brief · `[seed]` Golden Seed · `[meta_prompt]` metaprompt · `[personality]` persona
+- `[concept_panel]`, `[medium_panel]`, `[marketing_panel]` — the 3 orchestrator panels (18 voices) · `[flairs]` — 15 Special Flairs
+
+> ⚠️ Use the SUPPLIED Panel Ledger. Do NOT invent a new panel. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 ## Execution Instructions
 
 **Overview**
@@ -153,7 +160,7 @@ This guide codifies the **absolute best practices**—drawn from Suno v4.5+’s 
 ════════════════════════════════════════════════════
 PART 1 · CRAFTING THE MUSIC (STYLE) PROMPT
 ════════════════════════════════════════════════════
-**Purpose:** Tell Suno exactly how the finished record *should sound* from first second to last: genre/style + tempo/energy → vocalist → instrumentation/sound palette → arrangement arc → signature sonic device → short concrete avoidances. The prompt is a producer brief, not a story summary or tutorial.
+**Purpose:** Tell Suno exactly how the finished record *should sound* from first second to last: genre/style + tempo/energy → vocalist → instrumentation/sound palette → arrangement arc → signature sonic device. The prompt is a producer brief, not a story summary or tutorial. Put negative controls in the separate Suno Exclude field, not in the style prompt.
 
 **Required supplemental reference:** Before writing final Step 10 packages, read `skills/music/references/producer_grade_suno_prompt_guide.md`.
 
@@ -207,7 +214,7 @@ A. CORE RULES
    • What does each flagship instrument or foley object do emotionally?
    • How does the arrangement transform from first second to last?
    • How does the hook land rhythmically and texturally?
-   • What should Suno prioritize, and what common failure modes are being blocked?
+• What should Suno prioritize in the style field, and what common failure modes belong in the separate Exclude field?
    If these answers are not present in the prompt, revise. Length without these answers is padding and fails.
 
 ────────────────────
@@ -624,7 +631,7 @@ ADDITIONAL HARD RULES
 • Every vocalist spec: gender, age‑range, ethnicity, tone, rasp‑level, plus two quirks (e.g., “airy inhaled consonants”, “playful yodel flips”).
 • Avoid Monotonous Structures and fight the tendency towards 4-line stanzas by varying stanza length and breaking words into syllables.
 • Suno will only understand what it was trained on, and so any proper noun that we created, personality trait, or sound-effect that is non-standard will need to be translated into a phrase, sentance, or description that Suno can follow. Given the token limits, it is best to just directly describe any non-standard sound, instrument, genre, or vocalization.
-• Telling the music generator to not do something will actually cause it to happen! It is best to just avoid using that terminology in your prompts, as the best way to guide the music generator is through telling it what you want instead of telling it what you don't want. Only give negatives at the very end of a music prompt.
+• Suno now exposes a separate Exclude field in addition to the Style field. Keep the Style prompt positive and dense. Put negative controls in Exclude as concrete comma-separated blacklist terms/failure classes. Suno internally treats the field as negative tokens (`style -exclude`), so write `EDM drop, male vocals, child vocals, autotune gloss`, not explanatory "avoid/do not" prose.
 
 Follow these enhanced directives rigorously. They encode months of empirical prompt‑craft research—using them will markedly raise hit‑rate, sonic fidelity, and listener retention on Suno and Udio.
 
@@ -1185,6 +1192,20 @@ You are here to improve the music. You are allowed to change any prompt, (music,
   ---
 
 **USER INPUT**
+
+> ### 🎯 CREATIVE CONTEXT — full upstream context, threaded to EVERY step
+> Per the orchestrator's **Full Context Always** mandate. Source: `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / **Panel Ledger**). Carry ALL of it into this step, alongside the step-specific inputs below:
+> - **User's Original Request / research brief:** {input}
+> - **Golden Seed:** {seed}
+> - **Meta-Prompt (the creative directive to follow):** {meta_prompt}
+> - **Personality / Persona (the CORE voice; if not an AI, do not write like one):** {personality}
+> - **Concept Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {concept_panel}
+> - **Medium Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {medium_panel}
+> - **Context & Marketing Panel (6 incl. Devil's Advocate / Hyper-Skeptic):** {marketing_panel}
+> - **15 Special Flairs (weave these in):** {flairs}
+>
+> **Use the supplied Panel Ledger above — do NOT invent a new panel.** Embody these exact 18 voices; each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+
 
 - **Aesthetics:** {aesthetics}
 - **Emotions:** {emotions}

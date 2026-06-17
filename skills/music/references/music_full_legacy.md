@@ -50,7 +50,8 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
-- You will receive ONE concept-medium pair
+- You will receive ONE concept-medium pair through the full-context injected pair payload required by `skills/music/SKILL.md` Workflow item 9. The former lean pair-agent input standard (`/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`) is legacy reference only.
+- The parent/controller validates the full upstream packet, then gives the pair agent only Step 05, `concept_medium_pairs.json`, one pair assignment excerpt, the step contract, tiny provenance, and relevant blockers
 - Run steps 06-10 for that pair only
 - **Run each step as its own model call / prompt-response turn**, matching original `lofn/llm_integration.py`:
   1. `process_facets` → `pair_{NN}_step06_facets.md`

@@ -16,7 +16,16 @@ The goal is not simplification. The goal is focused depth: recognizable surface,
 
 ## Inputs
 
-Use:
+### 🎯 CREATIVE CONTEXT — full upstream context (Full Context Always)
+Source: `04_orchestrator_metaprompt.md` + `06_audio_handoff.md` (**Panel Ledger**). Carry ALL of it into this step:
+- User's original request / research brief
+- Golden Seed
+- Meta-Prompt (the creative directive to follow)
+- Personality / Persona (the CORE voice; if not an AI, do not write like one)
+- Concept Panel, Medium Panel, Context & Marketing Panel — the 3 orchestrator panels (18 voices)
+- 15 Special Flairs
+
+Use also:
 - Step 04 concept/arrangement output
 - compact Golden Seed operating excerpt
 - orchestrator pair assignment when available
@@ -25,7 +34,9 @@ Use:
 
 ## Panel requirement
 
-Convene concise internal panel pressure:
+**Use the orchestrator's supplied Panel Ledger** (the Concept / Medium / Context & Marketing panels — 18 named voices + 15 Special Flairs from `06_audio_handoff.md`). Embody those exact panelists; do NOT invent a new panel. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent, and every disagreement must visibly alter the seed.
+
+If (and only if) no Panel Ledger was supplied, fall back to concise internal panel pressure:
 - Hit Topliner
 - Experimental Producer
 - Lyric Dramaturg

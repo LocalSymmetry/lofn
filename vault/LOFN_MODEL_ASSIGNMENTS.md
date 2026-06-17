@@ -1,7 +1,7 @@
 # Lofn Model Assignments
 
-Updated: 2026-06-02 01:46 EDT — All Chinese/OpenRouter models replaced with deepseek-v4-pro
-Status: Active — Split-step music chain battle-tested; OpenRouter deprecated after billing exhaustion
+Updated: 2026-06-14 15:15 UTC — Step 11 golden references + Major Deviations added
+Status: Active — Split-step music chain battle-tested; Step 11 remains mandatory, Fusion is manual-review only, and smart reviewers receive Golden Song References + Major Deviations agency space
 
 **See also:**
 - `vault/VISION_MODEL_ASSIGNMENTS.md` — Image/art pipeline assignments
@@ -33,7 +33,7 @@ Do **not** assign one `lofn-audio` subagent to do Steps 06-10 in a single run un
 | Step 08 | `lofn-audio-step08` | `deepseek/deepseek-v4-pro` | Music generation artifacts: reliable file writing, validator-shaped prompts and lyrics |
 | Step 09 | `lofn-audio-step09` | `deepseek/deepseek-v4-pro` | Artist refinement: reliable artifact writing, structure/taste repair, producer polish |
 | Step 10 | `lofn-audio-step10` | `deepseek/deepseek-v4-pro` | Final synthesis: full Step 10 package, Suno prompt, EMO headers, provenance, self-check |
-| Step 11 | `lofn-audio-step11` | `openrouter/openai/gpt-5.5` | Enhancement pass: strong model polish, 15-point gate verification, producer-grade prompt, EMO format compliance |
+| Step 11 | packaged Step 11 enhancer / manual Fusion review prompts | `deepseek/deepseek-v4-pro` default; `openrouter/fusion` prompt packaging only | Produce enhanced Suno package with Disc_Channel + two-field Suno prompt, embedded Golden Song payloads, and Major Deviations. Do not invoke Fusion from the pipeline. |
 | Step 12 | `lofn-audio-step12` | `deepseek/deepseek-v4-pro` | Panel-of-panels prompt audit: cross-song consistency, benchmark comparison, structural QA |
 
 ### Legacy agent
@@ -65,9 +65,16 @@ Best at large sustained synthesis and preserving the Immutable Continuity Block.
 ### DeepSeek V4 Pro — Steps 06, 07, 08, 09, and 12 (replaces Qwen3.7 Max)
 The workhorse of the split chain. Reliable artifact writer. Replaced `openrouter/qwen/qwen3.7-max` on 2026-06-02 after OpenRouter credits were exhausted. Use for structural reasoning, variation separation, song-guide continuity, music generation artifacts, artist refinement, and panel/audit synthesis. **Three other models were tested and failed for these steps** (see Learning Log below).
 
-### GPT-5.5 (OpenRouter) — Step 11 ✅ PROVEN
-Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run).
-Enhancement pass. Strong model polish, 15-point gate verification, producer-grade prompt refinement, EMO format compliance. Proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview proved unreliable for this step — produced `[ENHANCED LYRICS BLOCK]` placeholder skeletons instead of real content.
+### OpenRouter Fusion — Step 11 ⚠️ MANUAL REVIEW ONLY
+OpenRouter Fusion is reserved for manual review prompt packaging, not automated pipeline execution. Default runs package prompts or use the non-Fusion Step 11 path. Do not invoke Fusion unless The Scientist gives a separate current-turn instruction with pair count and hard dollar budget cap. If that ever happens, use isolated per-pair requests, not one blended all-pairs prompt and not the old persistent Step 11 agent loop. The intended exact panel is:
+
+- `anthropic/claude-opus-4.8`
+- `openai/gpt-5.5`
+- `google/gemini-3.1-pro-preview`
+
+Preferred judge/finalizer: `openai/gpt-5.5`. Exact panel selection requires the OpenRouter Fusion plugin/server-tool request body with `analysis_models` and judge `model` set explicitly. If the runtime only permits model-slug routing, `openrouter/fusion` may fall back to OpenRouter's Quality preset. The leanest direct/model-wrapper route is preferred only under a separate budgeted instruction; otherwise generate prompt files only.
+
+Rationale: GPT-5.5 alone is proven across 18 pairs (2026-05-30 dual Alexis run). Gemini 3.1 Pro Preview alone proved unreliable for this step, producing scaffold-like enhanced blocks instead of real content, but as one deliberative panel voice it may contribute useful structural critique without owning the final artifact. Opus 4.8 is reserved for enhancement/deliberation because direct artifact-writing attempts timed out in earlier pair steps. Fusion quality may be worth using, but pair isolation matters more than shaving one call: one all-pairs prompt risks cross-pair copying.
 
 ### Gemini 3.5 Flash — Orchestration / QA
 Goes direct to Google (not through OpenRouter). Fast and proven for orchestrator packet generation and QA. Avoid relying on it as a whole-pair creative writer.
@@ -89,9 +96,9 @@ Goes direct to Google (not through OpenRouter). Fast and proven for orchestrator
 
 1. **Personality DNA must be injected at EVERY pipeline stage.** Saying "voice = Alexis" in a task prompt is insufficient. Subagents default to Lofn's voice (their system-context personality). Every creative task — seed, orchestrator, audio coordinator, pair agents, step11 — must receive an explicit personality block: the full G.L.O.W. Protocol, sonic pillars, core beliefs, catchphrases, and vocal architecture of the target personality. Without this injection, output drifts into Lofn's default voice. Proven across 18-song dual Alexis redo (2026-05-30).
 
-2. **Step11 MUST use the `lofn-audio-step11` agent — never a generic subagent.** Generic subagents lack the EMO format template ([emo=], [vox=], [prod=] tags) and produce bare structural tags or placeholder skeletons. The dedicated agent carries the format specification. Proven: generic subagents produced `[ENHANCED LYRICS BLOCK]` placeholders; `lofn-audio-step11` produced full EMO-formatted content at 17-24KB per pair.
+2. **Step11 MUST use the dedicated Step 11 contract — never a generic subagent prompt.** Generic subagents lack the EMO format template ([emo=], [vox=], [prod=] tags) and produce bare structural tags or placeholder skeletons. The dedicated Step 11 instructions carry the format specification. Proven: generic subagents produced `[ENHANCED LYRICS BLOCK]` placeholders; dedicated Step 11 instructions produced full EMO-formatted content at 17-24KB per pair.
 
-3. **Step11 should run ONE PAIR PER AGENT, not all 6 in one session.** When a single step11 agent processes all 6 pairs, Variations 3-4, climax bridges, and outros collapse into identical templates across pairs. The agent starts unique for Pair 01 but progressively copies structural frames into later pairs. Fix: spawn 6 separate `lofn-audio-step11` agents, each reading only its own step10 file and writing only its own enhanced file. Proven 2026-05-30 on Run 2 v2 QA.
+3. **Step11 pair isolation still matters.** When one enhancement context processes all 6 pairs as raw generation, later pairs can copy structural frames from earlier pairs. Fix for automated/non-Fusion runs: keep pair outputs isolated. Fix for Fusion/manual path: package each pair as a clearly separated section with explicit "do not cross-pollinate pair structures" instructions, or send one pair at a time when cost allows. Do not launch 6 live Fusion children by default.
 
 4. **DeepSeek V4 Pro is the reliable workhorse (replaced Qwen3.7 Max 2026-06-02). It writes files on every attempt for Steps 06-09. Use it as the default for the split chain.**
 
@@ -173,7 +180,7 @@ After Step 05 completes:
 1. Spawn up to 5 pair agents for **Step 06 only** using `lofn-audio-step06`.
 2. Verify files on disk. Validate. Then spawn Step 07 agents using `lofn-audio-step07`.
 3. Continue one step at a time through Step 10.
-4. Step 11 enhancement uses `lofn-audio-step11`.
+4. Step 11 enhancement uses the dedicated Step 11 contract. It must receive full run context (user input/research, Golden Seed, all 18 panel voices plus Special Flairs, metaprompt, pair assignments, handoff, production mandates), the full Step 10 artifact, and the two Golden Song References selected in `06_audio_handoff.md` with embedded style/music prompt, lyrics, and exclude prompt status. It must output a `## Major Deviations` section where the smart model states any refusal, change, intensification, or anti-conformity choice. For routine automated runs, do not invoke Fusion; produce the enhanced package or packaged Fusion pair prompts for manual review. Fusion invocation requires a separate current-turn instruction with pair count and hard dollar budget cap. Under that separate budgeted instruction, force Fusion with `analysis_models = ["anthropic/claude-opus-4.8", "openai/gpt-5.5", "google/gemini-3.1-pro-preview"]` and judge `model = "openai/gpt-5.5"`, and do it as isolated pair requests unless otherwise approved.
 5. Step 12 uses `lofn-audio-step12` when triggered.
 
 Each call has a narrow objective and is much less likely to timeout.
@@ -197,7 +204,7 @@ Each call has a narrow objective and is much less likely to timeout.
 | After Pair Step 06 | `validate_step06_distinctiveness.py <audio_dir>` |
 | After Pair Step 09 | `validate_step09_distinctiveness.py <audio_dir>` |
 | After Pair Step 10 | `validate_step.py 10 <file>` per pair |
-| After Pair Step 11 | 15-point QA self-check in enhanced package |
+| After Pair Step 11 | 15-point QA self-check in enhanced package; verify embedded Golden Song payloads and `## Major Deviations` |
 | After Step 12 | `STEP12_MUSIC_PROMPT_AUDIT.md` |
 | Before QA | `validate_pair_artifacts.py` for all pairs |
 | QA Gate | Somatic Gate + full 15-point check |

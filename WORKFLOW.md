@@ -73,8 +73,10 @@ When I try to "save time" by writing prompts myself, I throw away 3 years of tun
 ## Music Generation Flow
 
 ```
-SEED → lofn-orchestrator → METAPROMPT → lofn-audio → SONG PROMPTS → Suno
+SEED → lofn-orchestrator → CREATIVE CONTEXT (ICB) → lofn-audio (steps 00–11) → SONG PROMPTS → Suno
 ```
+
+The orchestrator fills `skills/music/OVERALL_PROMPT_TEMPLATE.md` into one **CREATIVE CONTEXT / ICB** block (user request + Golden Seed + meta-prompt + personality + all 3 panels (18 voices) + 15 Special Flairs). `lofn-audio` injects that block verbatim into the `CREATIVE CONTEXT` slot of **every** step (00–11), alongside each step's prior outputs. Same contract for image (`lofn-vision`), story (`lofn-narrator`), and video (`lofn-director`) via their `OVERALL_PROMPT_TEMPLATE.md`.
 
 ---
 

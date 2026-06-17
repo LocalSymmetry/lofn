@@ -25,6 +25,12 @@ Write step files (`step00_*.md`, `step01_*.md`, etc.) as you complete them. Neve
 
 ---
 
+## 🔗 CREATIVE CONTEXT — FULL CONTEXT INJECTION (MANDATORY)
+
+Every step (00–10) MUST receive the COMPLETE upstream context — no compression, no summarization. The orchestrator fills `OVERALL_PROMPT_TEMPLATE.md` once from its handoff artifacts (`02_golden_seed.md`, `03_orchestrator_panel_debate.md`, `04_orchestrator_metaprompt.md`, `06_vision_handoff.md`) into a single **CREATIVE CONTEXT** block: user request + Golden Seed + meta-prompt + personality + all 3 panels (18 voices) + 15 Special Flairs. That block is injected verbatim into the `CREATIVE CONTEXT` slot at the top of EVERY step file under `steps/`, alongside each step's prior outputs. **Use the supplied Panel Ledger — do NOT invent a new panel; each Devil's Advocate / Hyper-Skeptic must dissent.**
+
+---
+
 ## 🔴 SPLIT-STEP AGENT ARCHITECTURE
 
 **Do not use the legacy `lofn-vision` agent for Steps 06-10.** Use dedicated step agents:
