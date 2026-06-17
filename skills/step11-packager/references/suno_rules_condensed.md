@@ -39,3 +39,75 @@
 - NO evaluative adjectives without physical acoustic description
 
 ### FORMAT: ONE continuous dense prose paragraph. Comma-delimited, not bracket-delimited. Reads like a producer's tracking-sheet note.
+
+---
+
+## THREE-BLOCK OUTPUT STANDARD (2026-06-15)
+
+Every step11 enhanced output MUST use exactly three canonical blocks, followed by all supporting blocks:
+
+```
+## SUNO STYLE PROMPT
+
+[Dense prose paragraph, 850-1000 chars, 7-position order]
+
+## SUNO EXCLUDE PROMPT
+
+[Comma-separated blacklist terms, 400-900 chars]
+
+## SUNO ENHANCED LYRICS
+
+[Theme:] + [SONG FORM:] first
+5-line Disc_Channel block
+Full EMO-tagged lyrics, >=60 sung lines
+
+## Vocal Fingerprint
+## Production Dramaturgy
+## Arrangement Dramaturgy
+## Binding Locks
+## Style-Axis Locks
+## Golden Song References
+## Major Deviations
+## Lineage & Credit
+## Constraint Audit
+## Panel Ledger / QA
+[Attribution / Provenance]
+```
+
+**Do NOT skip any supporting block.** The three-block standard is a format spec — not a content reduction. Every block that was in the step10 + step11 pipeline survives below the three canonical blocks.
+
+## Disc_Channel Format — EXACT SPECIFICATION
+
+The Disc_Channel block is a 5-line producer channel strip — pipe-separated production tokens within `[Disc_NAME: ...]` brackets:
+
+```text
+[Disc_Rhythm: LinnDrum_100BPM | Gqom_3-3-2_broken_kick | bone_dry_no_fills | Center_Mono]
+[Disc_Vocal: dry_sardonic_delivery | ASMR_close_mic | anti-diva_deadpan | breath_on_capsule | Center_Front]
+[Disc_Sub: FM_sine_38-42Hz | continuous_swell_+0.5dB_per_8bars | NEVER_RESOLVES | Mono_Sub_Lock]
+[Disc_Pad: green_synth_432Hz | El_Niño_Deep_Blue | slow_attack_swell | Stereo_Width_Maximum]
+[Disc_Texture: cassette_tape_saturation | telephone_bandpass_break | Wall_of_Sound_layering | Hard_Pan_Right]
+```
+
+Five channels minimum: Rhythm, Vocal, Sub, Pad, Texture. Every token is a concrete production decision (oscillator type, BPM, mic technique, processing chain).
+
+NEVER: `## Disc_Channel:` markdown headers, `**Layer:** disk_channel`, timestamps, run IDs — this is a producer's tracking sheet, not a pipeline provenance log.
+
+## EMO Tag Format — EXACT SPECIFICATION
+
+EMO tags are integrated into section headers using `–` (em dash) separators; emotional states use commas:
+
+```text
+[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth [11] – Reluctant Pop Star, dry close-mic, slow internal rhymes]
+the water took a breath so slow you thought your skin
+had loosed itself and let the silence in
+
+[UN Warning Break – EMO:Procedural Anesthesia – Spoken fragment, telephone bandpass, drums drop, sub +2.0dB]
+the water temperature anomaly exceeded the threshold for the fifth consecutive month
+*buoy hum modulates — 12 cycles per minute*
+```
+
+Header structure: `[SECTION LABEL – VARIANT or CUE – EMO:State1, State2 [11] – PERSONA NAME, vocal style, delivery notes]` — `–` (em dash) is the separator, commas join emotional states.
+
+NEVER: standalone `[EMO=reverence]` on its own line, EMO without persona and delivery style, bare `[EMO]` tags, or `-` (hyphen) where `–` (em dash) is the separator.
+
+Micro inline tags `[emo=...][vox=...][prod=...]` are permitted for sub-line shifts but EVERY section must open with an integrated em-dash header.

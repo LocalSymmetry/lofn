@@ -1,11 +1,13 @@
 ---
 name: step11-packager
-description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus per-pair use from step10 output with full personality YAML, Suno construction rules, and production mandates. FUSION IS BANNED."
+
+description: "Build complete manual Step 11 refinement prompts for Claude-Fable/Opus or OpenRouter Fusion per-pair use from step10+step11 output with full personality YAML, Suno construction rules, and production mandates."
 ---
+# Step 11 Packager — Manual Opus/Fable/Fusion Refinement Prompt Builder
 
-# Step 11 Packager — Manual Opus/Fable Refinement Prompt Builder
+Takes full run context + Step 10 + Step 11 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates + embedded Golden Song payloads, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement or manual-review OpenRouter Fusion use.
 
-Takes full run context + Step 10 source artifacts, wraps them with full archive personality YAML + Suno Prompt Construction Guide rules + production mandates + embedded Golden Song payloads, and produces paste-ready prompt files for manual Claude-Fable/Opus refinement.
+**Cost rule:** Do not invoke Fusion from this skill. Fusion is packaged here as text for manual review only. A separate current-turn instruction with pair count and hard dollar budget cap is required before any agent may spend on Fusion.
 
 **⛔ FUSION IS PERMANENTLY BANNED.** It drained all OpenRouter credits. Never invoke, mention, or offer it.
 
@@ -49,11 +51,13 @@ If the script cannot be used, build manually:
 2. Identify the assigned personality for this pair (from orchestrator pair assignments or handoff).
 3. Read the full personality YAML from `skills/orchestration/personalities/<persona>.yaml`.
 4. Read `vault/SUNO_PROMPT_CONSTRUCTION_GUIDE.md` and use `references/suno_rules_condensed.md` for the inline rules block.
-5. Read full run context from the run directory: `seed/GOLDEN_SEED.md`, `orchestrator/ORCHESTRATOR_BRIEF.md`.
-6. Read `skills/music/references/golden_songs_index.md`. Embed full payloads — links alone are a failure.
-7. Build: context header → personality YAML → Suno rules → Golden Songs → run context → production mandates → step10 → Manual Refinement Instructions block.
-8. Verify: full run context present, full personality YAML present, Suno construction rules present, Golden Song References with payloads present, Major Deviations output requirement present, step10 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
-9. Output to `<pair_dir>/pair_XX_step11_fable_prompt.md`, etc.
+5. Read full run context from the run directory: user input/research brief, `01_seed_lineage.md`, `02_golden_seed.md`, `03_orchestrator_panel_debate.md`, `04_orchestrator_metaprompt.md`, `05_orchestrator_pair_assignments.md`, and `06_audio_handoff.md`.
+6. Read the production mandates from the handoff file or use defaults.
+7. Read `skills/music/references/golden_songs_index.md` and the run handoff's `## Golden Song References` if present. The final prompt must embed selected Golden Song payloads: style/music prompt, lyrics, and exclude prompt status. Links alone are a failure.
+8. Run `scripts/build_fable_prompt.py <pair_dir> <personality_yaml> <output_path>` or construct manually.
+9. For Fusion mode, add a short top-level instruction block naming the intended panel (`anthropic/claude-opus-4.8`, `openai/gpt-5.5`, `google/gemini-3.1-pro-preview`) and explicitly state: "Manual review only; do not invoke Fusion from this packaging step."
+10. Verify: full run context present, full personality YAML present, Suno construction rules present, Golden Song References with payloads present, Major Deviations output requirement present, step10 present, step11 present, 1K/5K constraints stated, Disc_Channel/EMO rules stated.
+11. Output to `<pair_dir>/step11_fable_prompt.md`, `<pair_dir>/step11_opus_prompt.md`, or `<pair_dir>/step11_fusion_pair_request_prompt.md`.
 
 ## Personality Matching
 
@@ -68,7 +72,7 @@ Every prompt file must contain:
 1. Context header (run, theme, constraint, pair, focus)
 2. **Full personality YAML content — the ENTIRE file, zero bytes trimmed.** For LOFN-PRIME this is `lofn-prime-mini.yaml` (~1800 lines, ~50KB). Never substitute a compact/abbreviated block.
 3. Suno Prompt Construction Guide condensed rules (7 principles + 7-position order + character limits + format rules) — embed the FULL `references/suno_rules_condensed.md` file
-4. Full run context — `seed/GOLDEN_SEED.md`, `orchestrator/ORCHESTRATOR_BRIEF.md`, `coordinator/concept_medium_pairs.json`. Manual prompts must not rely on the reviewer opening repo files.
+4. Full run context — user input/research brief, seed lineage, full Golden Seed, full orchestrator panel object with all 18 voices and all Special Flairs, metaprompt, pair assignments, audio handoff, and production mandates. Manual prompts must not rely on the reviewer opening repo files.
 5. Golden Song References — exactly two public Suno examples selected by the orchestrator, or selected from `skills/music/references/golden_songs_index.md` if the handoff is missing them. Embed each selected song's full available payload: public URL, status, style/music prompt, lyrics, and exclude prompt if it exists. If no archived exclude prompt exists, say that explicitly.
 6. Production mandates — embed the FULL mandate text, not summaries
 7. **MANUAL REFINEMENT INSTRUCTIONS — must appear as the FINAL block in the prompt.** This is the executable task. It must be clearly separated by a `---` divider and titled `## MANUAL REFINEMENT INSTRUCTIONS`. It must say: (a) READ EVERYTHING FIRST — absorb all context before writing; (b) REFINE AND ENHANCE ALL COMPONENTS — produce the three canonical blocks (`## SUNO STYLE PROMPT`, `## SUNO EXCLUDE PROMPT`, `## SUNO ENHANCED LYRICS`) plus preserve ALL supporting blocks below (vocal fingerprint, production dramaturgy, binding locks, lineage & credit, major deviations, golden songs, constraint audit, panel ledger, QA, attribution); (c) WHOLESALE CHANGES ARE ALLOWED — you are producing, not polishing, only invariant hook + genre + BPM + key + 432Hz are unbreakable; (d) FINAL VERIFICATION — three-block checklist plus all supporting blocks present, no anti-patterns (###, emoji headers, summary EMO, artist names, procedural openings).
@@ -76,7 +80,7 @@ Every prompt file must contain:
 9. Major Deviations requirement — the smart model must have a place to state disagreements, refusals, changes, and anti-conformity choices
 10. **Full step10 output — the ENTIRE file. All sections: hook note, personality note, continuity payload, music prompt, negative prompt, public lyrics, suno lyrics, vocal fingerprint, style-axis lock, arrangement dramaturgy, production dramaturgy, image ladder audit, controlled fracture, ghost verse bank, panel ledger, QA report.** Do not extract only music prompt + lyrics.
 11. **Full step11 output — the ENTIRE file.** For per-pair step11 files: must use the three-block format (`## SUNO STYLE PROMPT`, `## SUNO EXCLUDE PROMPT`, `## SUNO ENHANCED LYRICS`) with all supporting blocks below. For single cross-pair synthesis: embed the full synthesis.
-12. **Suno Three-Block mandate (2026-06-15, updated 2026-06-16):** final output MUST use exactly three canonical blocks: `## SUNO STYLE PROMPT` (850-1000 chars, dense prose paragraph), `## SUNO EXCLUDE PROMPT` (400-900 chars, comma-separated terms, no categories), `## SUNO ENHANCED LYRICS` ([Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip with pipe-separated `[Disc_NAME: ...]` brackets, integrated EMO section headers using `–` em dashes, sung text <=5,000 characters — Suno hard limit, enforce as binding constraint). ALL supporting blocks below — never skipped. This replaces the older two-field mandate.
+12. **Suno Three-Block mandate (2026-06-15):** final output MUST use exactly three canonical blocks: `## SUNO STYLE PROMPT` (850-1000 chars, dense prose paragraph), `## SUNO EXCLUDE PROMPT` (400-900 chars, comma-separated terms, no categories), `## SUNO ENHANCED LYRICS` ([Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip with pipe-separated `[Disc_NAME: ...]` brackets, integrated EMO section headers using `–` em dashes). ALL supporting blocks below — never skipped. This replaces the older two-field mandate.
 
 ### Manual Refinement Block — Specification
 
@@ -95,11 +99,11 @@ Absorb every source artifact before writing a single word. Understand the creati
 ### 2. REFINE AND ENHANCE ALL COMPONENTS — THE THREE CANONICAL BLOCKS PLUS ALL SUPPORTING SECTIONS
 You have complete creative authority. The output MUST use the three-block format:
 
-**## SUNO STYLE PROMPT — PRIMARY:** Tighten to producer-grade density. Rewrite from scratch if vague, narrative, or procedural. Lead with genre/tempo/key/432Hz, then vocalist, instrumentation, arrangement arc, signature device. Dense paragraph, 850-1000 chars. HARD LIMIT 1,000 characters. See Section 5 for construction rules. ONE continuous prose paragraph. The block header is literally `## SUNO STYLE PROMPT` — no variations, no abbreviations.
+**## SUNO STYLE PROMPT — PRIMARY:** Tighten to producer-grade density. Rewrite from scratch if vague, narrative, or procedural. Lead with genre/tempo/key/432Hz, then vocalist, instrumentation, arrangement arc, signature device. Dense paragraph, 850-1000 chars. See Section 5 for construction rules. ONE continuous prose paragraph. The block header is literally `## SUNO STYLE PROMPT` — no variations, no abbreviations.
 
-**## SUNO EXCLUDE PROMPT — PRIMARY:** Concrete comma-separated blacklist terms. 400-900 chars. HARD LIMIT 900 characters. Rewrite if prose-y or thin. No categories, no brackets, no headers — just terms separated by commas. This is a negative-control field for Suno's parser. The block header is literally `## SUNO EXCLUDE PROMPT`.
+**## SUNO EXCLUDE PROMPT — PRIMARY:** Concrete comma-separated blacklist terms. 400-900 chars. Rewrite if prose-y or thin. No categories, no brackets, no headers — just terms separated by commas. This is a negative-control field for Suno's parser. The block header is literally `## SUNO EXCLUDE PROMPT`.
 
-**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Disc_Channel block immediately following. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Minimum 60 sung lines. HARD LIMIT: 5,000 characters — Suno rejects lyrics exceeding this bound. Count the entire lyrics block (sung text only, not metadata/headers). The block header is literally `## SUNO ENHANCED LYRICS`.
+**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Disc_Channel block immediately following. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Minimum 60 sung lines. The block header is literally `## SUNO ENHANCED LYRICS`.
 
 ### CRITICAL: Disc_Channel Format — EXACT EXAMPLE, DO NOT DEVIATE
 
@@ -163,8 +167,8 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
-- `## SUNO EXCLUDE PROMPT`: 400-900 chars HARD LIMIT 900, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, sung text <=5,000 chars (Suno hard limit), literary density, structural transformation
+- `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
+- `## SUNO ENHANCED LYRICS`: [Theme:  ...] + [SONG FORM: ...], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
 - Disc_Channel: 5-line channel strip — `[Disc_Rhythm: ...]` `[Disc_Vocal: ...]` `[Disc_Sub: ...]` `[Disc_Pad: ...]` `[Disc_Texture: ...]` — pipe-separated tokens in bracket-wrapped lines — PRESENT (above the lyrics)
 - EMO Tags: Integrated into section headers as `[Section – Label – EMO:State1, State2 [11] – Persona, delivery notes]` using `–` (em dash) separators — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
 - Vocal Fingerprint: full table, tessitura, timbre, mic distance, spatial — PRESENT as `## Vocal Fingerprint`
