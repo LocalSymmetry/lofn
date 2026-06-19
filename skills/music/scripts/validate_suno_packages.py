@@ -8,6 +8,7 @@ Checks final delivery structure, not creative quality:
 - ## 1. MUSIC PROMPT exists and is 850-1000 chars by default
 - ## 1B. SUNO EXCLUDE PROMPT exists and is <=1000 chars
 - ## 2. LYRICS exists
+- lyrics field is <5000 chars (Suno render hard limit; target <=4800)
 - ## 3. TITLE exists
 - [SONG FORM:] exists in lyrics
 - full EMO performance-script section headers exist and no bare architectural EMO labels are used
@@ -100,6 +101,14 @@ def validate(path: Path) -> list[str]:
         sung_lines = [ln for ln in lyrics.splitlines() if ln.strip() and not ln.strip().startswith("[") and not ln.strip().startswith("*") and not ln.strip().startswith("#")]
         if len(sung_lines) < 60:
             errs.append(f"only {len(sung_lines)} probable sung lines, expected >=60")
+        # Suno lyrics-field HARD CAP: everything pasted into Suno's lyrics box
+        # (Theme + SONG FORM + Disc_Channel + all headers + SFX + sung lines)
+        # must be under 5000 chars or Suno will not render. Target <=4800 for margin.
+        fence = re.search(r"```[a-zA-Z]*\n(.*?)```", lyrics, re.S)
+        field = (fence.group(1) if fence else lyrics).strip()
+        field_len = len(field)
+        if field_len >= 5000:
+            errs.append(f"lyrics field {field_len} chars exceeds Suno hard limit (must be <5000, target <=4800); trim lines/headers or move Disc_Channel to a production sidecar - line-count target yields to this cap")
 
     if not tm or not strip_md(tm.group("body")):
         errs.append("missing ## 3. TITLE content")
