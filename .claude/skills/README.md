@@ -12,6 +12,7 @@ Claude Code ports of the Lofn creative pipeline. These run the same award-winnin
 | **`/lofn-video`** | Video **and animation** pipeline 00–10 → Veo 3.1 shot lists / loops. |
 | **`/lofn-story`** | Story pipeline 00–10 → panel-driven prose. |
 | **`/lofn-qa`** | Strict adversarial gate → SHIP / REPAIR / FAIL. |
+| **`/lofn-daily`** | The daily run — fetch real-world facts, then generate the day's music + images through the pipeline (tri-source, dual 3+3, emotional duality). Down-scalable for a quick test. |
 | `lofn/EXECUTION.md` | Shared Claude-native execution protocol (subagent spawning + self-check gates that replace the Python validators). |
 
 ## Quick start
