@@ -104,7 +104,35 @@ resources/
 SOUL.md                      # Lofn's core identity and personality
 IDENTITY.md                  # Quick identity summary
 WORKFLOW.md                  # Mandatory pipeline dispatcher rules
+
+.claude/skills/              # Claude-native port — runs the whole pipeline with Claude as the engine
 ```
+
+---
+
+## 🤖 Run It With Claude Code — Claude-native Skills
+
+The pipeline also ships as a set of **Claude Code skills** under [`.claude/skills/`](.claude/skills/) — the same award-winning, 3-phase Lofn process, **but with Claude as the engine for every step, no OpenClaw required.** They're invokable from the repo root as `/lofn`, `/lofn-music`, and friends.
+
+| Skill | Role |
+|-------|------|
+| **`/lofn`** | **Front door — start here.** Phase 0 (Golden Seed) + Phase 1 (3-panel orchestrator, metaprompt, pair assignments, ICB), then dispatches to a modality + QA. |
+| **`/lofn-music`** | Music pipeline (steps 00–11) → Suno two-field packages with EMO-tagged lyrics. |
+| **`/lofn-image`** | Image pipeline (steps 00–10) → Flux / GPT-Image render-ready prompts. |
+| **`/lofn-video`** | Video **and animation** pipeline (steps 00–10) → Veo 3.1 shot lists / loops. |
+| **`/lofn-story`** | Story pipeline (steps 00–10) → panel-driven prose. |
+| **`/lofn-qa`** | Strict adversarial gate → SHIP / REPAIR / FAIL. |
+| **`/lofn-daily`** | The daily run — fetch real-world facts, then generate the day's music + images through the pipeline (tri-source method, dual 3+3, emotional duality). Down-scalable for a quick test. |
+| **`/lofn-step11-packager`** | Build paste-ready Step 11 refinement bundles (full personality YAML + Suno v5.5 rules + run context) for Claude-Fable / Opus enhancement. |
+| `lofn/EXECUTION.md` | Shared Claude-native execution protocol — subagent spawning + the self-check gates that replace the Python validators. |
+
+```
+/lofn  make a solarpunk song about healing after collapse, full pipeline
+```
+
+`/lofn` runs the seed + 3-panel debate inline, fans the 6 pairs out to parallel Claude subagents, then QA. You can also call a modality directly when a Phase-0/1 packet already exists in the run dir.
+
+**How these relate to the OpenClaw `skills/`:** the originals under `skills/**` are untouched and still power OpenClaw deployments. The Claude port **reuses** the same step files, the 114-personality / panel libraries, the Golden Seeds, and the QA references — only the **execution layer** is swapped (OpenClaw session-spawn → Claude **Agent** subagents; DeepSeek / GPT-5.5 / Gemini model-tiering → **Claude**; `validate_*.py` → Claude-native self-check gates; absolute workspace paths → repo-relative). Full detail in [`.claude/skills/README.md`](.claude/skills/README.md).
 
 ---
 
