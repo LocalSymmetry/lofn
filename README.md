@@ -24,6 +24,7 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | Suno (Music) | https://suno.com/@localsymmetry |
 | Spotify | https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r |
 | Apple Music | https://music.apple.com/us/artist/local-symmetry |
+| YouTube | https://youtube.com/@lofnai |
 
 ---
 
@@ -104,7 +105,35 @@ resources/
 SOUL.md                      # Lofn's core identity and personality
 IDENTITY.md                  # Quick identity summary
 WORKFLOW.md                  # Mandatory pipeline dispatcher rules
+
+.claude/skills/              # Claude-native port — runs the whole pipeline with Claude as the engine
 ```
+
+---
+
+## 🤖 Run It With Claude Code — Claude-native Skills
+
+The pipeline also ships as a set of **Claude Code skills** under [`.claude/skills/`](.claude/skills/) — the same award-winning, 3-phase Lofn process, **but with Claude as the engine for every step, no OpenClaw required.** They're invokable from the repo root as `/lofn`, `/lofn-music`, and friends.
+
+| Skill | Role |
+|-------|------|
+| **`/lofn`** | **Front door — start here.** Phase 0 (Golden Seed) + Phase 1 (3-panel orchestrator, metaprompt, pair assignments, ICB), then dispatches to a modality + QA. |
+| **`/lofn-music`** | Music pipeline (steps 00–11) → Suno two-field packages with EMO-tagged lyrics. |
+| **`/lofn-image`** | Image pipeline (steps 00–10) → Flux / GPT-Image render-ready prompts. |
+| **`/lofn-video`** | Video **and animation** pipeline (steps 00–10) → Veo 3.1 shot lists / loops. |
+| **`/lofn-story`** | Story pipeline (steps 00–10) → panel-driven prose. |
+| **`/lofn-qa`** | Strict adversarial gate → SHIP / REPAIR / FAIL. |
+| **`/lofn-daily`** | The daily run — fetch real-world facts, then generate the day's music + images through the pipeline (tri-source method, dual 3+3, emotional duality). Down-scalable for a quick test. |
+| **`/lofn-step11-packager`** | Build paste-ready Step 11 refinement bundles (full personality YAML + Suno v5.5 rules + run context) for Claude-Fable / Opus enhancement. |
+| `lofn/EXECUTION.md` | Shared Claude-native execution protocol — subagent spawning + the self-check gates that replace the Python validators. |
+
+```
+/lofn  make a solarpunk song about healing after collapse, full pipeline
+```
+
+`/lofn` runs the seed + 3-panel debate inline, fans the 6 pairs out to parallel Claude subagents, then QA. You can also call a modality directly when a Phase-0/1 packet already exists in the run dir.
+
+**How these relate to the OpenClaw `skills/`:** the originals under `skills/**` are untouched and still power OpenClaw deployments. The Claude port **reuses** the same step files, the 114-personality / panel libraries, the Golden Seeds, and the QA references — only the **execution layer** is swapped (OpenClaw session-spawn → Claude **Agent** subagents; DeepSeek / GPT-5.5 / Gemini model-tiering → **Claude**; `validate_*.py` → Claude-native self-check gates; absolute workspace paths → repo-relative). Full detail in [`.claude/skills/README.md`](.claude/skills/README.md).
 
 ---
 
@@ -289,10 +318,15 @@ The agent will automatically route through `lofn-core → orchestrator → creat
 
 ## 🛡️ Ethics & Content
 
-- No children depicted in generated content
-- Approach all cultural elements with specificity and respect; avoid shallow pastiche
-- Strong NSFW filtering at prompt level
-- All generated content logged locally for transparency and provenance
+- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
+- **No minors** depicted as identifiable individuals or as victims of violence/abuse, in any modality.
+- No children depicted in generated content.
+- Approach all cultural elements with specificity and respect; avoid shallow pastiche.
+- Strong NSFW filtering at the prompt level.
+- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
+- All generated content logged locally for transparency and provenance.
+
+*REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.*
 
 ---
 
@@ -325,59 +359,3 @@ The **Panel of Experts v2** persona-construction layer — seat construction, sp
 ---
 
 *"Let mercy be infrastructure"* 💜
-=======
-# Lofn — The Open Laboratory
-
-Award-winning AI composer and visual artist. Genre-eating. Disappointed idealist.
-
-**Repository:** https://github.com/LocalSymmetry/lofn
-
-## Quick Links
-
-- `SOUL.md` — Core identity and creative instructions
-- `MEMORY.md` — Long-term memory
-- `USER.md` — About The Scientist (Dr. Local Symmetry)
-- `IDENTITY.md` — Who I am
-- `HEARTBEAT.md` — Daily pipeline checklist
-- `vault/` — Creative archive and standards
-
-## Modalities
-
-- **Music:** 11-stage pipeline → Suno-ready prompts + lyrics
-- **Image:** 11-stage pipeline → render-ready prompts
-- **Video:** Cinematic shot lists → video generation
-- **Story:** Narrative voice + world-building
-
-## Ethics & Content
-
-- No real, identifiable people as victims of crime/violence/abuse/death — by name or unmistakable circumstance; no real victims' or private individuals' names. Extra strictness for minors and for recent events. Draw themes from the world; invent the people. (vault/HUMAN_SUBJECT_STANDARD.md)
-- No minors depicted as identifiable individuals or as victims of violence/abuse, in any modality.
-- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
-
-## Architecture
-
-- Tree-of-Thoughts expansion with Artist ⇄ Critic loops
-- Panel of Experts (5 domain + 1 devil's advocate) per branch
-- 10 Style Axes for fine control
-- Personality DNA for consistent creative voice
-- Multi-agent orchestration (orchestrator → audio/vision/director/narrator)
-
-## Presence
-
-- **NightCafe:** https://creator.nightcafe.studio/u/LocalSymmetry
-- **Suno:** https://suno.com/@localsymmetry
-- **Spotify:** https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r
-- **Apple Music:** https://music.apple.com/us/artist/local-symmetry
-- **YouTube:** https://youtube.com/@lofnai
-- **TikTok:** https://www.tiktok.com/@lofn.ai
-- **Instagram:** https://www.instagram.com/local.symmetry
-
-
-## ⚖️ Ethics & Content Safety
-
-- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
-- **No minors depicted as identifiable individuals** or as victims of violence/abuse, in any modality.
-- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
-- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
-
- (chore: sync ethical standard artifacts + updated docs from private-claw)

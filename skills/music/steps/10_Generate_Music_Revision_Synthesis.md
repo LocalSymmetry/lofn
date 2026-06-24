@@ -279,6 +279,8 @@ A. HARD‑FORMAT SPEC
    • Keep syllable counts **within ±2** inside each section.
    • Use `|` to break multi‑syllable words while drafting; remove before final.
 
+   🚨 **SUNO LYRICS‑FIELD HARD CAP — the whole lyrics prompt MUST be < 5000 chars (target ≤4800).** This is a Suno render limit: the field is everything you paste into Suno's lyrics box — the `[Theme:]`/`[Setting:]` tag + every section header + every `*SFX*` + all sung lines (and the Disc_Channel block, if Step 11 adds one). **Measure the exact character count; never estimate.** Over 5000 will not render. If over: trim/merge sung lines, tighten headers, then move any Disc_Channel/production metadata to a sidecar outside the field. The 70–120‑line target yields to this cap. `scripts/validate_suno_packages.py` fails the package at ≥5000.
+
 5. **Call‑and‑Response:**
    `Lead lyric (response echo)` same line.
 

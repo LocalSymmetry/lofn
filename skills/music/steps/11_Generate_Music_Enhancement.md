@@ -141,6 +141,7 @@ lyrics...
 - The invariant hook must land with maximum force
 - Cross-domain processing vocabulary where applicable (e.g., `cassette_tape_saturation` on synth textures, `Wall_Of_Sound_Spector_Layering` on choral pads)
 - Lyrics + Disc_Channel + section headers should remain compact enough for Suno handling while preserving full song length: at least 60 sung lines, target 70-120. Reduce bloat through tighter language, not by collapsing the song.
+- 🚨 **SUNO LYRICS-FIELD HARD CAP — measure it, < 5000 chars (target ≤4800).** The field is everything pasted into Suno's lyrics box: `[Theme]` + `[SONG FORM]` + the **Disc_Channel block** + every EMO/section header + every `*SFX*` + all sung lines. The MAX/Disc_Channel config makes this tight — budget for it. If the count hits the cap: trim/merge sung lines, tighten headers, and if still over, **move the Disc_Channel block to a `## Production Sidecar` outside the lyrics field** (the render field wins; note it). The 70-120-line target yields to this cap. State the measured char count in the self-check; `scripts/validate_suno_packages.py` fails the package at ≥5000.
 
 ### 2. Style Prompt + Exclude Prompt — MAX SUNO TWO-FIELD FORM (MANDATORY — 2026-06-14)
 
