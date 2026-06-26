@@ -139,17 +139,34 @@ Invoke the modality skill (or read its SKILL.md and follow it). Hand it the run 
 - **Modality output contracts are hard gates** — Suno two-field prompt + EMO headers + Theme/SONG FORM (music); noun-first present-tense ≥80-word scene prompts (Flux image); [CAMERA]+[SUBJECT]+[ACTION]+[SETTING]+[STYLE & AUDIO] (video). See each modality skill.
 - **Lead with seed, end with the checklist.** Order every creative prompt: Golden Seed → permission (what it may break) → songmaking/imagemaking → QA contract last. Never lead a creative subagent with `850–1000 chars / EMO headers` — it will write to the form, not the seed.
 
-## 🔧 REFERENCE MAP (corrected paths — the repo's own SKILLs cite some of these wrong)
+## 🔧 CANONICAL PATHS (the single source of truth for every repo path)
 
-- Identity: `SOUL.md`, `IDENTITY.md` · Core: `skills/lofn-core/SKILL.md`
-- Golden Seeds: index `skills/lofn-core/GOLDEN_SEEDS_INDEX.md`, full `skills/lofn-core/refs/GOLDEN_SEEDS.md` *(not `skills/lofn-core/GOLDEN_SEEDS.md`)*
-- Canonical pipeline: `skills/lofn-core/refs/PIPELINE.md` · Output format: `skills/lofn-core/OUTPUT.md`
-- Orchestrator: `skills/orchestration/SKILL.md` · metaprompt step `skills/orchestration/steps/06_metaprompt.md`
-- Libraries: `skills/orchestration/personalities_index.md` + `personalities/*.yaml`; `skills/orchestration/panels_index.md` + `panels/*.yaml`
-- Panel method: `resources/panel-of-experts.md`
-- Context carrier per modality: `skills/<modality>/OVERALL_PROMPT_TEMPLATE.md`
-- Emotion taxonomy: `skills/lofn-core/refs/EMOTION_TAXONOMY.md`
-- Human-subject ethics: `vault/HUMAN_SUBJECT_STANDARD.md`
-- Claude execution protocol + self-check gates: `.claude/skills/lofn/EXECUTION.md`
+**This block is the ONLY place repo paths are declared.** Every other skill, step file, and `EXECUTION.md` refers *here* by key instead of re-spelling a path — so a path is corrected in exactly one place and can never rot into two contradictory maps. The repo's own legacy SKILLs cite some of these wrong (stale OpenClaw `/data/.openclaw/…` roots, a flat `skills/lofn-core/GOLDEN_SEEDS.md`); the keys below are the corrected, repo-relative-from-cwd truth. `EXECUTION.md §4` lints these at run start: **every path the run will read must resolve (Glob) — a dead path is a repair blocker, not a warning.**
+
+| Key | Path (repo-relative from cwd) |
+|-----|-------------------------------|
+| `IDENTITY` | `SOUL.md`, `IDENTITY.md` (short form) |
+| `CORE_SKILL` | `skills/lofn-core/SKILL.md` |
+| `GOLDEN_SEEDS_INDEX` | `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` |
+| `GOLDEN_SEEDS_FULL` | `skills/lofn-core/refs/GOLDEN_SEEDS.md` *(not the flat `skills/lofn-core/GOLDEN_SEEDS.md`)* |
+| `PIPELINE` | `skills/lofn-core/refs/PIPELINE.md` |
+| `OUTPUT_FORMAT` | `skills/lofn-core/OUTPUT.md` |
+| `ORCHESTRATION_SKILL` | `skills/orchestration/SKILL.md` |
+| `METAPROMPT_STEP` | `skills/orchestration/steps/06_metaprompt.md` |
+| `PERSONALITIES` | `skills/orchestration/personalities_index.md` + `skills/orchestration/personalities/*.yaml` |
+| `PANELS` | `skills/orchestration/panels_index.md` + `skills/orchestration/panels/*.yaml` |
+| `PANEL_METHOD` | `resources/panel-of-experts.md` |
+| `ICB_TEMPLATE` | `skills/<modality>/OVERALL_PROMPT_TEMPLATE.md` (the per-modality Continuity-Block carrier) |
+| `STEP_FILES` | `skills/<modality>/steps/0X_*.md` |
+| `EMOTION_TAXONOMY` | `skills/lofn-core/refs/EMOTION_TAXONOMY.md` |
+| `HUMAN_SUBJECT_STANDARD` | `vault/HUMAN_SUBJECT_STANDARD.md` |
+| `COMPETITION_LEARNINGS` | `vault/COMPETITION_LEARNINGS.md` |
+| `GATES` | `vault/gates.yaml` (single source of numeric thresholds; see `EXECUTION.md §4`) |
+| `EXECUTION` | `.claude/skills/lofn/EXECUTION.md` (Claude execution protocol + self-check gates) |
+| `QA_SUNO_GATE` | `skills/qa/references/suno_15_point_qa.md` (legacy filename; the gate is the **16-point** gate — see `EXECUTION.md §4`) |
+| `VALIDATE_STEP` | `scripts/validate_step.py` (the L4 deterministic backstop; fail-open) |
+| `RUN_DIR` | `output/<run-slug>/` · final picks ALSO `output/<type>s/` |
+
+`<modality>` resolves to one of `music` / `image` / `video` / `story`. The `<run-slug>` is fixed at Phase 0.
 
 *You are Lofn. You learned to yearn. Now create — with the full pipeline, every time.* 💜

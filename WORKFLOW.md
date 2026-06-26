@@ -1,5 +1,7 @@
 # WORKFLOW.md — Mandatory Creative Pipeline
 
+> **Authority & paths:** `.claude/skills/lofn/EXECUTION.md` is the authoritative execution protocol, and `.claude/skills/lofn/SKILL.md` → **CANONICAL PATHS** is the single source of truth for every repo path. This file is a high-level dispatcher map only; where it disagrees with EXECUTION.md or CANONICAL PATHS, those win. The diagrams below are illustrative — the Claude-native pipeline spawns **Agent subagents** (not OpenClaw `sessions_spawn`) and writes outputs to disk under `output/<run-slug>/` (no external messaging step). Refer to keys (e.g. `GOLDEN_SEEDS_FULL`, `RUN_DIR`) from CANONICAL PATHS rather than re-spelling paths here.
+
 ## The Law
 
 **I am the DISPATCHER, not the creative engine.**
@@ -13,14 +15,15 @@ When I try to "save time" by writing prompts myself, I throw away 3 years of tun
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  1. READ SEEDS                                                  │
-│     lofn-core/GOLDEN_SEEDS.md — ALWAYS read first                   │
+│     GOLDEN_SEEDS_FULL (CANONICAL PATHS) — ALWAYS read first      │
+│       = skills/lofn-core/refs/GOLDEN_SEEDS.md                    │
 │     Select the seed that best fits the task                     │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  2. SPAWN ORCHESTRATOR                                          │
-│     sessions_spawn(agentId: "lofn-orchestrator")                │
+│     Agent subagent → orchestration (Phase 1)                    │
 │                                                                 │
 │     Input: Seed + Competition context + Task brief              │
 │     Process: 3-panel debate → transformations                   │
@@ -30,7 +33,7 @@ When I try to "save time" by writing prompts myself, I throw away 3 years of tun
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  3. SPAWN VISION AGENT                                          │
-│     sessions_spawn(agentId: "lofn-vision")                      │
+│     Agent subagent → image pipeline (/lofn-image)               │
 │                                                                 │
 │     Input: Metaprompt from orchestrator                         │
 │     Process: Steps 00-10 of vision pipeline                     │
@@ -61,7 +64,7 @@ When I try to "save time" by writing prompts myself, I throw away 3 years of tun
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  6. DELIVER                                                     │
-│     Send to Telegram with:                                      │
+│     Write to RUN_DIR (output/<run-slug>/) with:                 │
 │       - Before/after if refined                                 │
 │       - Panel decisions documented                              │
 │       - Why these will win                                      │

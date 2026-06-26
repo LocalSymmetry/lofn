@@ -2,7 +2,47 @@
 
 ---
 
+## ⚠️ ADVISORY CONTRACT — read before using any entry below
+
+These learnings are **ADVISORY dispatch-brief inputs ONLY**. They exist to inform Phase-0 / Phase-1 *reasoning* about a venue — never to constrain the art.
+
+- **NEVER an ICB constraint.** A learning may surface in the dispatch brief or Phase-0 reasoning. It is **never** injected into the ICB / `CREATIVE_CONTEXT.md`, never becomes a hard creative rule, and never edits Lofn's vocabulary. The spec owns what must be TRUE; it must never own what must be FELT.
+- **Confidence-stamped, LOW until corroborated.** Every entry carries a confidence. A single-run lesson is **LOW** and stays LOW until a second run or a human corroborates it. Low-confidence lessons are whispers, not orders.
+- **The mandatory gate before any lesson is applied:** *"Would this have hurt our best past entry?"* If yes → discard the lesson for this run.
+- **Triggered-INDIGNATION is EXEMPT from suppression.** No venue-taste lesson ("INDIGNATION underperforms on NightCafe", "austerity loses", "warm palette mandatory") may suppress, soften, or veto a piece whose charge is genuine INDIGNATION. INDIGNATION work is never tuned toward what a voting venue rewards. The lessons describe a crowd's taste; they do not get a vote on Lofn's.
+- **Venue / modality scoped — no leakage.** Each lesson names the venue and modality it came from. A NightCafe image-voting lesson **must not** leak into music runs, non-competition runs, or a different venue. If the run isn't that venue+modality, the lesson does not apply.
+- **Human promotes; the pipeline only advises.** Only a human may promote a lesson into a hard constraint. The pipeline can append advisory entries and prune; it cannot harden one on its own.
+- **Auto-writes are FAILURE-LEDGER entries only.** When the pipeline appends an entry automatically (post-ship / post-select), it records only *what a gate caught / a process failure / a corpse-checklist miss* — **never** a new aesthetic constraint. Aesthetic learnings require a human hand.
+- **Hard-capped at ~25 live curated entries.** The index is a bounded memory shard. New high-value lessons displace the weakest stale ones by disciplined append-and-prune. The narrative Entry Log below is the source material the index distills; the **index is the read surface**.
+
+---
+
+## LESSONS INDEX — tag-keyed advisory entries
+
+> Schema per entry: `{theme-type · venue · modality · verdict · confidence · one transferable rule}`.
+> `theme-type` ∈ {container, contained, portrait, fashion/branded, object-world, eco/nature, no-theme, …}.
+> Read by Phase-0/Phase-1 by tag-walking for the 3–5 entries intersecting THIS run's theme+venue+modality.
+> Cap ~25. LOW confidence until corroborated. Advisory only — see the contract above.
+
+| # | theme-type | venue | modality | verdict | confidence | transferable rule (ADVISORY) |
+|---|-----------|-------|----------|---------|-----------|------------------------------|
+| L1 | container / object-world | NightCafe | image | Amplify interior, compress support | HIGH | Container themes (bottle/globe/reliquary/book): keep outer silhouette clear, pack the **interior** with impossible abundance; legibility = inner spectacle at thumbnail. (Compress the support, amplify the miracle.) |
+| L2 | object-world (realism) | NightCafe | image | Realism loses to impossibility | HIGH | In fantasy/object-world fields, a *real* place (e.g. Venice) underperforms even rendered well; the impossibility gradient predicts score. Invent the impossible interior. |
+| L3 | portrait | NightCafe | image | Warm > austere | HIGH | Portrait themes reward warm/golden/painterly palettes + inviting affect. Monochrome/austere/anti-glamour underperforms HERE. **(INDIGNATION-exempt: this is a crowd-taste note, never a veto on a grief/austerity piece that means it.)** |
+| L4 | portrait (older subject) | NightCafe | image | Age works wrapped in warmth | MEDIUM-HIGH | Age / non-conventional subjects score when wrapped in warmth + dignity; the title gifts the emotional frame, doesn't riddle. |
+| L5 | fashion / branded / editorial | NightCafe | image | Literal signifier, cover-first | HIGH | Branded/editorial challenges reward literal signifiers (masthead), central figure, clean graphic background, thumbnail punch. Nuance is Layer 2. Background complexity is a tax HERE only. |
+| L6 | any fast-vote | NightCafe | image | Story legible at thumbnail speed | MEDIUM-HIGH | One of {micro-narrative, emotional cue, humorous contradiction} must be decodable in <1s. The voter must be able to retell it in one sentence. |
+| L7 | eco / nature | NightCafe | image | Intimate reliquary > landscape | MEDIUM | Eco/nature: go INTIMATE + reliquary (micro-world in a vessel), not landscape documentation. Category-creating angle vs an oversaturated field. |
+| L8 | branded background | NightCafe | image | Minimalism is VOGUE-specific | MEDIUM | Strict background minimalism is a *branded/fashion* lesson, NOT universal; portrait/other themes tolerate harmonious atmospheric context. (Guards against L5 over-generalising.) |
+| L9 | *process / anti-overfit* | any | any | Don't theologise N≈5 | HIGH | N=4–5 entries is poor signal. Don't chase the last winner; the field moved. Before applying ANY lesson, run "would this have hurt our best past entry?" |
+
+*(Failure-ledger auto-entries append below as `Lxx | process/failure | … `, recording only what a gate caught — never an aesthetic constraint. Pruning keeps the live count ≤ ~25.)*
+
+---
+
 ## Entry Log
+
+> The narrative log below is the **source material** the LESSONS INDEX above distills. It is kept for provenance and re-derivation; the index is the advisory read surface.
 
 ### 2026-03-25 — Daily Challenge #1259 "Earth's Ecosystems"
 **Submitted title:** "Everything That Remained"
