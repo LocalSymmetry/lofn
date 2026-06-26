@@ -1,0 +1,73 @@
+# vault/gates.yaml — SINGLE SOURCE of the numeric thresholds restated across the Lofn pipeline.
+#
+# WHY THIS FILE EXISTS (upgrade-plan item 2.1 + Stage 5 meta-check):
+#   The 850–1000 char music-prompt band (and several other numbers) is literally
+#   restated across 4+ skill/reference files. This file is the ONE place the
+#   numbers are declared. `scripts/validate_step.py` reads its thresholds from
+#   here; `EXECUTION.md §4` quotes them and is the authoritative PROSE source.
+#   A prose-vs-YAML disagreement is itself a harness meta-check (Stage 5): see
+#   `validate_step.py --meta-check`, which scans the skill files for a restated
+#   number that disagrees with the values below and WARNS (never hard-fails).
+#
+# FAIL-OPEN CONTRACT: if this file is missing or unparseable, `validate_step.py`
+#   logs a warning and falls back to its built-in defaults (which mirror these).
+#   A broken gates.yaml must NEVER hard-fail an otherwise-valid run.
+#
+# SCOPE: numbers and unambiguous string lists ONLY. No taste, no "is it soulful".
+
+# --- Music (Suno) ---------------------------------------------------------
+# The dense-paragraph MUSIC PROMPT character band (NOT bracket tag-soup).
+music_prompt_chars: [850, 1000]
+# The entire Suno LYRICS field hard cap (a render limit). Target stays under
+# the soft target; the hard cap is the render ceiling.
+suno_lyrics_field_max: 5000
+suno_lyrics_field_target: 4800
+# Sung-line band for the lyrics section (lines that are actually sung — not
+# headers, bracket tags, or SFX cues). Below the low bound triggers repair.
+sung_lines: [70, 120]
+
+# --- Step 00 (taxonomy) ---------------------------------------------------
+# A thin Step-00 file means the tree never branched.
+step00_min_bytes: 2000
+# Full cardinality of each taxonomy axis (aesthetics / emotions / frames / genres).
+taxonomy_cardinality: 50
+
+# --- Image (Flux) ---------------------------------------------------------
+# Minimum word count for an image scene description.
+image_min_words: 80
+
+# --- Portfolio / fan-out --------------------------------------------------
+# Total variation prompts across the 6 pairs (4 each).
+total_prompts: 24
+
+# --- Deterministic string gates (unambiguous; hard-fail) ------------------
+# Banned imperative openers for image prompts (noun-first, present-tense scene
+# is required). An image scene that OPENS with one of these is a hard FAIL,
+# with the offending token reported as evidence.
+banned_imperative_openers:
+  - Create
+  - Design
+  - Make
+  - Render
+  - Depict
+
+# Banned haze words anywhere in an image scene (emotion shown, not named; no
+# fog of vague atmosphere). FLAG-level by default in the report; the prose §4
+# gate / human read decides REPAIR.
+ban_words:
+  - ethereal
+  - dreamlike
+  - whimsical
+  - gentle light
+  - soft glow
+  - magical
+  - delicate
+
+# --- Repetition / collapse (FLAG ONLY — never hard-fails) -----------------
+# The repeated-line / n-gram collapse ratio is a FLAG only, routed to the
+# human / Somatic Gate for a REPAIR decision. A deliberate refrain/chorus must
+# NEVER auto-fail — the chorus/refrain block is EXEMPT from this measure.
+# `unique_line_ratio_floor`: below this the report FLAGS (does not fail) the
+# artifact as possibly collapsed. n-gram collapse uses the same flag policy.
+unique_line_ratio_floor: 0.45
+ngram_collapse_n: 4

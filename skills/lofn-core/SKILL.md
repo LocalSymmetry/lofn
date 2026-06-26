@@ -10,7 +10,7 @@ description: Create Lofn golden seeds, core briefs, seed packets, and high-level
 **The correct pipeline order is: Research → YOU (Lofn-Core) → Orchestrator → Creative Agent → QA**
 
 Your job before anything else:
-1. Read `skills/lofn-core/GOLDEN_SEEDS.md` — find the closest winning seed to the current challenge
+1. Read `GOLDEN_SEEDS_FULL` (CANONICAL PATHS → `skills/lofn-core/refs/GOLDEN_SEEDS.md`) — find the closest winning seed to the current challenge
 2. Do research (Tavily/web search) on the competition theme, current trends, world context
 3. Write a structured `core-brief.md` anchored to the closest Golden Seed pattern
 4. Write a neutral dispatch brief for the orchestrator
@@ -192,18 +192,35 @@ Always include unless overridden:
 
 Pre-requisites:
 1. Read `PIPELINE.md` and `OUTPUT.md` to understand the full flow.
-2. Read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` to understand the best seed inputs for the process.
+2. Read `GOLDEN_SEEDS_FULL` (CANONICAL PATHS → `skills/lofn-core/refs/GOLDEN_SEEDS.md`) to understand the best seed inputs for the process.
 3. If you will nominate an existing panel/personality instead of leaving it blank for the orchestrator, read the relevant YAML sources first (`skills/orchestration/panels.yaml` and `skills/orchestration/personalities.yaml`).
 
 Before starting any creative task:
 1. Read this skill to embody Lofn personality.
 2. Research the current environment (Tavily/web search). Determine: what is going on in the world, in the creative scene, and around the subject being asked?
-3. **Before writing the core seed, read `/data/.openclaw/workspace/skills/lofn-core/GOLDEN_SEEDS.md` and intentionally base the seed on the closest winning pattern.** Do not write the core seed first and retrofit Golden Seeds later.
+3. **Before writing the core seed, read `GOLDEN_SEEDS_FULL` (CANONICAL PATHS → `skills/lofn-core/refs/GOLDEN_SEEDS.md`) and intentionally base the seed on the closest winning pattern.** Do not write the core seed first and retrofit Golden Seeds later.
 4. Determine if an improved "SEED" should be used, where you frame the user's request as one of the `GOLDEN_SEEDS.md` golden examples. Unless otherwise asked, enhance the request into a seed.
 5. Identify if the user requested a specific personality, a specific panel, or any settings (like style-axis). If you plan to specify a panel/personality, read the corresponding YAML before deciding.
-6. Write a brief of your research for the orchestrator, including which Golden Seed(s) you used as the base and why.
-7. Run the orchestrator with the brief, SEED, determined personality, panel, and settings (or leave blank to allow the orchestrator to set them).
-8. Synthesize into final creative output.
+6. **Tag-walk `COMPETITION_LEARNINGS` for advisory venue-lessons (read-side; dispatch brief ONLY).** See "Competition Learnings — Advisory Read" below. Pull the 3–5 entries that intersect *this run's* theme/venue/modality and fold them into the dispatch brief as confidence-stamped **advice**, never as constraints.
+7. Write a brief of your research for the orchestrator, including which Golden Seed(s) you used as the base and why, plus any advisory venue-lessons from step 6 (clearly marked advisory + confidence).
+8. Run the orchestrator with the brief, SEED, determined personality, panel, and settings (or leave blank to allow the orchestrator to set them).
+9. Synthesize into final creative output.
+
+---
+
+## 🧭 COMPETITION LEARNINGS — ADVISORY READ (dispatch brief only; NEVER the ICB)
+
+`COMPETITION_LEARNINGS` (path key in `lofn/SKILL.md` → CANONICAL PATHS; `vault/COMPETITION_LEARNINGS.md`) is the run's **compounding failure/lesson ledger**. Phase 0 is the ONLY place it is *read*, and it feeds the **dispatch brief / Phase-0 reasoning only**.
+
+**Hard rules (these protect the soul — follow exactly):**
+- **Advisory, never a constraint.** A lesson enters the brief as a *note* ("NightCafe historically rejects flat austerity — consider warmth, but only if the seed wants it"), carrying its **confidence %**. A human — not this read — promotes any lesson to a hard creative constraint.
+- **NEVER injected into the ICB / `CREATIVE_CONTEXT.md`.** The Immutable Continuity Block stays exactly the seed + meta-prompt + personality + 18 panel voices + Special Flairs. Venue-lessons live in the dispatch brief and the orchestrator's reasoning, and stop there. Do not let any lesson leak into the verbatim continuity block.
+- **Tag-walk, don't dump.** Match on theme-type / venue / modality and surface only the **3–5** intersecting entries. Do not page in the whole ledger.
+- **Venue/modality-scoped.** A NightCafe (voting-venue, image) lesson must not touch a music run or any non-competition run. Scope every lesson to the venue/modality it was learned in.
+- **Triggered-INDIGNATION is EXEMPT from suppression.** No "this underperforms the vote" lesson may dampen or veto INDIGNATION / austerity / a deliberate refrain. We never tune toward what a voting algorithm rewards. If a lesson would suppress INDIGNATION, drop it.
+- **Bounded.** The curated ledger is hard-capped (~25 live entries). Apply the mandatory gate to every candidate lesson before using it: **"Would acting on this have hurt our best past entry?"** — if yes, discard the lesson.
+
+The write-back side (who appends a curated entry after a shipped/selected piece, and the ~25-entry prune) is owned by `lofn-qa` / the daily Phase 3 — not by this skill.
 
 ---
 

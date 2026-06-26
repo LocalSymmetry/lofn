@@ -36,6 +36,8 @@ Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–
 | 09 | `skills/image/steps/09_Generate_Image_Artist_Refined.md` | `pair_{NN}_step09_artist_refined.md` |
 | 10 | `skills/image/steps/10_Generate_Image_Revision_Synthesis.md` | `pair_{NN}_step10_revision_synthesis.md` |
 
+**Describe-render self-check (one capped pass, reuses the existing max-3-attempt loop — `EXECUTION.md` §4).** Before a pair returns its step-10 prompts, it predicts in 2–3 sentences what its Flux/GPT-Image-2 prompt would actually **PRODUCE** — the literal frame a renderer would emit from this exact text (the composition, the dominant material, the light, what reads at thumbnail size) — then diffs that predicted frame against the Golden Seed. Phrase it adversarially: **"name the one way this would render generic"** (the stock-portrait centering, the material named but not foregrounded, the emotion stated in words the renderer can't draw, the Storybook-Assassin softness creeping back in). If the predicted frame drifts from the seed or names a generic outcome, **self-repair ONCE** through the same repair loop, then move on. This is one inline pass by the pair itself — **no dedicated render-verifier subagent, no recursion, no new tier.** It governs fidelity only; the noun-first / word-count / banned-opener contract below is unchanged.
+
 ## The image prompt contract (hard gate — non-waivable)
 Lead with seed/scene, end with the checklist.
 

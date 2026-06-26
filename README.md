@@ -57,10 +57,10 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | **Steerability** | **10 Style Axes**, **Creativity Spectrum** sliders, persistent **Personality DNA** |
 | **Expert Panels** | Automatic or user-selected **6 experts + 1 devil's advocate** debate each branch |
 | **Panel Transformations** | 8 transformation operations (Shift, Defocus, Focus, Rotate, Amplify, Reflect, Bridge, Compress) to navigate creative problem space |
-| **Multi-Modal** | Image, Music, Video, Story — all using the same 13-step pipeline with split-step agents |
-| **Step 11 Enhancement** | GPT-5.5 class model polish: literary density, structural innovation, EMO dramaturgy, producer-grade prompts |
+| **Multi-Modal** | Image, Music, Video, Story — all using the same split-step pipeline (image/video/story steps 00–10; music adds 11 enhance + 12 audit) |
+| **Step 11 Enhancement** | Enhancement-tier polish: literary density, structural innovation, EMO dramaturgy, producer-grade prompts (Claude-native port runs this on Claude) |
 | **Andon Cord** | Step 11 REJECT authority — stops the line on generic output, thread loss, or personality collapse |
-| **QA Gates** | 15-point Suno QA gate + Visual Somatic Gate + Cinematic Somatic Gate across all modalities |
+| **QA Gates** | 16-point Suno QA gate + Visual Somatic Gate + Cinematic Somatic Gate across all modalities |
 | **114 Personalities** | Alliance Archive — each with full DNA: G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases |
 | **Competition Mode** | Injects Panel + Personality context; proven to add ~0.05 rating points vs. generation without |
 | **Golden Seeds** | Curated winning prompt seeds from 3+ years of live competition |
@@ -75,12 +75,12 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 skills/
 ├── lofn-core/          # Personality, Panel of Experts, Golden Seeds, Pipeline
 ├── lofn-side-door/     # Direct creative channel — raw expression, song sketches, margin
-├── image/              # 13-step image pipeline (Steps 00–12) with split-step agents
-├── music/              # 13-step music pipeline (Steps 00–12) with split-step agents
-├── video/              # 13-step video pipeline (Steps 00–12) with split-step agents
-├── story/              # 13-step story pipeline (Steps 00–12) with split-step agents
+├── image/              # Image pipeline (Steps 00–10) with split-step agents
+├── music/              # Music pipeline (Steps 00–12: 00–10 + 11 enhance + 12 audit)
+├── video/              # Video pipeline (Steps 00–10) with split-step agents
+├── story/              # Story pipeline (Steps 00–10) with split-step agents
 ├── orchestration/      # Metaprompt, personality (114 Alliance Archive), panel generation, pair assignments
-├── evaluation/         # 15-point QA gate, pair selection, eligibility scoring
+├── evaluation/         # 16-point QA gate, pair selection, eligibility scoring
 ├── qa/                 # QA depth audits, Somatic Gate, EMO taxonomy enforcement
 └── animator/           # Animation skill
 
@@ -139,7 +139,7 @@ The pipeline also ships as a set of **Claude Code skills** under [`.claude/skill
 
 ## 🔍 The Pipeline
 
-Lofn uses a **13-step split-step agent architecture** — each step runs on a dedicated configured agent with its own model and role. This preserves creative continuity while preventing context collapse.
+Lofn uses a **split-step agent architecture** — image/video/story run steps 00–10; music adds step 11 (enhance) and step 12 (audit). Each step runs on a dedicated agent with its own role. This preserves creative continuity while preventing context collapse. (In the Claude-native port under `.claude/skills/`, every step runs on Claude; `EXECUTION.md` is the authoritative protocol.)
 
 ```
 User Idea / Golden Seed
@@ -169,7 +169,7 @@ User Idea / Golden Seed
         ↓
   [step12] Panel-of-Panels Audit — cross-song consistency, benchmark comparison
         ↓
-  [QA] 15-Point Suno QA Gate → SHIP / REPAIR / FAIL
+  [QA] 16-Point Suno QA Gate → SHIP / REPAIR / FAIL
         ↓
   Final prompts → render → deliver
 ```
@@ -180,7 +180,7 @@ User Idea / Golden Seed
 - **ICB (Immutable Continuity Block):** The golden seed, personality DNA, panel decisions, and Special Flairs must survive all handoffs — verified at every checkpoint.
 - **Somatic Gate:** 3 Hyper-Skeptics vote as a bloc on every step10. 2 of 3 NO = BLOCKED.
 - **Step 11 Andon Cord:** "Don't polish a corpse." If the step10 package is fundamentally broken (thread loss, personality collapse, EMO taxonomy failure, generic output, prompt format violation), step11 REJECTS and sends back to step09 or step07 with a repair brief.
-- **Model tiering:** Coordinator/structural steps → DeepSeek V4 Pro. Enhancement/polish → GPT-5.5 (OpenRouter). QA/orchestration → Gemini 3.5 Flash.
+- **Model tiering (OpenClaw deployments):** coordinator/structural, enhancement/polish, and QA/orchestration can each be pointed at a different OpenAI-compatible model. **In the Claude-native port (`.claude/skills/`) tiering collapses to Claude** — the only change is *context isolation by role* (judge passes run in a fresh subagent), not a different vendor model. See `EXECUTION.md`.
 - **Personality Injection Mandate:** Every pair agent receives the target personality's full YAML DNA (G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases). "voice = X" shorthand causes Lofn bleed — always inject the full block.
 
 The panel runs **3 transformations** per session (baseline → group transform → skeptic transform) to maximize creative diversity before synthesis.
