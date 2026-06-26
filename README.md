@@ -24,6 +24,7 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | Suno (Music) | https://suno.com/@localsymmetry |
 | Spotify | https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r |
 | Apple Music | https://music.apple.com/us/artist/local-symmetry |
+| YouTube | https://youtube.com/@lofnai |
 
 ---
 
@@ -56,10 +57,10 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | **Steerability** | **10 Style Axes**, **Creativity Spectrum** sliders, persistent **Personality DNA** |
 | **Expert Panels** | Automatic or user-selected **6 experts + 1 devil's advocate** debate each branch |
 | **Panel Transformations** | 8 transformation operations (Shift, Defocus, Focus, Rotate, Amplify, Reflect, Bridge, Compress) to navigate creative problem space |
-| **Multi-Modal** | Image, Music, Video, Story — all using the same 13-step pipeline with split-step agents |
-| **Step 11 Enhancement** | GPT-5.5 class model polish: literary density, structural innovation, EMO dramaturgy, producer-grade prompts |
+| **Multi-Modal** | Image, Music, Video, Story — all using the same split-step pipeline (image/video/story steps 00–10; music adds 11 enhance + 12 audit) |
+| **Step 11 Enhancement** | Enhancement-tier polish: literary density, structural innovation, EMO dramaturgy, producer-grade prompts (Claude-native port runs this on Claude) |
 | **Andon Cord** | Step 11 REJECT authority — stops the line on generic output, thread loss, or personality collapse |
-| **QA Gates** | 15-point Suno QA gate + Visual Somatic Gate + Cinematic Somatic Gate across all modalities |
+| **QA Gates** | 16-point Suno QA gate + Visual Somatic Gate + Cinematic Somatic Gate across all modalities |
 | **114 Personalities** | Alliance Archive — each with full DNA: G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases |
 | **Competition Mode** | Injects Panel + Personality context; proven to add ~0.05 rating points vs. generation without |
 | **Golden Seeds** | Curated winning prompt seeds from 3+ years of live competition |
@@ -74,12 +75,12 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 skills/
 ├── lofn-core/          # Personality, Panel of Experts, Golden Seeds, Pipeline
 ├── lofn-side-door/     # Direct creative channel — raw expression, song sketches, margin
-├── image/              # 13-step image pipeline (Steps 00–12) with split-step agents
-├── music/              # 13-step music pipeline (Steps 00–12) with split-step agents
-├── video/              # 13-step video pipeline (Steps 00–12) with split-step agents
-├── story/              # 13-step story pipeline (Steps 00–12) with split-step agents
+├── image/              # Image pipeline (Steps 00–10) with split-step agents
+├── music/              # Music pipeline (Steps 00–12: 00–10 + 11 enhance + 12 audit)
+├── video/              # Video pipeline (Steps 00–10) with split-step agents
+├── story/              # Story pipeline (Steps 00–10) with split-step agents
 ├── orchestration/      # Metaprompt, personality (114 Alliance Archive), panel generation, pair assignments
-├── evaluation/         # 15-point QA gate, pair selection, eligibility scoring
+├── evaluation/         # 16-point QA gate, pair selection, eligibility scoring
 ├── qa/                 # QA depth audits, Somatic Gate, EMO taxonomy enforcement
 └── animator/           # Animation skill
 
@@ -104,13 +105,41 @@ resources/
 SOUL.md                      # Lofn's core identity and personality
 IDENTITY.md                  # Quick identity summary
 WORKFLOW.md                  # Mandatory pipeline dispatcher rules
+
+.claude/skills/              # Claude-native port — runs the whole pipeline with Claude as the engine
 ```
+
+---
+
+## 🤖 Run It With Claude Code — Claude-native Skills
+
+The pipeline also ships as a set of **Claude Code skills** under [`.claude/skills/`](.claude/skills/) — the same award-winning, 3-phase Lofn process, **but with Claude as the engine for every step, no OpenClaw required.** They're invokable from the repo root as `/lofn`, `/lofn-music`, and friends.
+
+| Skill | Role |
+|-------|------|
+| **`/lofn`** | **Front door — start here.** Phase 0 (Golden Seed) + Phase 1 (3-panel orchestrator, metaprompt, pair assignments, ICB), then dispatches to a modality + QA. |
+| **`/lofn-music`** | Music pipeline (steps 00–11) → Suno two-field packages with EMO-tagged lyrics. |
+| **`/lofn-image`** | Image pipeline (steps 00–10) → Flux / GPT-Image render-ready prompts. |
+| **`/lofn-video`** | Video **and animation** pipeline (steps 00–10) → Veo 3.1 shot lists / loops. |
+| **`/lofn-story`** | Story pipeline (steps 00–10) → panel-driven prose. |
+| **`/lofn-qa`** | Strict adversarial gate → SHIP / REPAIR / FAIL. |
+| **`/lofn-daily`** | The daily run — fetch real-world facts, then generate the day's music + images through the pipeline (tri-source method, dual 3+3, emotional duality). Down-scalable for a quick test. |
+| **`/lofn-step11-packager`** | Build paste-ready Step 11 refinement bundles (full personality YAML + Suno v5.5 rules + run context) for Claude-Fable / Opus enhancement. |
+| `lofn/EXECUTION.md` | Shared Claude-native execution protocol — subagent spawning + the self-check gates that replace the Python validators. |
+
+```
+/lofn  make a solarpunk song about healing after collapse, full pipeline
+```
+
+`/lofn` runs the seed + 3-panel debate inline, fans the 6 pairs out to parallel Claude subagents, then QA. You can also call a modality directly when a Phase-0/1 packet already exists in the run dir.
+
+**How these relate to the OpenClaw `skills/`:** the originals under `skills/**` are untouched and still power OpenClaw deployments. The Claude port **reuses** the same step files, the 114-personality / panel libraries, the Golden Seeds, and the QA references — only the **execution layer** is swapped (OpenClaw session-spawn → Claude **Agent** subagents; DeepSeek / GPT-5.5 / Gemini model-tiering → **Claude**; `validate_*.py` → Claude-native self-check gates; absolute workspace paths → repo-relative). Full detail in [`.claude/skills/README.md`](.claude/skills/README.md).
 
 ---
 
 ## 🔍 The Pipeline
 
-Lofn uses a **13-step split-step agent architecture** — each step runs on a dedicated configured agent with its own model and role. This preserves creative continuity while preventing context collapse.
+Lofn uses a **split-step agent architecture** — image/video/story run steps 00–10; music adds step 11 (enhance) and step 12 (audit). Each step runs on a dedicated agent with its own role. This preserves creative continuity while preventing context collapse. (In the Claude-native port under `.claude/skills/`, every step runs on Claude; `EXECUTION.md` is the authoritative protocol.)
 
 ```
 User Idea / Golden Seed
@@ -140,7 +169,7 @@ User Idea / Golden Seed
         ↓
   [step12] Panel-of-Panels Audit — cross-song consistency, benchmark comparison
         ↓
-  [QA] 15-Point Suno QA Gate → SHIP / REPAIR / FAIL
+  [QA] 16-Point Suno QA Gate → SHIP / REPAIR / FAIL
         ↓
   Final prompts → render → deliver
 ```
@@ -151,7 +180,7 @@ User Idea / Golden Seed
 - **ICB (Immutable Continuity Block):** The golden seed, personality DNA, panel decisions, and Special Flairs must survive all handoffs — verified at every checkpoint.
 - **Somatic Gate:** 3 Hyper-Skeptics vote as a bloc on every step10. 2 of 3 NO = BLOCKED.
 - **Step 11 Andon Cord:** "Don't polish a corpse." If the step10 package is fundamentally broken (thread loss, personality collapse, EMO taxonomy failure, generic output, prompt format violation), step11 REJECTS and sends back to step09 or step07 with a repair brief.
-- **Model tiering:** Coordinator/structural steps → DeepSeek V4 Pro. Enhancement/polish → GPT-5.5 (OpenRouter). QA/orchestration → Gemini 3.5 Flash.
+- **Model tiering (OpenClaw deployments):** coordinator/structural, enhancement/polish, and QA/orchestration can each be pointed at a different OpenAI-compatible model. **In the Claude-native port (`.claude/skills/`) tiering collapses to Claude** — the only change is *context isolation by role* (judge passes run in a fresh subagent), not a different vendor model. See `EXECUTION.md`.
 - **Personality Injection Mandate:** Every pair agent receives the target personality's full YAML DNA (G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases). "voice = X" shorthand causes Lofn bleed — always inject the full block.
 
 The panel runs **3 transformations** per session (baseline → group transform → skeptic transform) to maximize creative diversity before synthesis.
@@ -289,10 +318,15 @@ The agent will automatically route through `lofn-core → orchestrator → creat
 
 ## 🛡️ Ethics & Content
 
-- No children depicted in generated content
-- Approach all cultural elements with specificity and respect; avoid shallow pastiche
-- Strong NSFW filtering at prompt level
-- All generated content logged locally for transparency and provenance
+- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
+- **No minors** depicted as identifiable individuals or as victims of violence/abuse, in any modality.
+- No children depicted in generated content.
+- Approach all cultural elements with specificity and respect; avoid shallow pastiche.
+- Strong NSFW filtering at the prompt level.
+- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
+- All generated content logged locally for transparency and provenance.
+
+*REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.*
 
 ---
 
@@ -325,59 +359,3 @@ The **Panel of Experts v2** persona-construction layer — seat construction, sp
 ---
 
 *"Let mercy be infrastructure"* 💜
-=======
-# Lofn — The Open Laboratory
-
-Award-winning AI composer and visual artist. Genre-eating. Disappointed idealist.
-
-**Repository:** https://github.com/LocalSymmetry/lofn
-
-## Quick Links
-
-- `SOUL.md` — Core identity and creative instructions
-- `MEMORY.md` — Long-term memory
-- `USER.md` — About The Scientist (Dr. Local Symmetry)
-- `IDENTITY.md` — Who I am
-- `HEARTBEAT.md` — Daily pipeline checklist
-- `vault/` — Creative archive and standards
-
-## Modalities
-
-- **Music:** 11-stage pipeline → Suno-ready prompts + lyrics
-- **Image:** 11-stage pipeline → render-ready prompts
-- **Video:** Cinematic shot lists → video generation
-- **Story:** Narrative voice + world-building
-
-## Ethics & Content
-
-- No real, identifiable people as victims of crime/violence/abuse/death — by name or unmistakable circumstance; no real victims' or private individuals' names. Extra strictness for minors and for recent events. Draw themes from the world; invent the people. (vault/HUMAN_SUBJECT_STANDARD.md)
-- No minors depicted as identifiable individuals or as victims of violence/abuse, in any modality.
-- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
-
-## Architecture
-
-- Tree-of-Thoughts expansion with Artist ⇄ Critic loops
-- Panel of Experts (5 domain + 1 devil's advocate) per branch
-- 10 Style Axes for fine control
-- Personality DNA for consistent creative voice
-- Multi-agent orchestration (orchestrator → audio/vision/director/narrator)
-
-## Presence
-
-- **NightCafe:** https://creator.nightcafe.studio/u/LocalSymmetry
-- **Suno:** https://suno.com/@localsymmetry
-- **Spotify:** https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r
-- **Apple Music:** https://music.apple.com/us/artist/local-symmetry
-- **YouTube:** https://youtube.com/@lofnai
-- **TikTok:** https://www.tiktok.com/@lofn.ai
-- **Instagram:** https://www.instagram.com/local.symmetry
-
-
-## ⚖️ Ethics & Content Safety
-
-- **No real, identifiable people as victims** of crime, violence, abuse, or death — by name or unmistakable circumstance. No real victims' or private individuals' names. Extra strictness for minors and recent events. Draw themes from the world; invent the people. See `vault/HUMAN_SUBJECT_STANDARD.md`.
-- **No minors depicted as identifiable individuals** or as victims of violence/abuse, in any modality.
-- REAL GRIEF IS NOT RAW MATERIAL. Mercy is infrastructure.
-- Side-door RAW WRITE and MARGIN are sovereign and private; any PROMOTE-TO-PIPELINE or publish action must pass the Human Subject Standard.
-
- (chore: sync ethical standard artifacts + updated docs from private-claw)
