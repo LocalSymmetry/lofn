@@ -1,0 +1,28 @@
+{
+  "release_id": "YYYY-MM-DD-title-slug",
+  "title": "",
+  "modality": "music | image | video | story",
+  "route": "accessible | ambitious",
+  "archetype": "ARRIVAL | LAST_WITNESS | MEASUREMENT | SWITCHBOARD | CATALOG | custom | none",
+  "seed_source": "research-derived | archive-derived | generated-only | hybrid | scientist-curated | scientist-seeded",
+  "eligibility_pre_score": {
+    "body_in_song": null,
+    "adoptable_hook": null,
+    "vast_emotional_tam": null,
+    "specificity_paradox": null,
+    "cognitive_ease": null,
+    "vocal_co_discovery": null,
+    "sonic_threshold": null,
+    "average": null,
+    "classification": "ACCESSIBLE | AMBITIOUS"
+  },
+  "ai_vocabulary_level": "none | encoded | earned_late | explicit_early | explicit_ambitious",
+  "hypothesis": "What do we expect this release to test?",
+  "distribution_events": [],
+  "metrics": {
+    "day_7": {},
+    "day_14": {},
+    "day_30": {}
+  },
+  "interpretation_notes": "Do not fill until after metrics window."
+}

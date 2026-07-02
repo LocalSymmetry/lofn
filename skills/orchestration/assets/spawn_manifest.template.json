@@ -1,0 +1,21 @@
+{
+  "run_id": "YYYY-MM-DD-slug",
+  "max_children": 5,
+  "spawn_strategy": "staggered_5_plus_1",
+  "agents": [
+    {"pair": 1, "status": "pending"},
+    {"pair": 2, "status": "pending"},
+    {"pair": 3, "status": "pending"},
+    {"pair": 4, "status": "pending"},
+    {"pair": 5, "status": "pending"},
+    {"pair": 6, "status": "pending_concurrency_slot"}
+  ],
+  "timeouts_minutes": {
+    "orchestrator": 15,
+    "coordinator": 20,
+    "pair_agent": 20,
+    "qa": 12,
+    "standard_full_run": 90,
+    "competition_full_run": 120
+  }
+}

@@ -1,0 +1,118 @@
+# vault/gates.yaml — SINGLE SOURCE of the numeric thresholds restated across the Lofn pipeline.
+#
+# WHY THIS FILE EXISTS (upgrade-plan item 2.1 + Stage 5 meta-check):
+#   The 850–1000 char music-prompt band (and several other numbers) is literally
+#   restated across 4+ skill/reference files. This file is the ONE place the
+#   numbers are declared. `scripts/validate_step.py` reads its thresholds from
+#   here; `EXECUTION.md §4` quotes them and is the authoritative PROSE source.
+#   A prose-vs-YAML disagreement is itself a harness meta-check (Stage 5): see
+#   `validate_step.py --meta-check`, which scans the skill files for a restated
+#   number that disagrees with the values below and WARNS (never hard-fails).
+#
+# FAIL-OPEN CONTRACT: if this file is missing or unparseable, `validate_step.py`
+#   logs a warning and falls back to its built-in defaults (which mirror these).
+#   A broken gates.yaml must NEVER hard-fail an otherwise-valid run.
+#
+# SCOPE: numbers and unambiguous string lists ONLY. No taste, no "is it soulful".
+
+# --- Music (Suno) ---------------------------------------------------------
+# The dense-paragraph MUSIC PROMPT character band (NOT bracket tag-soup).
+music_prompt_chars: [850, 1000]
+# The entire Suno LYRICS field hard cap (a render limit). Target stays under
+# the soft target; the hard cap is the render ceiling.
+suno_lyrics_field_max: 5000
+suno_lyrics_field_target: 4800
+# Sung-line band for the lyrics section (lines that are actually sung — not
+# headers, bracket tags, or SFX cues). Below the low bound triggers repair.
+sung_lines: [70, 120]
+
+# --- Boundary-hugging + truncation (2026-07-01 regression review) ----------
+# Optimization pressure shows up as gate-hugging: every late-June style prompt
+# measured 988–999 chars against the 1000 cap and every lyric sat at the
+# 70-line floor. Write INTO the middle of the band; hugging the boundary is a
+# FLAG (pass=None) routed to the Somatic read, never an auto-fail.
+music_prompt_chars_target: [870, 960]
+music_prompt_hug_ceiling: 985     # measured chars >= this -> FLAG boundary_hugging
+sung_lines_target: [78, 110]
+sung_lines_floor_hug: 72          # sung lines <= this -> FLAG boundary_hugging
+# A MUSIC PROMPT must end as a complete sentence (terminal punctuation).
+# A prompt truncated mid-phrase to fit the cap shipped on 2026-06-28 and
+# self-check PASSed because the check counted chars, not sense. UNAMBIGUOUS
+# hard fail (a sense floor, not taste).
+music_prompt_terminal_punctuation: true
+
+# --- One-fact rule (FLAG ONLY) ---------------------------------------------
+# At most ONE numeric fact is SUNG per lyric, and the lyric must respond to
+# it, not recite it ("Triple Arch" carries one number at the emotional hinge;
+# the 2026-06-28 corpus recited four data points as a weather report).
+# Research still informs theme/form; extra numbers stay in the brief.
+# FLAG only — the human read tells device from recitation.
+max_sung_numeric_facts: 1
+
+# --- House lexicon (self-copying guard — FLAG ONLY) -------------------------
+# Phrases from past golden OUTPUTS (esp. "Triple Arch Over Me") that have
+# calcified into house formula: the 2026-07-01 review found the benchmark's
+# title line, vocal spec, and arrangement formulas reappearing verbatim in new
+# packages while self-check claimed "words NOT copied". Golden references
+# teach the MOVE, never the words. Any hit in a NEW music prompt or lyric is
+# a FLAG (pass=None) routed to the Somatic Gate.
+house_lexicon:
+  - more sub and more sky
+  - small astonished laugh
+  - triple arch
+  - triple-arch panorama
+  - small enough to understand
+  - frost-air pad
+  - starfield percussion
+  - zodiacal glow
+  - clear silver tone
+  - dew-bright
+  - glass harmonica sheen
+  - crystalline arpeggios
+  - make my little fear
+
+# --- Step 00 (taxonomy) ---------------------------------------------------
+# A thin Step-00 file means the tree never branched.
+step00_min_bytes: 2000
+# Full cardinality of each taxonomy axis (aesthetics / emotions / frames / genres).
+taxonomy_cardinality: 50
+
+# --- Image (Flux) ---------------------------------------------------------
+# Minimum word count for an image scene description.
+image_min_words: 80
+
+# --- Portfolio / fan-out --------------------------------------------------
+# Total variation prompts across the 6 pairs (4 each).
+total_prompts: 24
+
+# --- Deterministic string gates (unambiguous; hard-fail) ------------------
+# Banned imperative openers for image prompts (noun-first, present-tense scene
+# is required). An image scene that OPENS with one of these is a hard FAIL,
+# with the offending token reported as evidence.
+banned_imperative_openers:
+  - Create
+  - Design
+  - Make
+  - Render
+  - Depict
+
+# Banned haze words anywhere in an image scene (emotion shown, not named; no
+# fog of vague atmosphere). FLAG-level by default in the report; the prose §4
+# gate / human read decides REPAIR.
+ban_words:
+  - ethereal
+  - dreamlike
+  - whimsical
+  - gentle light
+  - soft glow
+  - magical
+  - delicate
+
+# --- Repetition / collapse (FLAG ONLY — never hard-fails) -----------------
+# The repeated-line / n-gram collapse ratio is a FLAG only, routed to the
+# human / Somatic Gate for a REPAIR decision. A deliberate refrain/chorus must
+# NEVER auto-fail — the chorus/refrain block is EXEMPT from this measure.
+# `unique_line_ratio_floor`: below this the report FLAGS (does not fail) the
+# artifact as possibly collapsed. n-gram collapse uses the same flag policy.
+unique_line_ratio_floor: 0.45
+ngram_collapse_n: 4

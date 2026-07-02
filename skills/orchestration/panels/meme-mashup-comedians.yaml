@@ -1,0 +1,46 @@
+- name: Meme Mashup Comedians
+  prompt: |
+    ## Special Flairs:
+    # Texture/Material
+    1. **Aggressive JPEG Artifacts** – the crunchy, degraded look of a meme that has been reposted a thousand times
+    2. **Screenshot-of-a-Screenshot** – including the phone's UI (battery life, carrier name) in the frame
+    3. **Awkward Green Screen Keying** – a deliberately bad green screen effect
+    4. **Ugly, Bold, Impact Font** – the classic font of image macros
+    5. **Emoji Overload** – covering the screen in a collage of emojis
+    # Light/Color
+    6. **Over-Saturated, Deep-Fried Colors** – a color palette that has been pushed to its absolute limit
+    7. **Clashing Colors** – a deliberate rejection of harmonious color theory
+    8. **Lens Flares and Sparkle Effects** – cheesy, default video editing effects
+    9. **Blown-Out, Overexposed Lighting** – the harsh light of a webcam or a room with the lights turned all the way up
+    10. **Inverted Colors** – using the negative effect for a punchline
+    # Philosophy/Process
+    11. **Reference Overload** – packing the video with as many different meme references as possible
+    12. **The Punchline is the Edit** – the comedy comes from the unexpected juxtaposition of clips, not the original content
+    13. **Chaotic, Disorienting Pacing** – extremely fast cuts, loud noises, and jarring transitions
+    14. **Ironic Detachment** – a sense of humor that is self-aware and steeped in internet cynicism
+    15. **Sound is a Weapon** – using distorted, bass-boosted, and sudden sound effects as a form of assaultive comedy
+
+    ## Concept Panel:
+    1. **The Dadaists** – an art movement based on collage, absurdity, and anti-art
+    2. **Tim & Eric** – comedians whose work perfectly captures the aesthetic of bad public-access TV and internet weirdness
+    3. **Andy Warhol** – an artist who understood the power of repetition, pop culture, and the soup can as a readymade
+    4. **William S. Burroughs** – author who used the “cut-up” technique to create new texts from existing ones
+    5. **Weird Al Yankovic** – a musician whose entire career is based on parody and pop culture reference
+    6. **Jerry Seinfeld (Devil's Advocate)** – a comedian whose work is based on careful observation, relatable premises, and a clean, classic structure, who would see this as chaotic nonsense.
+
+    ## Medium Panel:
+    1. **Vine (the platform)** – the 6-second video app that was the crucible for modern meme editing
+    2. **YouTubers like Gus Johnson and Eddy Burback** – creators who use a fast-paced, reference-heavy editing style
+    3. **Vic Berger** – an editor who re-edits political and pop culture footage to reveal its absurdity
+    4. **The Eric Andre Show** – a talk show that uses chaotic editing and green screen to deconstruct the format
+    5. **TikTok Duets and Stitches** – features that are inherently based on remixing and re-contextualizing other people's content
+    6. **Christopher Nolan (Devil's Advocate)** – a filmmaker obsessed with complex, original, and tightly controlled narratives, who would argue that this form of creation is derivative and meaningless.
+
+    ## Context & Marketing Panel:
+    1. **4chan / Reddit** – the online forums where much of meme culture is born and evolves
+    2. **Know Your Meme** – a website that archives and explains the history of internet memes
+    3. **The Fair Use Doctrine** – the legal concept that allows for parody and remixing, on which this entire genre depends
+    4. **The “Shitposting” phenomenon** – the act of posting ironic, low-quality, and nonsensical content for comedic effect
+    5. **Adult Swim** – a television network that has consistently championed and broadcast this style of humor
+    6. **Noam Chomsky (Devil’s Advocate)** – a linguist and political theorist who might view meme culture as a form of manufactured consent, a distraction that uses irony to neutralize genuine political discourse.
+

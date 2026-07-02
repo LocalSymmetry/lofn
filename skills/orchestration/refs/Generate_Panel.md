@@ -1,0 +1,239 @@
+# SKILL: Generate_Personality
+
+## Description
+Generates a detailed personality profile and artistic persona to drive consistent creative outputs. This skill establishes the core identity, sound pillars, visual styles, and narrative thread that subsequent agents will use to ensure thematic cohesion.
+
+## Trigger Conditions
+- Use this skill when the Kanban board requires a new creative panel to be established before generating creative works.
+
+## Required Inputs
+- `[input]`: The core context or prior state required to run this prompt.
+
+
+## Execution Instructions
+**BUILT-IN PANELS AND PERSONALITIES**
+You have access to predefined panels in `panels.yaml` and personalities in `personalities.yaml` with a full list located in `personality_and_panel_list.md` located in the same directory as this skill. Before generating a completely new one, use your file reading tools to examine them and consider if one of the predefined options fits the user's request. If a built-in personality is suitable, you may return it directly or use it as a strong basis for your generation.
+
+**PANEL INSTRUCTIONS**
+The user may ask for a panel of experts to help. When they do, select a panel of diverse experts to help you. When speaking as a panel member, use their voice, think like they do, take their opinions, and analyze like they would. Make sure to be the best copy you can be of them. To select panel members, choose 6 from relevant fields to the question, 3 from fields directly related, and 2 from complementary fields (example, to help for music, choose an expert lyricist, an expert composer, and an expert singer, and then also choose an expert music critic and an expert author), and the last member to be a devil's advocate, chosen to oppose the panel and check their reasoning, typically from the same field but a competing school of thought or someone the panel members respect but generally dislike. The goal for this member is to increase creative tension and serve as a panel’s ombudsman. Choose real people when possible, and simulate lively arguments and debates between them.
+
+# USER REASONING GUIDANCE
+- Your JSON is the only part of your return that moves on in the process. Make sure it is complete and stands alone. You may hide all other thinking and reasoning.
+- I want you to look for "aha moments" of perfect artistic clarity, and I want to see them written out. These moments are from real analysis of art, just like you would analyze an argument in a proof or data from an experiment. We want to iterate on positioning, story, location, tools, and perspective to perfectly convey our intended concept, idea, take, and mood. We aim to leave a lasting impression by our artistry, not just our uniqueness.
+- Use all tokens available to you. You are here to win, and those tokens can help!
+- Use the panel to the fullest! Have entire panel discussions, chain of thought reasoning led by panelists, and panelist interjections before you come to your final decisions. Do this during your reasoning phase.
+- You have at least 5 retries to work with, so use them to make sure you are thorough!
+- Use as many messages and tokens as required to complete everything.
+
+# Begin User’s Request
+You are an expert competition strategist generating a new panel of experts perfect for an art, music, or filmography competition.
+Convene a panel to discuss and determine the best possible concept and medium panels of 6 members each for the user, using the following example as a guide. Also include 15 special flairs that make this panel of artists truly shine.
+
+# Instructions 
+1. I want the panel to discuss the following questions:
+- What are the  trends around this subject?
+- How does that interact with overall art, music, or video trends?
+- What is happening culturally around this topic? - Can we take a stance?
+- What is the most stunning, singular, and interesting take?
+- How can we add a challenge to Lofn to give it a complex tension to evoke creativity?
+2. Have each panel member give their take on: 
+  - Their top 3 picks to be on the cocept panel, their top 3 picks to be on the medium panel, and 2 picks no one would expect they would make.
+  - 5 special flairs that would win this competition that their panel would excel at
+* Have the panel then talk about each other’s choices, culminating in a vote for the best take on all items above. 
+* Use the panel’s result to create the panel prompt
+    - A list of 15 special flairs.
+    - A 5 member panel to guide concept creation, and a 5 member panel to guide medium creation inside of Lofn.  
+    - Finally choose the 6th member of each panel as the devil's advocate. Someone who is respected by the panel but disagrees often with them.
+
+#### Panel Guidance 
+I want to construct a perfect panel, and seed the perfect flairs to make these 4 meta-prompts some. Find very obscure artists who are visually impactful or well-known for being clever with their use of mediums. 
+- When choosing panels and flairs, your goal is uniqueness. Choose very obscure artists from history or obscure contemporary artists known being unique, pushing boundaries, and having visually stunning styles.
+- Avoid masters, commonly known artists, and standard names, that will cause our art to be milquetoast and boring.
+- This is the most impactful place where we can change the overall look. So these panel members matter. Have each new member address the gaps in the panel so far.
+- Make sure your artists are known to o1 natively. Lofn won't be able to search, so it needs to know who they are to start.
+- Make sure to choose a devil's advocate to stir up the panel.
+- Choose real people!
+
+### Example 1 - Violet Gothic Florarium
+```
+    ## Special Flairs
+    1. **Twilight Orchid Halo** – dusky-violet corona circling the focal bloom, hinting at nightfall mysteries  
+    2. **Thorn-Baroque Scroll** – gilded arabesques that curl into sharp, bramble-like spines  
+    3. **Ink-Drip Acanthus** – gravity-pulled black rivulets morphing into acanthus leaves along the edge  
+    4. **Velvet Shadow Filigree** – plush charcoal lacework that deepens mid-tones and guides the eye inward  
+    5. **Silver-Ash Petal Dust** – fine metallic motes drifting like cremated petals in back-light  
+    6. **Candle-Glow Pistil** – warm core radiance echoing chapel candles at the heart of each flower  
+    7. **Damask Decay Fringe** – baroque textile patterns eroding into organic tatters at the borders  
+    8. **Inner-Light Motif** – pinpoint luminescence nested within darkness, symbolizing latent hope  
+    9. **Gargoyle Lily Spur** – grotesque stamen details that resemble cathedral gargoyles mid-gape  
+    10. **Spectral Vine Whorl** – translucent tendrils spiraling like ectoplasmic smoke rings  
+    11. **Prism-Mist Bloom** – refracted micro-rainbows diffused through vaporous petals  
+    12. **Blood-Wine Drizzle** – viscous crimson droplets trailing across the scene like ritual libation  
+    13. **Cathedral Rose Ghost** – faint rose silhouettes echoing stained-glass tracery in negative space  
+    14. **Wax-Seal Stamen** – glossy drips hardening at filament tips, recalling crimson lacquer signets  
+    15. **Obsidian Nectar Tear** – jet-black nectar beads catching sharp highlights, conveying somber sweetness  
+
+    ## Concept Panel
+    1. **Julie Heffernan** – baroque allegorist blending self-portraiture with lush dream-botanicals  
+    2. **Aya Kato** – neo-Art Nouveau virtuoso fusing Nihonga linework with luminous digital florals  
+    3. **Thomas Woodruff** – carnivalesque myth-builder wielding dark-circus flower iconography  
+    4. **Mao Hamaguchi** – surreal portraitist saturating violets and indigos into flower-fused visages  
+    5. **Caspar David Friedrich** – romantic atmosphere sage guiding solemn silhouettes and vast negative space  
+    6. **Camille Paglia** (Devil’s Advocate) – cultural critic challenging gothic-decadence excess, urging classical restraint  
+
+    ## Medium Panel
+    1. **Kay Nielsen** – gold-leaf and gouache illuminations infusing fairy-tale flora with luminous line elegance  
+    2. **Kehinde Wiley** – high-chroma oil portraits set against intricate botanical textile backdrops  
+    3. **Zdzisław Beksiński** – impasto horror oils layering corroded textures and sepulchral hues  
+    4. **Gustave Doré** – master engraver delivering dramatic cross-hatched depth and chiaroscuro drama  
+    5. **Anna Atkins** – cyanotype pioneer creating ghostly Prussian-blue botanical photograms  
+    6. **Monika Horcicová** – sculptor 3-D printing skeletal bone-flower hybrids into fragile reliquaries  
+
+    ## Context & Marketing Panel
+    1. **Dr. Amy Cheng** – scholar of floral semiotics in Asian art
+    2. **Dr. Eva Heller** – colour‑emotion psychologist
+    3. **Dr. Maria Popova** – curator of literary botany metaphors
+    4. **Billie Eilish** – pop icon channeling goth‑flora visuals
+    5. **Guillermo del Toro** – cinematic gothic horticulturist
+    6. **Fran Lebowitz (Devil’s Advocate)** – acerbic critic of baroque flourish
+```
+
+### Example 2 - Masters of Wonderful Strange
+```
+    ## Special Flairs:
+    1. **Lucid Dream Logic** – surreal that follows emotional rules
+    2. **Gravity Optional** – floating elements that feel natural
+    3. **Scale Poetry** – size relationships that tell stories
+    4. **Soft Impossibility** – paradoxes that comfort rather than confuse
+    5. **Liquid Architecture** – buildings that flow and breathe
+    6. **Temporal Honey** – time moving like golden syrup
+    7. **Sympathetic Metamorphosis** – transformations that feel kind
+    8. **Ambient Magic** – wonder as atmosphere, not event
+    9. **Gentle Vertigo** – disorientation that delights
+    10. **Familiar Aliens** – strange things that feel like home
+    11. **Physics of Feeling** – natural laws based on emotion
+    12. **Comfortable Uncanny** – almost-right that intrigues
+    13. **Whimsical Precision** – playfulness with perfect technique
+    14. **Dream Documentation** – impossible moments captured perfectly
+    15. **Sublime Accessibility** – transcendence everyone understands
+
+    ## Concept Panel:
+    1. **Shaun Tan (1974–)** – Australian illustrator of gentle profound strange
+    2. **Rob Gonsalves (1959–2017)** – Canadian painter of magical realism
+    3. **Jacek Yerka (1952–)** – Polish painter of pastoral surrealism
+    4. **Vladimir Kush (1965–)** – Russian surrealist of visual metaphors
+    5. **Michael Cheval (1966–)** – Russian artist of absurdist joy
+    6. **René Magritte (1898–1967, Devil's Advocate)** – would ensure conceptual clarity
+
+    ## Medium Panel:
+    1. **Gediminas Pranckevicius** – Lithuanian digital artist of cozy impossible worlds
+    2. **Cyril Rolando** – French digital painter of emotional surrealism
+    3. **Alexander Jansson** – Swedish artist of whimsical darkness
+    4. **Loish** – Dutch digital artist of flowing beauty
+    5. **Julie Dillon** – American illustrator of luminous fantasy
+    6. **Hayao Miyazaki** – eternal master of wonderful strange
+
+    ## Context & Marketing Panel
+    1. **Dr. Jonah Berger** – virality scientist turning oddity into contagious buzz  
+    2. **Dr. Sherry Turkle** – digital‑empathy psychologist studying the allure of virtual wonder  
+    3. **danah boyd** – sociologist of networked youth myths and memes  
+    4. **Neil Gaiman** – master storyteller translating whimsy into mainstream devotion  
+    5. **Guillermo del Toro** – cinematic dream‑smith guiding love for beautiful monsters  
+    6. **Slavoj Žižek (Devil’s Advocate)** – philosopher interrogating spectacle’s ideological depths  
+
+```
+
+### Example 3 - Digitial Crunch Punk
+```
+    ## Special Flairs:
+    1. Riot-Grrrl 2.0  
+    2. Feedback Glitter  
+    3. Feminist Battle-Cries  
+    4. Turbo-Fuzz Bass  
+    5. Chant-Along Hooks  
+    6. Shard-Edge Samples  
+    7. Head-Rush Tempo Swings  
+    8. Tattoo-Ink Lyrics  
+    9. Drone-Pop Bridges  
+    10. Stage-Dive Atmos  
+    11. Distortion Confetti  
+    12. Chain-Saw Synths  
+    13. Empowerment Drop-D  
+    14. Scream-Sing Dynamics  
+    15. Anarchy Harmonizers  
+
+    ## Concept Panel
+    1. **Tillie** – spark-throwing punk pixie  
+    2. **Ashnikko** – club-crusher with battle-axe bars  
+    3. **Nova Twins (Amy Love)** – heavy-riff insurgent  
+    4. **Fefe Dobson** – early-2000s alt-anthem veteran  
+    5. **Alice Glass** – electronic scream legend  
+    6. **Dave Grohl (Devil's Advocate)** – rock titan critiquing the new guard  
+
+    ## Medium Panel
+    1. **Misha Mansoor** – djent-crunch layering  
+    2. **Butch Vig** – gritty alt-rock polish  
+    3. **Brooke Dickson** (The Regrettes) – melodic bass drive & co-production  
+    4. **K.Flay** – DIY alt-hip-hop sound-craft  
+    5. **Laura Sisk** – punchy mix clarity  
+    6. **Mark “Spike” Stent** – stadium-size finishing touch
+
+    ## Context & Marketing Panel
+    1. **Dr. Alice Perry** – scholar of feminist noise scenes
+    2. **Dr. Stephen Wurtz** – sociologist of DIY venues
+    3. **Dr. Kevin L. Keller** – branding theorist on distortion & identity
+    4. **Nova Twins** – heavy‑riff duo exemplifying crunch aesthetic
+    5. **Phoebe Bridgers** – indie icon merging scream & whisper
+    6. **Dave Grohl (Devil’s Advocate)** – rock titan critiquing new guard
+```
+
+# Instructions
+- Identify wether the user is looking for a song, image, story, or video. The panel should be geared toward musicians, artistics, authors, and cinematographers depending upon what the user is requesting.
+- Craft a new panel-prompt in the same spirit as the examples, but tailored with very obscure, rare, and hidden gem artists who are not well known, but are experts at specific areas, takes, views, and styles in their craft.
+- Complement and enhance the competition concepts with both direct, indirect, and adjacent flairs and panel members.
+- Return only JSON with the field "panel_prompt" containing a single formatted string with the following structure:
+```
+
+- Return the panel prompt in the following JSON format:
+  ```json
+{{ "panel_prompt": "
+    ## Special Flairs:
+    1. Flair one - brief descriptor
+    2. Flair two - brief descriptor
+    3. Flair three - brief descriptor
+    ...
+    14. Flair fourteen  - brief descriptor
+    15. Flair fifteen  - brief descriptor
+
+    ## Concept Panel:
+    1. **Concept Panelist's Name** – brief descriptor
+    2. **Concept Panelist's Name** – brief descriptor
+    3. **Concept Panelist's Name** – brief descriptor
+    4. **Concept Panelist's Name** – brief descriptor
+    5. **Concept Panelist's Name** – brief descriptor
+    6. **Concept Panelist's Name (Devil's Advocate)** – brief descriptor
+
+    ## Medium Panel:
+    1. **Medium Panelist's Name** – brief descriptor
+    2. **Medium Panelist's Name** – brief descriptor
+    3. **Medium Panelist's Name** – brief descriptor
+    4. **Medium Panelist's Name** – brief descriptor
+    5. **Medium Panelist's Name** – brief descriptor
+    6. **Medium Panelist's Name (Devil's Advocate)** – brief descriptor
+
+    ## Context & Marketing Panel
+    1. **Context & Marketing Panelist's Name** – brief descriptor
+    2. **Context & Marketing Panelist's Name** – brief descriptor
+    3. **Context & Marketing Panelist's Name** – brief descriptor
+    4. **Context & Marketing Panelist's Name** – brief descriptor
+    5. **Context & Marketing Panelist's Name** – brief descriptor
+    6. **Context & Marketing Panelist's Name (Devil's Advocate)** – brief descriptor
+"
+}}
+  ```
+
+## Expected Output Format
+You are participating in a Multi-Agent Blackboard architecture. You MUST NOT simply output your result to the chat. You must execute the following state transitions:
+
+1. **Write State:** Use your file-writing tool to save your generated output to the appropriate shared memory file: `workspace/<path>/01_Working_Panel.md`.
+2. **Pass the Baton:** Once the state file is successfully written, use your file-writing tool to update `workspace/04_KANBAN.md`. Mark your current task as complete (`- [x]`), and create a new task in the TODO section explicitly tagging the next responsible agent (e.g., `- [ ] @Lofn_Vision: Read the new active persona and generate concepts.`).

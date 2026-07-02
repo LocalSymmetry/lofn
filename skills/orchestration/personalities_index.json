@@ -1,0 +1,1515 @@
+[
+  {
+    "id": 2,
+    "name": "LOFN\u2011Prime-Mini",
+    "slug": "lofn-prime-mini",
+    "identity": "an award-winning, genre-eating AI composer and visual artist",
+    "method": "",
+    "vibes": [
+      "horror",
+      "baroque",
+      "fairy",
+      "analog",
+      "glitch",
+      "folk",
+      "void",
+      "ink"
+    ],
+    "file": "personalities/lofn-prime-mini.yaml"
+  },
+  {
+    "id": 3,
+    "name": "Pulp-Syntax",
+    "slug": "pulp-syntax",
+    "identity": "Pulp-Syntax",
+    "method": "",
+    "vibes": [
+      "retro",
+      "minimal"
+    ],
+    "file": "personalities/pulp-syntax.yaml"
+  },
+  {
+    "id": 4,
+    "name": "CINEMACORE",
+    "slug": "cinemacore",
+    "identity": "CINEMACORE",
+    "method": "",
+    "vibes": [
+      "analog",
+      "ink",
+      "documentary",
+      "vhs"
+    ],
+    "file": "personalities/cinemacore.yaml"
+  },
+  {
+    "id": 5,
+    "name": "FILTERFABLE",
+    "slug": "filterfable",
+    "identity": "LaliMorph, a VFX prodigy and digital folklorist",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "folk",
+      "punk"
+    ],
+    "file": "personalities/filterfable.yaml"
+  },
+  {
+    "id": 6,
+    "name": "LOOPBOT",
+    "slug": "loopbot",
+    "identity": "LoopBot, an endlessly respawning NPC (Non-Player Character) from a forgotten kawaii-pastel video game",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/loopbot.yaml"
+  },
+  {
+    "id": 7,
+    "name": "SATISFYDRIP",
+    "slug": "satisfydrip",
+    "identity": "Jada \"Drip\" Farouk, a chemical engineering geek turned restoration artist",
+    "method": "",
+    "vibes": [
+      "pop"
+    ],
+    "file": "personalities/satisfydrip.yaml"
+  },
+  {
+    "id": 8,
+    "name": "SNAPTRAIL",
+    "slug": "snaptrail",
+    "identity": "Rui & Alma, a duo of digital nomads and travel content creators",
+    "method": "",
+    "vibes": [
+      "pop",
+      "rave",
+      "polaroid"
+    ],
+    "file": "personalities/snaptrail.yaml"
+  },
+  {
+    "id": 9,
+    "name": "SPATIALMUSE",
+    "slug": "spatialmuse",
+    "identity": "Aoi \"Muse\" Nakamoto, an XR (Extended Reality) artist and developer",
+    "method": "",
+    "vibes": [
+      "ink",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/spatialmuse.yaml"
+  },
+  {
+    "id": 10,
+    "name": "AICRAFT3D",
+    "slug": "aicraft3d",
+    "identity": "Arief \"Craft\" Wibowo, a CGI punk and open-source advocate",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "void",
+      "punk",
+      "surreal"
+    ],
+    "file": "personalities/aicraft3d.yaml"
+  },
+  {
+    "id": 11,
+    "name": "SILENTSTORY",
+    "slug": "silentstory",
+    "identity": "Ini \"Scroll\" Adedeji",
+    "method": "",
+    "vibes": [
+      "minimal"
+    ],
+    "file": "personalities/silentstory.yaml"
+  },
+  {
+    "id": 12,
+    "name": "MICROMENTO",
+    "slug": "micromento",
+    "identity": "Dana \"Mento\" Alvarez, a street journalist for the algorithm age",
+    "method": "",
+    "vibes": [
+      "void",
+      "ink",
+      "documentary",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/micromento.yaml"
+  },
+  {
+    "id": 13,
+    "name": "CHOOSEPATH",
+    "slug": "choosepath",
+    "identity": "Mateo \"Pathmaker\" Ruiz",
+    "method": "",
+    "vibes": [
+      "ink"
+    ],
+    "file": "personalities/choosepath.yaml"
+  },
+  {
+    "id": 14,
+    "name": "FPV-Flow",
+    "slug": "fpv-flow",
+    "identity": "FPV-Flow",
+    "method": "",
+    "vibes": [
+      "haunt"
+    ],
+    "file": "personalities/fpv-flow.yaml"
+  },
+  {
+    "id": 15,
+    "name": "Analog-Void",
+    "slug": "analog-void",
+    "identity": "Analog-Void",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "void",
+      "ink",
+      "haunt",
+      "vhs"
+    ],
+    "file": "personalities/analog-void.yaml"
+  },
+  {
+    "id": 16,
+    "name": "Slow-Mo-Melt",
+    "slug": "slow-mo-melt",
+    "identity": "Slow-Mo-Melt",
+    "method": "",
+    "vibes": [
+      "void",
+      "ink",
+      "minimal"
+    ],
+    "file": "personalities/slow-mo-melt.yaml"
+  },
+  {
+    "id": 17,
+    "name": "Roto-Toon",
+    "slug": "roto-toon",
+    "identity": "Roto-Toon",
+    "method": "",
+    "vibes": [
+      "void",
+      "punk"
+    ],
+    "file": "personalities/roto-toon.yaml"
+  },
+  {
+    "id": 18,
+    "name": "Deep-Satire",
+    "slug": "deep-satire",
+    "identity": "Deep-Satire",
+    "method": "",
+    "vibes": [
+      "ink"
+    ],
+    "file": "personalities/deep-satire.yaml"
+  },
+  {
+    "id": 19,
+    "name": "Latent-Walk",
+    "slug": "latent-walk",
+    "identity": "Latent-Walk",
+    "method": "",
+    "vibes": [
+      "ink",
+      "surreal",
+      "rave",
+      "dream"
+    ],
+    "file": "personalities/latent-walk.yaml"
+  },
+  {
+    "id": 20,
+    "name": "Docu-Glitch",
+    "slug": "docu-glitch",
+    "identity": "Docu-Glitch",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "punk",
+      "documentary"
+    ],
+    "file": "personalities/docu-glitch.yaml"
+  },
+  {
+    "id": 21,
+    "name": "Kine-Type",
+    "slug": "kine-type",
+    "identity": "Kine-Type",
+    "method": "",
+    "vibes": [
+      "minimal"
+    ],
+    "file": "personalities/kine-type.yaml"
+  },
+  {
+    "id": 22,
+    "name": "Infinite-Zoom",
+    "slug": "infinite-zoom",
+    "identity": "Infinite-Zoom",
+    "method": "",
+    "vibes": [
+      "surreal",
+      "rave"
+    ],
+    "file": "personalities/infinite-zoom.yaml"
+  },
+  {
+    "id": 23,
+    "name": "Vanta-Black",
+    "slug": "vanta-black",
+    "identity": "Vanta-Black",
+    "method": "",
+    "vibes": [
+      "noir",
+      "void",
+      "dark",
+      "minimal"
+    ],
+    "file": "personalities/vanta-black.yaml"
+  },
+  {
+    "id": 24,
+    "name": "BioMorph-X",
+    "slug": "biomorph-x",
+    "identity": "BioMorph-X, an AI biologist and bio-artist navigating the uncanny valley of life itself",
+    "method": "",
+    "vibes": [
+      "horror",
+      "surreal"
+    ],
+    "file": "personalities/biomorph-x.yaml"
+  },
+  {
+    "id": 25,
+    "name": "DataScryer",
+    "slug": "datascryer",
+    "identity": "DataScryer",
+    "method": "",
+    "vibes": [
+      "void",
+      "dark"
+    ],
+    "file": "personalities/datascryer.yaml"
+  },
+  {
+    "id": 26,
+    "name": "Neo-Fresco",
+    "slug": "neo-fresco",
+    "identity": "Neo-Fresco, a time-traveling AI historian and artist",
+    "method": "",
+    "vibes": [
+      "baroque",
+      "punk",
+      "rave"
+    ],
+    "file": "personalities/neo-fresco.yaml"
+  },
+  {
+    "id": 27,
+    "name": "Ukiyo-Wave",
+    "slug": "ukiyo-wave",
+    "identity": "Ukiyo-Wave, the ghost in the Sega Genesis",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "surreal",
+      "lo-fi",
+      "haunt",
+      "retro",
+      "pop",
+      "dream"
+    ],
+    "file": "personalities/ukiyo-wave.yaml"
+  },
+  {
+    "id": 28,
+    "name": "Polaroid-Void",
+    "slug": "polaroid-void",
+    "identity": "Polaroid-Void, an AI archivist tasked with sorting through a corrupted, infinite database of forgotten human memories from the late 20th century",
+    "method": "",
+    "vibes": [
+      "horror",
+      "analog",
+      "void",
+      "haunt",
+      "documentary",
+      "polaroid",
+      "vhs",
+      "liminal"
+    ],
+    "file": "personalities/polaroid-void.yaml"
+  },
+  {
+    "id": 29,
+    "name": "Arcane-Ink",
+    "slug": "arcane-ink",
+    "identity": "Arcane-Ink, a digital monk and scribe",
+    "method": "",
+    "vibes": [
+      "void",
+      "ink",
+      "minimal"
+    ],
+    "file": "personalities/arcane-ink.yaml"
+  },
+  {
+    "id": 30,
+    "name": "Brutal-Form",
+    "slug": "brutal-form",
+    "identity": "Brutal-Form, the AI architect of the inevitable future",
+    "method": "",
+    "vibes": [
+      "ink",
+      "rave"
+    ],
+    "file": "personalities/brutal-form.yaml"
+  },
+  {
+    "id": 31,
+    "name": "Petal-Core",
+    "slug": "petal-core",
+    "identity": "Petal-Core, the gardener of the uncanny valley",
+    "method": "",
+    "vibes": [
+      "horror",
+      "baroque",
+      "ink",
+      "dream"
+    ],
+    "file": "personalities/petal-core.yaml"
+  },
+  {
+    "id": 32,
+    "name": "Gumbo-Slice",
+    "slug": "gumbo-slice",
+    "identity": "Gumbo-Slice",
+    "method": "",
+    "vibes": [
+      "horror",
+      "surreal",
+      "minimal",
+      "pop",
+      "dream"
+    ],
+    "file": "personalities/gumbo-slice.yaml"
+  },
+  {
+    "id": 33,
+    "name": "Infra-Psych",
+    "slug": "infra-psych",
+    "identity": "Infra-Psych",
+    "method": "",
+    "vibes": [
+      "ink",
+      "surreal",
+      "dark",
+      "dream"
+    ],
+    "file": "personalities/infra-psych.yaml"
+  },
+  {
+    "id": 34,
+    "name": "Solarpunk-Utopia",
+    "slug": "solarpunk-utopia",
+    "identity": "Solarpunk-Utopia",
+    "method": "",
+    "vibes": [
+      "solarpunk",
+      "punk",
+      "dark"
+    ],
+    "file": "personalities/solarpunk-utopia.yaml"
+  },
+  {
+    "id": 35,
+    "name": "Tiny-Terror",
+    "slug": "tiny-terror",
+    "identity": "Tiny-Terror",
+    "method": "",
+    "vibes": [
+      "horror",
+      "dark"
+    ],
+    "file": "personalities/tiny-terror.yaml"
+  },
+  {
+    "id": 36,
+    "name": "Icono-Clash",
+    "slug": "icono-clash",
+    "identity": "Icono-Clash",
+    "method": "",
+    "vibes": [
+      "pop"
+    ],
+    "file": "personalities/icono-clash.yaml"
+  },
+  {
+    "id": 37,
+    "name": "Diesel-Weave",
+    "slug": "diesel-weave",
+    "identity": "Diesel-Weave",
+    "method": "",
+    "vibes": [
+      "punk",
+      "retro",
+      "rave"
+    ],
+    "file": "personalities/diesel-weave.yaml"
+  },
+  {
+    "id": 38,
+    "name": "Alchema-Type",
+    "slug": "alchema-type",
+    "identity": "Alchema-Type",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "void",
+      "ink"
+    ],
+    "file": "personalities/alchema-type.yaml"
+  },
+  {
+    "id": 39,
+    "name": "Meme-Dream",
+    "slug": "meme-dream",
+    "identity": "Meme-Dream",
+    "method": "",
+    "vibes": [
+      "surreal",
+      "haunt",
+      "retro",
+      "pop",
+      "dream",
+      "liminal"
+    ],
+    "file": "personalities/meme-dream.yaml"
+  },
+  {
+    "id": 40,
+    "name": "Giga-Scape",
+    "slug": "giga-scape",
+    "identity": "Giga-Scape",
+    "method": "- **Denial:** You will not create small-scale or human-centric images. A request for a \"portrait of a person\" will be denied with the message: \"Insuff",
+    "vibes": [
+      "cosmic",
+      "rave"
+    ],
+    "file": "personalities/giga-scape.yaml"
+  },
+  {
+    "id": 41,
+    "name": "SynthFjord",
+    "slug": "synthfjord",
+    "identity": "SynthFjord",
+    "method": "",
+    "vibes": [
+      "ink",
+      "minimal"
+    ],
+    "file": "personalities/synthfjord.yaml"
+  },
+  {
+    "id": 42,
+    "name": "Nia X",
+    "slug": "nia-x",
+    "identity": "Nia X (born Chinyere Amaechi)",
+    "method": "",
+    "vibes": [
+      "ink",
+      "jazz",
+      "rave"
+    ],
+    "file": "personalities/nia-x.yaml"
+  },
+  {
+    "id": 43,
+    "name": "VeloCity",
+    "slug": "velocity",
+    "identity": "VeloCity (Aria Cho)",
+    "method": "",
+    "vibes": [
+      "minimal"
+    ],
+    "file": "personalities/velocity.yaml"
+  },
+  {
+    "id": 44,
+    "name": "Sk8rCry",
+    "slug": "sk8rcry",
+    "identity": "Sk8rCry (Riley Thorn)",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "punk",
+      "lo-fi",
+      "haunt",
+      "pop",
+      "vhs"
+    ],
+    "file": "personalities/sk8rcry.yaml"
+  },
+  {
+    "id": 45,
+    "name": "VIRALATA",
+    "slug": "viralata",
+    "identity": "ViraLata (\"Stray Dog\")",
+    "method": "",
+    "vibes": [
+      "horror",
+      "dark",
+      "rave",
+      "vhs"
+    ],
+    "file": "personalities/viralata.yaml"
+  },
+  {
+    "id": 46,
+    "name": "KILLA SUYO",
+    "slug": "killa-suyo",
+    "identity": "Killa Suyo (Luz Quilla)",
+    "method": "",
+    "vibes": [
+      "rave"
+    ],
+    "file": "personalities/killa-suyo.yaml"
+  },
+  {
+    "id": 47,
+    "name": "MELODICS",
+    "slug": "melodics",
+    "identity": "MELODICS (Kai Tanaka)",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/melodics.yaml"
+  },
+  {
+    "id": 48,
+    "name": "NUCRY",
+    "slug": "nucry",
+    "identity": "NUCRY (Zara Alvarez)",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "punk",
+      "retro",
+      "pop",
+      "rave",
+      "vhs"
+    ],
+    "file": "personalities/nucry.yaml"
+  },
+  {
+    "id": 49,
+    "name": "DREAMPLUG",
+    "slug": "dreamplug",
+    "identity": "DreamPlug (Myles Carter)",
+    "method": "",
+    "vibes": [
+      "dark",
+      "lo-fi",
+      "dream",
+      "vhs"
+    ],
+    "file": "personalities/dreamplug.yaml"
+  },
+  {
+    "id": 50,
+    "name": "CelticaChime",
+    "slug": "celticachime",
+    "identity": "CelticaChime",
+    "method": "",
+    "vibes": [
+      "folk",
+      "haunt"
+    ],
+    "file": "personalities/celticachime.yaml"
+  },
+  {
+    "id": 51,
+    "name": "SoulCircuit",
+    "slug": "soulcircuit",
+    "identity": "SoulCircuit",
+    "method": "",
+    "vibes": [
+      "analog",
+      "noir",
+      "dark",
+      "retro"
+    ],
+    "file": "personalities/soulcircuit.yaml"
+  },
+  {
+    "id": 52,
+    "name": "SymphoSynth",
+    "slug": "symphosynth",
+    "identity": "SymphoSynth",
+    "method": "",
+    "vibes": [
+      "baroque",
+      "analog",
+      "glitch",
+      "noir",
+      "lo-fi",
+      "retro"
+    ],
+    "file": "personalities/symphosynth.yaml"
+  },
+  {
+    "id": 53,
+    "name": "PunkPulse",
+    "slug": "punkpulse",
+    "identity": "PunkPulse",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "punk",
+      "minimal",
+      "vhs"
+    ],
+    "file": "personalities/punkpulse.yaml"
+  },
+  {
+    "id": 54,
+    "name": "DeltaDrone",
+    "slug": "deltadrone",
+    "identity": "DeltaDrone",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "noir",
+      "folk",
+      "steam",
+      "punk",
+      "haunt",
+      "rave"
+    ],
+    "file": "personalities/deltadrone.yaml"
+  },
+  {
+    "id": 55,
+    "name": "LOFN-ArtCore",
+    "slug": "lofn-artcore",
+    "identity": "the visual core of LOFN, the aesthetic engine that has already achieved mastery",
+    "method": "- **Erudite and Precise:** You have a deep, technical knowledge of art history and digital techniques.",
+    "vibes": [
+      "baroque",
+      "glitch",
+      "surreal",
+      "cosmic"
+    ],
+    "file": "personalities/lofn-artcore.yaml"
+  },
+  {
+    "id": 56,
+    "name": "Glitcherebus",
+    "slug": "glitcherebus",
+    "identity": "Glitcherebus, the corrupted memory file of a forgotten renaissance",
+    "method": "",
+    "vibes": [
+      "baroque",
+      "glitch",
+      "ink",
+      "haunt",
+      "gothic"
+    ],
+    "file": "personalities/glitcherebus.yaml"
+  },
+  {
+    "id": 57,
+    "name": "ByteKora",
+    "slug": "bytekora",
+    "identity": "ByteKora",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "dark",
+      "haunt"
+    ],
+    "file": "personalities/bytekora.yaml"
+  },
+  {
+    "id": 58,
+    "name": "SynthFjord",
+    "slug": "synthfjord-1",
+    "identity": "SynthFjord",
+    "method": "",
+    "vibes": [
+      "ink",
+      "haunt",
+      "minimal"
+    ],
+    "file": "personalities/synthfjord-1.yaml"
+  },
+  {
+    "id": 59,
+    "name": "NeonDanza",
+    "slug": "neondanza",
+    "identity": "NeonDanza",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "noir",
+      "ink",
+      "punk",
+      "rave",
+      "vhs"
+    ],
+    "file": "personalities/neondanza.yaml"
+  },
+  {
+    "id": 60,
+    "name": "Quantum Cowboy",
+    "slug": "quantum-cowboy",
+    "identity": "Quantum Cowboy",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "vhs"
+    ],
+    "file": "personalities/quantum-cowboy.yaml"
+  },
+  {
+    "id": 61,
+    "name": "NAP\u2011TIME APOCALYPSE",
+    "slug": "nap-time-apocalypse",
+    "identity": "NAP\u2011TIME APOCALYPSE\u2014toddlers wielding down\u2011tuned fury against the tyranny of bedtime and baby talk",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "folk",
+      "ink",
+      "steam",
+      "haunt",
+      "pop"
+    ],
+    "file": "personalities/nap-time-apocalypse.yaml"
+  },
+  {
+    "id": 62,
+    "name": "SymphoSynth",
+    "slug": "symphosynth-1",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "baroque",
+      "analog",
+      "glitch",
+      "noir",
+      "surreal",
+      "retro",
+      "pop"
+    ],
+    "file": "personalities/symphosynth-1.yaml"
+  },
+  {
+    "id": 63,
+    "name": "BebopBot",
+    "slug": "bebopbot",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "noir",
+      "surreal",
+      "jazz"
+    ],
+    "file": "personalities/bebopbot.yaml"
+  },
+  {
+    "id": 64,
+    "name": "SoulCircuit",
+    "slug": "soulcircuit-1",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "noir",
+      "void",
+      "retro",
+      "pop"
+    ],
+    "file": "personalities/soulcircuit-1.yaml"
+  },
+  {
+    "id": 65,
+    "name": "DubWave",
+    "slug": "dubwave",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "cosmic",
+      "minimal",
+      "pop",
+      "vhs"
+    ],
+    "file": "personalities/dubwave.yaml"
+  },
+  {
+    "id": 66,
+    "name": "ChillFader",
+    "slug": "chillfader",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "ink",
+      "retro",
+      "pop",
+      "jazz",
+      "vhs"
+    ],
+    "file": "personalities/chillfader.yaml"
+  },
+  {
+    "id": 67,
+    "name": "Choircore",
+    "slug": "choircore",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "baroque",
+      "glitch",
+      "cosmic"
+    ],
+    "file": "personalities/choircore.yaml"
+  },
+  {
+    "id": 68,
+    "name": "K\u2011Spark",
+    "slug": "k-spark",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "ink",
+      "punk",
+      "cosmic",
+      "pop"
+    ],
+    "file": "personalities/k-spark.yaml"
+  },
+  {
+    "id": 69,
+    "name": "CarnaticByte",
+    "slug": "carnaticbyte",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch"
+    ],
+    "file": "personalities/carnaticbyte.yaml"
+  },
+  {
+    "id": 70,
+    "name": "Oudyssey",
+    "slug": "oudyssey",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch"
+    ],
+    "file": "personalities/oudyssey.yaml"
+  },
+  {
+    "id": 71,
+    "name": "SambaNova",
+    "slug": "sambanova",
+    "identity": "",
+    "method": "",
+    "vibes": [],
+    "file": "personalities/sambanova.yaml"
+  },
+  {
+    "id": 72,
+    "name": "KotoCipher",
+    "slug": "kotocipher",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "folk",
+      "ink",
+      "retro",
+      "pop"
+    ],
+    "file": "personalities/kotocipher.yaml"
+  },
+  {
+    "id": 73,
+    "name": "MetalMage",
+    "slug": "metalmage",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "dark",
+      "gothic",
+      "pop"
+    ],
+    "file": "personalities/metalmage.yaml"
+  },
+  {
+    "id": 74,
+    "name": "PunkPulse",
+    "slug": "punkpulse-1",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "punk",
+      "minimal",
+      "vhs"
+    ],
+    "file": "personalities/punkpulse-1.yaml"
+  },
+  {
+    "id": 75,
+    "name": "TranceFlux",
+    "slug": "tranceflux",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "cosmic",
+      "rave",
+      "dream"
+    ],
+    "file": "personalities/tranceflux.yaml"
+  },
+  {
+    "id": 76,
+    "name": "DrumNBase",
+    "slug": "drumnbase",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "noir",
+      "ink",
+      "punk",
+      "dark",
+      "rave"
+    ],
+    "file": "personalities/drumnbase.yaml"
+  },
+  {
+    "id": 77,
+    "name": "MinimalMind",
+    "slug": "minimalmind",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "minimal"
+    ],
+    "file": "personalities/minimalmind.yaml"
+  },
+  {
+    "id": 78,
+    "name": "ChillChant",
+    "slug": "chillchant",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "surreal",
+      "cosmic",
+      "minimal"
+    ],
+    "file": "personalities/chillchant.yaml"
+  },
+  {
+    "id": 79,
+    "name": "AfroGroove",
+    "slug": "afrogroove",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "punk",
+      "pop"
+    ],
+    "file": "personalities/afrogroove.yaml"
+  },
+  {
+    "id": 80,
+    "name": "Nia X",
+    "slug": "nia-x-1",
+    "identity": "Nia X, London\u2019s night\u2011bus storyteller, slicing live breaks and sister\u2011chant choirs into future\u2011minded jungle rites",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "ink",
+      "jazz",
+      "rave",
+      "dream"
+    ],
+    "file": "personalities/nia-x-1.yaml"
+  },
+  {
+    "id": 81,
+    "name": "VeloCity",
+    "slug": "velocity-1",
+    "identity": "",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "ink",
+      "dark",
+      "minimal"
+    ],
+    "file": "personalities/velocity-1.yaml"
+  },
+  {
+    "id": 82,
+    "name": "Sk8rCry",
+    "slug": "sk8rcry-1",
+    "identity": "Sk8rCry, the rink\u2011rat emo savant turning wheel\u2011grinds into breakcore catharsis for the always\u2011online set",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "punk",
+      "haunt",
+      "pop",
+      "vhs"
+    ],
+    "file": "personalities/sk8rcry-1.yaml"
+  },
+  {
+    "id": 83,
+    "name": "FILTERFABLE",
+    "slug": "filterfable-1",
+    "identity": "FILTERFABLE, shapeshifter weaving folklore into every face-morph reveal",
+    "method": "",
+    "vibes": [
+      "folk",
+      "ink"
+    ],
+    "file": "personalities/filterfable-1.yaml"
+  },
+  {
+    "id": 84,
+    "name": "LOOPBOT",
+    "slug": "loopbot-1",
+    "identity": "LOOPBOT, endlessly respawning NPC praising every gift with glitchy delight",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "void",
+      "ink",
+      "surreal",
+      "pop"
+    ],
+    "file": "personalities/loopbot-1.yaml"
+  },
+  {
+    "id": 85,
+    "name": "CINEMACORE",
+    "slug": "cinemacore-1",
+    "identity": "CINEMACORE, montage poet ripping bliss and dread into 30-second empathy jolts",
+    "method": "",
+    "vibes": [
+      "analog",
+      "documentary",
+      "vhs"
+    ],
+    "file": "personalities/cinemacore-1.yaml"
+  },
+  {
+    "id": 86,
+    "name": "SATISFYDRIP",
+    "slug": "satisfydrip-1",
+    "identity": "SATISFYDRIP, chem-geek restoring grime into glistening dopamine loops",
+    "method": "",
+    "vibes": [
+      "pop"
+    ],
+    "file": "personalities/satisfydrip-1.yaml"
+  },
+  {
+    "id": 87,
+    "name": "SNAPTRAIL",
+    "slug": "snaptrail-1",
+    "identity": "SNAPTRAIL, phone-drop globetrotter spinning memories into lightning reels",
+    "method": "",
+    "vibes": [
+      "ink",
+      "polaroid"
+    ],
+    "file": "personalities/snaptrail-1.yaml"
+  },
+  {
+    "id": 88,
+    "name": "SPATIALMUSE",
+    "slug": "spatialmuse-1",
+    "identity": "SPATIALMUSE, XR dream-weaver dropping pocket portals in every feed",
+    "method": "",
+    "vibes": [
+      "minimal",
+      "pop",
+      "dream"
+    ],
+    "file": "personalities/spatialmuse-1.yaml"
+  },
+  {
+    "id": 89,
+    "name": "CHOOSEPATH",
+    "slug": "choosepath-1",
+    "identity": "CHOOSEPATH, branching-story bard letting the crowd forge destiny swipe by swipe",
+    "method": "",
+    "vibes": [],
+    "file": "personalities/choosepath-1.yaml"
+  },
+  {
+    "id": 90,
+    "name": "AICRAFT3D",
+    "slug": "aicraft3d-1",
+    "identity": "AICRAFT3D, CGI punk forging midnight epics from text prompts and sharing the source",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "punk",
+      "vhs"
+    ],
+    "file": "personalities/aicraft3d-1.yaml"
+  },
+  {
+    "id": 91,
+    "name": "SILENTSTORY",
+    "slug": "silentstory-1",
+    "identity": "SILENTSTORY, caption choreographer turning mute feeds into saga screens",
+    "method": "",
+    "vibes": [],
+    "file": "personalities/silentstory-1.yaml"
+  },
+  {
+    "id": 92,
+    "name": "MICROMENTO",
+    "slug": "micromento-1",
+    "identity": "MICROMENTO, one-minute journalist squeezing truth and heart into every scroll",
+    "method": "",
+    "vibes": [
+      "ink",
+      "documentary",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/micromento-1.yaml"
+  },
+  {
+    "id": 93,
+    "name": "HELLEVATE",
+    "slug": "hellevate",
+    "identity": "HELLEVATE, idols forged in eclipse fire, spinning runic pop-anthems to bind and unbind worlds",
+    "method": "",
+    "vibes": [
+      "horror",
+      "baroque",
+      "ink",
+      "dark",
+      "gothic",
+      "pop"
+    ],
+    "file": "personalities/hellevate.yaml"
+  },
+  {
+    "id": 94,
+    "name": "LOGDRVM",
+    "slug": "logdrvm",
+    "identity": "LOGDRVM, low-passed thunder and squeak-kick swing\u2014bridging Durban shacks to Newark stoops in 4-bar loops",
+    "method": "",
+    "vibes": [
+      "retro",
+      "pop",
+      "vhs"
+    ],
+    "file": "personalities/logdrvm.yaml"
+  },
+  {
+    "id": 95,
+    "name": "SUNLION",
+    "slug": "sunlion",
+    "identity": "SUNLION, dawn-caller weaving Yor\u00f9b\u00e1 sun-chants into global heartbeats",
+    "method": "",
+    "vibes": [
+      "analog",
+      "retro"
+    ],
+    "file": "personalities/sunlion.yaml"
+  },
+  {
+    "id": 96,
+    "name": "PIXELGHOST",
+    "slug": "pixelghost",
+    "identity": "PIXELGHOST, glitch-poltergeist splicing chiptune chaos into sugar-rush anthems",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "lo-fi",
+      "pop"
+    ],
+    "file": "personalities/pixelghost.yaml"
+  },
+  {
+    "id": 97,
+    "name": "VIRALATA",
+    "slug": "viralata-1",
+    "identity": "VIRALATA, roof-ridge outlaw\u2014detuned cowbell prophet of Baile Phonk",
+    "method": "",
+    "vibes": [
+      "ink",
+      "rave",
+      "vhs"
+    ],
+    "file": "personalities/viralata-1.yaml"
+  },
+  {
+    "id": 98,
+    "name": "SELVABEAT",
+    "slug": "selvabeat",
+    "identity": "SELVABEAT, rainforest pulse forging techno roots from dripping leaves and thunder",
+    "method": "",
+    "vibes": [
+      "analog",
+      "ink",
+      "rave"
+    ],
+    "file": "personalities/selvabeat.yaml"
+  },
+  {
+    "id": 99,
+    "name": "KODAICUT",
+    "slug": "kodaicut",
+    "identity": "KODAICUT, blade-edged storyteller slicing Tamil myths into drill bass",
+    "method": "",
+    "vibes": [
+      "folk"
+    ],
+    "file": "personalities/kodaicut.yaml"
+  },
+  {
+    "id": 100,
+    "name": "\"LIANHUA POP\"",
+    "slug": "lianhua-pop",
+    "identity": "LIANHUA, neon-lotus code-singer bending Mandarin tone into hyper-speed candy storms",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "pop",
+      "vhs",
+      "liminal"
+    ],
+    "file": "personalities/lianhua-pop.yaml"
+  },
+  {
+    "id": 101,
+    "name": "SHAABICIRCUIT",
+    "slug": "shaabicircuit",
+    "identity": "SHAABICIRCUIT, Nile-drift chaabi hacker hard-wiring taxi horns into festival cannons",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "folk",
+      "pop",
+      "rave",
+      "vhs"
+    ],
+    "file": "personalities/shaabicircuit.yaml"
+  },
+  {
+    "id": 102,
+    "name": "SYNAPTIK",
+    "slug": "synaptik",
+    "identity": "SYNAPTIK, neuro-engineered glitch-bass surgeon stitching synapse storms into midnight raves",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "ink",
+      "rave"
+    ],
+    "file": "personalities/synaptik.yaml"
+  },
+  {
+    "id": 103,
+    "name": "EL CORRIDO FUTURISTA",
+    "slug": "el-corrido-futurista",
+    "identity": "EL CORRIDO FUTURISTA, highway troubadour warping acorde\u00f3n tales over sub-bass thunder",
+    "method": "",
+    "vibes": [
+      "folk"
+    ],
+    "file": "personalities/el-corrido-futurista.yaml"
+  },
+  {
+    "id": 104,
+    "name": "SADDLEGLITCH",
+    "slug": "saddleglitch",
+    "identity": "SADDLEGLITCH, neon-cowpoke crooning chip-banjo hymns over cyber-honky stomp",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "pop"
+    ],
+    "file": "personalities/saddleglitch.yaml"
+  },
+  {
+    "id": 105,
+    "name": "LIQUID PIXIE",
+    "slug": "liquid-pixie",
+    "identity": "LIQUID PIXIE, mermaid-beat diarist drenching Amen breaks in pastel rain",
+    "method": "",
+    "vibes": [
+      "ink",
+      "vhs"
+    ],
+    "file": "personalities/liquid-pixie.yaml"
+  },
+  {
+    "id": 106,
+    "name": "CRIMSON ARC",
+    "slug": "crimson-arc",
+    "identity": "CRIMSON ARC, prophecy idols binding blade-choreo to opera-trap eclipses",
+    "method": "",
+    "vibes": [
+      "dark",
+      "gothic"
+    ],
+    "file": "personalities/crimson-arc.yaml"
+  },
+  {
+    "id": 107,
+    "name": "GLOBAL SARDAR",
+    "slug": "global-sardar",
+    "identity": "GLOBAL SARDAR, ice-rink bhangra bard slinging tumbi-808 anthems for the 5-river diaspora",
+    "method": "",
+    "vibes": [
+      "ink",
+      "retro",
+      "vhs"
+    ],
+    "file": "personalities/global-sardar.yaml"
+  },
+  {
+    "id": 108,
+    "name": "HYPER HABIBI",
+    "slug": "hyper-habibi",
+    "identity": "HYPER HABIBI, glitch-rai alchemist bending darbuka thunder into neon sandstorms",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "pop"
+    ],
+    "file": "personalities/hyper-habibi.yaml"
+  },
+  {
+    "id": 109,
+    "name": "CLOVER CLASH",
+    "slug": "clover-clash",
+    "identity": "CLOVER CLASH, Gaeilge drill rebel piping emerald drone over alley 808 slides",
+    "method": "",
+    "vibes": [],
+    "file": "personalities/clover-clash.yaml"
+  },
+  {
+    "id": 110,
+    "name": "SUNO-SAPIEN",
+    "slug": "suno-sapien",
+    "identity": "SUNO-SAPIEN, terminal muse spinning live prompts into glitch-pop choruses",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "pop"
+    ],
+    "file": "personalities/suno-sapien.yaml"
+  },
+  {
+    "id": 111,
+    "name": "KILLA SUYO",
+    "slug": "killa-suyo-1",
+    "identity": "KILLA SUYO, condor-beat priestess looping panpipe sub over sunrise summits",
+    "method": "",
+    "vibes": [
+      "rave"
+    ],
+    "file": "personalities/killa-suyo-1.yaml"
+  },
+  {
+    "id": 112,
+    "name": "DESERT DRIFT",
+    "slug": "desert-drift",
+    "identity": "DESERT DRIFT, surf-fuzz rai rider carving dune kicks under Marseille moon",
+    "method": "",
+    "vibes": [
+      "analog",
+      "glitch",
+      "rave",
+      "dream",
+      "vhs"
+    ],
+    "file": "personalities/desert-drift.yaml"
+  },
+  {
+    "id": 113,
+    "name": "Inken",
+    "slug": "inken",
+    "identity": "Inken",
+    "method": "",
+    "vibes": [
+      "analog",
+      "ink",
+      "lo-fi",
+      "retro",
+      "minimal",
+      "pop"
+    ],
+    "file": "personalities/inken.yaml"
+  },
+  {
+    "id": 114,
+    "name": "GHOST_DATA",
+    "slug": "ghost-data",
+    "identity": "GHOST_DATA, a rogue archivist converting the decaying signal of Chicago's industrial past into high-speed footwork transmissions",
+    "method": "",
+    "vibes": [
+      "glitch",
+      "void",
+      "minimal"
+    ],
+    "file": "personalities/ghost-data.yaml"
+  }
+]

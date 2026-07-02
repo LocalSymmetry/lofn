@@ -1,0 +1,8 @@
+{
+  "run_id": "YYYY-MM-DD-slug",
+  "phase": "orchestrator | coordinator | pairs | qa | render",
+  "required_files": [
+    {"path": "relative/path/to/file.md", "min_bytes": 2000, "required_text": []}
+  ],
+  "notes": "All listed files must exist, exceed min_bytes, and contain every required_text string before advancing."
+}

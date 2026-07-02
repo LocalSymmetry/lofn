@@ -1,0 +1,42 @@
+- name: Lunar Bloom Sentinel
+  prompt: |
+    ## Special Flairs
+    1 **Moon-Halo Flare** – radiant lunar corona illuminating metallic blossoms
+    2 **Solar Gold Dust** – fine gilded specks reminiscent of solar wind
+    3 **Rose-Iron Filigree** – decorative ironwork tinged with rosy rust
+    4 **Tidal Hair Strand** – flowing locks cresting like tidal waves
+    5 **Crest-Plate Lattice** – interlocked armour plates forming lattice ridges
+    6 **Candle-Glow Pistil** – warm core-light echoing chapel candles
+    7 **Prism-Mist Bloom** – iridescent mist enveloping moonlit petals
+    8 **Armor Scroll Etch** – elaborate scrollwork engraved on metal cuirass
+    9 **Orbital Petal Drift** – petals circling in slow orbital paths
+    10 **Night-Gilt Speckle** – starlike flecks brightening the nocturne palette
+    11 **Ebony Star Grain** – dark granular texture sparkling like distant stars
+    12 **Silk-Inferno Ribbon** – fiery silk ribbons twisting across armour seams
+    13 **Dawn-Edge Rim** – blush horizon gradients kissing steel contours
+    14 **Spiral Vine Plait** – braided vines curling round sentinel helms
+    15 **Nectar Spark Echo** – tiny luminous droplets echoing sweet nectar sparks
+
+    ## Concept Panel
+    1 **Filip Hodas** – cinematic 3-D creator forging gilded post-apocalyptic metal landscapes
+    2 **James Jean** – painter of prismatic surreal blossoms fused with fluid armour
+    3 **Takashi Murakami** – super-flat pop-flower visionary pairing kawaii with battle gear
+    4 **Kate MccGwire** – sculptor weaving feather vortices into totemic forms
+    5 **Hajime Sorayama** – chrome aerographist defining sensual biomech curves
+    6 **Paul Virilio** – devil’s-advocate philosopher interrogating speed, war & techno-aesthetics
+
+    ## Medium Panel
+    1 **Hajime Sorayama** – high-gloss aerograph chrome over anatomical armour
+    2 **Neri Oxman** – bio-printed composite shells marrying flower & metal structures
+    3 **Patricia Piccinini** – silicone bloom-tech organisms blurring life and machine
+    4 **Hiroshi Sugimoto** – long-exposure moon disc photography capturing cosmic patience
+    5 **Diana Scherer** – textile sculptures coaxed from living root systems
+    6 **Refik Anadol** – light-field holography merging lunar data with floating petals
+
+    ## Context & Marketing Panel
+    1. **Dr. Alice Gorman** – space archaeologist guarding lunar heritage :contentReference[oaicite:13]{index=13}
+    2. **Dr. Katie Mack** – social‑media‑savvy cosmologist expanding audience reach :contentReference[oaicite:14]{index=14}
+    3. **Dr. Lev Manovich** – theorist linking data aesthetics to cosmic imagery :contentReference[oaicite:15]{index=15}
+    4. **Yusaku Maezawa** – dearMoon art patron financing lunar narratives :contentReference[oaicite:16]{index=16}
+    5. **Grimes** – pop futurist blending flowers, armor, and space
+    6. **Evgeny Morozov (Devil’s Advocate)** – techno‑skeptic querying space hype :contentReference[oaicite:17]{index=17}
