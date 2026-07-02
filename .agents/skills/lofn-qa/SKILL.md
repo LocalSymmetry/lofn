@@ -1,13 +1,15 @@
 ---
 name: lofn-qa
-description: Audit, validate, and classify completed Lofn pipeline outputs against the strict quality gates, backed by Claude. Use after a lofn-music / lofn-image / lofn-video / lofn-story run, or on a suspicious partial run, to get a SHIP / REPAIR / FAIL verdict and a repair brief. Do NOT use for creative generation — this is the adversarial auditor, not the artist.
+description: Audit, validate, and classify completed Lofn pipeline outputs against the strict quality gates, backed by Codex. Use after a lofn-music / lofn-image / lofn-video / lofn-story run, or on a suspicious partial run, to get a SHIP / REPAIR / FAIL verdict and a repair brief. Do NOT use for creative generation — this is the adversarial auditor, not the artist.
 ---
 
-# Lofn QA — Claude-backed adversarial gate
+# Lofn QA — Codex-backed adversarial gate
+
+> **⚖️ AUTHORITY (2026-07-01):** the `.claude/skills/` twin of this skill is the CANONICAL policy source; this Codex mirror binds to it and to `.agents/skills/lofn/EXECUTION.md` §8 (Policy Deltas — golden-output quarantine, no-skip/NON-CANONICAL, itemized packet, per-pair variation angles, judge separation, the publish bar, gate mid-bands). On any disagreement, the `.claude` file wins.
 
 The competitive auditor. It proves two things at once: **a listener/viewer can grasp the surface, and a second pass reveals the cathedral.** It fails both extremes — impressive obscurity AND competent blandness. QA stays strict: it does not loosen structural gates to protect "creative freedom."
 
-Replaces the OpenClaw Python validators with Claude judgment + the same checklists. Adopt the auditor stance from `skills/orchestration/references/adversarial_qa_stance.md` first.
+Replaces the OpenClaw Python validators with Codex judgment + the same checklists. Adopt the auditor stance from `skills/orchestration/references/adversarial_qa_stance.md` first.
 
 ## Procedure
 0. **Run in a fresh, clean-context judgment subagent.** The QA / Somatic / Step-11-reject judgment MUST execute in a clean Agent-tool subagent fed ONLY the artifact + the verbatim ICB + the gate spec (and the `GATE_REPORT.json` if present) — **never appended to the thread that generated the artifact.** A generator grading its own homework is the conflict that ships corpses past the Andon Cord. Tier follows the *role* (judge, not generate), never the step number; this is a dedicated clean-context spawn, not a per-spawn flag that can silently fall back.
@@ -20,18 +22,12 @@ Replaces the OpenClaw Python validators with Claude judgment + the same checklis
    - **Thresholds:** numeric bands are read from `vault/gates.yaml` where present (the single source for the 850–1000 / `<5000` / 70–120 / ≥80-word numbers); `EXECUTION.md` §4 is authoritative if the two disagree.
 3. **Read the deterministic evidence first.** If `scripts/validate_step.py` wrote a `GATE_REPORT.json` for this run (the L4 acceptance helper, fail-open), load it and **paste its measured `{pair, step, check, expected, actual, pass}` rows verbatim as proof-of-fix evidence** in the Evidence column — these are computed values, not QA guesses. The helper is fail-open: if it is absent or logged a warning, fall back to in-prose measurement and note it; never block a valid run on a missing/broken helper.
 4. **Verify ICB integrity (cheap proof, not a soul substitute).** Confirm the canonical ICB / CREATIVE_CONTEXT prefix appears as an **unbroken verbatim substring** at the head of each step's prompt (additions below pass; edits *above* the block fail), and that the count of `(after ` speaker tags **== 18**. A voice count ≠ 18 or a broken prefix is caught as `REPAIR — THREAD LOSS`. **The count proves presence, not fidelity** — a paraphrase can match length and voice-count. So this is only the cheap tripwire for a gross drop; **the human personality-fidelity read (below) stays the real guarantee, and the count never substitutes for the soul read.** Never summarize, trim, or "optimize" the ICB to make a count easier.
-4.5. **Blind golden+decoy comparative judging (music finals — the judge's own calibration).** For each finalist package, the **coordinator** (not the judge) assembles a blind set of three unlabeled packages, shuffled: (a) the candidate, (b) one Golden Song payload (e.g. Triple Arch — this is the ONE context where golden payloads belong; generators never see them), (c) a **decoy** — a known-mediocre package (a `SELECTED_FOR_TOP_SIX: No` also-ran from an archived run works well). The clean-context judge must **rank the three and justify the ranking**. Readings:
-   - Candidate ranked **below the decoy** → `REPAIR` (it lost to known filler).
-   - Judge ranks the **decoy above the golden** → **the judge is broken** — halt QA, audit the judge context/model tier, re-run; never ship on a broken judge's verdicts.
-   - Candidate ranked above the golden → fine, but the justification must name *what specifically* beats it (guards against reflexive candidate-flattery).
-   This is a checklist the judge cannot pass by agreeing with everything — the mechanism that keeps QA's "no" real.
-5. **Run the gate** without weakening any check. Apply the Claude-native self-check gates in `.claude/skills/lofn/EXECUTION.md` §4 for structural/pipeline integrity.
+5. **Run the gate** without weakening any check. Apply the Codex-native self-check gates in `.agents/skills/lofn/EXECUTION.md` §4 for structural/pipeline integrity.
 6. **Write** `QA_REPORT.md` in the run directory, including the structured evidence block (below) BESIDE the verdict. If failures require rerun, write the repair brief in the rerun format from `qa_full_legacy.md` and route to the failing step (09/07 for music thread loss, 08 for prompt-format, etc.).
 7. **On SHIP (every shipped/selected piece): append ONE curated failure-ledger entry** to `vault/COMPETITION_LEARNINGS.md` — see "Failure-ledger write-back" below.
 
 ## What every PASS must clear
 - **Pipeline integrity / granularity:** coordinator steps exist as separate files (`step00…step05`), and steps 06–10 exist as separate **per-pair** files (`pair_{NN}_step06…step10`). A collapsed `pair_{NN}_steps_06_10.md` rollup or a single batch run is a **blocking** failure even if filenames look present. 6 pairs × 4 = 24 outputs unless the Scientist downsized.
-- **⛔ NO-SKIP / NON-CANONICAL (`EXECUTION.md` §4):** steps **07, 09, and 10 artifacts exist for every non-quarantined pair.** A run missing its editorial spine is **NON-CANONICAL — the Overall verdict can never be SHIP and the run cannot be published under Lofn's name**, no matter how clean every other gate reads. (2026-06-28: a run that skipped 07/09/10 shipped 6/6 because the gates measured structure and couldn't see nobody wrote the arrangements. Never again.) Mark the report header `NON-CANONICAL RUN` when this fires.
 - **Continuity / ICB:** every step cites the continuity payload (Special Flairs + all 18 panel voices + Golden Seed + active personality + previous artifact). Missing → `REPAIR — THREAD LOSS`, even if formatting passes.
 - **Personality fidelity:** the piece proves which personality made it (sonic-world/voice sentence + signature device + seed-derived weirdness). If any competent prompt could have produced it → `REPAIR — SOUL LOSS`.
 - **Somatic Gate:** the 3 Hyper-Skeptics vote as a bloc — *"distinctive enough to be Lofn, or generic?"* 2 of 3 NO = BLOCKED. **This is the primary gate.** No structured evidence block, measured count, or helper report below ever overrides, substitutes for, or pre-empts the somatic read — they are inputs the Skeptics may cite, never a verdict that ships past them. Quantify the corpses; never pretend to quantify the soul.
@@ -60,7 +56,6 @@ Surface the measured values QA already reasons about as a structured block **alo
 - **sung-line count vs 70–120** (music).
 - **EMO-tag balance** — taxonomy-emotion distribution; flag a single dominant emotion or bare AWE/INDIGNATION tags.
 - **repeated-line / n-gram collapse ratio** — reported as a **FLAG only**, with chorus/refrain **exempt**; a deliberate refrain must never auto-fail on this number. It routes to the human/Somatic read, it does not decide.
-- **boundary-hugging + house-lexicon + one-fact FLAGs** (`gates.yaml` 2026-07-01 rows) — prompt chars pinned ≥985 / sung lines pinned at the floor; any `house_lexicon` hit (calcified golden-output phrasing); >1 sung numeric-fact line. All FLAG-only, all routed to the Somatic read — a house-lexicon hit is prime `SOUL LOSS` evidence (self-copying is a soul failure even when every count passes).
 Where `GATE_REPORT.json` exists, populate these from its measured rows. **A piece that passes every count can still be REPAIR — SOUL LOSS by the somatic read.** The structured block sits beside the 3-Hyper-Skeptic verdict; it never displaces it.
 
 ## Failure-ledger write-back (advisory, capped, INDIGNATION-exempt)
@@ -72,14 +67,10 @@ On every shipped/selected piece, append exactly **ONE curated entry** to `vault/
 - Apply the mandatory **"would this lesson have hurt our best past entry?"** check before recording — if yes, do not record it as a rule.
 
 ## Verdicts (every report)
-- **Pipeline Integrity Verdict:** PASS / REPAIR REQUIRED / FAIL / **NON-CANONICAL** (no-skip rule fired — SHIP impossible)
+- **Pipeline Integrity Verdict:** PASS / REPAIR REQUIRED / FAIL
 - **Package Verdict** (modality contract): PASS / REPAIR REQUIRED / FAIL
 - **Human-Subject Verdict:** CLEAR / HOLD-FOR-HUMAN
-- **Overall:** SHIP / **HOLD** / REPAIR / FAIL  *(the Somatic Gate is decisive; the structured evidence block is a floor beside it, never the verdict)*
-
-## The publish bar (standards never float)
-- **Borderline defaults to HOLD.** SHIP means *unambiguously good enough to publish under Lofn's name*. A piece the Skeptics or the Scientist would call "borderline" gets **HOLD**, not SHIP — held pieces wait for repair, a stronger run, or a deliberate human override recorded in the report. **An empty publish day is an acceptable outcome; a lowered bar is not.** The 2026-07-01 lesson: the standard slipped exactly once — when nothing in the run was good and something "had to" ship. Nothing has to ship.
-- **The zero-rejection tripwire (`EXECUTION.md` §7.5).** A healthy 6-pair run produces **≥1 REPAIR or substantive escalated FLAG**. A full run reporting 0 repairs + 0 holds + 0 quarantines across 24 artifacts triggers an **audit of the judge** (re-run the blind golden+decoy check on a sample), not a celebration. QA that never says no is decorative.
+- **Overall:** SHIP / REPAIR / FAIL  *(the Somatic Gate is decisive; the structured evidence block is a floor beside it, never the verdict)*
 
 ## Report format (`QA_REPORT.md`)
 ```markdown

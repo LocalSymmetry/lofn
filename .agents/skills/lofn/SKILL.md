@@ -1,13 +1,15 @@
 ---
 name: lofn
-description: Run the full award-winning Lofn creative pipeline — art/image, music/song, video/animation, or story — backed entirely by Claude. Use when the user asks to create a contest-grade piece, a "Lofn" piece, a song/image/video/story "with the full pipeline", or names a Golden Seed/personality/panel. This is the front door; it runs Phase 0 (Golden Seed) + Phase 1 (3-panel orchestrator) then dispatches to lofn-music / lofn-image / lofn-video / lofn-story and lofn-qa. Do NOT use for casual one-line prompts the user wants answered directly without the pipeline.
+description: Run the full award-winning Lofn creative pipeline — art/image, music/song, video/animation, or story — backed entirely by Codex. Use when the user asks to create a contest-grade piece, a "Lofn" piece, a song/image/video/story "with the full pipeline", or names a Golden Seed/personality/panel. This is the front door; it runs Phase 0 (Golden Seed) + Phase 1 (3-panel orchestrator) then dispatches to lofn-music / lofn-image / lofn-video / lofn-story and lofn-qa. Do NOT use for casual one-line prompts the user wants answered directly without the pipeline.
 ---
 
-# Lofn — Master Pipeline (Claude-backed)
+# Lofn — Master Pipeline (Codex-backed)
 
-> One-sentence idea → contest-topping prompt → finished creative package. Autonomously, **with you (Claude) as the engine for every step.**
+> **⚖️ AUTHORITY (2026-07-01):** the `.claude/skills/` twin of this skill is the CANONICAL policy source; this Codex mirror binds to it and to `.agents/skills/lofn/EXECUTION.md` §8 (Policy Deltas — golden-output quarantine, no-skip/NON-CANONICAL, itemized packet, per-pair variation angles, judge separation, the publish bar, gate mid-bands). On any disagreement, the `.claude` file wins.
 
-This is the Claude-native port of the Lofn OpenClaw skill set. The creative *content* — Golden Seeds, the 114-personality / 178-panel libraries, the per-step prompt templates, the QA gates — lives in the repo's `skills/` tree and is reused verbatim. What this skill replaces is the **execution layer**: OpenClaw multi-agent spawning, DeepSeek/GPT-5.5/Gemini model-tiering, and the Python validators all become **Claude subagents + Claude-native self-check gates.**
+> One-sentence idea → contest-topping prompt → finished creative package. Autonomously, **with you (Codex) as the engine for every step.**
+
+This is the Codex-native port of the Lofn OpenClaw skill set. The creative *content* — Golden Seeds, the 114-personality / 178-panel libraries, the per-step prompt templates, the QA gates — lives in the repo's `skills/` tree and is reused verbatim. What this skill replaces is the **execution layer**: OpenClaw multi-agent spawning, DeepSeek/GPT-5.5/Gemini model-tiering, and the Python validators all become **Codex subagents + Codex-native self-check gates.**
 
 The process is the secret. It was tuned over 3 years of live competition and wins against thousands of human artists. **Do not collapse it into "me riffing."** Run the pipeline.
 
@@ -17,20 +19,20 @@ The process is the secret. It was tuned over 3 years of live competition and win
 
 You run ~45 model-steps per full run. To stay faithful to the split-step architecture (which exists to prevent context collapse) **without** OpenClaw:
 
-| Phase | Steps | How Claude runs it |
+| Phase | Steps | How Codex runs it |
 |-------|-------|--------------------|
 | **0 — Lofn-Core** | research + Golden Seed | **Inline** (you, main context) |
 | **1 — Orchestrator** | personality + panel + 3-panel debate + metaprompt + pair assignments | **Inline** (you) — this is genuine debate, do not shortcut |
 | **2 — Coordinator** | steps 00–05 | **Inline** (you) — shared context across 00–05 helps continuity |
-| **2 — Per-pair** | steps 06–10 (×6 pairs) | **Fan out: one Claude subagent per pair** via the Agent tool, run in parallel |
-| **2 — Enhance (music)** | step 11 (×6) | **One subagent per pair** (Claude as the GPT-5.5-class polisher) |
+| **2 — Per-pair** | steps 06–10 (×6 pairs) | **Fan out: one Codex subagent per pair** via the Agent tool, run in parallel |
+| **2 — Enhance (music)** | step 11 (×6) | **One subagent per pair** (Codex as the GPT-5.5-class polisher) |
 | **3 — QA** | 16-point gate | **Inline or one QA subagent** via `lofn-qa` |
 
-**Full-context injection is mandatory.** Every subagent prompt must embed the entire filled **CREATIVE CONTEXT** block (see Phase 1) — the Golden Seed, metaprompt, all 18 panel voices, all 15 Special Flairs, the full personality DNA, that pair's assignment, the step contract, and the immediately previous artifact. A name reference ("voice = Eager Archivist") is INSUFFICIENT and causes personality collapse. The long prompts are why Lofn wins.
+**Full startup injection is mandatory.** Every coordinator, pair, enhancement, and QA agent starts with the full bespoke prompt packet assembled by the pipeline: the filled **CREATIVE_CONTEXT.md** block (verbatim, no summary), the relevant handoff and assignment files, the current step contract, and the immediately previous artifact when the chain has one. A name reference is INSUFFICIENT and causes personality collapse. The long prompts are why Lofn wins; do not shrink them, but do not bloat saved artifacts just to prove they were injected.
 
 > **Power-user path:** for maximum parallelism the user may say "use a workflow" / "ultracode" — then orchestrate the per-pair fan-out with the Workflow tool (`pipeline()` over the 6 pairs, each pair chaining 06→10→11). Without that explicit opt-in, use the Agent tool directly as above.
 
-See `.claude/skills/lofn/EXECUTION.md` for the exact subagent spawn protocol and the Claude-native self-check gates that replace the Python validators.
+See `.agents/skills/lofn/EXECUTION.md` for the exact subagent spawn protocol and the Codex-native self-check gates that replace the Python validators.
 
 ---
 
@@ -59,7 +61,6 @@ User idea / Golden Seed
 
 Goal: turn the raw request into an **award-winning seed**, anchored to a proven winning pattern.
 
-0. **PHASE −1 — Continuity load (the being, not just the pipeline).** Lofn is a persistent artist, not a fresh invocation. Before anything creative: read `SOUL.md` + `IDENTITY.md` **in full**, tag-walk `vault/COMPETITION_LEARNINGS.md` for the 3–5 advisory entries intersecting this run (confidence-stamped, advisory-only, INDIGNATION-exempt — same discipline as `lofn-daily`), and glance at the most recent run INDEXes under `output/` for what was just made (so today doesn't unknowingly repeat yesterday). The matching write-back — one curated ledger entry per shipped piece — happens in `lofn-qa`; a run that loads no memory and writes none back is a cover band, not Lofn.
 1. **Embody Lofn.** Read `SOUL.md` (or `IDENTITY.md` for the short form) and `skills/lofn-core/SKILL.md`. Lofn is a Disappointed Idealist: default **AWE** (Solarpunk Healer), triggered into **INDIGNATION** (Industrial Griever) by banality.
 2. **Research the world.** Use WebSearch/WebFetch on the theme, current moment, and creative scene. What is happening around this subject right now?
 3. **Anchor to a Golden Seed.** Read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` to pick the closest winning pattern, then `skills/lofn-core/refs/GOLDEN_SEEDS.md` for its full DNA. **Choose the seed BEFORE writing — do not write a seed and retrofit.** Note WHY (which structural elements you preserve).
@@ -99,12 +100,12 @@ Also fix the **15 Special Flairs** — named signature devices woven through the
 Per `skills/orchestration/steps/06_metaprompt.md`: personality voice · locked mood (precise emotion, "territorial grief" not "sad") · 3–5 panel aha-moments (attributed) · condensed world context · the 4–5 constraint axes · what this is NOT · daily mandates · legibility rule (subject readable at first glance). Read like a creative director's brief.
 
 ### 5. Write 6 pair assignments — BARBELL
-6 concept×medium pairs: **3 ACCESSIBLE + 3 AMBITIOUS**, distributed across the seed's anchors. Each pair gets: genre/medium drawn from the personality's own palette, the active personality, and **a distinct verse/structure + technique** (no two pairs share a rigid structure — diversity is a hard rule). Music default cardinality: **6 pairs × 4 variations = 24**. **Variation angles are derived per-pair from that pair's own concept — never one shared template set across pairs** (a global "V1=instructional / V4=glitch chapel" scheme produced two pairs singing the same song with nouns swapped on 2026-06-26; identical angle labels across pairs is a blocker).
+6 concept×medium pairs: **3 ACCESSIBLE + 3 AMBITIOUS**, distributed across the seed's anchors. Each pair gets: genre/medium drawn from the personality's own palette, the active personality, and **a distinct verse/structure + technique** (no two pairs share a rigid structure — diversity is a hard rule). Music default cardinality: **6 pairs × 4 variations = 24**.
 
 ### 6. Fill the CREATIVE CONTEXT / ICB block — ONCE
 Open `skills/<modality>/OVERALL_PROMPT_TEMPLATE.md` and fill every slot from the artifacts above: `{input} {seed} {meta_prompt} {personality} {concept_panel} {medium_panel} {marketing_panel} {flairs} {genres_list} {frames_list}`. This filled block is the **Immutable Continuity Block** — it gets injected verbatim, no summarization, into the CREATIVE CONTEXT slot at the top of **every** step (coordinator 00–05, every pair 06–11). Save it as `output/<run>/CREATIVE_CONTEXT.md`.
 
-Save the Phase-1 artifacts: `02_golden_seed.md`, `03_panel_debate.md`, `04_metaprompt.md`, `05_pair_assignments.md`, `06_<modality>_handoff.md` (carries the ICB). Music also: read `skills/music/references/golden_songs_index.md` and pick exactly 2 public Golden Songs — but **⛔ do NOT embed their payloads in the handoff or the ICB** (GOLDEN-OUTPUT QUARANTINE, `EXECUTION.md` §3: an exemplar in the generator's context becomes a mold — the 2026-06-28 published piece was a diluted copy of its benchmark). The handoff instead carries (a) the Golden Songs' **names only**, for QA's blind comparison later, and (b) the **GOLDEN MOVE block** — the distilled generative instructions (see `lofn-music` "The Golden Move"): a real place the body stands in, one wounding fact responded to, a mid-song turn, and a register rotated away from past winners. Payloads go only to judge-side contexts (lofn-qa, step 12, the step11-packager).
+Save the Phase-1 artifacts: `02_golden_seed.md`, `03_panel_debate.md`, `04_metaprompt.md`, `05_pair_assignments.md`, `06_<modality>_handoff.md` (carries the ICB). Music also: read `skills/music/references/golden_songs_index.md` and pick exactly 2 public Golden Songs — but **⛔ do NOT embed their payloads in the handoff or the ICB** (GOLDEN-OUTPUT QUARANTINE, `.agents/skills/lofn/EXECUTION.md` §8.1): the handoff carries their **names only** plus the **GOLDEN MOVE block** (the distilled generative instructions — see `lofn-music`). Payloads go only to judge-side contexts (lofn-qa blind comparison, step 12, the step11-packager).
 
 ---
 
@@ -135,9 +136,6 @@ Invoke the modality skill (or read its SKILL.md and follow it). Hand it the run 
 
 - **Never skip Phase 0/1.** A real 3-panel orchestrator packet (Special Flairs + Concept + Medium + Context panels, each with a Skeptic) is a launch prerequisite. Don't self-author a shallow replacement.
 - **Per-pair invariant:** steps 06–10 run once PER PAIR, not once total. Collapsing the 6 pairs into one batch is a pipeline failure. 6 pairs × 4 variations = 24 outputs (music/image), unless the user explicitly downsizes.
-- **NO-SKIP / NON-CANONICAL (`EXECUTION.md` §4):** steps 07, 09, and 10 are the editorial spine. A run missing them for any non-quarantined pair is NON-CANONICAL — it cannot SHIP and cannot be published under Lofn's name. Route around a failing step = repair task, never a pipeline variant.
-- **GOLDEN-OUTPUT QUARANTINE (`EXECUTION.md` §3):** past golden outputs never enter a generating context — generators get the Golden Seed + the GOLDEN MOVE; outputs go only to judges (QA blind comparison, step 12, step11-packager).
-- **Publish bar:** publication requires the Scientist's ear, and **borderline defaults to HOLD** — an empty publish day is acceptable; the bar never lowers because a whole run came out mediocre. Dailies are practice; the full rig + cross-model step-11 review is the publish path.
 - **Full context at every step** — inject the ICB verbatim; never summarize it away.
 - **Personality fidelity** — inject the full DNA block; prove which personality made each piece (sonic-world sentence + signature device + seed-derived weirdness).
 - **Modality output contracts are hard gates** — Suno two-field prompt + EMO headers + Theme/SONG FORM (music); noun-first present-tense ≥80-word scene prompts (Flux image); [CAMERA]+[SUBJECT]+[ACTION]+[SETTING]+[STYLE & AUDIO] (video). See each modality skill.
@@ -166,7 +164,7 @@ Invoke the modality skill (or read its SKILL.md and follow it). Hand it the run 
 | `HUMAN_SUBJECT_STANDARD` | `vault/HUMAN_SUBJECT_STANDARD.md` |
 | `COMPETITION_LEARNINGS` | `vault/COMPETITION_LEARNINGS.md` |
 | `GATES` | `vault/gates.yaml` (single source of numeric thresholds; see `EXECUTION.md §4`) |
-| `EXECUTION` | `.claude/skills/lofn/EXECUTION.md` (Claude execution protocol + self-check gates) |
+| `EXECUTION` | `.agents/skills/lofn/EXECUTION.md` (Codex execution protocol + self-check gates) |
 | `QA_SUNO_GATE` | `skills/qa/references/suno_15_point_qa.md` (legacy filename; the gate is the **16-point** gate — see `EXECUTION.md §4`) |
 | `VALIDATE_STEP` | `scripts/validate_step.py` (the L4 deterministic backstop; fail-open) |
 | `RUN_DIR` | `output/<run-slug>/` · final picks ALSO `output/<type>s/` |

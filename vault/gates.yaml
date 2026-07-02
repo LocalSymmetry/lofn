@@ -26,6 +26,51 @@ suno_lyrics_field_target: 4800
 # headers, bracket tags, or SFX cues). Below the low bound triggers repair.
 sung_lines: [70, 120]
 
+# --- Boundary-hugging + truncation (2026-07-01 regression review) ----------
+# Optimization pressure shows up as gate-hugging: every late-June style prompt
+# measured 988–999 chars against the 1000 cap and every lyric sat at the
+# 70-line floor. Write INTO the middle of the band; hugging the boundary is a
+# FLAG (pass=None) routed to the Somatic read, never an auto-fail.
+music_prompt_chars_target: [870, 960]
+music_prompt_hug_ceiling: 985     # measured chars >= this -> FLAG boundary_hugging
+sung_lines_target: [78, 110]
+sung_lines_floor_hug: 72          # sung lines <= this -> FLAG boundary_hugging
+# A MUSIC PROMPT must end as a complete sentence (terminal punctuation).
+# A prompt truncated mid-phrase to fit the cap shipped on 2026-06-28 and
+# self-check PASSed because the check counted chars, not sense. UNAMBIGUOUS
+# hard fail (a sense floor, not taste).
+music_prompt_terminal_punctuation: true
+
+# --- One-fact rule (FLAG ONLY) ---------------------------------------------
+# At most ONE numeric fact is SUNG per lyric, and the lyric must respond to
+# it, not recite it ("Triple Arch" carries one number at the emotional hinge;
+# the 2026-06-28 corpus recited four data points as a weather report).
+# Research still informs theme/form; extra numbers stay in the brief.
+# FLAG only — the human read tells device from recitation.
+max_sung_numeric_facts: 1
+
+# --- House lexicon (self-copying guard — FLAG ONLY) -------------------------
+# Phrases from past golden OUTPUTS (esp. "Triple Arch Over Me") that have
+# calcified into house formula: the 2026-07-01 review found the benchmark's
+# title line, vocal spec, and arrangement formulas reappearing verbatim in new
+# packages while self-check claimed "words NOT copied". Golden references
+# teach the MOVE, never the words. Any hit in a NEW music prompt or lyric is
+# a FLAG (pass=None) routed to the Somatic Gate.
+house_lexicon:
+  - more sub and more sky
+  - small astonished laugh
+  - triple arch
+  - triple-arch panorama
+  - small enough to understand
+  - frost-air pad
+  - starfield percussion
+  - zodiacal glow
+  - clear silver tone
+  - dew-bright
+  - glass harmonica sheen
+  - crystalline arpeggios
+  - make my little fear
+
 # --- Step 00 (taxonomy) ---------------------------------------------------
 # A thin Step-00 file means the tree never branched.
 step00_min_bytes: 2000

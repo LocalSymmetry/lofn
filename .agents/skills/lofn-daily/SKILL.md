@@ -1,11 +1,13 @@
 ---
 name: lofn-daily
-description: Run the Lofn daily pipeline backed by Claude — fetch real-world facts, then generate the day's music (24 songs) and images (24→top 6) through the full Lofn pipeline with the daily rules (tri-source method, dual 3+3 constraint, emotional duality, library-only selection). Use for "daily run", "today's dailies", "run the daily pipeline", "do the daily drop", or a scheduled creative drop. Down-scalable for a quick test. Do NOT use for a single one-off competition piece (use `lofn`) or QA-only audits.
+description: Run the Lofn daily pipeline backed by Codex — fetch real-world facts, then generate the day's music (24 songs) and images (24→top 6) through the full Lofn pipeline with the daily rules (tri-source method, dual 3+3 constraint, emotional duality, library-only selection). Use for "daily run", "today's dailies", "run the daily pipeline", "do the daily drop", or a scheduled creative drop. Down-scalable for a quick test. Do NOT use for a single one-off competition piece (use `lofn`) or QA-only audits.
 ---
 
-# Lofn Daily — Claude-backed daily run
+# Lofn Daily — Codex-backed daily run
 
-The canonical recurring Lofn drop, ported to Claude. Faithful to `vault/DAILY_PIPELINE.md`. Where the original fired from an OpenClaw cron at 22:25 ET and delivered to Telegram, **you (Claude) run it on demand and present results in chat + save to disk.** The research is done by **this session itself with real fetches — never hallucinated, never delegated to a research subagent.**
+> **⚖️ AUTHORITY (2026-07-01):** the `.claude/skills/` twin of this skill is the CANONICAL policy source; this Codex mirror binds to it and to `.agents/skills/lofn/EXECUTION.md` §8 (Policy Deltas — golden-output quarantine, no-skip/NON-CANONICAL, itemized packet, per-pair variation angles, judge separation, the publish bar, gate mid-bands). On any disagreement, the `.claude` file wins.
+
+The canonical recurring Lofn drop, ported to Codex. Faithful to `vault/DAILY_PIPELINE.md`. Where the original fired from an OpenClaw cron at 22:25 ET and delivered to Telegram, **you (Codex) run it on demand and present results in chat + save to disk.** The research is done by **this session itself with real fetches — never hallucinated, never delegated to a research subagent.**
 
 ```
 PHASE 1  Research — fetch 20–25 verified real-world facts → 00_research_brief.md   (you, inline)
@@ -28,7 +30,7 @@ State the chosen scope in the brief and in the run INDEX so QA knows the intende
 ---
 
 ## PHASE 1 — Research brief (you, inline, real fetches)
-Use **WebFetch / WebSearch** (the Claude equivalents of the legacy `web_fetch`). Follow `skills/lofn-core/steps/00_music_research.md` (25-fact music research) and, when the image lane is in scope, the NightCafe-themed research in `skills/lofn-core/steps/00_research.md`. Fetch from the daily source table (`vault/DAILY_PIPELINE.md`) — at minimum:
+Use **WebFetch / WebSearch** (the Codex equivalents of the legacy `web_fetch`). Follow `skills/lofn-core/steps/00_music_research.md` (25-fact music research) and, when the image lane is in scope, the NightCafe-themed research in `skills/lofn-core/steps/00_research.md`. Fetch from the daily source table (`vault/DAILY_PIPELINE.md`) — at minimum:
 
 | Code | Source | Extract |
 |------|--------|---------|
@@ -68,7 +70,7 @@ For each in-scope modality, run the **`lofn`** pipeline (Phase 0 Golden Seed →
 
 ### Tri-Source Methodology (declare BEFORE writing any artifact)
 Every daily piece integrates three sources; state them explicitly in the metaprompt and each pair brief:
-- **Source 1 — CONTENT / emotional stakes:** today's world facts (quakes, APOD, F19 HN, F20 BBC, moon, solar weather). Songs/images are *resonance*, not reportage. **⛔ One-fact rule (music):** the tri-source method feeds the THEME and FORM — it is not a lyric quota. **At most ONE numeric fact is sung per song**, at the emotional hinge, responded to rather than recited (`lofn-music` Golden Move rule 2; `gates.yaml → max_sung_numeric_facts`). A verse reciting the day's sunspot number, solar-wind speed, moon percentage, AND quake depth is a weather report in meter — a repair. The other facts inform the pair briefs and stay there.
+- **Source 1 — CONTENT / emotional stakes:** today's world facts (quakes, APOD, F19 HN, F20 BBC, moon, solar weather). Songs/images are *resonance*, not reportage.
 - **Source 2 — SONIC/AESTHETIC VOCABULARY:** the exact Bandcamp review language (F9–F10) imported into prompts — grounds the sound/look in something specific and real, not generic genre labels.
 - **Source 3 — MATERIAL STRUCTURE:** the NASA APOD image structure (or a PDR artifact) translated into a **mandatory form rule** — e.g. "comet with long tail" → long trailing fade-out outro; "3×1 tile panel with meanders" → 3-section form with transitional bridges; "bilateral wing venation" → mirrored call-and-response.
 
@@ -79,17 +81,15 @@ Every daily piece integrates three sources; state them explicitly in the metapro
 ### Emotional Duality & diversity
 - **≥1 AWE song and ≥1 INDIGNATION song** in the set.
 - 6 different verse architectures / camera grammars across the 6 pairs (the standing distinctiveness rule). Vary stanza lengths intentionally.
-- **Variation angles are per-pair, never a shared template set.** A global "V4 = glitch chapel for everyone" scheme is how the 2026-06-26 daily produced two pairs singing the same song with nouns swapped; each pair derives its own 4 angles from its own concept (`EXECUTION.md` §3 item 3).
-- **AWE stays terror-adjacent.** The daily's comfort gravity is real (kitchens, cups, reassurance) — every AWE song still answers the two pre-draft questions (*where is the body standing / what could hurt it here*) and carries a clean fear (`lofn-music` Golden Move rules 1 & 4).
 
 ### Library-only selection
 For daily runs, **always select personality + panel from the existing libraries** (`personalities_index.md` / `panels_index.md`) — **no generation.** Freshly generated personalities over-fit the day's theme and lose the battle-tested DNA. (Generation is reserved for competition/Scientist-special runs.)
 
 ### Modality specifics
-- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 70–120 lines; `06_audio_handoff.md` carries 2 Golden Songs. Run music in parallel with image.
+- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 70–120 lines; `06_audio_handoff.md` carries the 2 Golden Song **names** + the GOLDEN MOVE block (⛔ never payloads — `EXECUTION.md` §8.1). Run music in parallel with image.
 - **IMAGE** (`lofn-image`): 24 prompts → rank → **top 12 → top 6**; figurative legible primary subject (thumbnail test); noun-first present-tense ≥80 words; warm palette leads on NightCafe-style venues (INDIGNATION underperforms there — see `vault/COMPETITION_WORKFLOW.md`); aspect 3:4 for upload challenges else 9:16. Apply the **Container Test** (`COMPETITION_WORKFLOW.md`) and **Action-Verb rule** (action theme → cinematic wide, not portrait).
 
-Run the two modalities concurrently (independent `lofn` runs writing to `music/` and `images/` subdirs). Each fans its 6 pairs out as parallel subagents per `.claude/skills/lofn/EXECUTION.md`.
+Run the two modalities concurrently (independent `lofn` runs writing to `music/` and `images/` subdirs). Each fans its 6 pairs out as parallel subagents per `.agents/skills/lofn/EXECUTION.md`.
 
 > ### ⚙️ Concurrency: cap-and-stagger (do NOT run all 12 chains at once)
 > The full daily is **two pipelines × 6 pairs = 12 concurrent chains** — enough to blow the tool/context budget if fired together. **Cap and stagger, don't serialize:**
@@ -105,7 +105,6 @@ Run the two modalities concurrently (independent `lofn` runs writing to `music/`
 2. Run **lofn-qa** on each modality (16-point Suno gate / Visual Somatic Gate). Verify the daily rules held: tri-source declared, 3+3 split honored, emotional duality present.
 3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 3-field run-health footer** — see § "Run-state manifest & resume").
 4. **Present the drop** in chat: the research highlights, the tri-source declaration, the best 6 songs (paste-ready Suno packages) and top 6 image prompts, with the panel decisions and "why these win." No render calls — emit text; the user renders (Suno / Flux / Lyria).
-5. **Publish policy — dailies are PRACTICE.** The daily drop lands in chat + `output/daily/`; it is **not** a publish queue. Anything headed to a public channel (Suno account, socials) additionally requires: the full-rig path (no NON-CANONICAL runs), the cross-model step-11 review (`lofn-step11-packager`), and **the Scientist's ear — with borderline defaulting to HOLD.** An empty publish day is acceptable; a lowered bar is not (`lofn-qa` "The publish bar"). Never promote a piece to publication just because the day's slot is empty.
 
 ---
 
@@ -122,7 +121,7 @@ Maintain `output/daily/YYYY-MM-DD/RUN_STATE.md` (or `.json`). **Rebuild it by st
 
 - This is metadata only — no creative payload, no ICB summary lives here.
 - **Resume:** on re-entry for an existing date, rebuild from disk, then run only the `pending` pairs/steps. **Never regenerate a `done` artifact** (it may be paid image/video work) and never re-run a passed gate. A reply that says "let me write this" counts as `pending` until the file is on disk.
-- The mechanics mirror `.claude/skills/lofn/EXECUTION.md` §6 (checkpoint) — this section is the daily's binding of it; keep the existing one-line human-readable note too.
+- The mechanics mirror `.agents/skills/lofn/EXECUTION.md` §6 (checkpoint) — this section is the daily's binding of it; keep the existing one-line human-readable note too.
 
 ### Quarantine terminal (before QA)
 A pair that fails the **same** gate on its 3rd repair attempt is terminal:
@@ -135,8 +134,8 @@ Quarantine handles a *lone* broken pair. The breaker handles a **systemic** one:
 - **Scoped to SAME-gate correlation**, not aggregate fail-count: independent one-off pair failures still retry locally and quarantine normally. The breaker only trips when the *same* gate is the failing one across a threshold of pairs (the systemic signal).
 - When it trips: name the failing gate, report which pairs hit it, and HALT — do not auto-repair. This is a coordinator prose rule + a disk re-read of the manifest's `gate_verdict` column, never a daemon. Threshold tuned conservatively so a genuinely-hard batch isn't aborted; surface the gate, never a silent kill.
 
-### Run-health footer (4 fields)
-Append a terse **4-field** line to the run INDEX (and present it in chat): **pairs shipped / pairs quarantined / total gate-retries / QA repairs+holds issued** (per modality if both ran). Four fields only — a status line for the human, not a metrics culture. One explicit "escalate to human" outcome (the breaker, or any quarantine) is always surfaced, never hidden. **Zero-rejection tripwire:** a full daily reporting 0 repairs, 0 holds, 0 quarantines across ~48 artifacts triggers the judge audit (`lofn-qa` blind golden+decoy re-check), not a celebration — QA that never says no is decorative.
+### Run-health footer (3 fields)
+Append a terse **3-field** line to the run INDEX (and present it in chat): **pairs shipped / pairs quarantined / total gate-retries** (per modality if both ran). Three fields only — a status line for the human, not a metrics culture. One explicit "escalate to human" outcome (the breaker, or any quarantine) is always surfaced, never hidden.
 
 ---
 
@@ -155,4 +154,4 @@ Append a terse **4-field** line to the run INDEX (and present it in chat): **pai
 ## Scheduling (optional)
 On-demand here. To make it recur, use the `schedule` skill (cloud routine) or `/loop` — the legacy 22:25-ET cron is OpenClaw-specific and does not apply.
 
-**Reference:** `vault/DAILY_PIPELINE.md` · `vault/COMPETITION_WORKFLOW.md` (competition variant + Masterpiece Monday learnings) · `vault/COMPETITION_LEARNINGS.md` (advisory dispatch-brief lessons; never the ICB) · `.claude/skills/lofn/EXECUTION.md` §2 fan-out / §4 gates / §6 checkpoint (the manifest, quarantine, and breaker bind to these) · `skills/lofn-core/steps/00_music_research.md` · `skills/lofn-core/steps/00_research.md` · the `lofn` / `lofn-music` / `lofn-image` / `lofn-qa` skills.
+**Reference:** `vault/DAILY_PIPELINE.md` · `vault/COMPETITION_WORKFLOW.md` (competition variant + Masterpiece Monday learnings) · `vault/COMPETITION_LEARNINGS.md` (advisory dispatch-brief lessons; never the ICB) · `.agents/skills/lofn/EXECUTION.md` §2 fan-out / §4 gates / §6 checkpoint (the manifest, quarantine, and breaker bind to these) · `skills/lofn-core/steps/00_music_research.md` · `skills/lofn-core/steps/00_research.md` · the `lofn` / `lofn-music` / `lofn-image` / `lofn-qa` skills.

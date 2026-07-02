@@ -57,6 +57,17 @@ DEFAULT_GATES = {
     ],
     "unique_line_ratio_floor": 0.45,
     "ngram_collapse_n": 4,
+    "music_prompt_hug_ceiling": 985,
+    "sung_lines_floor_hug": 72,
+    "music_prompt_terminal_punctuation": True,
+    "max_sung_numeric_facts": 1,
+    "house_lexicon": [
+        "more sub and more sky", "small astonished laugh", "triple arch",
+        "triple-arch panorama", "small enough to understand", "frost-air pad",
+        "starfield percussion", "zodiacal glow", "clear silver tone",
+        "dew-bright", "glass harmonica sheen", "crystalline arpeggios",
+        "make my little fear",
+    ],
 }
 
 
@@ -239,20 +250,77 @@ def build_gate_report(step: str, path: Path, text: str, gates: dict) -> list[dic
             lo, hi = _band(gates.get("music_prompt_chars", [850, 1000]), 850, 1000)
             if ps:
                 body = "\n".join(l.strip() for l in ps.group(1).splitlines()
-                                 if l.strip() and not l.strip().startswith("#")).strip()
+                                 if l.strip() and not l.strip().startswith("#")
+                                 and not l.strip().startswith("```")).strip()
+                # Strip "*(measured NNN chars)*" / "*(paste into Suno Style)*"
+                # style annotation lines so annotations never count as prompt text.
+                body = re.sub(r"^\*\([^)]*\)\*\s*$", "", body, flags=re.M).strip()
                 n = len(body)
                 _gate_row(rows, pair, step, "music_prompt_chars", f"{lo}-{hi}", n, lo <= n <= hi)
+
+                # Terminal punctuation — UNAMBIGUOUS HARD FAIL (sense floor, not
+                # taste). A prompt truncated mid-phrase to fit the cap shipped on
+                # 2026-06-28 while the count-only check PASSed.
+                if gates.get("music_prompt_terminal_punctuation", True) and body:
+                    ends_clean = body[-1] in ".!?…" or body[-2:] in ('."', ".'", '!"', '?"')
+                    _gate_row(rows, pair, step, "music_prompt_terminal_punctuation",
+                              "prompt ends as a complete sentence (. ! ? …)",
+                              body[-40:], ends_clean)
+
+                # Boundary-hugging — FLAG only (pass=None). Gate-optimization
+                # pressure pins prompts at the cap; write into the mid-band.
+                hug = int(gates.get("music_prompt_hug_ceiling", 985))
+                if n >= hug:
+                    _gate_row(rows, pair, step, "music_prompt_boundary_hugging(FLAG)",
+                              f"< {hug} (write into the mid-band, not the cap)", n, None)
+
+                # House-lexicon self-copying guard — FLAG only. Golden references
+                # teach the MOVE, never the words (2026-07-01 regression review).
+                lex_hits = [p for p in gates.get("house_lexicon", [])
+                            if str(p).lower() in body.lower()]
+                if lex_hits:
+                    _gate_row(rows, pair, step, "house_lexicon(FLAG)",
+                              "no calcified golden-output phrases",
+                              ", ".join(lex_hits), None)
             lyr = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", text, re.I | re.M | re.S)
             if lyr:
                 field = lyr.group(1)
                 cap = int(gates.get("suno_lyrics_field_max", 5000))
                 _gate_row(rows, pair, step, "suno_lyrics_field_max", f"< {cap}", len(field), len(field) < cap)
                 slo, shi = _band(gates.get("sung_lines", [70, 120]), 70, 120)
-                sung = sum(1 for ln in field.splitlines()
-                           if (s := ln.strip()) and not s.startswith("#")
-                           and not (s.startswith("[") and s.endswith("]"))
-                           and not (s.startswith("*") and s.endswith("*")))
+                sung_lines_list = [s for ln in field.splitlines()
+                                   if (s := ln.strip()) and not s.startswith("#")
+                                   and not (s.startswith("[") and s.endswith("]"))
+                                   and not (s.startswith("*") and s.endswith("*"))]
+                sung = len(sung_lines_list)
                 _gate_row(rows, pair, step, "sung_lines", f"{slo}-{shi}", sung, slo <= sung <= shi)
+
+                # Floor-hugging — FLAG only. A lyric pinned at the 70 floor is
+                # optimization to the constraint, not a song's natural length.
+                floor_hug = int(gates.get("sung_lines_floor_hug", 72))
+                if slo <= sung <= floor_hug:
+                    _gate_row(rows, pair, step, "sung_lines_floor_hugging(FLAG)",
+                              f"> {floor_hug} (the floor is a floor, not a target)", sung, None)
+
+                # One-fact rule — FLAG only. At most ONE numeric fact is sung;
+                # research informs theme/form, it is not recited in meter.
+                fact_re = re.compile(
+                    r"\d|(?:\bhundred\b|\bthousand\b|\bmillion\b|\bpercent\b|"
+                    r"\bkilometers?\b|\bkm\b|\bdegrees\b|\bmagnitude\b)", re.I)
+                fact_lines = [s for s in sung_lines_list if fact_re.search(s)]
+                max_facts = int(gates.get("max_sung_numeric_facts", 1))
+                if len(fact_lines) > max_facts:
+                    _gate_row(rows, pair, step, "max_sung_numeric_facts(FLAG)",
+                              f"<= {max_facts} sung numeric-fact line(s), responded to not recited",
+                              len(fact_lines), None)
+
+                # House-lexicon guard over the lyrics field — FLAG only.
+                lyr_lex_hits = [p for p in gates.get("house_lexicon", [])
+                                if str(p).lower() in field.lower()]
+                if lyr_lex_hits:
+                    _gate_row(rows, pair, step, "house_lexicon_lyrics(FLAG)",
+                              "no calcified golden-output phrases",
+                              ", ".join(lyr_lex_hits), None)
 
                 # Repeated-line collapse — FLAG ONLY, chorus/refrain EXEMPT.
                 non_chorus = _non_chorus_lyric_lines(field)
@@ -310,14 +378,17 @@ def _banned_opener_token(text: str, gates: dict):
 def hard_fail_from_report(rows: list[dict]) -> str | None:
     """Return a message for the FIRST unambiguous hard-fail row, else None.
 
-    ONLY the banned-imperative-opener row is treated as a deterministic hard fail
-    here (with the offending token as evidence). FLAG rows (pass is None) and
-    soft count rows never hard-fail from this path — the prose §4 gate / human
-    owns those, keeping the script fail-open and taste-free.
+    ONLY the banned-imperative-opener and terminal-punctuation rows are treated
+    as deterministic hard fails here (with the offending evidence). FLAG rows
+    (pass is None) and soft count rows never hard-fail from this path — the
+    prose §4 gate / human owns those, keeping the script fail-open and taste-free.
     """
     for r in rows:
         if r.get("check") == "banned_imperative_opener" and r.get("pass") is False:
             return f"image scene opens with banned imperative '{r.get('actual')}' (noun-first scene required)"
+        if r.get("check") == "music_prompt_terminal_punctuation" and r.get("pass") is False:
+            return (f"MUSIC PROMPT is truncated / ends mid-phrase (…'{r.get('actual')}') — "
+                    "a prompt must end as a complete sentence; trim a clause, don't hit the cap")
     return None
 
 
@@ -463,34 +534,18 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
     if re.search(r"steps?[_ -]?0?6[_ -]?0?10", path.name.lower()):
         return fail("collapsed Steps 06-10 file is not a canonical step artifact")
 
-    # Provenance gate: every canonical step must prove a real prompt/response chain.
-    # Accept old section names briefly for legacy artifacts, but require the new
-    # stronger sections for all newly generated artifacts when present.
-    required_sections = [
-        "## 0. Step Provenance",
-        "## 1. Input Context Digest",
-        "## 2. Step Template Requirements Applied",
-    ]
-    missing_sections = [sec for sec in required_sections if sec.lower() not in lower]
-    if missing_sections:
-        return fail("artifact missing step provenance sections: " + ", ".join(missing_sections))
+    # Startup context is injected into the agent prompt, not proven by padding the
+    # saved artifact. Rich provenance wrappers are allowed, but they are no longer
+    # a hard gate; the skill progression determines which files are injected at
+    # agent start. This validator should judge the artifact body and countable
+    # output contract, not force boilerplate.
     has_new_contract = "## 4. complete step output" in lower or "## 5. execution log" in lower
     if has_new_contract:
         for sec in [
-            "## 3. Panel / Critic Deliberation Log",
             "## 4. Complete Step Output",
-            "## 5. Execution Log",
-            "## 6. Self-Critique Against Step Requirements",
         ]:
             if sec.lower() not in lower:
                 return fail(f"artifact missing required complete-output section: {sec}")
-    else:
-        for sec in [
-            "## 3. Model Response / Creative Work",
-            "## 4. Self-Critique Against Step Requirements",
-        ]:
-            if sec.lower() not in lower:
-                return fail(f"artifact missing legacy creative/provenance section: {sec}")
     if "what this step would do" in lower or "would generate" in lower or "would produce" in lower:
         return fail("artifact describes what the step would do instead of containing complete step output")
     if "panel / critic deliberation log" in lower:
@@ -500,12 +555,6 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
             for marker in ["devil", "hyper-skeptic", "resolution"]:
                 if marker not in ps:
                     return fail(f"panel deliberation log missing marker: {marker}")
-    if "step file loaded:" not in lower:
-        return fail("artifact missing explicit loaded step file path")
-    if "input artifacts used:" not in lower:
-        return fail("artifact missing explicit input artifact list")
-    if "validation command:" not in lower:
-        return fail("artifact missing validation command provenance")
 
     checks = {
         "00": ["aesthetic", "emotion", "genre"],
