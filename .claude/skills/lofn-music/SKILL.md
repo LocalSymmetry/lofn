@@ -39,6 +39,8 @@ Run each as its own pass with its own saved canonical artifact (do NOT collapse 
 | 04 | `skills/music/steps/04_Generate_Music_Medium.md` | `step04_medium.md` |
 | 05 | `skills/music/steps/05_Generate_Music_Refine_Medium.md` | `step05_refine_medium.md` → **6 pairs chosen** |
 
+**Step 05 selects INTO the six Phase-1 pair slots, never past them:** Phase 1 owns each slot's arm/genre/verse-structure; step 05 owns which of the 12 concepts fills each slot (**exactly 6** — only the Scientist downsizes, explicitly) and records the runner-up rationale plus the **cut ledger** (one line per losing concept: why it lost + one organ worth harvesting — the reserve bench for `EXECUTION.md` §7.3's REPLACE/REDIRECT routes).
+
 ### Per-pair steps (parallel subagents — one chain per pair)
 Give each of the 6 pair-subagents its full ICB + pair assignment + these step contracts, and have it produce all five canonical files for its pair:
 
@@ -55,7 +57,7 @@ Give each of the 6 pair-subagents its full ICB + pair assignment + these step co
 ### Step 11 — Enhancement (1 subagent per pair, you as the GPT-5.5-class polish tier)
 Per `skills/music/steps/11_Generate_Music_Enhancement.md`. Reads the pair's step-10 + ICB + the GOLDEN MOVE + the QA checklist (**not** the golden-song payloads — step 11 generates, so the quarantine applies to it too). Produces `pair_{NN}_step10_final_package_enhanced.md` in **MAX configuration**: dense paragraph style prompt + separate exclude prompt + Disc_Channel header block (5 channels, from `vault/DISC_CHANNEL_GUIDE.md`) + Theme + SONG FORM + full EMO headers + a `## Major Deviations` section (where you exercise agency — name anything you refused/changed/intensified and defend it). **Do not invoke `openrouter/fusion`** — that path is manual-review only. **For anything headed to publication**, the default is one further genuinely cross-model pass: build the bundle with `lofn-step11-packager` for external review (`EXECUTION.md` §3, judge-tier separation) — that packager context MAY carry golden songs; it is judge-side.
 
-> **Andon Cord:** if a step-10 package is fundamentally broken (thread loss, personality collapse, EMO failure, generic output, format violation), step 11 REJECTS and routes back to step 09/07 with a repair brief. Don't polish a corpse.
+> **Andon Cord:** if a step-10 package is fundamentally broken (thread loss, personality collapse, EMO failure, generic output, format violation), step 11 REJECTS and routes back to step 09/07 with a repair brief. Don't polish a corpse. **Every REJECT brief names its return target** — step 09 for lyric/surface repair, step 07 for structural/fundamental repair. **Once the failed gate's value has stopped moving across attempts (the no-progress predicate, `EXECUTION.md` §7.3 REDIRECT), the brief MUST also carry a sideways proposal** — one of: promote a step-05 **cut-ledger reserve** concept, re-derive this pair's variation angles, or re-run the panel's skeptic transformation for this pair's slice. The brief PROPOSES; executing sideways is a coordinator decision surfaced to the human, spawning a NEW pair artifact chain — the frozen ICB is never edited mid-run.
 
 ### Step 12 — Panel-of-panels audit (when triggered)
 Convene a producer panel (Eno, Herndon, Flying Lotus, SOPHIE, Reynolds, Albini — "after" constructs) to audit all 6 final prompts against the Golden Songs; output `STEP12_MUSIC_PROMPT_AUDIT.md`.

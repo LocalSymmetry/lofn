@@ -82,6 +82,7 @@ Read `skills/orchestration/SKILL.md` for the full method (Panel of Experts v2: s
 
 ### 2. Select panel (library-first)
 - Scan `skills/orchestration/panels_index.md` (178 entries). Match → load `skills/orchestration/panels/<name>.yaml`. No match → generate via `skills/orchestration/refs/Generate_Panel.md`.
+- **v2 upgrade at load time (the library predates v2).** After loading a panel YAML, **re-derive every seat into the v2 seat-construction form** — PERSONA / SOURCE BASIS "after Name" / GROUNDING / TEMPERAMENT per `resources/panel-of-experts.md` (`PANEL_METHOD`) — and **add a Devil's Advocate to any panel missing one**, BEFORE the debate opens. The 178-panel library is bare name lists from before the v2 layer, and **73/178 panels lack a skeptic seat** (acoustic-architects' Medium Panel seats an "Eternal Master" where the skeptic should sit) — so a loaded panel YAML is raw material, not a ready room. The `EXECUTION.md` §4 Phase-1 pre-flight asserts the result: one Hyper-Skeptic/Devil's Advocate seat per panel, 3 total across the 3 panels.
 
 ### 3. Run the 3-panel debate — MANDATORY STRUCTURE
 Convene **THREE** panels of 6 voices each = **18 voices**, each panel with its own Hyper-Skeptic / Devil's Advocate (the 3 Skeptics form the **Somatic Gate**):

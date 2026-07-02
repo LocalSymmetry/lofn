@@ -7,7 +7,7 @@
 
 Read first:
 - `skills/music/references/simple_surface_complex_engine.md`
-- `skills/music/references/triple_arch_benchmark_excerpt.md`
+- **Judge-side only:** `skills/qa/references/golden_song_examples.md` — blind-comparison calibration for QA / step 12 / the step11-packager. GOLDEN-OUTPUT QUARANTINE (`.claude/skills/lofn/EXECUTION.md` §3): a **generating context** applying this checklist as a self-check (e.g. step 11) **SKIPS this read** — golden payloads never enter a generator's prompt.
 
 QA must prove two things:
 

@@ -20,8 +20,8 @@ pipeline_status: side-door-only
 What voice arrived? Why this voice for this song?
 
 ### 2. Music Prompt
-- Target: 850-1200 chars (side-door range, less strict than competition)
-- Categorized key:value format encouraged but not required
+- Target: 850-1000 chars (`vault/gates.yaml` band — the side door is looser on ceremony, never on the band)
+- One dense comma-flowing prose paragraph preferred (the 2026-06-09 mandate); the old categorized key:value bracket format is stale legacy
 - Genre, mood, tempo, key, vocal, hooks, production, arrangement
 - NO real artist names
 - NO narrative openings ("Begin by...", "Use...")
@@ -29,7 +29,7 @@ What voice arrived? Why this voice for this song?
 ### 3. Lyrics
 - Free format
 - EMO headers optional in side door
-- If EMO headers are used, use canonical taxonomy from `skills/music/references/EMOTION_TAXONOMY.md`
+- If EMO headers are used, use canonical taxonomy from `skills/lofn-core/refs/EMOTION_TAXONOMY.md`
 
 ### 4. Render Notes
 Optional. Any notes for Suno generation.

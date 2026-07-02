@@ -4,8 +4,8 @@ Read first:
 - `skills/qa/references/suno_15_point_qa.md`
 - `skills/music/references/producer_grade_suno_prompt_guide.md`
 - `skills/music/references/simple_surface_complex_engine.md`
-- `skills/music/references/EMOTION_TAXONOMY.md`
-- `skills/music/references/triple_arch_benchmark_excerpt.md`
+- `skills/lofn-core/refs/EMOTION_TAXONOMY.md`
+- The **GOLDEN MOVE** block (`.claude/skills/lofn-music/SKILL.md`) — step 11 is a **generating context**: past golden outputs are judge-side only (GOLDEN-OUTPUT QUARANTINE, `.claude/skills/lofn/EXECUTION.md` §3); you get the move, not the mold.
 
 ## ⚠️ ANDON CORD — STEP11 VETO AUTHORITY
 
