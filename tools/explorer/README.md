@@ -10,8 +10,16 @@ ground truth in [`docs/explorer-ground-truth.md`](../../docs/explorer-ground-tru
 
 ## Run it
 
+**Windows:**
+
 ```powershell
 pwsh -File tools/explorer/run.ps1
+```
+
+**macOS / Linux:**
+
+```bash
+./tools/explorer/run.sh
 ```
 
 First run creates the venv, installs deps, builds the web UI, and serves everything
@@ -120,10 +128,13 @@ per-run `gates.yaml` the engine writes under the run directory.
 
 ### Launch
 
-Same process, same origin as v1 — a fresh `run.ps1` build includes the studio views:
+Same process, same origin as v1 — a fresh build includes the studio views:
 
 ```powershell
-pwsh -File tools/explorer/run.ps1 --build     # http://127.0.0.1:8765
+pwsh -File tools/explorer/run.ps1 --build     # Windows      -> http://127.0.0.1:8765
+```
+```bash
+./tools/explorer/run.sh --build               # macOS/Linux  -> http://127.0.0.1:8765
 ```
 
 The studio UI calls `/api/studio/*` on the same origin (the vite dev proxy forwards

@@ -232,7 +232,14 @@ pwsh -File tools/explorer/run.ps1
 # first run builds the venv + web UI, then opens http://127.0.0.1:8765
 ```
 
-**macOS / Linux — three steps (works on any OS):**
+**macOS / Linux — one command:**
+
+```bash
+./tools/explorer/run.sh
+# first run builds the venv + web UI, then serves http://127.0.0.1:8765
+```
+
+…or set it up by hand (any OS):
 
 ```bash
 # 1 · backend deps (in its own venv)
