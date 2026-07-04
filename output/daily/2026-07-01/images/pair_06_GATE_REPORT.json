@@ -1,0 +1,26 @@
+[
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "image_min_words",
+    "expected": ">= 80",
+    "actual": 2185,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "banned_imperative_opener",
+    "expected": "no Create/Design/Make/Render/Depict opener",
+    "actual": "none",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "image_ban_words(FLAG)",
+    "expected": "none present",
+    "actual": "ethereal, dreamlike, whimsical, gentle light, soft glow, magical, delicate",
+    "pass": null
+  }
+]

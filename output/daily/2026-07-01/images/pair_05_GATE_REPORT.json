@@ -1,0 +1,18 @@
+[
+  {
+    "pair": "05",
+    "step": "10",
+    "check": "image_min_words",
+    "expected": ">= 80",
+    "actual": 1770,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "step": "10",
+    "check": "banned_imperative_opener",
+    "expected": "no Create/Design/Make/Render/Depict opener",
+    "actual": "none",
+    "pass": true
+  }
+]

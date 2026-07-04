@@ -14,7 +14,10 @@ from pathlib import Path
 
 
 def norm(s: str) -> str:
-    s = re.sub(r"\[[^\]]+\]", "", s)  # remove headers
+    # Preserve Suno v5.5 structured prompt fields (`[genre: ...]`) while still
+    # flattening ordinary lyric section headers for comparison.
+    s = re.sub(r"\[([a-z_ ]{2,32})\s*:\s*([^\]]+)\]", r"\1 \2", s, flags=re.I)
+    s = re.sub(r"\[[^\]]+\]", "", s)  # remove remaining performance headers
     s = re.sub(r"\*[^*]+\*", "", s)  # remove sfx
     s = re.sub(r"\b(pair|variant)\s+\w+\b", "", s, flags=re.I)
     s = re.sub(r"[^a-z0-9' ]+", " ", s.lower())
@@ -23,7 +26,7 @@ def norm(s: str) -> str:
 
 
 def first_variant(text: str) -> str:
-    starts = [m.start() for m in re.finditer(r"^#{2,3}\s+VARIANT\b", text, re.I | re.M)]
+    starts = [m.start() for m in re.finditer(r"^#{1,3}\s+VARIA(?:NT|TION)\b", text, re.I | re.M)]
     if not starts:
         return text
     start = starts[0]

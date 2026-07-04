@@ -126,7 +126,23 @@ def load_pairs(run_dir: Path) -> list[dict]:
         return []
     with path.open(encoding="utf-8") as f:
         data = json.load(f)
-    return data.get("pairs", [])
+    if isinstance(data, list):
+        pairs = []
+        for item in data:
+            if not isinstance(item, dict):
+                continue
+            pair_id = str(item.get("pair_id", item.get("pair_num", ""))).zfill(2)
+            pairs.append({
+                **item,
+                "pair_id": pair_id,
+                "pair_name": item.get("pair_name", item.get("concept", "UNSPECIFIED")),
+                "title_concept": item.get("title_concept", item.get("concept", "UNSPECIFIED")),
+                "core_medium": item.get("core_medium", item.get("medium", "UNSPECIFIED")),
+            })
+        return pairs
+    if isinstance(data, dict):
+        return data.get("pairs", [])
+    return []
 
 
 def ensure_step04(run_dir: Path) -> bool:

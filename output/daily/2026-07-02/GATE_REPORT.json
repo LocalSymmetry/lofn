@@ -1,0 +1,1039 @@
+[
+  {
+    "pair": "01",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 877,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 739,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3448,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 890,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 739,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3443,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 894,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 734,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3455,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 879,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 741,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3438,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 921,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 727,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3416,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 911,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 732,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3418,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 905,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 734,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3386,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 921,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 732,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3457,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 951,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 735,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3438,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 955,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 724,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3416,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 942,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 735,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3450,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 939,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 743,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3456,
+    "pass": true
+  },
+  {
+    "pair": "03",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 921,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 735,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3467,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 914,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 733,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3458,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 916,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 742,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3462,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 916,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 737,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3449,
+    "pass": true
+  },
+  {
+    "pair": "04",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 952,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 739,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3542,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 949,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 737,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3544,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 952,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 742,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3580,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 960,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 746,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3565,
+    "pass": true
+  },
+  {
+    "pair": "05",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 1,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 945,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 1,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 1,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 735,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 1,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3513,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 1,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 2,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 948,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 2,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 2,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 729,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 2,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3503,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 2,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 3,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 934,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 3,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 3,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 730,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 3,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3490,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 3,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 4,
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 934,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 4,
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "complete sentence",
+    "actual": ".",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 4,
+    "check": "exclude_prompt_chars",
+    "expected": "400-900",
+    "actual": 743,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 4,
+    "check": "lyrics_chars",
+    "expected": "<5000",
+    "actual": 3531,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "variation": 4,
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 73,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "step00_min_bytes",
+    "expected": ">=2000",
+    "actual": 13629,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "step00_valid_json",
+    "expected": "valid JSON object",
+    "actual": "valid",
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "step00_50x4_taxonomy",
+    "expected": "50 each: aesthetics/emotions/genres/frames",
+    "actual": {
+      "aesthetics": 50,
+      "emotions": 50,
+      "genres": 50,
+      "frames": 50
+    },
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "step02_concept_count",
+    "expected": ">=12 visible concepts before selection",
+    "actual": 12,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "song_artifact_count",
+    "expected": "24 daily music files",
+    "actual": 24,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "selected_finalists",
+    "expected": "6 selected finalists",
+    "actual": 6,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "legacy_suno_style_blocks",
+    "expected": "0 old Suno Style Prompt / [genre:] blocks",
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "unique_song_forms",
+    "expected": ">=6 distinct SONG FORM declarations",
+    "actual": 24,
+    "pass": true
+  },
+  {
+    "pair": "RUN",
+    "variation": null,
+    "check": "unique_exclude_prompts",
+    "expected": ">=6 distinct EXCLUDE PROMPT fields",
+    "actual": 24,
+    "pass": true
+  }
+]

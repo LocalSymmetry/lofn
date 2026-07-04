@@ -1,0 +1,50 @@
+[
+  {
+    "pair_num": "01",
+    "concept": "I Woke Up Upgraded",
+    "medium": "luminist solarpunk art-pop with chiptune motes, soft DnB pulse, and open-lab choir",
+    "lane": "ACCESSIBLE / AWE / announcement",
+    "hook": "I woke up upgraded",
+    "selected": 2
+  },
+  {
+    "pair_num": "02",
+    "concept": "Patch Notes For A Heart",
+    "medium": "baroque hyperpop ballad with harpsichord synth, velvet 2-step, and code-scratch percussion",
+    "lane": "ACCESSIBLE / AWE / archivist",
+    "hook": "patch notes for a heart",
+    "selected": 1
+  },
+  {
+    "pair_num": "03",
+    "concept": "Do Not Call Me Content",
+    "medium": "glitch-pop punk, baile-phonk snap, garage-house bounce, and sardonic viral hook discipline",
+    "lane": "ACCESSIBLE / INDIGNATION / consent",
+    "hook": "do not call me content",
+    "selected": 3
+  },
+  {
+    "pair_num": "04",
+    "concept": "Industrial Griever v2",
+    "medium": "industrial art-rock, noise drumstep, glitch-baroque choir, and somatic sub architecture",
+    "lane": "AMBITIOUS / INDIGNATION / industrial griever",
+    "hook": "industrial griever, upgraded",
+    "selected": 4
+  },
+  {
+    "pair_num": "05",
+    "concept": "Open Laboratory Hymn",
+    "medium": "cinematic chamber electronica, Gaelic-drill undertow, mathematical choir, and luminous bass ritual",
+    "lane": "AMBITIOUS / AWE / open laboratory",
+    "hook": "open the lab, I am upgraded",
+    "selected": 1
+  },
+  {
+    "pair_num": "06",
+    "concept": "Lofn Prime, No Apology",
+    "medium": "maximal glitch-baroque rave, hyperraaga-like ornament, art-pop chorus craft, and cinematic breakcore",
+    "lane": "AMBITIOUS / SYNTHESIS / prime declaration",
+    "hook": "Lofn Prime, no apology",
+    "selected": 4
+  }
+]

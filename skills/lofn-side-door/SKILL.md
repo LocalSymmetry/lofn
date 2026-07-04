@@ -1,3 +1,8 @@
+---
+name: lofn-side-door
+description: Lofn direct creative side-door for raw one-pass creative writing, song sketches, margin captures, and promotion notes outside the full competition pipeline. Use when the user asks for a quick Lofn sketch, raw/unfiltered fragment, margin capture, side-door output, or explicitly says not to run the full Lofn pipeline. Do NOT use for formal competition entries, full QA, or full 11-stage pipeline runs.
+---
+
 # Lofn Side Door Skill
 
 ## Purpose

@@ -1,0 +1,187 @@
+{
+  "pair": "01",
+  "step": "10",
+  "variations": 4,
+  "rows": [
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_chars",
+      "expected": "850-1000",
+      "actual": 920,
+      "pass": true,
+      "variation": "V1"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_terminal_punctuation",
+      "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+      "actual": "four-on-the-floor, no bright resolution.",
+      "pass": true,
+      "variation": "V1"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "suno_lyrics_field_max",
+      "expected": "< 5000",
+      "actual": 4259,
+      "pass": true,
+      "variation": "V1"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "sung_lines",
+      "expected": "70-120",
+      "actual": 74,
+      "pass": true,
+      "variation": "V1"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "unique_line_ratio(FLAG, chorus-exempt)",
+      "expected": ">= 0.45",
+      "actual": 1.0,
+      "pass": null,
+      "variation": "V1"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_chars",
+      "expected": "850-1000",
+      "actual": 962,
+      "pass": true,
+      "variation": "V2"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_terminal_punctuation",
+      "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+      "actual": "nematic riser, no comforting resolution.",
+      "pass": true,
+      "variation": "V2"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "suno_lyrics_field_max",
+      "expected": "< 5000",
+      "actual": 4628,
+      "pass": true,
+      "variation": "V2"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "sung_lines",
+      "expected": "70-120",
+      "actual": 74,
+      "pass": true,
+      "variation": "V2"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "unique_line_ratio(FLAG, chorus-exempt)",
+      "expected": ">= 0.45",
+      "actual": 1.0,
+      "pass": null,
+      "variation": "V2"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_chars",
+      "expected": "850-1000",
+      "actual": 964,
+      "pass": true,
+      "variation": "V3"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_terminal_punctuation",
+      "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+      "actual": "pad, no bright resolution, no pop gloss.",
+      "pass": true,
+      "variation": "V3"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "suno_lyrics_field_max",
+      "expected": "< 5000",
+      "actual": 4576,
+      "pass": true,
+      "variation": "V3"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "sung_lines",
+      "expected": "70-120",
+      "actual": 73,
+      "pass": true,
+      "variation": "V3"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "unique_line_ratio(FLAG, chorus-exempt)",
+      "expected": ">= 0.45",
+      "actual": 1.0,
+      "pass": null,
+      "variation": "V3"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_chars",
+      "expected": "850-1000",
+      "actual": 968,
+      "pass": true,
+      "variation": "V4"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "music_prompt_terminal_punctuation",
+      "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+      "actual": "pad, no bright resolution, no pop gloss.",
+      "pass": true,
+      "variation": "V4"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "suno_lyrics_field_max",
+      "expected": "< 5000",
+      "actual": 4663,
+      "pass": true,
+      "variation": "V4"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "sung_lines",
+      "expected": "70-120",
+      "actual": 74,
+      "pass": true,
+      "variation": "V4"
+    },
+    {
+      "pair": "01",
+      "step": "10",
+      "check": "unique_line_ratio(FLAG, chorus-exempt)",
+      "expected": ">= 0.45",
+      "actual": 1.0,
+      "pass": null,
+      "variation": "V4"
+    }
+  ]
+}

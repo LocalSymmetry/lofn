@@ -35,6 +35,7 @@ These learnings are **ADVISORY dispatch-brief inputs ONLY**. They exist to infor
 | L7 | eco / nature | NightCafe | image | Intimate reliquary > landscape | MEDIUM | Eco/nature: go INTIMATE + reliquary (micro-world in a vessel), not landscape documentation. Category-creating angle vs an oversaturated field. |
 | L8 | branded background | NightCafe | image | Minimalism is VOGUE-specific | MEDIUM | Strict background minimalism is a *branded/fashion* lesson, NOT universal; portrait/other themes tolerate harmonious atmospheric context. (Guards against L5 over-generalising.) |
 | L9 | *process / anti-overfit* | any | any | Don't theologise N≈5 | HIGH | N=4–5 entries is poor signal. Don't chase the last winner; the field moved. Before applying ANY lesson, run "would this have hurt our best past entry?" |
+| L10 | process / qa-calibration | any | any | Blind sets must be actually blind | HIGH (90%) | Strip every blind-set member to bare payload (no provenance metadata), one candidate per file, re-stat each for non-trivial size before judging; a self-identifying or empty member voids the 4.5 calibration and must be rebuilt, not ranked around. (2026-07-01 test slice: coordinator's set leaked identities + shipped a 147-byte stub; judge self-reported honestly.) |
 
 *(Failure-ledger auto-entries append below as `Lxx | process/failure | … `, recording only what a gate caught — never an aesthetic constraint. Pruning keeps the live count ≤ ~25.)*
 

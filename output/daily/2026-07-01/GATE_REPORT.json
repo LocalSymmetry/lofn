@@ -1,0 +1,42 @@
+[
+  {
+    "pair": "02",
+    "step": "10",
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 957,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "step": "10",
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+    "actual": "lides back on the beat. Fully synthetic.",
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "step": "10",
+    "check": "suno_lyrics_field_max",
+    "expected": "< 5000",
+    "actual": 4752,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "step": "10",
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 78,
+    "pass": true
+  },
+  {
+    "pair": "02",
+    "step": "10",
+    "check": "unique_line_ratio(FLAG, chorus-exempt)",
+    "expected": ">= 0.45",
+    "actual": 1.0,
+    "pass": null
+  }
+]
