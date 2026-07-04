@@ -32,6 +32,8 @@ State the chosen scope in the brief and in the run INDEX so QA knows the intende
 ## PHASE 1 — Research brief (you, inline, real fetches)
 Use **WebFetch / WebSearch** (the Codex equivalents of the legacy `web_fetch`). Follow `skills/lofn-core/steps/00_music_research.md` (25-fact music research) and, when the image lane is in scope, the NightCafe-themed research in `skills/lofn-core/steps/00_research.md`. Fetch from the daily source table (`vault/DAILY_PIPELINE.md`) — at minimum:
 
+**OpenClaw ledger standard:** this is a dispatch summary, not the saved brief format. `00_research_brief.md` MUST expand the full `vault/DAILY_PIPELINE.md` ledger into one row each for `F01` through `F25`. Do not collapse ranges such as `F1-F3` or `F21-F25`; use `OK`, `NO DATA`, `UNAVAILABLE`, or `SCOPE-SKIPPED` per row.
+
 | Code | Source | Extract |
 |------|--------|---------|
 | F1–F3 | NightCafe daily challenge (`nightcafe.studio/pages/daily-challenge`) | challenge #, theme, what wins (image lane) |
