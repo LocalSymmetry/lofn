@@ -1,0 +1,8 @@
+# EOL policy for scripts — keep launchers correct across OSes.
+# Shell scripts MUST stay LF: a CRLF shebang (#!/usr/bin/env bash\r) fails on Unix
+# with "bad interpreter: no such file or directory". This guarantees run.sh works
+# from a fresh clone regardless of the committer's platform or autocrlf setting.
+*.sh    text eol=lf
+
+# PowerShell launchers are happiest as CRLF on Windows.
+*.ps1   text eol=crlf
