@@ -107,6 +107,11 @@ IDENTITY.md                  # Quick identity summary
 WORKFLOW.md                  # Mandatory pipeline dispatcher rules
 
 .claude/skills/              # Claude-native port — runs the whole pipeline with Claude as the engine
+
+tools/
+└── explorer/               # Lofn Prompt Explorer + Creative Studio — local web app to see, edit & run the pipeline
+
+docs/                        # Plans, knob census & ground-truth for the Explorer / Studio
 ```
 
 ---
@@ -184,6 +189,67 @@ User Idea / Golden Seed
 - **Personality Injection Mandate:** Every pair agent receives the target personality's full YAML DNA (G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases). "voice = X" shorthand causes Lofn bleed — always inject the full block.
 
 The panel runs **3 transformations** per session (baseline → group transform → skeptic transform) to maximize creative diversity before synthesis.
+
+---
+
+## 🔭 See, Edit & Run the Pipeline — the Lofn Prompt Explorer
+
+Everything above is prose your agent reads. The **Lofn Prompt Explorer** is a small,
+local web app that makes the whole pipeline *visible and editable* — a file-truthful
+atlas of every agent from the orchestrator through step 11, the gate checks riding the
+edges between them and how each one validates, and a fast **review → edit → verify**
+loop on any prompt, personality, panel, aesthetic, or genre. Nothing leaves your
+machine: **localhost only — no cloud, no auth, no telemetry.**
+
+Its **Creative Studio** layer turns the atlas into an instrument:
+
+- **Flow Lab** — edit the *flow* of steps and the gates between them, and turn the
+  pipeline's magic numbers into **knobs**. *Why 6 pairs at step 5? Drag it to 10 and
+  watch the fan-out, the totals, and the estimated cost move together.*
+- **Run Bench** — press **Run** against a real provider API (Anthropic · OpenAI ·
+  OpenRouter · Poe · Gemini, or a **$0 mock**) under a hard budget cap, and watch the
+  prompt packages stream out step by step.
+- **Compare** — diff two runs side-by-side, or judge them **blind** (payload-only,
+  provenance-stripped).
+
+It is **prompts-only** by design — it produces the render-ready packages (Suno style +
+lyrics, Flux / GPT-Image prompts, shot lists, prose); you take those to the render
+tools yourself.
+
+> **Two-Truths doctrine:** studio experiments *never* mutate canon (`skills/**`,
+> `vault/**`, `.claude/**`). Canon is prose read by Claude; the studio is a separate
+> engine interpreting an editable **FlowSpec** imported *from* canon. A winning knob or
+> threshold is *promoted* back deliberately, through a byte-safe write path.
+
+### Run it
+
+**Prerequisites:** Python 3.11+ and Node.js 18+.
+
+**Windows — one command:**
+
+```powershell
+pwsh -File tools/explorer/run.ps1
+# first run builds the venv + web UI, then opens http://127.0.0.1:8765
+```
+
+**macOS / Linux — three steps (works on any OS):**
+
+```bash
+# 1 · backend deps (in its own venv)
+python3 -m venv tools/explorer/server/.venv
+tools/explorer/server/.venv/bin/pip install -r tools/explorer/server/requirements.txt
+
+# 2 · build the web UI
+( cd tools/explorer/web && npm install && npm run build )
+
+# 3 · serve from the repo root
+tools/explorer/server/.venv/bin/python -m tools.explorer.server   # http://127.0.0.1:8765
+```
+
+The optional **Run** feature reads provider keys from your environment or a
+**gitignored** `.env.studio` at the repo root — they never reach the browser. Full
+guide, the four surfaces, architecture, and the acceptance-gate list:
+[`tools/explorer/README.md`](tools/explorer/README.md).
 
 ---
 
