@@ -1,0 +1,14 @@
+# Lofn Prompt Explorer — backend deps.
+# Plain uvicorn (not [standard]) + explicit watchfiles to avoid httptools
+# build issues on bleeding-edge CPython (3.14). uvloop is POSIX-only anyway.
+fastapi>=0.115
+uvicorn>=0.30
+watchfiles>=0.21
+ruamel.yaml>=0.18
+
+# Studio (v2) provider SDKs — WS1. Text-to-text LLM calls only; no media gen.
+anthropic>=0.116
+openai>=2.0
+fastapi_poe>=0.0.83
+google-genai>=2.0
+httpx>=0.28

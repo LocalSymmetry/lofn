@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lofn.local/studio/knobs.schema.json",
+  "title": "Lofn Studio Knobs preset",
+  "description": "A *.knobs.yaml file (plan §3.2). Every magic number becomes a parameter with a range, a derivation, and invariants. `expr` values are evaluated by a tiny SAFE evaluator (int arithmetic + ceil/floor/min/max only — never eval()). `gates_key` binds a knob to a vault/gates.yaml key so the run-local gates materializer can override it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["knobs"],
+  "properties": {
+    "name": {"type": "string", "description": "Human name for the preset, e.g. 'classic-6x4'."},
+    "desc": {"type": "string"},
+    "knobs": {
+      "type": "object",
+      "description": "Map of knob-name → knob definition.",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/definitions/knob"}
+    },
+    "invariants": {
+      "type": "array",
+      "description": "Boolean expressions over knob names. A violation renders inline in the Knobs UI and BLOCKS Run (not Compile).",
+      "items": {"type": "string"}
+    }
+  },
+  "definitions": {
+    "knob": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A knob has EITHER a literal `value` OR a derived `expr` (not both required, but at least one). Scalars and 2-element bands are both valid values.",
+      "properties": {
+        "value": {
+          "description": "Literal default. A number, boolean, or a [lo, hi] band.",
+          "oneOf": [
+            {"type": "number"},
+            {"type": "boolean"},
+            {
+              "type": "array",
+              "items": {"type": "number"},
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "expr": {
+          "type": "string",
+          "description": "Derivation over other knobs, e.g. 'ceil(n_pairs / 2)'. Evaluated by the safe evaluator. A derived knob may still be pinned via `override`."
+        },
+        "min_expr": {
+          "type": "string",
+          "description": "A lower-bound expression the value must satisfy, e.g. '2 * n_pairs'. Surfaced as an invariant."
+        },
+        "override": {
+          "description": "For a derived knob: a literal that pins the value, ignoring `expr`. null = use expr.",
+          "type": ["number", "boolean", "null", "array"]
+        },
+        "range": {
+          "type": "array",
+          "description": "[min, max] the UI slider clamps to (inclusive).",
+          "items": {"type": "number"},
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "gates_key": {
+          "type": "string",
+          "description": "vault/gates.yaml key this knob writes when materializing the run-local gates.yaml."
+        },
+        "desc": {"type": "string"}
+      },
+      "anyOf": [
+        {"required": ["value"]},
+        {"required": ["expr"]}
+      ]
+    }
+  }
+}

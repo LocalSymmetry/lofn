@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "explorer",
+      "runtimeExecutable": "tools/explorer/server/.venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "tools.explorer.server"],
+      "port": 8765
+    },
+    {
+      "name": "explorer-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "tools/explorer/web", "run", "dev"],
+      "port": 5990
+    }
+  ]
+}

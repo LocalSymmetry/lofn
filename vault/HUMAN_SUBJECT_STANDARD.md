@@ -186,7 +186,7 @@ For each flagged name: search trailing **~24 months** of news, weighted to crime
 
 ```
 standard: HUMAN_SUBJECT_STANDARD
-authored: 2026-06-12, Claude Opus 4.8 + human in the loop (Dr. Local Symmetry / Demitri)
+authored: 2026-06-12, Claude Opus 4.8 + human in the loop (Dr. Local Symmetry)
 prompted_by: Pair 01 "The Report in the Drawer" near-miss (real victim named in a NEWS-anchored song)
 enforces_and_extends: existing Ethics rule "No children depicted in generated content"
 artifacts: vault/HUMAN_SUBJECT_STANDARD.md, scripts/check_human_subjects.py

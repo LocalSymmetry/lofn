@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lofn.local/studio/run.schema.json",
+  "title": "Lofn Studio run.json",
+  "description": "Full provenance for one studio run (plan §5). Written incrementally by runstore.py under output/studio/<run-id>/run.json. KEYS NEVER APPEAR ANYWHERE IN IT — a redaction filter scrubs anything key-shaped from this and from runlog/SSE. This schema is the frozen WS0 contract WS3 (engine/runstore) builds against.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "created", "flow", "knobs", "canon_sha", "context", "model_tiers", "budget", "status"],
+  "properties": {
+    "id": {"type": "string", "description": "Run id (also the output/studio/<id>/ dir name)."},
+    "title": {"type": "string"},
+    "created": {"type": "string", "description": "ISO-8601 UTC timestamp."},
+    "flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "file_sha"],
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "integer", "minimum": 1},
+        "file_sha": {"type": "string", "description": "sha256 of the flow YAML file as executed. A mismatch on the on-disk file renders a tamper warning and disables promote-from-run."}
+      }
+    },
+    "knobs": {
+      "type": "object",
+      "description": "Fully resolved knob values INCLUDING derived ones (name → resolved value). Not the definitions — the resolved numbers this run used.",
+      "additionalProperties": true
+    },
+    "overlays": {
+      "type": "array",
+      "description": "Overlays applied, with their shas.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha": {"type": "string"}
+        }
+      }
+    },
+    "canon_sha": {"type": "string", "description": "git HEAD at run start."},
+    "canon_dirty": {"type": "boolean", "description": "Was the working tree dirty at run start?"},
+    "context": {
+      "type": "object",
+      "description": "Seed/personality/panel references + their shas (verbatim-injection provenance).",
+      "additionalProperties": false,
+      "properties": {
+        "seed": {"$ref": "#/definitions/ref"},
+        "personality": {"$ref": "#/definitions/ref"},
+        "panel": {"$ref": "#/definitions/ref"},
+        "meta_prompt": {"$ref": "#/definitions/ref"},
+        "input": {"type": "string", "description": "The user brief text (or a ref to it)."}
+      }
+    },
+    "model_tiers": {
+      "type": "object",
+      "description": "model_tiers as executed (post any launch-form override).",
+      "additionalProperties": true
+    },
+    "steps": {
+      "type": "array",
+      "description": "Per step-instance provenance, appended as the run progresses.",
+      "items": {"$ref": "#/definitions/stepResult"}
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tokens_in": {"type": "integer", "minimum": 0},
+        "tokens_out": {"type": "integer", "minimum": 0},
+        "cost_usd": {"type": "number", "minimum": 0},
+        "duration_s": {"type": "number", "minimum": 0},
+        "pairs_total": {"type": "integer", "minimum": 0},
+        "pairs_quarantined": {"type": "integer", "minimum": 0}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cap_usd"],
+      "properties": {
+        "cap_usd": {"type": "number", "minimum": 0, "description": "Hard cap. No run starts without an explicit cap (plan §13.4)."},
+        "spend_usd": {"type": "number", "minimum": 0},
+        "aborted_on_cap": {"type": "boolean"}
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "complete", "failed", "cancelled"]
+    },
+    "verdicts": {
+      "type": "array",
+      "description": "Judge verdicts appended later (compare / blind-judge).",
+      "items": {"type": "object", "additionalProperties": true}
+    }
+  },
+  "definitions": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string"},
+        "sha": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
+    "stepResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step", "status"],
+      "properties": {
+        "stage": {"type": "string"},
+        "step": {"type": "string"},
+        "pair": {"type": ["string", "null"], "description": "Pair id for fan-out steps, else null."},
+        "provider": {"type": "string"},
+        "model": {"type": "string"},
+        "tokens_in": {"type": "integer", "minimum": 0},
+        "tokens_out": {"type": "integer", "minimum": 0},
+        "cost_usd": {"type": ["number", "null"], "minimum": 0, "description": "null when the model is unpriced (budget counts tokens only, loudly)."},
+        "duration_s": {"type": "number", "minimum": 0},
+        "attempts": {"type": "integer", "minimum": 1},
+        "artifact": {"type": ["string", "null"], "description": "Canonical artifact filename written."},
+        "artifact_sha": {"type": ["string", "null"]},
+        "gate_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["gate", "pass"],
+            "properties": {
+              "gate": {"type": "string"},
+              "pass": {"type": ["boolean", "null"], "description": "true=pass, false=hard fail, null=FLAG (amber / Somatic read)."},
+              "detail": {"type": "string"}
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "resolving", "calling", "validating", "done", "flagged", "retrying", "failed", "quarantined", "held_for_human"]
+        }
+      }
+    }
+  }
+}

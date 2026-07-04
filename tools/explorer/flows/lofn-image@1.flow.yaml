@@ -1,0 +1,202 @@
+flow: lofn-image
+version: 1
+modality: image
+base: canon@dc4ea6bf6753
+knobs_defaults: presets/classic-6x4.knobs.yaml
+context:
+  template: skills/image/OVERALL_PROMPT_TEMPLATE.md
+  slots:
+    - input
+    - seed
+    - meta_prompt
+    - personality
+    - concept_panel
+    - medium_panel
+    - marketing_panel
+    - flairs
+    - genres_list
+    - frames_list
+    - image_context
+model_tiers:
+  coordinator:
+    provider: anthropic
+    model: claude-opus-4-8
+    max_tokens: 16000
+  pair:
+    provider: anthropic
+    model: claude-opus-4-8
+    max_tokens: 32000
+  enhance:
+    provider: anthropic
+    model: claude-opus-4-8
+    max_tokens: 32000
+stages:
+  - id: coordinator
+    steps:
+      - id: '00'
+        title: Aesthetics & Genres
+        kind: llm
+        prompt: skills/image/steps/00_Generate_Image_Aesthetics_And_Genres.md
+        overlay:
+        tier: coordinator
+        emits: step00_aesthetics_genres.md
+        consumes: []
+        gates:
+          - g.step00
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '01'
+        title: Essence & Facets
+        kind: llm
+        prompt: skills/image/steps/01_Generate_Image_Essence_And_Facets.md
+        overlay:
+        tier: coordinator
+        emits: step01_essence_facets.md
+        consumes:
+          - step00_aesthetics_genres.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '02'
+        title: Concepts
+        kind: llm
+        prompt: skills/image/steps/02_Generate_Image_Concepts.md
+        overlay:
+        tier: coordinator
+        emits: step02_concepts.md
+        consumes:
+          - step01_essence_facets.md
+        gates:
+          - g.tree_branches
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '03'
+        title: Artist & Critique
+        kind: llm
+        prompt: skills/image/steps/03_Generate_Image_Artist_And_Critique.md
+        overlay:
+        tier: coordinator
+        emits: step03_artist_critique.md
+        consumes:
+          - step02_concepts.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '04'
+        title: Medium
+        kind: llm
+        prompt: skills/image/steps/04_Generate_Image_Medium.md
+        overlay:
+        tier: coordinator
+        emits: step04_medium.md
+        consumes:
+          - step03_artist_critique.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '05'
+        title: Refine Medium
+        kind: llm
+        prompt: skills/image/steps/05_Generate_Image_Refine_Medium.md
+        overlay:
+        tier: coordinator
+        emits: step05_refine_medium.md
+        consumes:
+          - step04_medium.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+  - id: pairs
+    foreach: pair
+    concurrency: '{max_concurrency}'
+    steps:
+      - id: '06'
+        title: Facets
+        kind: llm
+        prompt: skills/image/steps/06_Generate_Image_Facets.md
+        overlay:
+        tier: pair
+        emits: pair_{pair}_step06_facets.md
+        consumes:
+          - step05_refine_medium.md
+          - concept_medium_pairs.json
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '07'
+        title: Aspects & Traits
+        kind: llm
+        prompt: skills/image/steps/07_Generate_Image_Aspects_Traits.md
+        overlay:
+        tier: pair
+        emits: pair_{pair}_step07_guides.md
+        consumes:
+          - pair_{pair}_step06_facets.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '08'
+        title: Generation
+        kind: llm
+        prompt: skills/image/steps/08_Generate_Image_Generation.md
+        overlay:
+        tier: pair
+        emits: pair_{pair}_step08_generation.md
+        consumes:
+          - pair_{pair}_step07_guides.md
+        gates:
+          - g.image_scene
+          - g.collapse
+          - g.human_subject
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '09'
+        title: Artist Refined
+        kind: llm
+        prompt: skills/image/steps/09_Generate_Image_Artist_Refined.md
+        overlay:
+        tier: pair
+        emits: pair_{pair}_step09_artist_refined.md
+        consumes:
+          - pair_{pair}_step08_generation.md
+        gates: []
+        on_fail:
+          policy: retry
+          max_attempts: 3
+      - id: '10'
+        title: Revision Synthesis
+        kind: llm
+        prompt: skills/image/steps/10_Generate_Image_Revision_Synthesis.md
+        overlay:
+        tier: pair
+        emits: pair_{pair}_step10_revision_synthesis.md
+        consumes:
+          - pair_{pair}_step09_artist_refined.md
+        gates:
+          - g.image_scene
+          - g.collapse
+        on_fail:
+          policy: retry
+          max_attempts: 3
+  - id: portfolio
+    steps:
+      - id: distinctiveness
+        title: Portfolio distinctiveness
+        kind: validator
+        prompt:
+        overlay:
+        tier:
+        emits:
+        consumes: []
+        run: scripts/validate_portfolio_distinctiveness.py
+        gates:
+          - g.portfolio

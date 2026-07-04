@@ -24,9 +24,18 @@ Usage:
   validate_step.py <step> <file>            # validate one step artifact
   validate_step.py --gate-report <step> <file> [--out PATH]
                                             # also write GATE_REPORT.json rows
+  validate_step.py --gates PATH <step> <file>
+                                            # validate against a specific gates.yaml
+                                            # (Studio run-local, knob-adjusted thresholds)
   validate_step.py --meta-check [--root DIR]
                                             # prose/YAML threshold disagreement scan
   validate_step.py --help
+
+Studio note (Creative Studio v2, backward-compatible): ``--gates PATH`` points the
+run-local, knob-adjusted thresholds file at ``load_gates(path)`` (which already
+accepted a path). WITHOUT the flag, behavior is byte-identical to before — the
+default ``vault/gates.yaml`` path is used exactly as always. The flag only threads
+an alternate gates file into the SAME code path.
 """
 from __future__ import annotations
 
@@ -426,6 +435,23 @@ def meta_check(root: Path | None = None) -> int:
                          lambda m: int(m.group(1)) == cap or not (4000 <= int(m.group(1)) <= 6000)))
 
     scan_dirs = [root / ".claude" / "skills", root / "skills", root / "vault"]
+    # Skiplist: paths under these prefixes are NEVER meta-checked. Studio knob
+    # files (tools/explorer/flows/**) legitimately RESTATE the gate numbers (they
+    # bind them via gates_key), so if the scan is ever extended to cover them they
+    # must not warn. flows/** is not in scan_dirs today, but this keeps the skip
+    # explicit and future-proof (plan §12: drift detection may extend to flows).
+    skip_prefixes = [root / "tools" / "explorer" / "flows"]
+
+    def _is_skipped(fp: Path) -> bool:
+        rp = fp.resolve()
+        for pref in skip_prefixes:
+            try:
+                rp.relative_to(pref.resolve())
+                return True
+            except ValueError:
+                continue
+        return False
+
     disagreements = 0
     files_scanned = 0
     try:
@@ -433,6 +459,8 @@ def meta_check(root: Path | None = None) -> int:
             if not base.exists():
                 continue
             for fp in base.rglob("*.md"):
+                if _is_skipped(fp):
+                    continue
                 try:
                     txt = fp.read_text(errors="replace")
                 except Exception:
@@ -485,6 +513,7 @@ def main() -> int:
 
     emit_report = False
     out_path = None
+    gates_path = None
     if argv and argv[0] == "--gate-report":
         emit_report = True
         argv = argv[1:]
@@ -494,14 +523,26 @@ def main() -> int:
                 out_path = Path(argv[i + 1])
             argv = [a for j, a in enumerate(argv) if j not in (i, i + 1)]
 
+    # --gates PATH: use a specific gates.yaml (Studio run-local, knob-adjusted).
+    # Threads into the EXISTING load_gates(path). Without the flag, byte-identical
+    # to before (the default vault/gates.yaml is used, exactly as always).
+    if "--gates" in argv:
+        i = argv.index("--gates")
+        if i + 1 < len(argv):
+            gates_path = Path(argv[i + 1])
+            argv = [a for j, a in enumerate(argv) if j not in (i, i + 1)]
+        else:
+            return fail("--gates requires a PATH argument")
+
     if len(argv) != 2:
-        return fail("usage: validate_step.py [--gate-report [--out PATH]] <step> <file>  |  --meta-check  |  --help")
+        return fail("usage: validate_step.py [--gate-report [--out PATH]] [--gates PATH] <step> <file>  |  --meta-check  |  --help")
     step = str(argv[0]).zfill(2)
     path = Path(argv[1])
-    return _validate(step, path, emit_report=emit_report, out_path=out_path)
+    return _validate(step, path, emit_report=emit_report, out_path=out_path, gates_path=gates_path)
 
 
-def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path | None = None) -> int:
+def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path | None = None,
+              gates_path: Path | None = None) -> int:
     if not path.exists() or not path.is_file():
         return fail(f"missing file: {path}")
     name = path.name
@@ -585,8 +626,14 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
             return fail(f"concept_medium_pairs.json is not valid JSON: {exc}")
         if not isinstance(data, list):
             return fail("concept_medium_pairs.json must be a top-level list")
-        if not (4 <= len(data) <= 7):
-            return fail(f"concept_medium_pairs.json must contain 4-7 pairs, found {len(data)}")
+        # The concept-pair band comes from the loaded gates dict (Studio run-local
+        # gates set `pair_count_band` derived from n_pairs so wide portfolios like
+        # 10x2 validate). Fail-open to the canon default [4, 7] when the key is
+        # absent — canon vault/gates.yaml is UNCHANGED, so no-flag behavior stays
+        # byte-identical.
+        pc_lo, pc_hi = _band(load_gates(gates_path).get("pair_count_band", [4, 7]), 4, 7)
+        if not (pc_lo <= len(data) <= pc_hi):
+            return fail(f"concept_medium_pairs.json must contain {int(pc_lo)}-{int(pc_hi)} pairs, found {len(data)}")
         for i, item in enumerate(data, 1):
             if not isinstance(item, dict):
                 return fail(f"concept_medium_pairs.json item {i} is not an object")
@@ -660,7 +707,7 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
     # evidence); all count/FLAG rows are advisory and routed to the prose §4 gate.
     # ----------------------------------------------------------------------
     try:
-        gates = load_gates()
+        gates = load_gates(gates_path)
         rows = build_gate_report(step, path, text, gates)
         if emit_report:
             target = out_path or (path.parent / "GATE_REPORT.json")

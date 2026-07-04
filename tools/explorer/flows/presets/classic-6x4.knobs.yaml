@@ -1,0 +1,140 @@
+# classic-6x4.knobs.yaml — the canonical Lofn portfolio shape.
+#
+# 6 concept×medium pairs × 4 variations = 24 prompts, split 3 ACCESSIBLE + 3
+# AMBITIOUS across the barbell (plan §3). Every number here is the canon default,
+# with the file:line provenance recorded in docs/KNOB_CENSUS.md. `gates_key`
+# bindings let the run-local gates.yaml materializer restate these for the
+# validators (--gates); --meta-check skips flows/** so restating them is fine.
+#
+# expr values are evaluated by the tiny SAFE evaluator (ceil/floor/min/max + int
+# arithmetic only — never eval()). This is the studio baseline preset.
+name: classic-6x4
+desc: "Canonical Lofn portfolio: 6 pairs x 4 variations = 24, barbell 3+3."
+knobs:
+  n_pairs:
+    value: 6
+    range: [2, 12]
+    desc: "concept x medium pairs selected at step 05"
+  n_variations_per_pair:
+    value: 4
+    range: [1, 8]
+    desc: "variations produced per pair in the fan-out"
+  n_concepts:
+    value: 12
+    range: [4, 40]
+    min_expr: "2 * n_pairs"
+    desc: "step-02 divergence pool (the tree must branch to >= 12)"
+  barbell_accessible:
+    expr: "ceil(n_pairs / 2)"
+    override: null
+    desc: "ACCESSIBLE arm of the barbell (pairs 1..k)"
+  barbell_ambitious:
+    expr: "n_pairs - barbell_accessible"
+    override: null
+    desc: "AMBITIOUS arm of the barbell (remaining pairs)"
+  total_prompts:
+    expr: "n_pairs * n_variations_per_pair"
+    gates_key: total_prompts
+    desc: "portfolio distinctiveness operates over this many prompts"
+  panel_count:
+    value: 3
+    range: [1, 5]
+    desc: "orchestrator panels (concept / medium / marketing)"
+  voices_per_panel:
+    value: 6
+    range: [3, 10]
+    desc: "voices per panel (18 total at 3x6)"
+  n_flairs:
+    value: 15
+    range: [5, 30]
+    desc: "Special Flairs carried from the panel ledger"
+  concept_warmup_discard:
+    value: 17
+    range: [0, 30]
+    desc: "generate N, discard, start at N+1 (concept warm-up)"
+  max_concurrency:
+    value: 6
+    range: [1, 12]
+    desc: "pair fan-out semaphore cap (12 -> cap-and-stagger)"
+  retry_max_attempts:
+    value: 3
+    range: [1, 5]
+    desc: "on_fail: retry total attempts (validate_with_retries)"
+  taxonomy_cardinality:
+    value: 50
+    range: [20, 100]
+    gates_key: taxonomy_cardinality
+    desc: "each step-00 axis cardinality (aesthetics/emotions/frames/genres)"
+  step00_min_bytes:
+    value: 2000
+    range: [500, 8000]
+    gates_key: step00_min_bytes
+    desc: "step-00 file byte floor (thin file == tree never branched)"
+  # --- Music (Suno) numeric gates (gates_key-bound) ---
+  music_prompt_chars:
+    value: [850, 1000]
+    gates_key: music_prompt_chars
+    desc: "dense MUSIC PROMPT character band"
+  music_prompt_chars_target:
+    value: [870, 960]
+    gates_key: music_prompt_chars_target
+    desc: "write INTO the mid-band, not the cap"
+  music_prompt_hug_ceiling:
+    value: 985
+    range: [900, 1000]
+    gates_key: music_prompt_hug_ceiling
+    desc: ">= this measured chars FLAGs boundary-hugging"
+  sung_lines:
+    value: [70, 120]
+    gates_key: sung_lines
+    desc: "sung-line band for the lyrics section"
+  sung_lines_target:
+    value: [78, 110]
+    gates_key: sung_lines_target
+    desc: "target sung-line band"
+  sung_lines_floor_hug:
+    value: 72
+    range: [70, 90]
+    gates_key: sung_lines_floor_hug
+    desc: "<= this sung lines FLAGs floor-hugging"
+  suno_lyrics_field_max:
+    value: 5000
+    range: [3000, 6000]
+    gates_key: suno_lyrics_field_max
+    desc: "Suno LYRICS field hard cap (render limit)"
+  suno_lyrics_field_target:
+    value: 4800
+    range: [3000, 5000]
+    gates_key: suno_lyrics_field_target
+    desc: "soft target under the cap"
+  max_sung_numeric_facts:
+    value: 1
+    range: [0, 4]
+    gates_key: max_sung_numeric_facts
+    desc: "at most one SUNG numeric fact per lyric (respond, don't recite)"
+  # --- Image (Flux) ---
+  image_min_words:
+    value: 80
+    range: [40, 200]
+    gates_key: image_min_words
+    desc: "minimum words in an image scene description"
+  # --- Repetition / collapse (FLAG only) ---
+  unique_line_ratio_floor:
+    value: 0.45
+    range: [0.2, 0.9]
+    gates_key: unique_line_ratio_floor
+    desc: "below this the report FLAGs possible collapse (chorus exempt)"
+  ngram_collapse_n:
+    value: 4
+    range: [2, 8]
+    gates_key: ngram_collapse_n
+    desc: "n-gram window for the collapse FLAG"
+invariants:
+  - "n_concepts >= 2 * n_pairs"
+  - "barbell_accessible + barbell_ambitious == n_pairs"
+  - "total_prompts == n_pairs * n_variations_per_pair"
+  - "sung_lines[0] < sung_lines_target[0]"
+  - "sung_lines_target[0] < sung_lines_target[1]"
+  - "sung_lines_target[1] < sung_lines[1]"
+  - "music_prompt_chars[0] < music_prompt_chars_target[0]"
+  - "music_prompt_chars_target[1] < music_prompt_chars[1]"

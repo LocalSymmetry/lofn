@@ -1,0 +1,410 @@
+# =============================================================================
+# pipeline_map.yaml — THE manifest for the Lofn Prompt Explorer.
+#
+# This is the app's ONE new concept (design plan §3.2). The UI renders entirely
+# FROM this file; nothing about the repo layout is hardcoded in app code.
+# `scripts/verify_pipeline_map.py` checks every path here against the real tree
+# (at app startup + in CI) so the map can never silently rot.
+#
+# Ground truth resolved 2026-07-03 (docs/explorer-ground-truth.md):
+#   - CANONICAL library source = per-item YAML files (personalities/*.yaml,
+#     panels/*.yaml). The monolith .yaml and *_index.{json,md} are DERIVED.
+#   - No regen script existed -> scripts/regen_library.py is written by this build.
+#   - `-1.yaml` twins are orphaned/un-indexed variants: SURFACED + flagged, never
+#     hidden or auto-deleted. Counts are GLOBBED, never hardcoded (indexes drift).
+#   - 250/254 canonical YAML round-trip byte-identical via per-file indent detect;
+#     the rest fall back to raw-text editing (still byte-safe). See server/yamlio.py.
+# =============================================================================
+version: 1
+
+# How the backend locates the repo root: walk up until a dir contains ALL markers.
+repo_root_markers:
+  - SOUL.md
+  - vault/gates.yaml
+  - skills/orchestration
+
+# Path jail: the server may WRITE only to files matching these globs. Everything
+# else in the repo is read-only. output/** is read-only in v1 (Run Inspector v1.5).
+write_allowlist:
+  - skills/**
+  - vault/**
+  - .claude/skills/**
+  - tools/explorer/pipeline_map.yaml
+  # Studio (Creative Studio v2): the studio OWNS its versioned FlowSpecs, knob
+  # presets, and overlays under flows/. These are additive, git-tracked, and never
+  # touch canon (plan §2 path-jail extension). output/studio/** stays engine-owned.
+  - tools/explorer/flows/**
+
+# The shared '##' section headings the step files carry (drives the editor outline).
+step_outline_headings:
+  - Description
+  - Trigger Conditions
+  - Required Inputs
+  - Creative Context Inputs
+  - Execution Instructions
+
+# The CREATIVE CONTEXT slot tokens (from skills/<m>/OVERALL_PROMPT_TEMPLATE.md).
+# The Step Editor presence-checks each `{token}` against the open file.
+creative_context_slots:
+  - input
+  - seed
+  - meta_prompt
+  - personality
+  - concept_panel
+  - medium_panel
+  - marketing_panel
+  - flairs
+  - genres_list
+  - frames_list
+  - image_context
+
+# -----------------------------------------------------------------------------
+# RAILS — the five swimlanes. nodes[] are the agent prompt files (Atlas nodes).
+# -----------------------------------------------------------------------------
+rails:
+  - id: orchestrator
+    title: Orchestrator (Phase 0/1)
+    kind: orchestrator
+    router:
+      skill: skills/orchestration/SKILL.md
+    nodes:
+      - { id: orch.01, title: "Lofn-Core — Read & Seed",              path: skills/orchestration/steps/01_lofn_core.md }
+      - { id: orch.02, title: "Select Personality & Panel",           path: skills/orchestration/steps/02_personality_panel.md }
+      - { id: orch.03, title: "Baseline Panel Debate",                path: skills/orchestration/steps/03_baseline_debate.md }
+      - { id: orch.04, title: "Group Transform + Transformed Panel",  path: skills/orchestration/steps/04_group_transform.md }
+      - { id: orch.05, title: "Skeptic Transform + Final Synthesis",  path: skills/orchestration/steps/05_skeptic_synthesis.md }
+      - { id: orch.06, title: "Write Metaprompt",                     path: skills/orchestration/steps/06_metaprompt.md }
+
+  - id: music
+    title: Music
+    kind: modality
+    router:
+      skill: skills/music/SKILL.md
+      template: skills/music/OVERALL_PROMPT_TEMPLATE.md
+      task_template: skills/music/TASK_TEMPLATE.md
+      compressed_pipeline: skills/music/COMPRESSED_PIPELINE.md
+    nodes:
+      - { id: music.00, title: "Aesthetics & Genres",  path: skills/music/steps/00_Generate_Music_Aesthetics_And_Genres.md, edition_compressed: skills/music/steps-compressed/01_aesthetics.md }
+      - { id: music.01, title: "Essence & Facets",      path: skills/music/steps/01_Generate_Music_Essence_And_Facets.md,    edition_compressed: skills/music/steps-compressed/02_concepts.md }
+      - { id: music.02, title: "Concepts",              path: skills/music/steps/02_Generate_Music_Concepts.md,              edition_compressed: skills/music/steps-compressed/02_concepts.md }
+      - { id: music.03, title: "Artist & Critique",     path: skills/music/steps/03_Generate_Music_Artist_And_Critique.md,   edition_compressed: skills/music/steps-compressed/03_song_guides.md }
+      - { id: music.04, title: "Medium",                path: skills/music/steps/04_Generate_Music_Medium.md,                edition_compressed: skills/music/steps-compressed/03_song_guides.md }
+      - { id: music.05, title: "Refine Medium",         path: skills/music/steps/05_Generate_Music_Refine_Medium.md,         edition_compressed: skills/music/steps-compressed/03_song_guides.md }
+      - { id: music.06, title: "Facets",                path: skills/music/steps/06_Generate_Music_Facets.md,                edition_compressed: skills/music/steps-compressed/03_song_guides.md }
+      - { id: music.07, title: "Song Guides",           path: skills/music/steps/07_Generate_Music_Song_Guides.md,           edition_compressed: skills/music/steps-compressed/03_song_guides.md }
+      - { id: music.08, title: "Generation",            path: skills/music/steps/08_Generate_Music_Generation.md,            edition_compressed: skills/music/steps-compressed/04_write_songs.md }
+      - { id: music.09, title: "Artist Refined",        path: skills/music/steps/09_Generate_Music_Artist_Refined.md,        edition_compressed: skills/music/steps-compressed/04_write_songs.md }
+      - { id: music.10, title: "Revision Synthesis",    path: skills/music/steps/10_Generate_Music_Revision_Synthesis.md,    edition_compressed: skills/music/steps-compressed/04_write_songs.md }
+      - id: music.11
+        title: "Enhancement — Final Polish"
+        path: skills/music/steps/11_Generate_Music_Enhancement.md
+        edition_compressed: skills/music/steps-compressed/05_deliver.md
+        variants:
+          - { id: music.11.gpt55, title: "GPT-5.5 Enhancement (QA-gated)", path: skills/music/steps/11_Generate_Music_GPT55_Enhancement.md }
+
+  - id: image
+    title: Image
+    kind: modality
+    router:
+      skill: skills/image/SKILL.md
+      template: skills/image/OVERALL_PROMPT_TEMPLATE.md
+      task_template: skills/image/TASK_TEMPLATE.md
+      compressed_pipeline: skills/image/COMPRESSED_PIPELINE.md
+    nodes:
+      - { id: image.00, title: "Aesthetics & Genres", path: skills/image/steps/00_Generate_Image_Aesthetics_And_Genres.md, edition_compressed: skills/image/steps-compressed/01_aesthetics.md }
+      - { id: image.01, title: "Essence & Facets",     path: skills/image/steps/01_Generate_Image_Essence_And_Facets.md,    edition_compressed: skills/image/steps-compressed/02_concepts.md }
+      - { id: image.02, title: "Concepts",             path: skills/image/steps/02_Generate_Image_Concepts.md,              edition_compressed: skills/image/steps-compressed/02_concepts.md }
+      - { id: image.03, title: "Artist & Critique",    path: skills/image/steps/03_Generate_Image_Artist_And_Critique.md,   edition_compressed: skills/image/steps-compressed/03_refine.md }
+      - { id: image.04, title: "Medium",               path: skills/image/steps/04_Generate_Image_Medium.md,                edition_compressed: skills/image/steps-compressed/03_refine.md }
+      - { id: image.05, title: "Refine Medium",        path: skills/image/steps/05_Generate_Image_Refine_Medium.md,         edition_compressed: skills/image/steps-compressed/03_refine.md }
+      - { id: image.06, title: "Facets",               path: skills/image/steps/06_Generate_Image_Facets.md,                edition_compressed: skills/image/steps-compressed/03_refine.md }
+      - { id: image.07, title: "Aspects & Traits",     path: skills/image/steps/07_Generate_Image_Aspects_Traits.md,        edition_compressed: skills/image/steps-compressed/04_prompts.md }
+      - { id: image.08, title: "Generation",           path: skills/image/steps/08_Generate_Image_Generation.md,            edition_compressed: skills/image/steps-compressed/05_generate.md }
+      - { id: image.09, title: "Artist Refined",       path: skills/image/steps/09_Generate_Image_Artist_Refined.md,        edition_compressed: skills/image/steps-compressed/05_generate.md }
+      - { id: image.10, title: "Revision Synthesis",   path: skills/image/steps/10_Generate_Image_Revision_Synthesis.md,    edition_compressed: skills/image/steps-compressed/06_deliver.md }
+
+  - id: video
+    title: Video
+    kind: modality
+    router:
+      skill: skills/video/SKILL.md
+      template: skills/video/OVERALL_PROMPT_TEMPLATE.md
+      task_template: skills/video/TASK_TEMPLATE.md
+    nodes:
+      - { id: video.00, title: "Aesthetics & Genres", path: skills/video/steps/00_Generate_Video_Aesthetics_And_Genres.md }
+      - { id: video.01, title: "Essence & Facets",     path: skills/video/steps/01_Generate_Video_Essence_And_Facets.md }
+      - { id: video.02, title: "Concepts",             path: skills/video/steps/02_Generate_Video_Concepts.md }
+      - { id: video.03, title: "Artist & Critique",    path: skills/video/steps/03_Generate_Video_Artist_And_Critique.md }
+      - { id: video.04, title: "Medium",               path: skills/video/steps/04_Generate_Video_Medium.md }
+      - { id: video.05, title: "Refine Medium",        path: skills/video/steps/05_Generate_Video_Refine_Medium.md }
+      - { id: video.06, title: "Facets",               path: skills/video/steps/06_Generate_Video_Facets.md }
+      - { id: video.07, title: "Aspects & Traits",     path: skills/video/steps/07_Generate_Video_Aspects_Traits.md }
+      - { id: video.08, title: "Generation",           path: skills/video/steps/08_Generate_Video_Generation.md }
+      - { id: video.09, title: "Artist Refined",       path: skills/video/steps/09_Generate_Video_Artist_Refined.md }
+      - { id: video.10, title: "Revision Synthesis",   path: skills/video/steps/10_Generate_Video_Revision_Synthesis.md }
+
+  - id: story
+    title: Story
+    kind: modality
+    router:
+      skill: skills/story/SKILL.md
+      template: skills/story/OVERALL_PROMPT_TEMPLATE.md
+      task_template: skills/story/TASK_TEMPLATE.md
+    nodes:
+      - { id: story.00, title: "Aesthetics & Genres", path: skills/story/steps/00_Generate_Story_Aesthetics_And_Genres.md }
+      - { id: story.01, title: "Essence & Facets",     path: skills/story/steps/01_Generate_Story_Essence_And_Facets.md }
+      - { id: story.02, title: "Concepts",             path: skills/story/steps/02_Generate_Story_Concepts.md }
+      - { id: story.03, title: "Artist & Critique",    path: skills/story/steps/03_Generate_Story_Artist_And_Critique.md }
+      - { id: story.04, title: "Medium",               path: skills/story/steps/04_Generate_Story_Medium.md }
+      - { id: story.05, title: "Refine Medium",        path: skills/story/steps/05_Generate_Story_Refine_Medium.md }
+      - { id: story.06, title: "Facets",               path: skills/story/steps/06_Generate_Story_Facets.md }
+      - { id: story.07, title: "Story Guides",         path: skills/story/steps/07_Generate_Story_Story_Guides.md }
+      - { id: story.08, title: "Generation",           path: skills/story/steps/08_Generate_Story_Generation.md }
+      - { id: story.09, title: "Artist Refined",       path: skills/story/steps/09_Generate_Story_Artist_Refined.md }
+      - { id: story.10, title: "Revision Synthesis",   path: skills/story/steps/10_Generate_Story_Revision_Synthesis.md }
+
+# -----------------------------------------------------------------------------
+# EDGES — sequential within a rail + dispatch from orchestrator. `gates` lists
+# the gate ids whose chips render on that edge (see gates[] below).
+# -----------------------------------------------------------------------------
+dispatch_edges:
+  # orch.06 (metaprompt) hands the frozen ICB / CREATIVE_CONTEXT to every rail head.
+  - { from: orch.06, to: music.00, label: "metaprompt + CREATIVE_CONTEXT (ICB)" }
+  - { from: orch.06, to: image.00, label: "metaprompt + CREATIVE_CONTEXT (ICB)" }
+  - { from: orch.06, to: video.00, label: "metaprompt + CREATIVE_CONTEXT (ICB)" }
+  - { from: orch.06, to: story.00, label: "metaprompt + CREATIVE_CONTEXT (ICB)" }
+
+# Within-rail sequential edges are generated by the app (node N -> node N+1 in
+# order). Only edges that carry a GATE are declared here, keyed by the downstream
+# node; the app attaches these gates to the incoming edge of that node.
+edge_gates:
+  music.00: [g.step00]
+  music.02: [g.tree_branches]
+  music.05: [g.pairs_distinct]
+  music.08: [g.music_prompt, g.music_lyrics, g.music_house_lexicon, g.music_one_fact, g.collapse, g.human_subject]
+  music.10: [g.music_prompt, g.music_lyrics, g.music_house_lexicon, g.music_one_fact, g.collapse]
+  music.11: [g.music_prompt, g.music_lyrics, g.andon]
+  image.00: [g.step00]
+  image.02: [g.tree_branches]
+  image.08: [g.image_scene, g.collapse, g.human_subject]
+  image.10: [g.image_scene, g.collapse]
+  video.00: [g.step00]
+  video.08: [g.human_subject]
+  story.00: [g.step00]
+  story.08: [g.human_subject]
+
+# -----------------------------------------------------------------------------
+# GATES — the validation checkpoints. Chips are colored by severity:
+#   hard  = red (blocks advancement)   flag = amber (pass=None -> Somatic read)
+#   prose = grey (human/QA judgment)   mixed = has both hard + flag checks
+# `keys` are vault/gates.yaml keys; `validator` is the script that enforces them;
+# `prose` points at the authoritative EXECUTION.md clause.
+# -----------------------------------------------------------------------------
+gates:
+  - id: g.step00
+    title: "Step-00 taxonomy"
+    level: step
+    severity: mixed
+    keys: [taxonomy_cardinality, step00_min_bytes]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Each axis (aesthetics/emotions/frames/genres) >= 50; file >= 2000 bytes or the tree never branched."
+  - id: g.tree_branches
+    title: "Tree actually branches"
+    level: step
+    severity: prose
+    keys: []
+    validator: null
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: ">=12 concepts at step 02; human/QA read."
+  - id: g.pairs_distinct
+    title: "6 distinct pairs + cut ledger"
+    level: step
+    severity: prose
+    keys: []
+    validator: null
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Exactly 6 distinct pairs at step 05, with runner-up rationale."
+  - id: g.music_prompt
+    title: "Music prompt band"
+    level: step
+    severity: mixed
+    keys: [music_prompt_chars, music_prompt_chars_target, music_prompt_hug_ceiling, music_prompt_terminal_punctuation]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Dense paragraph 850-1000 chars (target 870-960); terminal punctuation HARD; >=985 chars FLAGs boundary-hugging."
+  - id: g.music_lyrics
+    title: "Lyrics structure & band"
+    level: step
+    severity: mixed
+    keys: [sung_lines, sung_lines_target, sung_lines_floor_hug, suno_lyrics_field_max, suno_lyrics_field_target]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "70-120 sung lines (target 78-110); field < 5000 (target 4800); EMO headers + >=1 SFX cue."
+  - id: g.music_house_lexicon
+    title: "House-lexicon self-copy"
+    level: step
+    severity: flag
+    keys: [house_lexicon]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Any calcified golden phrase in a NEW prompt/lyric FLAGs to the Somatic read."
+  - id: g.music_one_fact
+    title: "One-fact rule"
+    level: step
+    severity: flag
+    keys: [max_sung_numeric_facts]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "At most one sung numeric fact; respond to it, don't recite."
+  - id: g.image_scene
+    title: "Image scene contract"
+    level: step
+    severity: mixed
+    keys: [banned_imperative_openers, ban_words, image_min_words]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Noun-first opener HARD (no Create/Design/Make/Render/Depict); haze words FLAG; >= 80 words."
+  - id: g.collapse
+    title: "Repetition / collapse"
+    level: step
+    severity: flag
+    keys: [unique_line_ratio_floor, ngram_collapse_n]
+    validator: scripts/validate_step.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Low unique-line ratio FLAGs; chorus/refrain EXEMPT — never auto-fails."
+  - id: g.human_subject
+    title: "Human-subject pre-draft"
+    level: step
+    severity: hard
+    keys: []
+    validator: scripts/check_human_subjects.py
+    prose: "vault/HUMAN_SUBJECT_STANDARD.md"
+    note: "Minor-as-victim / identifying-tuple / name+crime -> HOLD_FOR_HUMAN."
+  - id: g.andon
+    title: "Step-11 Andon Cord"
+    level: step
+    severity: prose
+    keys: []
+    validator: null
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "REJECT authority on thread loss / personality collapse / generic output. Don't polish a corpse."
+  - id: g.portfolio
+    title: "Portfolio distinctiveness"
+    level: run
+    severity: hard
+    keys: [total_prompts]
+    validator: scripts/validate_portfolio_distinctiveness.py
+    prose: ".claude/skills/lofn/EXECUTION.md"
+    note: "Cross-pair similarity caps (prompt 0.58 / lyric 0.42 / 5-gram Jaccard 0.18); 24 prompts total."
+
+# -----------------------------------------------------------------------------
+# VALIDATORS — for the Gate Center validator browser. `level`: step | run |
+# orchestration. `usage` is the CLI signature the app can run (validators.py).
+# -----------------------------------------------------------------------------
+validators:
+  - { id: validate_step,                 path: scripts/validate_step.py,                          level: step,          usage: "validate_step.py <step> <file> [--gate-report [--out P]] [--meta-check [--root D]]" }
+  - { id: validate_orchestrator_packet,  path: scripts/validate_orchestrator_packet.py,           level: run,           usage: "validate_orchestrator_packet.py <run_dir>" }
+  - { id: validate_pair_artifacts,       path: scripts/validate_pair_artifacts.py,                level: step,          usage: "validate_pair_artifacts.py <audio_dir> <pair> [--attempt 1] [--max-attempts 3]" }
+  - { id: validate_portfolio,            path: scripts/validate_portfolio_distinctiveness.py,     level: run,           usage: "validate_portfolio_distinctiveness.py <audio_dir> [--max-lyric-sim 0.42] [--max-prompt-sim 0.58] [--max-ngram-jaccard 0.18]" }
+  - { id: validate_with_retries,         path: scripts/validate_with_retries.py,                  level: step,          usage: "validate_with_retries.py <step> <file> [--attempt N] [--max-attempts 3]" }
+  - { id: audit_pipeline_artifacts,      path: scripts/audit_lofn_pipeline_artifacts.py,          level: run,           usage: "audit_lofn_pipeline_artifacts.py <run_dir> [--pairs 6]" }
+  - { id: check_and_repair,              path: scripts/check_and_repair_lofn_run.py,              level: run,           usage: "check_and_repair_lofn_run.py <run_dir> [--repair] [--pairs 6]" }
+  - { id: rebuild_manifest,              path: scripts/rebuild_manifest.py,                       level: run,           usage: "rebuild_manifest.py <output_run_dir> [--out P]" }
+  - { id: check_human_subjects,          path: scripts/check_human_subjects.py,                   level: step,          usage: "check_human_subjects.py <lyrics_file_or_->" }
+  - { id: validate_checkpoint,           path: skills/orchestration/scripts/validate_checkpoint.py,     level: orchestration, usage: "validate_checkpoint.py <artifact.md>" }
+  - { id: validate_phase_gate,           path: skills/orchestration/scripts/validate_phase_gate.py,     level: orchestration, usage: "validate_phase_gate.py <phase_gate.json> [base_dir]" }
+  - { id: validate_preflight,            path: skills/orchestration/scripts/validate_preflight.py,      level: orchestration, usage: "validate_preflight.py <preflight.json>" }
+  - { id: validate_spawn_manifest,       path: skills/orchestration/scripts/validate_spawn_manifest.py, level: orchestration, usage: "validate_spawn_manifest.py <spawn_manifest.json>" }
+
+# -----------------------------------------------------------------------------
+# GATE THRESHOLDS — the single source of numeric truth. The app never restates a
+# number; it reads them live from here and surfaces drift via --meta-check.
+# -----------------------------------------------------------------------------
+gates_file: vault/gates.yaml
+meta_check: "scripts/validate_step.py --meta-check --root ."
+
+# -----------------------------------------------------------------------------
+# LIBRARIES — the supplementals. `kind` picks the editor:
+#   yaml-collection (per-item cards + raw) | comma-list | line-list | csv
+# canonical dir is the source of truth; derived files are regen-only in the UI.
+# variant_suffix items are surfaced + flagged, NEVER hidden or auto-deleted.
+# -----------------------------------------------------------------------------
+libraries:
+  - id: personalities
+    title: Personalities
+    kind: yaml-collection
+    dir: skills/orchestration/personalities
+    glob: "*.yaml"
+    variant_suffix: "-1"
+    item_keys: [name, prompt]
+    card: personality
+    derived:
+      monolith: skills/orchestration/personalities.yaml
+      index_json: skills/orchestration/personalities_index.json
+      index_md: skills/orchestration/personalities_index.md
+    regen: "python scripts/regen_library.py personalities"
+  - id: panels
+    title: Panels
+    kind: yaml-collection
+    dir: skills/orchestration/panels
+    glob: "*.yaml"
+    variant_suffix: "-1"
+    item_keys: [name, prompt]
+    card: panel
+    card_sections: ["Special Flairs", "Concept Panel", "Medium Panel", "Context & Marketing Panel"]
+    derived:
+      monolith: skills/orchestration/panels.yaml
+      index_json: skills/orchestration/panels_index.json
+      index_md: skills/orchestration/panels_index.md
+    regen: "python scripts/regen_library.py panels"
+  - id: aesthetics
+    title: Aesthetics
+    kind: comma-list          # NOTE: single line, comma-separated (not newline).
+    path: vault/aesthetics.txt
+  - id: genres
+    title: Genres
+    kind: line-list
+    path: vault/genres.txt
+  - id: film_styles
+    title: Film Styles
+    kind: line-list
+    path: vault/film_styles.txt
+  - id: frames
+    title: Frames
+    kind: csv
+    path: vault/frames.csv
+    columns: [Category, Technique, Description]
+  - id: music_frames
+    title: Music Frames
+    kind: csv
+    path: vault/music_frames.csv
+    columns: [Category, Technique, Description]
+    note: "Leading blank line present in the source — preserved on save."
+  - id: video_frames
+    title: Video Frames
+    kind: csv
+    path: vault/video_frames.csv
+    columns: [Category, Technique, Description]
+
+# -----------------------------------------------------------------------------
+# REFERENCES — browsable/editable plain files. (image/video/story reference dirs
+# exist but are EMPTY at present.)
+# -----------------------------------------------------------------------------
+reference_dirs:
+  - { id: music_refs,        dir: skills/music/references }
+  - { id: orchestration_refs, dir: skills/orchestration/refs }
+
+# -----------------------------------------------------------------------------
+# EXECUTION LAYER — the Claude-native port (.claude/skills/lofn*). A toggleable
+# Atlas layer; each SKILL.md / EXECUTION.md is editable.
+# -----------------------------------------------------------------------------
+execution_layer:
+  - { id: lofn,                 skill: .claude/skills/lofn/SKILL.md,                 execution: .claude/skills/lofn/EXECUTION.md }
+  - { id: lofn-daily,           skill: .claude/skills/lofn-daily/SKILL.md }
+  - { id: lofn-image,           skill: .claude/skills/lofn-image/SKILL.md }
+  - { id: lofn-music,           skill: .claude/skills/lofn-music/SKILL.md }
+  - { id: lofn-video,           skill: .claude/skills/lofn-video/SKILL.md }
+  - { id: lofn-story,           skill: .claude/skills/lofn-story/SKILL.md }
+  - { id: lofn-qa,              skill: .claude/skills/lofn-qa/SKILL.md }
+  - { id: lofn-step11-packager, skill: .claude/skills/lofn-step11-packager/SKILL.md }

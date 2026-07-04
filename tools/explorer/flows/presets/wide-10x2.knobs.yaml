@@ -1,0 +1,135 @@
+# wide-10x2.knobs.yaml — the "wide" portfolio: more pairs, fewer variations each.
+#
+# 10 concept x medium pairs x 2 variations = 20 prompts, barbell 5 ACCESSIBLE +
+# 5 AMBITIOUS. Demonstrates the signature knob interaction (plan §8.2): drag
+# n_pairs 6->10 and the derived barbell (5+5), total_prompts (20), the
+# divergence pool floor (>= 20 concepts), and the run-local gate values all move
+# together. Only the values that DIFFER from classic-6x4 are commented; the
+# gates_key-bound quality bands are inherited unchanged (same canon numbers).
+name: wide-10x2
+desc: "Wide portfolio: 10 pairs x 2 variations = 20, barbell 5+5."
+knobs:
+  n_pairs:
+    value: 10
+    range: [2, 12]
+    desc: "concept x medium pairs selected at step 05 (wide arm)"
+  n_variations_per_pair:
+    value: 2
+    range: [1, 8]
+    desc: "fewer variations each, spread across more pairs"
+  n_concepts:
+    value: 20
+    range: [4, 40]
+    min_expr: "2 * n_pairs"
+    desc: "wider divergence pool to feed 10 pairs (>= 2*n_pairs)"
+  barbell_accessible:
+    expr: "ceil(n_pairs / 2)"
+    override: null
+    desc: "ACCESSIBLE arm (5 at n_pairs=10)"
+  barbell_ambitious:
+    expr: "n_pairs - barbell_accessible"
+    override: null
+    desc: "AMBITIOUS arm (5 at n_pairs=10)"
+  total_prompts:
+    expr: "n_pairs * n_variations_per_pair"
+    gates_key: total_prompts
+    desc: "20 at 10x2 (portfolio distinctiveness scope)"
+  panel_count:
+    value: 3
+    range: [1, 5]
+    desc: "orchestrator panels"
+  voices_per_panel:
+    value: 6
+    range: [3, 10]
+    desc: "voices per panel"
+  n_flairs:
+    value: 15
+    range: [5, 30]
+    desc: "Special Flairs"
+  concept_warmup_discard:
+    value: 17
+    range: [0, 30]
+    desc: "concept warm-up discard"
+  max_concurrency:
+    value: 6
+    range: [1, 12]
+    desc: "fan-out semaphore cap; 10 pairs stagger past 6"
+  retry_max_attempts:
+    value: 3
+    range: [1, 5]
+    desc: "on_fail: retry attempts"
+  taxonomy_cardinality:
+    value: 50
+    range: [20, 100]
+    gates_key: taxonomy_cardinality
+    desc: "step-00 axis cardinality"
+  step00_min_bytes:
+    value: 2000
+    range: [500, 8000]
+    gates_key: step00_min_bytes
+    desc: "step-00 byte floor"
+  music_prompt_chars:
+    value: [850, 1000]
+    gates_key: music_prompt_chars
+    desc: "MUSIC PROMPT char band (canon default)"
+  music_prompt_chars_target:
+    value: [870, 960]
+    gates_key: music_prompt_chars_target
+    desc: "mid-band target"
+  music_prompt_hug_ceiling:
+    value: 985
+    range: [900, 1000]
+    gates_key: music_prompt_hug_ceiling
+    desc: "boundary-hug FLAG ceiling"
+  sung_lines:
+    value: [70, 120]
+    gates_key: sung_lines
+    desc: "sung-line band"
+  sung_lines_target:
+    value: [78, 110]
+    gates_key: sung_lines_target
+    desc: "sung-line target band"
+  sung_lines_floor_hug:
+    value: 72
+    range: [70, 90]
+    gates_key: sung_lines_floor_hug
+    desc: "floor-hug FLAG"
+  suno_lyrics_field_max:
+    value: 5000
+    range: [3000, 6000]
+    gates_key: suno_lyrics_field_max
+    desc: "Suno LYRICS field cap"
+  suno_lyrics_field_target:
+    value: 4800
+    range: [3000, 5000]
+    gates_key: suno_lyrics_field_target
+    desc: "soft target"
+  max_sung_numeric_facts:
+    value: 1
+    range: [0, 4]
+    gates_key: max_sung_numeric_facts
+    desc: "one-fact rule"
+  image_min_words:
+    value: 80
+    range: [40, 200]
+    gates_key: image_min_words
+    desc: "image scene word floor"
+  unique_line_ratio_floor:
+    value: 0.45
+    range: [0.2, 0.9]
+    gates_key: unique_line_ratio_floor
+    desc: "collapse FLAG floor"
+  ngram_collapse_n:
+    value: 4
+    range: [2, 8]
+    gates_key: ngram_collapse_n
+    desc: "collapse n-gram window"
+invariants:
+  - "n_concepts >= 2 * n_pairs"
+  - "barbell_accessible + barbell_ambitious == n_pairs"
+  - "total_prompts == n_pairs * n_variations_per_pair"
+  - "sung_lines[0] < sung_lines_target[0]"
+  - "sung_lines_target[0] < sung_lines_target[1]"
+  - "sung_lines_target[1] < sung_lines[1]"
+  - "music_prompt_chars[0] < music_prompt_chars_target[0]"
+  - "music_prompt_chars_target[1] < music_prompt_chars[1]"

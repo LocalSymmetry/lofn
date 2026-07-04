@@ -1,3 +1,20 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Lofn Creative Studio — API keys (WS1). Never committed, never served.
+.env.studio
+.env.studio.*
+
+# Lofn Prompt Explorer / Creative Studio — dependencies & generated artifacts.
+# Rebuilt with `npm install && npm run build` (web) and a fresh venv (server).
+node_modules/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.vite/

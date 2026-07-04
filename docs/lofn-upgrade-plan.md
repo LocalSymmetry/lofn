@@ -1,7 +1,7 @@
 # Lofn Claude-Native Pipeline — Staged Upgrade Plan
 
-> ## ✅ IMPLEMENTATION STATUS — Stages 0–5 implemented 2026-06-25. For Demi's review.
-> Stages 0–3 as defined below, **plus** two promoted stages — **Stage 4** (Human-Subject grammar-level prevention) and **Stage 5** (`gates.yaml` single numeric-threshold source) — were built by the fleet on 2026-06-25. This document is now the **record of intent**, not a live spec: where this plan and the shipped skills disagree on mechanics, **`.claude/skills/lofn/EXECUTION.md` is authoritative**. "Target files" lines name the edit sites that were touched. Conservative defaults were applied throughout (learnings stay in the dispatch brief, never the ICB; daily caps-and-staggers; `validate_step.py` + `check_human_subjects.py` were EXTENDED not recreated; the daily-selection CRITICAL-floors stayed DEFERRED). The maintainer-review framing still holds: this is a roadmap-of-record for Demi's review, and the Andon Cord, the Human-Subject Standard, and "don't bury the muse" continue to govern the **plan and its implementation**, not just the pipeline.
+> ## ✅ IMPLEMENTATION STATUS — Stages 0–5 implemented 2026-06-25. For the maintainer's review.
+> Stages 0–3 as defined below, **plus** two promoted stages — **Stage 4** (Human-Subject grammar-level prevention) and **Stage 5** (`gates.yaml` single numeric-threshold source) — were built by the fleet on 2026-06-25. This document is now the **record of intent**, not a live spec: where this plan and the shipped skills disagree on mechanics, **`.claude/skills/lofn/EXECUTION.md` is authoritative**. "Target files" lines name the edit sites that were touched. Conservative defaults were applied throughout (learnings stay in the dispatch brief, never the ICB; daily caps-and-staggers; `validate_step.py` + `check_human_subjects.py` were EXTENDED not recreated; the daily-selection CRITICAL-floors stayed DEFERRED). The maintainer-review framing still holds: this is a roadmap-of-record for the maintainer's review, and the Andon Cord, the Human-Subject Standard, and "don't bury the muse" continue to govern the **plan and its implementation**, not just the pipeline.
 
 ---
 
@@ -116,7 +116,7 @@ These are general agentic-engineering patterns, adopted **only in downscoped, so
 - **Warm-handoff checkpoint → the disk-derived RUN_STATE manifest + structured return** (items 1.1, 1.2, 1.3). A pure agent-behavior organ — trimmed to the fields a resume actually consumes.
 - **Model tiering by role → judge-in-clean-context** (item 2.3). The transferable half for a one-Claude pipeline: the judgment passes (QA, Somatic, Step-11 reject) run in a fresh context, never as the tail of the generator.
 - **The named-corpse Andon Cord → a short human-judged checklist** (item 0.5).
-- **Human-Subject grammar-level prevention** is noted for a future pass on `vault/HUMAN_SUBJECT_STANDARD.md` — make the violation *unspecifiable* in the spec (a taboo block read pre-draft so the forbidden thing has no field to live in) plus a HOLD-FOR-HUMAN backstop, forbidding **identifiability** not subject matter. The Hyper-Skeptic's highest-conviction item, but **deferred to its own stage with Demi's hand on it** because it touches the soul guardrail (see Open Questions).
+- **Human-Subject grammar-level prevention** is noted for a future pass on `vault/HUMAN_SUBJECT_STANDARD.md` — make the violation *unspecifiable* in the spec (a taboo block read pre-draft so the forbidden thing has no field to live in) plus a HOLD-FOR-HUMAN backstop, forbidding **identifiability** not subject matter. The Hyper-Skeptic's highest-conviction item, but **deferred to its own stage with the maintainer's hand on it** because it touches the soul guardrail (see Open Questions).
 - **Named CRITICAL-floor auto-rejects** for `lofn-daily` selection (auto-reject derivative candidates regardless of aggregate score) is **noted, not staged** — the skeptics flagged selection/exemplar machinery as the highest homogenization-risk zone, so it waits for an explicit decision.
 
 ---
@@ -158,7 +158,7 @@ These are general agentic-engineering patterns, adopted **only in downscoped, so
 
 ---
 
-## 8. Open Questions for Demi
+## 8. Open Questions for the maintainer
 
 1. **`gates.yaml` — yes or no?** The Determinism seat wants a single source for numeric thresholds (the 850–1000 band is literally restated across 4+ files). The skeptics accept it **only if** paired with a harness meta-check that *fails on prose/YAML disagreement* — otherwise it's just a fifth place the number lives. Do you want the YAML now (Stage 2), or is the in-prose precedence fix (0.2) enough for this increment?
 
