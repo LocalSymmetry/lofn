@@ -84,10 +84,18 @@ def main() -> int:
     for p in files:
         txt = body(p.read_text(errors="replace"))
         low = txt.lower()
-        # Count substantive facets: markdown headings / numbered facets OR JSON-style objects.
-        facet_hits = len(re.findall(r"(?im)^\s*(?:[-*]\s*)?(?:facet\s+\d+|facet\s+[a-z]|\d+\.|#{3,}\s*)", txt))
+        # Count substantive facets across the common formattings so a legitimate,
+        # complete facet set is never undercounted by heading STYLE:
+        #   - markdown headings / numbered facets / "facet N" line-starts
+        #   - bold facet markers like "**Facet 1 - ...**"
+        #   - JSON-style objects ("name": ...)
+        #   - a format-agnostic fallback: each complete facet carries a "why it matters"
+        #     (OUTPUT CONTRACT), so count those too and take the max signal.
+        heading_hits = len(re.findall(r"(?im)^\s*(?:[-*]\s*)?(?:facet\s+\d+|facet\s+[a-z]\b|\d+\.|#{3,}\s*)", txt))
+        bold_facet_hits = len(re.findall(r"(?im)^\s*\*{1,2}\s*facet\s+\d+", txt))
         json_name_hits = len(re.findall(r'"name"\s*:', txt, re.I))
-        facet_hits = max(facet_hits, json_name_hits)
+        why_hits = len(re.findall(r"(?im)^\s*(?:[-*>]\s*)?\**\s*why[ _]it[ _]matters", txt))
+        facet_hits = max(heading_hits, bold_facet_hits, json_name_hits, why_hits)
         if facet_hits < min_facets:
             failures.append(f"{p.name} has too few substantive facets ({facet_hits}; need >={min_facets})")
         if "failure mode" not in low and "failure_mode" not in low and "fails if" not in low:
