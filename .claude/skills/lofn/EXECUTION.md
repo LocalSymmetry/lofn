@@ -126,7 +126,7 @@ Apply the matching gate after each artifact. If it fails, repair the artifact in
 - **Image:** a noun-first, present-tense scene description — **no imperative opener** (Create/Design/Make/Render/Depict…), medium named within the first third, emotion *shown* not named, none of the banned haze words (ethereal/dreamlike/whimsical/gentle light/soft glow/magical/delicate), no living-artist names.
 - **Video:** the shape `[CAMERA] + [SUBJECT] + [ACTION] + [SETTING] + [STYLE & AUDIO]`, with audio directed explicitly (Dialogue / SFX / Ambient / Music).
 
-**Distinctiveness across pairs** is checked at 06, 09, and 10 — if Step 06 flattened pair facets, or 09/10 reused one skeleton, that's a repair blocker even if every single file passes its own gate.
+**Distinctiveness across pairs** is checked at 06, 09, and 10 — if Step 06 flattened pair facets, or 09/10 reused one skeleton, that's a repair blocker even if every single file passes its own gate. The three sibling validators are `scripts/validate_step06_distinctiveness.py`, `scripts/validate_step09_distinctiveness.py`, and `scripts/validate_portfolio_distinctiveness.py` (ceilings single-sourced from `vault/gates.yaml`; fail-open). A breach is a **repair trigger** (routes into the max-3 repair loop → quarantine → human), NOT a run kill — and a *deliberate* shared motif that survives repair is a **human waive**, never a silent ship.
 
 ---
 
