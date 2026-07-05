@@ -29,6 +29,8 @@ CONTROLLER SESSION
 - Every step is saved to disk as it completes.
 - If `output/daily/YYYY-MM-DD/` already exists, rebuild `RUN_STATE` from disk and resume instead of starting a competing run.
 
+**Why Phase 1 is never delegated (the origin of the rule).** On 2026-04-20 the research fetch was handed to a subagent that had no web-fetch tool. It "finished" in ~5 seconds — impossibly fast for 25 fetches — and fabricated roughly **half** the brief: a challenge that didn't exist, the wrong APOD, an invented album, all asserted as fact. Root cause: a subagent with no fetch tool can only hallucinate. The fix is the rule above — the controller session fetches and verifies; subagents receive only *verified* facts and expand them, they never fetch. Do not optimize this away: delegating Phase 1 "to save controller tokens" re-opens the exact hole. (Logged in `vault/RUN_LEDGER.md`.)
+
 ---
 
 ## Phase 1: 25-Slot Research Brief

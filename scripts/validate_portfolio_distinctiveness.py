@@ -12,6 +12,14 @@ import re
 import sys
 from pathlib import Path
 
+try:
+    # scripts/ is sys.path[0] when run directly; single-source the ceilings from
+    # vault/gates.yaml. Fail-open: a broken import falls back to the CLI defaults.
+    from validate_step import load_gates
+except Exception:  # noqa: BLE001
+    def load_gates(path=None):  # type: ignore
+        return {}
+
 
 def norm(s: str) -> str:
     # Preserve Suno v5.5 structured prompt fields (`[genre: ...]`) while still
@@ -51,12 +59,16 @@ def ngrams(s: str, n: int = 5) -> set[tuple[str, ...]]:
 
 
 def main() -> int:
+    g = load_gates()
     ap = argparse.ArgumentParser()
     ap.add_argument("audio_dir")
-    ap.add_argument("--max-lyric-sim", type=float, default=0.42)
-    ap.add_argument("--max-prompt-sim", type=float, default=0.58)
-    ap.add_argument("--max-ngram-jaccard", type=float, default=0.18)
+    ap.add_argument("--max-lyric-sim", type=float, default=None)
+    ap.add_argument("--max-prompt-sim", type=float, default=None)
+    ap.add_argument("--max-ngram-jaccard", type=float, default=None)
     args = ap.parse_args()
+    max_lyric_sim = args.max_lyric_sim if args.max_lyric_sim is not None else float(g.get("portfolio_max_lyric_similarity", 0.42))
+    max_prompt_sim = args.max_prompt_sim if args.max_prompt_sim is not None else float(g.get("portfolio_max_prompt_similarity", 0.58))
+    max_ngram_jaccard = args.max_ngram_jaccard if args.max_ngram_jaccard is not None else float(g.get("portfolio_max_ngram_jaccard", 0.18))
 
     root = Path(args.audio_dir)
     files = sorted(p for p in root.glob("pair_*_step10_revision_synthesis.md") if ".repair_attempt_" not in p.name)
@@ -78,11 +90,11 @@ def main() -> int:
             lsim = difflib.SequenceMatcher(None, alyr, blyr).ratio()
             ag, bg = ngrams(alyr), ngrams(blyr)
             jac = len(ag & bg) / max(1, len(ag | bg))
-            if psim > args.max_prompt_sim:
+            if psim > max_prompt_sim:
                 failures.append(f"prompt similarity too high {a} vs {b}: {psim:.3f}")
-            if lsim > args.max_lyric_sim:
+            if lsim > max_lyric_sim:
                 failures.append(f"lyric similarity too high {a} vs {b}: {lsim:.3f}")
-            if jac > args.max_ngram_jaccard:
+            if jac > max_ngram_jaccard:
                 failures.append(f"5-gram overlap too high {a} vs {b}: {jac:.3f}")
 
     if failures:
