@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store";
+import { ArcFan, HypsometricKey } from "../components/charts";
 import type { Gate, Rail, RailNode } from "../types";
 
 const SEV_ORDER = ["hard", "mixed", "flag", "prose"];
@@ -20,6 +21,11 @@ export function Atlas() {
 
   if (!manifest) return null;
   const edgeGates: Record<string, string[]> = (manifest as any).edge_gates || {};
+  // the dispatch fan-out: the orchestrator freezes once and fans to every
+  // modality rail. Rendered as an arc-fan, in each rail's own hue.
+  const dispatchTargets = manifest.rails
+    .filter((r) => r.kind !== "orchestrator")
+    .map((r) => ({ label: r.id, color: `var(--rail-${r.id})` }));
 
   return (
     <>
@@ -36,6 +42,7 @@ export function Atlas() {
         {manifest.rails.map((rail) => (
           <RailRow key={rail.id} rail={rail} git={git} edgeGates={edgeGates}
             gateById={gateById} showGates={showGates} showEditions={showEditions}
+            dispatchTargets={dispatchTargets}
             onOpen={(p) => nav(`/edit?path=${encodeURIComponent(p)}`)} />
         ))}
         {showExec && <ExecStrip layer={(manifest as any).execution_layer} onOpen={(p) => nav(`/edit?path=${encodeURIComponent(p)}`)} />}
@@ -44,9 +51,10 @@ export function Atlas() {
   );
 }
 
-function RailRow({ rail, git, edgeGates, gateById, showGates, showEditions, onOpen }: {
+function RailRow({ rail, git, edgeGates, gateById, showGates, showEditions, dispatchTargets, onOpen }: {
   rail: Rail; git: Record<string, string>; edgeGates: Record<string, string[]>;
-  gateById: Record<string, Gate>; showGates: boolean; showEditions: boolean; onOpen: (p: string) => void;
+  gateById: Record<string, Gate>; showGates: boolean; showEditions: boolean;
+  dispatchTargets: { label: string; color: string }[]; onOpen: (p: string) => void;
 }) {
   const hue = `var(--rail-${rail.id})`;
   const isOrch = rail.kind === "orchestrator";
@@ -73,7 +81,11 @@ function RailRow({ rail, git, edgeGates, gateById, showGates, showEditions, onOp
               </div>
             );
           })}
-          {isOrch && <Dispatch />}
+          {isOrch && (
+            <div style={{ display: "flex", alignItems: "center", paddingLeft: 10 }}>
+              <ArcFan source="orchestrator" targets={dispatchTargets} />
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -129,14 +141,6 @@ function EdgeGates({ gates, hasNext }: { gates: Gate[]; hasNext: boolean }) {
   );
 }
 
-function Dispatch() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", padding: "0 10px", color: "var(--text-faint)", fontSize: 11, fontStyle: "italic", maxWidth: 130 }}>
-      → dispatches metaprompt + frozen ICB to all modality rails
-    </div>
-  );
-}
-
 function ExecStrip({ layer, onOpen }: { layer: any[]; onOpen: (p: string) => void }) {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "132px 1fr", gap: 12 }}>
@@ -164,12 +168,11 @@ function Toggle({ on, set, label }: { on: boolean; set: (b: boolean) => void; la
 
 function Legend() {
   return (
-    <div className="row wrap" style={{ padding: "6px 16px", borderBottom: "1px solid var(--border)", gap: 12, fontSize: 11, color: "var(--text-faint)" }}>
-      <span>severity:</span>
-      <span className="chip hard"><span className="d" />hard fail</span>
-      <span className="chip mixed"><span className="d" />mixed</span>
-      <span className="chip flag"><span className="d" />flag</span>
-      <span className="chip prose"><span className="d" />prose</span>
+    <div className="row wrap" style={{ padding: "8px 16px", borderBottom: "1px solid var(--border)", gap: 16, alignItems: "center" }}>
+      <HypsometricKey variant="legend" />
+      <span className="faint" style={{ fontSize: 11, maxWidth: 360, lineHeight: 1.4 }}>
+        Severity as altitude of light — canon at the pale zenith, the hard-fail Andon at the horizon. Gates ride each step's outgoing edge; the orchestrator freezes once and fans to every rail.
+      </span>
     </div>
   );
 }

@@ -2,22 +2,27 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "../api";
 import { Editor } from "../components/Editor";
+import { Dumbbell, SevMark, type Sev } from "../components/charts";
 import { useStore } from "../store";
-import type { GatesData, MetaCheck, ValidatorResult } from "../types";
+import type { Gate, GatesData, MetaCheck, ValidatorResult } from "../types";
 
-type Tab = "thresholds" | "drift" | "map" | "validators" | "raw";
+type Tab = "thresholds" | "coverage" | "drift" | "map" | "validators" | "raw";
 
 export function GateCenter() {
   const { manifest } = useStore();
   const [params] = useSearchParams();
-  const [tab, setTab] = useState<Tab>(params.get("gate") ? "map" : "thresholds");
+  const TABS: Tab[] = ["thresholds", "coverage", "drift", "map", "validators", "raw"];
+  const qtab = params.get("tab");
+  const [tab, setTab] = useState<Tab>(
+    qtab && TABS.includes(qtab as Tab) ? (qtab as Tab) : params.get("gate") ? "map" : "thresholds",
+  );
   const [gates, setGates] = useState<GatesData | null>(null);
   const highlight = params.get("gate");
 
   useEffect(() => { api.gates().then(setGates).catch(() => setGates(null)); }, []);
 
   const tabs: [Tab, string][] = [
-    ["thresholds", "Thresholds"], ["drift", "Drift"], ["map", "Gate map"],
+    ["thresholds", "Thresholds"], ["coverage", "Coverage"], ["drift", "Drift"], ["map", "Gate map"],
     ["validators", "Validators"], ["raw", "gates.yaml"],
   ];
 
@@ -34,7 +39,8 @@ export function GateCenter() {
         <span className="faint mono" style={{ fontSize: 11 }}>{manifest?.gates_file}</span>
       </div>
       {tab === "thresholds" && <Thresholds gates={gates} />}
-      {tab === "drift" && <Drift />}
+      {tab === "coverage" && <Coverage />}
+      {tab === "drift" && <Drift gates={gates} />}
       {tab === "map" && <GateMap highlight={highlight} />}
       {tab === "validators" && <Validators />}
       {tab === "raw" && <div style={{ flex: 1, minHeight: 0 }}><Editor path={manifest!.gates_file} /></div>}
@@ -67,7 +73,80 @@ function Thresholds({ gates }: { gates: GatesData | null }) {
   );
 }
 
-function Drift() {
+/* ---- Coverage: rail × severity dot-matrix (the "where do hard gates ride?"
+   view that exists nowhere else). Pure client reduction of edge_gates ⋈ gates,
+   bucketed by rail (step-id prefix) × severity — no new endpoint. ---- */
+const SEV_COLS: Sev[] = ["prose", "mixed", "flag", "hard"];
+
+function Coverage() {
+  const { manifest } = useStore();
+  const data = useMemo(() => {
+    if (!manifest) return null;
+    const gateById: Record<string, Gate> = {};
+    manifest.gates.forEach((g) => (gateById[g.id] = g));
+    const edgeGates: Record<string, string[]> = (manifest as any).edge_gates || {};
+    const cells: Record<string, Record<string, Set<string>>> = {};
+    const railIds = manifest.rails.map((r) => r.id);
+    railIds.forEach((r) => (cells[r] = { prose: new Set(), mixed: new Set(), flag: new Set(), hard: new Set() }));
+    for (const [stepId, ids] of Object.entries(edgeGates)) {
+      const rail = stepId.split(".")[0];
+      if (!cells[rail]) continue;
+      for (const id of ids) {
+        const g = gateById[id];
+        if (g && cells[rail][g.severity]) cells[rail][g.severity].add(id);
+      }
+    }
+    return { railIds, cells };
+  }, [manifest]);
+  if (!manifest || !data) return null;
+  const railTitle = (id: string) => manifest.rails.find((r) => r.id === id)?.title || id;
+  return (
+    <div className="scroll pad" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <p className="muted" style={{ maxWidth: 640, fontSize: 12 }}>
+        Where the gates ride — distinct gates guarding each rail's step edges, by severity. The <b style={{ color: "var(--sev-hard)" }}>hard</b> column is the Andon coverage: where a failing check <i>stops the line</i>. Read the texture — a rail with an empty hard column is a rail nothing can halt.
+      </p>
+      <div className="cov" style={{ gridTemplateColumns: `150px repeat(${SEV_COLS.length}, minmax(74px, 1fr))` }}>
+        <div className="cov-cell cov-head">rail \ severity</div>
+        {SEV_COLS.map((s) => (
+          <div key={s} className="cov-cell cov-head" style={{ justifyContent: "center" }}><SevMark sev={s} /> {s}</div>
+        ))}
+        {data.railIds.map((rail) => (
+          <RailCovRow key={rail} rail={rail} title={railTitle(rail)} cells={data.cells[rail]} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RailCovRow({ rail, title, cells }: { rail: string; title: string; cells: Record<string, Set<string>> }) {
+  return (
+    <>
+      <div className="cov-cell cov-rail">
+        <span style={{ width: 9, height: 9, borderRadius: 2, background: `var(--rail-${rail})`, display: "inline-block", flex: "none" }} />
+        {title}
+      </div>
+      {SEV_COLS.map((s) => {
+        const n = cells[s]?.size || 0;
+        return (
+          <div key={s} className={`cov-cell ${s === "hard" && n ? "hot" : ""}`} title={`${n} ${s} gate(s) on ${title}`}>
+            {n ? (
+              <>{Array.from({ length: Math.min(n, 5) }).map((_, i) => <SevMark key={i} sev={s} size={7} />)}<span className="cov-count">{n}</span></>
+            ) : <span className="cov-empty">·</span>}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+/** first finite number in a scalar/string ("850", "0.5", "≥1000" → 1000). */
+const firstNum = (v: any): number | null => {
+  if (typeof v === "number") return Number.isFinite(v) ? v : null;
+  if (typeof v === "string") { const m = v.match(/-?\d+(?:\.\d+)?/); return m ? parseFloat(m[0]) : null; }
+  return null;
+};
+
+function Drift({ gates }: { gates: GatesData | null }) {
   const [mc, setMc] = useState<MetaCheck | null>(null);
   const [loading, setLoading] = useState(false);
   const run = async () => { setLoading(true); try { setMc(await api.metacheck()); } finally { setLoading(false); } };
@@ -78,23 +157,32 @@ function Drift() {
         <button className="btn primary" onClick={run} disabled={loading}>{loading ? "scanning…" : "Re-run meta-check"}</button>
         {mc && <span className="faint">{mc.summary || `${mc.count} disagreement(s)`} · {mc.duration_ms}ms</span>}
       </div>
-      <p className="muted" style={{ maxWidth: 640, fontSize: 12 }}>
-        Prose vs <span className="mono">gates.yaml</span> drift — a restated threshold in a skill/reference file that disagrees with the single source. WARN-only in the pipeline; here it's the fix list.
+      <p className="muted" style={{ maxWidth: 660, fontSize: 12 }}>
+        Prose vs <span className="mono">gates.yaml</span> drift — a restated threshold that disagrees with the single source. Each gap is drawn to scale: the <span style={{ color: "var(--canon-edge)" }}>◉ canonical</span> value against the <span style={{ color: "var(--sev-flag)" }}>● restated</span> one. WARN-only in the pipeline; here it's the fix list.
       </p>
       {!mc ? null : mc.rows.length === 0 ? (
         <div className="card"><div className="card-bd row"><span className="badge ok"><span className="d" />no drift</span> every restated number agrees with gates.yaml.</div></div>
       ) : (
         <div className="card"><table className="grid">
-          <thead><tr><th>File</th><th>Threshold</th><th>Restated as</th><th></th></tr></thead>
+          <thead><tr><th>File</th><th>Threshold</th><th>Canon ↔ restated</th><th>Restated</th><th></th></tr></thead>
           <tbody>
-            {mc.rows.map((r, i) => (
-              <tr key={i}>
-                <td className="mono" style={{ fontSize: 11 }}>{r.file}</td>
-                <td className="mono" style={{ color: "var(--text-dim)" }}>{r.label}</td>
-                <td className="mono" style={{ color: "var(--sev-flag)" }}>{r.value}</td>
-                <td><a href={`#/edit?path=${encodeURIComponent(r.file)}`}>open →</a></td>
-              </tr>
-            ))}
+            {mc.rows.map((r, i) => {
+              const canon = firstNum(gates?.flat?.[r.label]);
+              const restated = firstNum(r.value);
+              const canDumb = canon != null && restated != null && canon !== restated;
+              return (
+                <tr key={i}>
+                  <td className="mono" style={{ fontSize: 11 }}>{r.file}</td>
+                  <td className="mono" style={{ color: "var(--text-dim)" }}>{r.label}</td>
+                  <td>{canDumb
+                    ? <Dumbbell a={canon!} b={restated!} />
+                    : <span className="faint" style={{ fontSize: 11 }}>{gates?.flat?.[r.label] != null ? `canon ${fmt(gates.flat[r.label])}` : "—"}</span>}
+                  </td>
+                  <td className="mono" style={{ color: "var(--sev-flag)" }}>{r.value}</td>
+                  <td><a href={`#/edit?path=${encodeURIComponent(r.file)}`}>open →</a></td>
+                </tr>
+              );
+            })}
           </tbody>
         </table></div>
       )}

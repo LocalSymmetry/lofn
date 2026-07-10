@@ -1,0 +1,101 @@
+{"event": "run_status", "status": "running", "ts": "2026-07-06T05:54:41Z"}
+{"event": "run_start", "flow": "lofn-music", "version": 1, "n_pairs": 6, "dry_run": true, "max_concurrency": 6, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "00", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "00", "pair": null, "text_sha": "57950a5553d0729263c15ddbf473dc8760eeb66a07206ec72b341c603132bd7d", "est_tokens_in": 9319, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "01", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "01", "pair": null, "text_sha": "f2a61e306150481f94cb905b1df6801dc4ab74550e853dd64ee98011d0a60a44", "est_tokens_in": 9780, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "02", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "02", "pair": null, "text_sha": "10e1f06afca9fe331f5f9ddd03483e0aa39f4ab08733d946bb06801b96d7f410", "est_tokens_in": 9186, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "03", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "03", "pair": null, "text_sha": "37a1f8bd662d20c28f836a32acda7d3ef352ae4359a4b807c8239d17cea63194", "est_tokens_in": 8926, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "04", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "04", "pair": null, "text_sha": "e26dbd5827ab8d5f49065b6522c55c6ccae178a37a2d78b9018871659a25a9df", "est_tokens_in": 9452, "ts": "2026-07-06T05:54:41Z"}
+{"event": "step", "step": "05", "pair": null, "status": "resolving", "ts": "2026-07-06T05:54:41Z"}
+{"event": "step_dry_run", "step": "05", "pair": null, "text_sha": "9a02146b5dd39300d882d62ce5ddd4cbec10306b25c28202a460d9ea8ad0eaa5", "est_tokens_in": 2273, "ts": "2026-07-06T05:54:41Z"}
+{"event": "pair_start", "pair": "01", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "06", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "06", "pair": "01", "text_sha": "7fbdbaed141a46245e2c79e4d88306d4057e2540ef43cf3a8ca3f05d35b48230", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "07", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "07", "pair": "01", "text_sha": "6a06706db1af21da592c036533b58f4937a6e37a0270450011ca5871656cae70", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "08", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "08", "pair": "01", "text_sha": "fc69c331bb627dac27cc9c65d184808deee9991d5c2e8c203c1bd93f19328e60", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "09", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "09", "pair": "01", "text_sha": "a03a07bee691ecdac3f92757d043ec90f8da2c7acdc5283e74669631ff73d6c0", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "10", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "10", "pair": "01", "text_sha": "513fe1f71420b82e9de3a60c9c5c69370aa91c071e14e9c1a1029f718b1da6bc", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "11", "pair": "01", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "11", "pair": "01", "text_sha": "20d846bbbc8b9439066060d00178855e0d4400d61c9e4c6b4484ef66e70f08f0", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_done", "pair": "01", "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_start", "pair": "02", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "06", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "06", "pair": "02", "text_sha": "c11374e5e31781b250b9f591656898dcd5e4ad6e0eab2d441a0692dfa22a9745", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "07", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "07", "pair": "02", "text_sha": "77a35dc5104acb5e52f3fe8c78f965c02fd5cd9cede71dc84dc07778e0ba76a8", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "08", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "08", "pair": "02", "text_sha": "3c995930e1e2bcedadca6398682e9888a0ff21b8a1ed643b709523d187c18265", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "09", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "09", "pair": "02", "text_sha": "8c6aa4fa923f61ebbae85391b57aedf56548879098cdfcae586cd692670a5765", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "10", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "10", "pair": "02", "text_sha": "ec6212ce943328c67e14da2db0da8a2f13d91bccc1fb3ee8b991b17da34a455d", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "11", "pair": "02", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "11", "pair": "02", "text_sha": "400a2e9eea925d1eeda2bfe96fe80fb0cff46a081b9ad980f9c84a757d4ee31b", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_done", "pair": "02", "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_start", "pair": "03", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "06", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "06", "pair": "03", "text_sha": "1f8bf09bde159bc767541ee1921999048011c26461ca399e99dc046e00b4f6c4", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "07", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "07", "pair": "03", "text_sha": "bced8650fc068d1da422f37b86f211ab99376cb6b1bab6f8ea399ba7457a4d58", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "08", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "08", "pair": "03", "text_sha": "997ab24163624320b5b4479f8090b9e5e55d8c6e26c5da2d87c8026d9ee41cc2", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "09", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "09", "pair": "03", "text_sha": "69e68534e9583d7f1ed414fbcaa1227cabcb371e60e7b09776d4c77e3c5a9add", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "10", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "10", "pair": "03", "text_sha": "be1759cc9e2541f7ecb84106ce803dda5da2b6a354a348877486c63020a28a4c", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "11", "pair": "03", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "11", "pair": "03", "text_sha": "79104e6e5743f392d24c0a4e2b714cd78590d5b65b2024e735b9691071e4800f", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_done", "pair": "03", "ts": "2026-07-06T05:54:42Z"}
+{"event": "pair_start", "pair": "04", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "06", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "06", "pair": "04", "text_sha": "e2c3a28315cb8af075de60f37554ca627775855724d166376af308816b69b9cc", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "07", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "07", "pair": "04", "text_sha": "7c674878df904c56fbf93db625e210121d6ab7621a471bf290d929952b01b3b3", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "08", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:42Z"}
+{"event": "step_dry_run", "step": "08", "pair": "04", "text_sha": "75121c69696be04f754aee278826d419f300d9482452365e92313b06c2d301a0", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:42Z"}
+{"event": "step", "step": "09", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "09", "pair": "04", "text_sha": "b37bc9e17b77dcedbeef9fe486d6d34888e3788cd59d2729f9cd4468883314b0", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "10", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "10", "pair": "04", "text_sha": "e663f056c1fdcc575f7854a506bfd74e2b55e48bc7129f3609f01ae859ed0de0", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "11", "pair": "04", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "11", "pair": "04", "text_sha": "3df10e197be24e68c05765023c8b878dcb32740a733e9c922baf0e985c9cffa7", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:43Z"}
+{"event": "pair_done", "pair": "04", "ts": "2026-07-06T05:54:43Z"}
+{"event": "pair_start", "pair": "05", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "06", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "06", "pair": "05", "text_sha": "b3b3467eadec66c7f6a228d573bfd740b43116db047fe46cbfdb1f26c10a979a", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "07", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "07", "pair": "05", "text_sha": "0f215b3d430027282960c5c66427bc1c393d186d28ecff1632e8a1c47586ecfc", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "08", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "08", "pair": "05", "text_sha": "28b685f73b448b7b2172c33a125aceba4907bde5db74fc6b334e8a9bcbe48bd9", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "09", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "09", "pair": "05", "text_sha": "94e5d8d92f7ce5c66e2bb4e2ec5b2466eabc66b718b697294d6768c41f6dbfa1", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "10", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "10", "pair": "05", "text_sha": "13bd0cfd50a4ce9f3bf13b03772540b8c076906686c470f03f1134d5033b9993", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "11", "pair": "05", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "11", "pair": "05", "text_sha": "0e37be7c0c45e390b2bd0b9282b215fbb866c60aec32dd34b8ea2e76fa7f29dc", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:43Z"}
+{"event": "pair_done", "pair": "05", "ts": "2026-07-06T05:54:43Z"}
+{"event": "pair_start", "pair": "06", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "06", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "06", "pair": "06", "text_sha": "e0e5c45f64ca93fbb371cafcada6864ec3857ba13ff71ff13f10ccb65c42d5d9", "est_tokens_in": 8159, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "07", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "07", "pair": "06", "text_sha": "4613e9b3c761955f17ef3ed2ed3c07f320463fb6bde884fb111af816fdf543e6", "est_tokens_in": 13949, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "08", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "08", "pair": "06", "text_sha": "dea8d849831b21c47afb1fafc2e5da282a73ac1c8d2b9d2a6be79bd3f5cebcbd", "est_tokens_in": 20433, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "09", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "09", "pair": "06", "text_sha": "1f88e8d1874b35b27dfbb7abd80db195af7f0d811bd8de35159c4f50971d12ef", "est_tokens_in": 14257, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "10", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "10", "pair": "06", "text_sha": "9d27cc5f2b03141fa2a1a723f379f0d9c994f37900ba4bd225ae725b7df36702", "est_tokens_in": 15186, "ts": "2026-07-06T05:54:43Z"}
+{"event": "step", "step": "11", "pair": "06", "status": "resolving", "ts": "2026-07-06T05:54:43Z"}
+{"event": "step_dry_run", "step": "11", "pair": "06", "text_sha": "47dd2543d5d9219faf8efa0aada1affa0cb60fa952f0abc78e7e04fae61e0b9f", "est_tokens_in": 5644, "ts": "2026-07-06T05:54:43Z"}
+{"event": "pair_done", "pair": "06", "ts": "2026-07-06T05:54:43Z"}
+{"event": "portfolio_skipped", "reason": "dry_run", "ts": "2026-07-06T05:54:43Z"}
+{"event": "run_status", "status": "complete", "ts": "2026-07-06T05:54:43Z"}
+{"event": "run_end", "status": "complete", "spend_usd": 0.0, "pairs_quarantined": 0, "ts": "2026-07-06T05:54:43Z"}

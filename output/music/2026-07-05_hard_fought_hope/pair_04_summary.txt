@@ -1,0 +1,18 @@
+files_written:
+- output/music/2026-07-05_hard_fought_hope/pair_04_step06_facets.md
+- output/music/2026-07-05_hard_fought_hope/pair_04_step07_song_guides.md
+- output/music/2026-07-05_hard_fought_hope/pair_04_step08_generation.md
+- output/music/2026-07-05_hard_fought_hope/pair_04_step09_artist_refined.md
+- output/music/2026-07-05_hard_fought_hope/pair_04_step10_revision_synthesis.md
+- output/music/2026-07-05_hard_fought_hope/pair_04_summary.txt
+
+four_variant_titles:
+- R04-A: First Route Leaves
+- R04-B: Not Fixed, Still Rolling
+- S04-C: Hiss, Then Hold
+- S04-D: The Bus Kept Its Teeth
+
+caveats:
+- Step 10 uses one local-observational hinge fact rather than a numeric public aggregate, matching Pair 04 seed.
+- No real artist names are used in final Suno prompts.
+- Lyrics are intentionally below the old 70-line target to preserve the hard <5000-character render cap and compact hook legibility.

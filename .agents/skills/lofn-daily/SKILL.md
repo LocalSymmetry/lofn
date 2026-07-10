@@ -5,8 +5,6 @@ description: Run the Lofn daily pipeline backed by Codex — fetch real-world fa
 
 # Lofn Daily — Codex-backed daily run
 
-> **⚖️ AUTHORITY (2026-07-01):** the `.claude/skills/` twin of this skill is the CANONICAL policy source; this Codex mirror binds to it and to `.agents/skills/lofn/EXECUTION.md` §8 (Policy Deltas — golden-output quarantine, no-skip/NON-CANONICAL, itemized packet, per-pair variation angles, judge separation, the publish bar, gate mid-bands). On any disagreement, the `.claude` file wins.
-
 The canonical recurring Lofn drop, ported to Codex. Faithful to `vault/DAILY_PIPELINE.md`. Where the original fired from an OpenClaw cron at 22:25 ET and delivered to Telegram, **you (Codex) run it on demand and present results in chat + save to disk.** The research is done by **this session itself with real fetches — never hallucinated, never delegated to a research subagent.**
 
 ```
@@ -72,7 +70,7 @@ For each in-scope modality, run the **`lofn`** pipeline (Phase 0 Golden Seed →
 
 ### Tri-Source Methodology (declare BEFORE writing any artifact)
 Every daily piece integrates three sources; state them explicitly in the metaprompt and each pair brief:
-- **Source 1 — CONTENT / emotional stakes:** today's world facts (quakes, APOD, F19 HN, F20 BBC, moon, solar weather). Songs/images are *resonance*, not reportage.
+- **Source 1 — CONTENT / emotional stakes:** today's world facts (quakes, APOD, F19 HN, F20 BBC, moon, solar weather). Songs/images are *resonance*, not reportage. **⛔ One-fact rule (music):** the tri-source method feeds the THEME and FORM — it is not a lyric quota. **At most ONE numeric fact is sung per song**, at the emotional hinge, responded to rather than recited (`lofn-music` Golden Move rule 2; `gates.yaml → max_sung_numeric_facts`). A verse reciting the day's sunspot number, solar-wind speed, moon percentage, AND quake depth is a weather report in meter — a repair. The other facts inform the pair briefs and stay there.
 - **Source 2 — SONIC/AESTHETIC VOCABULARY:** the exact Bandcamp review language (F9–F10) imported into prompts — grounds the sound/look in something specific and real, not generic genre labels.
 - **Source 3 — MATERIAL STRUCTURE:** the NASA APOD image structure (or a PDR artifact) translated into a **mandatory form rule** — e.g. "comet with long tail" → long trailing fade-out outro; "3×1 tile panel with meanders" → 3-section form with transitional bridges; "bilateral wing venation" → mirrored call-and-response.
 
@@ -83,12 +81,15 @@ Every daily piece integrates three sources; state them explicitly in the metapro
 ### Emotional Duality & diversity
 - **≥1 AWE song and ≥1 INDIGNATION song** in the set.
 - 6 different verse architectures / camera grammars across the 6 pairs (the standing distinctiveness rule). Vary stanza lengths intentionally.
+- **Variation angles are per-pair, never a shared template set.** A global "V4 = glitch chapel for everyone" scheme is how the 2026-06-26 daily produced two pairs singing the same song with nouns swapped; each pair derives its own 4 angles from its own concept (`EXECUTION.md` §3 item 3).
+- **Daily music pair isolation is mandatory.** Steps 05–11 must run as isolated pair runs; a central all-pairs helper may not author lyrics, section maps, stanza scaffolds, hook grammar, rhyme logic, or production arcs for multiple pairs. Shared validators and file writers are OK. If the pairs sound like the same song with nouns swapped, rerun each affected pair from Step 05.
+- **AWE stays terror-adjacent.** The daily's comfort gravity is real (kitchens, cups, reassurance) — every AWE song still answers the two pre-draft questions (*where is the body standing / what could hurt it here*) and carries a clean fear (`lofn-music` Golden Move rules 1 & 4).
 
 ### Library-only selection
 For daily runs, **always select personality + panel from the existing libraries** (`personalities_index.md` / `panels_index.md`) — **no generation.** Freshly generated personalities over-fit the day's theme and lose the battle-tested DNA. (Generation is reserved for competition/Scientist-special runs.)
 
 ### Modality specifics
-- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 70–120 lines; `06_audio_handoff.md` carries the 2 Golden Song **names** + the GOLDEN MOVE block (⛔ never payloads — `EXECUTION.md` §8.1). Run music in parallel with image.
+- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 70–120 lines; `06_audio_handoff.md` carries 2 Golden Songs. Run music in parallel with image.
 - **IMAGE** (`lofn-image`): 24 prompts → rank → **top 12 → top 6**; figurative legible primary subject (thumbnail test); noun-first present-tense ≥80 words; warm palette leads on NightCafe-style venues (INDIGNATION underperforms there — see `vault/COMPETITION_WORKFLOW.md`); aspect 3:4 for upload challenges else 9:16. Apply the **Container Test** (`COMPETITION_WORKFLOW.md`) and **Action-Verb rule** (action theme → cinematic wide, not portrait).
 
 Run the two modalities concurrently (independent `lofn` runs writing to `music/` and `images/` subdirs). Each fans its 6 pairs out as parallel subagents per `.agents/skills/lofn/EXECUTION.md`.
@@ -105,8 +106,9 @@ Run the two modalities concurrently (independent `lofn` runs writing to `music/`
 ## PHASE 3 — QA & deliver
 1. **Cardinality checkpoint** before any selection: Step 05 ≥6 pairs; steps 06–10 have output for EVERY **non-quarantined** pair; ≥24 final prompts; (music) 6 enhanced packages. Rebuild the RUN_STATE manifest from disk first (§ "Run-state manifest & resume"), then read it — don't re-crawl by hand. **A `quarantined` pair is a named, non-fatal hole, not a cardinality failure: do NOT feed its artifact downstream, do NOT block delivery on it — surface "N of 6 broke open" and continue with the survivors.** If a *non-quarantined* pair is missing output, rerun from the collapsed step — do not deliver.
 2. Run **lofn-qa** on each modality (16-point Suno gate / Visual Somatic Gate). Verify the daily rules held: tri-source declared, 3+3 split honored, emotional duality present.
-3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 3-field run-health footer** — see § "Run-state manifest & resume").
+3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 4-field run-health footer** — see § "Run-state manifest & resume").
 4. **Present the drop** in chat: the research highlights, the tri-source declaration, the best 6 songs (paste-ready Suno packages) and top 6 image prompts, with the panel decisions and "why these win." No render calls — emit text; the user renders (Suno / Flux / Lyria).
+5. **Publish policy — dailies are PRACTICE.** The daily drop lands in chat + `output/daily/`; it is **not** a publish queue. Anything headed to a public channel (Suno account, socials) additionally requires: the full-rig path (no NON-CANONICAL runs), the cross-model step-11 review (`lofn-step11-packager`), and **the Scientist's ear — with borderline defaulting to HOLD.** An empty publish day is acceptable; a lowered bar is not (`lofn-qa` "The publish bar"). Never promote a piece to publication just because the day's slot is empty.
 
 ---
 
@@ -136,8 +138,8 @@ Quarantine handles a *lone* broken pair. The breaker handles a **systemic** one:
 - **Scoped to SAME-gate correlation**, not aggregate fail-count: independent one-off pair failures still retry locally and quarantine normally. The breaker only trips when the *same* gate is the failing one across a threshold of pairs (the systemic signal).
 - When it trips: name the failing gate, report which pairs hit it, and HALT — do not auto-repair. This is a coordinator prose rule + a disk re-read of the manifest's `gate_verdict` column, never a daemon. Threshold tuned conservatively so a genuinely-hard batch isn't aborted; surface the gate, never a silent kill.
 
-### Run-health footer (3 fields)
-Append a terse **3-field** line to the run INDEX (and present it in chat): **pairs shipped / pairs quarantined / total gate-retries** (per modality if both ran). Three fields only — a status line for the human, not a metrics culture. One explicit "escalate to human" outcome (the breaker, or any quarantine) is always surfaced, never hidden.
+### Run-health footer (4 fields)
+Append a terse **4-field** line to the run INDEX (and present it in chat): **pairs shipped / pairs quarantined / total gate-retries / QA repairs+holds issued** (per modality if both ran). Four fields only — a status line for the human, not a metrics culture. One explicit "escalate to human" outcome (the breaker, or any quarantine) is always surfaced, never hidden. **Zero-rejection tripwire:** a full daily reporting 0 repairs, 0 holds, 0 quarantines across ~48 artifacts triggers the judge audit (`lofn-qa` blind golden+decoy re-check), not a celebration — QA that never says no is decorative.
 
 ---
 
@@ -148,6 +150,7 @@ Append a terse **3-field** line to the run INDEX (and present it in chat): **pai
 | Songs lack grounding | Declare Source 1/2/3 before any song is written |
 | Set is a lecture | Enforce Axis B (min 3 EXISTENCE pairs) |
 | Arm imbalance | Rank within ACCESSIBLE / AMBITIOUS arms separately (3+3) |
+| Pairs all sound the same | Rerun each music pair from Step 05 as an isolated pair run; no shared lyric scaffold, section map, hook grammar, rhyme logic, or production arc across pairs |
 | Work lost mid-run | Save every step file as it completes; one controller per date; rebuild the RUN_STATE manifest from disk after each wave and resume only `pending` artifacts |
 | A single pair keeps failing | Max-3-attempt loop + attempt-2.5 grace pass + no-progress halt → mark `quarantined`, surface "N of 6 broke open," do NOT consume its artifact, continue with survivors |
 | A stale rule fails everything | Run-level circuit breaker on SAME-gate correlated failure → STOP and name the gate for the human instead of 24×3 wasted retries |

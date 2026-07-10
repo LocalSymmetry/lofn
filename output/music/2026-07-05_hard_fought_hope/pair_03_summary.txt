@@ -1,0 +1,10 @@
+Pair: 03
+Seed title: Bring The Chairs Up
+Concept: A doomscrolling apartment resident in a stairwell is interrupted by a neighbor dragging folding chairs upward; cracked-phone buzz remains the antagonist while chair-scrape becomes communal proof.
+Medium: Garage-psych alt-pop with pluggnB shadow, chair-scrape snare accents, cracked-phone buzz, raspy androgynous lead, raw-room call-response, and stairwell echo.
+Step 10 variants:
+- 03-R1 Bring The Chairs Up
+- 03-R2 Count Me In The Room
+- 03-S1 My Phone Lied Loud
+- 03-S2 The Landing Bulb Stays On
+Caveats: Golden reference payloads were not used; only Golden Move principles and reference names were honored. Step 10 copy-paste fields were measured after writing and recorded in each self-check.

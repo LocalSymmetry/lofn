@@ -23,8 +23,12 @@ export function CommandPalette() {
     if (!manifest) return [];
     const e: Entry[] = [];
     const go = (to: string) => () => { nav(to); setOpen(false); };
-    e.push({ label: "Atlas", hint: "view", run: go("/") });
+    e.push({ label: "Bridge", hint: "home · vitals", run: go("/") });
+    e.push({ label: "Atlas", hint: "view", run: go("/atlas") });
     e.push({ label: "Gate Center", hint: "view", run: go("/gates") });
+    e.push({ label: "Gate Center · Coverage", hint: "rail × severity", run: go("/gates?tab=coverage") });
+    e.push({ label: "Gate Center · Drift", hint: "reconcile", run: go("/gates?tab=drift") });
+    e.push({ label: "Working set", hint: "g w · diff-first", run: go("/changes") });
     e.push({ label: "Library", hint: "view", run: go("/library") });
     e.push({ label: "Studio · Flow Lab", hint: "g s f", run: go("/studio/flow") });
     e.push({ label: "Studio · Run Bench", hint: "g s r", run: go("/studio/run") });

@@ -119,6 +119,7 @@ For music, the tri-source method feeds theme and form. It is not a lyric quota. 
   - Axis B - NEWS vs EXISTENCE: max 3 NEWS pairs, min 3 EXISTENCE pairs.
 - **Stanza economy:** vary stanza lengths intentionally.
 - **Per-pair variation angles:** each pair derives its own 4 angles from its own concept.
+- **Pair isolation:** for dailies, music Steps 05-11 run as isolated pair runs. Step 05 writes a pair-specific brief; Steps 06-11 for one pair must not reuse another pair's lyric scaffold, section map, stanza template, rhyme scheme, hook grammar, or helper-generated line factory. Sharing validators and file I/O is fine; sharing creative bones is a repair. If pairs sound like the same song with nouns swapped, rerun each affected pair from Step 05.
 - **Suno package:** dense music prompt, exclude prompt, EMO headers, female vocals by default, 70-120 sung lines.
 
 ## Image Rules (Daily Runs Only)
@@ -167,4 +168,5 @@ Write `INDEX.md` last. It must include run scope, pair table, selected picks, ke
 | Songs delivered but no grounding | Tri-source bypassed | Declare Source 1/2/3 before any artifact writing |
 | Set is a lecture | Too many NEWS pairs | Enforce max 3 NEWS and min 3 EXISTENCE |
 | Arm imbalance | Global ranking picks 5+1 or 6+0 | Rank accessible and ambitious arms separately |
+| Pairs all sound the same | Steps 05-11 came from a shared scaffold or all-pairs generation pass | Rerun each music pair from Step 05 as an isolated pair run; require a distinct section architecture, rhyme/line logic, hook grammar, and sonic device per pair |
 | Single agent timeout loses work | No save-out protocol | Save every step file as completed |

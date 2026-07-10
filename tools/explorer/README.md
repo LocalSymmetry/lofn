@@ -35,22 +35,49 @@ tools/explorer/server/.venv/Scripts/python -m tools.explorer.server
 cd tools/explorer/web ; npm run dev      # http://127.0.0.1:5990
 ```
 
-## The four views
+## The surfaces
 
-- **Atlas** — five swimlane rails (orchestrator + music/image/video/story), one hue
-  per rail. Gate chips ride each step's outgoing edge, colored by severity
-  (red=hard · magenta=mixed · amber=flag · grey=prose). Toggle editions / execution
-  layer. Click a node to edit; click a chip to jump to the gate.
+- **Bridge** (`g h`, the home) — "what needs your attention." The instrument's five
+  vitals promoted out of four rooms into one triage ledger: manifest honesty ·
+  prose↔YAML drift · library sync-drift · working-tree · last run. Each row is a
+  status + count + the inline offenders + a freshness stamp + one drill into the fix.
+  Calm and nearly empty when all-green. A **state spine** in the nav foot mirrors these
+  vitals *by exception* — near-invisible at green, recruiting color + a count only on
+  deviation (a smoke detector, not a gauge cluster).
+- **Atlas** (`g a`) — five swimlane rails (orchestrator + music/image/video/story),
+  one desaturated sunset tint per rail. Gate chips ride each step's outgoing edge,
+  colored **and shaped** by severity (■ hard · ◆ mixed · ▲ flag · ○ prose). The legend
+  is the **hypsometric key** (severity as altitude of light, canon at the pale zenith);
+  the orchestrator's dispatch is an **arc-fan** to the four rails. Toggle editions /
+  execution layer. Click a node to edit; click a chip to jump to the gate.
 - **Editor** (`⌘K` or click a node) — Monaco with the prompt front and center; a
   context panel showing the gates guarding this step, CREATIVE-CONTEXT slot presence,
   and the heading outline; Save (`⌘S`) with conflict detection, Diff vs HEAD, Revert.
 - **Gate Center** — thresholds live from `vault/gates.yaml` (grouped by its own
-  comment sections), the prose-vs-YAML **drift** dashboard (`--meta-check`), the gate
-  map, a runnable validator browser, and raw `gates.yaml` editing.
+  comment sections); a **Coverage** dot-matrix (rail × severity — *where do the hard
+  gates ride?*); the prose-vs-YAML **drift** dashboard (`--meta-check`), each gap drawn
+  to scale as a **dumbbell** (canonical ↔ restated); the gate map, a runnable validator
+  browser, and raw `gates.yaml` editing.
 - **Library** — 8 collections (personalities, panels, aesthetics, genres, film styles,
   3 frame CSVs). Per-item cards (display-only) beside the raw editor; a **sync banner**
   showing canonical-vs-derived drift with one-click **Regenerate derived**; `-1`
   variant twins flagged, never hidden or deleted.
+
+## Themes & design language
+
+The default is **Sunset Vellum** — a light, warm-near-white "working sky at dusk read
+as an instrument" (art-directed by Lofn's three image panels). Its governing rule is
+the anti-slop mechanism: **saturation is the scarce reserve** — the field is calm
+pastel and the only things allowed to shout are a gate that stops the line, a health
+signal that degraded, and the pale brilliance of canon (gold no longer fills anything;
+it only *frames* the immutable). Severity carries a redundant **shape** so it never
+relies on hue alone; charts read only the `--seq` / `--div` / `--cat` scale tokens so
+they re-ink for free on every theme.
+
+The sidebar theme picker swaps the color tokens, typography stack, and navigation
+iconography across 14 themes (12 alternates incl. the original dark **Gilded Vellum**).
+Theme art and the panel/Lofn prompt record live in [`THEMES.md`](THEMES.md); generated
+preview tiles are served from `web/public/theme-art/`.
 
 ## Architecture
 

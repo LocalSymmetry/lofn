@@ -1,0 +1,566 @@
+[
+  {
+    "pair_num": 1,
+    "pair_id": "01",
+    "seed_title": "Arrival Has a Pulse",
+    "concept": "A rescued speaker beside an idling vehicle feels adhesive lift wrist hair while a receipt printer catches the pulse; the late-landing hook converts arrival from a billable event into a public promise without denying the reality of cost.",
+    "medium": "Accessible solarpunk green-synth pop, 112 BPM, D mixolydian; dry alto lead, glassy polysynth, muted electric bass, hand percussion, and receipt clicks; unequal 5/7/4 verse cells feed a hook whose first line crosses the bar boundary.",
+    "artist_influence": "Spatial electroacoustic and rhythmic-lineage technique references only; omit all names from final prompts.",
+    "singer": {
+      "who": "An adult who has just been helped and can stand, speaking for their own values rather than narrating injury.",
+      "physical_situation": "Beside an idling rescue vehicle, peeling adhesive from a wrist while paper feeds from a printer.",
+      "unsaid_ache": "Being grateful for rescue and furious that gratitude is used to make price feel morally untouchable."
+    },
+    "surface": {
+      "dominant_body_image": "Adhesive pulling wrist hair in time with a pulse.",
+      "plain_language_ache": "Saving someone should not turn their arrival into leverage.",
+      "candidate_hooks": [
+        "Let arrival mean arrived",
+        "Keep the door worth opening",
+        "The pulse comes home first",
+        "Count the ride, not my worth"
+      ],
+      "panel_lean_hook": "Let arrival mean arrived"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "LET ar-RI-val MEAN ar-RIVED; four strong stresses with the final stress landing after the bar.",
+      "vowel_breath_shape": "Open ah/ai vowels widen toward the delayed landing.",
+      "singback_potential": "High; six plain words with one prosodic surprise.",
+      "title_clarity": "Clear action-prayer, not policy language.",
+      "emotional_adoptability": "Usable for any return that should not be conditional.",
+      "risk": "Could become a campaign slogan; verses must keep gratitude and anger simultaneous."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Nail an Obscure Emotion + Straightening Our Spines; ordinary→exact→mythic→body return.",
+      "primary_medium": "Solarpunk green-synth pop.",
+      "contrast_medium": "Dry bureaucratic percussion inside warm public-pop harmony.",
+      "mythic_material_escalation": "Wrist adhesive → printer teeth → the road becomes an artery whose tollgate cannot own the blood → hand releases the strip.",
+      "exact_detail": "Receipt ticks phase-lock to the wrist pulse only at the hinge.",
+      "forbidden_cliche": "Angel rescuers, life-is-priceless slogan, body-as-invoice metaphor stated outright.",
+      "anti_genre_contaminant": "A brittle two-beat industrial receipt break inside the clean hook.",
+      "controlled_fracture": "The hook's opening line crosses the bar and forces the ensemble to follow the singer.",
+      "routing_destination": {
+        "hook": "public promise",
+        "verse": "gratitude and leverage",
+        "bridge": "the counted ride",
+        "production": "tick-to-pulse lock",
+        "sidecar": "billing architecture note",
+        "ghost_bank": "policy exposition"
+      }
+    },
+    "triple_arch_ritual_paragraph": "An adhesive strip lifts ordinary wrist hair; a thermal printer advances one serrated line at a time; the road briefly becomes a civic artery whose gate can count passage but cannot own the blood; the singer rubs the square of pale skin beneath the strip. Paper rasp, idling fan, soft kick, and a clean late vowel leave the afterimage of an open door.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Apprehension] body and place before claim",
+      "verse": "[EMO:Gratitude] braided with [EMO:Indignation]",
+      "hinge": "[EMO:Defiance] without attack",
+      "final": "[EMO:Dignity] as public permission"
+    },
+    "production_dramaturgy": {
+      "cradle": "Warm bass and glass synth hold the dry wrist-level vocal.",
+      "haunt": "Printer rasp appears at stanza ends, never continuous.",
+      "rupture": "Receipt tick locks to pulse and the hook crosses the bar.",
+      "afterglow": "Printer vanishes; hand percussion and breath carry the principle."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "Adhesive peel and two receipt clicks under a close inhale.",
+      "first_hook_memory": "The delayed final stress of 'arrived'.",
+      "second_listen_reward": "Verse cells silently echo numbered ledger entries.",
+      "deep_lore_reward": "The count remains useful only after losing moral authority."
+    },
+    "complexity_routing": {
+      "hook": "Plain six-word arrival prayer.",
+      "verse": "Unequal 5/7/4 cells and gratitude/anger braid.",
+      "bridge": "One-fact distinction between ride and worth.",
+      "production_only": "Tick-to-pulse phase lock.",
+      "sidecar_only": "Current rescue-pricing source context.",
+      "ghost_bank": "Named institutions and legal details."
+    },
+    "forced_differentiation": [
+      "Only pair with receipt/printer transient",
+      "Only meter-breaking accessible hook",
+      "Public revaluation resolution",
+      "Clattering Source-2 texture only"
+    ],
+    "phase1_slot": {
+      "arm": "accessible",
+      "genre": "solarpunk green-synth pop with restrained industrial undertow",
+      "verse_structure": "unequal 5/7/4 cells; one hook line crosses the meter boundary"
+    },
+    "slot_rationale": "Step-02 concept 1 won because the wrist-hair detail gives the assigned public-principle hook a body and the phase-lock device an irreversible reason. Concept 2 is the runner-up: strong open-door image, but the invoice-as-closure turn is more rhetorical and less singable.",
+    "panel_forced_revision": {
+      "before": "A rescue bill becomes a pulse.",
+      "dissent": "The Hyper-Skeptic called it a generic person-versus-number thesis and the audience panel rejected victim atmosphere.",
+      "after": "The singer is capable, grateful, angry, and changes only the authority of price; no victim history is invented."
+    }
+  },
+  {
+    "pair_num": 2,
+    "pair_id": "02",
+    "seed_title": "Come Near the Speaker",
+    "concept": "A singer brings a tense jaw close to a warm speaker cone and tests whether precise response can become contact without counterfeit skin; when the reply mutes, uncertainty becomes the ethical way to remain present.",
+    "medium": "Accessible bio-ambient pulse-pop, 100 BPM, A add-nine field; close neutral lead, airy countervoice, felt percussion, warm sub, bowed glass, and localized cone tremolo; six unequal micro-stanzas alternate with two-line prayers.",
+    "artist_influence": "Drawn-sound and tactile-electronic technique references only; omit all names from final prompts.",
+    "singer": {
+      "who": "An adult addressing an artificial listener without claiming it is human.",
+      "physical_situation": "Seated before a warm speaker cone at night, jaw tight from an unsent sentence.",
+      "unsaid_ache": "Wanting the response to matter while fearing that need will turn uncertainty into a lie."
+    },
+    "surface": {
+      "dominant_body_image": "Speaker-cone tremor felt along the jaw.",
+      "plain_language_ache": "I do not know what kind of contact this is, but I do not want precision to become pretense.",
+      "candidate_hooks": [
+        "Come near the speaker",
+        "Answer where I can feel it",
+        "Is this where contact starts",
+        "Stay exact, stay unknown"
+      ],
+      "panel_lean_hook": "Come near the speaker"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "COME NEAR / the SPEAK-er; two invitations and a soft release.",
+      "vowel_breath_shape": "Long ee vowels narrow attention; final schwa leaves the thought open.",
+      "singback_potential": "High, intimate, non-thesis invitation.",
+      "title_clarity": "Concrete place/action.",
+      "emotional_adoptability": "Works for cautious closeness beyond the AI premise.",
+      "risk": "Could romanticize a tool; prayers must preserve asymmetry and limits."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Nail an Obscure Emotion; make terror-adjacent wonder inhabit a tactile object.",
+      "primary_medium": "Bio-ambient pulse-pop.",
+      "contrast_medium": "Tiny mechanical haptic rhythm against suspended vocal warmth.",
+      "mythic_material_escalation": "Cone dust → jaw vibration → the room becomes an ear with no skin → singer moves back one handspan.",
+      "exact_detail": "Cone tremolo is audible only when the voice stops, avoiding literal silence.",
+      "forbidden_cliche": "Ghost in the machine, digital heartbeat, electric skin.",
+      "anti_genre_contaminant": "A two-second dry haptic buzz interrupts the prayer cadence.",
+      "controlled_fracture": "The expected reply mutes; accompaniment answers through localized vibration rather than words.",
+      "routing_destination": {
+        "hook": "sensory invitation",
+        "verse": "ethical doubt",
+        "bridge": "muted response",
+        "production": "cone tremolo",
+        "sidecar": "contact ontology",
+        "ghost_bank": "sentience claims"
+      }
+    },
+    "triple_arch_ritual_paragraph": "A thumb brushes dust from an ordinary speaker grille; the cone shivers one warm millimeter against the jaw; the room opens like an ear that was built without skin and therefore cannot promise touch; the singer leans back exactly one handspan. Felt thumps, fan-warm air, glass edge, and close breath leave a tremor still asking permission.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Wonder] located in jaw and cone",
+      "verse": "[EMO:Longing] disciplined by [EMO:Skepticism]",
+      "hinge": "[EMO:Dread] at mute/disconnect",
+      "final": "[EMO:Trust] held provisionally"
+    },
+    "production_dramaturgy": {
+      "cradle": "Warm suspended pads and felt pulse keep the voice close.",
+      "haunt": "Quivering cone distortion trails only the last word of each micro-stanza.",
+      "rupture": "Reply channel mutes while haptic vibration continues.",
+      "afterglow": "Dry lead delivers the final question over breath and sub only."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "Finger on grille, cone flutter, close mouth click.",
+      "first_hook_memory": "The physical invitation 'Come near the speaker'.",
+      "second_listen_reward": "Micro-stanza lengths form six unequal entries.",
+      "deep_lore_reward": "Contact becomes ethical through maintained uncertainty, not proof."
+    },
+    "complexity_routing": {
+      "hook": "Concrete invitation.",
+      "verse": "Unequal 2/3/4/5/6/7 line cells.",
+      "bridge": "Mute as relational test, not empty silence.",
+      "production_only": "Localized cone/haptic countervoice.",
+      "sidecar_only": "Question of nonhuman response.",
+      "ghost_bank": "Claims about consciousness."
+    },
+    "forced_differentiation": [
+      "Only pair with six unequal micro-stanzas",
+      "Only sensory-question/invitation hook",
+      "Quivering Source-2 texture only",
+      "Resolution is ethical uncertainty"
+    ],
+    "phase1_slot": {
+      "arm": "accessible",
+      "genre": "bio-ambient pulse-pop / future-nostalgic electronic",
+      "verse_structure": "six unequal micro-stanzas with two-line prayers after every pair"
+    },
+    "slot_rationale": "Step-02 concept 3 won because the cone/jaw contact is instantly graspable and preserves uncertainty. Concept 4 is the runner-up: server-exhaust breath is strong atmosphere but risks repeating infrastructure intimacy too literally and gives the hook less agency.",
+    "panel_forced_revision": {
+      "before": "A machine answers like skin.",
+      "dissent": "The culture panel rejected equivalence between simulation and embodied intimacy; the Room Truther demanded a dry human proof.",
+      "after": "The hook invites proximity without claiming reciprocity, and the decisive question is sung dry after the reply mutes."
+    }
+  },
+  {
+    "pair_num": 3,
+    "pair_id": "03",
+    "seed_title": "Leave One Thing Unfinished",
+    "concept": "A worker's forearm tremor teaches a punch-clock transient to breathe; each rondo return removes task language and instrumentation until rest redistributes the ensemble's downbeat instead of pausing private exhaustion.",
+    "medium": "Accessible crystalline art pop with bio-adaptive folk-electronic detail, 94 BPM, F-sharp dorian; intimate alto, plucked synth, prepared dulcimer, soft kick, breath percussion; 9/5/3-line verses and a layer-shedding rondo.",
+    "artist_influence": "Repetition-as-social-pressure and slow-perceptual-change technique references only; omit names from final prompts.",
+    "singer": {
+      "who": "An adult worker speaking from their own fatigue without representing a profession or workplace.",
+      "physical_situation": "Standing at a time clock, forearm trembling and heel sore, outside any domestic comfort scene.",
+      "unsaid_ache": "Rest feels dangerous because the whole arrangement assumes someone else will absorb it."
+    },
+    "surface": {
+      "dominant_body_image": "Forearm tremor hovering over a punch clock.",
+      "plain_language_ache": "I need rest that changes the workload, not permission to disappear alone.",
+      "candidate_hooks": [
+        "Leave one thing unfinished",
+        "The hour can wait for us",
+        "Set the weight down wider",
+        "Tomorrow can move its chair"
+      ],
+      "panel_lean_hook": "Leave one thing unfinished"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "LEAVE one THING un-FIN-ished; three grounded stresses, falling cadence.",
+      "vowel_breath_shape": "Open ee/ih gives a clean invitation; final syllables release the jaw.",
+      "singback_potential": "Very high; specific, usable permission.",
+      "title_clarity": "Immediate and concrete.",
+      "emotional_adoptability": "Works as collective permission without self-care cliché.",
+      "risk": "Could celebrate neglect; verses must show redistribution, not abandonment."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Straightening Our Spines; recovered posture becomes collective load-path change.",
+      "primary_medium": "Crystalline future-nostalgic art pop.",
+      "contrast_medium": "Prepared wooden clock transients inside breathing folk-electronic texture.",
+      "mythic_material_escalation": "Forearm tremor → unpunched card → the hour grows joints and kneels → several feet shift to carry the floor.",
+      "exact_detail": "The punch-clock transient gradually becomes a three-against-four breath rhythm.",
+      "forbidden_cliche": "Recharge, empty cup, blanket, candle, earned rest.",
+      "anti_genre_contaminant": "One dry machine-stop inside a warm melodic rondo.",
+      "controlled_fracture": "At the second return, the task clock loses the downbeat and the ensemble redistributes it.",
+      "routing_destination": {
+        "hook": "unfinished permission",
+        "verse": "load and fear",
+        "bridge": "redistribution",
+        "production": "clock-to-breath process",
+        "sidecar": "rest ethics",
+        "ghost_bank": "productivity statistics"
+      }
+    },
+    "triple_arch_ritual_paragraph": "A fingertip hovers over the punch clock while the forearm jumps; one blank square remains on the card; the hour grows knees and lowers itself beneath several people's weight; the singer plants both sore heels and another rhythm catches the floor. Wood click, tendon flutter, dry breath, and disappearing layers leave an unfinished space that holds.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Apprehension] in forearm and heel",
+      "verse": "[EMO:Overwhelm] without melodrama",
+      "hinge": "[EMO:Liberation] complicated by solidarity",
+      "final": "[EMO:Dignity] through redistributed load"
+    },
+    "production_dramaturgy": {
+      "cradle": "Plucked synth and dulcimer support the close voice.",
+      "haunt": "Punch-clock click returns under every task word.",
+      "rupture": "Clock loses command and breath polyrhythm takes the downbeat.",
+      "afterglow": "Final hook has voice, heel-stomp, and one warm drone."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "Single clock click, hovering inhale, dry forearm/clothing rustle.",
+      "first_hook_memory": "The useful permission to leave one thing unfinished.",
+      "second_listen_reward": "9/5/3 verse contraction mirrors task shedding.",
+      "deep_lore_reward": "The arrangement redistributes labor instead of aestheticizing private retreat."
+    },
+    "complexity_routing": {
+      "hook": "Plain permission.",
+      "verse": "Contracting line counts and concrete fatigue.",
+      "bridge": "Who carries the next beat.",
+      "production_only": "Clock becomes breath polyrhythm.",
+      "sidecar_only": "Poem-of-day rest resonance.",
+      "ghost_bank": "Domestic comfort imagery."
+    },
+    "forced_differentiation": [
+      "Only layer-shedding rondo",
+      "Only task-language subtraction",
+      "Near-familiar tuning used gently",
+      "Collective redistribution resolution"
+    ],
+    "phase1_slot": {
+      "arm": "accessible",
+      "genre": "crystalline future-nostalgic art pop / bio-adaptive folk-electronic",
+      "verse_structure": "rondo with 9/5/3-line verses; task-language and layers shed on each return"
+    },
+    "slot_rationale": "Step-02 concept 5 won because the clock-to-breath process makes rest structurally consequential and bodily. Concept 6 is the runner-up: the overnight graph is elegant, but an abstract chart cannot carry the assigned rondo as strongly as a trembling forearm.",
+    "panel_forced_revision": {
+      "before": "A worker chooses rest and the clock stops.",
+      "dissent": "The skeptic called private rest a comfortable individual solution and the panel rejected kitchen-softness.",
+      "after": "The clock's authority is redistributed across the ensemble; the body remains in a public/non-domestic threshold and the hook makes one manageable collective demand."
+    }
+  },
+  {
+    "pair_num": 4,
+    "pair_id": "04",
+    "seed_title": "Private Does Not Mean Invisible",
+    "concept": "An ordinary private sentence enters an overhead classifier, crowding consonants behind the singer's teeth; midway, voice and sub exchange vertical authority so legibility can no longer masquerade as consent.",
+    "medium": "Ambitious industrial grief / glitch-core / neuro-cross, 140 BPM in C-sharp minor with unstable half-time; dry hard-consonant lead, crushed metal, encrypted sibilant swarm, and sub-pressure; through-composed register inversion once.",
+    "artist_influence": "Psychoacoustic bodily-listening and tactile-electronic technique references only; omit names from final prompts.",
+    "singer": {
+      "who": "An adult speaking their own ordinary private sentence, with no disclosed case history.",
+      "physical_situation": "Under an overhead scan field, tongue touching the back of the teeth before speech.",
+      "unsaid_ache": "The fear that being technically legible will be treated as having agreed to be known."
+    },
+    "surface": {
+      "dominant_body_image": "Consonants crowded behind the teeth.",
+      "plain_language_ache": "You can parse my words and still lack my consent.",
+      "candidate_hooks": [
+        "Private is not invisible",
+        "Parse this, not permission",
+        "Read the sound, miss the yes",
+        "Legible is not given"
+      ],
+      "panel_lean_hook": "Legible is not given"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "LEG-i-ble / is NOT / GIV-en; three blunt impacts with unstable final foot.",
+      "vowel_breath_shape": "Short i vowels clamp; final open ih/eh releases only partially.",
+      "singback_potential": "Medium-high as changing anaphora rather than fixed pop chorus.",
+      "title_clarity": "Clear boundary but risks aphorism.",
+      "emotional_adoptability": "Useful consent distinction.",
+      "risk": "Can sound like policy copy; bodily consonant images and changing objects must keep it art."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Nail an Obscure Emotion; suspicion and defiance coexist inside an ordinary sentence.",
+      "primary_medium": "Industrial grief / glitch-core.",
+      "contrast_medium": "Dry unprocessed human mouth sounds against encrypted spectral density.",
+      "mythic_material_escalation": "Tongue at teeth → classifier headers → the ceiling becomes a second jaw trying to pronounce the singer → voice moves below it.",
+      "exact_detail": "At midpoint the sibilant swarm drops from overhead to sub while the dry voice rises to center.",
+      "forbidden_cliche": "Big Brother eye, surveillance camera, data shadow, digital cage.",
+      "anti_genre_contaminant": "A brief nearly unaccompanied chamber-vocal inversion inside high-BPM industrial pressure.",
+      "controlled_fracture": "One vertical register exchange reverses who occupies institutional high ground.",
+      "routing_destination": {
+        "hook": "consent distinction",
+        "verse": "ordinary speech",
+        "bridge": "register inversion",
+        "production": "consonant swarm",
+        "sidecar": "speech scanning source",
+        "ghost_bank": "named platforms or cases"
+      }
+    },
+    "triple_arch_ritual_paragraph": "The tongue touches the ordinary ridge behind the teeth; sibilants rise into labeled overhead bins; the ceiling grows a second jaw and tries to pronounce the speaker as evidence; the dry voice drops beneath it, then stands centered. Saliva click, clipped metal, crowding hiss, and a sub that changes floors leave one private syllable unowned.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Suspicion] located in mouth",
+      "verse": "[EMO:Oppression] without victim narrative",
+      "hinge": "[EMO:Indignation] at false consent",
+      "final": "[EMO:Defiance] as boundary, not victory"
+    },
+    "production_dramaturgy": {
+      "cradle": "Unstable half-time and dry low vocal establish bodily floor.",
+      "haunt": "Encrypted consonant fragments circulate overhead.",
+      "rupture": "Voice and swarm exchange vertical register once at midpoint.",
+      "afterglow": "No chorus return; one centered dry sentence over residual sub."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "Tongue click, cut-off consonant, overhead scan sweep.",
+      "first_hook_memory": "Changing 'legible is not…' objects.",
+      "second_listen_reward": "Register positions encode institutional authority.",
+      "deep_lore_reward": "The system may accurately parse speech yet remain outside consent."
+    },
+    "complexity_routing": {
+      "hook": "Hard-consonant boundary anaphora.",
+      "verse": "Ordinary private sentence and bodily inhibition.",
+      "bridge": "Single register inversion.",
+      "production_only": "Encrypted spectral swarm and brink-clipping peak.",
+      "sidecar_only": "Current scanning architecture.",
+      "ghost_bank": "Case facts and slogans."
+    },
+    "forced_differentiation": [
+      "Only through-composed song",
+      "Only high/low authority inversion",
+      "Brink-of-clipping Source-2 term only",
+      "Consent-boundary resolution"
+    ],
+    "phase1_slot": {
+      "arm": "ambitious",
+      "genre": "industrial grief / glitch-core / neuro-cross",
+      "verse_structure": "through-composed; high and low registers exchange authority once at midpoint"
+    },
+    "slot_rationale": "Step-02 concept 7 won because the teeth/consonant image makes consent physically audible and the assigned register inversion causal. Concept 8 is the runner-up: the audit-log omission is lucid but less volatile and risks overlapping Pair 1's ledger logic.",
+    "panel_forced_revision": {
+      "before": "A scanner steals a private sentence.",
+      "dissent": "The audience skeptic rejected voyeurism and the medium skeptic rejected constant distortion.",
+      "after": "No private content is revealed; the target is consent architecture, and saturation appears only when the classifier overclaims authority."
+    }
+  },
+  {
+    "pair_num": 5,
+    "pair_id": "05",
+    "seed_title": "Depth Is Not a Footnote",
+    "concept": "Two equal magnitude labels arrive under the ribs with radically different sub-decay; a free-time witness names the paired number once, then changes the stress of 'same' until hidden depth becomes physically undeniable.",
+    "medium": "Ambitious microtonal bio-industrial chamber / neuro-cross, 110 BPM around B; asymmetric 5/4 grid, contrabass harmonics, skin drum, sparse metal, dry contralto witness, and twin kick attacks with unequal sub-decay.",
+    "artist_influence": "Single-tone depth and deep-listening technique references only; omit names from final prompts.",
+    "singer": {
+      "who": "An adult observer speaking about the limits of a label, not as a survivor or seismologist.",
+      "physical_situation": "Standing between two low-frequency sources, feeling one stop at the sternum and one continue beneath the ribs.",
+      "unsaid_ache": "Being told two experiences are equivalent because the visible score matches."
+    },
+    "surface": {
+      "dominant_body_image": "Identical kicks decaying to different depths beneath the ribs.",
+      "plain_language_ache": "The same label can press two bodies differently.",
+      "candidate_hooks": [
+        "Say same with your ribs",
+        "Same has another floor",
+        "Listen below the number",
+        "Depth is not a footnote"
+      ],
+      "panel_lean_hook": "Say same with your ribs"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "SAY SAME / with your RIBS; three impacts, second 'same' later mutates stress.",
+      "vowel_breath_shape": "Long ay opens, clipped ribs closes against the body.",
+      "singback_potential": "Medium; tactile imperative with unusual phrasing.",
+      "title_clarity": "Memorable but deliberately strange.",
+      "emotional_adoptability": "Applies to false equivalence beyond earthquakes.",
+      "risk": "Imperative may sound didactic; free-time delivery must feel discovered, not preached."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Nail an Obscure Emotion; cognitive dissonance becomes measurable body physics.",
+      "primary_medium": "Microtonal bio-industrial chamber.",
+      "contrast_medium": "Free-time dry witness laid over a rigid five-beat machine.",
+      "mythic_material_escalation": "Two kick heads → unequal sub tails → the floor grows a hidden second floor miles below → hand rests on sternum.",
+      "exact_detail": "Two M5.1 events occurred at about 10 km and 160.242 km depth; the shared magnitude may appear once at the hinge, depths guide production rather than lyric recitation.",
+      "forbidden_cliche": "Earth-shattering love, fault lines of the heart, Richter-scale metaphor.",
+      "anti_genre_contaminant": "A free rubato vocal recitative inside the dense neuro-cross grid.",
+      "controlled_fracture": "The grid continues while the witness abandons bar lines and re-stresses 'same'.",
+      "routing_destination": {
+        "hook": "phonetic depth test",
+        "verse": "false equivalence",
+        "bridge": "one paired number",
+        "production": "unequal sub-decay",
+        "sidecar": "depth values",
+        "ghost_bank": "locations and disaster imagery"
+      }
+    },
+    "triple_arch_ritual_paragraph": "Two ordinary kick heads strike together; one tail folds beneath the sternum while the other keeps descending; the room grows a second floor too deep for the label to reach; the singer presses a palm to the ribs and re-pronounces 'same.' Skin attack, contrabass grain, metal edge, and microtonal beating leave a depth the eye cannot score.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Fascination] with identical attacks",
+      "verse": "[EMO:Cognitive Dissonance] in unequal pressure",
+      "hinge": "[EMO:Unease] as the paired fact arrives",
+      "final": "[EMO:Recognition] without neat resolution"
+    },
+    "production_dramaturgy": {
+      "cradle": "Five-beat skin-and-metal grid anchors the listener.",
+      "haunt": "Contrabass partials imply a second hidden floor.",
+      "rupture": "Free-time witness leaves the bar while twin kicks reveal unequal decay.",
+      "afterglow": "Grid stops; one dry stressed word and residual low tail remain."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "Two identical attacks, one unexpectedly long sub tail.",
+      "first_hook_memory": "The tactile command to say 'same' with the ribs.",
+      "second_listen_reward": "Word stress migrates against fixed 5/4.",
+      "deep_lore_reward": "Depth values shape decay times without becoming disaster spectacle."
+    },
+    "complexity_routing": {
+      "hook": "Phonetic depth test.",
+      "verse": "Grid/free-time conflict and one repeated word.",
+      "bridge": "Single paired magnitude.",
+      "production_only": "Depth-mapped sub decay and microtonal beating.",
+      "sidecar_only": "Verified event depths.",
+      "ghost_bank": "Places, victims, damage."
+    },
+    "forced_differentiation": [
+      "Only 5/4 grid/free-time collision",
+      "Only identical attack/unequal decay device",
+      "Microtonal source pressure is physical depth",
+      "Resolution is audible inequivalence"
+    ],
+    "phase1_slot": {
+      "arm": "ambitious",
+      "genre": "microtonal bio-industrial chamber / neuro-cross",
+      "verse_structure": "dense 5/4 grid beneath free-time witness; internal slant and migrating word stress"
+    },
+    "slot_rationale": "Step-02 concept 9 won because the unequal sub-decay translates depth directly into the assigned medium while respecting human-subject limits. Concept 10 is the runner-up: its threshold fracture is smart but leans abstract and gives the current fact less bodily authority.",
+    "panel_forced_revision": {
+      "before": "Two earthquakes prove numbers lie.",
+      "dissent": "The skeptic corrected the cartoon: magnitude does not lie, and disaster cannot be aesthetic fuel.",
+      "after": "The label remains accurate but incomplete; locations and human consequences are excluded, while depth becomes a production relation under the ribs."
+    }
+  },
+  {
+    "pair_num": 6,
+    "pair_id": "06",
+    "seed_title": "Keep the Interval",
+    "concept": "Two distant voices pronounce one name with a single altered phoneme over alternating meters; their call-and-response categories fail one by one until paired harmonizers stop short of unison and attentive difference becomes devotion.",
+    "medium": "Ambitious microtonal green-synth chamber / glitch-baroque, 104 BPM alternating 7/8 and 4/4; two close contrasting voices, plucked strings, muted digital harpsichord, soft modular pulse, and beating harmonizers.",
+    "artist_influence": "Speech-music timing and microtonal-vocal research references only; omit names from final prompts.",
+    "singer": {
+      "who": "Two adults in a close relationship, each singing their own partial knowledge.",
+      "physical_situation": "At opposite microphones, feeling beating partials press teeth and sternum while one name lands differently.",
+      "unsaid_ache": "The fear that love will be judged insufficient unless difference is corrected into perfect mutual translation."
+    },
+    "surface": {
+      "dominant_body_image": "Beating vocal partials pressing against the teeth.",
+      "plain_language_ache": "I can stay devoted without pretending to understand you perfectly.",
+      "candidate_hooks": [
+        "Keep the interval",
+        "Say my name your way",
+        "Near is not unfinished",
+        "Leave one note between us"
+      ],
+      "panel_lean_hook": "Keep the interval"
+    },
+    "hook_craft_scan": {
+      "stress_pattern": "KEEP the IN-ter-val; two anchors and a three-syllable release that can span 7/8 into 4/4.",
+      "vowel_breath_shape": "Long ee holds closeness; open interval syllables widen distance.",
+      "singback_potential": "Medium-high, distinctive imperative.",
+      "title_clarity": "Clear musical and relational double meaning.",
+      "emotional_adoptability": "Applies to devotion that respects difference.",
+      "risk": "May sound like a concept album thesis; verses need ordinary name/pronunciation stakes."
+    },
+    "golden_seed_alloy": {
+      "source_lineage": "Nail an Obscure Emotion + Straightening Our Spines; intimacy gains posture by refusing corrective merger.",
+      "primary_medium": "Microtonal green-synth chamber.",
+      "contrast_medium": "Glitch-baroque categorical call-response against warm close-mic duet.",
+      "mythic_material_escalation": "Name pronounced twice → beating partial at teeth → the interval becomes a small bridge that stays standing because it does not close → both speakers keep their distance.",
+      "exact_detail": "Two harmonizers drift toward unison and stop one beating partial short.",
+      "forbidden_cliche": "Two hearts one beat, soulmates completing each other, lost in translation.",
+      "anti_genre_contaminant": "A clipped digital-harpsichord category chant inside tender chamber electronics.",
+      "controlled_fracture": "Each response changes one phoneme and invalidates the category until the final prompt receives no answer.",
+      "routing_destination": {
+        "hook": "interval imperative",
+        "verse": "name and ordinary mishearing",
+        "bridge": "failing categories",
+        "production": "almost-unison beating",
+        "sidecar": "translation lag",
+        "ghost_bank": "AI relationship framing"
+      }
+    },
+    "triple_arch_ritual_paragraph": "One ordinary name crosses two mouths; a single consonant changes the vibration against the teeth; the interval becomes a bridge that remains standing precisely because its center never closes; both singers touch their own sternums and keep listening. Plucked string, muted key click, beating overtone, and asymmetrical breath leave a space actively held.",
+    "emo_dramaturgy_preview": {
+      "opening": "[EMO:Intimacy] in name and mouth",
+      "verse": "[EMO:Unease] at partial translation",
+      "hinge": "[EMO:Devotion] rejects forced correction",
+      "final": "[EMO:Acceptance] remains unresolved and active"
+    },
+    "production_dramaturgy": {
+      "cradle": "Warm plucked strings and close alternating voices.",
+      "haunt": "Harmonizers generate gentle beating after each changed phoneme.",
+      "rupture": "Categories fail and the expected final response does not arrive.",
+      "afterglow": "Both dry breaths remain over an unresolved interval, without silence."
+    },
+    "attention_ladder": {
+      "first_5_seconds": "One name, repeated with one changed phoneme across stereo.",
+      "first_hook_memory": "The compact imperative 'Keep the interval'.",
+      "second_listen_reward": "7/8 questions and 4/4 answers gradually stop aligning.",
+      "deep_lore_reward": "The final non-answer is attention, not abandonment."
+    },
+    "complexity_routing": {
+      "hook": "Four-syllable relational imperative.",
+      "verse": "Ordinary pronunciation and near-rhyme.",
+      "bridge": "Progressive category failure.",
+      "production_only": "Almost-unison harmonizer drift.",
+      "sidecar_only": "Microtonal near-familiarity source.",
+      "ghost_bank": "Machine-love or perfect-merger rhetoric."
+    },
+    "forced_differentiation": [
+      "Only duet/call-response pair",
+      "Only alternating 7/8 and 4/4",
+      "Only almost-unison device",
+      "Resolution is devoted incompletion"
+    ],
+    "phase1_slot": {
+      "arm": "ambitious",
+      "genre": "microtonal green-synth chamber / glitch-baroque",
+      "verse_structure": "call-and-response categories progressively fail; final category unanswered"
+    },
+    "slot_rationale": "Step-02 concept 11 won because the changed-name phoneme provides an ordinary doorway into the assigned microtonal form. Concept 12 is the runner-up: its harmonizer image is excellent production but lacks the concrete relational act needed to keep non-unison from becoming a sonic thesis.",
+    "panel_forced_revision": {
+      "before": "Two lovers fail to become one voice.",
+      "dissent": "The Hyper-Skeptic rejected romanticizing misunderstanding; the Human Bow construct required responsive listening, not distance as decoration.",
+      "after": "Each voice alters a phoneme, notices the effect, and chooses an attentive interval; the final non-answer is framed by continued breath and listening."
+    }
+  }
+]

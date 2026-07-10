@@ -1,0 +1,20 @@
+{
+  "run_id": "daily-2026-07-09-fresh-02",
+  "phase": "qa",
+  "required_files": [
+    {"path": "pair_01_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["Let Arrival Mean Arrived", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "pair_02_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["Come Near the Speaker", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "pair_03_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["Set It Down Wider", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "pair_04_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["The Words Stay Mine", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "pair_05_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["Say Same With Your Ribs", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "pair_06_step10_final_package_enhanced.md", "min_bytes": 8000, "required_text": ["Say My Name Sideways", "## 1. MUSIC PROMPT", "## 2. LYRICS"]},
+    {"path": "GATE_REPORT_pair_01.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "GATE_REPORT_pair_02.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "GATE_REPORT_pair_03.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "GATE_REPORT_pair_04.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "GATE_REPORT_pair_05.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "GATE_REPORT_pair_06.json", "min_bytes": 700, "required_text": ["\"pass\": true"]},
+    {"path": "QA_REPORT.md", "min_bytes": 4500, "required_text": ["Overall Verdict:** **SHIP", "CARDINALITY: PASS", "COLLISION AUDIT: PASS"]}
+  ],
+  "notes": "QA gate requires one validator-clean enhanced winner per pair, its deterministic gate report, and a completed adversarial SHIP audit."
+}

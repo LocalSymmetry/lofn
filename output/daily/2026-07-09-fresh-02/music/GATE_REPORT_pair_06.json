@@ -1,0 +1,42 @@
+[
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 932,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+    "actual": "ed while both mouth noises stay present.",
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "suno_lyrics_field_max",
+    "expected": "< 5000",
+    "actual": 3646,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 81,
+    "pass": true
+  },
+  {
+    "pair": "06",
+    "step": "10",
+    "check": "unique_line_ratio(FLAG, chorus-exempt)",
+    "expected": ">= 0.45",
+    "actual": 1.0,
+    "pass": null
+  }
+]

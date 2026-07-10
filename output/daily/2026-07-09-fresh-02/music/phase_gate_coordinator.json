@@ -1,0 +1,17 @@
+{
+  "run_id": "daily-2026-07-09-fresh-02",
+  "phase": "coordinator",
+  "required_files": [
+    {"path": "step00_aesthetics_and_genres.json", "min_bytes": 5000, "required_text": ["aesthetics", "frames_and_compositions"]},
+    {"path": "step01_essence_and_facets.json", "min_bytes": 1000, "required_text": ["creativity_spectrum", "style_axes"]},
+    {"path": "step02_concepts.json", "min_bytes": 2000, "required_text": ["concepts", "receipt printer", "harmonizers"]},
+    {"path": "step02_panel_pressure.md", "min_bytes": 1200, "required_text": ["Killed concept", "Counter-moves"]},
+    {"path": "step03_artist_and_critique.md", "min_bytes": 1800, "required_text": ["Critique", "Verdict"]},
+    {"path": "step04_mediums.md", "min_bytes": 1800, "required_text": ["Production Medium Pairings", "Medium verdict"]},
+    {"path": "step05_refine_medium.md", "min_bytes": 18000, "required_text": ["Cut ledger", "Panel-forced revision", "Pair 06"]},
+    {"path": "concept_medium_pairs.json", "min_bytes": 20000, "required_text": ["pair_num", "phase1_slot", "slot_rationale"]},
+    {"path": "pair_01_step05_isolated_brief.md", "min_bytes": 4500, "required_text": ["Isolation rule", "Four-angle assignment"]},
+    {"path": "pair_06_step05_isolated_brief.md", "min_bytes": 4500, "required_text": ["Isolation rule", "Four-angle assignment"]}
+  ],
+  "notes": "Coordinator gate validates 12-to-6 comparative cut and lean pair handoffs before pair generation."
+}

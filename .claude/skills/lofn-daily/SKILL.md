@@ -82,6 +82,7 @@ Every daily piece integrates three sources; state them explicitly in the metapro
 - **≥1 AWE song and ≥1 INDIGNATION song** in the set.
 - 6 different verse architectures / camera grammars across the 6 pairs (the standing distinctiveness rule). Vary stanza lengths intentionally.
 - **Variation angles are per-pair, never a shared template set.** A global "V4 = glitch chapel for everyone" scheme is how the 2026-06-26 daily produced two pairs singing the same song with nouns swapped; each pair derives its own 4 angles from its own concept (`EXECUTION.md` §3 item 3).
+- **Daily music pair isolation is mandatory.** Steps 05–11 must run as isolated pair runs; a central all-pairs helper may not author lyrics, section maps, stanza scaffolds, hook grammar, rhyme logic, or production arcs for multiple pairs. Shared validators and file writers are OK. If the pairs sound like the same song with nouns swapped, rerun each affected pair from Step 05.
 - **AWE stays terror-adjacent.** The daily's comfort gravity is real (kitchens, cups, reassurance) — every AWE song still answers the two pre-draft questions (*where is the body standing / what could hurt it here*) and carries a clean fear (`lofn-music` Golden Move rules 1 & 4).
 
 ### Library-only selection
@@ -149,6 +150,7 @@ Append a terse **4-field** line to the run INDEX (and present it in chat): **pai
 | Songs lack grounding | Declare Source 1/2/3 before any song is written |
 | Set is a lecture | Enforce Axis B (min 3 EXISTENCE pairs) |
 | Arm imbalance | Rank within ACCESSIBLE / AMBITIOUS arms separately (3+3) |
+| Pairs all sound the same | Rerun each music pair from Step 05 as an isolated pair run; no shared lyric scaffold, section map, hook grammar, rhyme logic, or production arc across pairs |
 | Work lost mid-run | Save every step file as it completes; one controller per date; rebuild the RUN_STATE manifest from disk after each wave and resume only `pending` artifacts |
 | A single pair keeps failing | Max-3-attempt loop + attempt-2.5 grace pass + no-progress halt → mark `quarantined`, surface "N of 6 broke open," do NOT consume its artifact, continue with survivors |
 | A stale rule fails everything | Run-level circuit breaker on SAME-gate correlated failure → STOP and name the gate for the human instead of 24×3 wasted retries |

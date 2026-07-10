@@ -1,0 +1,21 @@
+{
+  "run_id": "daily-2026-07-09-fresh-02",
+  "max_children": 3,
+  "spawn_strategy": "staggered_3_plus_3",
+  "agents": [
+    {"pair": 1, "status": "done"},
+    {"pair": 2, "status": "done"},
+    {"pair": 3, "status": "done"},
+    {"pair": 4, "status": "done"},
+    {"pair": 5, "status": "done"},
+    {"pair": 6, "status": "done"}
+  ],
+  "timeouts_minutes": {
+    "orchestrator": 15,
+    "coordinator": 20,
+    "pair_agent": 25,
+    "qa": 15,
+    "standard_full_run": 90,
+    "competition_full_run": 120
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "run_id": "daily-2026-07-09-fresh-02",
+  "phase": "pairs",
+  "required_files": [
+    {
+      "path": "pair_01_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_01_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_01_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_01_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_01_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    },
+    {
+      "path": "pair_02_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_02_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_02_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_02_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_02_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    },
+    {
+      "path": "pair_03_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_03_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_03_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_03_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_03_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    },
+    {
+      "path": "pair_04_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_04_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_04_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_04_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_04_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    },
+    {
+      "path": "pair_05_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_05_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_05_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_05_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_05_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    },
+    {
+      "path": "pair_06_step06_facets.md",
+      "min_bytes": 900,
+      "required_text": []
+    },
+    {
+      "path": "pair_06_step07_song_guides.md",
+      "min_bytes": 3000,
+      "required_text": []
+    },
+    {
+      "path": "pair_06_step08_generation.md",
+      "min_bytes": 3500,
+      "required_text": []
+    },
+    {
+      "path": "pair_06_step09_artist_refined.md",
+      "min_bytes": 2500,
+      "required_text": []
+    },
+    {
+      "path": "pair_06_step10_revision_synthesis.md",
+      "min_bytes": 18000,
+      "required_text": []
+    }
+  ],
+  "notes": "Structural pair gate. Multi-package Step-10 artifacts use pair-local schemas; canonical render schemas are enforced on the six Step-11 winners."
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { UnifiedDiff } from "../components";
+import { DivergingBar, Dumbbell } from "../../components/charts";
 import type {
   CompareResult, CompareArtifact, GateCounts, CompareCostDelta,
 } from "../types";
@@ -84,22 +85,29 @@ function KnobDeltaCard({ delta }: { delta: CompareResult["knob_delta"] }) {
         {delta.length === 0 ? (
           <p className="faint mono" style={{ fontSize: 12, margin: 0 }}>Both runs used identical knobs.</p>
         ) : (
-          <table className="grid" style={{ minWidth: 360 }}>
+          <table className="grid" style={{ minWidth: 420 }}>
             <thead>
               <tr>
                 <th>knob</th>
                 <th style={{ color: "var(--accent)" }}>A</th>
                 <th style={{ color: "var(--accent-2)" }}>B</th>
+                <th>gap</th>
               </tr>
             </thead>
             <tbody>
-              {delta.map((d) => (
-                <tr key={d.knob}>
-                  <td className="mono">{d.knob}</td>
-                  <td className="mono">{fmtKnob(d.a)}</td>
-                  <td className="mono">{fmtKnob(d.b)}</td>
-                </tr>
-              ))}
+              {delta.map((d) => {
+                const na = numOf(d.a), nb = numOf(d.b);
+                return (
+                  <tr key={d.knob}>
+                    <td className="mono">{d.knob}</td>
+                    <td className="mono">{fmtKnob(d.a)}</td>
+                    <td className="mono">{fmtKnob(d.b)}</td>
+                    <td>{na != null && nb != null && na !== nb
+                      ? <Dumbbell a={na} b={nb} aTitle="run A" bTitle="run B" width={150} />
+                      : <span className="faint">—</span>}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
@@ -114,6 +122,13 @@ function fmtKnob(v: unknown): string {
   return String(v);
 }
 
+/** first finite number in a scalar knob value (for the gap dumbbell). */
+function numOf(v: unknown): number | null {
+  if (typeof v === "number") return Number.isFinite(v) ? v : null;
+  if (typeof v === "string") { const m = v.match(/-?\d+(?:\.\d+)?/); return m ? parseFloat(m[0]) : null; }
+  return null;
+}
+
 function GateChips({ g }: { g: GateCounts }) {
   return (
     <span className="row" style={{ gap: 4 }}>
@@ -126,6 +141,8 @@ function GateChips({ g }: { g: GateCounts }) {
 
 function ArtifactDeltaTable({ artifacts }: { artifacts: CompareArtifact[] }) {
   const [open, setOpen] = useState<string | null>(null);
+  // shared churn axis so "grew / shrank / gutted" is comparable across artifacts.
+  const maxLines = Math.max(1, ...artifacts.map((a) => Math.max(a.diff.added, a.diff.removed)));
   return (
     <div className="card">
       <div className="card-hd">
@@ -163,14 +180,17 @@ function ArtifactDeltaTable({ artifacts }: { artifacts: CompareArtifact[] }) {
                             <span className="chip flag"><span className="d" />{only}</span>
                           )}
                         </td>
-                        <td className="mono" style={{ fontSize: 11 }}>
+                        <td style={{ fontSize: 11 }}>
                           {art.diff.identical ? (
-                            <span className="faint">identical</span>
+                            <span className="faint mono">identical</span>
                           ) : (
-                            <>
-                              <span style={{ color: "var(--ok)" }}>+{art.diff.added}</span>{" "}
-                              <span style={{ color: "var(--sev-hard)" }}>−{art.diff.removed}</span>
-                            </>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                              <DivergingBar neg={art.diff.removed} pos={art.diff.added} max={maxLines} />
+                              <span className="mono" style={{ fontSize: 10.5 }}>
+                                <span style={{ color: "var(--div-pos)" }}>+{art.diff.added}</span>{" "}
+                                <span style={{ color: "var(--div-neg)" }}>−{art.diff.removed}</span>
+                              </span>
+                            </div>
                           )}
                         </td>
                         <td><GateChips g={art.gate_delta.a} /></td>

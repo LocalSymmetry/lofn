@@ -1,0 +1,510 @@
+{
+  "id": "run-20260706-055441-49ce39b8",
+  "title": "lofn-music",
+  "created": "2026-07-06T05:54:41Z",
+  "flow": {
+    "name": "lofn-music",
+    "version": 1,
+    "file_sha": "f73ab9a7a0312bcb9070f0d1e4d2b79532ccb4d67e4a83ab91d57ec60e0bea58"
+  },
+  "knobs": {
+    "n_pairs": 6,
+    "n_variations_per_pair": 4,
+    "n_concepts": 12,
+    "panel_count": 3,
+    "voices_per_panel": 6,
+    "n_flairs": 15,
+    "concept_warmup_discard": 17,
+    "max_concurrency": 6,
+    "retry_max_attempts": 3,
+    "taxonomy_cardinality": 50,
+    "step00_min_bytes": 2000,
+    "music_prompt_chars": [
+      850,
+      1000
+    ],
+    "music_prompt_chars_target": [
+      870,
+      960
+    ],
+    "music_prompt_hug_ceiling": 985,
+    "sung_lines": [
+      70,
+      120
+    ],
+    "sung_lines_target": [
+      78,
+      110
+    ],
+    "sung_lines_floor_hug": 72,
+    "suno_lyrics_field_max": 5000,
+    "suno_lyrics_field_target": 4800,
+    "max_sung_numeric_facts": 1,
+    "image_min_words": 80,
+    "unique_line_ratio_floor": 0.45,
+    "ngram_collapse_n": 4,
+    "barbell_accessible": 3,
+    "barbell_ambitious": 3,
+    "total_prompts": 24
+  },
+  "overlays": [],
+  "canon_sha": "64dcef3758f0",
+  "canon_dirty": true,
+  "context": {
+    "input": "verification probe"
+  },
+  "model_tiers": {
+    "coordinator": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "max_tokens": 16000
+    },
+    "pair": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "max_tokens": 32000
+    },
+    "enhance": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "max_tokens": 32000
+    }
+  },
+  "steps": [
+    {
+      "step": "00",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "01",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "02",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "03",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "04",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "05",
+      "status": "done",
+      "stage": "coordinator",
+      "pair": null,
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "01",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "02",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "03",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "04",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "05",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "06",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "07",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "08",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "09",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "10",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    },
+    {
+      "step": "11",
+      "status": "done",
+      "stage": "pairs",
+      "pair": "06",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "attempts": 0,
+      "artifact": null
+    }
+  ],
+  "totals": {
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_usd": 0.0,
+    "duration_s": 1.891,
+    "pairs_total": 6,
+    "pairs_quarantined": 0
+  },
+  "budget": {
+    "cap_usd": 2.0,
+    "spend_usd": 0.0,
+    "aborted_on_cap": false
+  },
+  "status": "complete",
+  "verdicts": []
+}

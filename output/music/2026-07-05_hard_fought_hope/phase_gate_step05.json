@@ -1,0 +1,9 @@
+{
+  "run_id": "2026-07-05_hard_fought_hope",
+  "phase": "step05",
+  "required_files": [
+    {"path": "step05_refine_medium.md", "min_bytes": 8000, "required_text": ["Cut Ledger", "Pair 01", "Pair 06", "Panel-Forced Revision"]},
+    {"path": "concept_medium_pairs.json", "min_bytes": 5000, "required_text": ["\"pair_id\": \"01\"", "\"pair_id\": \"06\"", "\"phase1_slot\""]}
+  ],
+  "notes": "Step05 must pass before pair fanout."
+}

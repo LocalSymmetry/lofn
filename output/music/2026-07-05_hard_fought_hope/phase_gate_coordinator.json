@@ -1,0 +1,19 @@
+{
+  "run_id": "2026-07-05_hard_fought_hope",
+  "phase": "coordinator",
+  "required_files": [
+    {"path": "00_research_brief.md", "min_bytes": 2000, "required_text": ["Research Anchors"]},
+    {"path": "02_golden_seed.md", "min_bytes": 1000, "required_text": ["Golden Seed"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 2500, "required_text": ["Special Flairs", "Hyper-Skeptic"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 1200, "required_text": ["Golden Move"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 1500, "required_text": ["Pair 01", "Pair 06"]},
+    {"path": "06_audio_handoff.md", "min_bytes": 800, "required_text": ["Golden Song References"]},
+    {"path": "CREATIVE_CONTEXT.md", "min_bytes": 1500, "required_text": ["Special Flairs"]},
+    {"path": "step00_aesthetics_and_genres.md", "min_bytes": 2000, "required_text": ["genres"]},
+    {"path": "step01_essence_and_facets.md", "min_bytes": 900, "required_text": ["style_axes"]},
+    {"path": "step02_concepts.md", "min_bytes": 1800, "required_text": ["panel_pressure"]},
+    {"path": "step03_artist_and_critique.md", "min_bytes": 1800, "required_text": ["refined_concepts"]},
+    {"path": "step04_medium.md", "min_bytes": 1800, "required_text": ["mediums"]}
+  ],
+  "notes": "Coordinator packet must pass before Step05/pair fanout."
+}

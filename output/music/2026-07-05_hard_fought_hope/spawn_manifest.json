@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-07-05_hard_fought_hope",
+  "max_children": 5,
+  "spawn_strategy": "staggered_5_plus_1",
+  "agents": [
+    {"pair": 1, "status": "done", "agent_id": "019f344f-916e-76e0-90f6-ff324474c5d4", "nickname": "Lovelace"},
+    {"pair": 2, "status": "done", "agent_id": "019f344f-a899-7212-be09-41e4e3ec8fe7", "nickname": "Avicenna"},
+    {"pair": 3, "status": "done", "agent_id": "019f344f-bd36-7ec2-a72e-3b9c8693b9d2", "nickname": "Poincare"},
+    {"pair": 4, "status": "done", "agent_id": "019f344f-d203-70e2-9bba-2f30662180e7", "nickname": "Newton"},
+    {"pair": 5, "status": "done", "agent_id": "019f344f-e8c4-7d22-b1a1-eaf8196d44d5", "nickname": "Pauli"},
+    {"pair": 6, "status": "done", "agent_id": "019f3454-d346-7211-8d28-d6b727104de3", "nickname": "Godel"}
+  ],
+  "timeouts_minutes": {
+    "orchestrator": 15,
+    "coordinator": 20,
+    "pair_agent": 20,
+    "qa": 12,
+    "standard_full_run": 90,
+    "competition_full_run": 120
+  }
+}

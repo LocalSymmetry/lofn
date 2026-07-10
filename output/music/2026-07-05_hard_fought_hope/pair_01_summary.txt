@@ -1,0 +1,12 @@
+pair_id=01
+seed_title=One More Morning Clicks On
+concept=Clinic worker at vaccine refrigerator after power blink; relay catch becomes proof enough to stand up.
+medium=Fridge-hum ambient grunge with relay-click percussion, low alto, raw tape saturation, fluorescent buzz, quiet-loud industrial-synth resilience.
+step06_facets=5
+step07_song_guides=6
+step08_raw_packages=6
+step09_refined_packages=6
+step10_final_variants=4
+step10_variant_ids=P01-R1,P01-R2,P01-S1,P01-S2
+step10_titles=One More Morning Clicked On; Count It By The Cold; The Cold Chain Answered; Two Lights Under The Fridge
+caveats=Step validators and pair-level validator passed. Legacy validator requires the lyrics heading shape "## 2. LYRICS", so Step 10 uses that compatibility heading for the Suno lyrics fields rather than the user's requested literal "## SUNO LYRICS" heading text.

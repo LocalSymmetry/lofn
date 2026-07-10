@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { studioApi } from "../api";
 import { useRunStream, CostBar, StatusLight } from "../components";
+import { StackedStrip, DotStrip } from "../../components/charts";
 import type {
   RunState, StepResult, StepStatus, GateResult, RunlogEvent,
 } from "../types";
@@ -70,6 +71,16 @@ export function LiveMonitor({ runId, onExit }: Props) {
   // -- lanes: coordinator (pair null) + one per observed pair label --------
   const lanes = useMemo(() => buildLanes(run?.steps || [], events), [run?.steps, events]);
 
+  // cost composition (where the spend went, aggregated by step across pairs) +
+  // latency (which step stalls). Memoized off run.json.steps so they don't
+  // redraw on every SSE tick — lane-level, never one chart per step card.
+  const costByStep = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const s of run?.steps || []) if (s.cost_usd && s.cost_usd > 0) m.set(s.step, (m.get(s.step) || 0) + s.cost_usd);
+    return Array.from(m, ([key, value]) => ({ key, value }));
+  }, [run?.steps]);
+  const maxDur = useMemo(() => (run?.steps || []).reduce((mx, s) => Math.max(mx, s.duration_s || 0), 0), [run?.steps]);
+
   // -- pending human hold (from the event stream) --------------------------
   const hold = useMemo(() => pendingHold(events), [events]);
 
@@ -129,6 +140,12 @@ export function LiveMonitor({ runId, onExit }: Props) {
           </div>
         </div>
         <CostBar spend={spend} cap={cap} unpriced={spend === 0 && (run.totals?.tokens_out ?? 0) > 0} />
+        {costByStep.length > 1 && (
+          <div style={{ display: "grid", gap: 3 }}>
+            <span className="faint mono" style={{ fontSize: 10 }}>where the spend went — by step</span>
+            <StackedStrip segments={costByStep} labelTop={3} fmt={(n) => (n >= 1 ? `$${n.toFixed(2)}` : `$${n.toFixed(3)}`)} />
+          </div>
+        )}
         <div className="row" style={{ gap: 12, flexWrap: "wrap", fontSize: 11 }}>
           <Meter k="tokens in" v={(run.totals?.tokens_in ?? 0).toLocaleString()} />
           <Meter k="tokens out" v={(run.totals?.tokens_out ?? 0).toLocaleString()} />
@@ -154,7 +171,7 @@ export function LiveMonitor({ runId, onExit }: Props) {
       {/* lanes */}
       <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
         {lanes.map((lane) => (
-          <Lane key={lane.key} lane={lane} onOpenArtifact={setOpenArtifact} />
+          <Lane key={lane.key} lane={lane} maxDur={maxDur} onOpenArtifact={setOpenArtifact} />
         ))}
         {lanes.length === 0 && <div className="empty">waiting for the first step…</div>}
       </div>
@@ -186,7 +203,8 @@ interface LaneModel {
   quarantined: boolean;
 }
 
-function Lane({ lane, onOpenArtifact }: { lane: LaneModel; onOpenArtifact: (a: string) => void }) {
+function Lane({ lane, maxDur, onOpenArtifact }: { lane: LaneModel; maxDur: number; onOpenArtifact: (a: string) => void }) {
+  const timed = lane.steps.some((s) => s.duration_s);
   return (
     <div className="card" style={lane.quarantined ? { borderColor: "color-mix(in srgb, var(--sev-flag) 45%, var(--border))" } : undefined}>
       <div className="card-hd row" style={{ justifyContent: "space-between", padding: "8px 12px" }}>
@@ -198,6 +216,11 @@ function Lane({ lane, onOpenArtifact }: { lane: LaneModel; onOpenArtifact: (a: s
           ? <span className="chip flag"><span className="d" />quarantined</span>
           : <span className="faint mono" style={{ fontSize: 10.5 }}>{lane.steps.filter((s) => s.status === "done" || s.status === "flagged").length}/{lane.steps.length}</span>}
       </div>
+      {maxDur > 0 && timed && (
+        <div style={{ padding: "4px 12px 0" }} title="per-step timing — the amber dot is this lane's slowest step">
+          <DotStrip values={lane.steps.map((s) => ({ label: s.step, value: s.duration_s || 0 }))} max={maxDur} width={150} fmt={(n) => `${n.toFixed(1)}s`} />
+        </div>
+      )}
       <div style={{ display: "grid", gap: 6, padding: 8 }}>
         {lane.steps.map((s) => <StepCard key={`${s.step}:${s.pair ?? ""}`} s={s} onOpenArtifact={onOpenArtifact} />)}
       </div>

@@ -1,71 +1,106 @@
 /* =============================================================================
-   Lofn Prompt Explorer — design language: "GILDED VELLUM / THE GOLDEN THREAD".
-   Art-directed by the panel (after Klimt · de Hamel · Tufte · Kare · Licko · Loos).
-   Ground: warm ink on dark vellum (long-session ergonomics). GOLD is never
-   decoration — it is the SEMANTIC RESERVE for the immutable: canon, the Golden
-   Seed, a frozen run, promotion-to-canon (the Immutable Continuity Block).
-   Severity = rubrication pigments (vermilion=hard/Andon · ochre=flag/Somatic ·
-   murex=mixed · stone=prose). Rails = precious pigments, spread for separation.
-   Type: Fraunces (literary display serif) for the voice; character-mono for the
-   cockpit. Corners sharpened (ruled page, not bubble-SaaS).
-   Signature: THE GOLDEN THREAD — a fine gilt line of continuity that frays red
-   on thread-loss (the Andon Cord made visible).
+   Lofn Prompt Explorer — design language: "SUNSET VELLUM / THE HYPSOMETRIC KEY".
+   Art-directed by Lofn's three image panels (Concept · Medium · Context), after
+   Scher · Albers · Carter · Imhof · Tufte · Brewer · Norman · Tesler · Few.
+
+   The pipeline read as a working sky at dusk: ALTITUDE OF LIGHT = DEPTH OF
+   PROCESS — canon at the pale zenith, raw prose in the low haze. The sunset
+   survives only as ENCODED HUE, never as an ambient gradient.
+
+   The anti-slop mechanism: SATURATION IS THE SCARCE RESERVE. ~90% of the UI is
+   calm warm pastel; the only things allowed to shout are a gate that stops the
+   line, a health signal that degraded, and the pale brilliance of canon. GOLD is
+   no longer ground or fill — it only FRAMES the immutable (a 1px gilt edge).
+
+   Severity = saturated pigments, hoarded (vermilion=hard/Andon · ochre=flag ·
+   murex=mixed · stone=prose) AND carried redundantly by shape (deuteranope-safe).
+   Rails = DESATURATED sunset tints (rose→coral→apricot→marigold→plum) — a
+   different chromatic REGISTER so structure never collides with alarm.
+   Type: serif for the VOICE, tabular mono for the MEASUREMENT.
+   Charts read ONLY the --seq / --div / --cat scale tokens → theme-agnostic.
    ============================================================================= */
 :root {
-  --bg: #13110c;              /* warm ink — dark vellum in shadow */
-  --surface: #1b1712;
-  --surface-2: #241f16;
-  --surface-3: #2f2818;
-  --border: #38301f;
-  --border-strong: #4f4330;
-  --text: #ece3d1;            /* warm parchment */
-  --text-dim: #a89e88;
-  --text-faint: #7a6f59;
+  color-scheme: light;
+  --bg: #fdf6ef;             /* warm near-white — the sky, never pure white */
+  --surface: #fbeee4;
+  --surface-2: #f6e3d6;
+  --surface-3: #efd8c6;
+  --border: #e7ccb9;
+  --border-strong: #d6b19a;
+  --text: #3a2a28;           /* warm ink — belongs to the sunset without being it */
+  --text-dim: #7a6a63;
+  --text-faint: #a8988f;
 
-  /* GOLD — the immutable reserve + primary action + selection. Used sparingly. */
-  --accent: #c9a227;          /* gold leaf */
-  --accent-2: #eccb6d;        /* bright gilt / illumination highlight */
-  --accent-dim: #9a801e;
-  --gold: #c9a227;
-  --gold-ink: #1a1305;        /* dark text ON gold (buttons) */
+  /* accent = primary action + selection + links (freed from meaning "immutable") */
+  --accent: #c85a3c;         /* terracotta */
+  --accent-2: #e89a6a;
+  --accent-dim: #a8482e;
+  --gold: #c99a3c;
+  --gold-ink: #2c1e16;
 
-  --ok: #5fae86;              /* verdigris — positive */
-  --dirty: #cf9440;           /* copper/ochre — git-modified */
+  --ok: #3e8e6e;             /* garden green — positive */
+  --dirty: #c4791c;          /* copper — git-modified */
 
-  /* severity — rubrication pigments */
-  --sev-hard: #db463c;        /* vermilion rubric — the Andon Cord (stop the line) */
-  --sev-flag: #dd922f;        /* ochre — the Somatic feel / boundary */
-  --sev-prose: #948a73;       /* stone grey-gold */
-  --sev-mixed: #b06ba2;       /* murex / Tyrian purple */
+  /* severity — the saturated, scarce reserve (allowed to be loud on the pastel) */
+  --sev-hard: #c0392b;       /* vermilion — the Andon Cord (stop the line) */
+  --sev-flag: #c97b10;       /* amber-ochre — the Somatic feel / boundary */
+  --sev-prose: #9a8478;      /* warm stone — the dimmest, "no teeth" */
+  --sev-mixed: #8e44ad;      /* murex / Tyrian purple */
 
-  /* per-rail segmentation — precious pigments, hues spread for max separation */
-  --rail-orchestrator: #6f93d4;  /* lapis / ultramarine — the conductor */
-  --rail-music: #d76c88;         /* rose madder */
-  --rail-image: #4fb1a3;         /* verdigris / malachite */
-  --rail-video: #cf8048;         /* burnt sienna / copper */
-  --rail-story: #86bb5f;         /* sap green */
+  /* per-rail segmentation — DESATURATED sunset tints (identify, never alarm) */
+  --rail-orchestrator: #a87595;  /* dusty rose-mauve — the conductor */
+  --rail-music: #c56a72;         /* dusty rose-coral */
+  --rail-image: #bc8a54;         /* apricot-tan */
+  --rail-video: #a5924e;         /* olive-marigold */
+  --rail-story: #8e77ae;         /* soft plum */
+
+  /* canon / immutable — the pale zenith light + a single gilt FRAME. Gold no
+     longer fills or letters anything; it only frames what must not be touched. */
+  --canon-fill: #fff9ec;
+  --canon-edge: #d8b15a;
+
+  /* chart scale tokens — theme-agnostic BY CONTRACT: charts read ONLY these, and
+     they re-ink for free on every theme because they derive from the semantic
+     tokens above. seq = single-hue sequential ramp (ordered by lightness) for
+     part-to-whole; div = the ONE diverging scale (added/removed); cat = a
+     colorblind-safe qualitative set (Okabe–Ito), held constant across themes. */
+  --seq-1: color-mix(in srgb, var(--sev-mixed) 14%, var(--surface));
+  --seq-2: color-mix(in srgb, var(--sev-mixed) 32%, var(--surface));
+  --seq-3: color-mix(in srgb, var(--sev-mixed) 52%, var(--surface));
+  --seq-4: color-mix(in srgb, var(--sev-mixed) 74%, var(--surface));
+  --seq-5: var(--sev-mixed);
+  --div-pos: var(--ok);
+  --div-mid: var(--border-strong);
+  --div-neg: var(--sev-hard);
+  --cat-1: #0072b2; --cat-2: #e69f00; --cat-3: #009e73;
+  --cat-4: #cc79a7; --cat-5: #d55e00; --cat-6: #56b4e9;
 
   --display: "Fraunces Variable", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --mono: "Cascadia Code", "JetBrains Mono", "IBM Plex Mono", ui-monospace, Consolas, monospace;
   --sans: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
 
-  --r: 3px;                   /* ruled page, not bubble-SaaS */
-  --r-sm: 2px;
-  --shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
-  --thread: #c9a227;          /* the golden thread */
+  --r: 4px;
+  --r-sm: 3px;
+  --shadow: 0 12px 30px rgba(120, 70, 40, 0.14);
+  --thread: #d8b15a;          /* the golden thread, at rest — a gilt hairline */
+  --bg-glow: rgba(232, 150, 90, 0.12);
+  --theme-icon-bg: rgba(200, 90, 60, 0.10);
+  --theme-icon-fg: #a8482e;
+  --theme-icon-border: rgba(200, 90, 60, 0.30);
+  --theme-icon-shadow: 0 6px 16px rgba(200, 90, 60, 0.12);
+  --theme-preview-fallback: linear-gradient(135deg, #fdf6ef, #e0a15c 45%, #c98ba6);
 }
 
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; margin: 0; }
 body {
-  /* warm ink ground + a barely-there vellum tooth (the "proof-of-work patina")
-     and a faint gilt glow from the top, like light catching leaf on a page. */
+  /* a clean warm wash + one faint sunset glow from the top. No grain: on a
+     near-white ground the old feTurbulence tooth reads as a dirty JPEG (a slop
+     tell). The horizon is legend, never wallpaper. */
   background-color: var(--bg);
-  background-image:
-    radial-gradient(120% 90% at 50% -18%, rgba(201, 162, 39, 0.05), transparent 55%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='0.035'/%3E%3C/svg%3E");
-  background-repeat: no-repeat, repeat;
-  background-attachment: fixed, fixed;
+  background-image: radial-gradient(120% 90% at 50% -18%, var(--bg-glow), transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--sans);
   font-size: 13px;
@@ -76,7 +111,7 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font-family: inherit; font-size: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 3px; }
-::selection { background: rgba(201, 162, 39, 0.32); }
+::selection { background: color-mix(in srgb, var(--accent) 32%, transparent); }
 
 /* scrollbars */
 *::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -97,10 +132,11 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   display: flex; align-items: center; gap: 9px;
 }
 /* a gilt four-point star ✦ — hand-set mark, not an emoji placeholder */
-.nav-brand .dot { width: 13px; height: 13px; border-radius: 0;
-  background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent) 55%, transparent)); }
+.nav-brand .dot { width: 20px; height: 20px; border-radius: var(--r-sm);
+  display: inline-grid; place-items: center; flex: none;
+  color: var(--theme-icon-fg); background: var(--theme-icon-bg);
+  border: 1px solid var(--theme-icon-border); box-shadow: var(--theme-icon-shadow);
+  font-family: var(--display); font-size: 12px; line-height: 1; }
 .nav-brand small { font-family: var(--sans); }
 .nav-brand small { color: var(--text-faint); font-weight: 400; font-size: 11px; }
 .nav-section { padding: 6px 10px; color: var(--text-faint); font-size: 10.5px;
@@ -108,13 +144,69 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 .nav-link {
   display: flex; align-items: center; gap: 9px; padding: 7px 12px; margin: 1px 8px;
   border-radius: var(--r-sm); color: var(--text-dim); font-size: 12.5px; user-select: none;
+  border: 0; background: transparent; text-align: left; width: calc(100% - 16px);
 }
 .nav-link:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .nav-link.active { background: var(--surface-3); color: var(--text); }
 .nav-link .k { margin-left: auto; color: var(--text-faint); font-size: 10.5px; font-family: var(--mono); }
+.nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-button { justify-content: flex-start; }
 .nav-spacer { flex: 1; }
 .nav-foot { padding: 10px 14px; border-top: 1px solid var(--border);
   color: var(--text-faint); font-size: 11px; }
+
+.theme-icon {
+  width: 18px; height: 18px; flex: none; display: inline-grid; place-items: center;
+  border-radius: var(--r-sm); border: 1px solid var(--theme-icon-border);
+  background: var(--theme-icon-bg); color: var(--theme-icon-fg);
+  box-shadow: var(--theme-icon-shadow); font-family: var(--display);
+  font-size: 10.5px; line-height: 1;
+}
+.theme-switcher {
+  margin: 8px; padding: 8px; border: 1px solid var(--border);
+  border-radius: var(--r); background: var(--surface-2);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--thread) 16%, transparent);
+  display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: stretch;
+}
+.theme-preview {
+  position: relative; min-height: 58px; border-radius: var(--r-sm);
+  background: var(--theme-preview-fallback); background-size: cover; background-position: center;
+  border: 1px solid var(--border-strong); overflow: hidden;
+}
+.theme-preview::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 15%, color-mix(in srgb, var(--bg) 72%, transparent));
+}
+.theme-preview-mark {
+  position: absolute; left: 6px; bottom: 5px; z-index: 1;
+  width: 20px; height: 20px; display: grid; place-items: center;
+  border-radius: var(--r-sm); color: var(--theme-icon-fg);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border: 1px solid var(--theme-icon-border); font-family: var(--display);
+}
+.theme-copy { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.theme-select { min-width: 0; height: 26px; padding: 2px 6px; font-size: 11.5px; }
+.theme-swatches { display: flex; gap: 3px; min-width: 0; }
+.theme-swatch {
+  width: 15px; height: 7px; border-radius: 20px; flex: 1;
+  min-width: 8px; border: 1px solid color-mix(in srgb, var(--border-strong) 75%, transparent);
+}
+[data-theme="pixel-arcade"] .theme-icon,
+[data-theme="pixel-arcade"] .nav-brand .dot,
+[data-theme="pixel-arcade"] .theme-preview-mark,
+[data-theme="pixel-arcade"] .theme-swatch {
+  border-radius: 0;
+}
+[data-theme="pixel-arcade"] .nav-link,
+[data-theme="pixel-arcade"] .btn,
+[data-theme="pixel-arcade"] .input,
+[data-theme="pixel-arcade"] .card {
+  image-rendering: pixelated;
+}
+[data-theme="bauhaus-signal-room"] .theme-icon,
+[data-theme="bauhaus-signal-room"] .nav-brand .dot {
+  font-family: var(--sans); font-weight: 800;
+}
 
 .main { min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
 
@@ -124,7 +216,9 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 .spacer { flex: 1; }
 .muted { color: var(--text-dim); }
 .faint { color: var(--text-faint); }
-.mono { font-family: var(--mono); }
+/* the MEASUREMENT register — mono with tabular figures so columns of numbers
+   align. Serif (--display) stays the VOICE; this is the cockpit. */
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .title { font-weight: 620; }
 .hd {
   display: flex; align-items: center; gap: 10px; padding: 10px 16px;
@@ -158,12 +252,13 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 .badge.warn { color: var(--sev-flag); border-color: color-mix(in srgb, var(--sev-flag) 40%, transparent); }
 .badge.err { color: var(--sev-hard); border-color: color-mix(in srgb, var(--sev-hard) 45%, transparent); }
 .badge.ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
-/* GOLD = the immutable reserve — canon, a frozen run, promotion-to-canon. The
-   one place gold is allowed as a status, because here it MEANS "do not alter". */
-.badge.canon { color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, var(--surface-2));
-  border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+/* CANON = the immutable. No longer painted gold — it reads as the pale zenith
+   brilliance, FRAMED by a single gilt edge. You don't paint what you must not
+   touch; you frame it in light. */
+.badge.canon { color: var(--text); background: var(--canon-fill);
+  border-color: var(--canon-edge); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--canon-edge) 55%, transparent); }
 /* a gilt hairline for canon/immutable surfaces (the golden thread, at rest) */
-.gilt-edge { box-shadow: inset 0 2px 0 -1px color-mix(in srgb, var(--thread) 55%, transparent); }
+.gilt-edge { box-shadow: inset 0 2px 0 -1px color-mix(in srgb, var(--canon-edge) 70%, transparent); }
 
 /* severity chips (gates) */
 .chip {
@@ -177,6 +272,13 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 .chip.prose { color: var(--sev-prose); border-color: color-mix(in srgb, var(--sev-prose) 35%, transparent); }
 .chip.mixed { color: var(--sev-mixed); border-color: color-mix(in srgb, var(--sev-mixed) 35%, transparent); }
 .chip:hover { background: var(--surface-3); }
+/* severity carried redundantly by SHAPE, never hue alone (a warm light ground
+   is exactly where colorblind failure hides): hard = stop-block square ·
+   flag = triangle · mixed = diamond · prose = hollow ring. */
+.chip.hard .d, .badge.err .d { border-radius: 0; }
+.chip.flag .d, .badge.warn .d { border-radius: 0; clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+.chip.mixed .d { border-radius: 1px; transform: rotate(45deg); }
+.chip.prose .d { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
 
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); }
 .card .card-hd { padding: 9px 12px; border-bottom: 1px solid var(--border); font-weight: 600; }
@@ -186,7 +288,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: 4px;
   padding: 0 5px; color: var(--text-dim); }
 
-table.grid { width: 100%; border-collapse: collapse; font-size: 12px; }
+table.grid { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
 table.grid th { text-align: left; color: var(--text-faint); font-weight: 550;
   padding: 6px 10px; border-bottom: 1px solid var(--border); position: sticky; top: 0;
   background: var(--surface); font-size: 11px; }
@@ -230,3 +332,57 @@ textarea.input { resize: vertical; line-height: 1.4; }
 .rail-step:hover { background: var(--surface-2) !important; }
 .d-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); flex: none;
   box-shadow: 0 0 6px color-mix(in srgb, var(--accent-2) 60%, transparent); }
+
+/* ============================ chart primitives =============================
+   Self-contained SVG/CSS (components/charts.tsx). Everything reads tokens only. */
+
+/* severity mark — hue + redundant SHAPE (deuteranope-safe, mirrors .chip .d). */
+.sev-mark { display: inline-block; width: 8px; height: 8px; flex: none;
+  background: currentColor; border-radius: 2px; vertical-align: middle; }
+.sev-mark.hard { color: var(--sev-hard); border-radius: 0; }
+.sev-mark.flag { color: var(--sev-flag); border-radius: 0; clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+.sev-mark.mixed { color: var(--sev-mixed); border-radius: 1px; transform: rotate(45deg); }
+.sev-mark.prose { color: var(--sev-prose); background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+.sev-mark.canon { color: var(--canon-edge); background: var(--canon-fill);
+  box-shadow: inset 0 0 0 1px var(--canon-edge); border-radius: 1px; }
+
+/* the hypsometric key — the tint-ladder legend (canon + 4 severities). */
+.hyps-key { display: inline-flex; flex-direction: column; gap: 4px; }
+.hyps-strip { display: flex; height: 10px; width: 232px; border-radius: 2px; overflow: hidden; border: 1px solid var(--border); }
+.hyps-seg { flex: 1; }
+.hyps-labels { display: flex; width: 232px; }
+.hyps-lab { flex: 1; display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--text-faint); }
+
+/* dumbbell — the drift / knob-delta gap glyph. */
+.dumb { display: flex; flex-direction: column; gap: 1px; }
+.dumb-labels { display: flex; justify-content: space-between; font-size: 10.5px; gap: 6px; }
+.dumb-arrow { font-size: 9.5px; }
+
+/* stacked strip — cost composition (part-to-whole). */
+.stack-strip { display: flex; flex-direction: column; gap: 5px; }
+.stack-bar { display: flex; width: 100%; border-radius: 3px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-3); }
+.stack-seg { height: 100%; min-width: 1px; }
+.stack-labels { display: flex; flex-wrap: wrap; gap: 10px; }
+.stack-lab { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; }
+.stack-sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; flex: none; }
+
+/* coverage matrix — rail × severity dot-plot (CSS grid, not SVG: a table of
+   small counts wants a grid, not a chart framework). */
+.cov { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border);
+  border-radius: var(--r-sm); overflow: hidden; width: max-content; }
+.cov-cell { background: var(--surface); padding: 7px 10px; min-width: 66px;
+  display: flex; align-items: center; justify-content: center; gap: 3px; flex-wrap: wrap; }
+.cov-head { background: var(--surface-2); font-size: 10.5px; color: var(--text-faint);
+  text-transform: uppercase; letter-spacing: 0.5px; justify-content: flex-start; font-weight: 600; }
+.cov-rail { background: var(--surface-2); justify-content: flex-start; gap: 7px; font-weight: 560; }
+.cov-cell.hot { background: color-mix(in srgb, var(--sev-hard) 9%, var(--surface)); }
+.cov-empty { color: var(--text-faint); opacity: 0.4; }
+
+/* the state spine — by-exception vitals in the nav foot (App.tsx StateSpine). */
+.spine { display: flex; align-items: center; gap: 7px; width: 100%; background: transparent;
+  border: 0; padding: 2px 2px 4px; cursor: pointer; color: var(--text-dim); border-radius: var(--r-sm); }
+.spine:hover { color: var(--text); }
+.spine-led { display: inline-flex; align-items: center; gap: 3px; }
+.spine-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.spine-n { font-family: var(--mono); font-size: 10px; font-variant-numeric: tabular-nums; }
+.spine-cap { margin-left: auto; font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.6px; }

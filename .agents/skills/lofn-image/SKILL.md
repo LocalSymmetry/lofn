@@ -5,8 +5,6 @@ description: Run the Lofn image/visual pipeline (steps 00–10) backed by Codex 
 
 # Lofn Image — Codex-backed vision pipeline
 
-> **⚖️ AUTHORITY (2026-07-01):** the `.claude/skills/` twin of this skill is the CANONICAL policy source; this Codex mirror binds to it and to `.agents/skills/lofn/EXECUTION.md` §8 (Policy Deltas — golden-output quarantine, no-skip/NON-CANONICAL, itemized packet, per-pair variation angles, judge separation, the publish bar, gate mid-bands). On any disagreement, the `.claude` file wins.
-
 Produces render-ready image prompts at Lofn competition grade (the catalog behind 11 first-place finishes). Depth lives in `skills/image/`; this skill runs it with Codex as the engine (hybrid execution per `.agents/skills/lofn/EXECUTION.md`).
 
 ## Before you start
@@ -17,7 +15,7 @@ Produces render-ready image prompts at Lofn competition grade (the catalog behin
 3. Visual quality bar + density checklist: `vault/VISION_QA_DEPTH_AUDIT.md` (the Visual Somatic Gate).
 
 ## Execution (hybrid)
-Coordinator **00-05 inline**, then **6 pairs as parallel subagents** for 06-10. At every agent start, inject the full startup packet from EXECUTION.md Section 3: CREATIVE_CONTEXT.md verbatim, the handoff/assignment files, current step contract, and prior artifact where applicable. Default cardinality: **6 pairs x 4 = 24 prompts -> rank -> top picks.**
+Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–10. Inject the full `CREATIVE_CONTEXT.md` everywhere. Default cardinality: **6 pairs × 4 = 24 prompts → rank → top picks.**
 
 ### Coordinator steps (inline)
 | Step | File | Artifact |

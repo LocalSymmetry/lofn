@@ -1,0 +1,16 @@
+{
+  "run_id": "daily-2026-07-09-fresh-02",
+  "phase": "orchestrator",
+  "required_files": [
+    {"path": "../00_research_brief.md", "min_bytes": 7000, "required_text": ["Tri-Source declaration", "Human-subject pre-draft declaration", "Dual 3+3 seeded split preview"]},
+    {"path": "01_seed_lineage.md", "min_bytes": 2500, "required_text": ["Nail an Obscure Emotion", "Straightening Our Spines"]},
+    {"path": "02_golden_seed.md", "min_bytes": 3500, "required_text": ["UNFILED PULSE", "Tri-source"]},
+    {"path": "personality.md", "min_bytes": 4500, "required_text": ["LOFN", "Generator-safe"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 15000, "required_text": ["BASELINE", "GROUP TRANSFORM: ROTATE", "SKEPTIC TRANSFORM: BRIDGE", "SHIP TO METAPROMPT"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 3500, "required_text": ["Exactly 6 pairs", "Anti-convergence law", "Golden moves"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 7000, "required_text": ["Pair 01", "Pair 06", "Cross-pair collision matrix"]},
+    {"path": "06_audio_handoff.md", "min_bytes": 1400, "required_text": ["Exactly 24 songs", "golden-output payload"]},
+    {"path": "CREATIVE_CONTEXT.md", "min_bytes": 60000, "required_text": ["FROZEN IMMUTABLE CONTEXT BLOCK", "UNFILED PULSE", "Exactly 6 pairs"]}
+  ],
+  "notes": "Orchestrator phase must pass before music coordinator taxonomy/concept generation."
+}
