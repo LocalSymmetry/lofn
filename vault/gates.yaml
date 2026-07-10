@@ -85,6 +85,22 @@ image_min_words: 80
 # Total variation prompts across the 6 pairs (4 each).
 total_prompts: 24
 
+# --- Cross-pair distinctiveness (the 6 pairs must not share one skeleton) --
+# EXECUTION.md §4: "Distinctiveness across pairs is checked at 06, 09, and 10."
+# Three sibling validators enforce it (scripts/validate_step06_distinctiveness.py,
+# validate_step09_distinctiveness.py, validate_portfolio_distinctiveness.py).
+# A breach is a REPAIR TRIGGER — it routes into the bounded max-3-attempt repair
+# loop, then quarantine + human surface. It is NOT a run kill, and a DELIBERATE
+# shared motif that survives repair is a HUMAN WAIVE, never a silent ship.
+# (These measure similarity BETWEEN pairs; within-song chorus/refrain repetition
+# is a separate FLAG handled by unique_line_ratio_floor below, chorus-exempt.)
+step06_min_facets: 8              # substantive facets required per pair at step 06
+step06_max_pair_similarity: 0.50  # pairwise facet-text SequenceMatcher ceiling
+step09_max_pair_similarity: 0.62  # pairwise artist-refine SequenceMatcher ceiling
+portfolio_max_lyric_similarity: 0.42   # step-10 pairwise lyric ceiling
+portfolio_max_prompt_similarity: 0.58  # step-10 pairwise prompt ceiling
+portfolio_max_ngram_jaccard: 0.18      # step-10 lyric 5-gram Jaccard ceiling
+
 # --- Deterministic string gates (unambiguous; hard-fail) ------------------
 # Banned imperative openers for image prompts (noun-first, present-tense scene
 # is required). An image scene that OPENS with one of these is a hard FAIL,

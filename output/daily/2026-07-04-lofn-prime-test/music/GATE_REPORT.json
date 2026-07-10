@@ -1,0 +1,50 @@
+[
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "music_prompt_chars",
+    "expected": "850-1000",
+    "actual": 961,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "music_prompt_terminal_punctuation",
+    "expected": "prompt ends as a complete sentence (. ! ? \u2026)",
+    "actual": "pop. No generic trap hats, no EDM riser.",
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "suno_lyrics_field_max",
+    "expected": "< 5000",
+    "actual": 4991,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "sung_lines",
+    "expected": "70-120",
+    "actual": 80,
+    "pass": true
+  },
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "max_sung_numeric_facts(FLAG)",
+    "expected": "<= 1 sung numeric-fact line(s), responded to not recited",
+    "actual": 2,
+    "pass": null
+  },
+  {
+    "pair": "01",
+    "step": "10",
+    "check": "unique_line_ratio(FLAG, chorus-exempt)",
+    "expected": ">= 0.45",
+    "actual": 1.0,
+    "pass": null
+  }
+]

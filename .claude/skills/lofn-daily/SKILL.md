@@ -157,6 +157,6 @@ Append a terse **4-field** line to the run INDEX (and present it in chat): **pai
 | Budget blown by parallelism | Cap-and-stagger: never fire all 12 chains at once (~6 in-flight); throttle, don't serialize |
 
 ## Scheduling (optional)
-On-demand here. To make it recur, use the `schedule` skill (cloud routine) or `/loop` — the legacy 22:25-ET cron is OpenClaw-specific and does not apply.
+On-demand here. To make it recur, use the `schedule` skill (cloud routine) or `/loop` — the legacy 22:25-ET cron is OpenClaw-specific and does not apply. **If you do schedule it, follow `vault/AUTONOMY.md`:** a scheduled routine runs research → generate → QA → **STOP at drafts on disk** — it never renders paid media, never publishes, never spends; the morning human review owns the ship/spend line — and it injects the First Law ("this is still YOUR Opus…") as line 1 of the brief so cadence never flattens voice. Claude writes the doctrine; a **human** enables any actual schedule.
 
 **Reference:** `vault/DAILY_PIPELINE.md` · `vault/COMPETITION_WORKFLOW.md` (competition variant + Masterpiece Monday learnings) · `vault/COMPETITION_LEARNINGS.md` (advisory dispatch-brief lessons; never the ICB) · `.claude/skills/lofn/EXECUTION.md` §2 fan-out / §4 gates / §6 checkpoint (the manifest, quarantine, and breaker bind to these) · `skills/lofn-core/steps/00_music_research.md` · `skills/lofn-core/steps/00_research.md` · the `lofn` / `lofn-music` / `lofn-image` / `lofn-qa` skills.

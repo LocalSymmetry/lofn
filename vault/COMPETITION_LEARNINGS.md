@@ -14,6 +14,7 @@ These learnings are **ADVISORY dispatch-brief inputs ONLY**. They exist to infor
 - **Human promotes; the pipeline only advises.** Only a human may promote a lesson into a hard constraint. The pipeline can append advisory entries and prune; it cannot harden one on its own.
 - **Auto-writes are FAILURE-LEDGER entries only.** When the pipeline appends an entry automatically (post-ship / post-select), it records only *what a gate caught / a process failure / a corpse-checklist miss* — **never** a new aesthetic constraint. Aesthetic learnings require a human hand.
 - **Hard-capped at ~25 live curated entries.** The index is a bounded memory shard. New high-value lessons displace the weakest stale ones by disciplined append-and-prune. The narrative Entry Log below is the source material the index distills; the **index is the read surface**.
+- **Where entries come from.** The between-runs `vault/COMPETITIVE_RESEARCH.md` protocol produces venue lessons that land here as LOW-confidence advisory entries; automatic post-ship writes are failure-ledger / process notes only. Both obey this contract. (Operational/infra failures go to `vault/RUN_LEDGER.md` instead — never here.)
 
 ---
 

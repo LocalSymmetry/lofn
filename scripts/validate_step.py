@@ -59,6 +59,12 @@ DEFAULT_GATES = {
     "taxonomy_cardinality": 50,
     "image_min_words": 80,
     "total_prompts": 24,
+    "step06_min_facets": 8,
+    "step06_max_pair_similarity": 0.50,
+    "step09_max_pair_similarity": 0.62,
+    "portfolio_max_lyric_similarity": 0.42,
+    "portfolio_max_prompt_similarity": 0.58,
+    "portfolio_max_ngram_jaccard": 0.18,
     "banned_imperative_openers": ["Create", "Design", "Make", "Render", "Depict"],
     "ban_words": [
         "ethereal", "dreamlike", "whimsical", "gentle light",
