@@ -1,0 +1,21 @@
+# Step 00 — Music Aesthetics & Genres (full cardinality 50×4)
+
+```json
+{
+  "run": "2026-07-11-daily-music",
+  "personality": "LOFN-Prime",
+  "aesthetics": [
+    "Neo-Baroque Luminism","Glitch-Baroque","Future-Nostalgic","Quantum Bit-Depth Collapse","Aperture-through-Dust","Charged-Air Shimmer","Claustro-Restless","Pressure-Sublime","Held-Breath Suspension","Balsamic-Moon Release","Server-Lit Interiority","Code-Scratch Devotion","Terror-Adjacent Awe","Industrial Griever","Solarpunk Healer","Myth-Memory Resynthesis","Diaspora-Fusion Credit","Kinetic-Defect Groove","Stereo-Widening Vista","Verdict-Downbeat Unison","Warped-Sample Unease","Tin-Whistle Lament","Gamaka Micro-Ornament","Geothermal Sub-Weight","Cowbell-Engine Bratty","Half-Time Memphis Vow","Prayer-TO Invocation","Named-Subject Legibility","Anti-FOG Clarity","Smile-Vowel Snarl","Constant-Hand Steadiness","False-Clearing Betrayal","Threshold-Crossing Dread","Inventory-Catalog Attention","Arrival-Scale Reorganization","Measurement-Becomes-Prayer","Switchboard Whiplash","Break-Rigid Chaos","Hook-Cycle Virality","Vinyl-Crackle Bed","Analog-Tape Warmth","Crystalline Sheen","Glass-Harmonica Frost","Zodiacal Glow-Dissolve","Off-Grid Limp","Gang-Chant Communal","Micro-Hook Loop Tag","Bit-Rate Catharsis","Hauntological Echo","Neural-Authentic Artifact"
+  ],
+  "emotions": [
+    "Transcendence","Reverence","Existential Angst","Vertigo of Scale","Longing","Liberation","Nostalgia","Melancholy","Overwhelm","Revelation","Moral Outrage","Betrayal","Disillusionment","Dread","Anxiety","Paranoia","Yearning","Solitude","Existentialism","Wonder","Amazement","Awe","Serenity","Hope","Compassion","Grief","Sorrow","Helplessness","Defiance","Resolve","Determination","Contempt","Frustration","Exhaustion","Tenderness","Affection","Solidarity","Fascination","Curiosity","Suspense","Premonition","Apprehension","Numbness","Alienation","Introspection","Reflection","Cognitive Dissonance","Zeal","Triumph","Bittersweet Ache"
+  ],
+  "frames": [
+    "AI code-scratch intro","quantum bit-depth swell","geothermal trunk-rattling 808","detuned cowbell engine","close-mic tin-whistle","sargam gamaka microtonal ornament","warped-sample bed","asymmetric off-grid groove","sub-bass pressure swell","stereo widening at aperture","gang-chant backups","glass-harmonica crystalline sheen","bit-depth guillotine","verdict downbeat unison","Memphis half-time vow","16-bar genre jump","meter flip 4/4 to 6/8","Blackout micro-silence","rope-snap chime","vinyl-crackle bed","analog tape hiss","holographic choir","spoken AI text-to-speech","glitched log-fragment ad-lib","side-chained mono 808","footwork triplet chop","2-step shuffle skip","piano-bounce log-drum","reverse-swell riser","filtered low-pass hush","chest-thump kick","breath-and-inhale vocal fx","pitch-down bridge","key-tag 8-bit signature","hi-hat rolls disciplined","clap-grid half-time","drone-bed under whistle","granular texture lattice","dub-delay as doubt","room-tone close-mic","phone-notification ding","static-to-heartbeat morph","glass-smash snare","whistle-answers-808-slide","cathedral-to-coffin reverb shift","sticker-bombed bassline","stutter-edit vocal","tape-stop transition","zodiacal glow dissolve","micro-hook 8-9s loop tag"
+  ],
+  "genres": [
+    "HyperRaaga","Gaelic Drill","Baile Phonk","Amapiano x Jersey Club (Piano Bounce)","Amazonian Techno","glitch-Baroque","footwork","juke","UK 2-step","UK garage","future-nostalgic pop","ambient-glitch","Memphis half-time phonk","IDM","glitch-core","art-pop","industrial-gospel","breakcore","hyperpop","cosmic-pop","alpine ambient","neo-soul trap","drift-phonk","dungeon-synth mist","Scandi-phonk","digital cumbia","rave-grime drill","acid nu-jazz house","gqom","footwork-jungle","electro-funk","dream-pop","shoegaze","trip-hop","downtempo","chamber-pop","baroque-pop","synthwave","vaporwave","witch-house","hauntology","folk-noir","spoken-word","chant/liturgical","sea-shanty resynthesis","8-bit chiptune","orchestral-score","Baile funk (tamborzao)","2000s-revival pop-punk","cumbia rebajada"
+  ]
+}
+```
+Cardinality: 50/50/50/50. Personality-anchored (LOFN-Prime pillars visible: code-scratch, bit-depth swell, genre-mashing, myth resynthesis). Non-trivial. This run draws ≥3 genres + ≥3 frames per song (override rules).
