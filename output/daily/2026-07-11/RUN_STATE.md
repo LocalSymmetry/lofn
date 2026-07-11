@@ -2,7 +2,11 @@
 
 **Run:** MUSIC ONLY · LOFN-Prime ×6 · 6 pairs × 4 = 24 songs → best 6.
 **icb_sha:** CREATIVE_CONTEXT.md = 9494 bytes (frozen).
-**Phase:** 3 (QA in flight — all 24 songs generated & coordinator-re-stat clean).
+**Phase:** 3 COMPLETE — QA done (REPAIR→SHIP), best-6 selected + saved, INDEX written. Run delivered.
+
+## Final verdict: SHIP (after mechanical repairs). Best 6 = P2·V1, P1·V1, P3·V1 (ACC) + P4·V4, P6·V1, P5·V1 (AMB).
+## Repairs applied to shipped picks: P4·V4 (cap-buffer 4980→4839 + full EMO headers); P5·V1 (lineage-order). R6 lineage sidecar in each pick's frontmatter.
+## Run-health: 6/6 shipped · 0 quarantined · 0 gate-retries · 6 QA repairs + 5 flags. No human escalation.
 
 ## Coordinator artifacts (Phase 0/1 + 00–05) — DONE (on disk)
 core_seed · 00_research_brief · 02_golden_seed · 03_panel_debate · 04_metaprompt · 05_pair_assignments · 06_audio_handoff · CREATIVE_CONTEXT · step00–step05.
