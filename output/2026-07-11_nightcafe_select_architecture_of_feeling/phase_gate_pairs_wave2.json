@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "pairs",
+  "required_files": [
+    {"path": "pair_04_step06_facets.md", "min_bytes": 5000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_04_step07_aspects_traits.md", "min_bytes": 12000, "required_text": ["## 4. Complete Step Output", "Guide", "selected"]},
+    {"path": "pair_04_step08_generation.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "image_gen_prompt", "The Cast Stands"]},
+    {"path": "pair_04_step09_artist_refined.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "artist_refined_prompt", "Shadow Relieved"]},
+    {"path": "pair_04_step10_revision_synthesis.md", "min_bytes": 10000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]},
+    {"path": "pair_05_step06_facets.md", "min_bytes": 4000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_05_step07_aspects_traits.md", "min_bytes": 11000, "required_text": ["## 4. Complete Step Output", "Guide", "selected"]},
+    {"path": "pair_05_step08_generation.md", "min_bytes": 7500, "required_text": ["## 4. Complete Step Output", "image_gen_prompt", "Load Crosses Noon"]},
+    {"path": "pair_05_step09_artist_refined.md", "min_bytes": 7500, "required_text": ["## 4. Complete Step Output", "artist_refined_prompt", "No Body Under It"]},
+    {"path": "pair_05_step10_revision_synthesis.md", "min_bytes": 9000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]},
+    {"path": "pair_06_step06_facets.md", "min_bytes": 5000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_06_step07_aspects_traits.md", "min_bytes": 12000, "required_text": ["## 4. Complete Step Output", "Guide", "selected"]},
+    {"path": "pair_06_step08_generation.md", "min_bytes": 8500, "required_text": ["## 4. Complete Step Output", "image_gen_prompt", "Failure Becomes Mesh"]},
+    {"path": "pair_06_step09_artist_refined.md", "min_bytes": 8500, "required_text": ["## 4. Complete Step Output", "artist_refined_prompt", "Ordinary Hands"]},
+    {"path": "pair_06_step10_revision_synthesis.md", "min_bytes": 10000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]}
+  ],
+  "notes": "Wave 2 contains 15 separate artifacts; all Step 08, 09, and 10 files carry exactly four prompts."
+}

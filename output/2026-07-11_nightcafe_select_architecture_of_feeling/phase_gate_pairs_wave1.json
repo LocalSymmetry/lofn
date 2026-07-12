@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "pairs",
+  "required_files": [
+    {"path": "pair_01_step06_facets.md", "min_bytes": 5000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_01_step07_aspects_traits.md", "min_bytes": 12000, "required_text": ["## 4. Complete Step Output", "Guide", "selected"]},
+    {"path": "pair_01_step08_generation.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "image_gen_prompt", "exactly four"]},
+    {"path": "pair_01_step09_artist_refined.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "artist_refined_prompt", "exactly four"]},
+    {"path": "pair_01_step10_revision_synthesis.md", "min_bytes": 10000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]},
+    {"path": "pair_02_step06_facets.md", "min_bytes": 4000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_02_step07_aspects_traits.md", "min_bytes": 12000, "required_text": ["## 4. Complete Step Output", "guide", "4 advanced"]},
+    {"path": "pair_02_step08_generation.md", "min_bytes": 7000, "required_text": ["## 4. Complete Step Output", "Exactly four raw image prompts", "Selvage Ledger"]},
+    {"path": "pair_02_step09_artist_refined.md", "min_bytes": 7000, "required_text": ["## 4. Complete Step Output", "Exactly four materially refined image prompts", "The Net Remembers"]},
+    {"path": "pair_02_step10_revision_synthesis.md", "min_bytes": 10000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]},
+    {"path": "pair_03_step06_facets.md", "min_bytes": 5000, "required_text": ["## 4. Complete Step Output", "facet", "Hyper-Skeptic"]},
+    {"path": "pair_03_step07_aspects_traits.md", "min_bytes": 12000, "required_text": ["## 4. Complete Step Output", "Guide", "selected"]},
+    {"path": "pair_03_step08_generation.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "Raw Prompt D", "four"]},
+    {"path": "pair_03_step09_artist_refined.md", "min_bytes": 8000, "required_text": ["## 4. Complete Step Output", "Refined Prompt D", "four"]},
+    {"path": "pair_03_step10_revision_synthesis.md", "min_bytes": 10000, "required_text": ["## 4. Complete Step Output", "revised_prompts", "synthesized_prompts"]}
+  ],
+  "notes": "Wave 1 must contain 15 separate artifacts; current-authority repair enforces exactly four prompts at Steps 08, 09, and 10 per pair."
+}

@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "coordinator",
+  "required_files": [
+    {
+      "path": "step00_aesthetics_and_genres.md",
+      "min_bytes": 9000,
+      "required_text": ["\"aesthetics\"", "\"emotions\"", "\"frames_and_compositions\"", "\"genres\"", "Cardinality check"]
+    },
+    {
+      "path": "step01_essence_and_facets.md",
+      "min_bytes": 5500,
+      "required_text": ["\"essence\"", "\"facets\"", "\"style_axes\"", "Recorded disagreement"]
+    },
+    {
+      "path": "step02_concepts.md",
+      "min_bytes": 13000,
+      "required_text": ["C01", "C12", "panel_pressure", "Required concept array"]
+    },
+    {
+      "path": "step03_artist_and_critique.md",
+      "min_bytes": 21000,
+      "required_text": ["historical analytic lens only", "Comparative pressure table", "\"artists\"", "\"refinedconcepts\""]
+    },
+    {
+      "path": "step04_medium.md",
+      "min_bytes": 12000,
+      "required_text": ["Fifteen candidate image-native media", "C01", "C12", "\"mediums\""]
+    },
+    {
+      "path": "step05_refine_medium.md",
+      "min_bytes": 14500,
+      "required_text": ["Pair 01", "Pair 06", "Runner-up", "Cut ledger", "Cross-pair distinctiveness audit"]
+    },
+    {
+      "path": "concept_medium_pairs.json",
+      "min_bytes": 4000,
+      "required_text": ["\"pair_num\": 1", "\"pair_num\": 6", "\"ACCESSIBLE\"", "\"AMBITIOUS\""]
+    }
+  ],
+  "notes": "Coordinator phase may advance only after all six step validators, JSON parsing, and this disk gate pass."
+}

@@ -1,0 +1,15 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "orchestrator",
+  "required_files": [
+    {"path": "00_research_brief.md", "min_bytes": 2500, "required_text": ["Chosen emotional territory", "White space"]},
+    {"path": "01_seed_lineage.md", "min_bytes": 1500, "required_text": ["Primary Golden Seed", "Golden-output quarantine"]},
+    {"path": "02_golden_seed.md", "min_bytes": 1800, "required_text": ["GOLDEN SEED", "Dangerous permission", "Non-negotiable"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 5000, "required_text": ["15 Special Flairs", "BASELINE", "GROUP TRANSFORM: REFLECT", "SKEPTIC TRANSFORM: BRIDGE", "FINAL Concept Panel", "FINAL Medium Panel", "FINAL Context & Marketing Panel"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 2500, "required_text": ["Active personality", "Golden Seed", "Structural completeness contract"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 2500, "required_text": ["Pair 01", "Pair 06", "ACCESSIBLE", "AMBITIOUS", "LOFN-ArtCore"]},
+    {"path": "CREATIVE_CONTEXT.md", "min_bytes": 20000, "required_text": ["BEGIN CREATIVE CONTEXT", "Panel Ledger", "15 Special Flairs", "END CREATIVE CONTEXT"]},
+    {"path": "06_vision_handoff.md", "min_bytes": 1800, "required_text": ["Read first", "Golden Seed", "Pair agents", "QA contract"]}
+  ],
+  "notes": "Frozen image ICB must retain SHA-256 and exactly 18 source-basis speaker tags."
+}
