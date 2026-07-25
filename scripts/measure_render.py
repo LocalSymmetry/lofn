@@ -164,6 +164,12 @@ def band_profile(mono, sr, bands=((20, 80), (80, 300), (300, 2000), (8000, 16000
 
 
 def tempo_candidates(env, hop):
+    """NOTE: needs a FINE hop. The first version ran on the 50 ms envelope and
+    reported ~120 BPM for a track measured at 109 by a 10 ms hop — at 110 BPM a
+    beat is 545 ms, i.e. 11 frames, so beat-level resolution was far too coarse
+    and the peak landed on a neighbouring lag. That wrong number was reported as
+    a finding about the renderer ("exact BPM drifts") when it was an artifact of
+    my own analysis. Call with hop <= 0.01."""
     d = np.diff(env)
     d[d < 0] = 0
     if d.std() == 0:
@@ -178,6 +184,7 @@ def tempo_candidates(env, hop):
 def audit(path):
     x, sr, mono, dur = load(path)
     env, db, hop = envelope(mono, sr)
+    fine_env, _, fine_hop = envelope(mono, sr, hop=0.01)   # tempo needs 10 ms
     r = {
         "file": os.path.basename(path),
         "duration_s": round(dur, 1),
@@ -188,7 +195,7 @@ def audit(path):
         "opening_2s_db": round(float(db[:int(2/hop)].mean()), 1),
         "quiet_gaps": [(round(t, 2), round(l, 2)) for t, l in gaps(db, hop)],
         "deepest_mid_dip": {k: round(v, 2) for k, v in deepest_dip(db, hop).items()},
-        "tempo_candidates_bpm": tempo_candidates(env, hop),
+        "tempo_candidates_bpm": tempo_candidates(fine_env, fine_hop),
         "bands_by_quarter_db": band_profile(mono, sr),
     }
     if x.shape[1] == 2:

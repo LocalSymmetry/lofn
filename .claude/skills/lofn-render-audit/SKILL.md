@@ -93,23 +93,47 @@ Reports: duration · peak/crest · loudness spread · opening level · sustained
 
 ---
 
-## 📓 THE SUNO BEHAVIOUR LEDGER — the deep dive, accumulated
+## 📓 THE SUNO BEHAVIOUR LEDGER — n=8, first full deep dive (2026-07-24)
 
-The point of running this repeatedly. One row per **spec class**, not per song; update the evidence count as tracks accrue. This is how we stop guessing what the renderer does.
+Eight finished renders, numeric + blind listen. **This table replaces the n=1/n=2 guesses that preceded it; two of those were wrong.**
 
 | spec class | behaviour | n | confidence |
 |---|---|---|---|
-| near-silent opening | **arrives** | 1 | low — needs more |
-| progressive sub build to final chorus | **arrives** (+8.4 → +11.4 dB) | 1 | low |
-| long full stop (≈4 s) mid-song | **smoothed** to <0.5 s | 1 | low |
-| sustained untuned drone / mains hum | **absent** | 1 | low |
-| hard-panned non-musical element | **absent**; render collapses toward mono | 2 | low-medium |
-| "chorus widens" | **inverted** — narrows into loud sections (r = −0.43) | 1 | low |
-| exact BPM | **drifts** (110 asked → ~120 rendered) | 1 | low |
+| **steady tempo target** | **ARRIVES** — 6 of 6 landed within 5 BPM (110→109, 132→133) | 6 | **medium-high** |
+| **tempo dramaturgy** (programmed 92→140, 84→128) | **SMOOTHED to a steady track** | 2 | medium |
+| near-silent opening | arrives (−46.8 dB when asked; also appears unrequested) | 3 | medium |
+| **terminal** silence (ends the arrangement) | **ARRIVES** — 2.0 s measured | 1 | low-medium |
+| **interrupting** silence (long mid-song void) | **SMOOTHED** — both explicit voids vanished | 2 | medium |
+| progressive sub build to final chorus | arrives (+8.4 → +11.4 dB) | 1 | low-medium |
+| literal foley props (boot crunch, chair drag, scanner beep, printer chirp) | **ABSENT or abstracted to generic glitch** | ≥4 | medium |
+| two strongly opposed vocal registers | **collapses to one lead + ordinary layering** | 2 | medium |
+| named exotic timbres (HyperRaaga, tanpura, glass harmonica, cello, crystalline arps) | largely **absent**; atmosphere substituted | ≥3 | medium |
+| sustained untuned drone / mains hum | absent | 2 | low-medium |
+| hard-panned non-musical element | absent | 2 | low-medium |
+| stereo image | **spans 0.812–0.945 correlation — NOT a universal mono renderer** | 8 | medium-high |
+| "chorus widens" | inverted globally (r = −0.43) while local layer-spread is audible | 1 | low |
 
-**Method:** never raise a row above `medium` on fewer than 4 tracks; keep `n` visible so nobody theologises a sample of one — the mistake this ledger's first version made by declaring "Suno renders mono" from two tracks that both happened to fight the grain.
+**Corrections this set forced on my earlier claims:**
+- *"Exact BPM drifts"* was **wrong** — an artifact of a 50 ms analysis hop (a beat at 110 BPM is 11 frames). Steady tempos arrive; only tempo *dramaturgy* is smoothed. `measure_render.py` now runs tempo on a 10 ms hop.
+- *"Suno renders mono"* was **wrong** — two samples that both fought the grain.
+- **Silence is not one behaviour.** Silence that *finishes* an arrangement survives; silence that *interrupts* one gets filled. That distinction is the single most useful row here.
+
+**Method:** keep `n` visible; nothing rises above `medium` under 4 tracks. Two rules already died of a sample of one or two.
 
 ---
+
+## 🔧 PRODUCTIVE DEVIATIONS — the flaws worth reusing
+
+*The Scientist's award-winning thought, made concrete. These are techniques now, harvested from failures.*
+
+- **UNBROKEN BUREAUCRACY** — a requested rupture disappears, and continuous playback becomes a system that never pauses for the damage it caused. (*It Wasn't Even Locked*: the four-second stop vanished; the dead-level continuity is more relentless than the break would have been.)
+- **INWARD COSMOS** — the mix narrows as level rises instead of widening, drawing the scale in around the singer. Truer to inclusion than spectacle. (*Triple Arch Over Me*, r = −0.426.)
+- **THE WOUND INSIDE THE MACHINE** — a human voice left audible under a vocoder that was supposed to erase it; less clinical, more legible. (*Harder to Reach*.)
+- **GRIEF THE CLERK WITHHELD** — harmonies supply the feeling a flat bureaucratic delivery was instructed to refuse. (*The Cell Named After No One*.)
+- **THE HAUNTED CHORUS** — unrequested vocal layers turn a private metamorphosis into a small crowd. (*The Caterpillar*.)
+- **SINGULARITY BY GLITCH** — an ordinary pop stutter becomes the one production event that physically enacts the word "one". (*Start With One*.)
+
+**How to use these:** they are not instructions to Suno — asking for them would put them back on the wrong side of the grain. They are **things to recognise and keep** when a render hands them to you, and reasons to listen before repairing.
 
 ## WHEN NOT TO USE THIS
 - Text-only QA → `lofn-qa`.
