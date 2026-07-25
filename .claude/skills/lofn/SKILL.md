@@ -65,7 +65,7 @@ Goal: turn the raw request into an **award-winning seed**, anchored to a proven 
 3. **Anchor to a Golden Seed.** Read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` to pick the closest winning pattern, then `skills/lofn-core/refs/GOLDEN_SEEDS.md` for its full DNA. **Choose the seed BEFORE writing — do not write a seed and retrofit.** Note WHY (which structural elements you preserve).
 4. **Write the core seed** — preserve the winning pattern's emotional engine, material world, and constraint logic; adapt to this brief. Define **4–5 FRESH constraint axes** (each as a vocabulary of 4–6 options, never recycled from prior runs). Include a **Personality Genre DNA Constraint** (ACCESSIBLE arm = warmer palette of the chosen personality; AMBITIOUS arm = its intense palette; generic substitutes are FORBIDDEN).
 5. **Write a neutral dispatch brief** (no personality injected yet) — this is what the panel debates.
-6. **Save** `output/<run>/core_seed.md`.
+6. **Take the run lock, THEN save** `output/<run>/core_seed.md`. The `<run-slug>` is fixed here, so this is the first moment the lock can be claimed and the last moment before anything is written: `python3 scripts/run_lock.py acquire output/<run> --run-slug <run-slug>`. **Exit 3 means another run holds that directory — STOP** and use a different one rather than writing over eleven hours of someone else's pipeline (`EXECUTION.md` §5.1). Heartbeat every wave; release after the INDEX.
 
 ⚠️ **News/human-subject discipline (`vault/HUMAN_SUBJECT_STANDARD.md`):** anchor to the *charge* of a moment, never identifiable real victims/private individuals (esp. minors, esp. recent). Draw the theme; invent the people. REAL GRIEF IS NOT RAW MATERIAL.
 
@@ -174,6 +174,7 @@ Invoke the modality skill (or read its SKILL.md and follow it). Hand it the run 
 | `EXECUTION` | `.claude/skills/lofn/EXECUTION.md` (Claude execution protocol + self-check gates) |
 | `QA_SUNO_GATE` | `skills/qa/references/suno_15_point_qa.md` (legacy filename; the gate is the **16-point** gate — see `EXECUTION.md §4`) |
 | `VALIDATE_STEP` | `scripts/validate_step.py` (the L4 deterministic backstop; fail-open) |
+| `RUN_LOCK` | `scripts/run_lock.py` → writes `output/<run-slug>/.RUN_LOCK` (one-controller interlock; **fail-CLOSED** — see `EXECUTION.md §5.1`) |
 | `RUN_DIR` | `output/<run-slug>/` · final picks ALSO `output/<type>s/` |
 
 `<modality>` resolves to one of `music` / `image` / `video` / `story`. The `<run-slug>` is fixed at Phase 0.

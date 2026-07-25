@@ -162,3 +162,11 @@ alliteration_per_100w_floor: 11.0
 # makes writers apologise for choruses is doing harm even when it never fires.
 # A byte-identical chorus is correct craft and requires no note.
 chorus_repetition_requires_no_justification: true
+
+# ⛔ RUN LOCK (scripts/run_lock.py, EXECUTION.md §5.1)
+# Hours after which a lock's heartbeat is *reported* as possibly abandoned. It
+# changes the MESSAGE ONLY and never the verdict — the run destroyed on
+# 2026-07-24 was mid-flight through an eleven-hour pipeline with long quiet
+# stretches, so any timeout short enough to be useful would have stolen its
+# lock too. Only a human may break a lock.
+run_lock_stale_hours: 4
