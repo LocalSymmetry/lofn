@@ -1,0 +1,9 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "qa",
+  "required_files": [
+    {"path": "eval_scoring_facets.md", "min_bytes": 11000, "required_text": ["Five run-specific scoring facets", "Three sequential panel debates", "Causal Architectural Turn", "Forensic Material Truth"]},
+    {"path": "eval_ranking.md", "min_bytes": 18000, "required_text": ["Final competition ranking", "all 24 candidates", "Top-six barbell finalists", "Selected engine", "P06"]}
+  ],
+  "notes": "Evaluation must rank all 24 and separately select one eight-frame engine before adversarial QA."
+}

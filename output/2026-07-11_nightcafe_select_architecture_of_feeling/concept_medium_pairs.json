@@ -1,0 +1,62 @@
+[
+  {
+    "pair_num": 1,
+    "slot": "Gilded Compression",
+    "arm": "ACCESSIBLE",
+    "concept_id": "C01",
+    "concept": "The Seam She Polishes — an invented middle-aged woman discovers that the beautiful seam she has maintained is pinning her posture to the ceiling, leaves one copper fastener open, and watches exposed timber accept the load while her hand remains raised from habit.",
+    "medium": "Cracked midnight-teal and bone egg tempera on coarse linen over timber, restrained rubbed gold leaf, oxidized copper fasteners, abraded tool paths, compressed folds, and one raw ungilded hole.",
+    "runner_up": "C02 The Ceiling’s Receipt",
+    "selection_reason": "Clearer bodily causality, stronger one-breath retell, and a better moral reversal of ornament."
+  },
+  {
+    "pair_num": 2,
+    "slot": "Brocade Load Ledger",
+    "arm": "ACCESSIBLE",
+    "concept_id": "C03",
+    "concept": "Selvage Ledger — an invented weaver draws one continuous undecorated edge thread through a black brocade wall, converting years of ornate repair into a self-tensioning open net while her hands remember the absent shuttle.",
+    "medium": "Embroidered black brocade, matte celadon linen warp, one continuous ember-coral thread, exposed raw selvage, dull bronze pins at tension points, worn stitch holes, and open intervals over bone plaster.",
+    "runner_up": "C04 Air Through the Pattern",
+    "selection_reason": "One physically continuous causal thread is more coherent and legible than multiple aperture events."
+  },
+  {
+    "pair_num": 3,
+    "slot": "Missing Tessera Plan",
+    "arm": "ACCESSIBLE",
+    "concept_id": "C06",
+    "concept": "The Tile Refuses — one chipped cobalt tessera repeatedly falls from a celadon wall, its marked landings drawing the true circular load plan until the conservator leaves the recess open and places the tile beside it.",
+    "medium": "Blue-celadon ceramic tile, oxidized bone grout, one chipped cobalt tessera with thumb wear, graphite impact marks, water-drawn contours, matte bone slip, and one tiny ember-orange fired-clay witness.",
+    "runner_up": "C05 Pocket Weight",
+    "selection_reason": "The single recurring object reads instantly and naturally accumulates a sequence."
+  },
+  {
+    "pair_num": 4,
+    "slot": "Negative Cast",
+    "arm": "AMBITIOUS",
+    "concept_id": "C07",
+    "concept": "Volume of What Wasn’t — a chalk-white cast exactly matching the missing underside of a black stair moves from the woman’s bracing arms onto raw-wood feet, making absence a measurable independent support in reverse chronology.",
+    "medium": "Black lacquered timber, scraped bone gesso, chalk-white casein cast with coarse linen fiber, raw oak bearing feet, one oxidized-copper contact edge, floor deflection, and matte side light without a radiant opening.",
+    "runner_up": "C08 Absent Wall in Her Arms",
+    "selection_reason": "The precise stair fit makes negative volume causal and avoids a generic portal."
+  },
+  {
+    "pair_num": 5,
+    "slot": "Counterweight Shadow",
+    "arm": "AMBITIOUS",
+    "concept_id": "C09",
+    "concept": "Shadow Takes Attendance — a black-glass shadow migrates its bearing contacts from an invented woman’s body to an etched-copper ceiling until it supports the room independently and she steps into an unshadowed incision, looking back once.",
+    "medium": "Etched copper ceiling plates, verdigris pressure maps, crisp black-glass shadow wedges, perforated dull foil at migrating contacts, hard bone-white incision marks, coarse linen, and a celadon ground strip.",
+    "runner_up": "C10 Load Crosses Noon",
+    "selection_reason": "Evolving contact migration gives stronger agency, variation, and parallel narrative counterpoint."
+  },
+  {
+    "pair_num": 6,
+    "slot": "Permeable Wire Room",
+    "arm": "AMBITIOUS",
+    "concept_id": "C12",
+    "concept": "Failure Becomes Mesh — a quietly broken charred brace releases dark copper strands that catch through anchored eyelets into a distributed open shell, leaving one black fragment above the craftswoman’s lowering hands.",
+    "medium": "Hand-looped dark copper wire, charred timber brace and base, brocade-selvage-wrapped celadon eyelets, dull holographic foil only at true stress contacts, ash-casein walls, visible anchors, and one broken black length.",
+    "runner_up": "C11 Nested Brace",
+    "selection_reason": "The failed member becoming distributed support most directly embodies the Golden Seed."
+  }
+]

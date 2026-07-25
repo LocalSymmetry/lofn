@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "max_children": 3,
+  "spawn_strategy": "staggered_3_plus_3",
+  "agents": [
+    {"pair": 1, "status": "done"},
+    {"pair": 2, "status": "done"},
+    {"pair": 3, "status": "done"},
+    {"pair": 4, "status": "done"},
+    {"pair": 5, "status": "done"},
+    {"pair": 6, "status": "done"}
+  ],
+  "timeouts_minutes": {
+    "orchestrator": 15,
+    "coordinator": 20,
+    "pair_agent": 20,
+    "qa": 12,
+    "standard_full_run": 90,
+    "competition_full_run": 120
+  }
+}

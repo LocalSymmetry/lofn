@@ -1,0 +1,34 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "phase": "final_packaging_pre_render",
+  "selected_engine": "P06",
+  "entry_title": "UNBRACING",
+  "required_run_files": [
+    "FINAL_ENTRY_PACKAGE.md",
+    "CHARACTER_MATERIAL_BIBLE.md",
+    "ARTIST_STATEMENT.md",
+    "NIGHTCAFE_RENDER_PROTOCOL.md",
+    "release_record.json",
+    "final_dispatch_receipt.json",
+    "QA_REPORT.md",
+    "QA_REPAIR_DELTA.md"
+  ],
+  "prompt_directory": "../images/2026-07-11_nightcafe_select_unbracing",
+  "prompt_files_expected": 8,
+  "prompt_words": [147, 149, 145, 150, 142, 149, 148, 150],
+  "checks": {
+    "artist_statement_words": 131,
+    "artist_statement_minimum": 30,
+    "identity_sentence_exact_count": 8,
+    "noun_first_non_imperative": "8/8",
+    "prompt_word_band_80_150": "8/8",
+    "banned_renderer_terms": 0,
+    "living_artist_names": 0,
+    "aspect_ratio": "3:4",
+    "render_calls_made": 0,
+    "release_record_validator": "PASS",
+    "icb_sha256": "9e04ca4ca84f15120acb12c7bbbbaadd3afd7f02880f003b202326fd10ab8fd6",
+    "fallback_predeclared": "P04 after one controlled P06 correction under the pilot trigger"
+  },
+  "notes": "This gate certifies the prompt-only package for adversarial final QA. Submission readiness still depends on render evidence and the post-render checks in NIGHTCAFE_RENDER_PROTOCOL.md."
+}

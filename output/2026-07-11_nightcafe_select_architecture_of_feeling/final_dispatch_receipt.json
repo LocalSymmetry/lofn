@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-07-11_nightcafe_select_architecture_of_feeling",
+  "stage": "final_eight_frame_packaging",
+  "created": "2026-07-11T23:54:30-07:00",
+  "icb": {
+    "canonical_path": "CREATIVE_CONTEXT.md",
+    "byte_size": 24512,
+    "sha256": "9e04ca4ca84f15120acb12c7bbbbaadd3afd7f02880f003b202326fd10ab8fd6",
+    "begin_markers": 1,
+    "end_markers": 1,
+    "after_voice_tags": 18,
+    "read_whole_before_packaging": true
+  },
+  "selected_engine": "P06 / Failure Becomes Mesh / Permeable Wire Room",
+  "source_artifacts": [
+    "pair_06_step06_facets.md",
+    "pair_06_step07_aspects_traits.md",
+    "pair_06_step08_generation.md",
+    "pair_06_step09_artist_refined.md",
+    "pair_06_step10_revision_synthesis.md",
+    "eval_scoring_facets.md",
+    "eval_ranking.md",
+    "QA_REPORT.md",
+    "QA_REPAIR_DELTA.md"
+  ],
+  "prompt_directory": "../images/2026-07-11_nightcafe_select_unbracing",
+  "prompt_count": 8,
+  "render_calls_made": 0,
+  "golden_output_quarantine": "Past winning pixels, prompts, subjects, and attachment paths were excluded; only abstract structural style moves were used.",
+  "fallback": "P04 / Negative Cast only if the documented pilot render-evidence trigger fires"
+}

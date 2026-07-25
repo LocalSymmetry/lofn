@@ -1,0 +1,28 @@
+{
+  "release_id": "2026-07-11-unbracing-nightcafe-select",
+  "title": "UNBRACING",
+  "modality": "image",
+  "route": "ambitious",
+  "archetype": "SUPPORT_TRANSFER",
+  "seed_source": "hybrid",
+  "eligibility_pre_score": {
+    "body_in_song": 4.8,
+    "adoptable_hook": 4.9,
+    "vast_emotional_tam": 4.8,
+    "specificity_paradox": 5.0,
+    "cognitive_ease": 4.5,
+    "vocal_co_discovery": 5.0,
+    "sonic_threshold": 4.4,
+    "average": 4.77,
+    "classification": "AMBITIOUS"
+  },
+  "ai_vocabulary_level": "encoded",
+  "hypothesis": "A first-glance adult, broken black brace, and readable anchor routes will clear the 20-like community threshold, while the transformed support system, eight causal states, and unresolved checking gesture will score strongly on Concept, Craft, Cohesion, and Intent. The hypothesis fails if pilot renders read as decorative copper webbing or lose identity and load endpoints; that evidence triggers the predeclared P04 fallback.",
+  "distribution_events": [],
+  "metrics": {
+    "day_7": {},
+    "day_14": {},
+    "day_30": {}
+  },
+  "interpretation_notes": "Do not fill until after the metrics window. Record the Select-feed like count, whether 20 likes was reached, judge advancement, category result, saves/shares, comments, and any external promotion separately from intrinsic-quality interpretation."
+}
