@@ -131,3 +131,78 @@ def show(rows):
         print(f"{r['name'][:34]:34s} {r['songs']:5d} {r['lines']:6d} "
               f"{r['end_rhyme']:7.3f} {r['internal']:7.3f} {r['allit']:7.3f} "
               f"{r['cons']:6.3f} {r['asson']:6.3f} {r['mono']:6.3f} {play:6.3f}")
+
+
+# ---------------------------------------------------------------------------
+# THE CANONICAL RETURN METRICS
+#
+# These four functions produce the exact table quoted in the L21 doctrine and
+# in lofn-music/SKILL.md § THE RETURN. They were originally computed inline in
+# an ad-hoc script, which meant the published module could NOT reproduce the
+# published numbers — a reproducibility defect in a file whose whole purpose is
+# "check us rather than trust us". Caught by a repair agent that had to rebuild
+# them from scratch and calibrate against the quoted figures. Now canonical.
+# Thresholds live in vault/gates.yaml (rhyme_return_floor, line_return_floor,
+# mean_words_per_line_ceiling, alliteration_per_100w_floor).
+# ---------------------------------------------------------------------------
+
+RHYME_WINDOW = 4          # a rime counts as returning if it recurs within N lines
+
+def strict_end_rhyme(lines, window=RHYME_WINDOW):
+    """Fraction of lines whose final-word ending recurs within +/-window lines.
+
+    Deliberately crude (last 3 characters), and crude in a *stable* way — the
+    point is comparability between corpora, not phonetic truth.
+    """
+    keys = [words(l)[-1][-3:] if words(l) else "" for l in lines]
+    hit = 0
+    for i, k in enumerate(keys):
+        if not k:
+            continue
+        lo, hi = max(0, i - window), min(len(keys), i + window + 1)
+        if any(keys[j] == k for j in range(lo, hi) if j != i):
+            hit += 1
+    return hit / max(1, len(keys))
+
+def line_return(lines):
+    """Fraction of lines that are exact repeats of another line.
+
+    Choruses COUNT. That is the entire point: this is the measure the harness
+    was missing while it optimised similarity ceilings downward.
+    """
+    c = Counter(l.lower().strip(" .,") for l in lines)
+    return sum(v for v in c.values() if v > 1) / max(1, len(lines))
+
+def words_per_line(lines):
+    return len([w for l in lines for w in words(l)]) / max(1, len(lines))
+
+def allit_per_100w(lines):
+    """Alliteration hits per 100 words — length-independent, unlike per-line."""
+    hits = 0
+    for l in lines:
+        cw = [w for w in words(l) if w and w[0] not in VOWELS]
+        for i in range(len(cw)):
+            if any(cw[i][0] == cw[j][0] for j in range(i + 1, min(i + 4, len(cw)))):
+                hits += 1
+    total = len([w for l in lines for w in words(l)])
+    return 100 * hits / max(1, total)
+
+def profile(lines):
+    """The four numbers the doctrine is stated in."""
+    return dict(
+        end_rhyme=strict_end_rhyme(lines),
+        line_return=line_return(lines),
+        words_per_line=words_per_line(lines),
+        allit_per_100w=allit_per_100w(lines),
+        lines=len(lines),
+    )
+
+def profile_file(path):
+    return profile([l for b in lyric_blocks(path) for l in sung(b)])
+
+if __name__ == "__main__" and len(sys.argv) > 1:
+    print(f"{'file':46s} {'endRhy':>7s} {'lineRet':>8s} {'w/line':>7s} {'allit':>7s} {'lines':>6s}")
+    for f in sys.argv[1:]:
+        p = profile_file(f)
+        print(f"{os.path.basename(f)[:46]:46s} {p['end_rhyme']:7.3f} {p['line_return']:8.3f} "
+              f"{p['words_per_line']:7.2f} {p['allit_per_100w']:7.2f} {p['lines']:6d}")
