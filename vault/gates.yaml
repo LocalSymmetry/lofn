@@ -132,3 +132,32 @@ ban_words:
 # artifact as possibly collapsed. n-gram collapse uses the same flag policy.
 unique_line_ratio_floor: 0.45
 ngram_collapse_n: 4
+
+# --- RETURN FLOORS (added 2026-07-24 — the Scientist's "lectured at" note) --
+# Every threshold above this line is a CEILING on similarity. The harness had
+# no FLOOR on return, so the pipeline optimised monotonically AWAY from
+# repetition — and repetition is what makes a song a song. Measured against
+# LOFN-PRIME's own archived winners:
+#
+#                     strict end-rhyme   repeated-line ratio   words/line
+#   archive winners        0.463               0.326              6.69
+#   2026-07-24             0.210               0.181              8.30
+#   2026-07-13             0.256               0.202              6.73
+#   2026-07-09             0.132               0.105              5.20
+#
+# We were writing at roughly HALF the winners' rate of return. Alliteration was
+# at parity (13.4 vs 14.2 per 100 words) — texture was never the problem.
+# Structure was. These are FLAGs (pass=None), never hard fails: a deliberate
+# through-composed piece may sit below them, but it must say so on purpose.
+rhyme_return_floor: 0.30        # strict end-rhyme within a 4-line window
+line_return_floor: 0.20         # exact repeated-line ratio (choruses COUNT)
+mean_words_per_line_ceiling: 7.5  # above this the lyric drifts toward prose
+alliteration_per_100w_floor: 11.0
+
+# ⛔ EXACT CHORUS REPETITION NEEDS NO DEFENCE.
+# `unique_line_ratio_floor` is chorus-exempt by policy, but agents were still
+# writing AROUND it — pre-emptively mutating refrains and filing justifications
+# ("this is the mechanism, not a defect", "recommend HUMAN WAIVE"). A flag that
+# makes writers apologise for choruses is doing harm even when it never fires.
+# A byte-identical chorus is correct craft and requires no note.
+chorus_repetition_requires_no_justification: true
