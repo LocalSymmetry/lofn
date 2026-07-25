@@ -5,6 +5,8 @@ description: Audit a FINISHED audio render against the prompt that asked for it 
 
 # Lofn Render Audit — what the generator actually did
 
+> **⚖️ AUTHORITY (2026-07-24):** the `.claude/skills/lofn-render-audit/` twin is the CANONICAL policy source; this Codex mirror binds to it. On any disagreement, the `.claude` file wins.
+
 > Every gate in this pipeline reads **text**. Until 2026-07-24 nothing had ever measured a finished **render**, so a whole class of failure was invisible by construction: a song can pass all 16 points of the Suno gate and arrive with its defining gesture gone.
 
 This skill is **judge-side**. Golden song payloads are permitted here. It generates nothing.

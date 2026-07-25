@@ -25,6 +25,39 @@ The 2026-07-01 regression review distilled why "Triple Arch Over Me" won, as **i
 5. **Rotate the register.** Do not default to the house winner's fingerprint (crystalline female soprano / A major / ~110 BPM / frost-and-cosmos palette). Vary key, tempo, vocal register, and sonic world per run unless the personality's YAML mandates them. The house-lexicon FLAG (`vault/gates.yaml`) catches verbatim self-copying; this rule prevents the softer clone.
 6. **The surface names its subject (first-listen legibility).** A stranger must be able to retell the song's scene AND subject in one sentence after ONE listen — the subject appears PLAINLY in the lyric at least once (title or an early verse), not only through metaphor. Triple Arch names its sky outright; the depth lives in the RESPONSE to the named thing, never in withholding the referent. Obliqueness about what the song is about is not depth, it is fog (2026-07-01 test slice: an AWE song about a survivor star read as being about a troubled uncle — structurally perfect, emotionally unreachable). Simple surface, complex engine: the cathedral lives UNDER a legible surface, not instead of one. This is the music equivalent of the image lane's thumbnail test, and the Somatic Gate should treat an unnameable subject as `REPAIR — FOG`.
 
+## 🔁 THE RETURN — the sixth Golden Move rule (added 2026-07-24)
+
+*The Scientist, after three consecutive runs: "the lyrical methods avoid rhymes, but aren't adding alliteration, consonance, or fun and interesting audio-written joys. I think it is making the music sound like we're being lectured at."*
+
+Measured against LOFN-PRIME's own archived winners, she was right about the effect and the diagnosis is sharper than the hypothesis:
+
+| | strict end-rhyme | repeated-line ratio | words/line | alliteration /100w |
+|---|---|---|---|---|
+| **archive winners** | **0.463** | **0.326** | 6.69 | 14.19 |
+| 2026-07-24 | 0.210 | 0.181 | 8.30 | 13.36 |
+| 2026-07-13 | 0.256 | 0.202 | 6.73 | 15.90 |
+| 2026-07-09 | 0.132 | 0.105 | 5.20 | 10.84 |
+
+**Alliteration was never the problem — it is at parity, and one run beat the winners.** What collapsed was **return**: rhyme returning, and lines returning. We wrote at roughly half the winners' rate of both, in longer and more monosyllabic lines. Long plain declaratives that never come back is the prosody of *prose*, and prose delivered with conviction is a lecture.
+
+**Song is made of returns. Texture is not structure.**
+
+### Measure it with the shipped function, never by eye or by re-derivation
+`scripts/measure_soundcraft.py` → `profile_file(path)` is **the** definition. `strict_end_rhyme` = last-3-characters of each line's final word recurring within **±4 lines** (`gates.yaml → rhyme_window`). This is stated because three repair agents once reverse-engineered three different windows (±2, ±4, ±7) from a brief that named a threshold without defining it, and each honestly reported "reproduces the baseline exactly" — one song then measured 0.319 against its own window and 0.223 against the canonical one. **Never hand an agent a numeric target without the function that computes it.**
+
+### The Rhyme Debt rule
+Stripping end-rhyme is a legitimate device — three of the last three runs used rhyme-*decay* as form and it worked. But **removal is not craft; it is a debt.** A pair that strips rhyme MUST name, in its step-05 isolation brief, **what returns in its place**: a refrain that recurs unchanged, a vowel spine, a rhythmic figure, an anaphoric opening, a repeated syntactic frame. *"No full end-rhyme"* with nothing declared opposite it is a **repair**, not a style.
+
+Watch for the tell in a brief: `no rhyme` · `no metaphor` · `no dynamics` · `deliberately unpoetic diction` · `never lifting`. That is five subtractions and zero additions — a pair brief written entirely in negatives will produce a lecture no matter how good the concept is.
+
+### Exact chorus repetition needs no defence
+`unique_line_ratio_floor` is chorus-exempt **by policy**, yet pair agents kept writing around it — mutating refrains pre-emptively and filing justifications (*"this is the mechanism, not a defect"*, *"recommend HUMAN WAIVE not repair"*). A flag that makes writers apologise for choruses is doing damage even when it never fires. **A byte-identical chorus is correct. Say nothing about it.**
+
+### A PROSODY axis is now mandatory at Phase 0
+The 2026-07-24 seed carried five constraint axes and **every one was semantic** (custody act · proof-gap · how the centre empties · apparatus register · temporal stance). Not one was phonetic, and the frames palette's eight LYRIC devices were all rhetorical figures — apophasis, apostrophe, anaphora — with **zero sound devices**. Sound was specified only as removals.
+
+Every seed now carries a **SOUND / RETURN axis** as a positive vocabulary of 4–6 options, e.g.: `hard-consonant spine` · `vowel ladder that climbs across the stanza` · `internal-rhyme chain` · `sprung/uneven stress against a steady pulse` · `refrain that returns exactly` · `refrain that returns one word wrong` · `monosyllabic verse breaking into polysyllabic chorus`. Assign one per pair, distinct, same as any other axis.
+
 ## Execution (hybrid)
 Coordinator **00–05 inline**, then **6 pairs fan out as parallel Codex subagents** for 06–10, then **step 11 enhancement** (1 subagent/pair). Inject the full `CREATIVE_CONTEXT.md` into every step and every subagent (`EXECUTION.md` §3). Default cardinality: **6 pairs × 4 variations = 24 songs.**
 
