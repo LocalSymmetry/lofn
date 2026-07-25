@@ -42,6 +42,9 @@ Measured against LOFN-PRIME's own archived winners, she was right about the effe
 
 **Song is made of returns. Texture is not structure.**
 
+### Measure it with the shipped function, never by eye or by re-derivation
+`scripts/measure_soundcraft.py` → `profile_file(path)` is **the** definition. `strict_end_rhyme` = last-3-characters of each line's final word recurring within **±4 lines** (`gates.yaml → rhyme_window`). This is stated because three repair agents once reverse-engineered three different windows (±2, ±4, ±7) from a brief that named a threshold without defining it, and each honestly reported "reproduces the baseline exactly" — one song then measured 0.319 against its own window and 0.223 against the canonical one. **Never hand an agent a numeric target without the function that computes it.**
+
 ### The Rhyme Debt rule
 Stripping end-rhyme is a legitimate device — three of the last three runs used rhyme-*decay* as form and it worked. But **removal is not craft; it is a debt.** A pair that strips rhyme MUST name, in its step-05 isolation brief, **what returns in its place**: a refrain that recurs unchanged, a vowel spine, a rhythmic figure, an anaphoric opening, a repeated syntactic frame. *"No full end-rhyme"* with nothing declared opposite it is a **repair**, not a style.
 

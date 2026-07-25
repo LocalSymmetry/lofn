@@ -149,7 +149,8 @@ ngram_collapse_n: 4
 # at parity (13.4 vs 14.2 per 100 words) — texture was never the problem.
 # Structure was. These are FLAGs (pass=None), never hard fails: a deliberate
 # through-composed piece may sit below them, but it must say so on purpose.
-rhyme_return_floor: 0.30        # strict end-rhyme within a 4-line window
+rhyme_window: 4                 # ±N lines; THE definition — see scripts/measure_soundcraft.py
+rhyme_return_floor: 0.30        # strict_end_rhyme(): last-3-chars of final word recurring within ±rhyme_window
 line_return_floor: 0.20         # exact repeated-line ratio (choruses COUNT)
 mean_words_per_line_ceiling: 7.5  # above this the lyric drifts toward prose
 alliteration_per_100w_floor: 11.0
