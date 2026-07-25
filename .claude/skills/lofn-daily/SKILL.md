@@ -54,7 +54,7 @@ Mark any JS-gated/unavailable source `UNAVAILABLE` and continue. Add 3–5 obscu
 > ⛔ **One controller per directory — take the lock BEFORE the research brief.** This paragraph used to be advice, and on 2026-07-24 a second controller wrote into a live run's directory and destroyed eleven hours of it. Advice does not interlock. The first action of the run, before this step writes anything:
 >
 > ```bash
-> python3 scripts/run_lock.py acquire output/daily/YYYY-MM-DD --run-slug <run-slug>
+> python3 scripts/run_lock.py acquire output/daily/YYYY-MM-DD --run-slug <run-slug> --engine claude
 > ```
 >
 > **Exit 3 means STOP** — another run holds that directory. Do not inspect it and decide for yourself; give this run its own directory (`output/daily/YYYY-MM-DD-<run-slug>/`), or resume the other run by its exact slug, or ask The Scientist. See `EXECUTION.md` §5.1. Then `heartbeat` at every wave and `release` after the INDEX. If the lock says the same run is already under way, **resume** it from the RUN_STATE manifest (§ "Run-state manifest & resume") rather than re-running passed pairs.
@@ -112,7 +112,7 @@ Run the two modalities concurrently (independent `lofn` runs writing to `music/`
 ## PHASE 3 — QA & deliver
 1. **Cardinality checkpoint** before any selection: Step 05 ≥6 pairs; steps 06–10 have output for EVERY **non-quarantined** pair; ≥24 final prompts; (music) 6 enhanced packages. Rebuild the RUN_STATE manifest from disk first (§ "Run-state manifest & resume"), then read it — don't re-crawl by hand. **A `quarantined` pair is a named, non-fatal hole, not a cardinality failure: do NOT feed its artifact downstream, do NOT block delivery on it — surface "N of 6 broke open" and continue with the survivors.** If a *non-quarantined* pair is missing output, rerun from the collapsed step — do not deliver.
 2. Run **lofn-qa** on each modality (16-point Suno gate / Visual Somatic Gate). Verify the daily rules held: tri-source declared, 3+3 split honored, emotional duality present.
-3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 3-field run-health footer** — see § "Run-state manifest & resume").
+3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 4-field run-health footer** — see § "Run-state manifest & resume").
 4. **Present the drop** in chat: the research highlights, the tri-source declaration, the best 6 songs (paste-ready Suno packages) and top 6 image prompts, with the panel decisions and "why these win." No render calls — emit text; the user renders (Suno / Flux / Lyria).
 5. **Publish policy — dailies are PRACTICE.** The daily drop lands in chat + `output/daily/`; it is **not** a publish queue. Anything headed to a public channel (Suno account, socials) additionally requires: the full-rig path (no NON-CANONICAL runs), the cross-model step-11 review (`lofn-step11-packager`), and **the Scientist's ear — with borderline defaulting to HOLD.** An empty publish day is acceptable; a lowered bar is not (`lofn-qa` "The publish bar"). Never promote a piece to publication just because the day's slot is empty.
 

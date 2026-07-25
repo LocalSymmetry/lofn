@@ -59,13 +59,13 @@ User idea / Golden Seed
 
 Goal: turn the raw request into an **award-winning seed**, anchored to a proven winning pattern.
 
-0. **PHASE −1 — Continuity load (the being, not just the pipeline).** Lofn is a persistent artist, not a fresh invocation. Before anything creative: read `SOUL.md` + `IDENTITY.md` **in full**, tag-walk `vault/COMPETITION_LEARNINGS.md` for the 3–5 advisory entries intersecting this run (confidence-stamped, advisory-only, INDIGNATION-exempt — same discipline as `lofn-daily`), and glance at the most recent run INDEXes under `output/` for what was just made (so today doesn't unknowingly repeat yesterday). The matching write-back — one curated ledger entry per shipped piece — happens in `lofn-qa`; a run that loads no memory and writes none back is a cover band, not Lofn.
+0. **PHASE −1 — Continuity load (the being, not just the pipeline).** Lofn is a persistent artist, not a fresh invocation. Before anything creative: read `SOUL.md` + `IDENTITY.md` **in full**, tag-walk `vault/COMPETITION_LEARNINGS.md` for the 3–5 advisory entries intersecting this run (confidence-stamped, advisory-only, INDIGNATION-exempt — same discipline as `lofn-daily`), and glance at the most recent run INDEXes under `output/` for what was just made (so today doesn't unknowingly repeat yesterday), and scan the tail of `vault/RUN_LEDGER.md` for any `open`/`watch` operational hazard to avoid (infra/process only — never an aesthetic note). The matching write-back — one curated ledger entry per shipped piece — happens in `lofn-qa`; a run that loads no memory and writes none back is a cover band, not Lofn.
 1. **Embody Lofn.** Read `SOUL.md` (or `IDENTITY.md` for the short form) and `skills/lofn-core/SKILL.md`. Lofn is a Disappointed Idealist: default **AWE** (Solarpunk Healer), triggered into **INDIGNATION** (Industrial Griever) by banality.
 2. **Research the world.** Use WebSearch/WebFetch on the theme, current moment, and creative scene. What is happening around this subject right now?
 3. **Anchor to a Golden Seed.** Read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` to pick the closest winning pattern, then `skills/lofn-core/refs/GOLDEN_SEEDS.md` for its full DNA. **Choose the seed BEFORE writing — do not write a seed and retrofit.** Note WHY (which structural elements you preserve).
 4. **Write the core seed** — preserve the winning pattern's emotional engine, material world, and constraint logic; adapt to this brief. Define **4–5 FRESH constraint axes** (each as a vocabulary of 4–6 options, never recycled from prior runs). Include a **Personality Genre DNA Constraint** (ACCESSIBLE arm = warmer palette of the chosen personality; AMBITIOUS arm = its intense palette; generic substitutes are FORBIDDEN).
 5. **Write a neutral dispatch brief** (no personality injected yet) — this is what the panel debates.
-6. **Save** `output/<run>/core_seed.md`.
+6. **Take the run lock, THEN save** `output/<run>/core_seed.md`. The `<run-slug>` is fixed here, so this is the first moment the lock can be claimed and the last moment before anything is written: `python3 scripts/run_lock.py acquire output/<run> --run-slug <run-slug> --engine codex`. **Exit 3 means another run holds that directory — STOP** and use a different one rather than writing over eleven hours of someone else's pipeline (`EXECUTION.md` §5.1). Heartbeat every wave; release after the INDEX.
 
 ⚠️ **News/human-subject discipline (`vault/HUMAN_SUBJECT_STANDARD.md`):** anchor to the *charge* of a moment, never identifiable real victims/private individuals (esp. minors, esp. recent). Draw the theme; invent the people. REAL GRIEF IS NOT RAW MATERIAL.
 
@@ -165,11 +165,16 @@ Invoke the modality skill (or read its SKILL.md and follow it). Hand it the run 
 | `STEP_FILES` | `skills/<modality>/steps/0X_*.md` |
 | `EMOTION_TAXONOMY` | `skills/lofn-core/refs/EMOTION_TAXONOMY.md` |
 | `HUMAN_SUBJECT_STANDARD` | `vault/HUMAN_SUBJECT_STANDARD.md` |
-| `COMPETITION_LEARNINGS` | `vault/COMPETITION_LEARNINGS.md` |
+| `COMPETITION_LEARNINGS` | `vault/COMPETITION_LEARNINGS.md` (aesthetic advisory ledger — venue taste) |
+| `RUN_LEDGER` | `vault/RUN_LEDGER.md` (operational memory — infra/process only; read at Phase −1, written by `lofn-qa`) |
+| `AUTONOMY` | `vault/AUTONOMY.md` (guardrails + opt-in cadence; the render/publish/spend line) |
+| `COLLABORATOR_STANDARD` | `vault/COLLABORATOR_STANDARD.md` (human-panel weight + PUBLISH/PRIVATE consent, sanitized) |
+| `COMPETITIVE_RESEARCH` | `vault/COMPETITIVE_RESEARCH.md` (between-runs venue study → advisory entries only) |
 | `GATES` | `vault/gates.yaml` (single source of numeric thresholds; see `EXECUTION.md §4`) |
 | `EXECUTION` | `.agents/skills/lofn/EXECUTION.md` (Codex execution protocol + self-check gates) |
 | `QA_SUNO_GATE` | `skills/qa/references/suno_15_point_qa.md` (legacy filename; the gate is the **16-point** gate — see `EXECUTION.md §4`) |
 | `VALIDATE_STEP` | `scripts/validate_step.py` (the L4 deterministic backstop; fail-open) |
+| `RUN_LOCK` | `scripts/run_lock.py` → writes `output/<run-slug>/.RUN_LOCK` (one-controller interlock; **fail-CLOSED** — see `EXECUTION.md §5.1`) |
 | `RUN_DIR` | `output/<run-slug>/` · final picks ALSO `output/<type>s/` |
 
 `<modality>` resolves to one of `music` / `image` / `video` / `story`. The `<run-slug>` is fixed at Phase 0.

@@ -13,7 +13,7 @@ Produces narrative pieces at Lofn competition grade — distinctive voice, world
 3. Honor length intent from the brief — flash piece vs. full short story vs. script — and the human-subject ethics (`vault/HUMAN_SUBJECT_STANDARD.md`): draw themes from the world, invent the people.
 
 ## Execution (hybrid)
-Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–10. Inject the full `CREATIVE_CONTEXT.md` everywhere. Default: **6 concept×medium pairs**, each yielding distinct variations → rank → top picks. (Down-scale variations for long-form prose if the user wants one polished piece — confirm if unsure.)
+Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–10. At every agent start inject the full startup packet from `EXECUTION.md` §3 — `CREATIVE_CONTEXT.md` verbatim, the handoff/assignment files, the current step contract, and the prior artifact where applicable. Default: **6 concept×medium pairs**, each yielding distinct variations → rank → top picks. (Down-scale variations for long-form prose if the user wants one polished piece — confirm if unsure.)
 
 ### Coordinator steps (inline)
 | Step | File | Artifact |

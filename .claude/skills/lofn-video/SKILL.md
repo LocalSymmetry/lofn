@@ -15,7 +15,7 @@ Produces cinematic shot lists and animation prompts at Lofn competition grade. T
 3. **Mode:** *Cinematic* (multi-shot sequence / narrative clip) vs *Animation* (a single 4–8s loop/motion study). The pipeline is the same; in Animation mode each pair's variations are archetype-driven loops and you enforce loop logic (how frame 1 connects to the final frame).
 
 ## Execution (hybrid)
-Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–10. Inject the full `CREATIVE_CONTEXT.md` everywhere. Default cardinality: **6 pairs × 4 = 24 shot-sets / loops → rank → top picks.**
+Coordinator **00–05 inline**, then **6 pairs as parallel subagents** for 06–10. At every agent start inject the full startup packet from `EXECUTION.md` §3 — `CREATIVE_CONTEXT.md` verbatim, the handoff/assignment files, the current step contract, and the prior artifact where applicable. Default cardinality: **6 pairs × 4 = 24 shot-sets / loops → rank → top picks.**
 
 ### Coordinator steps (inline)
 | Step | File | Artifact |

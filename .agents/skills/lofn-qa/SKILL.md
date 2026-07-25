@@ -71,6 +71,12 @@ On every shipped/selected piece, append exactly **ONE curated entry** to `vault/
 - **Hard-capped (~25 live curated entries).** Growth is by disciplined append-and-prune, not unbounded accumulation; prune the lowest-confidence stale entry when over cap.
 - Apply the mandatory **"would this lesson have hurt our best past entry?"** check before recording — if yes, do not record it as a rule.
 
+## Operational-ledger write-back (infra/process only — FIREWALLED from the aesthetic ledger above)
+If the run hit an **operational** failure — a dropped/quarantined pair, a stale path, a quota/API error, a timeout, a gate that false-failed a valid artifact, a resume/manifest disagreement — append ONE row to `vault/RUN_LEDGER.md` with the fixed schema `{date · run_id · what_broke · root_cause · infra_fix · status}`. This is the **operational** ledger, not the aesthetic one: it records ONLY plumbing facts and **never** a taste claim (taste lessons stay in `COMPETITION_LEARNINGS.md`, INDIGNATION-exempt). Nothing is written if the run had no operational failure. It is read back at Phase −1 as a heads-up, never as a creative constraint.
+
+## Release the run lock (last action, after the INDEX)
+`python3 scripts/run_lock.py release <run-dir>` — see `EXECUTION.md` §5.1. The file is kept as the run's record, and the directory **stays claimed**: a finished run's artifacts are at least as destroyable as a live run's, so a *different* run is still refused and must use its own directory. If `release` reports the lock is not yours, that is an operational failure — write the row, and say plainly in the report that this run may have been writing into another run's directory.
+
 ## Verdicts (every report)
 - **Pipeline Integrity Verdict:** PASS / REPAIR REQUIRED / FAIL / **NON-CANONICAL** (no-skip rule fired — SHIP impossible)
 - **Package Verdict** (modality contract): PASS / REPAIR REQUIRED / FAIL

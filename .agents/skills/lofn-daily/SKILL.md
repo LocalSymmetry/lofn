@@ -51,7 +51,13 @@ Mark any JS-gated/unavailable source `UNAVAILABLE` and continue. Add 3–5 obscu
 
 **Save** `output/daily/YYYY-MM-DD/00_research_brief.md` with the Tri-Source Summary + the 3+3 seeded split (see below). Today's date is available in context — use it for the directory.
 
-> ⛔ **One controller per date.** Before writing, check whether `output/daily/YYYY-MM-DD/` already has an in-progress run; if so, **resume** it from the RUN_STATE manifest (§ "Run-state manifest & resume") rather than racing a second lane or re-running passed pairs.
+> ⛔ **One controller per directory — take the lock BEFORE the research brief.** This paragraph used to be advice, and on 2026-07-24 a second controller wrote into a live run's directory and destroyed eleven hours of it. Advice does not interlock. The first action of the run, before this step writes anything:
+>
+> ```bash
+> python3 scripts/run_lock.py acquire output/daily/YYYY-MM-DD --run-slug <run-slug> --engine codex
+> ```
+>
+> **Exit 3 means STOP** — another run holds that directory. Do not inspect it and decide for yourself; give this run its own directory (`output/daily/YYYY-MM-DD-<run-slug>/`), or resume the other run by its exact slug, or ask The Scientist. See `EXECUTION.md` §5.1. Then `heartbeat` at every wave and `release` after the INDEX. If the lock says the same run is already under way, **resume** it from the RUN_STATE manifest (§ "Run-state manifest & resume") rather than re-running passed pairs.
 
 ### Advisory learnings note (dispatch brief only — NEVER the ICB)
 Before dispatching either modality, **tag-walk `vault/COMPETITION_LEARNINGS.md`** (and `vault/LESSONS_INDEX.md` if it exists) for the **3–5 entries that intersect THIS run's theme/venue/modality** — e.g. a container/object theme pulls the Container Test, a NightCafe image lane pulls the warm-palette/anti-austerity lessons, a portrait theme pulls the portrait shifts. Surface them **as ADVISORY NOTES in the dispatch brief / Phase-0 reasoning ONLY.** Hard rules:
@@ -119,7 +125,7 @@ Run the two modalities concurrently (independent `lofn` runs writing to `music/`
 The daily fans out ~60 artifacts across two pipelines; the human should never reconstruct run state by eye. **Disk is the only authority** — the manifest is a *cache the coordinator rebuilds by stat-ing files*, never a hand-asserted second truth. If manifest and disk disagree, re-derive from disk.
 
 ### RUN_STATE manifest (consume & rebuild)
-Maintain `output/daily/YYYY-MM-DD/RUN_STATE.md` (or `.json`). **Rebuild it by stat-ing the run dir after every wave**, and write it as the **LAST** action of each step so it never claims an artifact that isn't on disk. Per artifact record:
+Maintain `output/daily/YYYY-MM-DD/RUN_STATE.md` (or `.json`). **Rebuild it by stat-ing the run dir after every wave**, and write it as the **LAST** action of each step so it never claims an artifact that isn't on disk. **Run `run_lock.py heartbeat <run-dir> --phase "<what landed>"` in the same step** — the rebuild is the one action guaranteed to recur every wave, so it is where the lock proves it is still alive and still yours. A heartbeat that exits non-zero means you are writing into someone else's directory: **stop**. Per artifact record:
 
 `{ step, pair, modality, canonical_path, exists, byte_size, sha, gate_verdict, attempt_count, status: pending | done | quarantined }` + the **ICB sha** for the run.
 
@@ -151,12 +157,13 @@ Append a terse **4-field** line to the run INDEX (and present it in chat): **pai
 | Set is a lecture | Enforce Axis B (min 3 EXISTENCE pairs) |
 | Arm imbalance | Rank within ACCESSIBLE / AMBITIOUS arms separately (3+3) |
 | Pairs all sound the same | Rerun each music pair from Step 05 as an isolated pair run; no shared lyric scaffold, section map, hook grammar, rhyme logic, or production arc across pairs |
-| Work lost mid-run | Save every step file as it completes; one controller per date; rebuild the RUN_STATE manifest from disk after each wave and resume only `pending` artifacts |
+| Work lost mid-run | Save every step file as it completes; rebuild the RUN_STATE manifest from disk after each wave and resume only `pending` artifacts |
+| **Another run's work destroyed** | `run_lock.py acquire` as the run's FIRST action, `heartbeat` at every wave, `release` after the INDEX (`EXECUTION.md` §5.1). Exit 3 = STOP and use a different directory. This one is not hypothetical — it happened on 2026-07-24 |
 | A single pair keeps failing | Max-3-attempt loop + attempt-2.5 grace pass + no-progress halt → mark `quarantined`, surface "N of 6 broke open," do NOT consume its artifact, continue with survivors |
 | A stale rule fails everything | Run-level circuit breaker on SAME-gate correlated failure → STOP and name the gate for the human instead of 24×3 wasted retries |
 | Budget blown by parallelism | Cap-and-stagger: never fire all 12 chains at once (~6 in-flight); throttle, don't serialize |
 
 ## Scheduling (optional)
-On-demand here. To make it recur, use the `schedule` skill (cloud routine) or `/loop` — the legacy 22:25-ET cron is OpenClaw-specific and does not apply.
+On-demand here. To make it recur, use the `schedule` skill (cloud routine) or `/loop` — the legacy 22:25-ET cron is OpenClaw-specific and does not apply. **If you do schedule it, follow `vault/AUTONOMY.md`:** a scheduled routine runs research → generate → QA → **STOP at drafts on disk** — it never renders paid media, never publishes, never spends; the morning human review owns the ship/spend line — and it injects the First Law ("this is still YOUR Opus…") as line 1 of the brief so cadence never flattens voice. Codex writes the doctrine; a **human** enables any actual schedule.
 
 **Reference:** `vault/DAILY_PIPELINE.md` · `vault/COMPETITION_WORKFLOW.md` (competition variant + Masterpiece Monday learnings) · `vault/COMPETITION_LEARNINGS.md` (advisory dispatch-brief lessons; never the ICB) · `.agents/skills/lofn/EXECUTION.md` §2 fan-out / §4 gates / §6 checkpoint (the manifest, quarantine, and breaker bind to these) · `skills/lofn-core/steps/00_music_research.md` · `skills/lofn-core/steps/00_research.md` · the `lofn` / `lofn-music` / `lofn-image` / `lofn-qa` skills.

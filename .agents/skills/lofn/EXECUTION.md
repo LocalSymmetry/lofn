@@ -25,6 +25,7 @@ You do **not** need OpenClaw, the Python validators, or any external model. If a
 ## 2. The hybrid run, concretely
 
 ```
+ACQUIRE .RUN_LOCK ..... FIRST ACTION, before any artifact (§5.1) — exit 3 means STOP
 PHASE 0–1 ............. you, inline (research, seed, 3-panel debate, metaprompt, pairs, ICB)
 COORDINATOR 00–05 ..... you, inline — one section per step, save each canonical artifact
                         (shared context across 00–05 preserves the concept→medium thread)
@@ -33,6 +34,7 @@ PER-PAIR 06–10 ........ fan out: one subagent per pair, run the 6 in parallel
 ENHANCE 11 (music) .... one subagent per pair (you as the polish tier)
 AUDIT 12 (music) ...... one subagent (panel-of-panels) when triggered
 QA .................... inline or one lofn-qa subagent
+RELEASE .RUN_LOCK ..... after the run INDEX (§5.1)
 ```
 
 **Parallel fan-out:** issue the 6 pair-subagent Agent calls **in a single message** (multiple tool blocks) so they run concurrently. Wait for all 6 to land their artifacts before advancing the wave (06 for all pairs → gate → 07 for all pairs → …), OR give each subagent the full 06→10 chain for its pair and let the 6 chains run independently. Prefer the **full-chain-per-pair** form (fewer round-trips, each pair keeps its own thread); fall back to wave-by-wave if a pair needs cross-pair distinctiveness arbitration.
@@ -126,7 +128,7 @@ Apply the matching gate after each artifact. If it fails, repair the artifact in
 - **Image:** a noun-first, present-tense scene description — **no imperative opener** (Create/Design/Make/Render/Depict…), medium named within the first third, emotion *shown* not named, none of the banned haze words (ethereal/dreamlike/whimsical/gentle light/soft glow/magical/delicate), no living-artist names.
 - **Video:** the shape `[CAMERA] + [SUBJECT] + [ACTION] + [SETTING] + [STYLE & AUDIO]`, with audio directed explicitly (Dialogue / SFX / Ambient / Music).
 
-**Distinctiveness across pairs** is checked at 06, 09, and 10 — if Step 06 flattened pair facets, or 09/10 reused one skeleton, that's a repair blocker even if every single file passes its own gate.
+**Distinctiveness across pairs** is checked at 06, 09, and 10 — if Step 06 flattened pair facets, or 09/10 reused one skeleton, that's a repair blocker even if every single file passes its own gate. The three sibling validators are `scripts/validate_step06_distinctiveness.py`, `scripts/validate_step09_distinctiveness.py`, and `scripts/validate_portfolio_distinctiveness.py` (ceilings single-sourced from `vault/gates.yaml`; fail-open). A breach is a **repair trigger** (routes into the max-3 repair loop → quarantine → human), NOT a run kill — and a *deliberate* shared motif that survives repair is a **human waive**, never a silent ship.
 
 ---
 
@@ -134,6 +136,7 @@ Apply the matching gate after each artifact. If it fails, repair the artifact in
 
 ```
 output/<run-slug>/
+  .RUN_LOCK                    # written FIRST, before any artifact (§5.1) — the one-controller interlock
   core_seed.md
   CREATIVE_CONTEXT.md          # the filled ICB — READ-ONLY after Phase 1 (see §2); injected verbatim into every subagent
   02_golden_seed.md  03_panel_debate.md  04_metaprompt.md  05_pair_assignments.md
@@ -148,6 +151,30 @@ output/<run-slug>/
 **Namespace + write rules (item 0.4):** Each fan-out subagent writes ONLY into its own `pair_{NN}_*` files. The shared artifacts — the run INDEX, `RUN_STATE.md`, the distinctiveness arbitration — are written by the **coordinator alone, single-threaded, after a wave lands** (never by a concurrent subagent). `CREATIVE_CONTEXT.md` is frozen once Phase 1 fills it; subagents copy-and-diverge into their pair files, they never edit the canonical block.
 
 Final selected artifacts are ALSO saved individually under `output/<type>s/` (`OUTPUT_FORMAT` = `skills/lofn-core/OUTPUT.md`) with full frontmatter, plus a run INDEX written last.
+
+### 5.1 ⛔ `.RUN_LOCK` — one controller per directory, enforced on disk
+
+**On 2026-07-24 a second controller wrote into a run directory that already held a live run and destroyed about eleven hours of it** — the ICB, the research brief, steps 00–05, both judges' reports and all six step-11 deliverables. It came back only because an unrelated backup had been taken minutes earlier. The rule it broke already existed; it existed as **prose**, and prose cannot interlock. Nothing on disk announced that a run was live, so the second controller could not have detected the collision even if it had checked.
+
+**The lock is that announcement, and it is mandatory.**
+
+```bash
+# FIRST ACTION OF A RUN — before the research brief, before the ICB, before anything
+python3 scripts/run_lock.py acquire output/<run-dir> --run-slug <run-slug> [--engine claude|codex]
+# at EVERY wave boundary, in the same coordinator step as the §6 RUN_STATE rebuild
+python3 scripts/run_lock.py heartbeat output/<run-dir> --phase "<what just landed>"
+# Phase 3, after the INDEX
+python3 scripts/run_lock.py release output/<run-dir>
+```
+
+- **`acquire` is the first action, not an early one.** Creation is atomic (`O_EXCL`), so two controllers starting together cannot both win. A run that has not acquired its lock has no business writing into a run directory.
+- **Exit 3 = STOP.** A directory holding a lock with a **different `run_slug`** is refused — live, finished, or unreadable. Do not "check whether it looks abandoned"; do not move the artifacts aside; do not write anyway. Give this run its **own directory**, or resume the other run by its exact slug, or **ask the human**.
+- **Staleness never unlocks anything.** The run that got destroyed was mid-flight through an eleven-hour pipeline with long quiet stretches — any timeout short enough to be useful would have stolen its lock too. An old heartbeat changes the message, never the verdict.
+- **Resume is by RUN SLUG, not by controller id.** A new session resuming the same run acquires with the same slug and is let in; if another controller still looks live on that run, it needs `--takeover`, because two controllers on one run corrupt the same files as two controllers on one directory.
+- **`break` is the human's, never yours.** An agent must not decide for itself that another run is finished. Breaking archives the old lock inside the new one and does **not** grant permission to overwrite the artifacts that are still sitting there.
+- **`heartbeat` verifies ownership**, so a controller that skipped `acquire` is caught at the first wave boundary rather than at the post-mortem.
+
+Threshold in `vault/gates.yaml` (`run_lock_stale_hours`). **The lock protects the directory, not the date** — two runs on one date are fine in two directories, which is the fix the destroyed run ended up using.
 
 ---
 
@@ -164,7 +191,7 @@ icb_sha: <sha of CREATIVE_CONTEXT.md>   # one per run; proves the frozen ICB has
 ```
 
 Rules:
-- The manifest is written as the **LAST action of each step/wave** — so it never claims an artifact that isn't on disk.
+- The manifest is written as the **LAST action of each step/wave** — so it never claims an artifact that isn't on disk. **`run_lock.py heartbeat` runs in that same step** (§5.1): the manifest rebuild is the one moment guaranteed to recur at every wave, so it is where the lock proves both that it is still alive and that it is still yours.
 - An artifact is recorded `done` only after the **coordinator re-stat** (§3) confirms it: exists, non-trivial byte_size, binding-constraint value recomputed, ICB substring + 18-voice count verified. The subagent's RETURN envelope is a claim; the stat is the proof.
 - **Rebuild-on-resume:** on restart, re-stat the directory, regenerate the manifest, and continue from the first `pending`/`quarantined` artifact — never re-run a `done` pair (never regenerate paid image/video work), never skip a gate.
 - `lofn-qa` and `lofn-daily` read this ONE file to know run state instead of crawling the directory.
@@ -217,7 +244,7 @@ When one pair fails or stalls, **re-dispatch THAT pair alone** from its last-goo
 
 ### 7.5 Run-health footer (4 fields, not a metrics culture)
 
-Append a terse footer to the run INDEX: **{ pairs_shipped/quarantined, total_gate_retries, qa_repairs_issued }** — four fields, no more. It surfaces a real degradation signal without inviting a dashboard.
+Append a terse footer to the run INDEX: **{ pairs_shipped, pairs_quarantined, total_gate_retries, qa_repairs_issued }** — four fields, no more (`lofn-daily` § "Run-health footer" spells the same four). It surfaces a real degradation signal without inviting a dashboard.
 
 **The zero-rejection tripwire.** `qa_repairs_issued` is there because a QA that never says no is decorative: the expected band for a healthy 6-pair run is **≥1 REPAIR (or ≥1 substantive FLAG escalated to the Somatic read)**. A full run that reports **0 repairs and 0 quarantines across 24 artifacts does not celebrate — it triggers an audit of the JUDGE** (re-run the lofn-qa blind golden+decoy check on a sample; see `lofn-qa`). When the measures say perfect and the listener says worse, the measures are lying — this tripwire is how the harness notices.
 

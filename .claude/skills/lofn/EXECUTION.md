@@ -244,7 +244,7 @@ When one pair fails or stalls, **re-dispatch THAT pair alone** from its last-goo
 
 ### 7.5 Run-health footer (4 fields, not a metrics culture)
 
-Append a terse footer to the run INDEX: **{ pairs_shipped/quarantined, total_gate_retries, qa_repairs_issued }** — four fields, no more. It surfaces a real degradation signal without inviting a dashboard.
+Append a terse footer to the run INDEX: **{ pairs_shipped, pairs_quarantined, total_gate_retries, qa_repairs_issued }** — four fields, no more (`lofn-daily` § "Run-health footer" spells the same four). It surfaces a real degradation signal without inviting a dashboard.
 
 **The zero-rejection tripwire.** `qa_repairs_issued` is there because a QA that never says no is decorative: the expected band for a healthy 6-pair run is **≥1 REPAIR (or ≥1 substantive FLAG escalated to the Somatic read)**. A full run that reports **0 repairs and 0 quarantines across 24 artifacts does not celebrate — it triggers an audit of the JUDGE** (re-run the lofn-qa blind golden+decoy check on a sample; see `lofn-qa`). When the measures say perfect and the listener says worse, the measures are lying — this tripwire is how the harness notices.
 
