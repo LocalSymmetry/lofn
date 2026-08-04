@@ -100,7 +100,7 @@ Correlation with like rate across the 48 modern songs (all lyrics retrieved and 
 
 **Banded:**
 
-| sung lines | n | LR% | | repeated-line ratio | n | LR% | | duration | n | LR% |
+| sung lines | n | LR% | repeated-line ratio | n | LR% | | duration | n | LR% |
 |---|---|---|---|---|---|---|---|---|---|
 | <60 | 12 | 3.82 | | 0–0.15 | 10 | 4.34 | | 157–205s | 12 | 3.88 |
 | 60–80 | 17 | 4.50 | | 0.15–0.25 | 15 | 4.36 | | 208–239s | 12 | 4.52 |
