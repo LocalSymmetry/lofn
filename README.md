@@ -490,8 +490,9 @@ The **Panel of Experts v2** persona-construction layer — seat construction, sp
 
 ## 🔗 Related
 
-- **Original Lofn repo (Streamlit app):** https://github.com/LocalSymmetry/lofn
-- **OpenClaw:** https://openclaw.ai
+- **The original Lofn — Streamlit app:** [`streamlit` branch](https://github.com/LocalSymmetry/lofn/tree/streamlit) · where this started, before the pipeline became agent skills
+- **Lofn:** https://www.lofn.ai
+- **OpenClaw** (one supported host): https://openclaw.ai
 
 ---
 
