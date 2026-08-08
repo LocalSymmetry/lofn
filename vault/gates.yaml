@@ -49,6 +49,24 @@ music_prompt_terminal_punctuation: true
 # FLAG only — the human read tells device from recitation.
 max_sung_numeric_facts: 1
 
+# --- The ONE sung numeral is written as WORDS, never digits (HARD) ---------
+# Source: a LISTENER, on a published track, 2026-05 —
+#   "its epic, only fault I can find is that you didn't spell five hundred and
+#    ten. If it wasn't for that I'd say its production ready."
+# He was right and we sat on it for thirteen weeks. A renderer is free to voice
+# `510` as "five ten" / "five one zero" / "five hundred ten" — the one moment
+# the whole song hangs on, left to a coin toss.
+# Digits are not a pronunciation; they are an instruction to guess.
+#
+# RULE: any numeral that is SUNG is spelled out in words in the lyrics field
+# ("five hundred and ten", not "510"). Digits remain fine in [Theme:],
+# [SONG FORM:], EMO headers, BPM and key — nothing there is voiced.
+#
+# This is the only doctrine in this file contributed by an audience member,
+# and it is here because THE GRAIN LAW's whole point is that our gates are
+# textual and the ear is the instrument we do not own.
+sung_numerals_spelled_out: true
+
 # --- House lexicon (self-copying guard — FLAG ONLY) -------------------------
 # Phrases from past golden OUTPUTS (esp. "Triple Arch Over Me") that have
 # calcified into house formula: the 2026-07-01 review found the benchmark's

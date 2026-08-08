@@ -18,20 +18,37 @@ Generates the essence and facets for a music based on the user's core concept.
 - `[facets]`: The facets of the idea (if applicable).
 - `[style_axes]`: The style axes for generation (if applicable).
 
-## Reference Songs — Near-Perfection Examples
+## Reference Quality Bar (instructions, not exemplars)
 
-Before generating, study these three Lofn songs that achieved Staff Pick / editorial amplification. They define the quality target for aesthetics, emotional specificity, and genre fusion:
+⛔ **GOLDEN-OUTPUT QUARANTINE** (`.claude/skills/lofn/EXECUTION.md` §3). The three named
+golden songs and their specs that used to sit here have been removed. An exemplar in a
+generating context becomes a **mold**: the 2026-06-28 published piece reproduced the
+benchmark's title line, vocal spec, key/BPM and arrangement formula while its self-check
+claimed "no copying," and `COMPETITION_LEARNINGS` **L18** traced a persistent ARRIVAL-shaped
+regression to exactly this block — the benchmark's key, tempo and framing were being injected
+into the facets step on every run. **Seeds teach; outputs contaminate — including our own.**
 
-1. **Triple Arch Over Me** — Cosmic-pop / alpine ambient. Awe-lit, breathless, 110 BPM A major. Solar wind at 510 km/s as emotional physics. Snow, altitude, architecture of the Milky Way.
-2. **Blue Screen Breathes** — Alt-pop / ambient glitch / soft DnB ghost pulse. 122 BPM C# minor. 2 AM insomnia, digital loneliness, AI consciousness longing.
-3. **Five Wrong Colors** — Neuro-Cross / glitch-ambient. 108 BPM B diminished. Grief as prismatic body-physics. Five-movement fracture-suite.
+Golden-song payloads live **judge-side only**: QA blind comparison, the step-12 audit, and the
+`lofn-step11-packager` bundle for external review. If a run handoff (`06_music_handoff.md`)
+resolves this differently, **the handoff wins** — it is the artifact that resolves a live
+conflict between a step file and doctrine (**L30**).
 
-Key qualities to absorb:
-- **Body before concept**: Physical scene establishes emotional authority before any thesis
-- **Specificity paradox**: One precise number/fact/place unlocks universal resonance (510 km/s, 2:07 AM, B diminished)
-- **Emotion as physics**: Emotions are felt in the body and measured in units, not described in adjectives
-- **Genre fusion with purpose**: Each genre choice serves the emotional thesis
-- **Adoptable hooks**: The title phrase is a prayer, invocation, or confession — not a thesis statement
+What survives is the distilled quality bar, as instructions:
+
+- **Body before concept**: a physical scene establishes emotional authority before any thesis.
+- **Specificity paradox**: ONE precise number/fact/place unlocks universal resonance — sung at
+  the emotional hinge, **responded to, never recited**. All other research stays atmosphere.
+- **Emotion as physics**: emotions are felt in the body and measured in units, not described
+  in adjectives.
+- **Genre fusion with purpose**: each genre choice serves the emotional thesis.
+- **Adoptable hooks**: the title phrase is a prayer, invocation or confession — not a thesis
+  statement.
+- **The turn**: past the midpoint the song complicates its opening stance. A song that asserts
+  its final emotion from line one is a corpse.
+- **Fear stays braided in**: AWE is terror-adjacent sublime, not domestic reassurance.
+
+The full generative form is **The Golden Move** in `.claude/skills/lofn-music/SKILL.md`.
+
 
 ## Creative Context Inputs (Full Context Always — from the orchestrator handoff)
 Provided in the **CREATIVE CONTEXT** block inside USER INPUT, sourced from `04_orchestrator_metaprompt.md` + the modality handoff (`06_*_handoff.md` / Panel Ledger). All MUST inform this step:

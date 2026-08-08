@@ -69,7 +69,17 @@ For each pair:
 6. `06_audio_handoff.md` — selected `## Golden Song References`. If the handoff is missing them, read `skills/music/references/golden_songs_index.md` and select the two most relevant public Golden Songs yourself.
 7. The 16-point QA checklist (injected in the spawn task).
 
-The Step 11/manual Step 11 prompt must embed the complete packet above. Do not pass links or filenames alone. Golden Song References must include each selected song's full available style/music prompt, lyrics, and exclude prompt status; if no archived exclude prompt exists, say so.
+The Step 11/manual Step 11 prompt must embed the complete packet above. Do not pass links or filenames alone.
+
+⛔ **GOLDEN-OUTPUT QUARANTINE — this overrides the older embed instruction that used to sit here.**
+**Step 11 is a GENERATING context** (see the head-of-file note): past golden **outputs** — full style
+prompts, lyric sets, titles — are **judge-side only** (`.claude/skills/lofn/EXECUTION.md` §3). You receive
+the **GOLDEN MOVE** (instructions) and the Golden **Seed**; you do not receive the mold.
+**The one legitimate exception is the packager, not this tier:** `lofn-step11-packager` assembles
+golden-song payloads for a genuinely **external, judge-side** review bundle.
+*History: this file previously instructed the tier to embed complete Golden Song payloads in several
+places while its own head-of-file note forbade it. A pair agent that follows the local instruction is
+behaving correctly — the file contradicted itself. Fixed 2026-08-08.*
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 
@@ -244,7 +254,7 @@ Default automated path:
 - Use the dedicated Step 11 contract and write one enhanced package per pair.
 - Keep pair contexts isolated.
 - Do not call `openrouter/fusion` automatically.
-- Include the two selected Golden Song References in the output as calibration examples only. Each selected reference must include full available style/music prompt, lyrics, and exclude prompt status, not just title/URL.
+- ⛔ **Do NOT include Golden Song References in the output.** "Calibration examples only" is exactly the mold this rule exists to prevent — an exemplar in a generating artifact propagates downstream into every context that reads it. Golden-song payloads go **judge-side only**. Calibrate against the **GOLDEN MOVE** instead.
 
 Fusion manual-review path:
 - Build paste-ready Fusion request files with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
