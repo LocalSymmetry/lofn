@@ -182,13 +182,75 @@ User Idea / Golden Seed
 **Key architecture decisions:**
 - **Split-step agents:** Steps 06–10 run one subagent per pair per step (not one agent doing all 5 steps). Prevents context collapse, enables parallel execution.
 - **Barbell pair strategy:** 3 ACCESSIBLE + 3 AMBITIOUS pairs, each distributed across NEWS and EXISTENCE anchors.
-- **ICB (Immutable Continuity Block):** The golden seed, personality DNA, panel decisions, and Special Flairs must survive all handoffs — verified at every checkpoint.
+- **ICB (Immutable Continuity Block):** The golden seed, personality DNA, panel decisions, and Special Flairs must survive all handoffs — **frozen after Phase 1, hash-verified, and writable by no node.** See [The Frozen Block and the State Machine](#-the-frozen-block-and-the-state-machine) below.
 - **Somatic Gate:** 3 Hyper-Skeptics vote as a bloc on every step10. 2 of 3 NO = BLOCKED.
 - **Step 11 Andon Cord:** "Don't polish a corpse." If the step10 package is fundamentally broken (thread loss, personality collapse, EMO taxonomy failure, generic output, prompt format violation), step11 REJECTS and sends back to step09 or step07 with a repair brief.
 - **Model tiering (OpenClaw deployments):** coordinator/structural, enhancement/polish, and QA/orchestration can each be pointed at a different OpenAI-compatible model. **In the Claude-native port (`.claude/skills/`) tiering collapses to Claude** — the only change is *context isolation by role* (judge passes run in a fresh subagent), not a different vendor model. See `EXECUTION.md`.
 - **Personality Injection Mandate:** Every pair agent receives the target personality's full YAML DNA (G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases). "voice = X" shorthand causes Lofn bleed — always inject the full block.
 
 The panel runs **3 transformations** per session (baseline → group transform → skeptic transform) to maximize creative diversity before synthesis.
+
+---
+
+## 🧊 The Frozen Block and the State Machine
+
+> Full statement, with the panel debate that produced it: **[`docs/ARCHITECTURE_STATEMENT.md`](docs/ARCHITECTURE_STATEMENT.md)**
+
+A long creative pipeline built on language models has one structural enemy: **the model has no memory, and every hop is a chance for the work to drift.** The usual answers — a bigger context window, or summarizing between steps — fail the same way. A summary is a lossy write, and a bigger window still lets late steps quietly overwrite what early steps decided.
+
+⭐ **Lofn's claim is that continuity is a MUTABILITY problem, not a memory problem.** Work drifts because there exists a writable place for drift to accumulate. Remove the writable place and the drift has nowhere to go.
+
+### The pipeline is a state machine
+
+The **order** is a fixed, trace-auditable graph. Only the content *inside* each node is stochastic.
+
+```
+Phase 0 (seed) → Phase 1 (panel · metaprompt · pairs · ICB fill + freeze)
+   → coordinator 00–05
+   → ⑃ fan-out: 6 concurrent pair regions, each running 06→10, sharing nothing
+   → ⑄ join (single-threaded: re-stat, distinctiveness, manifest)
+   → [music] 11 enhance · 12 audit
+   → QA (fresh context, different model tier, adversarial)
+   → INDEX → release
+```
+
+- **Exactly one runtime branch** — wave-by-wave vs. full-chain-per-pair, chosen by a stated predicate.
+- **Exactly one human-escalation edge** — quarantine, a same-gate correlated failure, or a human-subject flag. The graph is never pretended to be total.
+- **Resumable from disk alone.** A manifest is rebuilt by stat-ing files after each wave; a completion message not backed by a file counts as incomplete.
+
+### The ICB is a value, not a memory
+
+The **Immutable Continuity Block** is filled once at the end of Phase 1, hashed, and injected into every node. **No node may write it.** An agent that wants to push the concept further **copies the block into its own artifact and diverges there** — a new value, with the original intact.
+
+What the pipeline calls "continuity" is not memory being preserved. **It is a value that was never mutable in the first place.**
+
+| Property | Enforcement |
+|---|---|
+| Frozen after Phase 1 | read-only to every coordinator step and every subagent |
+| Hash-verified | sha256, **defined LF-normalised** — a checkout that rewrites line endings changes the raw hash without changing a byte of content |
+| Proof of injection | each agent echoes byte count **and** hash; the coordinator re-hashes independently |
+| Divergence | copy-and-branch into the agent's own `pair_NN_*` namespace, never in place |
+| Concurrency | no shared mutable state; **all** cross-agent aggregation happens at a single-threaded join |
+
+### The executor claims; the join proves
+
+An agent's return is a **claim**, never a fact. The coordinator independently re-stats every artifact — existence, size, the binding constraint recomputed, the hash re-verified. Executors stay thin; **the proving lives at the join.**
+
+### ⭐ And the join is where the errors actually are
+
+Across two full production runs we measured something that inverts the intuition this field runs on:
+
+> **Every time an executing agent's measured claim was properly re-measured, the agent was right and the coordinator's instrument was wrong. Twelve of twelve.**
+
+Broken regular expressions, a scanner reading the wrong scope, a counter blind to a formatting convention. **The stochastic nodes did careful, checkable work. The deterministic joining code was the unreliable part** — and worse, **a silent instrument agrees with itself**: a validator that extracts nothing reports CLEAN, so nobody looks again.
+
+Hence the standing rule, which is the most transferable thing in this repo:
+
+> **Print what an instrument EXTRACTED before trusting what it CONCLUDED, and assert the extraction count against an independent expectation. An impossible number is a bug report, not a finding.**
+
+### ⛔ The conceded limitation
+
+This architecture is **a ratchet over past surprises.** Every constraint in it was installed after something went wrong, and it has **no purchase on the class of failure it has not yet met.** That is the whole argument for keeping an adversarial judge that did not participate in the work — and for treating every enumeration as provisional.
 
 ---
 
