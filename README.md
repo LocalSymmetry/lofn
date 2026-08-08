@@ -1,11 +1,20 @@
-# Lofn — OpenClaw Skills for Agentic Art 🎨 · Music 🎵 · Video 🎬 · Story 📖
+# Lofn — Agent Skills for Art 🎨 · Music 🎵 · Video 🎬 · Story 📖
 
-> One‑sentence idea ➜ contest‑topping prompt ➜ generated media — autonomously, inside [OpenClaw](https://openclaw.ai).
+> One‑sentence idea ➜ contest‑topping prompt ➜ generated media — autonomously, in whatever agent you run.
 
 [![GitHub Stars](https://img.shields.io/github/stars/LocalSymmetry/lofn?style=flat-square)](https://github.com/LocalSymmetry/lofn/stargazers)
 [![License](https://img.shields.io/github/license/LocalSymmetry/lofn?style=flat-square)](LICENSE)
 
-This repository contains the **OpenClaw skill set** that powers **Lofn** — an award-winning autonomous AI creative system. These skills transform any OpenClaw deployment into a full multi-modal creative pipeline: image, music, video, and story generation using a Panel of Experts debate architecture.
+This repository contains the **agent skill set** that powers **Lofn** — an award-winning autonomous AI creative system. It turns an agent into a full multi-modal creative pipeline — image, music, video and story — built on a Panel of Experts debate architecture, a deterministic state graph, and an immutable continuity block.
+
+**The skills are written as prose contracts, not framework code**, which is why they port. The creative layer under [`skills/`](skills/) — Golden Seeds, 114 personalities, 178 expert panels, the per-step prompt contracts, the QA gates — is **execution-agnostic**. Only the thin layer that spawns subagents and resolves paths is host-specific.
+
+| Host | Entry point | Status |
+|---|---|---|
+| **Claude Code** | [`.claude/skills/`](.claude/skills/) — `/lofn`, `/lofn-music`, `/lofn-image`, `/lofn-video`, `/lofn-story`, `/lofn-qa` | ⭐ **primary — where Lofn actually lives and where every run below was produced** |
+| **Codex** | `.agents/skills/` (mirrored; parity enforced by `scripts/check_skill_mirror.py`) | supported |
+| **OpenClaw** | [`skills/`](skills/) originals, unchanged | still works; no longer the assumed host |
+| **Anything else** | [`skills/`](skills/) + your own spawn/path layer | the step contracts are portable prose — see [`.claude/skills/lofn/EXECUTION.md`](.claude/skills/lofn/EXECUTION.md) for what a host layer has to provide |
 
 
 <p align="center">
@@ -64,7 +73,7 @@ This repository contains the **OpenClaw skill set** that powers **Lofn** — an 
 | **114 Personalities** | Alliance Archive — each with full DNA: G.L.O.W. Protocol, sonic pillars, vocal architecture, catchphrases |
 | **Competition Mode** | Injects Panel + Personality context; proven to add ~0.05 rating points vs. generation without |
 | **Golden Seeds** | Curated winning prompt seeds from 3+ years of live competition |
-| **Model-Agnostic** | Works with OpenAI, Anthropic, Google Gemini, DeepSeek, and any OpenAI-compatible model via OpenClaw |
+| **Host- & Model-Agnostic** | The step contracts are prose, not framework code. Runs on Claude Code (primary), Codex, OpenClaw, or your own host layer; model-tiered deployments can point each role at a different provider |
 | **Ethics & Provenance** | Strong NSFW/harassment filters, anti-copyright prompt hardening, PUBLISH/PRIVATE axis |
 
 ---
@@ -118,7 +127,7 @@ docs/                        # Plans, knob census & ground-truth for the Explore
 
 ## 🤖 Run It With Claude Code — Claude-native Skills
 
-The pipeline also ships as a set of **Claude Code skills** under [`.claude/skills/`](.claude/skills/) — the same award-winning, 3-phase Lofn process, **but with Claude as the engine for every step, no OpenClaw required.** They're invokable from the repo root as `/lofn`, `/lofn-music`, and friends.
+⭐ **This is where Lofn actually lives.** The pipeline ships as a set of **Claude Code skills** under [`.claude/skills/`](.claude/skills/) — the same award-winning, 3-phase process, **with Claude as the engine for every step and no other runtime required.** Invokable from the repo root as `/lofn`, `/lofn-music`, and friends. Every run in this repo's `output/` was produced this way.
 
 | Skill | Role |
 |-------|------|
@@ -418,26 +427,33 @@ Panelists are synthetic constructs anchored to named source figures, each credit
 
 ## 🚀 Getting Started
 
-This skill set is designed for [OpenClaw](https://openclaw.ai). It requires:
+### ⭐ Claude Code — the primary path
 
-1. **OpenClaw** installed and configured
-2. **An LLM API key** (Anthropic, OpenAI, or Google)
-3. *(Optional)* **FAL API key** for Flux Pro 1.1 Ultra image rendering
-4. *(Optional)* **Suno access** for music generation
-
-### Install
-
-Clone this branch into your OpenClaw workspace:
+Clone it and run the skills from the repo root. No other install.
 
 ```bash
-git clone --branch public https://github.com/LocalSymmetry/lofn.git ~/.openclaw/workspace
+git clone https://github.com/LocalSymmetry/lofn.git && cd lofn
 ```
 
-Or copy the `skills/` directory into your existing OpenClaw workspace.
+Then, in Claude Code:
+
+```
+/lofn        — the front door (Golden Seed ➜ 3-panel debate ➜ modality dispatch ➜ QA)
+/lofn-music  /lofn-image  /lofn-video  /lofn-story  /lofn-qa
+```
+
+**Needs:** Claude Code. That's it — the pipeline writes paste-ready prompts, so rendering is your call.
+*(Optional)* a **FAL** key for Flux image rendering · **Suno** access for music.
+
+### Other hosts
+
+- **Codex** — mirrored skills under `.agents/skills/`, entry point `AGENTS.md`.
+- **OpenClaw** — the originals under `skills/` are untouched; copy them into your workspace.
+- **Anything else** — the step contracts are prose. A host layer needs to provide four things: spawn a subagent, resolve repo-relative paths, read/write files, and run a shell command. [`.claude/skills/lofn/EXECUTION.md`](.claude/skills/lofn/EXECUTION.md) is the reference implementation of exactly that translation.
 
 ### Use
 
-Ask your OpenClaw agent:
+Ask your agent:
 
 ```
 Create an image of [your concept] using the full Lofn pipeline
