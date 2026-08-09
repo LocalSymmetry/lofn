@@ -106,12 +106,30 @@ Each variation must alter one or two high-level axes. Do NOT mutate all dimensio
 
 **This replaces Step 08 default rules when TARGET_RENDERER = GPT_I2.**
 
-### The Proven Formula (9.8/10 and 10/10 renders)
+### What GPT Image 2 needs
 
 GPT Image 2 is smart. It needs dense, deep, specific descriptions — not slot scaffolding.
-The prompts that worked are dense flowing paragraphs describing each subject in vivid
-detail, naming art styles, describing how styles collide at contact points, and anchoring
-everything with one shared light source and one shared shadow.
+Dense flowing paragraphs, a named material lineage, and one shared light source with one
+shared shadow.
+
+> ### ⛔ RETIRED 2026-08-08 — "The Proven Formula (9.8/10 and 10/10 renders)"
+>
+> **The multi-style collision engine is retired. It was never venue-proven.**
+> Those 9.8 and 10/10 scores are **our own evaluator scoring five variants of the same
+> formula against each other** (`output/faerie-convocation-v3/vision/concept_medium_pairs.json`
+> — every option scores 8.5–9.8; the table has no losing choice). **"Excellent thumbnail
+> voltage" was asserted, never measured.** The one venue reading it ever got was
+> ~5–7 likes per post, and its nearest relative — the five-surface *One Pane at a Time* —
+> scored **3.25/5** against a 4.24 winning grade.
+>
+> The engine also **vetoes itself**: its own seed set a *"0.3-second gate: subject reads as
+> WHOLE before fracture registers,"* and no configuration can pass it. If the subject reads
+> whole first the collision is invisible; if the collision reads first the subject was never
+> whole. **The event was deleted and a seam put in its place. A catalogue has no verb.**
+>
+> **Replaced by ONE SEAM below** (`COMPETITION_LEARNINGS` L38). Kept visible, like L22's
+> retracted first draft, as an anti-overfit example: *an internal rubric with no losing option
+> is not evidence, and "proven" must name the venue that proved it.*
 
 ### Prompt Structure (dense flowing description, not slots)
 
@@ -120,36 +138,50 @@ everything with one shared light source and one shared shadow.
    a single dark ceramic vase on a wooden table. Single window light from upper left
    casting shared shadows to lower right."
 
-2. **Go subject by subject, describing each in vivid detail:** For each of the 7 subjects,
-   write 2-3 sentences describing what it IS, what its art style IS, and how that style
-   manifests visually. Name the art movement. Describe the visual signature. Be specific
-   about colors, textures, and forms.
+2. **Establish the ONE dominant material in the first third:** name the historical lineage
+   and how it manifests — the movement, the visual signature, the colors, textures and
+   forms. This is the **world** the picture is made of, and everything in frame obeys it.
 
-3. **Name the collisions:** After describing all subjects, describe how the styles meet
-   at contact points. Use NAMED collision language. Where petals/stems/bodies touch,
-   describe the visual friction.
+3. **Stage the EVENT:** what the subject is DOING, and what that action causes. Subject +
+   verb + consequence, describable by a stranger in one breath. Name the contact as a
+   causal event, not an artifact (L24/B: *"each hoof strikes the paper and ink splashes
+   outward from that point of impact"*, never *"terse ground contacts"*).
 
-4. **Close with the container:** Return to the ordinary thing holding the impossible
-   subjects — the vase, the table, the clearing, the window. "One ordinary vase. One
-   extraordinary bouquet. The window light is the only witness."
+4. **If — and only if — a second material earns its place, give it ONE seam:** place it at
+   the junction that carries the meaning, and make the subject act ACROSS it. Describe how
+   the two JOIN (L24/A: *"one visible unbroken contour"*), never merely how each looks.
 
-5. **No labels, no text, no specimen markers.** The styles speak for themselves.
+5. **Close with the container:** return to the ordinary thing holding the extraordinary one.
 
-### The 7-Style Integrated Scene Formula (proven 9.8-10/10)
+6. **No labels, no text, no specimen markers.**
 
-This formula works across subject types (fairies, flowers, objects, landscapes):
+### ⭐ THE ONE SEAM FORMULA (replaces the 7-style engine — `COMPETITION_LEARNINGS` L38)
 
-- **7 distinct subjects** arranged in one shared container
-- **7 visually explosive art styles** — each identifiable at a glance without labels
-- **One shared light source** casting one set of shadows
-- **Named collision devices** where subjects touch — styles bleed at contact
-- **One ordinary container** — a vase, a clearing, a table, a room
-- **NOT a collage** — one scene, shared shadows, shared atmosphere
-- **300-400 words** — dense, specific, no padding
+**A piece is made OF a material, never ABOUT materials. The medium is the SUBSTANCE, never
+the SUBJECT.** Works across subject types (figures, flowers, objects, landscapes):
+
+- **ONE dominant material** — the world. A named historical lineage, total and committed.
+- **At most ONE intruding material** — the wound. Optional. It must earn its place.
+- **ONE seam**, at the junction that carries the meaning — and **the subject DOES something
+  across it.** Describe how the parts JOIN, not how they look.
+- **ONE event** — subject + verb + consequence, legible at 128 px without the title.
+- **ONE light engine** — a single named source and direction; all shadows agree.
+- **ONE ordinary container** — a vase, a clearing, a table, a room.
+- **300-400 words** — dense, specific, no padding.
+
+⛔ **Hard count:** name every distinct material system in the frame. **If the count is >2,
+cut until it isn't.** Variety belongs **ACROSS a set** — one obscure medium per image,
+differentiated against the *field* — **never inside one frame.**
+
+✅ **Keep the historical anchor.** Without a named lineage the renderer defaults to "pretty
+AI portrait." The anchor is the good half of the retired engine; the collision was the bad half.
 
 ### Visually Explosive Art Style Vocabulary
 
-These styles are instantly recognizable and produce distinct renders:
+These styles are instantly recognizable and produce distinct renders. **Under ONE SEAM this
+is a palette to pick ONE from — the dominant material for this image, chosen against what
+the rest of the field is doing. It is not a set to combine.** (Its old use — seven at once,
+one per subject — is retired.)
 
 | Style | Visual Signature | Best For |
 |-------|-----------------|----------|
@@ -169,19 +201,26 @@ These styles are instantly recognizable and produce distinct renders:
 ### Prompt Rules
 
 1. **Length:** 300-400 words of dense, specific description. No padding, no genre lists.
-2. **7 visually explosive art styles:** Each subject gets a COMPLETELY DIFFERENT style from the vocabulary. No repeats. Every style must be identifiable at a glance.
-3. **Named collision devices:** Where subjects touch, styles BLEED. Use named collision language — "optical waves fracture against neon grid" not "styles meet."
+2. ⭐ **ONE dominant material (L38):** one named historical lineage from the vocabulary, total and committed. **At most one** intruding material, and only if it earns its place. **>2 material systems = cut.**
+3. ⭐ **ONE seam, ONE event:** the seam sits at the junction that carries the meaning, and the subject **does something across it.** Describe how parts JOIN and state contact as a causal event (L24/A,B). Every accent causally attached, or cut (L24/C).
 4. **One shared light:** Every prompt names the single light source and its direction. All shadows cast the same way.
 5. **One ordinary container:** The vase, the clearing, the table, the room — ordinary things holding impossible subjects.
-6. **No labels, no text, no specimen markers.** The styles are the identification.
-7. **NOT a collage:** One scene, shared shadows, shared atmosphere.
+6. **No labels, no text, no specimen markers.**
+7. **NOT a collage, and NOT a catalogue:** one scene, shared shadows, shared atmosphere — and one hero. If a viewer cannot tell what to look at first, the image reads as low quality however well it is made.
 8. **Storybook Assassin veto:** Zero use of "ethereal," "dreamlike," "whimsical," "gentle light," "soft glow," "magical," "delicate."
 9. **No artist names in prompts:** Reference styles/techniques, not living artists.
 10. **Thumbnail voltage:** At least ONE subject must stop the scroll — Op Art vibration or Synthwave neon glow.
 
-### Proven Prompt Examples
+### ⛔ RETIRED EXAMPLES — kept visible as anti-patterns, do NOT copy
 
-**Faerie Convocation (9.8/10):**
+**These two are the retired engine.** Both scores below are internal-evaluator numbers, not
+venue results. They are preserved so the shape is recognisable when it tries to come back:
+**N subjects × N styles + named collision devices = a catalogue with no verb.** Note that
+each one's collision paragraph is nearly **byte-identical** to the other's — the "devices"
+were a fixed list reapplied, which is what a formula looks like when it has stopped being a
+choice. Write a ONE SEAM prompt instead.
+
+**Faerie Convocation (internal 9.8/10 — RETIRED):**
 ```
 Seven distinct fairies in a crescent council under a brilliant crescent moon in a
 star-filled sky. Ancient grove with silver birch trees, moss-covered stones, fireflies.
@@ -199,7 +238,7 @@ gold cracks against impossible skin, pigment pools into knotwork, interlace vibr
 into optical pulse. Crescent moon watches. Sacred gathering.
 ```
 
-**Impossible Bouquet (10/10):**
+**Impossible Bouquet (internal 10/10 — RETIRED; shipped to ~7 likes):**
 ```
 Seven distinct flowers in a single dark ceramic vase on a wooden table. Single window
 light from upper left casting shared shadows to lower right. Dark unfussy background.
@@ -220,18 +259,25 @@ the only witness.
 ### Pre-Commit Gate
 
 ```
-□ 7 visually explosive art styles, no repeats
-□ Each style described with specific visual signature (2-3 sentences)
-□ Named collision devices where subjects touch
+□ MATERIAL COUNT ≤ 2 — count every distinct material system in the frame (L38 VETO)
+□ ONE dominant material, named historical lineage, described with a specific visual signature
+□ ONE seam at the junction that carries the meaning — and the subject ACTS across it
+□ ONE hero — a single place the eye lands first at 128 px
+□ ONE event — subject + verb + consequence, retellable in a breath WITHOUT the title
+□ Parts described by how they JOIN; contact stated as a causal event (L24/A,B)
+□ Every accent causally attached, or cut (L24/C)
 □ One shared light source + shadow direction
 □ One ordinary container
-□ NOT a collage — one scene, shared shadows
 □ 300-400 words of dense description
 □ No labels, no text, no specimen markers
-□ At least ONE subject with thumbnail voltage (Op Art or Synthwave)
+□ Thumbnail voltage carried by the light engine and the event — NOT by style count
 □ Zero Storybook Assassin veto triggers
 □ Zero artist names, zero forbidden language
 ```
+
+**Post-render, pre-submission:** run **THE VINCENT TEST** (`COMPETITION_LEARNINGS` L39) — read
+the venue's auto-generated *"Creation Summary by Vincent."* **Headline names an EVENT → ship.
+Headline names a STYLE, TECHNIQUE or MEDIUM → repair or hold.** It is free; never skip it.
 
 ### Multi-Turn Edit Protocol (only if Scientist requests revisions)
 

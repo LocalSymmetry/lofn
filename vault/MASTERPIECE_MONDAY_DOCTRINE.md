@@ -67,6 +67,34 @@ Avoid: ambiguity, moral complexity, unease, avant-garde detachment.
 
 **Test:** Can you name the feeling in two words? Is it comfortable to endorse?
 
+### 5. ⭐ ONE SEAM — the piece is made OF a material, never ABOUT materials
+*(Added 2026-08-08. Human-identified, venue-corroborated. See `COMPETITION_LEARNINGS` L38.)*
+
+**The medium is the SUBSTANCE. It is never the SUBJECT.**
+
+The move that won — in The Scientist's own words, 2026-03-25 — was *"you use tritonal when others go full
+color, you choose an obscure print style when others are doing photography."* **One** obscure medium per
+image, chosen against **the field**. The variety lived **ACROSS the set**: six images, six media, each one
+a complete coherent world made of a single substance.
+
+The 2026-04-27 `six-ways-v2` engine inverted this — N art styles colliding **inside one frame** at named
+collision seams — and that single inversion breaks all four invariants above at once: no dominant
+silhouette (N figures at equal scale), no hero, N spectacle layers, and collision seams that are a few
+pixels wide at 128 px and vanish at exactly the scale where voting happens. **A catalogue has no verb.**
+
+> **N = 1.** One dominant material is **the world**. At most **one** intruding material is **the wound**.
+> **One seam**, placed at the junction that carries the meaning. And **the subject must be DOING something
+> across that seam.**
+
+*Being Devoured by the Role* (🥇 1st of 673) is a one-seam piece: one woman, one role consuming her, one
+boundary, and the boundary is where the meaning lives. All four 1st-place finishes obey N=1 — one material
+world, one event, one body, zero catalogues.
+
+**KEEP the historical-medium anchor** (without a named lineage the model defaults to "pretty AI portrait").
+**DROP the collision.** Multi-style collision engines are **RETIRED**.
+
+**Test:** Name every distinct material system in the frame. If the count is above two, cut until it isn't.
+
 ---
 
 ## The Three Winning Lanes
@@ -139,6 +167,8 @@ These are not required, but applying them acts as a vote multiplier.
 | **Detail glut** | Ornament ≠ splendor. Filigree on a weak composition is still a weak composition. |
 | **Novelty without desire** | Novelty can actively hurt if it reduces beauty, tenderness, or legibility. |
 | **Too-clever conceptualism** | "I see what you did there" is weaker than "I feel what you made." |
+| **The style catalogue** | N art movements sharing one frame. No hero, N spectacle layers, and the seams are invisible at 128 px. Variety belongs ACROSS a set, never inside a frame. (L38) |
+| **Medium promoted to subject** | A picture *about* a material collision has no event in it. Made OF a material wins; made ABOUT materials loses. (L38) |
 | **Uncanny valley faces** | Realistic AI faces with subtle deformities trigger disgust. Use painterly, stylized, or obscured faces. |
 | **No obvious hero** | If the viewer doesn't know what to look at first, the image reads as low quality even when technically accomplished. |
 
@@ -190,7 +220,30 @@ Rate each candidate 1-5 on each axis before submission.
 | **Finish quality** | Is there visible craft — glow, texture, atmospheric depth? | Medium |
 | **Title strength** | Does the title feel like a confirmation, not a translation? | Medium |
 
+| **Material count** | Are there ≤2 material systems, joined at exactly one meaningful seam? | **Veto** |
+
 **Threshold for submission:** Average 3.5+ across all axes, no axis below 2.
+
+---
+
+## ⭐ THE VINCENT TEST — the free blind first-read (mandatory before submission)
+*(Added 2026-08-08. See `COMPETITION_LEARNINGS` L39.)*
+
+Every NightCafe creation page carries an auto-generated **"Creation Summary by Vincent."** It has never
+seen our prompt, our title, or our intent. **It is a blind first-read proxy, it is free, and it runs after
+render and before submission.**
+
+> **Read the auto-caption's HEADLINE.**
+> **Names an EVENT** (subject + verb + consequence) → the piece works.
+> **Names a STYLE, TECHNIQUE, or MEDIUM** → the picture is about its own craft. **Repair or hold.**
+
+Measured on nine posts (2026-08-08): five of nine were captioned by their style. And on the account's one
+venue-measured failure, Vincent wrote the post-mortem unprompted — *One Pane at a Time* (3.25/5) captioned
+**"Giant Moth Wings Made of Glowing Stained Glass."** The headline is the material; the woman, the rod and
+the repair — the whole event — are demoted to sentence two.
+
+**This is THE BLIND RULE for images.** Unlike the audio version it costs nothing and needs no second model.
+There is no excuse for skipping it.
 
 ---
 
@@ -228,7 +281,10 @@ Rate each candidate 1-5 on each axis before submission.
 8. **Build prompts around the lighting engine first, the miracle second, the finish last.**
 9. **Ornament intensifies a strong composition. It cannot rescue a weak one.**
 10. **The winner is usually the image that feels like a beautiful secret understood immediately.**
+11. ⭐ **Made OF a material, never ABOUT materials. N = 1: one world, one wound, one seam, and a subject doing something across it.**
+12. **Run the Vincent test before you submit. If the venue's own robot names your technique instead of your event, you have already lost.**
 
 ---
 
 *This doctrine supersedes all prior ad-hoc Masterpiece Monday notes. It should be referenced at the start of every NightCafe image pipeline run.*
+*Amended 2026-08-08: invariant 5 (ONE SEAM) and the Vincent test added; multi-style collision engines retired.*

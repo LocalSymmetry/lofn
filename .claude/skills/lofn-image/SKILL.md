@@ -53,5 +53,15 @@ Lead with seed/scene, end with the checklist.
 
 **Both modes:** subject **legible at first glance** (thumbnail impact); material specificity; emotional legibility in pose/expression. Aspect ratio: upload challenges **3:4**, TikTok/Stories **9:16**, landscape **16:9** (default 9:16 unless told otherwise).
 
+### ⭐ ONE SEAM — N = 1 (hard gate, `COMPETITION_LEARNINGS` L38)
+**A piece is made OF a material, never ABOUT materials. The medium is the SUBSTANCE, never the SUBJECT.**
+- **One dominant material** = the world. **At most one** intruding material = the wound. **One seam**, placed at the junction that carries the meaning — and **the subject must be DOING something across it.**
+- ⛔ **Multi-style collision engines are RETIRED** (`six-ways-v2` / Faerie Convocation / Impossible Bouquet lineage: N art movements sharing one frame at named collision devices). They produce no hero, N spectacle layers, and seams that vanish at 128 px. **A catalogue has no verb.** Variety belongs **ACROSS a set** — one obscure medium per image, differentiated against the field — never inside one frame.
+- ✅ **KEEP the historical-medium anchor.** Without a named lineage the renderer defaults to "pretty AI portrait". The anchor is the good half; the collision is the bad half.
+- **Pair self-check (state it in step 10):** count the distinct material systems in the frame. **If the count is >2, cut until it isn't.** Name the single seam and what the subject does across it.
+
+### THE VINCENT TEST — post-render, pre-submission (`COMPETITION_LEARNINGS` L39)
+NightCafe's auto-generated **"Creation Summary by Vincent"** has never seen the prompt — a **free blind first-read**. **If its headline names an EVENT, the piece works; if it names a STYLE, TECHNIQUE or MEDIUM, the picture is about its own craft — repair or hold.** This is THE BLIND RULE for images; it costs nothing, so it is never skipped.
+
 ## QA & delivery
 Run **lofn-qa** with the **Visual Somatic Gate** (`vault/VISION_QA_DEPTH_AUDIT.md`, 7-element density checklist) + the renderer pre-gen check from the rules file. Rank by visual concreteness → thumbnail impact → material specificity → emotional legibility → model fit; select top picks. Save each selected prompt per `skills/lofn-core/OUTPUT.md` (note `image_model` + `aspect_ratio` in frontmatter); INDEX last. **Do not call render tools** — emit paste-ready prompt text; the user renders (FAL Flux / GPT Image 2). Refinement (anatomy/hands) is a post-render inpainting pass on the 1–2 chosen images only.
