@@ -1,0 +1,18 @@
+{
+  "run_slug": "2026-08-07-daily-music-indignation",
+  "controller_id": "lofn:<redacted-controller-id>",
+  "engine": "claude-opus-5",
+  "host": "<redacted-host>",
+  "status": "complete",
+  "started_utc": "2026-08-08T01:01:27Z",
+  "heartbeat_utc": "2026-08-08T02:59:50Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "lofn:<redacted-controller-id>",
+      "joined_utc": "2026-08-08T01:01:27Z"
+    }
+  ],
+  "completed_utc": "2026-08-08T02:59:50Z",
+  "_redacted": "host and controller_id redacted for the public mirror; schema and lifecycle are verbatim"
+}
