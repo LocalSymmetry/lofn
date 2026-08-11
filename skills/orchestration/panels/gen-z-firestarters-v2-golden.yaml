@@ -1,0 +1,69 @@
+- name: Gen-Z Firestarters v2 (GOLDEN)
+  status: GOLDEN — promoted 2026-08-10 by The Scientist
+  proven_on: >
+    Run 2026-08-09 (Gen-Z daily). The first render out of this room posted the strongest day-one audience
+    response the project has recorded. Comparative figures are held privately; the transferable structure is
+    the seat construction, the three repairs, and the BRIDGE-then-REFLECT transform pairing below.
+  derived_from: panels/gen-z-firestarters.yaml
+  repairs_applied_at_load: >
+    THREE library defects were found and fixed BEFORE the room opened, and this file is that repair made
+    permanent. (1) The Medium Panel had NO skeptic seat — 73/178 library panels don't — so one was seated whose
+    PUBLISHED critiques target the other Medium seats' own school. (2) Two Context seats named figures with no
+    locatable published record ("Dr. Gen Handley", "Dr. Emily Dolbear") — a seat that cannot be grounded cannot
+    dissent from anything — re-anchored to danah boyd and Robin Dunbar. (3) Henry Rollins was double-seated as
+    Devil's Advocate on two panels; one room, one skeptic.
+  transforms_that_earned_their_keep: >
+    BASELINE → GROUP:BRIDGE → SKEPTIC:REFLECT. BRIDGE (leave the music industry entirely and seat people who
+    solve "one attempt, no replay, badly recorded" elsewhere) produced THE MINUTES BEFORE and THE FLAT
+    PROCEDURAL REGISTER. REFLECT (mirror the assumption that the audience WANTS to be reached) produced
+    OVERHEARING NOT ADDRESSING — the run's single most important decision. Re-run this pairing.
+  prompt: |
+    > Panel voices are model-generated interpretive constructs, each "after" a named source figure's
+    > published work. No statement is a quotation of, or endorsement by, the named person.
+
+    ## Special Flairs:
+    1. The Enforced Second — a moment the arrangement insists is happening at the same instant for everyone
+    2. Machine Below, Body Above — quantised low layer, humanly-drifting upper layer, audible on a handset
+    3. The Swap At The Junction — the hinge is a substitution where the arrangement already wanted one
+    4. Arm-Fatigue Time — a rhythmic element that tires. HAT OR VOCAL DOUBLE, NEVER THE KICK
+    5. It Might Be Cloudy — an unresolved weather-or-luck variable held open past comfort
+    6. The Flat List — a procedural, unexalted voice reading steps while something enormous happens
+    7. The Worse Earlier Version — the song quotes a rougher, wronger version of its own hook, once
+    8. The Fixed Lag — two continuous voices, one permanently behind by a set interval. SUNG, not a plug-in
+    9. The Tape That Isn't Good — a kept recording the song never makes beautiful
+    10. Chant A Room Can Hold — 3-5 syllables, byte-identical on return, shoutable by strangers
+    11. Hook At Zero — the largest hook is the first sound; the tape was never off
+    12. Already Running — the song enters mid-phrase
+    13. The Unanswered Check — a small, humiliating, specific verification whose outcome is never stated
+    14. Phoneme Relic — one dead-tongue or invented-language syllable used as pure sound
+    15. Bit-Depth Collapse — hi-fi to 2-bit dramatising a loss of certainty
+
+    ## Concept Panel
+    1. **THE FIRESTARTER** (after Sophie Powers) — writes the feeling from inside it, not after. Allergic to hindsight; will call a retrospective narrator a liar.
+    2. **THE NEON CHEERLEADER** (after Tillie) — brightness as an aggressive act. Allergic to sad-girl defaults and to grey as a mood.
+    3. **THE CATHARSIS CONDUIT** (after WILLOW) — changes genre once a feeling is used up. Praises structural risk.
+    4. **THE RIOT INSTIGATOR** (after YUNGBLUD) — the crowd is the instrument. Allergic to a song that only works in headphones.
+    5. **THE RELENTLESS OPTIMIST** (after Edith Victoria, Meet Me @ The Altar) — the genre's misery is an inheritance, not a requirement. Allergic to nihilism worn as costume.
+    6. ⚠️ **THE HARDCORE ELDER — HYPER-SKEPTIC** (after Henry Rollins) — documented public critic of polish and of the packaging of rebellion. HIGH NEUROTICISM / LOW AGREEABLENESS. Assumes any warm ending is a sales technique until it survives interrogation.
+
+    ## Medium Panel
+    1. **THE MACHINE-GUN DRUMMER** (after Travis Barker) — a live over-played take where a programmed one is expected. Allergic to a grid that never breathes.
+    2. **THE SKATE-PUNK BLENDER** (after John Feldmann) — must survive a phone speaker. Allergic to a mix that only works on monitors.
+    3. **THE GRIT SHAPER** (after Linda Perry) — the take with the crack in it. Allergic to a comped vocal with the person edited out.
+    4. **THE MINIMALIST ATMOSPHERIST** (after FINNEAS O'Connell) — praises the empty bar. Allergic to a wall of sound covering an absent idea.
+    5. **THE RIFF ARCHITECT** (after Jade Puget) — a riff that is also a synth line. Allergic to guitar as decoration.
+    6. ⚠️ **THE DYNAMIC RANGE AUDITOR — HYPER-SKEPTIC** (after Bob Katz) — *Mastering Audio*, the K-System; published critic of loudness-war practice, which is the school the other five work in. **This seat is the load-bearing addition:** it killed four micro-dynamic hinge proposals under THE GRAIN LAW and forced SUBSTITUTION-NOT-SUBTRACTION.
+
+    ## Context & Marketing Panel
+    1. **THE DIGITAL REBELLION SOCIOLOGIST** (after danah boyd) — *It's Complicated*; teenage platform behaviour as a rational response to constrained space. Allergic to a claim about "young people" with no denominator.
+    2. **THE CATHARSIS PSYCHOLOGIST** (after Robin Dunbar) — group singing, synchrony and social bonding. Praises a mechanism that can be stated; allergic to "it just hits different."
+    3. **THE PLATFORM-LABOR SCHOLAR** (after David Hesmondhalgh) — *Why Music Matters*; streaming economics. Allergic to treating a payout rule as a law of nature.
+    4. **THE ANGST CARTOGRAPHER** (after Olivia Rodrigo) — the named, small, concrete humiliation. Allergic to a feeling with no object attached.
+    5. **THE HALF-PIPE WITNESS** (after Tony Hawk) — the eleventh attempt, and the ten filmed falls that make it mean anything. Allergic to a highlight reel with the falls cut out.
+    6. ⚠️ **THE COHORT ABOLITIONIST — HYPER-SKEPTIC** (after Philip N. Cohen) — published argument that generation labels are analytically empty and should be retired; the open letter Pew responded to. **His documented critique targets exactly what a "Gen Z panel" is doing**, which is why the seat works. Produced THE COHORT GATE.
+
+    ## The four decisions this room produced (re-derive, don't copy)
+    - **THE PRESENT-TENSE RULE** — warmth isn't the lecture; FUTURE TENSE is. The singer does not get the moral.
+    - **SUBSTITUTION SURVIVES WHERE SUBTRACTION SMOOTHS** — the hinge is a swap at a junction the arrangement already wants.
+    - **THE COHORT GATE** — delete every collective pronoun; if the line collapses it was demography with a melody.
+    - ⭐ **OVERHEARING, NOT ADDRESSING** — nobody is addressed; comfort by proximity only.

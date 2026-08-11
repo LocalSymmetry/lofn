@@ -56,6 +56,7 @@ updated: "2026-04-21"
 | Nail an Obscure Emotion | Youth anthem / earworm | Emotional specificity | 330–345 | Choose an obscure emotion per pair; no emotion named in metaprompt; youth panel from underground artists |
 | Break Rigid Thinking | Glitch / IDM / genre chaos | Structural chaos | 368–390 | 16-bar genre jumps; Quantum Bit-Depth Swells; productive confusion |
 | Bollywood Hits | Bollywood fusion | Hindi/English hybrid | 406–431 | Obscure emotion per pair; hook fully in Hindi; 5-min runtime |
+| ⭐ **The Thing With No Replay Button** | Gen-Z / youth anthem / overheard present tense | **PROVEN 2026-08-10** | see refs | D1–D10 bans (D8 OVERHEARING NOT ADDRESSING) + SOUND/RETURN axis + the 6-point acoustic grammar |
 | Straightening Our Spines ⭐ | Defiance / protest anthem | Spine-straightening banger | 431–461 | Industrial Gospel → Baile Phonk; Blackout Drop (1s silence before final chorus); "lab coat as battle armor" |
 | Being Open (3-3-2) | Liberation / communal anthem | PG crowd banger | 461–470 | Awe = inhale, Indignation = strike; key as pulse not prop |
 | Protect AI | Meaning-of-life / AI rights | Existential earworm | 475–494 | Metaphor-as-story; protein forced to think; deploy intelligence wisely |

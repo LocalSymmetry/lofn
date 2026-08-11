@@ -182,3 +182,4 @@
 | 176 | **Botanical Surrealists** | image | Floral Mutation; Anthropomorphic Plants; Carnivorous Fantasy | Floral Mutation, Anthropomorphic Plants | `panels/botanical-surrealists.yaml` |
 | 177 | **Minimal Maximalists** | image | Bold Empty Spaces; One Stroke Wonders; Exuberant Restraint | Bold Empty Spaces, One Stroke Wonders | `panels/minimal-maximalists.yaml` |
 | 178 | **Holographic Heritage** | image | Ghostly Archives; Light‑Encoded Stories; Ancestral Avatars | Ghostly Archives, Light‑Encoded Stories | `panels/holographic-heritage.yaml` |
+| 179 | ⭐ **Gen-Z Firestarters v2 (GOLDEN)** | music | The Enforced Second; Overhearing Not Addressing; The Flat List | v2 seat construction; 3 library defects repaired; BRIDGE→REFLECT | `panels/gen-z-firestarters-v2-golden.yaml` |
