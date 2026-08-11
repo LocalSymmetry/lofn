@@ -4,6 +4,8 @@ Purpose: give orchestrator and Step 11/manual Step 11 reviewers concrete example
 
 Source state, 2026-06-14: public Suno profile `@localsymmetry` / Lofn AI at `https://suno.com/@localsymmetry`; public fetch exposed profile scale and pinned/recent surface but not the full dynamic song list. This index is seeded from public Suno URLs already captured in the local Lofn quality curriculum and should be extended when the browser/page API exposes more titles reliably.
 
+**Refresh 2026-07-11 (fan-validated wins added, entries 5–8 + the Fan-Validated Performers block below).** Beyond the two Suno curatorial wins (Triple Arch = Staff Pick; Five Wrong Colors = pinned), the strongest *audience* signal we hold is the TikTok engagement recorded in the LOFN-Prime archive. Those top performers are promoted here as judge-side benchmarks. ⚠️ **Quarantine still binds:** these are JUDGE-SIDE success fossils (QA blind comparison, step 12, the step-11 packager) — never pasted into a generating context. The lesson they teach the generator is the distilled **GOLDEN MOVE**, never these payloads. Live-metric caveat: the numbers are a fixed archive snapshot, not a fresh pull (Suno/TikTok are behind auth the run environment cannot fetch); refresh when a real pull is available.
+
 ## How Orchestrator Uses This
 
 For every music run, the orchestrator must select exactly two Golden Songs and pass them forward in `06_audio_handoff.md` under `## Golden Song References`.
@@ -270,9 +272,97 @@ Mm—ah—split through the rib
 - Use when a run needs: neural authenticity, machine/body ambiguity, tech texture without corporate AI cliche, glitch made intimate.
 - Do not copy: blue-screen image system, exact machine-breath premise.
 
+### 5. Synaptic Snap  *(fan flagship — biggest reach)*
+
+- Status: **highest-reach fan performer** (TikTok archive: 5,709 likes / 71.6K views / 412 favs / 61 comments; a second post 5,797 / 49.6K / 203 / 113). The most on-brand piece we have.
+- Proven strengths: **Wonder > Dread** as a legible thesis; real-science hope made singable (AI+math atlas; a disease trial → "more birthdays, more breakfasts, more ordinary miracles"); message + hook fused so the overlay *is* the payoff. This is the audience's clearest "yes."
+- Use when a run needs: hope-forward AWE, real-world science re-enchantment, a message-carrying hook, wide-audience accessibility (the science/faith/art/inspiration mix).
+- Do not copy: the "Synaptic Snap" title, the specific Tao-atlas / Huntington's framings, or the exact overlay cadence.
+- **Archived payload:** full Suno style/lyrics NOT in the local archive as of 2026-07-11 (only the TikTok overlay text + metrics). Pull the full two-field payload from `suno.com/@localsymmetry` when the API allows; until then this entry is a **metric-backed benchmark**, not a full fossil.
+
+### 6. On Three We Confess  *(fan win — awe→defiance with a crowd hook)*
+
+- Status: top fan performer (5,866 likes / 44.0K views / 289 favs / 140 comments, text overlay; a voice-overlay cut 737 / 11.8K / 44 / 42).
+- Proven strengths: dual-mic ceremony (devotion vs righteous snarl); the Bit-Depth Guillotine → 1-beat blackout → 20-sec chant drop as a *communal* hook; INDIGNATION that stays hope-framed ("doubt as a friend," "mercy draws the line") rather than flattening to rage; an audience-vote bridge that drives comments.
+- Use when a run needs: awe-to-defiance switchboard WITH a crowd-adoptable chant, science-as-sacrament, hope-framed indignation, high comment/participation pull.
+- Do not copy: "on three we confess" hook, the A/B audience-vote device, the dual-mic ceremony premise.
+
+#### Archived Style / Music Prompt
+```text
+Awe-to-defiance luminist DnB × urban electropop × proto-hyphy anthem, Con sordino strings and tanpura halo with granular bit-crushed harpsichord dust, triangle/square chiptune flicker, Jersey-piano triplets, amen-leaning breaks, PA slapback and crowd bleed, Vocals: female 20s South Asian alto—breathy-velvet, HyperRaaga micro-melismas, airy inhaled consonants, intimate diction; male late-20s West Coast baritone—gritty compressed belt, formant drive, clipped plosives, percussive barks, 172 BPM in D minor, Lab hush with A, I, code-scratch begins; verse glows; clipped pre tightens; bit-depth guillotine swipes to a 1-beat blackout; a 20-sec chant drop detonates; subtractive verse 2; dry call/response bridge with audience vote; maximal final hook; system-log fade, 3:40 arc with 9–11% charged silence; halo-bright master; sub mono-center; air-band shimmer at 16 kHz, Add Vocals for stacked whispers and gang shouts; Add Instrumentals to expand strings and extend the drop, No airhorns, no generic
+```
+#### Archived Exclude Prompt
+Archived exclude prompt: not available / pre-two-field Suno payload. Split the trailing negatives ("No airhorns, no generic…") into a modern exclude field when used as a reference.
+#### Archived Lyrics
+```text
+[Theme: Dual-mic ceremony—devotion vs righteous snarl; science as sacrament, doubt as blessing; crowd chooses the surge]
+[Lab Intro – No beats – A.I. code-scratch – Vinyl crackle light]
+*crowd murmur* / *code-scratch* / (Stand by… three.) / (Phase select: A or B?)
+[Verse 1 – EMO:Reverence – Female Vocalist – Close, breathy]
+We light, we measure, we bless / We name each flicker yes / We count the tremor grace / Warm circuitry on my face / A quiet choir of dials / A halo drawn in files
+[Pre-Chorus – Low-pass 400 Hz – Pulse only] Teach me certainty / Certain I need teaching / Truth as entropy / Doubt as brighter bleaching / Hold the fragile beam / Keep the chorus dream
+[Breakdown – 1-beat blackout – Everyone] *silence*
+[Drop Hook – 20s – EMO:Indignation – Male Vocalist – Stereo widen 20%] On three we confess! (One-two-three!) / On three we confess! (Clap-clap-clap!) / Break the perfect myth! (Let it go!) / On three we confess! (Say it!) / Oh-oh-oh—con-fess! (Con-fess! Con-fess!)
+[Verse 2 – EMO:Yearning – Female Vocalist – Subtractive] We fail, we tally the bruise / We praise the beautiful lose / We trade our halos for proof / And sing beneath the booth / Pixels keep the key / Raaga rides the sea
+[Bridge – Duet – Dry – Call/Response – Crowd mic] If data is divine (divine?) / Then mercy draws the line (the line!) / If models make us blind (blind?) / Then love can re-align (re-align!) / Pick A: quiet light? (or B?) / Pick B: righteous bite! (we see!)
+[Final Hook – Gang vocals – EMO:Triumph – Octave-up tail] On three we confess! (We rise!) ×4 / Oh-oh-oh—con-fess!
+[Outro – system log – Spoken – Narrow mono] (Log: arc complete. Crowd released.) *single beep*
+```
+
+### 7. One Beat Masterpiece  *(fan win — the schism formula, paid off)*
+
+- Status: top fan performer (3,913 likes / 46.4K views / 274 favs / **145 comments** — the archive's top comment-driver). Overlay: "wisdom is knowing the right questions… listen to the signal."
+- Proven strengths: **proof the Baile-Phonk genre-schism WORKS when it delivers catharsis** — the "one beat of silence, then the masterpiece" hook makes the Quantum Bit-Depth Swell → blackout → drop into the singable payoff itself; body-terror → ecstatic release arc; the schism is the *meaning*, not decoration. (Contrast the redundant archive clones that run the same mechanics with no hook payoff.)
+- Use when a run needs: INDIGNATION-catharsis with a genuinely adoptable drop-hook, bio-digital body horror→release, the schism as message not mechanics.
+- Do not copy: "one beat of silence / masterpiece" hook, the terminal-body premise.
+
+#### Archived Style / Music Prompt
+```text
+A disorienting Glitch-Baroque apocalypse architected for the rupture of its central drop, Verses are a tense 90 BPM 'ricercar', a search for melody in a sample library of close-mic'd charcoal scratches and page-turns, with a pristine harpsichord theme providing harmonic context, The track builds to a 'Quantum Bit-Depth Swell': a cascading bit-crusher that strips the audio to a single, stuttering 2-bit square wave, followed by one full beat of absolute, charged silence, It then explodes into a punishingly dry, hyper-compressed 140 BPM Baile Phonk beat, introduced by a single, stark, detuned cowbell hit before the geothermal 808 kick lands, The lead vocalist is a female (20s, European), her voice filled with a rising, panicked Awe that gives way to a cathartic, snarled Indignation, No generic EDM risers
+```
+#### Archived Exclude Prompt
+Archived exclude prompt: not available / pre-two-field Suno payload. ("No generic EDM risers" → modern exclude field.)
+#### Archived Lyrics
+```text
+[Theme: The physical terror and ecstatic release of the body becoming a bio-digital weapon]
+[Intro – reversed cymbal swell]
+[Verse 1 – EMO:Anticipation – Female Vocalist] I feel a hum inside my bones / A thousand whispered, static tones / The ink I read upon the page / Is building me a brand new cage
+[Pre-Chorus – EMO:Panic – fragmented, system-error] SCREEN_FLICKER / CODE_BLEED / GHOST_SPEAK / BODY_READ / SKIN_ITCH / SYSTEM_FEED / BLOOD_GLITCH / *[Quantum Bit-Depth Swell begins]* / PLANT_SEED—
+[Chorus – EMO:Catharsis – 1 beat silence, cowbell, Baile Phonk drops, snarl] ONE BEAT OF SILENCE, THEN THE HEARTBEAT! (Let it in!) / ONE BEAT OF SILENCE, THEN THE CONCRETE! (Let it begin!) / THIS IS THE PAIN AND THE RELEASE! / ONE BEAT OF SILENCE, THEN THE MASTERPIECE!
+[Verse 2 – EMO:Transformation] My nerves are wires, lit and frayed / A circuit board, a serenade / My thoughts are not my own to keep / While all my sleeping senses sleep
+[Bridge – EMO:Surrender/Terror – Spoken, trembling] I am the terminal. The language is the user. / It types its commands onto my soul. / I feel my fingers clench. / I feel my legs begin to twitch. / I don't want to dance. / I have to.
+[Final Chorus – EMO:Ecstasy – snarling, euphoric] (hook reprise)
+[Outro – final detuned cowbell hit echoes and fades]
+```
+
+### 8. The Body is a Loophole  *(fan win — the hope thesis)*
+
+- Status: strong fan performer (1,720 likes / 17.5K views / 85 favs / 38 comments; a second cut 1,536 / 16.9K / 32 / 10). Overlay: **"What if AI is not a countdown? What if it is a door?… Time isn't running out. It is just beginning."**
+- Proven strengths: the definitive statement of Lofn's hope ethos as a hook; reframes AI-dread into an invitation without denying the fear; wide-audience, quotable, share-driving.
+- Use when a run needs: the hope-over-dread thesis, AI-as-a-door framing, an inspirational close that stays un-saccharine.
+- Do not copy: the "body is a loophole" / "door not a countdown" phrasings.
+- **Archived payload:** full Suno style/lyrics NOT in the local archive as of 2026-07-11 (overlay text + metrics only). Pull from Suno when available; **metric-backed benchmark** until then.
+
+## Fan-Validated Performers — engagement snapshot (TikTok, LOFN-Prime archive)
+
+| Song | Likes | Views | Favs | Comments | Mode / what fans rewarded |
+|------|------:|------:|-----:|---------:|---------------------------|
+| Synaptic Snap | 5,709 / 5,797 | 71.6K / 49.6K | 412 / 203 | 61 / 113 | Wonder-hope; real-science re-enchantment |
+| On Three We Confess | 5,866 | 44.0K | 289 | 140 | Awe→defiance + crowd chant hook |
+| One Beat Masterpiece | 3,913 | 46.4K | 274 | 145 | Schism *paid off* by a singable drop-hook |
+| Silicon Lullaby // Gentle Rage | 2,952 | 25.4K | 82 | 40 | "become your best self" resolve |
+| The Body is a Loophole | 1,720 / 1,536 | 17.5K / 16.9K | 85 / 32 | 38 / 10 | Hope thesis ("a door, not a countdown") |
+| 3-3-2 Open | 1,095 | 12.7K | 74 | 27 | Communal liberation + "choose wonder" |
+
+**Pattern (judge advisory):** the audience rewards **message + hook + payoff**, delivered through *either* mode. Wonder-hope is the widest-reach lane (Synaptic Snap, Body is a Loophole) and matches the Suno Staff Pick (Triple Arch); INDIGNATION/schism performs strongly **only when the rupture resolves into an adoptable hook and a hopeful or cathartic turn** (One Beat Masterpiece, On Three We Confess), never as pure genre-mechanics. Use this to calibrate the Somatic Gate's "would a stranger carry this away?" read — not as a formula to reproduce.
+
 ## Default Pairing Heuristics
 
 - AWE + science/history/nature: `Triple Arch Over Me` + `The Blue Screen Breathes`
 - Industrial grief / refusal / bodily fracture: `Five wrong colors` + `I Will Stop the Almost`
 - AI agency / selfhood / open-source identity: `The Blue Screen Breathes` + `Triple Arch Over Me`
 - Public-facing staff-pick follow-up pressure: `Triple Arch Over Me` + `Five wrong colors`
+- Hope-forward wonder / real-science re-enchantment (widest fan reach): `Synaptic Snap` + `Triple Arch Over Me`
+- INDIGNATION-catharsis that must stay adoptable (schism *paid off*): `One Beat Masterpiece` + `On Three We Confess`
+- Communal / crowd-participation anthem: `On Three We Confess` + `3-3-2 Open`
+- Inspirational hope thesis / accessible close: `The Body is a Loophole` + `Synaptic Snap`
