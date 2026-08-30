@@ -1,0 +1,164 @@
+[
+  {
+    "set": 1,
+    "pair": 1,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_01_step10_revision_synthesis.md#V03",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_01_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "3701acd0ffd667068619a20d42d8ffc4f7bf28238f6e73dc8afe7f317d7322e6",
+        "title": "Friday Looks Good on Me"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "b6899c4eaa88433b9cc9ff6b4e3292300699c8bd0e22655645acfcdea9faa487",
+        "title": "Dial Tone of God"
+      },
+      {
+        "label": "B",
+        "role": "DECOY",
+        "sha256": "49c7f7b7688b3dad559322b7e3b9ac3f017846af6b5c1b92589a95b822a54fee",
+        "title": "Eight Seventeen, Beside Me"
+      }
+    ]
+  },
+  {
+    "set": 2,
+    "pair": 2,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_02_step10_revision_synthesis.md#V04",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_02_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "9885344cc1f98313b6b2dcbc4e130aabbce13fbc11cf3a307f050a2437fc1058",
+        "title": "Beat My Score"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "c3c51cf523dcc7062691183c2ee4982c46b8afd4204ccbdbca50ad196605e854",
+        "title": "Radiant Doom"
+      },
+      {
+        "label": "B",
+        "role": "DECOY",
+        "sha256": "041d991e52ad065fd5c68ef8cb6ef349dd4236de0c2802e66cbe7041c56521ce",
+        "title": "Two Blue, You Choose"
+      }
+    ]
+  },
+  {
+    "set": 3,
+    "pair": 3,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_03_step10_revision_synthesis.md#V04",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_03_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "426cae2c7747bc116360f33330ad0456436384f8f9e6bfd1ad943af69db0827f",
+        "title": "Turn When I Lower"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "29440e278bbacbc364f1945f127054e126729f5d798a9cc7630895eb42f8dc96",
+        "title": "Apology.DAT"
+      },
+      {
+        "label": "B",
+        "role": "DECOY",
+        "sha256": "0268c107162abab664c7dca749e70a1d55f1b86928d4a9d65e9ab0834a6d0cd8",
+        "title": "Zip, Stop, Turn"
+      }
+    ]
+  },
+  {
+    "set": 4,
+    "pair": 4,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_04_step10_revision_synthesis.md#V04",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_04_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "ccb14fc20618f297e00bfb73f7fce6e9179324abacd44ad66dfd52b385e71810",
+        "title": "Shake It Into Mine"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "b6899c4eaa88433b9cc9ff6b4e3292300699c8bd0e22655645acfcdea9faa487",
+        "title": "Dial Tone of God"
+      },
+      {
+        "label": "B",
+        "role": "DECOY",
+        "sha256": "5519f25e89d0d0164b1561e032d1a9bf7c1d1190b4487e0678daef445499b16b",
+        "title": "The Lime Comes Back"
+      }
+    ]
+  },
+  {
+    "set": 5,
+    "pair": 5,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_05_step10_revision_synthesis.md#V03",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_05_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "434fa993f13bbc4047896e4212d7541e181d708375262dcdd9357470a9c8bb46",
+        "title": "Pretty Busy Tomorrow"
+      },
+      {
+        "label": "B",
+        "role": "GOLDEN",
+        "sha256": "c3c51cf523dcc7062691183c2ee4982c46b8afd4204ccbdbca50ad196605e854",
+        "title": "Radiant Doom"
+      },
+      {
+        "label": "A",
+        "role": "DECOY",
+        "sha256": "3e6d7737a301a2e3fdc8b4b2041fa280d2bf9ab450f62269e802ad7c0e78424c",
+        "title": "Pick the Laughing One"
+      }
+    ]
+  },
+  {
+    "set": 6,
+    "pair": 6,
+    "golden_source": "skills/qa/references/golden_song_examples.md",
+    "decoy_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_06_step10_revision_synthesis.md#V04",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_06_step11_enhancement.md",
+    "files": [
+      {
+        "label": "B",
+        "role": "CANDIDATE",
+        "sha256": "5267e25b91d09a5b006d8dbd0923b12acf7afb441f36b6ecb46b46d68ef66540",
+        "title": "Hot Girl Future Tense"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "29440e278bbacbc364f1945f127054e126729f5d798a9cc7630895eb42f8dc96",
+        "title": "Apology.DAT"
+      },
+      {
+        "label": "C",
+        "role": "DECOY",
+        "sha256": "e251821ca328835f2dcfde2d31333d8d583c4a337f2a3bafc87c4aafbdedca6d",
+        "title": "Your Name Wears Pink"
+      }
+    ]
+  }
+]

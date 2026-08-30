@@ -1,0 +1,3 @@
+B = CANDIDATE
+C = GOLDEN
+A = DECOY

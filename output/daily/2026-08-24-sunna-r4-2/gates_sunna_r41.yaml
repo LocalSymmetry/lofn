@@ -1,0 +1,9 @@
+# Run-local Sunna R4.1 music gates.
+#
+# The personality correction deliberately rejects the generic Lofn lyric-length
+# exam: a complete Sunna song targets 36–56 sung lines, with no padding merely
+# to satisfy a house floor. All omitted keys inherit canonical vault defaults.
+sung_lines: [36, 56]
+sung_lines_hard_floor: 36
+sung_lines_hard_ceiling: 56
+sung_lines_floor_hug: 38

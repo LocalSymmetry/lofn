@@ -1,0 +1,17 @@
+{
+  "run_slug": "daily-music-2026-08-22-sunna-offbeat",
+  "controller_id": "claude:1064f9a2-6b9d-4350-94ca-ad037622445f",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-22T20:02:43Z",
+  "heartbeat_utc": "2026-08-22T21:40:13Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:1064f9a2-6b9d-4350-94ca-ad037622445f",
+      "joined_utc": "2026-08-22T20:02:43Z"
+    }
+  ],
+  "completed_utc": "2026-08-22T21:40:13Z"
+}

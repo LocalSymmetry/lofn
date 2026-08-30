@@ -1,0 +1,18 @@
+{
+  "mediums": [
+    {"id": "M15", "medium": "C01 / candy electro-ska bass-pop at 116 BPM: clipped electronic kick and clap, mono sub with an upper tooth, one resampled offbeat chip, ruby hard doubles, micro-cut upper percussion, and a vocal-harmonic pickup consequence; 3/5/2/6-line irregular arc into exact crowd hook, no period band."},
+    {"id": "M16", "medium": "C02 / gloss-funk moon-pop at 108 BPM: elastic FM sub, side-panned digital clap with three-over-four gait, delayed synthetic plucks, close chest lead and accumulating top harmonies; 2/2/3/5 open-vowel couplets with no bass-lift consequence."},
+    {"id": "M17", "medium": "C03 / spectral dancehall dream-bass at 104 BPM: beat-one kick/sub absence, muscular invariant low cell, short wavetable offbeat answer, granular room-scar clock, center-low lead migrating to wide full-register harmony; unison bars break into 1/4/2-voice clusters."},
+    {"id": "M18", "medium": "C04 / organ-house future garage at 126 BPM, the sole club-derived bed: held synthetic-organ breath, clipped four-floor/garage transient hybrid, short reese upper over mono sub, formant answer stack, and word-keyed sidechain release; unequal calls expand while answers contract."},
+    {"id": "M19", "medium": "C05 / stop-start glitch-R&B electro-pop at 112 BPM: invariant grid-locked sub contour, broken-beat electronic cells, granular page turns, dry chest lead and selective hard doubles, with a spectrum-and-grid restart at the chosen bar; sprung-stress syntax fractures once."},
+    {"id": "M20", "medium": "C06 / digital power-pop electroclash at 122 BPM: wavetable-guitar three-note splice, electronic stomp and candy clap, deep mono sub, clipped edits, lacquered chest lead, liquid call cadence, and one withheld melodic high note released as crown; no period rock ensemble."},
+    {"id": "M21", "medium": "C07 / calibration-party hook-pop at 118 BPM: dry count fragments, rubber sub, clipped two-step grid, pitch-shaped mistake chorus and public call-back; count interruption becomes pickup while stable kick law keeps it from duplicating P03's clean-room release."},
+    {"id": "M22", "medium": "C08 / phoneme-cut micro-pop at 114 BPM: jewel-like vocal grains, low dry synth thump, asymmetric handclap islands and one tiny syllable moving from reject bin to final high stack; suite form built from auditions rather than verses."},
+    {"id": "M23", "medium": "C09 / quiet-force synth-funk at 110 BPM: restrained sub glide, late upper percussion, close declarative alto and chair-scrape rhythmic receipt; pressure remains below club threshold while one physical invitation owns the hook."},
+    {"id": "M24", "medium": "C10 / inversion electro-pop at 120 BPM: low-register hook, octave-inverted wavetable contour, clipped kick/clap negative space and a chorus that narrows rather than widens; the stage-map act is translated to pitch motion, not sung notation."},
+    {"id": "M25", "medium": "C11 / versioned glitch-pop at 113 BPM: blank-slot silence, granular title consonants, muscular mono sub and dry centered lead; each erased label removes an upper transient until Sunna's new title restores only the chosen grid."},
+    {"id": "M26", "medium": "C12 / asymmetric moon-pop at 107 BPM: hump-shaped three-note vocal contour, skewed clap gait, delayed synthetic plucks and an incomplete harmony that chooses motion instead of tonic completion; the word-shape hook remains the phone-speaker anchor."}
+  ],
+  "count": 12,
+  "derivation_note": "Fourteen conventional and collision-heavy arrangements were discarded before M15; the surviving mediums use no more than two dominant genre terms, one inherited bodily relation, and a complete current chassis."
+}

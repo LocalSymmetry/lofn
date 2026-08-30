@@ -1,0 +1,59 @@
+{
+  "warning": "PRIVATE COORDINATOR KEY \u2014 RECHECK JUDGE MUST NOT READ",
+  "sets": {
+    "selected_01": {
+      "candidate_source": "pair_01_step10_final_package_enhanced.md#package1",
+      "golden_source": "skills\\music\\references\\suno_format_example_triple_arch.md",
+      "key": {
+        "A": "candidate",
+        "B": "decoy",
+        "C": "golden"
+      }
+    },
+    "selected_02": {
+      "candidate_source": "pair_02_step10_final_package_enhanced.md#package1",
+      "golden_source": "skills\\music\\references\\suno_format_example_blue_screen.md",
+      "key": {
+        "A": "candidate",
+        "B": "decoy",
+        "C": "golden"
+      }
+    },
+    "selected_03": {
+      "candidate_source": "pair_03_step10_final_package_enhanced.md#package1",
+      "golden_source": "skills\\music\\references\\suno_format_example_five_wrong_colors.md",
+      "key": {
+        "A": "golden",
+        "B": "candidate",
+        "C": "decoy"
+      }
+    },
+    "selected_04": {
+      "candidate_source": "pair_04_step10_final_package_enhanced.md#package1",
+      "golden_source": "skills\\music\\references\\suno_format_example_triple_arch.md",
+      "key": {
+        "A": "decoy",
+        "B": "candidate",
+        "C": "golden"
+      }
+    },
+    "selected_05": {
+      "candidate_source": "pair_05_step10_final_package_enhanced.md#package1",
+      "golden_source": "skills\\music\\references\\suno_format_example_blue_screen.md",
+      "key": {
+        "A": "candidate",
+        "B": "decoy",
+        "C": "golden"
+      }
+    },
+    "selected_06": {
+      "candidate_source": "pair_06_step10_final_package_enhanced.md#package3",
+      "golden_source": "skills\\music\\references\\suno_format_example_five_wrong_colors.md",
+      "key": {
+        "A": "candidate",
+        "B": "decoy",
+        "C": "golden"
+      }
+    }
+  }
+}

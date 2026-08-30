@@ -66,7 +66,7 @@ Full EMO-tagged lyrics, >=60 sung lines
 ## Arrangement Dramaturgy
 ## Binding Locks
 ## Style-Axis Locks
-## Golden Song References
+## Golden Move Calibration
 ## Major Deviations
 ## Lineage & Credit
 ## Constraint Audit
@@ -74,7 +74,7 @@ Full EMO-tagged lyrics, >=60 sung lines
 [Attribution / Provenance]
 ```
 
-**Do NOT skip any supporting block.** The three-block standard is a format spec — not a content reduction. Every block that was in the step10 + step11 pipeline survives below the three canonical blocks.
+**Do NOT skip any supporting block.** The three-block standard is a format spec — not a content reduction. Golden-song payloads are the sole exception: they belong in the private external-review bundle, never in the generated output. The output names the Golden Move rules it used without reproducing any prior song.
 
 ## Disc_Channel Format — EXACT SPECIFICATION
 
@@ -97,7 +97,7 @@ NEVER: `## Disc_Channel:` markdown headers, `**Layer:** disk_channel`, timestamp
 EMO tags are integrated into section headers using `–` (em dash) separators; emotional states use commas:
 
 ```text
-[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth [11] – Reluctant Pop Star, dry close-mic, slow internal rhymes]
+[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth – Reluctant Pop Star, dry close-mic, slow internal rhymes]
 the water took a breath so slow you thought your skin
 had loosed itself and let the silence in
 
@@ -106,7 +106,7 @@ the water temperature anomaly exceeded the threshold for the fifth consecutive m
 *buoy hum modulates — 12 cycles per minute*
 ```
 
-Header structure: `[SECTION LABEL – VARIANT or CUE – EMO:State1, State2 [11] – PERSONA NAME, vocal style, delivery notes]` — `–` (em dash) is the separator, commas join emotional states.
+Header structure: `[SECTION LABEL – VARIANT or CUE – EMO:State1, State2 – PERSONA NAME, vocal style, delivery notes]` — `–` (em dash) is the separator, commas join emotional states. Never leak pipeline-stage citation tokens such as `[11]` into the Suno lyrics field.
 
 NEVER: standalone `[EMO=reverence]` on its own line, EMO without persona and delivery style, bare `[EMO]` tags, or `-` (hyphen) where `–` (em dash) is the separator.
 

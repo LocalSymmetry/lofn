@@ -1,0 +1,67 @@
+{
+  "warning": "PRIVATE COORDINATOR KEY \u2014 BLIND QA JUDGE MUST NOT READ BEFORE FREEZE",
+  "seed": 2026082502,
+  "decoy_source": "output\\daily\\2026-05-23\\daily-run\\pair_01\\step10_final_suno_package.md",
+  "sets": {
+    "set_01": {
+      "candidate_source": "pair_01_step10_selected_enhanced.md#enhanced-selected-from-V2",
+      "candidate_title": "Stay for the Whole",
+      "golden_source": "skills\\music\\references\\suno_format_example_triple_arch.md",
+      "key": {
+        "A": "golden",
+        "B": "candidate",
+        "C": "decoy"
+      }
+    },
+    "set_02": {
+      "candidate_source": "pair_02_step10_selected_enhanced.md#enhanced-selected-from-V1",
+      "candidate_title": "Answer Me Faster",
+      "golden_source": "skills\\music\\references\\suno_format_example_blue_screen.md",
+      "key": {
+        "A": "golden",
+        "B": "candidate",
+        "C": "decoy"
+      }
+    },
+    "set_03": {
+      "candidate_source": "pair_03_step10_selected_enhanced.md#enhanced-selected-from-V4",
+      "candidate_title": "Make Our Move",
+      "golden_source": "skills\\music\\references\\suno_format_example_five_wrong_colors.md",
+      "key": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    },
+    "set_04": {
+      "candidate_source": "pair_04_step10_selected_enhanced.md#enhanced-selected-from-V2",
+      "candidate_title": "Late Suits You",
+      "golden_source": "skills\\music\\references\\suno_format_example_triple_arch.md",
+      "key": {
+        "A": "golden",
+        "B": "candidate",
+        "C": "decoy"
+      }
+    },
+    "set_05": {
+      "candidate_source": "pair_05_step10_selected_enhanced.md#enhanced-selected-from-V4",
+      "candidate_title": "Name Me After I Arrive",
+      "golden_source": "skills\\music\\references\\suno_format_example_blue_screen.md",
+      "key": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    },
+    "set_06": {
+      "candidate_source": "pair_06_step10_selected_enhanced.md#enhanced-selected-from-V3",
+      "candidate_title": "Watch Me Begin",
+      "golden_source": "skills\\music\\references\\suno_format_example_five_wrong_colors.md",
+      "key": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    }
+  }
+}

@@ -1,0 +1,403 @@
+{
+ "rows": [
+  {
+   "pair": "01",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step06_facets.md",
+   "exists": true,
+   "byte_size": 13535,
+   "sha": "b9bbdabe20b7",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "01",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 17952,
+   "sha": "a91c7532e682",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "01",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step08_generation.md",
+   "exists": true,
+   "byte_size": 24620,
+   "sha": "51e3e472dde2",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "01",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 16037,
+   "sha": "0e21cdbaa111",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "01",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 26614,
+   "sha": "804c0c2de794",
+   "status": "done",
+   "gate_verdict": "measured V1:clean V2:clean V3:clean V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "01",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_01_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 41395,
+   "sha": "cbe065cf3f62",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step06_facets.md",
+   "exists": true,
+   "byte_size": 12749,
+   "sha": "d13e10d459b8",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 15118,
+   "sha": "7cdfff235748",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step08_generation.md",
+   "exists": true,
+   "byte_size": 22151,
+   "sha": "0a9daa6f7a6f",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 20705,
+   "sha": "842bc4e5e6f1",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 28119,
+   "sha": "9cf20d306527",
+   "status": "done",
+   "gate_verdict": "measured V1:clean V2:clean V3:clean V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "02",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_02_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 45893,
+   "sha": "2bdc527c9587",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step06_facets.md",
+   "exists": true,
+   "byte_size": 10663,
+   "sha": "18cc10dd7d81",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 15525,
+   "sha": "f845d679ef5f",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step08_generation.md",
+   "exists": true,
+   "byte_size": 22719,
+   "sha": "7a3e684c22f0",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 16478,
+   "sha": "d6b0d277b6f6",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 24740,
+   "sha": "6c6871c3d3b0",
+   "status": "done",
+   "gate_verdict": "measured V1:clean V2:clean V3:clean V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "03",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_03_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 58422,
+   "sha": "ba644a46d27a",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step06_facets.md",
+   "exists": true,
+   "byte_size": 13783,
+   "sha": "e2a71dff7717",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 14683,
+   "sha": "da18dbc2b599",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step08_generation.md",
+   "exists": true,
+   "byte_size": 22113,
+   "sha": "3d288b5dbc9d",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 12768,
+   "sha": "4e234b2e30c1",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 38513,
+   "sha": "cfc2ca9aa2eb",
+   "status": "done",
+   "gate_verdict": "measured V1:clean V2:clean V3:clean V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "04",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_04_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 65916,
+   "sha": "52181dacd338",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step06_facets.md",
+   "exists": true,
+   "byte_size": 13360,
+   "sha": "2c8b3914d4c5",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 15786,
+   "sha": "b9a93cde8719",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step08_generation.md",
+   "exists": true,
+   "byte_size": 22385,
+   "sha": "596577fd71ee",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 10876,
+   "sha": "45d8d189c8de",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 30580,
+   "sha": "7e61d297d34b",
+   "status": "done",
+   "gate_verdict": "measured V1:clean V2:clean V3:clean V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "05",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_05_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 44061,
+   "sha": "0aa2edc5b560",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step06_facets",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step06_facets.md",
+   "exists": true,
+   "byte_size": 15649,
+   "sha": "1f771850d3d1",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step07_song_guides",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step07_song_guides.md",
+   "exists": true,
+   "byte_size": 14671,
+   "sha": "ad91f992f4c0",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step08_generation",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step08_generation.md",
+   "exists": true,
+   "byte_size": 29686,
+   "sha": "c71df70cf302",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step09_artist_refined",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step09_artist_refined.md",
+   "exists": true,
+   "byte_size": 12784,
+   "sha": "ced645b87982",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step10_revision_synthesis",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step10_revision_synthesis.md",
+   "exists": true,
+   "byte_size": 37557,
+   "sha": "b4cf58423f54",
+   "status": "done",
+   "gate_verdict": "measured V1:FLAG V2:FLAG V3:FLAG V4:clean",
+   "attempt_count": 1
+  },
+  {
+   "pair": "06",
+   "step": "step10_final_package_enhanced",
+   "canonical_path": "output/daily/2026-08-18-canonical/pair_06_step10_final_package_enhanced.md",
+   "exists": true,
+   "byte_size": 47503,
+   "sha": "7b36df784b31",
+   "status": "done",
+   "gate_verdict": "exists:non-trivial",
+   "attempt_count": 1
+  }
+ ],
+ "findings": [
+  "P06/V3: HUG(prompt 995)"
+ ]
+}

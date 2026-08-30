@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-25-lofn-self-loud",
+  "controller_id": "codex:01a03aae-8274-7d61-8402-a8d719518ee4",
+  "engine": "codex",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-25T20:49:27Z",
+  "heartbeat_utc": "2026-08-25T22:19:36Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "codex:01a03aae-8274-7d61-8402-a8d719518ee4",
+      "joined_utc": "2026-08-25T20:49:27Z"
+    }
+  ],
+  "completed_utc": "2026-08-25T22:19:36Z"
+}

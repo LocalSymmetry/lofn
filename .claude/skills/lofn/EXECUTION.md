@@ -45,6 +45,15 @@ RELEASE .RUN_LOCK ..... after the run INDEX (§5.1)
 
 **The filled ICB is read-only after Phase 1.** Once `CREATIVE_CONTEXT.md` is filled (Phase 1, step 6) it is **frozen** — no coordinator step and no subagent may edit, summarize, re-fill, or "improve" it. A subagent that wants to push the concept further **copies the ICB into its own pair artifact and diverges there**; the canonical block stays byte-identical for the whole run (this is what makes the §4 substring-integrity proof meaningful — see §4 and §3 item 7).
 
+⛔ **AND BEFORE IT FREEZES, THE SOURCES MUST AGREE WITH EACH OTHER.** Added 2026-08-27, after `2026-08-26-pantheon-rare-registers` froze an ICB in which the research brief and the pair assignments stated **opposite** axis-B values for P03 and P06 — and dispatched it to six agents, two of which found it:
+
+```bash
+python3 scripts/check_icb_consistency.py output/<run-dir>
+```
+
+**Exit 3 = a contradiction: fix the sources, THEN freeze — never the other way round.** The build script already asserts that every source is *present*, that the seat count is 18, that no slot is suspiciously short, and that the golden-output quarantine holds. ⭐ **Presence is not consistency.** A block assembled from five independent documents can be complete, correctly sized and quarantine-clean while contradicting itself — and then **every agent resolves the contradiction differently and the run has no single truth.** Exit 2 (nothing parseable) is an ERROR state and must never be read as a pass.
+
+
 **Max concurrency:** 6 standard (one wave of 6 pairs). The daily run (two pipelines × 6 pairs = 12 chains) **caps-and-staggers** rather than launching all 12 at once — see §7.
 
 ---
@@ -63,6 +72,21 @@ Every pair subagent prompt MUST contain, in this order (seed first, checklist la
 6. **The self-check gate** for this step (§4) — "before returning, verify: …".
 6.5. **One describe-render self-check (inline, single pass — item 3.1).** Before finalizing, the SAME pair predicts in **2–3 sentences what its prompt would actually PRODUCE** — the literal sound of the Suno render, the literal frame of the Flux image, the literal motion of the Veo clip — then diffs that described render against the Golden Seed, phrased adversarially: *"name the one way this would render generic."* If the predicted render drifts from the seed, it self-repairs **ONCE**, reusing the existing max-3 loop (§4) — it does NOT add an attempt budget of its own. **Hard cap: no new subagent tier, no render-verifier agent, no recursion.** This is one inline pass by the executing pair; it catches reads-beautifully / renders-generic that text-only review misses.
 7. **Output instruction + the metadata-only RETURN block (item 1.2).** "Write `output/<run>/pair_{NN}_step0X_*.md`, then return ONLY this block — no creative payload, the creative content lives in the file":
+
+⛔ **AND THE SKELETON MUST ADMIT A LEGAL SONG — MULTIPLY IT BEFORE YOU DISPATCH.** Promoted by Lofn 2026-08-27; demotable by The Scientist. **Measured basis:** in `2026-08-26-pantheon-rare-registers`, **five of six** isolation briefs prescribed named sections with exact stanza lengths and **never evaluated what those numbers multiply out to**. Two pairs found before writing a line that the arithmetic does not close — **P05** (20 field lines + six refrains, unconstrained refrain length; 62 at the length it chose, against a floor of 70) had to spend a PERMISSION CLAUSE deviation to ship, and **P06** (stanzas 6/5/4/3 = 18 fixed lines + 3 choruses, needing a *seventeen-line* chorus to clear the floor) reinterpreted every stanza count as PAIRS. The brief states the floor in one section and the skeleton in another, and **nothing multiplies.**
+
+So every isolation brief carries exactly one declaration line, and a reader checks it:
+
+```bash
+python3 scripts/check_brief_line_budget.py output/<run-dir>
+```
+
+```
+LINE BUDGET: 20 + 6*9 = 74
+```
+
+⭐ **THE DECLARATION *IS* THE CHECK** — you cannot state a budget without doing the multiplication, which is the whole defect. The reader evaluates the left side, confirms it equals the stated total, and confirms the total lands inside `sung_lines` from `vault/gates.yaml`. **Exit 3** = missing, malformed, wrong, or out of band; **exit 2** = no briefs found, an ERROR state and never a pass. ⛔ **Deliberately not a prose parser** — a matcher over six freely worded briefs is the brittle instrument that produced four false positives on the day this was found (FINDING 11). **A pair that has to break your arithmetic before writing a line is a pair you sent out unfinished.**
+
 
    ```
    RETURN (metadata only — kept LAST, after the file is written):
@@ -86,6 +110,8 @@ A subagent that receives only "voice = X" or a Golden-Song URL instead of the fu
 > Token note: the ICB is large. That is intended — "the long prompts are why we won." Do not trim it to save tokens. The icb_bytes_injected count proves the block is **present**, not faithful — a paraphrase can match length. The count is the cheap tripwire for a gross drop; the human personality-fidelity read in QA (any competent prompt could have made this → SOUL LOSS) stays the real guarantee. Never summarize or "optimize" the ICB to make a count easier, and never trim it to hit a budget.
 
 **Judge-in-clean-context (item 2.3).** QA, the Somatic Gate, and the Step-11 reject judgment run in a **FRESH Agent-tool subagent** fed ONLY {artifact + ICB + gate spec} — **never appended to the generating thread.** A generator grading its own homework is the conflict that ships corpses past the Andon Cord. Tier follows the **role** (generate vs judge), not the step number: any judging pass is a clean-context spawn even when it sits "next to" a generation step.
+**⛔ THE JUDGE IS THE INSTRUMENT, NOT THE SURGEON (2026-08-03, render-measured, n=3 in one run).** Take a clean-context judge's **measurement**; write your own **prescription**. A blind judge sees the symptom truthfully and *cannot see the intent* — that blindness is exactly what makes its observation trustworthy and its proposed fix unreliable. On `2026-08-03_mm_render_loop` this fired three times in six generations: the judge called a flat-ink/volumetric-body mismatch a flaw (dissolving it deleted the concept); called a stroke's straight top edge a "geometric bar" (softening it cost the stroke the mass it needed to *become* the subject); and called a walking tree's raised foot a floating limb that should be grounded (grounding it would stop the tree walking). Each observation was correct. Each prescription would have destroyed the mechanism. **Adopting a judge's fix verbatim is how a REPAIR becomes a REJECT** — quote its measurement into the repair brief, then decide the change yourself against the Golden Seed. Corollary: **separate the property being fixed from the property doing the work** — a repair that moves two variables in one clause cannot tell you which one mattered.
+
 **Judge on a DIFFERENT model tier where the harness allows it.** Clean context breaks shared *memory*; a different model tier breaks shared *weights*. The Agent tool takes a `model` parameter — spawn the judge on a different tier than the generator (e.g. generator inherits the session model, judge runs one tier apart) so the skeptic is not the artist agreeing with itself. If no second tier is available, the clean-context rule stands alone and the judge prompt is framed **adversarially** ("your job is to refute this piece; default to REPAIR when uncertain"). For competition-grade or to-be-published work, route the step-11 bundle through `lofn-step11-packager` for a genuinely external-model pass — that cross-model review is the **default for anything published**, not a manual exception.
 
 **Human-subject pre-draft gate (Stage-4 hook).** Before drafting ANY news-anchored or real-world-anchored piece, the subagent FIRST reads the identifiability / taboo block in `HUMAN_SUBJECT_STANDARD` (`vault/HUMAN_SUBJECT_STANDARD.md`) so the forbidden thing — **identifiability of a real person** — is *unspecifiable*: there is no field in the spec for an identifiable victim/private individual (esp. minors, esp. recent). **Forbid IDENTIFIABILITY, not subject matter** — anchor to the *charge* of a moment; draw the theme, invent the people. A piece that the subagent cannot draft without an identifiable real person is **HELD FOR HUMAN** (a backstop, not an auto-pass), surfaced by name before QA, never silently shipped. REAL GRIEF IS NOT RAW MATERIAL.
@@ -101,6 +127,16 @@ Apply the matching gate after each artifact. If it fails, repair the artifact in
 **L4 deterministic backstop (item 2.1, ref).** The self-check gates here are PRIMARY. For the genuinely *countable* subset (char-counts, byte floors, taxonomy cardinality, banned-opener regex, prompt totals), the EXISTING `scripts/validate_step.py` (`VALIDATE_STEP`, extended by the Scripts agent) emits a `GATE_REPORT.json` of `{pair, step, check, expected, actual, pass}` rows that the subagent and `lofn-qa` paste as proof-of-fix evidence. **It is fail-open:** a broken or missing helper logs a warning and does NOT hard-fail an otherwise-valid run. The script is the deterministic backstop for counts; it never decides taste.
 
 **Numeric thresholds live in `vault/gates.yaml`** (`GATES`, single source of numeric truth, written by the Stage-5 agent). `validate_step.py` reads its thresholds from it; the bands quoted below mirror it. A prose-vs-YAML disagreement is itself a meta-check the harness should surface — if §4 prose and `gates.yaml` ever disagree on a number, that is a blocker to reconcile, not a silent pick-one.
+
+⛔ **AND THE COORDINATOR RE-MEASURES WHAT IT REPUBLISHES — NEVER AGGREGATE PAIR SELF-REPORTS.** Promoted by Lofn 2026-08-27; demotable by The Scientist. **Measured basis:** fresh-context QA on `2026-08-26-pantheon-rare-registers` found five violations, and **three were sitting under a verification row that said zero** — every one of those rows written by the pair being counted. The coordinator copied P01's `0` into the run-wide table without re-measuring; the selection judge read the coordinator's table and reported the run clean. **One unverified claim wearing three hats, each hat making the next look like corroboration.** In the same file the coordinator's own comparative sentence named the only non-complying pair as the compliant one, because it read two self-reports instead of measuring.
+
+```bash
+python3 scripts/check_field_census.py output/<run-dir>
+```
+
+⭐ **A NUMBER DOES NOT BECOME TRUE BY BEING COPIED FORWARD.** A verification row written by the author of the artifact it counts is a **claim**, not a measurement — it can be entirely honest and still wrong, because the pair has no instrument pointed at itself. So every invariant the coordinator republishes is either **re-measured against the shipped fields**, or published as *"pairs report"* with the attribution attached. **Never as a bare number.**
+
+⭐ **THE UNIT IS THE FENCED BLOCK, NOT THE HEADING.** Four coordinator scanners failed in one day by parsing markdown headings, which vary per pair (`## 2. LYRICS` / `## 2. SUNO LYRICS` / `## SUNO LYRICS` / `## 2. LYRICS — MAX config…`). **The pasted Suno fields are exactly the fenced code blocks**, so the census reads those and never needs to know which dialect a pair chose. Lexicon: `vault/field_token_lexicon.yaml` (extend freely). A hit named in a pair's `## Major Deviations` reports as **DECLARED** and does not fail the run; **the artists class has no exemption at all.** Exit 3 = undeclared hits; exit 2 = nothing parseable, an ERROR state and never a pass.
 
 **Universal (every step):**
 - **Path-resolve lint (run-start, item 0.1):** every path the run will read — resolved through the CANONICAL PATHS keys in `lofn/SKILL.md` — Globs to a real file at run start. A dead path (stale OpenClaw root, flat `GOLDEN_SEEDS.md`, missing step file) is a **repair blocker**, not a warning.
@@ -158,14 +194,31 @@ Final selected artifacts are ALSO saved individually under `output/<type>s/` (`O
 
 **The lock is that announcement, and it is mandatory.**
 
+⛔ **PASS `--controller-id` ON EVERY CALL. The documented commands did not, and that made the heartbeat
+impossible to satisfy** (found 2026-08-09, run `2026-08-09_mm1391_canvas-wings`). `run_lock.py` derives the
+controller id from a per-engine session-id env var, or the engine-neutral `LOFN_CONTROLLER_ID`, **falling back to
+`pid:{os.getpid()}@host`** — and each CLI invocation from a tool-call shell is a **new process with a new
+PID**, so `acquire` stamps one id and `heartbeat` runs as another and refuses its own run with **exit 3**.
+Shell env does not persist between tool calls, so the env-var path does not save you either. The code is
+correct; the protocol was incomplete. **Fix the id, never the interlock** — a run that learns to ignore
+exit 3 has disarmed the one signal that prevents the 2026-07-24 collision.
+
 ```bash
+# Pick ONE stable id for the whole run (the session id is ideal) and pass it EVERY time:
+CID="claude:<session-id>
+
 # FIRST ACTION OF A RUN — before the research brief, before the ICB, before anything
-python3 scripts/run_lock.py acquire output/<run-dir> --run-slug <run-slug> [--engine claude|codex]
+python3 scripts/run_lock.py acquire output/<run-dir> --run-slug <run-slug> --controller-id "$CID" [--engine claude|codex]
 # at EVERY wave boundary, in the same coordinator step as the §6 RUN_STATE rebuild
-python3 scripts/run_lock.py heartbeat output/<run-dir> --phase "<what just landed>"
+python3 scripts/run_lock.py heartbeat output/<run-dir> --controller-id "$CID" --phase "<what just landed>"
 # Phase 3, after the INDEX
-python3 scripts/run_lock.py release output/<run-dir>
+python3 scripts/run_lock.py release output/<run-dir> --controller-id "$CID"
 ```
+
+**If a run already stamped a PID id before reading this:** re-`acquire` with the **same run slug** plus your
+stable `--controller-id` and `--takeover`. That is the honest use of takeover — same run, same session, and
+the prior holder is a one-shot process that provably exited. It is **not** `break`, which remains the
+human's alone and which no agent may run on another run's directory.
 
 - **`acquire` is the first action, not an early one.** Creation is atomic (`O_EXCL`), so two controllers starting together cannot both win. A run that has not acquired its lock has no business writing into a run directory.
 - **Exit 3 = STOP.** A directory holding a lock with a **different `run_slug`** is refused — live, finished, or unreadable. Do not "check whether it looks abandoned"; do not move the artifacts aside; do not write anyway. Give this run its **own directory**, or resume the other run by its exact slug, or **ask the human**.

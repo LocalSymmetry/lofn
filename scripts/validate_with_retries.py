@@ -9,7 +9,7 @@ This script does not call an LLM. It gives agents/controllers a deterministic
   4. rerun until pass or attempts exhausted
 
 Usage:
-  python3 scripts/validate_with_retries.py <step> <file> [--attempt N] [--max-attempts 3]
+  python3 scripts/validate_with_retries.py <step> <file> [--attempt N] [--max-attempts 3] [--gates PATH]
 """
 from __future__ import annotations
 
@@ -25,6 +25,8 @@ def main() -> int:
     ap.add_argument("file")
     ap.add_argument("--attempt", type=int, default=1)
     ap.add_argument("--max-attempts", type=int, default=3)
+    ap.add_argument("--gates", type=Path, default=None,
+                    help="optional run-local gates.yaml passed through to validate_step.py")
     args = ap.parse_args()
 
     path = Path(args.file)
@@ -38,8 +40,12 @@ def main() -> int:
         return 0
 
     validator = Path(__file__).with_name("validate_step.py")
+    validator_args = [sys.executable, str(validator)]
+    if args.gates is not None:
+        validator_args.extend(["--gates", str(args.gates)])
+    validator_args.extend([str(args.step), str(path)])
     proc = subprocess.run(
-        [sys.executable, str(validator), str(args.step), str(path)],
+        validator_args,
         text=True,
         capture_output=True,
     )
@@ -63,7 +69,7 @@ def main() -> int:
         "```\n" + err + "\n```\n\n"
         "## Repair instructions\n\n"
         "Revise the artifact in place. Preserve valid creative content. Fix only the failing structural/content requirements. "
-        "Then rerun validate_with_retries.py with the next attempt number.\n\n"
+        "Then rerun validate_with_retries.py with the next attempt number and the same --gates path, if supplied.\n\n"
         "If this is Step 08 or Step 10 music, verify: standalone `## 1. MUSIC PROMPT`, `## 2. LYRICS`, "
         "bracketed `[SONG FORM: ...]`, full `[Section - EMO:... - Voice - Cue]` headers, SFX cue, non-lexical hook, "
         "and no bare `[EMO:...]`, `EMO HEADER:`, or plain `SONG FORM:` lines.\n",

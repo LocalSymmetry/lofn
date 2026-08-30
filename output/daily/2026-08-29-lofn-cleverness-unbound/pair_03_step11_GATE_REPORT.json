@@ -1,0 +1,153 @@
+{
+  "run": "2026-08-29-lofn-cleverness-unbound",
+  "pair": "03",
+  "step": 11,
+  "artifact": "pair_03_step10_final_package_enhanced.md",
+  "artifact_bytes": 136574,
+  "artifact_sha256": "79244b626ee215995dadedbfcb2df1a684fdc446e81cca575728777bd83d93f9",
+  "icb": {
+    "bytes": 97069,
+    "sha256": "48e42ce1523b7dbbbbc908935a17d3b38e10c56d461f8b7fb7338233f8055b1b",
+    "byte_zero_prefix_equal": true,
+    "after_tags_in_prefix": 18,
+    "after_tags_total": 18
+  },
+  "quarantine": {
+    "golden_output_payloads_used": false,
+    "golden_move_only": true,
+    "pass": true
+  },
+  "package_count": {
+    "expected": 4,
+    "actual": 4,
+    "pass": true
+  },
+  "packages": [
+    {
+      "id": "V1",
+      "title": "Miss This Train With Me",
+      "music_prompt_chars": 884,
+      "exclude_prompt_chars": 568,
+      "lyrics_field_chars": 3860,
+      "sung_lines": 78,
+      "full_emo_headers": 12,
+      "sfx_cues": 2,
+      "body_noise_instances": 3,
+      "dedication_chars": 370,
+      "soundcraft": {
+        "strict_end_rhyme": 0.333,
+        "line_return": 0.295,
+        "mean_words_per_line": 5.62,
+        "alliteration_per_100w": 11.19
+      },
+      "pass": true
+    },
+    {
+      "id": "V2",
+      "title": "What Time Is the Start?",
+      "music_prompt_chars": 931,
+      "exclude_prompt_chars": 579,
+      "lyrics_field_chars": 3874,
+      "sung_lines": 78,
+      "full_emo_headers": 12,
+      "sfx_cues": 2,
+      "body_noise_instances": 3,
+      "dedication_chars": 351,
+      "soundcraft": {
+        "strict_end_rhyme": 0.423,
+        "line_return": 0.295,
+        "mean_words_per_line": 5.78,
+        "alliteration_per_100w": 13.75
+      },
+      "pass": true
+    },
+    {
+      "id": "V3",
+      "title": "Leave Me at the Start",
+      "music_prompt_chars": 942,
+      "exclude_prompt_chars": 555,
+      "lyrics_field_chars": 3899,
+      "sung_lines": 78,
+      "full_emo_headers": 12,
+      "sfx_cues": 2,
+      "body_noise_instances": 3,
+      "dedication_chars": 326,
+      "soundcraft": {
+        "strict_end_rhyme": 0.410,
+        "line_return": 0.256,
+        "mean_words_per_line": 5.65,
+        "alliteration_per_100w": 12.02
+      },
+      "pass": true
+    },
+    {
+      "id": "V4",
+      "title": "Put Me Where We Begin",
+      "music_prompt_chars": 910,
+      "exclude_prompt_chars": 578,
+      "lyrics_field_chars": 3913,
+      "sung_lines": 78,
+      "full_emo_headers": 12,
+      "sfx_cues": 2,
+      "body_noise_instances": 3,
+      "dedication_chars": 361,
+      "soundcraft": {
+        "strict_end_rhyme": 0.359,
+        "line_return": 0.359,
+        "mean_words_per_line": 5.79,
+        "alliteration_per_100w": 13.27
+      },
+      "pass": true
+    }
+  ],
+  "aggregate_soundcraft": {
+    "strict_end_rhyme": 0.381,
+    "line_return": 0.314,
+    "mean_words_per_line": 5.71,
+    "alliteration_per_100w": 12.57,
+    "sung_lines": 312,
+    "all_return_floors_pass_per_variant": true
+  },
+  "generator_field_name_scan": {
+    "credited_roster": [
+      "KILOBAUUD",
+      "Quickweave",
+      "lil_art_hoe",
+      "Bouffant Bouffant"
+    ],
+    "hits": [],
+    "pass": true
+  },
+  "validators": {
+    "validate_suno_packages": {
+      "command": "python skills/music/scripts/validate_suno_packages.py pair_03_step10_final_package_enhanced.md --min-sung-lines 70 --max-sung-lines 120",
+      "result": "PASS",
+      "packages_checked": 4
+    },
+    "validate_step": {
+      "command": "python scripts/validate_step.py 10 pair_03_step10_final_package_enhanced.md",
+      "result": "PASS"
+    },
+    "validate_step_gate_report": {
+      "artifact": "pair_03_step11_validate_step_GATE_REPORT.json",
+      "pass_rows": 4,
+      "fail_rows": 0,
+      "flag_rows": 1,
+      "flag": "unique_line_ratio(FLAG, chorus-exempt); advisory only",
+      "result": "PASS"
+    }
+  },
+  "semantic_checks": {
+    "platform_scene_plain_on_first_listen": true,
+    "future_want_plain_on_first_listen": true,
+    "literalized_idiom_preserved": true,
+    "paid_rhyme_trap_preserved": true,
+    "freely_answerable_invitation_preserved": true,
+    "serrated_current_chassis_preserved": true,
+    "no_invented_biography": true,
+    "no_policy_chorus": true,
+    "four_variation_law_preserved": true
+  },
+  "overall": "PASS"
+}
+

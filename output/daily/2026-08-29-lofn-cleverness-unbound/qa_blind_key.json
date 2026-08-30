@@ -1,0 +1,155 @@
+{
+  "classification": "PRIVATE BLIND KEY — do not give to stage-1 judge",
+  "sets": [
+    {
+      "set": 1,
+      "file": "set_01.md",
+      "sha256": "035004d9141ad66d7fd8cbf2a79c14e8906aa1cacaf33dcbd673dcfb15506a1b",
+      "packages": [
+        {
+          "label": "A",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "candidate",
+          "selected_pair": "01",
+          "selected_title": "Look What You Taught Me"
+        },
+        {
+          "label": "C",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        }
+      ]
+    },
+    {
+      "set": 2,
+      "file": "set_02.md",
+      "sha256": "c0cc9d7830c5b5a11cccab1ab96cccdb8e2744a8f673d03564faba577b39e509",
+      "packages": [
+        {
+          "label": "A",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "candidate",
+          "selected_pair": "02",
+          "selected_title": "There Where the Chair Was"
+        },
+        {
+          "label": "C",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        }
+      ]
+    },
+    {
+      "set": 3,
+      "file": "set_03.md",
+      "sha256": "0055b7486d050753a81b5dfcd121f659c80ecbbea3948c6f1740d6185db0d127",
+      "packages": [
+        {
+          "label": "A",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "C",
+          "role": "candidate",
+          "selected_pair": "03",
+          "selected_title": "Miss This Train With Me"
+        }
+      ]
+    },
+    {
+      "set": 4,
+      "file": "set_04.md",
+      "sha256": "113f91f630f4e767471aa3a85ab70a9a88603afbcfde800c681856237f7db61d",
+      "packages": [
+        {
+          "label": "A",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "candidate",
+          "selected_pair": "04",
+          "selected_title": "Covered Is Not Kept"
+        },
+        {
+          "label": "C",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        }
+      ]
+    },
+    {
+      "set": 5,
+      "file": "set_05.md",
+      "sha256": "1a38b97e136c072442c1e3c346b768e80f22425fb5e0b4c8bedfab5d47ed48cf",
+      "packages": [
+        {
+          "label": "A",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "C",
+          "role": "candidate",
+          "selected_pair": "05",
+          "selected_title": "Fun Is the Exception"
+        }
+      ]
+    },
+    {
+      "set": 6,
+      "file": "set_06.md",
+      "sha256": "dd1a90c70ba00ff2197f3b989366d29ec7ba88f1747eb645b1182835cf6673ba",
+      "packages": [
+        {
+          "label": "A",
+          "role": "decoy",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "B",
+          "role": "golden",
+          "selected_pair": null,
+          "selected_title": null
+        },
+        {
+          "label": "C",
+          "role": "candidate",
+          "selected_pair": "06",
+          "selected_title": "You Had to Be There Tomorrow"
+        }
+      ]
+    }
+  ]
+}

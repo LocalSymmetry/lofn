@@ -1,0 +1,479 @@
+# VIDEO_MODEL_DOSSIER.yaml — the video generator price/capability table, as DATA
+#
+# WHY THIS IS A YAML FILE AND NOT A MARKDOWN TABLE
+#   An earlier gates file had no machine reader, and every number in it could be
+#   violated silently. A gate with no reader is a sentence. This file has exactly
+#   one reader and it fails closed:
+#
+#       python3 scripts/video_cost_preflight.py --model <id> --duration <s> --count <n>
+#
+#   Prices span 12x per second and 35x per finished clip. A budget-blind pipeline
+#   meeting that spread is how $100 disappears into one wave.
+#
+# ⛔ PROVENANCE IS A FIELD, NOT A FOOTNOTE
+#   Every model carries `source:`. Today every single one reads `vendor-page`,
+#   which means **every number below is a claim, not an invoice**. THE EVIDENCE IS
+#   THE ARTIFACT: a vendor's pricing page is marketing until one of our own
+#   receipts agrees with it. Flip a model to `our-invoice` ONLY after a real fal
+#   invoice line has been read and `measured_on` stamped. Until then the preflight
+#   prints a PROVISIONAL banner on every estimate.
+#
+# Compiled 2026-08-15 from the sweep in
+#   output/analysis/2026-08-15_video-model-landscape.md
+
+meta:
+  compiled_on: 2026-08-15
+  measured_on: null              # set on first reconciled fal invoice
+  status: PROVISIONAL            # -> MEASURED when measured_on is set
+  currency: USD
+  note: >-
+    Rates are per second of OUTPUT video unless a unit is named. Conflicting
+    third-party figures exist for several models (one aggregator prices Seedance
+    2.0 Fast an order of magnitude below fal's own page). Where sources conflict
+    this file takes fal's own documentation, because fal is who bills us.
+
+budget:
+  account: fal
+  funded_on: 2026-08-15
+  funded_usd: 100.00
+  # ⭐ THE CHEAPEST VEO WE HAVE IS THE ONE WE ALREADY BOUGHT.
+  # Google AI Ultra credits are spendable ONLY inside Google's own surfaces (Flow, Whisk,
+  # Vids, Gemini app). They confer ZERO API access — outside Flow it is metered Gemini
+  # API / Vertex billing at the same rates fal charges. But inside Flow the marginal cost
+  # of a Veo generation is $0.00 until the monthly credits run out:
+  #   Veo 3.1 Quality = 100 credits  -> ~250 clips/month on a 25,000-credit plan
+  #   Ultra-member rates: Lite 5 credits, Fast 10 credits (vs 10/20 for non-Ultra)
+  # At fal's Standard rate those 250 clips would be ~$800. The catch is that Flow is a
+  # BROWSER SURFACE, not an API: no scripting, no batch, manual download. So the cheapest
+  # Veo is manual, and the scriptable Veo costs money. Route hand-picked hero shots through
+  # Flow; route pipeline waves through fal.
+  # ⚠️ Plan tier and credit allowance UNCONFIRMED for our account — verify before relying on it.
+  # Kelly-style sizing: edge is unknown, so no single wave may risk the bankroll.
+  wave_ceiling_usd:
+    # RAISED 25.00 -> 40.00 on 2026-08-15 by The Scientist, deliberately, when the
+    # $25 figure (my Kelly-ish guess) refused the five-song 15s wave at $39.00.
+    # The bankroll owner sets the bankroll rule. Recorded rather than overridden:
+    # a ceiling quietly raised whenever it binds is not a ceiling. Note that
+    # session_ceiling_usd (50.00) still binds and leaves only ~$11 of headroom
+    # after this wave — the next spend this session needs a fresh conversation.
+    takes: 40.00               # N takes of the 1-3 SELECTED prompts, at the top-line model
+    finish: 40.00              # the chosen take(s), at grade / longer / higher tier
+    post: 3.00                 # upscale / stitch / subtitle
+    draft: 12.00               # ⚠️ CONDITIONAL — see policy.draft_rung below. Not the default.
+    bakeoff: 15.00             # deliberate cross-family comparison, budgeted separately
+  session_ceiling_usd: 50.00   # total any one session may propose without a fresh approval
+
+# ---------------------------------------------------------------------------
+# POLICY — set by The Scientist, 2026-08-15
+# ---------------------------------------------------------------------------
+policy:
+  top_line_only: >-
+    ⭐ A BAD RENDER IS WORSE THAN NO RENDER. Cheap models are not a cheaper route to
+    the same piece; they are a different, worse piece. Render ONLY at the top line.
+    The saving comes from GETTING THE PROMPT RIGHT — which is what the 10-step,
+    3-panel pipeline is for — not from buying weaker inference.
+  why_this_beats_the_draft_ladder: >-
+    The three-pass blind rule detects INCOHERENCE, not AVERAGENESS — and averageness
+    is precisely the characteristic failure of a cheap tier. A draft wave would have
+    been aimed at the one failure mode we have no instrument for, and would have
+    passed its own gate while doing it.
+  top_line_models: [minimax-h3, kling-v3-pro, veo-3.1, seedance-2.5]
+  demoted_to_non_render: >-
+    ltx-2.3-fast, veo-3.1-lite, kling-v3-standard, seedance-2.0* — these remain in
+    the dossier for costing and comparison but are NOT render targets for shipped work.
+  draft_rung: >-
+    ⚠️ NOT THE DEFAULT, and impossible for the model that matters. MiniMax H3 has a
+    single tier ($0.26/s), so there is no same-family cheap rung — and a cross-family
+    draft measures nothing (preflight exit 4). A draft rung is permitted ONLY where the
+    SAME model has a genuinely cheaper tier AND the notation is untested:
+    veo-3.1-lite -> veo-3.1 (8x spread) · seedance-2.5 @480p -> @720p (2.1x).
+    Everywhere else: the pipeline is the draft stage, and it is free.
+  takes_not_drafts: >-
+    ⭐ The pipeline removes PROMPT-caused regeneration. It cannot remove SEED-caused
+    regeneration — same prompt, same model, different take. So budget N TAKES of the
+    selected prompt at the top-line model, and choose among them. One sample of a
+    stochastic process is not a result.
+  cardinality: >-
+    ⛔ PROMPTS ARE NOT RENDERS. The 6x4=24 mandate is a DIVERGENCE requirement on
+    prompts and costs nothing (cf. the image rule, "24 prompts -> top 12 renders").
+    The render count is a separate, budget-derived number — typically 1-3 selected
+    prompts x 2-4 takes. 24 x H3 @15s would be $93.60, the whole account in one wave.
+
+# ---------------------------------------------------------------------------
+# GENERATION MODELS
+# ---------------------------------------------------------------------------
+models:
+
+  ltx-2.3-fast:
+    vendor: Lightricks
+    endpoints:
+      text_to_video: fal-ai/ltx-2.3/text-to-video/fast
+      image_to_video: fal-ai/ltx-2.3/image-to-video/fast
+    usd_per_second: {1080p: 0.04, 1440p: 0.08, 2160p: 0.16}
+    default_tier: 1080p
+    max_duration_s: 20
+    native_audio: true
+    audio_toggle_changes_price: false
+    timed_shot_list: unknown
+    reference_to_video: false
+    open_weights: true           # Apache 2.0
+    role: DRAFT                  # cheapest per second on the menu
+    source: vendor-page
+
+  ltx-2.3:
+    vendor: Lightricks
+    endpoints:
+      text_to_video: fal-ai/ltx-2.3/text-to-video
+      image_to_video: fal-ai/ltx-2.3/image-to-video
+      audio_to_video: fal-ai/ltx-2.3/audio-to-video
+      extend: fal-ai/ltx-2.3/extend
+      retake: fal-ai/ltx-2.3/retake
+    usd_per_second: {1080p: 0.06, 1440p: 0.12, 2160p: 0.24}
+    usd_per_second_specialized: {audio_to_video: 0.10, extend: 0.10, retake: 0.10}
+    default_tier: 1080p
+    max_duration_s: 20
+    native_audio: true
+    timed_shot_list: unknown
+    reference_to_video: false
+    open_weights: true
+    role: DRAFT_PLUS
+    note: >-
+      Carries the only audio-to-video endpoint on the menu — hand it a finished
+      track, get visuals cut to it. This is the lofn-music -> lofn-video bridge.
+    source: vendor-page
+
+  veo-3.1-lite:
+    vendor: Google DeepMind
+    endpoints: {text_to_video: fal-ai/veo3.1}
+    usd_per_second: {1080p: 0.05}
+    default_tier: 1080p
+    max_duration_s: 8
+    native_audio: true
+    negative_prompt: true
+    first_last_frame: true
+    timed_shot_list: false       # one continuous shot per call
+    reference_to_video: false
+    role: DRAFT
+    source: vendor-page
+
+  veo-3.1-fast:
+    vendor: Google DeepMind
+    endpoints: {text_to_video: fal-ai/veo3.1}
+    usd_per_second: {4k: 0.15}
+    default_tier: 4k
+    max_duration_s: 8
+    native_audio: true
+    negative_prompt: true
+    first_last_frame: true
+    timed_shot_list: false
+    role: FINISH
+    source: vendor-page
+
+  veo-3.1:
+    vendor: Google DeepMind
+    endpoints: {text_to_video: fal-ai/veo3.1, extend: fal-ai/veo3.1/extend-video}
+    usd_per_second: {4k: 0.40}
+    usd_per_second_audio_off: {4k: 0.20}    # only model where muting halves the bill
+    usd_per_second_specialized: {extend: 0.40, extend_audio_off: 0.20}
+    default_tier: 4k
+    max_duration_s: 8
+    max_duration_s_extended: 30
+    native_audio: true
+    audio_toggle_changes_price: true
+    negative_prompt: true
+    first_last_frame: true
+    timed_shot_list: false
+    role: FINISH
+    source: vendor-page
+    corroborated: >-
+      fal's Veo rates match Google's own Gemini API / Vertex pricing (Lite ~$0.05/s,
+      Standard $0.40/s; Fast quoted $0.10–0.15/s depending on source and resolution).
+      ⭐ CONCLUSION: fal is NOT marking Veo up meaningfully, so there is no cheaper API
+      route worth switching for. Going direct to Google buys at most a few cents per
+      second on the Fast tier and costs us the single-vendor billing.
+      ⚠️ Vertex's $300 new-account credit (~6,000s of Lite) is real but almost certainly
+      unavailable to us — GCP project gen-lang-client-0448847068 already has billing
+      enabled. Check, do not assume.
+
+  kling-v3-standard:
+    vendor: Kuaishou
+    endpoints:
+      text_to_video: fal-ai/kling-video/v3/standard/text-to-video
+      image_to_video: fal-ai/kling-video/v3/standard/image-to-video
+    usd_per_second: {720p: 0.126}
+    usd_per_second_audio_off: {720p: 0.084}
+    default_tier: 720p
+    max_duration_s: 10
+    native_audio: true
+    audio_toggle_changes_price: true
+    timed_shot_list: unknown
+    role: FINISH
+    notation: physical            # see NOTATION GRAMMARS below
+    source: vendor-page
+
+  kling-v3-pro:
+    vendor: Kuaishou
+    endpoints:
+      text_to_video: fal-ai/kling-video/v3/pro/text-to-video
+      image_to_video: fal-ai/kling-video/v3/pro/image-to-video
+    usd_per_second: {1080p: 0.168}
+    usd_per_second_audio_off: {1080p: 0.112}
+    usd_per_second_voice_control: {1080p: 0.196}
+    default_tier: 1080p
+    max_duration_s: 10
+    native_audio: true
+    audio_toggle_changes_price: true
+    timed_shot_list: unknown
+    role: FINISH
+    notation: physical
+    source: vendor-page
+
+  gemini-omni-flash:
+    vendor: Google
+    endpoints:
+      text_to_video: google/gemini-omni-flash
+      image_to_video: google/gemini-omni-flash/image-to-video
+      reference_to_video: google/gemini-omni-flash/reference-to-video
+      edit: google/gemini-omni-flash/edit
+    usd_per_second: {default: 0.10}
+    default_tier: default
+    max_duration_s: 10
+    native_audio: true
+    timed_shot_list: unknown
+    conversational_edit: true
+    watermark: SynthID            # on by default
+    role: FINISH
+    note: Replaced the expected "Veo 4"; Google renamed the line rather than iterating it.
+    source: vendor-page
+
+  seedance-2.0-fast:
+    vendor: ByteDance
+    endpoints:
+      text_to_video: bytedance/seedance-2.0/fast/text-to-video
+      image_to_video: bytedance/seedance-2.0/fast/image-to-video
+      reference_to_video: bytedance/seedance-2.0/fast/reference-to-video
+    usd_per_second: {720p: 0.2419}
+    default_tier: 720p
+    max_duration_s: 15
+    min_duration_s: 4
+    native_audio: true
+    audio_toggle_changes_price: false     # audio is free either way
+    timed_shot_list: true
+    reference_to_video: true
+    role: FINISH
+    source: vendor-page
+
+  seedance-2.0:
+    vendor: ByteDance
+    endpoints:
+      text_to_video: bytedance/seedance-2.0/text-to-video
+      image_to_video: bytedance/seedance-2.0/image-to-video
+      reference_to_video: bytedance/seedance-2.0/reference-to-video
+    usd_per_second: {720p: 0.3034}
+    default_tier: 720p
+    max_duration_s: 15
+    native_audio: true
+    audio_toggle_changes_price: false
+    timed_shot_list: true
+    reference_to_video: true
+    role: FINISH
+    source: vendor-page
+
+  seedance-2.5:
+    vendor: ByteDance
+    endpoints:
+      text_to_video: bytedance/seedance-2.5/text-to-video
+      image_to_video: bytedance/seedance-2.5/image-to-video
+      reference_to_video: bytedance/seedance-2.5/reference-to-video
+    usd_per_second: {480p: 0.2205, 720p: 0.4730}   # derived from $0.0214/1k tokens
+    default_tier: 480p
+    max_duration_s: 30
+    native_audio: true
+    audio_toggle_changes_price: false
+    timed_shot_list: true
+    reference_to_video: true
+    reference_multiplier: 0.6
+    max_reference_files: {images: 30, videos: 10, audio: 10, total: 50}
+    aspect_ratios: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+    role: FINISH_PREMIUM
+    warning: >-
+      Longest take on the menu and the most expensive finished clip: 30s @720p is
+      ~$14.19. 24 of those is $340 — 3.4x the entire account. Never run this tier
+      at full cardinality. 480p is what the 30-second take is actually for.
+    price_derivation: token-derived, not a quoted per-second rate — verify on first invoice
+    source: vendor-page
+
+  minimax-h3:
+    vendor: MiniMax
+    endpoints:
+      text_to_video: minimax/h3/text-to-video
+      image_to_video: minimax/h3/image-to-video          # first-and-last-frame
+      reference_to_video: minimax/h3/reference-to-video
+    usd_per_second: {2k: 0.26}
+    default_tier: 2k
+    max_duration_s: 15
+    min_duration_s: 5
+    fps: 24
+    native_audio: true            # native stereo
+    timed_shot_list: true
+    reference_to_video: true
+    max_reference_files: {images: 9, videos: 3, audio: 3}
+    reference_surcharge: {free_images: 5, usd_per_extra_image: 0.08, usd_per_second_of_reference_video: 0.26}
+    max_prompt_chars: 7000
+    aspect_ratios: ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16", "adaptive"]
+    open_weights: true            # ⚠️ see licence below — "open weights" is NOT "open source"
+    role: FINISH
+    notation: declared-jobs
+    source: vendor-page
+    press: >-
+      Weights published to Hugging Face 2026-08-03. 33B dense single-stream omni-transformer.
+      #1 in Video Editing (with audio) and top-3 in text-to-video and image-to-video on
+      Artificial Analysis — the first open-weight model to top an AI video ranking.
+    licence:
+      name: MiniMax Community License Agreement (custom; NOT OSI open source)
+      geo_excluded_from_local_deployment: [United States, European Union, United Kingdom, South Korea]
+      self_host: ⛔ NOT LICENSED FOR US — we are US-based. Do not download or self-host the weights.
+      minimax_hosted_api: allowed globally
+      third_party_hosted_api: >-
+        UNRESOLVED. Sources state the geo-exclusion covers the *local, open-weight deployment
+        path* and that MiniMax's own hosted API stays global, but none address third-party
+        hosts such as fal. We reach H3 ONLY through fal's hosted endpoint and never through
+        local weights. If certainty is needed, that is a question for fal's terms or counsel —
+        not for an agent to rule on.
+      attribution_required: >-
+        Products must prominently display "MiniMax H3" in the UI. Fold this into the piece's
+        dedication/credits — it is a licence obligation, not a courtesy.
+      revenue_threshold: Above $20M annual revenue requires separate written authorization.
+      other: Training smaller models on H3 outputs is prohibited.
+
+# ---------------------------------------------------------------------------
+# POST — cheap, and we currently use none of it
+# ---------------------------------------------------------------------------
+post:
+  upscale-bytedance:
+    endpoint: fal-ai/bytedance-upscaler/upscale/video
+    usd_per_second: 0.0072        # 1080p30; doubles at 60fps
+    to: 4k
+    note: >-
+      THE RESOLUTION RULE lives here. Native 4K on LTX is $0.24/s; 1080p plus this
+      upscale is ~$0.067/s. Resolution is a FINISHING operation, never a
+      generation parameter.
+    source: vendor-page
+  upscale-seedvr2:
+    endpoint: fal-ai/seedvr/upscale/video
+    usd_per_megapixel: 0.001
+    source: vendor-page
+  stitch-ffmpeg:
+    endpoint: fal-ai/ffmpeg-api/merge-videos
+    usd_per_compute_second: 0.00017
+    note: normalizes frame rate and resolution across clips
+    source: vendor-page
+  lipsync-kling:
+    endpoint: fal-ai/kling-video/lipsync/audio-to-video
+    usd_per_second: 0.014
+    source: vendor-page
+  lipsync-veed:
+    endpoint: veed/lipsync
+    usd_per_minute: 0.40
+    source: vendor-page
+  lipsync-sync-v3:
+    endpoint: fal-ai/sync-lipsync/v3
+    usd_per_minute: 8.00
+    note: multi-speaker, occlusion, mismatched audio length
+    source: vendor-page
+  subtitles-veed:
+    endpoint: veed/subtitles
+    usd_per_minute: 0.10          # x2 above 1080p, x2 dynamic style, +0.20/min translation
+    source: vendor-page
+  edit-kling-o3:
+    endpoint: fal-ai/kling-video/o3/pro/video-to-video/edit
+    usd_per_second: 0.168
+    duration_range_s: [3, 15]
+    source: vendor-page
+  edit-happy-horse:
+    endpoint: alibaba/happy-horse/video-edit
+    usd_per_second: {720p: 0.14, 1080p: 0.28}
+    duration_range_s: [3, 60]
+    source: vendor-page
+  edit-grok:
+    endpoint: xai/grok-imagine-video/edit-video
+    usd_per_second: {480p: 0.06, 720p: 0.08}
+    source: vendor-page
+
+# ---------------------------------------------------------------------------
+# NOTATION GRAMMARS — a prompt is written FOR A NAMED MODEL
+# ---------------------------------------------------------------------------
+# The house formula [CAMERA][SUBJECT][ACTION][SETTING][STYLE & AUDIO] is a *Veo*
+# formula. It was never universal; it only looked universal because Veo was the
+# only renderer. Full craft detail in skills/animator/SKILL.md.
+notation_grammars:
+  cinematic:      # veo-3.1*, gemini-omni-flash
+    write: appearance and framing, camera front-loaded, one continuous shot
+    models: [veo-3.1, veo-3.1-fast, veo-3.1-lite, gemini-omni-flash]
+  physical:       # kling v3
+    write: >-
+      physical instructions to a camera operator and an actor on a real set —
+      direction, level, duration, effort. NOT a description of a painting.
+    models: [kling-v3-standard, kling-v3-pro]
+  declared-jobs:  # minimax h3
+    write: >-
+      every reference gets a declared job ("Image 1 for mood; Image 2 for talent"),
+      timed shot blocks, audio as a timeline of discrete events, explicit
+      negations, identity locked by feature list, each edit paired with its constraint
+    models: [minimax-h3]
+  timed-ranges:   # seedance 2.x
+    write: 'timed ranges ("0 to 3s ... 3 to 7s"); spoken dialogue in double quotes'
+    models: [seedance-2.0, seedance-2.0-fast, seedance-2.5]
+
+# ---------------------------------------------------------------------------
+# UNVERIFIED — do not build on these without checking first
+# ---------------------------------------------------------------------------
+unverified:
+  - "Seedance 2.5 per-second rate is derived from a token price, not quoted directly."
+  - "LTX-2.5 exists and is newer than 2.3; its fal endpoints and pricing were not retrieved (page rate-limited 2026-08-15)."
+  - "Sora 2: OpenAI reportedly deprecated it April 2026, yet a fal page still lists Sora 2 Pro. Treat as unavailable until checked against the live catalogue."
+  - "MiniMax H3 direct-API pricing is quoted at $0.13/s against fal's $0.26/s. We pay fal's."
+
+# ---------------------------------------------------------------------------
+# VERIFIED — measured from this machine, not read off a page
+# ---------------------------------------------------------------------------
+connectivity:
+  verified_on: 2026-08-15
+  fal_key: PRESENT (69 chars, uuid:hex form) — process and User scope
+  egress: >-
+    OPEN. fal.run / queue.fal.run / rest.alpha.fal.ai all answer on TCP 443; an
+    unauthenticated probe returned fal's own HTTP 401 (and 404 on queue.fal.run),
+    not a proxy denial. The org egress policy that 403'd studio-api.prod.suno.com
+    at CONNECT on 2026-08-14 does NOT apply to fal.
+  auth: 'OK — GET https://rest.alpha.fal.ai/billing/user_balance returned HTTP 200'
+  balance_usd: 100.0
+  header_form: 'Authorization: Key $FAL_KEY'
+  # ⚠️ A BALANCE IS NOT AN INVOICE. This confirms the account is live and funded;
+  # it confirms NOTHING about any per-second rate. meta.status stays PROVISIONAL
+  # until a real render produces a billed delta we can difference against a
+  # predicted cost. That difference is the first honest `our-invoice` datum.
+
+first_invoice_reconciliation:
+  measured_on: 2026-08-15
+  endpoint: fal-ai/flux-pro/v1.1-ultra    # IMAGE endpoint, not video
+  balance_before: 100.00
+  balance_after: 98.56
+  billed_delta_usd: 1.44
+  successful_images: 22
+  billable_generations: 24
+  derived_rate_usd: 0.06                  # 1.44 / 24 — EXACT
+  vendor_claim_usd: 0.06
+  verdict: >-
+    ⭐ THE VENDOR RATE WAS EXACT TO THE CENT on the one endpoint we have now paid for.
+    That raises confidence in the rest of the dossier — it does NOT verify it. Video
+    rates remain `source: vendor-page` until a video render produces its own delta.
+  finding_1: >-
+    ⛔ 24 BILLABLE, 22 SUCCESSFUL. Two safety-filtered generations billed at FULL PRICE
+    and returned a ~10KB blank PNG *with a success exit code* and `has_nsfw: true` in
+    the metadata sidecar. A filtered result is a paid result. Any batch driver must
+    check FILE SIZE, not just existence — checking existence scored a blank as OK.
+  finding_2: >-
+    The filter fired on an extreme close-up of a throat/collarbone with "damp skin" and
+    "taut tendons" — a singing shot, read as sensual. Rewriting the concept around an
+    OBJECT (a VU needle pinned to its end stop) passed instantly and was the better
+    image anyway. When the filter fires, change the subject, not the adjectives.

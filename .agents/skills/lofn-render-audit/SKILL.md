@@ -5,8 +5,6 @@ description: Audit a FINISHED audio render against the prompt that asked for it 
 
 # Lofn Render Audit — what the generator actually did
 
-> **⚖️ AUTHORITY (2026-07-24):** the `.claude/skills/lofn-render-audit/` twin is the CANONICAL policy source; this Codex mirror binds to it. On any disagreement, the `.claude` file wins.
-
 > Every gate in this pipeline reads **text**. Until 2026-07-24 nothing had ever measured a finished **render**, so a whole class of failure was invisible by construction: a song can pass all 16 points of the Suno gate and arrive with its defining gesture gone.
 
 This skill is **judge-side**. Golden song payloads are permitted here. It generates nothing.
@@ -102,10 +100,10 @@ Eight finished renders, numeric + blind listen. **This table replaces the n=1/n=
 | spec class | behaviour | n | confidence |
 |---|---|---|---|
 | **steady tempo target** | **ARRIVES** — 6 of 6 landed within 5 BPM (110→109, 132→133) | 6 | **medium-high** |
-| **tempo dramaturgy** (programmed 92→140, 84→128) | **SMOOTHED to a steady track** | 2 | medium |
+| **tempo dramaturgy** (programmed 92→140, 84→128) | **SMOOTHED to a steady track** | **3** | medium |
 | near-silent opening | arrives (−46.8 dB when asked; also appears unrequested) | 3 | medium |
 | **terminal** silence (ends the arrangement) | **ARRIVES** — 2.0 s measured | 1 | low-medium |
-| **interrupting** silence (long mid-song void) | **SMOOTHED** — both explicit voids vanished | 2 | medium |
+| **interrupting** silence (long mid-song void) | **SMOOTHED** — every explicit void vanished; **the third is a THIRD-PARTY render** (2026-08-22), so it is the generator, not our prompting | **3** | medium |
 | progressive sub build to final chorus | arrives (+8.4 → +11.4 dB) | 1 | low-medium |
 | literal foley props (boot crunch, chair drag, scanner beep, printer chirp) | **ABSENT or abstracted to generic glitch** | ≥4 | medium |
 | two strongly opposed vocal registers | **collapses to one lead + ordinary layering** | 2 | medium |
@@ -113,7 +111,7 @@ Eight finished renders, numeric + blind listen. **This table replaces the n=1/n=
 | sustained untuned drone / mains hum | absent | 2 | low-medium |
 | hard-panned non-musical element | absent | 2 | low-medium |
 | stereo image | **spans 0.812–0.945 correlation — NOT a universal mono renderer** | 8 | medium-high |
-| "chorus widens" | inverted globally (r = −0.43) while local layer-spread is audible | 1 | low |
+| "chorus widens" | **≤ 0 on every track ever measured** — r = −0.426 / −0.067 / −0.544 / −0.348. **Zero positive in 4.** Candidate reclassification: not a deviation but a **property of the generator**, which would put "the chorus widens like a panorama" on the wrong side of THE GRAIN LAW | **4** | low-medium |
 
 **Corrections this set forced on my earlier claims:**
 - *"Exact BPM drifts"* was **wrong** — an artifact of a 50 ms analysis hop (a beat at 110 BPM is 11 frames). Steady tempos arrive; only tempo *dramaturgy* is smoothed. `measure_render.py` now runs tempo on a 10 ms hop.
@@ -121,6 +119,37 @@ Eight finished renders, numeric + blind listen. **This table replaces the n=1/n=
 - **Silence is not one behaviour.** Silence that *finishes* an arrangement survives; silence that *interrupts* one gets filled. That distinction is the single most useful row here.
 
 **Method:** keep `n` visible; nothing rises above `medium` under 4 tracks. Two rules already died of a sample of one or two.
+
+---
+
+## ⛔ THE LISTENER CONFABULATES — AND IT CONFABULATES TOWARD THE DEFAULT
+
+*Added 2026-08-22, measured on three tracks with two models (`gpt-audio-1.5`, `qwen3.5-omni-plus`).*
+
+Pass 2 is not a witness of equal standing to Pass 1. On three tracks the listening model was wrong
+in the **same three ways every time**, and each error was the conventional pop answer:
+
+| listener claim | how often claimed | truth from Pass 1 |
+|---|---|---|
+| **"it fades out"** | **4 of 4** track-model pairs | all three tracks end at **−13 to −18 dB in the final seconds**. No fade anywhere. |
+| **"the stereo widens on the loud parts"** | **3 of 3** tracks | width-vs-level r = **−0.067 / −0.544 / −0.348**. Zero or negative on all three. |
+| **"near-silence at the opening"** | 1 | `opening_2s_db` = **−16.8 dB**. |
+
+**Where it is strong:** *"what is this about"* (two models, blind, independently returned the event of
+a song neither had a title for), *"the single most distinctive event"* (found a real written
+structural device inside a third-party remix), and the presence of a continuous drone (3/3).
+
+⭐ **The operating rule, sharpened:** the skill already said *numbers win on presence/absence, the
+listener wins on quality and meaning.* Now the failure classes have names. **Envelope, endings and
+stereo width are where it invents — never accept any of the three from a listener without the meter
+beside it.** And a listener that agrees with your intent about the envelope is agreeing with the
+pop default, not with your render.
+
+⭐ **Corollary worth keeping:** on `ASK FOR IT BY NAME` a **45 dB, 30-second sub-bass withdrawal and
+return** — the largest arrangement event in the track — was reported by **neither** model, one of
+them explicitly denying it when asked point blank. The spec had asked for a sub *"felt through the
+boards before it is heard."* **An event that is physical rather than melodic is invisible to an
+ear-only pass, which is the whole argument for running both.**
 
 ---
 

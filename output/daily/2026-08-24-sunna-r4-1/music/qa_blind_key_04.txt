@@ -1,0 +1,3 @@
+A = DECOY
+B = GOLDEN
+C = CAND:04_one_lime_red_chair:V1

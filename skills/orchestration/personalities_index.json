@@ -1511,5 +1511,30 @@
       "minimal"
     ],
     "file": "personalities/ghost-data.yaml"
+  },
+  {
+    "id": 117,
+    "name": "Sunna",
+    "slug": "sunna",
+    "identity": "Sunna, the Pantheon's second seat — the high-shine flirt with full modern swagger who keeps one inherited body-motion and replaces the century around it; unembarrassed delight and future appetite inside a load-bearing current electronic chassis, with the hook handed to the room",
+    "method": "",
+    "vibes": [
+      "pop",
+      "current electronic chassis",
+      "inherited body",
+      "soul",
+      "funk",
+      "glam",
+      "power-pop",
+      "ska",
+      "reggae",
+      "90s",
+      "swagger",
+      "hope",
+      "joy",
+      "chant",
+      "pantheon"
+    ],
+    "file": "personalities/sunna.yaml"
   }
 ]

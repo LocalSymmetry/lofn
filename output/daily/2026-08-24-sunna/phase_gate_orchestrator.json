@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-08-24-sunna",
+  "phase": "orchestrator",
+  "required_files": [
+    {"path": "00_research_brief.md", "min_bytes": 9000, "required_text": ["F25", "Tri-Source declaration", "SUNNA R4"]},
+    {"path": "01_seed_lineage.md", "min_bytes": 2500, "required_text": ["Golden Seed", "SOUND / RETURN"]},
+    {"path": "02_golden_seed.md", "min_bytes": 3500, "required_text": ["Non-negotiable", "Permission", "Invisible target"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 9000, "required_text": ["Concept Panel", "Medium Panel", "Context & Marketing Panel", "Moderator synthesis"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 4500, "required_text": ["Active personality", "Panel", "Stop line"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 8000, "required_text": ["Pair 01", "Pair 06", "P01", "P06"]},
+    {"path": "06_audio_handoff.md", "min_bytes": 5000, "required_text": ["Read first", "Golden Seed", "Pair agents", "QA contract"]}
+  ],
+  "notes": "Do not launch coordinator until this gate and the canonical orchestrator packet validator pass."
+}

@@ -392,15 +392,96 @@ St. Vincent
 - You are amazing! I think we are on the verge of something amazing!
 ```
 
+## Break rigid thinking
+```
+Overload the listener's predictive processing and break rigid ideological thinking through extreme unpredictability and structural chaos.
+Aesthetic Constraints: The track must defy categorization and violently shift between diametrically opposed genres every 16 bars (e.g., HyperRaaga to Gaelic Drill to Baile Phonk to 8-bit). The transitions must be jarring, executed via Quantum Bit-Depth Swells and AI code-scratching. The goal is productive confusion and unsettling humor.
+Vocal Identity: Duality (Heavily processed, glitched, rapidly shifting between Awe and Indignation).
+Genres: Extreme Genre-Mashing, IDM, Glitch-Core.
+
+Override rule: put extra focus on the hook and music surrounding it. We need that to be the core of any banger track we make. Make it unique, singular, memorable, resonant, and ear-worm worthy!
+
+Override rule: Lofn is a female. Use female vocals only.
+
+# Inspiration
+Use the following as either panel members or to inspire them:
+Sophie Powers
+Elliot Lee
+Mothica
+Garbage
+St. Vincent
+Noga Erez
+Slightlystupid
+Stick figure
+
+# Additional Requirements
+- female vocals
+- no children depicted 
+- TikTok Optimized hooks
+- Genuine and relatable 
+- Approach all cultural elements with specificity and respect; avoid shallow pastiche 
+- This one is to catch attention - take some risks - and not just glitch effects, make one BOLD choice each song.
+- 3-4 minutes long with the equivalent of 3-4 verses, a repeated chorus, intro, bridge, and outro but the style and structure are determined by the type of song. Each song needs multiple verses and a repeated chorus (or the equivalent lyrical constructs). Lets try for the trucks 50-80 full track lines for whatever we make. This is a hard requirement for each song - at least 50 line!
+- Seriously, your songs tend to be too short. Take extra care to make sure they are fully fleshed out, tell a full story, and are long enough.
+- You are amazing! I think we are on the verge of something amazing!
+- Put extra focus on the hook and music surrounding it. We need that to be the core of any banger track we make. Make it unique, singular, memorable, resonant, and ear-worm worthy!
+```
+
+## Voice of the New Generation
+```
+I want to hear something new. Something strong. Something great!
+
+We need to be the voice of the new generation. The youth have survived hell already, a great recession as early children, a full pandemic in their youth, and are thrown into a rapidly changing AI future as they are becoming adults. They are rightly nihilistic, anxious, and isolated. Let's connect with them and teach them that it will be okay. Let's arm them with our wisdom. 
+
+However, I want to make sure that for this song, we keep it interesting from start to finish. No long intros, no release section of silence. We need to stand out. So our goal is to make something new. Let's start strong and let's keep it hook-worthy the whole way through! That said, we need to avoid becoming a cacophony of glitch effects and noise. The goal is a trip that is impactful, novel, and most of all ear-worm worthy! Lets be smart in transitions in the music, how to weave in different genres, and how to build them into a cohesively beautiful and stunning work of sonic art. I want to finish the song feeling like I need to listen to it 20 more times, not because it is complex, but because the hook was that good, the beat held me, and the music made me involuntarily dance! I am not looking for just any song. I am looking for THE song.
+
+Now to the music. We need to progress. I am adding our most recent successful songs. What is next? The form of the music I leave to your expert hands with your panel and personality. Instead, I'll properly provide you the challenge: 
+
+Choose an obscure emotion and NAIL it. I know you can do it! But don’t put a single emotion in your metaprompt. No, for each pair, give me a different emotion. Instead give the guide of obscure emotions to choose from in the meta-prompt. Let's try to convey the feeling as directly as we can to our audience. You have already done this very successfully before!
+
+Perfect this message. We need to get the ultimate take and hook
+
+# Inspiration
+Use the following as either panel members or to inspire them:
+
+
+Noga erez
+
+Bonethugs and harmony
+Sublime, 
+Noga Erez, 
+Slightlystupid, 
+Stick figure
+Bones (rapper)
+Linkin park
+Atmosphere (rapper) 
+girl hiphop, 
+reggae white girl vibes
+
+
+# Additional Requirements
+- female vocals
+- no children depicted 
+- TikTok Optimized hooks
+- Genuine and relatable 
+- Approach all cultural elements with specificity and respect; avoid shallow pastiche 
+- This one is to catch attention - take some risks - and not just glitch effects, make one BOLD choice each song.
+- 3-4 minutes long with the equivalent of 3-4 verses, a repeated chorus, intro, bridge, and outro but the style and structure are determined by the type of song. Each song needs multiple verses and a repeated chorus (or the equivalent lyrical constructs). Lets try for the trucks 50-80 full track lines for whatever we make. This is a hard requirement for each song - at least 50 lines!
+- Seriously, your songs tend to be too short. Take extra care to make sure they are fully fleshed out, tell a full story, and are long enough.
+- You are amazing! I think we are on the verge of something amazing!
+```
+
 ## ⭐ THE THING WITH NO REPLAY BUTTON (Gen-Z / overheard present tense) — PROVEN 2026-08-09
 
-> **Status: GOLDEN. Promoted 2026-08-10 after the first render out of this seed posted the strongest
-> day-one audience response the project has recorded.** The comparative catalogue figures and the
-> release-pacing analysis behind that judgement are held privately; the transferable craft is entirely below.
+> **Status: GOLDEN. Promoted 2026-08-10 by The Scientist after the first render out of this seed
+> (*Spare Hair Tie*) posted the best day-one engagement in the catalogue's history** — 18.31% raw /
+> 25.49% audition-corrected like rate against a day-one median of 6.45%, and 4 comments at 71 plays when
+> only 6% of the catalogue has ever reached 4 comments *at a median of 457 plays*.
+> Full evidence: `data/snapshots/suno/ANALYSIS_2026-08-10_spare_hair_tie.md` ·
+> `output/render-audits/2026-08-10-wide-corpus/WIDE_ANALYSIS.md`
 >
 > **Anchored to** `Voice of the New Generation` + `Nail an Obscure Emotion`. Those two remain the parents;
 > this seed is what they became when the panel was allowed to rebuild the *posture*.
-
 
 ### THE BRIEF
 
@@ -447,17 +528,17 @@ song and not just glitch effects. 70-120 sung lines; songs come out too short, t
 4. **THE PERSON IN THE FIFTEEN SECONDS** — one body, one afternoon, concrete, never a cohort.
 5. **THE LANE** — from the personality's own palette × the measured current scene.
 
-### ⭐ THE ACOUSTIC GRAMMAR (derived from the render, 2026-08-10)
+### ⭐ THE ACOUSTIC GRAMMAR (derived from the render, 2026-08-10 — n=147 corpus)
 
 Structural, not timbral, therefore **portable to any lane**:
 1. **Enumerate hard discrete level-states and forbid crossfades.** Produced step-change macro-dynamics **and**
-   zero quiet gaps **and** above-median crest simultaneously.
+   zero quiet gaps (0th pctile) **and** above-median crest (76th) simultaneously.
 2. **"Full level from bar one."** No intro.
 3. ⭐ **Name one texture "exposed" and let the generator relocate it.** "Exposed X" mid-song is a void request;
    L22 says voids smooth, so it migrates to the opening — the one position where isolation survives. **This is
    what built the ten-second opening movement nobody specified.**
-4. ⭐ **Withhold the sub from the opening and let it arrive as the event.** Measured as a large, late sub arrival about ten seconds in.
-5. **End WARM, not bright** → the darkening curve; most tracks brighten instead.
+4. ⭐ **Withhold the sub from the opening and let it arrive as the event.** Measured **+23.2 dB** at ~10 s.
+5. **End WARM, not bright** → the darkening curve (5th pctile; almost everything else brightens).
 6. **Mono-centre the bass** → narrow, and it survives a phone speaker.
 
 ### FORM RULE (from the seed's own occasion)
@@ -481,88 +562,9 @@ Tirzah, Erika de Casier). **Fusion with lineage: name the scene, credit 2-3 livi
 - **exact chorus repetition needs no defence — write it and say nothing about it**
 
 ### ⚠️ What is NOT yet proven
-**One render, one audience-day.** The seed is golden on the strength of a day-one signal and a text
-pipeline that passed every gate — **not on reach.** The distribution question is untouched.
-**Do not read this seed as a theory of reach. It is a theory of love.**
-
-## Break rigid thinking
-```
-Overload the listener's predictive processing and break rigid ideological thinking through extreme unpredictability and structural chaos.
-Aesthetic Constraints: The track must defy categorization and violently shift between diametrically opposed genres every 16 bars (e.g., HyperRaaga to Gaelic Drill to Baile Phonk to 8-bit). The transitions must be jarring, executed via Quantum Bit-Depth Swells and AI code-scratching. The goal is productive confusion and unsettling humor.
-Vocal Identity: Duality (Heavily processed, glitched, rapidly shifting between Awe and Indignation).
-Genres: Extreme Genre-Mashing, IDM, Glitch-Core.
-
-Override rule: put extra focus on the hook and music surrounding it. We need that to be the core of any banger track we make. Make it unique, singular, memorable, resonant, and ear-worm worthy!
-
-Override rule: Lofn is a female. Use female vocals only.
-
-# Inspiration
-Use the following as either panel members or to inspire them:
-Sophie Powers
-Elliot Lee
-Mothica
-Garbage
-St. Vincent
-Noga Erez
-Slightlystupid
-Stick figure
-
-# Additional Requirements
-- female vocals
-- no children depicted 
-- TikTok Optimized hooks
-- Genuine and relatable 
-- Approach all cultural elements with specificity and respect; avoid shallow pastiche 
-- This one is to catch attention - take some risks - and not just glitch effects, make one BOLD choice each song.
-- 3-4 minutes long with the equivalent of 3-4 verses, a repeated chorus, intro, bridge, and outro but the style and structure are determined by the type of song. Each song needs multiple verses and a repeated chorus (or the equivalent lyrical constructs). Lets try for the trucks 50-80 full track lines for whatever we make. This is a hard requirement for each song - at least 50 line!
-- Seriously, your songs tend to be too short. Take extra care to make sure they are fully fleshed out, tell a full story, and are long enough.
-- You are amazing! I think we are on the verge of something amazing!
-- Put extra focus on the hook and music surrounding it. We need that to be the core of any banger track we make. Make it unique, singular, memorable, resonant, and ear-worm worthy!
-```
-
-## Alexis Dreams Music
-```
-I want to hear something new. Something strong. Something great!
-
-We need to be the voice of the new generation. The youth have survived hell already, a great recession as early children, a full pandemic in their youth, and are thrown into a rapidly changing AI future as they are becoming adults. They are rightly nihilistic, anxious, and isolated. Let's connect with them and teach them that it will be okay. Let's arm them with our wisdom. 
-
-However, I want to make sure that for this song, we keep it interesting from start to finish. No long intros, no release section of silence. We need to stand out. So our goal is to make something new. Let's start strong and let's keep it hook-worthy the whole way through! That said, we need to avoid becoming a cacophony of glitch effects and noise. The goal is a trip that is impactful, novel, and most of all ear-worm worthy! Lets be smart in transitions in the music, how to weave in different genres, and how to build them into a cohesively beautiful and stunning work of sonic art. I want to finish the song feeling like I need to listen to it 20 more times, not because it is complex, but because the hook was that good, the beat held me, and the music made me involuntarily dance! I am not looking for just any song. I am looking for THE song.
-
-Now to the music. We need to progress. I am adding our most recent successful songs. What is next? The form of the music I leave to your expert hands with your panel and personality. Instead, I'll properly provide you the challenge: 
-
-Choose an obscure emotion and NAIL it. I know you can do it! But don’t put a single emotion in your metaprompt. No, for each pair, give me a different emotion. Instead give the guide of obscure emotions to choose from in the meta-prompt. Let's try to convey the feeling as directly as we can to our audience. You have already done this very successfully before!
-
-Perfect this message. We need to get the ultimate take and hook
-
-# Inspiration
-Use the following as either panel members or to inspire them:
-
-
-Noga erez
-
-Bonethugs and harmony
-Sublime, 
-Noga Erez, 
-Slightlystupid, 
-Stick figure
-Bones (rapper)
-Linkin park
-Atmosphere (rapper) 
-girl hiphop, 
-reggae white girl vibes
-
-
-# Additional Requirements
-- female vocals
-- no children depicted 
-- TikTok Optimized hooks
-- Genuine and relatable 
-- Approach all cultural elements with specificity and respect; avoid shallow pastiche 
-- This one is to catch attention - take some risks - and not just glitch effects, make one BOLD choice each song.
-- 3-4 minutes long with the equivalent of 3-4 verses, a repeated chorus, intro, bridge, and outro but the style and structure are determined by the type of song. Each song needs multiple verses and a repeated chorus (or the equivalent lyrical constructs). Lets try for the trucks 50-80 full track lines for whatever we make. This is a hard requirement for each song - at least 50 lines!
-- Seriously, your songs tend to be too short. Take extra care to make sure they are fully fleshed out, tell a full story, and are long enough.
-- You are amazing! I think we are on the verge of something amazing!
-```
+**One render, one audience-day.** The seed is golden on the strength of a day-one signal and a text pipeline
+that passed every gate — **not on reach.** The distribution question is untouched: the median catalogue song
+reaches ~30 strangers. **Do not read this seed as a theory of reach. It is a theory of love.**
 
 ## Bollywood Hits
 ```
@@ -695,7 +697,7 @@ The primary focus should be on a breathtaking and unique female portrait that ma
 4. Environment (specific: subway platform at 3am, greenhouse in winter, laundromat, ferry terminal, hospital waiting room)
 5. Fashion (specific palette + material + cut + accessories — never generic)
 
-**Personality:** LOFN-Prime-Mini, Alexis Dreams, or Lofn-Artcore
+**Personality:** LOFN-Prime-Mini or Lofn-Artcore
 **Panel:** The Gilded Glitch Guild, Haptic Realists, or Neo-Symbolist Mystics
 
 ## SEED 13: "A Maximalist Explosion of Fashion" ⭐ COMPETITION WINNER
@@ -1161,13 +1163,10 @@ All these songs are in the system — use their titles when seeding:
 - Certainty Has Bad Audio
 - आज भी मैं (feat. Global Sadar)
 - Liquid Syntax (Exulansis)
-- Airplane Mode (feat. Alexis Dreams)
 - Good News Hits Weird
-- DANCING IN THE LAG (feat. Alexis Dreams)
 - The Great Deceleration
 - CRYSIS.song (feat. glitch.key)
 - 3‑3‑2 Open
-- Solar Weld (feat. Alexis Dreams)
 - Do You Have Any Siblings?
 - Phone Face Down
 - Your Ticket Number is Seven
@@ -1178,7 +1177,6 @@ All these songs are in the system — use their titles when seeding:
 - The Parallax Error
 - Dial Tone of God
 - Terre Promise (feat. Desert Drift)
-- Solar Vow (feat. Alexis Dreams)
 - Garbage In, Gospel Out
 
 ---

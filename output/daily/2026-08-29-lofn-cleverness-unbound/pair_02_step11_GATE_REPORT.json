@@ -1,0 +1,104 @@
+{
+  "pair": "02",
+  "step": "11",
+  "verdict": "PASS",
+  "artifact": "pair_02_step10_final_package_enhanced.md",
+  "icb": {
+    "expected_bytes": 97069,
+    "actual_prefix_bytes": 97069,
+    "byte_exact_prefix": true,
+    "after_attribution_tags_in_icb": 18
+  },
+  "total_artifact": {
+    "after_attribution_tags_total": 18,
+    "after_attribution_tags_post_icb": 0
+  },
+  "cardinality": {
+    "expected_packages": 4,
+    "actual_packages": 4,
+    "two_revised_two_synthesized": true
+  },
+  "validators": {
+    "validate_step_gate_report": "PASS: Step 11 structural validation, 0 failing rows",
+    "validate_suno_packages": "PASS: all four packages, min 70 and max 120 sung lines",
+    "custom_max_contract": "PASS",
+    "soundcraft_profile_file_equivalent": "PASS"
+  },
+  "aggregate_gate": {
+    "positive_style_negative_prose_matches": 0,
+    "positive_style_real_name_leaks": 0
+  },
+  "advisory_flags": [
+    "The 70-line floor is the exact frozen Pair-02 isolation-brief budget.",
+    "The chorus-exempt unique-line ratio is advisory and shows no collapse."
+  ],
+  "lineage_audit": {
+    "source": "Bandcamp Daily: KILOBAUUD and the Pulsing New Orleans House Scene, 2026-08-28",
+    "credited_names": ["KILOBAUUD", "Bouffant Bouffant", "Set De Flo", "Gimmie a Reason"],
+    "generator_field_name_leaks": 0,
+    "generated_not_sampled_disclosure": true,
+    "no_collaboration_or_endorsement_claim": true
+  },
+  "packages": [
+    {
+      "variant": "V1",
+      "music_prompt_chars": 974,
+      "exclude_chars": 664,
+      "lyrics_chars": 3396,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "body_noise_instances": 3,
+      "dedication_chars": 342,
+      "strict_end_rhyme": 0.386,
+      "exact_line_return": 0.200,
+      "words_per_line": 4.56,
+      "alliteration_per_100w": 11.29,
+      "pass": true
+    },
+    {
+      "variant": "V2",
+      "music_prompt_chars": 973,
+      "exclude_chars": 685,
+      "lyrics_chars": 3426,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "body_noise_instances": 3,
+      "dedication_chars": 333,
+      "strict_end_rhyme": 0.414,
+      "exact_line_return": 0.200,
+      "words_per_line": 4.54,
+      "alliteration_per_100w": 11.32,
+      "pass": true
+    },
+    {
+      "variant": "V3",
+      "music_prompt_chars": 972,
+      "exclude_chars": 729,
+      "lyrics_chars": 3416,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "body_noise_instances": 3,
+      "dedication_chars": 325,
+      "strict_end_rhyme": 0.429,
+      "exact_line_return": 0.229,
+      "words_per_line": 4.67,
+      "alliteration_per_100w": 11.01,
+      "pass": true
+    },
+    {
+      "variant": "V4",
+      "music_prompt_chars": 976,
+      "exclude_chars": 715,
+      "lyrics_chars": 3509,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "body_noise_instances": 3,
+      "dedication_chars": 357,
+      "strict_end_rhyme": 0.600,
+      "exact_line_return": 0.214,
+      "words_per_line": 4.76,
+      "alliteration_per_100w": 11.41,
+      "pass": true
+    }
+  ]
+}

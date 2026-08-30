@@ -1,0 +1,88 @@
+# field_token_lexicon.yaml -- tokens that must not appear in the three PASTED Suno
+# fields (music prompt / exclude / lyrics). Scene and technique in the prompt;
+# people in the dedication. Read by scripts/check_field_census.py.
+#
+# Established 2026-08-27 after FINDING 12: three shipped violations each sat under a
+# verification row saying zero, and every row was written by the pair being counted.
+# This lexicon exists so the COORDINATOR can measure independently instead of
+# aggregating six self-reports into one confident global falsehood.
+#
+# Extend freely. A token here is a FLAG, not a verdict: a hit that is named in a
+# pair's "## Major Deviations" is reported as DECLARED and does not fail the run.
+
+# Instrument manufacturers and trade names. DISC_CHANNEL_GUIDE prescribes some of
+# these and 06_music_handoff forbids them in the three fields; the conflict is an
+# OPEN doctrine question for The Scientist. Until she rules, the handoff governs:
+# keep them out of the pasted fields, name them freely in ledger and dedication.
+companies:
+  - moog
+  - minimoog
+  - mellotron
+  - wurlitzer
+  - hammond
+  - rhodes
+  - roland
+  - korg
+  - yamaha
+  - fender
+  - gibson
+  - marshall
+  - neumann
+  - taurus
+  - juno
+  - autotune
+  - melodyne
+  - pro tools
+  - ableton
+  - prophet
+  - oberheim
+  - linndrum
+
+# Real people and groups. CATEGORICALLY forbidden -- no exemption, no escalation.
+# A name in the prompt is an instruction to imitate. Credits go in the dedication.
+artists:
+  - spector
+  - motown
+  - beatles
+  - radiohead
+  - bjork
+  - aphex
+  - burial
+  - timbaland
+  - dilla
+  - scruggs
+  - monroe
+  - jamerson
+  - knibb
+  - purdie
+  - stubblefield
+  - winstons
+
+# Spatial instructions the generator overrules. Measured three times: two renders
+# that both asked for Hard_Pan_Right came back -0.02 dB and +0.13 dB overall
+# balance, 0 of 52 and 0 of 56 windows above +3 dB. A prohibition is no more
+# effective than a request -- if you want something absent, write nothing there.
+spatial_noninstructions:
+  - hard stereo panning
+  - hard-panned
+  - hard panned
+  - hard pan
+  - hard-pan
+  - pan hard
+  - extreme stereo width
+
+# SCOPE MODIFIER, NOT A TOKEN SOURCE. Every token here must ALSO appear in a
+# class above -- this list only says WHERE it is tolerated. (Found 2026-08-27
+# when these were listed here alone: nothing scanned them, so `autotune stacks`
+# in a MUSIC PROMPT reported clean. An allow-list that is also the only source
+# of a token silently allows it everywhere.)
+# Brands that have become generic nouns. Unremarkable in the NEGATIVE field -- "no
+# autotune" is a texture instruction, not an instruction to imitate a company -- and
+# still a brand token in the music prompt or the lyrics. QA ruled these de minimis in
+# excludes on 2026-08-26 and the ruling is right, but only there.
+exclude_permitted:
+  - autotune
+  - melodyne
+  - pro tools
+  - ableton
+  - 808

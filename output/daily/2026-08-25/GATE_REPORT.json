@@ -1,0 +1,1202 @@
+[
+ {
+  "pair": "01",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 0,
+  "pass": false
+ },
+ {
+  "pair": "02",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 0,
+  "pass": false
+ },
+ {
+  "pair": "03",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 4,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 923,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 923,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 645,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3536,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 74,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 74,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "1",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 927,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 927,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 590,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3391,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 76,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 76,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "2",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 916,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 916,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 1,
+  "pass": false
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 646,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3375,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 75,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 75,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "3",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 937,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 937,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 639,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3602,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 76,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 76,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "03",
+  "variation": "4",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "04",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 0,
+  "pass": false
+ },
+ {
+  "pair": "05",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 0,
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "-",
+  "check": "variations_detected",
+  "expected": "4",
+  "actual": 4,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 946,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 946,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 678,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3914,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 71,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 71,
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "1",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 960,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 960,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 698,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3551,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 71,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 71,
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "2",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 954,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 954,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 700,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3551,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 71,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 71,
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "3",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "prompt_chars",
+  "expected": "850-1000",
+  "actual": 979,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "prompt_not_hugging",
+  "expected": "<985",
+  "actual": 979,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "prompt_terminal_punct",
+  "expected": ". ! ?",
+  "actual": ".",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "no_banned_opener",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "source2_case_exact_in_prompt_FLAG",
+  "expected": ">=2 (advisory)",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "no_negation_in_style",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "exclude_chars",
+  "expected": "400-1000",
+  "actual": 692,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "lyrics_field_chars",
+  "expected": "<5000",
+  "actual": 3898,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "sung_lines",
+  "expected": "70-120",
+  "actual": 73,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "sung_lines_not_floor_hugging",
+  "expected": ">72",
+  "actual": 73,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "has_theme_header",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "has_song_form",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "has_sfx_cue",
+  "expected": "True",
+  "actual": true,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "no_bare_mode_emo_tag",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "no_digits_in_sung_lines",
+  "expected": "0",
+  "actual": 0,
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "no_house_lexicon",
+  "expected": "none",
+  "actual": "clean",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "FLAG_sung_numeric_facts",
+  "expected": "human read",
+  "actual": "none",
+  "pass": true
+ },
+ {
+  "pair": "06",
+  "variation": "4",
+  "check": "dedication_found",
+  "expected": "present",
+  "actual": "MISSING",
+  "pass": false
+ }
+]

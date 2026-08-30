@@ -1,0 +1,11 @@
+{
+  "run_id": "2026-08-24-sunna-r4-2",
+  "phase": "seed",
+  "required_files": [
+    {"path": "00_research_brief.md", "min_bytes": 8000, "required_text": ["Tri-source declaration", "R4.1 doctrine resolution", "Research verdict"]},
+    {"path": "01_seed_lineage.md", "min_bytes": 3000, "required_text": ["THE EXACT INVITATION", "Dangerous permission", "Non-negotiables"]},
+    {"path": "02_golden_seed.md", "min_bytes": 7000, "required_text": ["Golden Seed", "Personality genre DNA constraint", "SOUND / RETURN", "Dangerous permission"]},
+    {"path": "preflight.json", "min_bytes": 400, "required_text": ["research_brief_complete", "target_output_count_confirmed"]}
+  ],
+  "notes": "All source and seed artifacts must pass before the orchestrator room opens."
+}

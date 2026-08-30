@@ -1,9 +1,10 @@
 - name: Gen-Z Firestarters v2 (GOLDEN)
   status: GOLDEN — promoted 2026-08-10 by The Scientist
   proven_on: >
-    Run 2026-08-09 (Gen-Z daily). The first render out of this room posted the strongest day-one audience
-    response the project has recorded. Comparative figures are held privately; the transferable structure is
-    the seat construction, the three repairs, and the BRIDGE-then-REFLECT transform pairing below.
+    Run 2026-08-09_daily_music_genz. First render out of this room ("Spare Hair Tie") posted the best
+    day-one engagement in the catalogue's history: 18.31% raw / 25.49% audition-corrected like rate against a
+    day-one median of 6.45%, and 4 comments at 71 plays when only 6% of the catalogue has ever reached 4
+    comments (at a median of 457 plays). Evidence: data/snapshots/suno/ANALYSIS_2026-08-10_spare_hair_tie.md
   derived_from: panels/gen-z-firestarters.yaml
   repairs_applied_at_load: >
     THREE library defects were found and fixed BEFORE the room opened, and this file is that repair made

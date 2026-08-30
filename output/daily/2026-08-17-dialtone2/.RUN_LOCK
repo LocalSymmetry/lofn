@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-17-dialtone2",
+  "controller_id": "claude:92650bba-7944-4b40-8d6c-3d67be9deab7",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-18T04:05:11Z",
+  "heartbeat_utc": "2026-08-18T11:03:22Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:92650bba-7944-4b40-8d6c-3d67be9deab7",
+      "joined_utc": "2026-08-18T04:05:11Z"
+    }
+  ],
+  "completed_utc": "2026-08-18T11:03:22Z"
+}

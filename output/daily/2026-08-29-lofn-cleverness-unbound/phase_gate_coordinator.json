@@ -1,0 +1,16 @@
+{
+  "run_id": "2026-08-29-lofn-cleverness-unbound",
+  "phase": "coordinator",
+  "required_files": [
+    {"path": "step00_aesthetics_and_genres.md", "min_bytes": 7000, "required_text": ["Step Provenance", "Complete Step Output", "Validation Result"]},
+    {"path": "step01_essence_and_facets.md", "min_bytes": 5000, "required_text": ["Step Provenance", "essence", "Validation Result"]},
+    {"path": "step02_concepts.md", "min_bytes": 7000, "required_text": ["Step Provenance", "panel_pressure", "Validation Result"]},
+    {"path": "step03_artist_and_critique.md", "min_bytes": 7000, "required_text": ["Step Provenance", "refinedconcepts", "Validation Result"]},
+    {"path": "step04_medium.md", "min_bytes": 7000, "required_text": ["Step Provenance", "mediums", "Validation Result"]},
+    {"path": "step05_refine_medium.md", "min_bytes": 12000, "required_text": ["Step Provenance", "Cut Ledger", "P01", "P06", "Validation Result"]},
+    {"path": "concept_medium_pairs.json", "min_bytes": 9000, "required_text": ["\"pair_num\": 1", "\"pair_num\": 6", "\"phase1_slot\""]},
+    {"path": "pair_01_step05_isolated_brief.md", "min_bytes": 2000, "required_text": ["LOFN-PRIME", "LINE BUDGET:", "Four-way variation law"]},
+    {"path": "pair_06_step05_isolated_brief.md", "min_bytes": 2000, "required_text": ["LOFN-PRIME", "LINE BUDGET:", "Four-way variation law"]}
+  ],
+  "notes": "Coordinator passed; pair agents may now be dispatched in staggered waves of three."
+}

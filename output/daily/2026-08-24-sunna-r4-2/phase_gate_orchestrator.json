@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-08-24-sunna-r4-2",
+  "phase": "orchestrator",
+  "required_files": [
+    {"path": "01_seed_lineage.md", "min_bytes": 3000, "required_text": ["THE EXACT INVITATION", "Dangerous permission"]},
+    {"path": "02_golden_seed.md", "min_bytes": 7000, "required_text": ["Seed lineage", "Non-negotiable constraints", "Personality genre DNA constraint"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 16000, "required_text": ["CONFIGURATION 1 — BASELINE", "GROUP TRANSFORM: BRIDGE", "SKEPTIC TRANSFORM: REFLECT", "Special Flairs", "Concept Panel", "Medium Panel", "Context & Marketing Panel", "HYPER-SKEPTIC", "Aha moment"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 7000, "required_text": ["Selected pattern", "SUNNA R4.1", "Structural completeness contract"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 12000, "required_text": ["Assignment rationale", "Pair 01", "Pair 06", "ACCESSIBLE", "AMBITIOUS"]},
+    {"path": "06_audio_handoff.md", "min_bytes": 6000, "required_text": ["READ FIRST", "ORCHESTRATOR PACKET", "GOLDEN SEED", "PAIR AGENTS", "QA CONTRACT"]},
+    {"path": "CREATIVE_CONTEXT.md", "min_bytes": 100000, "required_text": ["IMMUTABLE CONTINUITY BLOCK", "FULL CANONICAL SUNNA R4.1 YAML", "GOLDEN-OUTPUT QUARANTINE"]}
+  ],
+  "notes": "Passing freezes CREATIVE_CONTEXT.md for Steps 00–11. Successor additionally requires dispatch ICB offset 0 in all six pair packets."
+}

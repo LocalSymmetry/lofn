@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-27-high-energy-registers",
+  "controller_id": "claude:3cb3b0ac-f43a-4229-838f-8fc74f05c7c4:high-energy",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-27T20:10:52Z",
+  "heartbeat_utc": "2026-08-28T00:51:30Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:3cb3b0ac-f43a-4229-838f-8fc74f05c7c4:high-energy",
+      "joined_utc": "2026-08-27T20:10:52Z"
+    }
+  ],
+  "completed_utc": "2026-08-28T00:51:30Z"
+}

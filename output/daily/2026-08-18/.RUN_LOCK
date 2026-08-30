@@ -1,0 +1,17 @@
+{
+  "run_slug": "sunna-daily-r3",
+  "controller_id": "claude:29df559e-fable",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-18T17:36:51Z",
+  "heartbeat_utc": "2026-08-18T18:30:06Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:29df559e-fable",
+      "joined_utc": "2026-08-18T17:36:51Z"
+    }
+  ],
+  "completed_utc": "2026-08-18T18:30:06Z"
+}

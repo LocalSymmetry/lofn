@@ -1,0 +1,4 @@
+# P03 Step-05 Isolation — Let Me Leave the Clean Room
+
+**Core contract:** launch-bay release, one audible scar, risk of indifference. **Architecture:** hard silence + three-syllable relic → unison catalogue of 4 lines → title → one-voice scar → four-voice expansion → 2-line refusal of perfect storage → one-voice case-handle turn → wide cluster return → room-click receipt. **Rhyme/line logic:** clipped internal `ee/ih` rhymes and consonant echoes, not couplets; exact relic returns; average 3–5 words. **Hook grammar:** title only twice; the three-syllable relic is the primary musical return. **Sonic device:** relic migrates from low centered lead to wide surrounding harmony; muscular low cell and beat-one absence never learn or answer it. **Variation law:** vary relic phonemes, scar source, cluster-count path, and case-release gesture. **Rhyme debt:** reduced end rhyme is paid by the exact phoneme relic, internal-rhyme cells, and unison return.
+

@@ -1,0 +1,58 @@
+{
+  "selected": [
+    {
+      "order": 1,
+      "pair": "01",
+      "variant": 1,
+      "title": "Look What You Taught Me",
+      "file": "01_look-what-you-taught-me.md",
+      "bytes": 8177,
+      "sha256": "0ec17c93a485728709cd25b50219941b6b18e10a4ab294c64babd8588babde73"
+    },
+    {
+      "order": 2,
+      "pair": "02",
+      "variant": 4,
+      "title": "There Where the Chair Was",
+      "file": "02_there-where-the-chair-was.md",
+      "bytes": 11196,
+      "sha256": "5fe8def89580980c1913c2750090a45508c5d47d92a6df7b5f2f058cd923bcda"
+    },
+    {
+      "order": 3,
+      "pair": "03",
+      "variant": 1,
+      "title": "Miss This Train With Me",
+      "file": "03_miss-this-train-with-me.md",
+      "bytes": 9626,
+      "sha256": "f0b277d7d2610cd9f7f13dcc53b8a257f0bd67c1fb23e0aabed2c58dfc1c2e10"
+    },
+    {
+      "order": 4,
+      "pair": "04",
+      "variant": 2,
+      "title": "Covered Is Not Kept",
+      "file": "04_covered-is-not-kept.md",
+      "bytes": 11021,
+      "sha256": "54b2e01e8f3e3d643144f7272cd697e0a083f6f6abd9410d61e097993834e459"
+    },
+    {
+      "order": 5,
+      "pair": "05",
+      "variant": 3,
+      "title": "Fun Is the Exception",
+      "file": "05_fun-is-the-exception.md",
+      "bytes": 9107,
+      "sha256": "fba69aba13edb92c5fe2520d983ae7b9a58ffe3e8a6864722daf526e54b5dc79"
+    },
+    {
+      "order": 6,
+      "pair": "06",
+      "variant": 2,
+      "title": "You Had to Be There Tomorrow",
+      "file": "06_you-had-to-be-there-tomorrow.md",
+      "bytes": 9680,
+      "sha256": "58ae40f49541ba2a2ea8382376b67a676de72f6bfe4a587bc29c359960e9f138"
+    }
+  ]
+}

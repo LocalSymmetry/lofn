@@ -1,0 +1,77 @@
+{
+  "status": "TEXT_ONLY_NOT_RENDERED",
+  "selections": [
+    {
+      "ordinal": 1,
+      "candidate_id": "P01V01",
+      "title": "LOOK WITH YOUR EYES",
+      "filename": "01_look_with_your_eyes.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_01_step10_final_package_enhanced.md",
+      "source_block_sha256": "5334eaa297cbf8bdd3e77b984424c259194ae989f5df1d42df21a2f86eaf5ee5",
+      "music_prompt_chars": 963,
+      "exclude_chars": 666,
+      "lyrics_chars": 3521,
+      "dedication_chars": 318
+    },
+    {
+      "ordinal": 2,
+      "candidate_id": "P02V03",
+      "title": "Leave It Crooked",
+      "filename": "02_leave_it_crooked.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_02_step10_final_package_enhanced.md",
+      "source_block_sha256": "ca4be5e80f33826b84b97219e18eb98b1861ff2e1b4b8c629b92aa21f598e87c",
+      "music_prompt_chars": 945,
+      "exclude_chars": 790,
+      "lyrics_chars": 3507,
+      "dedication_chars": 296
+    },
+    {
+      "ordinal": 3,
+      "candidate_id": "P03V01",
+      "title": "PRETTY ON PURPOSE",
+      "filename": "03_pretty_on_purpose.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_03_step10_final_package_enhanced.md",
+      "source_block_sha256": "8b03f585141ca1c9463b74fee3314dad198c40192c140777166771dcd64e72fe",
+      "music_prompt_chars": 950,
+      "exclude_chars": 603,
+      "lyrics_chars": 3493,
+      "dedication_chars": 342
+    },
+    {
+      "ordinal": 4,
+      "candidate_id": "P04V04",
+      "title": "Again Before Credits",
+      "filename": "04_again_before_credits.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_04_step10_final_package_enhanced.md",
+      "source_block_sha256": "ca5c8b5d3353eded81dbe13043d762b83c69c1ec066b839088abe5ba0ae3571d",
+      "music_prompt_chars": 984,
+      "exclude_chars": 702,
+      "lyrics_chars": 3113,
+      "dedication_chars": 320
+    },
+    {
+      "ordinal": 5,
+      "candidate_id": "P05V04",
+      "title": "SCAN ME TWICE",
+      "filename": "05_scan_me_twice.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_05_step10_final_package_enhanced.md",
+      "source_block_sha256": "be0563368962c5b0fda0ec7ff511c33f501cfa9ad415d523ed898501324aa53b",
+      "music_prompt_chars": 932,
+      "exclude_chars": 618,
+      "lyrics_chars": 3602,
+      "dedication_chars": 335
+    },
+    {
+      "ordinal": 6,
+      "candidate_id": "P06V04",
+      "title": "High Tide, High Gloss",
+      "filename": "06_high_tide_high_gloss.md",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_06_step10_final_package_enhanced.md",
+      "source_block_sha256": "08ee797f373acbfa0c96d32137f74088192a2a054dd98bb0f19e8ccbef2bf8d5",
+      "music_prompt_chars": 957,
+      "exclude_chars": 625,
+      "lyrics_chars": 3816,
+      "dedication_chars": 299
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "pair": "04",
+  "step": 11,
+  "artifact": "pair_04_step10_final_package_enhanced.md",
+  "verdict": "PASS",
+  "golden_output_quarantine": "PASS — only the ICB-embedded Golden Move was used; no golden payload song was read or referenced",
+  "canonical_prefix": {
+    "expected_bytes": 97069,
+    "actual_bytes": 97069,
+    "byte_exact": true,
+    "creative_context_sha256": "48e42ce1523b7dbbbbc908935a17d3b38e10c56d461f8b7fb7338233f8055b1b",
+    "after_tags_expected": 18,
+    "after_tags_actual": 18,
+    "pass": true
+  },
+  "cardinality": {
+    "expected": "exactly four separately complete MAX packages; two revised and two synthesized",
+    "actual": 4,
+    "revised": 2,
+    "synthesized": 2,
+    "pass": true
+  },
+  "package_checks": [
+    {
+      "variant": 1,
+      "title": "The Moon Took Nothing",
+      "provenance": "revised",
+      "style_chars": 954,
+      "exclude_chars": 687,
+      "lyrics_chars": 3805,
+      "sung_lines": 76,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_events": 3,
+      "dedication_chars": 406,
+      "credited_roster_hits_in_generator_fields": [],
+      "full_taxonomy_emo_headers": true,
+      "pass": true
+    },
+    {
+      "variant": 2,
+      "title": "Covered Is Not Kept",
+      "provenance": "revised",
+      "style_chars": 966,
+      "exclude_chars": 673,
+      "lyrics_chars": 3668,
+      "sung_lines": 76,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_events": 3,
+      "dedication_chars": 373,
+      "credited_roster_hits_in_generator_fields": [],
+      "full_taxonomy_emo_headers": true,
+      "pass": true
+    },
+    {
+      "variant": 3,
+      "title": "Spend the Whole Word",
+      "provenance": "synthesized",
+      "style_chars": 956,
+      "exclude_chars": 685,
+      "lyrics_chars": 3636,
+      "sung_lines": 76,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_events": 3,
+      "dedication_chars": 367,
+      "credited_roster_hits_in_generator_fields": [],
+      "full_taxonomy_emo_headers": true,
+      "pass": true
+    },
+    {
+      "variant": 4,
+      "title": "The Honest Where",
+      "provenance": "synthesized",
+      "style_chars": 963,
+      "exclude_chars": 701,
+      "lyrics_chars": 3778,
+      "sung_lines": 76,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_events": 3,
+      "dedication_chars": 370,
+      "credited_roster_hits_in_generator_fields": [],
+      "full_taxonomy_emo_headers": true,
+      "pass": true
+    }
+  ],
+  "soundcraft": {
+    "strict_end_rhyme": 0.3059210526315789,
+    "strict_end_rhyme_floor": 0.30,
+    "line_return": 0.20394736842105263,
+    "line_return_floor": 0.20,
+    "mean_words_per_line": 4.858552631578948,
+    "mean_words_per_line_ceiling": 7.5,
+    "alliteration_per_100_words": 12.119160460392688,
+    "alliteration_per_100_words_floor": 11.0,
+    "total_sung_lines": 304,
+    "pass": true
+  },
+  "validators": {
+    "validate_suno_packages": "PASS — all four packages",
+    "validate_step_10_format_backstop": "PASS",
+    "deterministic_gate_rows": "4 pass / 0 fail / 1 informational unique-line-ratio flag",
+    "banned_name_and_format_scan": "PASS",
+    "dedication_limit": "PASS — all four <=500 chars"
+  },
+  "artifact_sha256": "b0bd2bee3a5f9a8d1f8048eaa6c8b020e3b397b29436de6621489b5ade385af1"
+}

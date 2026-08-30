@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-08-24-sunna",
+  "phase": "coordinator",
+  "required_files": [
+    {"path": "music/step00_aesthetics_and_genres.md", "min_bytes": 9000, "required_text": ["Step Provenance", "Complete Step Output", "Validation Result"]},
+    {"path": "music/step01_essence_and_facets.md", "min_bytes": 5000, "required_text": ["Continuity Payload Used", "essence_and_facets"]},
+    {"path": "music/step02_concepts.md", "min_bytes": 7000, "required_text": ["Continuity Payload Used", "concepts"]},
+    {"path": "music/step03_artist_and_critique.md", "min_bytes": 7000, "required_text": ["Continuity Payload Used", "refinedconcepts"]},
+    {"path": "music/step04_medium.md", "min_bytes": 7000, "required_text": ["Continuity Payload Used", "mediums"]},
+    {"path": "music/step05_refine_medium.md", "min_bytes": 12000, "required_text": ["Continuity Payload Used", "Cut ledger", "P01", "P06"]},
+    {"path": "music/concept_medium_pairs.json", "min_bytes": 9000, "required_text": ["\"pair_num\": 1", "\"pair_num\": 6", "\"phase1_slot\""]}
+  ],
+  "notes": "Do not spawn pair agents until coordinator validators and this gate pass."
+}

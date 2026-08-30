@@ -66,27 +66,21 @@ For each pair:
 3. Full `02_golden_seed.md` — invariant hook, story anchor, rare/forgotten lesson, and PERSONALITY GENRE DNA CONSTRAINT.
 4. Full `03_orchestrator_panel_debate.md` — all Special Flairs, Concept Panel, Medium Panel, Context & Marketing Panel, all 18 expert voices, and all Devil's Advocate / Hyper-Skeptic objections.
 5. `04_orchestrator_metaprompt.md` and `05_orchestrator_pair_assignments.md`.
-6. `06_audio_handoff.md` — selected `## Golden Song References`. If the handoff is missing them, read `skills/music/references/golden_songs_index.md` and select the two most relevant public Golden Songs yourself.
+6. `06_audio_handoff.md` (or `06_music_handoff.md`) — the run handoff. ⛔ **Read it for the GOLDEN MOVE and the run's quarantine ruling, NOT for Golden Song payloads.** If the handoff and this file disagree, **the handoff wins** (`COMPETITION_LEARNINGS` **L30**): it is the only artifact that resolves a live conflict between a step contract and doctrine, and it is written per-run precisely so this is not left to each agent's judgement.
 7. The 16-point QA checklist (injected in the spawn task).
 
 The Step 11/manual Step 11 prompt must embed the complete packet above. Do not pass links or filenames alone.
 
 ⛔ **GOLDEN-OUTPUT QUARANTINE — this overrides the older embed instruction that used to sit here.**
-**Step 11 is a GENERATING context** (see the head-of-file note): past golden **outputs** — full style
-prompts, lyric sets, titles — are **judge-side only** (`.claude/skills/lofn/EXECUTION.md` §3). You receive
-the **GOLDEN MOVE** (instructions) and the Golden **Seed**; you do not receive the mold.
-**The one legitimate exception is the packager, not this tier:** `lofn-step11-packager` assembles
-golden-song payloads for a genuinely **external, judge-side** review bundle.
-*History: this file previously instructed the tier to embed complete Golden Song payloads in several
-places while its own head-of-file note forbade it. A pair agent that follows the local instruction is
-behaving correctly — the file contradicted itself. Fixed 2026-08-08.*
+**Step 11 is a GENERATING context** (see the head-of-file note): past golden **outputs** — full style prompts, lyric sets, titles — are **judge-side only** (`.claude/skills/lofn/EXECUTION.md` §3). You receive the **GOLDEN MOVE** (instructions) and the Golden **Seed**; you do not receive the mold.
+**The one legitimate exception is the packager, not this tier:** `lofn-step11-packager` assembles golden-song payloads for a genuinely **external, judge-side** review bundle. That is a judging context and is unaffected by this rule.
+*History: this file previously instructed the tier to embed complete Golden Song payloads in four places while its own head-of-file note forbade it. On 2026-08-06 one pair followed the local instruction and pushed two complete style prompts and two full lyric sets into a generating context. **The pair was not at fault — the file contradicted itself.** Fixed 2026-08-07.*
 
 ## Chosen Personality Dominance (MUST be injected and obeyed)
 
 Step 11 must treat the chosen personality/panel as binding source material, not decoration. The spawn task MUST include the full target personality DNA block (beliefs, catchphrases, vocal architecture, sonic pillars, formant rules, and panel decisions).
 
 Rules:
-- If the selected personality is Alexis Dreams, the output must sound like Alexis Dreams: Radical Breathless Sincerity, G.L.O.W. Protocol, Solar Glitch-Hop, Diamond-Cut Vocals, Off-Grid Bounce, Melodic-Rapid Flow, “fake hands, real ink,” “service is power,” “phone face down.”
 - Do not import Lofn default motifs (industrial grief, category-theory language, plant-wave/body-physics, somatic machinery) unless they appear in the chosen personality DNA or golden seed.
 - If a line sounds like Lofn narrating the personality rather than the personality singing, rewrite it.
 - Panels selected upstream must be reflected in prompt density, lyrical imagery, production dramaturgy, and QA checks.
@@ -223,6 +217,8 @@ lyrics...
 ## Output File
 Write: `pair_0X_step10_final_package_enhanced.md` to the run directory.
 
+**Immutable-prefix contract:** the written file MUST begin byte-for-byte with the run's complete `CREATIVE_CONTEXT.md` / ICB. The `Original ICB / continuity summary` required below is additional verification, not a substitute for the literal prefix. Before reporting completion, compare the output's first `len(ICB)` bytes to the canonical block and fail the step if they differ. This closes the 2026-08-25 transport failure in which all six creative bodies passed their song gates but omitted the continuity prefix.
+
 ## Mandatory Delivery Checks — VERIFY BEFORE WRITING
 
 Before writing the final file, verify these TWO gates. Missing either = BLOCKING FAIL.
@@ -254,7 +250,7 @@ Default automated path:
 - Use the dedicated Step 11 contract and write one enhanced package per pair.
 - Keep pair contexts isolated.
 - Do not call `openrouter/fusion` automatically.
-- ⛔ **Do NOT include Golden Song References in the output.** "Calibration examples only" is exactly the mold this rule exists to prevent — an exemplar in a generating artifact propagates downstream into every context that reads it. Golden-song payloads go **judge-side only**. Calibrate against the **GOLDEN MOVE** instead.
+- ⛔ **Do NOT include Golden Song References in the output.** "Calibration examples only" is exactly the mold this rule exists to prevent — an exemplar in a generating artifact propagates downstream into every context that reads it. Golden-song payloads go **judge-side only** (QA blind comparison, the step-12 audit, the `lofn-step11-packager` external bundle). Calibrate against the **GOLDEN MOVE** instead.
 
 Fusion manual-review path:
 - Build paste-ready Fusion request files with complete Step 10/Step 11 context, personality DNA, Suno construction rules, and the two-field Suno style/exclude mandate.
@@ -266,7 +262,7 @@ Fusion manual-review path:
 ## Output MUST include
 
 1. Original ICB / continuity summary
-2. `## Golden Song References` with the two selected public Suno examples and how they calibrate this pair, including embedded style/music prompt, lyrics, and exclude prompt status
+2. ⛔ **REMOVED — do not emit a `## Golden Song References` section.** It required embedding two past songs' style prompts and lyrics into a generating artifact, which is the mold this step's own head-of-file note forbids. State instead, in one line, **which GOLDEN MOVE rules this pair is calibrated against** (`.claude/skills/lofn-music/SKILL.md`). Golden-song payloads remain judge-side only.
 3. Dense `## 1. MUSIC PROMPT` (positive style only, 850-1000 chars)
 4. Separate `## 1B. SUNO EXCLUDE PROMPT` (negative controls only, 400-900 chars)
 5. Disc_Channel lyric package

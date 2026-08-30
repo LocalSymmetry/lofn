@@ -1,0 +1,22 @@
+{
+  "run_slug": "2026-08-12_genz-worst-i-will-ever-be",
+  "controller_id": "claude:3c56afcb-b439-449b-afa3-23974ed1bf92",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-12T19:24:36Z",
+  "heartbeat_utc": "2026-08-12T20:47:55Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "pid:10444@Psychosis-v6",
+      "joined_utc": "2026-08-12T19:24:36Z"
+    },
+    {
+      "controller_id": "claude:3c56afcb-b439-449b-afa3-23974ed1bf92",
+      "joined_utc": "2026-08-12T19:37:55Z",
+      "resumed": true
+    }
+  ],
+  "completed_utc": "2026-08-12T20:47:55Z"
+}

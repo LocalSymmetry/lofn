@@ -1,0 +1,22 @@
+{
+  "run_slug": "2026-08-24-sunna-r4-2",
+  "controller_id": "codex:01a032f6-89dd-7472-8706-a7413eb26fd2:sunna-r4-2",
+  "icb_bytes": 154765,
+  "icb_sha256": "6ed856fb2fe4974030f8b040caaffaed718aff22b7d87554a4cfab91f886c0a0",
+  "icb_dispatch_offset": 0,
+  "pairs": [
+    {"pair": "01", "agent": "/root/sunna_r42_p01_chain", "wave": 1, "steps": "06-10", "status": "complete"},
+    {"pair": "02", "agent": "/root/sunna_r42_p02_chain", "wave": 1, "steps": "06-10", "status": "complete_after_current_icb_restart"},
+    {"pair": "03", "agent": "/root/sunna_r42_p03_chain", "wave": 1, "steps": "06-10", "status": "complete"},
+    {"pair": "04", "agent": "/root/sunna_r42_p04_chain", "wave": 2, "steps": "06-10", "status": "complete_after_current_icb_restart"},
+    {"pair": "05", "agent": "/root/sunna_r42_p05_chain", "wave": 2, "steps": "06-10", "status": "complete"},
+    {"pair": "06", "agent": "/root/sunna_r42_p06_chain", "wave": 2, "steps": "06-10", "status": "complete"}
+  ],
+  "qa": [
+    {"agent": "/root/sunna_r42_calibrated_blind", "scope": "official-golden plus same-run-reserve calibration", "status": "void_control_inversion"},
+    {"agent": "/root/sunna_r42_blind_tier2", "scope": "higher-tier official-golden plus canonical-decoy audit", "status": "void_control_inversion"},
+    {"agent": "/root/sunna_r42_blind_altgold", "scope": "binding Staff-Pick golden plus canonical-decoy plate", "status": "complete_one_repair"},
+    {"agent": "/root/sunna_r42_repair_reblind", "scope": "P04 and P05 changed-byte reblind", "status": "complete_healthy_2_of_2"},
+    {"agent": "/root/sunna_r42_final_identified_qa", "scope": "full stable-byte identified QA", "status": "ship_text_only"}
+  ]
+}

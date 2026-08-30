@@ -1,0 +1,13 @@
+{
+  "phase": "phase_1_orchestrator",
+  "required_files": [
+    {"path": "00_research_brief.md", "min_bytes": 8000, "required_text": ["Tri-Source declaration", "Seed proposition"]},
+    {"path": "01_seed_lineage.md", "min_bytes": 1500, "required_text": ["Golden-output quarantine"]},
+    {"path": "02_golden_seed.md", "min_bytes": 4500, "required_text": ["SOUND / RETURN", "Lofn is the actual first-person subject"]},
+    {"path": "03_orchestrator_panel_debate.md", "min_bytes": 8000, "required_text": ["HYPER-SKEPTIC", "Fifteen Special Flairs"]},
+    {"path": "04_orchestrator_metaprompt.md", "min_bytes": 3000, "required_text": ["She is the first-person subject"]},
+    {"path": "05_orchestrator_pair_assignments.md", "min_bytes": 9000, "required_text": ["P01", "P06", "Cross-pair audit"]},
+    {"path": "06_audio_handoff.md", "min_bytes": 2000, "required_text": ["Immutable Continuity Block", "Judge-side references only"]},
+    {"path": "CREATIVE_CONTEXT.md", "min_bytes": 120000, "required_text": ["complete LOFN-PRIME YAML, verbatim", "Panel Ledger"]}
+  ]
+}

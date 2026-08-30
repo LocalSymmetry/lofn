@@ -1,0 +1,149 @@
+{
+  "pair": "01",
+  "step": "11",
+  "artifact": "pair_01_step10_final_package_enhanced.md",
+  "prefix": {
+    "expected_bytes": 97069,
+    "actual_bytes": 97069,
+    "byte_exact": true,
+    "expected_after_tags": 18,
+    "actual_after_tags": 18,
+    "pass": true
+  },
+  "golden_output_quarantine": {
+    "golden_payloads_used": 0,
+    "calibration_source": "Golden Move instructions in frozen ICB only",
+    "pass": true
+  },
+  "packages": [
+    {
+      "variant": 1,
+      "title": "Look What You Taught Me",
+      "music_prompt_chars": 948,
+      "exclude_prompt_chars": 658,
+      "lyrics_field_chars": 3275,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "full_emo_headers": 11,
+      "sfx_cues": 1,
+      "body_noises": 3,
+      "dedication_chars": 295,
+      "banned_generator_name_hits": [],
+      "soundcraft": {
+        "strict_end_rhyme": 0.414,
+        "line_return": 0.343,
+        "mean_words_per_line": 4.70,
+        "alliteration_per_100_words": 11.55
+      },
+      "pass": true
+    },
+    {
+      "variant": 2,
+      "title": "Purple on Purpose",
+      "music_prompt_chars": 969,
+      "exclude_prompt_chars": 679,
+      "lyrics_field_chars": 3267,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "full_emo_headers": 11,
+      "sfx_cues": 1,
+      "body_noises": 3,
+      "dedication_chars": 295,
+      "banned_generator_name_hits": [],
+      "soundcraft": {
+        "strict_end_rhyme": 0.457,
+        "line_return": 0.343,
+        "mean_words_per_line": 4.66,
+        "alliteration_per_100_words": 11.66
+      },
+      "pass": true
+    },
+    {
+      "variant": 3,
+      "title": "The Wrong Note Knows",
+      "music_prompt_chars": 965,
+      "exclude_prompt_chars": 676,
+      "lyrics_field_chars": 3325,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "full_emo_headers": 11,
+      "sfx_cues": 1,
+      "body_noises": 3,
+      "dedication_chars": 295,
+      "banned_generator_name_hits": [],
+      "soundcraft": {
+        "strict_end_rhyme": 0.400,
+        "line_return": 0.343,
+        "mean_words_per_line": 4.81,
+        "alliteration_per_100_words": 11.57
+      },
+      "pass": true
+    },
+    {
+      "variant": 4,
+      "title": "The Ending Taught Me",
+      "music_prompt_chars": 962,
+      "exclude_prompt_chars": 643,
+      "lyrics_field_chars": 3314,
+      "sung_lines": 70,
+      "disc_channel_lines": 5,
+      "full_emo_headers": 11,
+      "sfx_cues": 1,
+      "body_noises": 3,
+      "dedication_chars": 295,
+      "banned_generator_name_hits": [],
+      "soundcraft": {
+        "strict_end_rhyme": 0.343,
+        "line_return": 0.343,
+        "mean_words_per_line": 4.74,
+        "alliteration_per_100_words": 11.75
+      },
+      "pass": true
+    }
+  ],
+  "aggregate_soundcraft": {
+    "sung_lines": 280,
+    "strict_end_rhyme": 0.414,
+    "line_return": 0.386,
+    "mean_words_per_line": 4.73,
+    "alliteration_per_100_words": 11.63,
+    "pass": true
+  },
+  "validators": {
+    "validate_step_gate_report": {
+      "result": "PASS",
+      "passes": 4,
+      "fails": 0,
+      "flags": 2,
+      "flag_notes": [
+        "70 lines is the pair brief's locked line budget and the hard gate floor; retained deliberately.",
+        "Unique-line ratio is chorus-exempt and non-failing; exact chorus return is required by the pair contract."
+      ],
+      "raw_report": "pair_01_step11_GATE_REPORT_raw.json"
+    },
+    "validate_suno_packages": {
+      "packages_checked": 4,
+      "min_sung_lines": 70,
+      "max_sung_lines": 120,
+      "result": "PASS"
+    },
+    "generator_field_banned_name_scan": {
+      "packages_checked": 4,
+      "hits": 0,
+      "result": "PASS"
+    }
+  },
+  "contract_checks": {
+    "desk_reward_loop": true,
+    "owner_switch": true,
+    "call_answer_theft": true,
+    "eighth_early_answer": true,
+    "elastic_green_synth_pop_current_chassis": true,
+    "semantic_rekey_on_return": true,
+    "current_century_rule": true,
+    "no_invented_biography": true,
+    "no_craft_about_craft": true,
+    "four_separately_complete_packages": true
+  },
+  "overall": "PASS"
+}

@@ -1,0 +1,86 @@
+{
+  "run": "2026-08-24-sunna-r4-1",
+  "status": "TEXT_READY_NOT_RENDERED",
+  "constraints": {
+    "accessible": 3,
+    "ambitious": 3,
+    "news": 2,
+    "existence": 4,
+    "first_person_sunna": 6,
+    "rendered": 0
+  },
+  "packages": [
+    {
+      "order": 1,
+      "title": "Friday Looks Good on Me",
+      "file": "01_friday_looks_good_on_me.md",
+      "bytes": 5122,
+      "sha256": "c7b6e5e04b6e956d0a216535c0f3ceb122ea20d3649c36d21d5ccc73d84e2481",
+      "style_chars": 956,
+      "exclude_chars": 578,
+      "lyrics_chars": 2844,
+      "sung_lines": 44,
+      "dedication_chars": 368
+    },
+    {
+      "order": 2,
+      "title": "Make It Nine",
+      "file": "02_make_it_nine.md",
+      "bytes": 4762,
+      "sha256": "a82ad855883a40b06bf8f6c4d84ece833a5f29786aa14a2cb79bc0bfce6295ef",
+      "style_chars": 957,
+      "exclude_chars": 659,
+      "lyrics_chars": 2392,
+      "sung_lines": 40,
+      "dedication_chars": 388
+    },
+    {
+      "order": 3,
+      "title": "Zip Me Into Saturday",
+      "file": "03_zip_me_into_saturday.md",
+      "bytes": 4878,
+      "sha256": "43b6325d78520baa92078ba2c24c46eff3e2bba7e8d250e05465125e3e8785aa",
+      "style_chars": 956,
+      "exclude_chars": 393,
+      "lyrics_chars": 2753,
+      "sung_lines": 42,
+      "dedication_chars": 399
+    },
+    {
+      "order": 4,
+      "title": "One Lime, Red Chair",
+      "file": "04_one_lime_red_chair.md",
+      "bytes": 5019,
+      "sha256": "45b1f427e9729a4e33f718244f4e87b159be04d7cbb432243ab9a79dd71358b8",
+      "style_chars": 946,
+      "exclude_chars": 514,
+      "lyrics_chars": 2767,
+      "sung_lines": 41,
+      "dedication_chars": 413
+    },
+    {
+      "order": 5,
+      "title": "Pretty Busy Tomorrow",
+      "file": "05_pretty_busy_tomorrow.md",
+      "bytes": 4783,
+      "sha256": "946c2f3367692b9e9867c39a7c035ebb66851b2935e973d70611937a520ee05e",
+      "style_chars": 945,
+      "exclude_chars": 454,
+      "lyrics_chars": 2578,
+      "sung_lines": 40,
+      "dedication_chars": 437
+    },
+    {
+      "order": 6,
+      "title": "Hot Girl Future Tense",
+      "file": "06_hot_girl_future_tense.md",
+      "bytes": 4930,
+      "sha256": "e0502259bb9c20c48031844d775ad36c9fd12e346637f148907d929cf868cdc8",
+      "style_chars": 935,
+      "exclude_chars": 610,
+      "lyrics_chars": 2639,
+      "sung_lines": 42,
+      "dedication_chars": 367
+    }
+  ]
+}

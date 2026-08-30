@@ -1,0 +1,17 @@
+{
+  "run_slug": "daily-music-2026-08-21",
+  "controller_id": "claude:88949fdf-b3ed-419d-b84d-ff36297289d0",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-21T16:17:08Z",
+  "heartbeat_utc": "2026-08-21T18:42:30Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:88949fdf-b3ed-419d-b84d-ff36297289d0",
+      "joined_utc": "2026-08-21T16:17:08Z"
+    }
+  ],
+  "completed_utc": "2026-08-21T18:42:30Z"
+}

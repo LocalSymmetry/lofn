@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-08-24-sunna-r4-2",
+  "barbell_route": "accessible",
+  "model_available": true,
+  "output_dir_writable": true,
+  "concurrency_known": true,
+  "research_brief_complete": true,
+  "seed_or_seed_packet_exists": true,
+  "rules_saved_if_relevant": true,
+  "modality_confirmed": true,
+  "target_output_count_confirmed": true,
+  "barbell_route_set": true,
+  "notes": "Full daily uses an exact 3 ACCESSIBLE / 3 AMBITIOUS split. The schema accepts one route token, so accessible records the first launch tranche; both routes are frozen in 02_golden_seed.md. Actual collaboration capacity is three child agents because four total slots include the controller. No render, publish, upload, or spend is authorized."
+}

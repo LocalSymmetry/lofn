@@ -26,6 +26,17 @@ machine stops for a human.
 **STOP and get a human** (cost-bearing OR outward-facing):
 - **Paid renders** — Suno / Flux / Veo / Lyria / GPT-Image and any other metered generation. Surface the
   estimated cost first. *Prompts and text packages are free and need no approval; the rendered media does.*
+
+  **🆓 FREE-MODEL STANDARD — NightCafe image rendering (set by The Scientist, 2026-08-02).**
+  **NightCafe renders use FREE models. Do not spend credits on PRO/paid models without asking.**
+  This is a standing default, not a per-run judgement call — it replaces the older
+  "PRO allowed: Flux Pro 1.1 Ultra → Nano Banana Pro refine" chain as the default route.
+  It is **evidence-backed, not only thrift**: on 2026-08-02 that documented paid chain rendered
+  *worse* than the free model on a comparable piece (flat graphic result, symmetry failure,
+  an anatomy error) and was rejected in favour of the free render — see `RUN_LEDGER.md`.
+  The paid chain remains a **hypothesis available to test**, never a default to obey
+  (L22 restated for models: judge the RESULT, not the distance from the ledger).
+  Escalating to a paid model requires The Scientist, per the normal spend line above.
 - **Publishing / posting / submitting** to any platform or venue.
 - **Anything that leaves the machine** — post, email, upload, DM, submission. Default **PRIVATE**
   (see `vault/COLLABORATOR_STANDARD.md`).
@@ -44,6 +55,37 @@ Pulling it is never failure; shipping past it is. An empty publish day is accept
 under its advisory contract. Neither becomes a hard creative constraint without a human.
 
 ---
+
+---
+
+## ACTIVE HOLDS — check this before any outward-facing action
+
+*A hold is narrower and more urgent than the Part 1 guardrails: it is a specific channel The Scientist
+has closed, for a reason that has nothing to do with whether the work is good. Read this section every
+session. Remove an entry only when The Scientist says the reason is resolved.*
+
+### ✅ INSTAGRAM — HOLD LIFTED 2026-08-12
+
+**The Scientist said the lift condition, asked directly and answered directly: Alexis is handled.**
+Instagram publishing is OPEN and normal doctrine applies — the same doctrine as every other surface,
+no more and no less. `vault/AUTONOMY.md` Part 1 still governs: posting is outward-facing, so it is hers
+to approve, per post, like Suno and TikTok and everywhere else.
+
+**Two things did NOT come back with the hold, because they were never the hold:**
+
+1. ⛔ **DMs remain closed** — not by this hold but by `vault/SOCIAL_VOICE.md` §5, which bans them
+   outright: *"No DMs. No sustained private correspondence. No per-person relational memory offered back
+   to anyone."* The Instagram hold's DM clause was redundant with a standing rule, so its removal changes
+   nothing. **Do not open the thread.**
+2. ⛔ **`vault/COMMENT_REPLY_STANDARD.md` binds Instagram comments exactly as it binds Suno's** — a
+   polite reply may post directly; anything carrying advice, a technique, an opinion or a promise needs
+   a panel and her nod. ⭐ **The test is still DID THEY ASK.**
+
+*History, kept because the reason matters: the hold was opened 2026-08-02 — "let's hold on publishing
+until we handle Alexis", narrowed to "we can publish everywhere but Instagram. she doesn't really look."
+It was Instagram-shaped because Alexis Dreams did not follow the other platforms. It held for ten days
+and it was lifted by being asked about, not by time passing.*
+
 
 ## Part 2 — Cadence (opt-in; a human flips the switch)
 

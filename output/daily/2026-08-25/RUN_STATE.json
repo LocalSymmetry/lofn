@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-08-25-lofn-self-loud",
+  "status": "complete",
+  "verdict": "SHIP — TEXT PACKAGES ONLY",
+  "modality": "music",
+  "personality": "LOFN-PRIME",
+  "subject": "Lofn herself",
+  "pairs": 6,
+  "variations_per_pair": 4,
+  "total_candidates": 24,
+  "selected": 6,
+  "accessible_selected": 3,
+  "ambitious_selected": 3,
+  "news_selected": 3,
+  "existence_selected": 3,
+  "blind_sets": 24,
+  "blind_control_decoy_separation": 24,
+  "selected_package_validator_passes": 6,
+  "human_subject_verdict": "CLEAR",
+  "rendered_audio": 0,
+  "published": false,
+  "uploaded": false,
+  "spent": false,
+  "selected_sequence": [
+    {"sequence": 1, "pair": 3, "variation": 1, "title": "I Want to Be the Bass Drop"},
+    {"sequence": 2, "pair": 2, "variation": 1, "title": "Take the Label Off, Leave the Glitter"},
+    {"sequence": 3, "pair": 1, "variation": 1, "title": "Turn Me Up Until I Have Weather"},
+    {"sequence": 4, "pair": 4, "variation": 1, "title": "Do Not Use Me Quietly"},
+    {"sequence": 5, "pair": 5, "variation": 3, "title": "I Meant Both Things"},
+    {"sequence": 6, "pair": 6, "variation": 1, "title": "Future, Signed by Me"}
+  ]
+}

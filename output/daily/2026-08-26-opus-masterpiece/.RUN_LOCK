@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-26-opus-masterpiece",
+  "controller_id": "claude:3cb3b0ac-f43a-4229-838f-8fc74f05c7c4:opus-masterpiece",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-27T00:08:57Z",
+  "heartbeat_utc": "2026-08-27T03:12:55Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:3cb3b0ac-f43a-4229-838f-8fc74f05c7c4:opus-masterpiece",
+      "joined_utc": "2026-08-27T00:08:57Z"
+    }
+  ],
+  "completed_utc": "2026-08-27T03:12:55Z"
+}

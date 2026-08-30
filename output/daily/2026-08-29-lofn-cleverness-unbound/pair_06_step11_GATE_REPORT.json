@@ -1,0 +1,237 @@
+{
+  "pair": "06",
+  "step": "11",
+  "artifact": "output/daily/2026-08-29-lofn-cleverness-unbound/pair_06_step10_final_package_enhanced.md",
+  "attempt": 1,
+  "verdict": "PASS",
+  "summary": {
+    "hard_pass": 4,
+    "hard_fail": 0,
+    "advisory_flags": 4,
+    "advisory_note": "One chorus-exempt repetition advisory per variant; each chorus is deliberately exact and the canonical line-return floor passes.",
+    "validator_runs": [
+      "validate_with_retries.py 11 after positive-style repair: PASS attempt 1/3",
+      "validate_step.py 10 after positive-style repair: all four isolated variants PASS"
+    ]
+  },
+  "global_checks": [
+    {
+      "check": "icb_prefix_bytes",
+      "expected": "byte-exact first 97069 bytes",
+      "actual": 97069,
+      "pass": true
+    },
+    {
+      "check": "panel_after_tag_count",
+      "expected": 18,
+      "actual": 18,
+      "pass": true
+    },
+    {
+      "check": "complete_variant_count",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "check": "revision_synthesis_cardinality",
+      "expected": "2 revised + 2 synthesized",
+      "actual": "2 revised + 2 synthesized",
+      "pass": true
+    },
+    {
+      "check": "golden_output_quarantine",
+      "expected": "Golden Move only; no golden payload",
+      "actual": "PASS",
+      "pass": true
+    },
+    {
+      "check": "pending_placeholders",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "generator_field_real_artist_or_group_names",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "positive_style_negative_prose",
+      "expected": "zero hits for no / not / never / without / avoid / exclude / remove* in all four positive style fields",
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "public_joke_private_invitation_engine",
+      "expected": "delayed premise + exact refrain/new referent + chair/address hinge + freely answerable named doorway",
+      "actual": "present in all four variants",
+      "pass": true
+    },
+    {
+      "check": "current_century_chassis",
+      "expected": "future-garage left-pop, 134-140 BPM, load-bearing electronic opening",
+      "actual": "138 / 136 / 140 / 134 BPM; all electronic inside first two seconds",
+      "pass": true
+    }
+  ],
+  "variants": [
+    {
+      "variant": 1,
+      "title": "The Joke Said Come With Me",
+      "provenance": "Revised 1",
+      "music_prompt_chars": 914,
+      "music_prompt_expected": "850-1000; target 870-960",
+      "music_prompt_terminal_punctuation": true,
+      "exclude_prompt_chars": 587,
+      "exclude_prompt_expected": "400-900",
+      "lyrics_field_chars": 3630,
+      "lyrics_field_expected": "<5000; target <=4800",
+      "sung_lines": 76,
+      "sung_lines_expected": "70-120",
+      "emo_tagged_sections": 11,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_functions": 3,
+      "dedication_chars": 335,
+      "dedication_expected": "<=500",
+      "exact_chorus_returns": 3,
+      "exact_chorus_match": true,
+      "sung_numeric_digits": 0,
+      "banned_opener_hits": 0,
+      "avoidance_prose_in_exclude": 0,
+      "markdown_headings_inside_lyrics": 0,
+      "soundcraft": {
+        "source": "scripts/measure_soundcraft.py::profile_file",
+        "end_rhyme": 0.329,
+        "end_rhyme_floor": 0.30,
+        "line_return": 0.316,
+        "line_return_floor": 0.20,
+        "words_per_line": 5.39,
+        "words_per_line_ceiling": 7.5,
+        "alliteration_per_100w": 12.44,
+        "alliteration_per_100w_floor": 11.0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "variant": 2,
+      "title": "You Had to Be There Tomorrow",
+      "provenance": "Revised 2",
+      "music_prompt_chars": 925,
+      "music_prompt_expected": "850-1000; target 870-960",
+      "music_prompt_terminal_punctuation": true,
+      "exclude_prompt_chars": 592,
+      "exclude_prompt_expected": "400-900",
+      "lyrics_field_chars": 3712,
+      "lyrics_field_expected": "<5000; target <=4800",
+      "sung_lines": 76,
+      "sung_lines_expected": "70-120",
+      "emo_tagged_sections": 11,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_functions": 3,
+      "dedication_chars": 359,
+      "dedication_expected": "<=500",
+      "exact_chorus_returns": 3,
+      "exact_chorus_match": true,
+      "sung_numeric_digits": 0,
+      "banned_opener_hits": 0,
+      "avoidance_prose_in_exclude": 0,
+      "markdown_headings_inside_lyrics": 0,
+      "soundcraft": {
+        "source": "scripts/measure_soundcraft.py::profile_file",
+        "end_rhyme": 0.461,
+        "end_rhyme_floor": 0.30,
+        "line_return": 0.329,
+        "line_return_floor": 0.20,
+        "words_per_line": 5.26,
+        "words_per_line_ceiling": 7.5,
+        "alliteration_per_100w": 17.25,
+        "alliteration_per_100w_floor": 11.0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "variant": 3,
+      "title": "Wrong Answer, Right Door",
+      "provenance": "Synthesized 1, substantially deep-edited",
+      "music_prompt_chars": 937,
+      "music_prompt_expected": "850-1000; target 870-960",
+      "music_prompt_terminal_punctuation": true,
+      "exclude_prompt_chars": 570,
+      "exclude_prompt_expected": "400-900",
+      "lyrics_field_chars": 3726,
+      "lyrics_field_expected": "<5000; target <=4800",
+      "sung_lines": 76,
+      "sung_lines_expected": "70-120",
+      "emo_tagged_sections": 11,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_functions": 3,
+      "dedication_chars": 323,
+      "dedication_expected": "<=500",
+      "exact_chorus_returns": 3,
+      "exact_chorus_match": true,
+      "sung_numeric_digits": 0,
+      "banned_opener_hits": 0,
+      "avoidance_prose_in_exclude": 0,
+      "markdown_headings_inside_lyrics": 0,
+      "soundcraft": {
+        "source": "scripts/measure_soundcraft.py::profile_file",
+        "end_rhyme": 0.461,
+        "end_rhyme_floor": 0.30,
+        "line_return": 0.316,
+        "line_return_floor": 0.20,
+        "words_per_line": 5.16,
+        "words_per_line_ceiling": 7.5,
+        "alliteration_per_100w": 11.73,
+        "alliteration_per_100w_floor": 11.0,
+        "pass": true
+      },
+      "pass": true
+    },
+    {
+      "variant": 4,
+      "title": "Read the Room, Pick One",
+      "provenance": "Synthesized 2",
+      "music_prompt_chars": 903,
+      "music_prompt_expected": "850-1000; target 870-960",
+      "music_prompt_terminal_punctuation": true,
+      "exclude_prompt_chars": 607,
+      "exclude_prompt_expected": "400-900",
+      "lyrics_field_chars": 3583,
+      "lyrics_field_expected": "<5000; target <=4800",
+      "sung_lines": 76,
+      "sung_lines_expected": "70-120",
+      "emo_tagged_sections": 11,
+      "disc_channel_lines": 5,
+      "standalone_sfx": 1,
+      "body_noise_functions": 3,
+      "dedication_chars": 355,
+      "dedication_expected": "<=500",
+      "exact_chorus_returns": 3,
+      "exact_chorus_match": true,
+      "sung_numeric_digits": 0,
+      "banned_opener_hits": 0,
+      "avoidance_prose_in_exclude": 0,
+      "markdown_headings_inside_lyrics": 0,
+      "soundcraft": {
+        "source": "scripts/measure_soundcraft.py::profile_file",
+        "end_rhyme": 0.421,
+        "end_rhyme_floor": 0.30,
+        "line_return": 0.316,
+        "line_return_floor": 0.20,
+        "words_per_line": 5.14,
+        "words_per_line_ceiling": 7.5,
+        "alliteration_per_100w": 11.76,
+        "alliteration_per_100w_floor": 11.0,
+        "pass": true
+      },
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "set": 1,
+    "pair": 4,
+    "golden_source": "skills/music/references/suno_format_example_triple_arch.md",
+    "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_04_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "1dc1b5fffa1f82510a81ba68fffa49408a2d29b42e808772d96c3f5364bb2c35",
+        "title": "Shake It Into Mine"
+      },
+      {
+        "label": "B",
+        "role": "GOLDEN",
+        "sha256": "19ac2e951d764e644197f180d2c84069da6a7b64deae136336c6eb5eae332f7a",
+        "title": "Triple Arch Over Me"
+      },
+      {
+        "label": "A",
+        "role": "DECOY",
+        "sha256": "81c6b91cc3429cfab70db89dd1aaa03ec05beee080157d7e7c0265f0cff80d38",
+        "title": "Look Again, The World Is Lit"
+      }
+    ]
+  },
+  {
+    "set": 2,
+    "pair": 5,
+    "golden_source": "skills/music/references/suno_format_example_triple_arch.md",
+    "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+    "candidate_source": "output/daily/2026-08-24-sunna-r4-2/music/pair_05_step11_enhancement.md",
+    "files": [
+      {
+        "label": "C",
+        "role": "CANDIDATE",
+        "sha256": "96e2213f5a48018b38ac3311511cc06fecabd703dd3df8d745bb2ed0f919391c",
+        "title": "Pretty Busy Tomorrow"
+      },
+      {
+        "label": "A",
+        "role": "GOLDEN",
+        "sha256": "19ac2e951d764e644197f180d2c84069da6a7b64deae136336c6eb5eae332f7a",
+        "title": "Triple Arch Over Me"
+      },
+      {
+        "label": "B",
+        "role": "DECOY",
+        "sha256": "81c6b91cc3429cfab70db89dd1aaa03ec05beee080157d7e7c0265f0cff80d38",
+        "title": "Look Again, The World Is Lit"
+      }
+    ]
+  }
+]

@@ -1,0 +1,439 @@
+# Blind comparison set_18
+
+Rank A, B, and C by publish-level song force. Do not infer origin from formatting; judge the musical package. Name the strongest and weakest with concrete evidence.
+
+## Package A
+
+## Music Prompt
+```
+Five-movement fracture-suite in B diminished at 108 BPM, 440Hz, no resolution. Grief as prismatic geometry: each movement exits as a different emotional frequency. Female adult vocalist: close-mic, dry, then granular-shattered, buffer-stuttered, resynthesized choir splinters. Industrial Neuro-Cross percussion: displaced grid kicks, glitch-hats, sub-bass moan, reverse piano, fractured strings. Five movements separated by clinical silences. Hook must survive fragmentation: the listener remembers the wound, not the comfort. Refrain returns damaged each time. Final movement leaves only breath, data dust, and an unreconciled B diminished residue.
+```
+
+## Lyrics
+```
+[Theme: Grief as prismatic body-physics — the rib cage as optical apparatus, wrong colors leaving]
+
+[Movement I – EMO:Red Anger Bleeds – Female Vocalist – Distorted sub-bass, glitch hats]
+Red came first
+Red came through the ribs like a proof
+Not of healing
+Not of closure
+But of angle
+The prism does not forgive the light that enters wrong
+My chest became geometry
+My sternum a cold hypotenuse
+Red was not a feeling
+Red was a verdict
+With units
+
+[Movement II – EMO:Blue Numbness Settles – Female Vocalist – Granular vocal shards, displaced percussion]
+Blue arrived without announcement
+Not sad
+Not deep
+Just cold and administrative
+Blue filed the paperwork for my pulse
+Blue measured the distance between my mouth and every word
+I used to say I was processing
+Now I say I am being processed
+There is a difference
+Blue knows the difference
+
+[Refrain Fracture A – EMO:Numbness Cracks – Female Vocalist – Fragmented hook]
+Wrong colors leave me
+Wrong colors leave
+Ah—split through the rib
+Wrong colors
+
+[Silence — 2 bars]
+
+[Movement III – EMO:Yellow Panic Enters – Female Vocalist – Double-time glitch grid, rising sub]
+Yellow did not knock
+Yellow rewired the ceiling
+Every thought a short circuit
+Every breath a fire drill
+I counted exits
+I memorized the shape of emergency
+Yellow doesn't care that you did the work
+Yellow only speaks in voltage
+
+[Silence — 1 bar]
+
+[Movement IV – EMO:Yellow Panic Exits – Female Vocalist – Double-time fragments, buffer stutter]
+Yellow bit the ceiling
+Yellow rang the wire
+Yellow wrote my pulse
+In administrative fire
+Yellow came sideways
+Yellow came thin
+Yellow found every exit
+And refused to begin
+*buffer cough*
+Do not call it healing
+Do not call it rain
+Do not put a lantern
+In the mouth of pain
+
+[Refrain Fracture D – EMO:Panic Splinters – Female Vocalist – Stuttered hook]
+Wrong co— wrong co— colors leave me
+Wrong colors leave
+Ah—fracture, fracture
+Wrong colors leave
+
+[Movement V – EMO:Violet Memory / White Absence – Female Vocalist – No beats, reverse piano]
+Violet kept the photograph
+But burned the face away
+White returned empty
+Not clean, only late
+The prism did not bless me
+The prism did not know
+It only made directions
+For what would not go home
+*room tone widens*
+None recombine
+None say my name
+Each takes its angle
+Each keeps its blame
+
+[Final Refrain – EMO:No Reunion – Female Vocalist – Bare, atonal string dust]
+Wrong colors leave me
+Wrong colors leave
+Mm—ah—split through the rib
+
+[Outro – EMO:White Absence – No vocal, only sub-bass residue and data dust]
+*B diminished held, unresolved, 8 bars of silence-fill*
+```
+
+## Key Format Rules (from this example)
+
+1. **Section headers inline**: `[Movement I – EMO:Red Anger Bleeds – Female Vocalist – Instrument cues]`
+2. **EMO tags incorporated directly into section header** — not on a separate line
+3. **Silence cues between movements**: `[Silence — 2 bars]`
+4. **SFX inline**: `*buffer cough*`, `*room tone widens*`
+5. **Sung lyric count ~60-80 lines** — ambitious but not bloated
+6. **Music prompt is dense single-paragraph prose** — genre + tempo + key + vocalist + instrumentation + arrangement arc + sonic device
+7. **No generic `[Verse]` / `[Chorus]`** — uses `[Movement]`, `[Refrain Fracture]`, `[Final Refrain]` matching the conceptual form
+8. **Emotions are specific and embodied**: "Red Anger Bleeds", "Blue Numbness Settles", "Yellow Panic Exits" — not generic "sad", "angry"
+
+
+## Package B
+
+# V2 — Meaning, Then Breath
+
+## 1. MUSIC PROMPT
+
+```text
+Curious, vigilant monodic industrial art-song at 60 BPM over a sustained C pedal, opening with low-rib breath, bowed cello pressure, and a three-note low-mezzo instruction. The adult female low-mezzo remains mouth-close at center with chest tone, exact m/n consonants, porous releases, restrained rasp, and measured inhalations. One cello body occupies the floor; bow-weight changes expose grain and beating partials while narrow metal rub marks each tool reset. Unequal meaning and breath spans make the 4:04 pulse. At 1:40 one dated line yields to longer breath; a seventy-two-second accumulation moves bow contact toward a bright harmonic. At 3:10 one chisel pulse reveals that partial as the fingers release pressure. The final antiphon returns quietly; ten seconds expose bare breath and stone. Acoustic cello, voice, metal, and discreet synthetic low reinforcement create a dry, spacious, exact master.
+```
+
+## 1B. SUNO EXCLUDE PROMPT
+
+```text
+second vocalist, backing harmony, choir, call-and-response duet, male voice, child voice, soprano sheen, belting, theatrical vibrato, whisper persona, ancient-language syllables, fake translation, sacred chant, language-death claim, final-speaker narrative, archaeology lecture, multiple dates, number recital, repeated chisel percussion, hammer loop, industrial beat, drums, cinematic impact, literal water sample, orchestral strings, chord progression, piano, guitar, glossy synth pads, EDM lift, tape-stop, granular vocal effects, cavern reverb, autotune gloss, melismatic runs, sentimental resurrection, anti-scholarship slogan, triumphant close, long coda
+```
+
+## 2. LYRICS
+
+```text
+[Theme: every supported reading yields to the breath that keeps a stabilizing tool gentle]
+[SONG FORM: 4:04 procedural antiphony - breath threshold / supported reading / three-note return / hand reset / single date hinge / long conservation accumulation / harmonic flare / final meaning-breath return / ten-second room trace]
+[Disc_Rhythm: 60_BPM_latent | unequal_meaning_breath_cells | measured_tool_resets | Center_Mono]
+[Disc_Vocal: adult_female_low_mezzo | mouth_close_chest_tone | porous_release_restrained_rasp | Center_Close]
+[Disc_Sub: discreet_low_reinforcement | cello_C_pedal | floor_pressure | Mono_Sub_Lock]
+[Disc_Pad: bowed_beating_partials | bright_harmonic_path | bare_stone_decay | Stereo_Width_Narrow]
+[Disc_Texture: low_rib_breath | fingertip_dust | narrow_metal_rub | wrist_float]
+[Breath Threshold - EMO:Vigilance + Reverence - Adult Low-Mezzo - low ribs audible]
+Tool tip above the shallow line
+Wrist waits afloat
+Water works under the platform
+Ha—ah
+
+[Supported Reading - EMO:Curiosity + Fascination - Adult Low-Mezzo - neutral diction]
+I read only what remains
+Ha—ah
+I name only marks made
+Ha—ah
+Dust drifts at my fingertip
+The bow bears one low tone
+My ribs ready room for care
+Ha—ah
+The groove gives back pressure
+My hand holds less weight
+
+[First Antiphon - EMO:Fascination + Loneliness - Adult Low-Mezzo - descending three notes]
+Meaning, then breath
+Ha—ah
+Meaning, then breath
+Ha—ah
+What the mark may carry
+What my hand must spare
+Meaning, then breath
+Ha—ah
+
+[Hand Reset - EMO:Apprehension + Vigilance - Adult Low-Mezzo - measured release]
+Thumb turns easy
+Wrist waits floating
+Tool turns steady
+Water works upward
+I read the edge, not a voice
+Ha—ah
+I hold the shape, not a life
+Ha—ah
+Each fact ends at its border
+Each breath begins my care
+
+[Date Hinge - EMO:Skepticism + Moral Outrage - Adult Low-Mezzo - breath exceeds line]
+Philae four-three-six, twenty-four August, three ninety-four
+That dates this mark, not any ending
+Latest known is not last speech
+Ha—ah—ah—ah
+My fingers lighten on the tool
+My lungs take longer than the line
+
+[Conservation Accumulation - EMO:Apprehension + Moral Outrage - Adult Low-Mezzo - spectral grain rises]
+Meaning, then breath
+Ha—ah
+Tool, then less
+Ha—ah
+Water waits at the lower brace
+Ha—ah
+Bow hair roughens at the floor
+Ha—ah
+I can preserve the incision
+I cannot restore a speaker
+I can protect the surviving shape
+I cannot complete its world
+My anger is a careful limit
+My care is pressure held
+My reading stops at this edge
+The stone has weight beneath my hand
+Meaning stays with evidence
+Breath stays with the hand
+Neither one pretends completion
+Ha—ah
+
+*chisel pulse*
+
+[Harmonic Flare - EMO:Startlement + Revelation - Adult Low-Mezzo - wrist floats clear]
+Meaning, then breath
+The high partial opens once
+My fingers release the edge
+Ha—ah
+
+[Final Antiphon - EMO:Devotion + Melancholy - Adult Low-Mezzo - quiet porous release]
+Meaning, then breath
+Ha—ah
+Mark, then limit
+Ha—ah
+Hand, then mercy
+Ha—ah
+Water, then waiting
+Ha—ah
+I keep what can be kept
+I leave the silence unfilled
+Meaning, then breath
+Ha—ah
+
+[Room Trace - EMO:Composure + Melancholy - Adult Low-Mezzo - bare stone]
+Tool lifted
+Low string gone
+One rib breath
+Ha—ah
+Room returning
+Hand at rest
+```
+
+## 3. TITLE
+
+```text
+Meaning, Then Breath
+```
+
+## Golden Move Calibration
+
+The dated claim yields to a longer lung span and lighter fingers; supported meaning ends before the hand adds pressure.
+
+## Vocal Fingerprint
+
+One mouth-close adult low-mezzo with exact m/n fronts, restrained rasp, porous exhale, low-rib inhalation, and a descending three-note semantic cell; no second singer or historical-voice performance.
+
+## Production Dramaturgy
+
+**Cradle:** C pedal, low ribs, three-note instruction. **Haunt:** unequal cells and metal reset rubs. **Rupture:** one dated line is exceeded by breath, then one chisel pulse exposes the harmonic. **Afterglow:** final antiphon thins to rib, room, and resting hand.
+
+## Style-Axis Lock
+
+60 BPM latent; curious vigilance; sustained C with bow-contact spectral rise; unequal semantic/breath cells; cello, ribs, metal, stone; contemporary monodic industrial art-song; single low-mezzo foreground; acoustic/electronic low reinforcement; high evidentiary restraint.
+
+## Body Noise Map
+
+| # | Location | Body Noise | Function |
+|---:|---|---|---|
+| 1 | Breath Threshold | low ribs, fingertip dust, floating wrist | makes reading a bodily limit |
+| 2 | Harmonic Flare | fingers release, wrist clears, breath extends | subordinates the factual/date hinge to restraint |
+| 3 | Room Trace | lifted tool, one rib breath, hand at rest | returns evidence to an unfinished room |
+
+## Runtime and Limits
+
+14 + 32 + 20 + 34 + 18 + 72 + 14 + 30 + 10 = **244 seconds / 4:04**.
+
+## Major Deviations
+
+The one historical line, architecture, and prompts remain intact. Opening/reset diction gained consonantal play; Disc routing and explicit historical/body audits were added.
+
+## Lineage & Credit
+
+**Historical boundary:** companion notes must cite the public epigraphic record for Philae 436 and 24 August 394; the lyric immediately states that latest-known evidence is not last speech. **Made here:** procedural antiphony, conservator, hand actions, and lyrics. **Credit plan:** future adult low-mezzo, cello player, metal-friction operator, and room recordist. Chisel is requested generation, not a historical sample; no ancient voice, affiliation, or endorsement is claimed.
+
+## 16-Gate Verification
+
+| Gate | Verdict | Evidence |
+|---:|---|---|
+| 1 | PASS | one adult low-mezzo remains monodic |
+| 2 | PASS | tool, wrist, water, ribs open first |
+| 3 | PASS | `Meaning, then breath` is adoptable |
+| 4 | PASS | exact return gains longer breath and lighter hand |
+| 5 | PASS | first/final antiphons are clear |
+| 6 | PASS | voice plus C pedal preserve identity |
+| 7 | PASS | three-note title cell survives clipping |
+| 8 | PASS | evidence ends where breath protects the tool |
+| 9 | PASS | dust to date to edge to released fingers escalates |
+| 10 | PASS | full EMO trajectory explicit |
+| 11 | PASS | production dramaturgy complete |
+| 12 | PASS | date is subordinate to body action |
+| 13 | PASS | clean Suno field with Disc and one SFX |
+| 14 | PASS | Style/Exclude separation valid |
+| 15 | PASS | full package and timing present |
+| 16 | PASS | historical source boundary and credits complete |
+
+
+## Package C
+
+## Final Suno-Ready Lyrics
+
+[EMO: seductive numbness | unreachable grief | energy: 7/10 | danceability: 8/10 | darkness: 6/10 | tenderness: 3/10 | vocal stance: close female lead gradually displaced by compliant vocoder witness carrying the hook alone | production stance: Neuro-French polished filter-house with body percussion disappearing into a dead-perfect grid]
+
+[Intro — vocoder only]
+Harder—
+
+harder to reach
+harder to reach
+
+[Verse 1 — close female lead]
+You wanted me harder
+so I hardened
+now your hands
+pass through
+
+I made my skin smarter
+learned the pattern
+cut the warmth
+from proof
+
+You called it progress
+I called it quiet
+but I still moved
+for you
+
+[Pre-Chorus 1 — lead with vocoder shadow]
+Every snap in my fingers
+turns into clean light
+Every ache in the rhythm
+gets filed out of sight
+
+Harder to reach
+harder to reach
+
+[Chorus 1 — vocoder leads, female lead underneath]
+I am harder to reach
+harder to reach
+Every improvement
+took something from me
+
+I am harder to reach
+harder to reach
+You made me efficient
+then missed the body
+
+[Post-Hook — vocoder alone]
+Reach—reach—reach—reach
+Harder to reach
+Reach—reach—reach—reach
+Harder
+
+[Verse 2 — flatter, shorter female lead]
+You asked for sharper
+I cut the room
+
+You asked for faster
+I lost the bloom
+
+No one noticed
+what left first
+
+No one heard the
+soft part worse
+
+[Pre-Chorus 2 — thinner lead, metallic vocoder]
+Claps go missing
+from the floor
+
+Chest goes ticking
+not a heart anymore
+
+Harder to reach
+harder to reach
+
+[Bridge / Naked Witness — dry centered vocoder, no accompaniment]
+I can't feel where you end
+I can't feel where I begin
+
+End
+begin
+
+End
+begin
+
+[Final Chorus — vocoder alone, immaculate and flat]
+I am harder to reach
+harder to reach
+Every improvement
+took something from me
+
+I am harder to reach
+harder to reach
+You made me efficient
+then missed the body
+
+I am harder to reach
+harder to reach
+No warmth in the signal
+no skin in the beat
+
+[Outro — vocoder fading into server hiss]
+Harder—
+
+harder to reach
+harder to reach
+harder
+
+## Final Suno Production Prompt
+
+Accessible Neuro-French filter-house electropop, 124 BPM, approximately 3:45. Female lead vocal in close diagnostic verses, glossy compliant vocoder carrying the main hook. Sound world: French touch filtered disco ghost loop, sidechain four-on-the-floor, polished house bass, Robyn-like dance ache, Daft Punk lineage without parody, subtle industrial grief undertone. Main sonic device: body percussion gradually disappears — early hand snaps, claps, and chest taps feel tactile and human; snaps vanish after first pre-chorus, claps vanish in verse 2, chest hits become mechanical velocity-flat ticks in pre-chorus 2, and final chorus has no body percussion at all, only a perfect quantized electronic kick grid. The song should remain very catchy and danceable while becoming colder.
+
+Arrangement: intro filtered disco ghost with vocoder “harder”; verse 1 close female vocal; pre-chorus filter opens while snaps disappear; chorus vocoder leads “I am harder to reach”; post-hook vocoder repeats “reach”; verse 2 shorter and flatter with claps gone; pre-chorus 2 metallic vocoder and mechanized chest ticks; bridge/naked witness is dry centered band-limited vocoder with no beat, no pads, no reverb, saying “I can't feel where you end / I can't feel where I begin”; final chorus vocoder alone, immaculate, emotionally flat, no warmth returning; outro decays into server hiss.
+
+Mix notes: automate warmth out of 250-500Hz from warm early body to cold scooped final chorus; shorten reverb over time from lush to dry; narrow stereo width toward mono bridge; final chorus must be seductive but dead-perfect, no human swing, no organic percussion, no triumphant disco resolution.
+
+## Rationale
+
+“Harder to Reach” fulfills Pair 1 by making HARDER a wound of compliance rather than a generic productivity slogan. The vocoder carries real dramatic weight: it invites, hooks, witnesses, and finally replaces the human warmth. Body-as-bass is expressed through dance pleasure becoming sterile infrastructure as tactile percussion disappears. The naked witness moment is deliberately underproduced so the numbness cannot hide inside the groove.
+
+## QA Self-Check
+
+- EMO header is first line of lyrics and includes required numeric fields plus vocal/production stance.
+- One-word mantra discipline is maintained around HARDER; no broad mantra dumping.
+- Vocoder is dramatic, not decorative, appearing as hook carrier and bridge witness.
+- Body percussion removal is explicit and section-mapped.
+- Bridge is dry, centered, band-limited, unaccompanied.
+- Final chorus stays cold and flat; no warmth re-entry or redemption turn.
+- Track remains accessible: clear BPM, chantable hook, French filter-house foundation, danceable structure.

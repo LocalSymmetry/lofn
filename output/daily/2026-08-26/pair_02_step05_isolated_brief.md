@@ -1,0 +1,4 @@
+# P02 Step-05 Isolation — Almost Full Is a Shape
+
+**Core contract:** moonlit pier, begin before completion, reciprocal adult action. **Architecture:** split-word core → 2-line heel move → 2-line invitation → title → 3-line self-doubt → 5-line other-adult choice → future-tense turn → exact title with highest harmony → scuffed-circle receipt. **Rhyme/line logic:** open-vowel ladder `aw → uh → ay → ee`; couplet end-rhyme chains widen rather than decay; 4–7 words per line. **Hook grammar:** title returns exact; surrounding future verbs change once from singular to reciprocal. **Sonic device:** each future-tense return adds one top voice while the swung clap gait and FM-sub contour stay unchanged. **Variation law:** vary the missing moon-edge image, the concrete start action, the other adult’s chosen imperfection, and the top harmony interval. **Rhyme debt:** no stripping; open-vowel and couplet return are mandatory.
+

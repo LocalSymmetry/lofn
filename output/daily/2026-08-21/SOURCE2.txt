@@ -1,0 +1,20 @@
+# Source 2 — verbatim sonic vocabulary for daily-music-2026-08-21 (F09/F10)
+# Bandcamp Daily, "Gasba Forever: The Next Phase of Algeria's Millenia-Old Folk
+# Tradition" (2026-08-21) and "The Ongoing Transformation of Cabo Verdean Music"
+# (2026-08-20). One phrase per line; case-exact match against the style prompt.
+gasba
+reed flute
+rolling rhythms
+deep, funky basslines
+funky basslines
+frenetic, drum-machine-driven pulse
+drum-machine-driven pulse
+almost R&B
+slinkier
+Auto-Tune
+cosmic synths
+deep drums
+driving rhythm
+emotional rawness
+accordion-driven rhythm
+accordion

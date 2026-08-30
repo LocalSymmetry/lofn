@@ -1,0 +1,26 @@
+{
+  "run_id": "2026-08-24-sunna-r4-1",
+  "max_children": 3,
+  "spawn_strategy": "staggered_3_plus_3_with_cross_pair_gate_between_steps",
+  "controller": "codex:01a032f6-89dd-7472-8706-a7413eb26fd2:sunna-r4-1",
+  "agents": [
+    {"pair": 1, "status": "pending_step06"},
+    {"pair": 2, "status": "pending_step06"},
+    {"pair": 3, "status": "pending_step06"},
+    {"pair": 4, "status": "pending_step06"},
+    {"pair": 5, "status": "pending_step06"},
+    {"pair": 6, "status": "pending_step06"}
+  ],
+  "phase_barriers": [
+    "all_step06_then_validate_step06_distinctiveness",
+    "all_step07_then_open_step08",
+    "all_step08_then_open_step09",
+    "all_step09_then_validate_step09_distinctiveness",
+    "all_step10_then_validate_portfolio_distinctiveness"
+  ],
+  "timeouts_minutes": {
+    "pair_step": 30,
+    "qa": 20,
+    "full_run": 180
+  }
+}

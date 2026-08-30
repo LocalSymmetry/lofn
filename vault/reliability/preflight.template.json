@@ -1,0 +1,14 @@
+{
+  "run_id": "YYYY-MM-DD-slug",
+  "barbell_route": "accessible",
+  "model_available": true,
+  "output_dir_writable": true,
+  "concurrency_known": true,
+  "research_brief_complete": true,
+  "seed_or_seed_packet_exists": true,
+  "rules_saved_if_relevant": true,
+  "modality_confirmed": true,
+  "target_output_count_confirmed": true,
+  "barbell_route_set": true,
+  "notes": "Record evidence for each true value in the companion preflight.md or run log."
+}

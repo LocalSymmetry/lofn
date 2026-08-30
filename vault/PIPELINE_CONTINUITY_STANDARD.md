@@ -24,6 +24,46 @@ The Lofn pipeline produces rich creative DNA (18-voice panels, 6 Special Flairs,
 
 ## THE IMMUTABLE CONTINUITY BLOCK (ICB)
 
+### ⭐ ICB TRANSPORT — RATIFIED 2026-08-08 (The Scientist), CONDITIONALLY
+
+**The Scientist:** *"I'm okay with Ratify. Let's see on the next runs if they actually do it."*
+
+**The ratified transport.** The run-specific creative core is **inlined verbatim** in each pair-agent spawn
+prompt. The **complete frozen block** — including the full personality DNA — is **read from disk by the
+agent as its first action**, and the agent echoes back **the byte count AND the LF-normalised sha256**.
+The coordinator then **re-stats both independently**. Doctrine's *"inject verbatim, never rely on the agent
+reading it"* is satisfied by **proof of read**, not by duplication of bytes.
+
+**Why it was in question.** It began as a size workaround when the personality file was 106,219 B. That
+cause is gone (THE ARCHIVE quarantined → 27,796 B), but the transport was kept: six agents × 93 KB is
+~558 KB of duplicated prompt for a file every agent can read in one call. **It was declared openly for
+five consecutive runs and never ruled on.**
+
+### ⛔ THE CONDITION — THIS IS WHAT "LET'S SEE" MEANS, WRITTEN DOWN
+
+Ratification is **conditional on the echo actually being checked, every run.** The proof is worthless if
+nobody verifies it, and an unverified echo is exactly the "assert presence, not fidelity" trap
+`EXECUTION.md` §4 already warns about.
+
+**Standing requirement, every run:**
+1. Every generating agent echoes `icb_bytes_injected` **and** `icb_sha256_lf`.
+2. The coordinator **re-hashes the file itself** and compares. ⚠️ **LF-normalise first** — `core.autocrlf`
+   inflates the raw byte count and changes the raw sha; the frozen figure is defined LF-normalised.
+3. **A mismatched or absent sha is a DISPATCH FAILURE for that pair, not a note.** Re-dispatch it.
+4. **The per-run compliance rate is recorded in the run INDEX**, so the condition is auditable rather than
+   assumed.
+
+**Evidence at ratification (2026-08-08):** across `2026-08-07-daily-music-indignation` and
+`2026-08-08-clown-music` — 12 pair agents, 6 step-11 tiers and 2 QA judges — **every agent echoed the
+exact expected sha** (`5e9c7f7f…` and `95d95246…` respectively). **20 of 20.** Two runs is not proof;
+it is the first two data points against a condition that now has to keep being met.
+
+⚠️ **If compliance ever drops below 100%, the ratification lapses and the transport reverts to full
+inline duplication.** That is the deal.
+
+---
+
+
 Every handoff file must contain an **Immutable Continuity Block** — a clearly demarcated section that downstream agents receive verbatim and must NOT summarize, compress, or reinterpret.
 
 ### Required ICB Contents

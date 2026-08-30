@@ -1,0 +1,38 @@
+      style  excl  lyric  lines  endRhy  lineRet  w/line  hw  mq  num    I%   II%  III%
+---------------------------------------------------------------------------------------
+V1      938   732   4893     96   0.479    0.250    5.61   0   0    1  44.8  33.3  21.9
+V2      957   711   4569     82   0.439    0.317    5.50   0   0    1  30.5  43.9  25.6
+V3      956   718   4832     83   0.590    0.277    5.49   0   0    1  27.7  32.5  39.8
+V4      954   718   4854     86   0.500    0.314    5.84   0   0    1  43.0  31.4  25.6
+
+NUMERIC FACTS SUNG (must be <= 1 per song, as words, never digits)
+  V1  'four'   <- the cold sits at four degrees,
+  V2  'eight hundred'   <- It goes down eight hundred feet
+  V3  'six'   <- Six years and it is all new water.
+  V4  'four'   <- the cold sits at four degrees
+
+SEAM WORD-LEAPS (R3(i)) -- last sung word of act N == first sung word of act N+1
+  V1  ACT ONE ends 'order' -> ACT TWO opens 'order'   OK 
+  V1  ACT TWO ends 'sound' -> ACT THREE opens 'sound'   OK 
+  V2  ACT ONE ends 'charge' -> ACT TWO opens 'charge'   OK 
+  V2  ACT TWO ends 'key' -> ACT THREE opens 'key'   OK 
+  V3  ACT ONE ends 'record' -> ACT TWO opens 'record'   OK 
+  V3  ACT TWO ends 'strike' -> ACT THREE opens 'strike'   OK 
+  V4  ACT ONE ends 'floor' -> ACT TWO opens 'floor'   OK 
+  V4  ACT TWO ends 'bottom' -> ACT THREE opens 'bottom'   OK 
+
+POLE PER ACT (R4) -- 'The water does not know', exact, identity unchanged
+  V1  ACT ONE x4  ACT TWO x2  ACT THREE x3
+  V2  ACT ONE x2  ACT TWO x4  ACT THREE x3
+  V3  ACT ONE x2  ACT TWO x2  ACT THREE x5
+  V4  ACT ONE x4  ACT TWO x2  ACT THREE x3
+
+HARDWARE-NOUN STEM SCAN (R5 Falsifier A)
+  V1  sung lines: CLEAN (0)   all three fields: CLEAN (0)
+  V2  sung lines: CLEAN (0)   all three fields: CLEAN (0)
+  V3  sung lines: CLEAN (0)   all three fields: CLEAN (0)
+  V4  sung lines: CLEAN (0)   all three fields: CLEAN (0)
+
+DEDICATION  477 chars  (ceiling 500)  OK
+
+ALL GATES PASS

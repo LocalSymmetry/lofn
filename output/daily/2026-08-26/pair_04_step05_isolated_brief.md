@@ -1,0 +1,4 @@
+# P04 Step-05 Isolation — I Am Not Your Background Organ
+
+**Core contract:** wrong bright container named once; step into foreground pleasure; reciprocal held-note answer. **Architecture:** organ vowel/kick cut → 1-syllable call/6-syllable answer → atrium verse → 3/4 call-answer → title + crowd answer → 2/3 escalation → container line → 5/1 seam → pressure release → overtone crown. **Rhyme/line logic:** antiphonal rhyme across calls and answers; long title balanced by `(Not background)`; no four-line pop stanzas. **Hook grammar:** lead states full title; room owns short answer. **Sonic device:** adult’s one-word answer releases sidechain pressure; held organ pulse remains audible and independent. **Variation law:** vary balcony distance, call/answer length path, wrong-container object, and pressure-release spectral region. **Rhyme debt:** none; antiphony and persistent organ return are structural.
+

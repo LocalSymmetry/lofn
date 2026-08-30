@@ -175,15 +175,15 @@ Five channels minimum: Rhythm, Vocal, Sub, Pad, Texture. Every token is a concre
 
 ### CRITICAL: EMO Tag Format — EXACT EXAMPLE, DO NOT DEVIATE
 
-EMO tags MUST be integrated into section headers using `–` (em dash) separators. Emotional states use commas, not `to` connectors. `[11]` markers embed where step11 enhancement touched that section:
+EMO tags MUST be integrated into section headers using `–` (em dash) separators. Emotional states use commas, not `to` connectors. Pipeline-stage citation markers never enter the Suno field:
 
 ```text
-[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth [11] – Reluctant Pop Star, dry close-mic, slow internal rhymes]
+[Septet 1 – 0.1°C – EMO:Sardonic Cool, Deflected Warmth – Reluctant Pop Star, dry close-mic, slow internal rhymes]
 the water took a breath so slow you thought your skin
 had loosed itself and let the silence in
 ```
 
-Header structure: `[SECTION LABEL – VARIANT/CUE – EMO:State1, State2 [11] – PERSONA NAME, vocal style, delivery notes]` — all separated by ` – ` (space-emdash-space) within a single bracket. EMO values use commas between related emotional states. `[11]` markers embed where the step11 enhancement touched.
+Header structure: `[SECTION LABEL – VARIANT/CUE – EMO:State1, State2 – PERSONA NAME, vocal style, delivery notes]` — all separated by ` – ` (space-emdash-space) within a single bracket. EMO values use commas between related emotional states. Never emit `[11]` or any other pipeline citation token.
 
 **NEVER:** standalone `[EMO=reverence]` on its own line, EMO without persona and delivery style, bare `[EMO]` tags, or `-` (hyphen) where `–` (em dash) is the separator.
 
@@ -196,7 +196,7 @@ Header structure: `[SECTION LABEL – VARIANT/CUE – EMO:State1, State2 [11] �
 - Binding Locks: Verify, strengthen, or challenge in Major Deviations.
 - Style-Axis Locks: Tempo, mood, instrumentation, lyrics, genre, vocal, rhythm, melody, harmony, production — all 10 locked.
 - Lineage & Credit: Every track drawing on a living scene MUST credit it.
-- Golden Song References: Two selected songs with full payload and learning notes.
+- Golden Move Calibration: Name the distilled rules used; do NOT reproduce Golden Song titles, prompts, lyrics, or payloads in the output.
 - Major Deviations: Changed / refused / intensified with reasons.
 - Constraint Audit: Verify all constraints survived.
 - Panel Ledger / QA Report: Preserved from step10.
@@ -217,7 +217,7 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 - Binding Locks: all locks verified — PRESENT
 - Style-Axis Locks: all 10 axes locked — PRESENT
 - Lineage & Credit: populated or N/A with reasoning — PRESENT
-- Golden Song References: two songs with payload and learning notes — PRESENT
+- Golden Move Calibration: distilled rules only; no Golden Song payload — PRESENT
 - Major Deviations: stated explicitly — PRESENT
 - Constraint Audit: all constraints verified — PRESENT
 - Panel Ledger / QA: preserved from step10 — PRESENT
@@ -301,8 +301,10 @@ def resolve_personalities(run_dir, pairs, repo_root):
     text = load_file(assign_path) or ""
     default_yaml = resolve_personality_yaml(DEFAULT_PERSONALITY[:-5], repo_root)
 
-    # Split into per-pair sections on "Pair NN" / "PAIR N" headers.
-    section_starts = list(re.finditer(r'(?im)^#{0,4}\s*pair\s*0*(\d+)\b', text))
+    # Split into per-pair sections on "Pair NN" / "PAIR N" / compact "P1" headers.
+    # Daily orchestrator packets legitimately use both long and compact labels;
+    # failing to split the compact form lets a later pair's mode leak upstream.
+    section_starts = list(re.finditer(r'(?im)^#{0,4}\s*(?:pair\s*0*|p0*)(\d+)\b', text))
     sections = {}
     for i, mt in enumerate(section_starts):
         pn = int(mt.group(1))

@@ -1,0 +1,3 @@
+A = DECOY
+B = GOLDEN
+C = CAND:02_make_it_nine:V1

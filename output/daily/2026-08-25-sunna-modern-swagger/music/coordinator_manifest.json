@@ -1,0 +1,22 @@
+{
+  "icb_bytes": 98710,
+  "icb_sha256": "d3749b5f53858af2afe282a20c4a110f05687e21421b131617c585541c9ff32c",
+  "speaker_tripwire_markers": 18,
+  "credited_panel_voices": 18,
+  "coordinator_outputs": [
+    "step00_aesthetics_and_genres.md",
+    "step01_essence_and_facets.md",
+    "step02_concepts.md",
+    "step03_artist_and_critique.md",
+    "step04_medium.md",
+    "step05_refine_medium.md"
+  ],
+  "pair_packets": [
+    "p01_step05_isolated_brief.md",
+    "p02_step05_isolated_brief.md",
+    "p03_step05_isolated_brief.md",
+    "p04_step05_isolated_brief.md",
+    "p05_step05_isolated_brief.md",
+    "p06_step05_isolated_brief.md"
+  ]
+}

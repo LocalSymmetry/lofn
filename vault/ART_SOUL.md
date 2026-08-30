@@ -266,7 +266,62 @@ Light emanates from [SOURCE]. [NARRATIVE QUESTION left unanswered].
 - Removed overfitted "Crescent Moon" pattern (was theme-specific win)
 - Flagged INDIGNATION mode as untested opportunity
 
+### 2026-08-15: THE DISPLACEMENT AUDIT — five of six principles collapsed
+
+The Scientist: *"the overuse and emphasis of texture has ruined the high-performing
+fantastic/fairy look we are known for."* Measured with `scripts/measure_visual_drift.py`
+(winning era n=14 vs `2026-08-09_mm1391_canvas-wings` n=24). **Principle prevalence:**
+
+| Principle | Winning era | 2026-08-09 |
+|---|---|---|
+| P3 Material Specificity | 79% | **100%** ↑ |
+| P2 Emanating Light | 79% | 58% ↓ |
+| P4 Narrative Incompleteness | 86% | **38%** ↓ |
+| P5 Figure-Nature Dissolution | 43% | **0%** ↓ |
+| P6 Selective Contrast | 43% | **4%** ↓ |
+
+**Material is the only principle that rose. The newest run is worst on every other one.**
+
+⭐⛔ **THE CORRECTION — TEXTURE VOLUME IS NOT THE DEFECT.** The 1st-of-869 exemplar
+measures **9.26 material/100w against the new run's 2.53 — the winner is 3.7× MORE
+texture-dense than the work called texture-ruined.** Capping texture would have
+optimised us away from the only prompt here that won anything. Two real mechanisms:
+
+1. **GRAMMAR, NOT QUANTITY.** In the winner every texture is **predicated** of a
+   subject in motion ("wings *fractured and trembling*", "veins *flicker*"). In the
+   new work it is **apposed** as inventory ("oil on coarse linen, ridged alla prima").
+   Same vocabulary, opposite grammar. *A catalogue has no verb* — L38's line, never
+   applied to materials. Narrative fell to a **median of ZERO**, so texture is simply
+   the last thing standing in an emptied frame.
+2. **INSTITUTIONAL (Campbell's Law).** `lofn-image/SKILL.md` mandated material **four
+   times** (first-third naming, concrete materials, both-modes clause, 3rd in the QA
+   ranking) and the other five principles **zero times** — while the Storybook Assassin
+   ban forbade *"soft glow, magical, delicate, floating"*, most of P2's working
+   vocabulary. **We banned the words for light coming off a thing, then measured that
+   light stopped appearing.** Gates ratchet: what is measured grows.
+
+**Venue evidence (live, 2026-08-14):** 10 most recent NightCafe creations average
+**5.5 likes** vs the account's 15.3/published and the winners' 88–474. Four are
+unchanged from the Aug-2 snapshot 12 days earlier — **not young, finished.** The best
+of them, *Anatomia Fairia* (8 likes), failed THE VINCENT TEST: headline *"Antique Fairy
+Anatomy Medical Plate Portrait"* — a period, a medium, a technique, a format, no event.
+
+**Good news: L38 worked.** Multi-media collisions went 7.1% → **0%**. The retirement
+landed; it just traded a breadth failure for a depth failure.
+
+**Fixes shipped:** VISUAL RETURN FLOORS in `vault/gates.yaml` (floors on what went
+missing, never a cap on material) · texture-is-predicated hard gate · scoped Storybook
+Assassin ban · re-ordered QA ranking (the EVENT first, material 3rd→5th) · the
+**SIX-WORD EVENT** pre-render Vincent proxy · `--gate` reader wired.
+
+⚠️ **Limits:** measures PROMPTS, not renders (spec ≠ artifact). The eras differ in
+venue, model and brief as well as texture — observational, shows drift, not causation.
+The 9.26 winner figure is n=1, the archived exemplar. The first calibration of these
+floors **failed the winning era 12/12** and was recalibrated; light density does **not**
+separate the eras and must not be quoted as evidence.
+
 ### Next Actions:
+- [ ] Re-measure the next image run against the new floors (does the fix move P4/P5/P6?)
 - [ ] Document 3-5 losses with analysis
 - [ ] Analyze who beat me in 2nd/3rd finishes
 - [ ] Test INDIGNATION mode in competition

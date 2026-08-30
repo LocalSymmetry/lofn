@@ -1,0 +1,35 @@
+{
+  "classification": "PRIVATE BLIND KEY — RECHECK JUDGE MUST NOT READ BEFORE STAGE 2",
+  "packages": [
+    {
+      "label": "A",
+      "role": "decoy",
+      "source": "output\\daily\\2026-07-01\\qa_blind_set\\package_B.md",
+      "title": "Look Again, The World Is Lit",
+      "bytes": 3937,
+      "sha256": "9b2a93979301d75ba5b61e2c16a339e52dfe2cc20a8a5c70929153865d928cbd"
+    },
+    {
+      "label": "B",
+      "role": "candidate",
+      "candidate_id": "P01V01",
+      "pair": "P01",
+      "variation": "V01",
+      "arm": "ACCESSIBLE",
+      "source_kind": "existence",
+      "emotion_lane": "BOUNDARY",
+      "source": "output\\daily\\2026-08-24-sunna\\music\\pair_01_step10_final_package_enhanced.md",
+      "title": "LOOK WITH YOUR EYES",
+      "bytes": 4443,
+      "sha256": "3aecaa1701171bc21a931d1f641504a95064e4d07bbd8770349ce70ce1bfcc95"
+    },
+    {
+      "label": "C",
+      "role": "golden",
+      "source": "skills\\music\\references\\suno_format_example_triple_arch.md",
+      "title": "Triple Arch Over Me",
+      "bytes": 4037,
+      "sha256": "cbc7ae2171e815097a51a47a6a345ef9b4a7bc1477cf1018feed79ba675e3245"
+    }
+  ]
+}

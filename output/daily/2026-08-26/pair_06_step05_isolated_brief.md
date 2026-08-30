@@ -1,0 +1,4 @@
+# P06 Step-05 Isolation — Keep the Mark I Choose
+
+**Core contract:** ruby mirror mark, one add/remove fact, selection without hoarding, room names it back. **Architecture:** three-note splice → 5-line address → title → 2-line room answer → 7-line mark/erasure counterclaim → fact hinge → one-word changed refrain → 1-line chosen mark → withheld high note/crown → exact title. **Rhyme/line logic:** liquid l/r/m/n consonance in verses, hard k/ch title, slant end families within four lines; 3–6 words. **Hook grammar:** refrain returns one word changed at the hinge, then byte-exact once selection is complete. **Sonic device:** melodic high note is withheld until the room names the chosen mark; call cadence and sub path remain invariant. **Variation law:** vary mark gesture, erased alternatives, changed word, call interval, and crown timbre. **Rhyme debt:** none; liquid consonance, call cadence, and exact final return carry the song.
+

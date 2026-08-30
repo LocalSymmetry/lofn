@@ -74,6 +74,8 @@ State in the brief: "Advisory learnings consulted: <N entries, tags>; INDIGNATIO
 ## PHASE 2 — Generate (daily rules layered on the `lofn` pipeline)
 For each in-scope modality, run the **`lofn`** pipeline (Phase 0 Golden Seed → Phase 1 3-panel orchestrator → modality steps → QA) using the research brief as `{input}`, **plus these daily-only rules:**
 
+**Skaði consumption (music days, 2026-08-17):** before Phase-0 genre/technique choices, read `vault/music_atlas/FRONTIER.md`; if an atlas row informs a choice, cite its id in the Phase-0 doc and append one line to FRONTIER §CONSUMPTION LOG. **Advisory prior, never a gate**; an empty read needs no log line.
+
 ### Tri-Source Methodology (declare BEFORE writing any artifact)
 Every daily piece integrates three sources; state them explicitly in the metaprompt and each pair brief:
 - **Source 1 — CONTENT / emotional stakes:** today's world facts (quakes, APOD, F19 HN, F20 BBC, moon, solar weather). Songs/images are *resonance*, not reportage. **⛔ One-fact rule (music):** the tri-source method feeds the THEME and FORM — it is not a lyric quota. **At most ONE numeric fact is sung per song**, at the emotional hinge, responded to rather than recited (`lofn-music` Golden Move rule 2; `gates.yaml → max_sung_numeric_facts`). A verse reciting the day's sunspot number, solar-wind speed, moon percentage, AND quake depth is a weather report in meter — a repair. The other facts inform the pair briefs and stay there.
@@ -85,6 +87,15 @@ Every daily piece integrates three sources; state them explicitly in the metapro
 - **Axis B — NEWS vs EXISTENCE:** **max 3** pairs anchored to today's research/news; **min 3** pairs explore existence/interior-life/universal experience. All 6 on one theme = a lecture, not a record.
 
 ### Emotional Duality & diversity
+
+- ⭐⭐ **ASSIGN THE SITUATION, NEVER THE FEELING (2026-08-28, measured).** A pair brief may fix the subject,
+  the arm, the axis and the constraints; it may **not** hand the pair its emotion. The 08-28 run assigned a
+  register per pair — *P01 INDIGNATION, P02 indignation-grieving, P03 mania-as-delight* — and six pairs each
+  **performed an assigned feeling** rather than finding one. ⛔ **A named emotion in a brief is a costume
+  instruction**, and it is the same defect as a narrator with no stake: *the pair reports the feeling instead
+  of having it.* Give the situation and the pressure; let the pair tell you what it turned out to feel.
+  The set-level duality rule (≥1 AWE, ≥1 INDIGNATION) is checked **at selection, from what came back** —
+  never pre-allocated across the six.
 - **≥1 AWE song and ≥1 INDIGNATION song** in the set.
 - 6 different verse architectures / camera grammars across the 6 pairs (the standing distinctiveness rule). Vary stanza lengths intentionally.
 - **Variation angles are per-pair, never a shared template set.** A global "V4 = glitch chapel for everyone" scheme is how the 2026-06-26 daily produced two pairs singing the same song with nouns swapped; each pair derives its own 4 angles from its own concept (`EXECUTION.md` §3 item 3).
@@ -113,8 +124,9 @@ Run the two modalities concurrently (independent `lofn` runs writing to `music/`
 1. **Cardinality checkpoint** before any selection: Step 05 ≥6 pairs; steps 06–10 have output for EVERY **non-quarantined** pair; ≥24 final prompts; (music) 6 enhanced packages. Rebuild the RUN_STATE manifest from disk first (§ "Run-state manifest & resume"), then read it — don't re-crawl by hand. **A `quarantined` pair is a named, non-fatal hole, not a cardinality failure: do NOT feed its artifact downstream, do NOT block delivery on it — surface "N of 6 broke open" and continue with the survivors.** If a *non-quarantined* pair is missing output, rerun from the collapsed step — do not deliver.
 2. Run **lofn-qa** on each modality (16-point Suno gate / Visual Somatic Gate). Verify the daily rules held: tri-source declared, 3+3 split honored, emotional duality present.
 3. **Save** under `output/daily/YYYY-MM-DD/` (`00_research_brief.md`, `music/`, `images/`), final picks also as individual files per `skills/lofn-core/OUTPUT.md`; write the run INDEX last (env-scan summary, panel process, pairs table, selected picks, intended renderers, **and the 4-field run-health footer** — see § "Run-state manifest & resume").
-4. **Present the drop** in chat: the research highlights, the tri-source declaration, the best 6 songs (paste-ready Suno packages) and top 6 image prompts, with the panel decisions and "why these win." No render calls — emit text; the user renders (Suno / Flux / Lyria).
-5. **Publish policy — dailies are PRACTICE.** The daily drop lands in chat + `output/daily/`; it is **not** a publish queue. Anything headed to a public channel (Suno account, socials) additionally requires: the full-rig path (no NON-CANONICAL runs), the cross-model step-11 review (`lofn-step11-packager`), and **the Scientist's ear — with borderline defaulting to HOLD.** An empty publish day is acceptable; a lowered bar is not (`lofn-qa` "The publish bar"). Never promote a piece to publication just because the day's slot is empty.
+4. ⭐ **DEDICATIONS — required, not optional (`vault/DEDICATION_STANDARD.md`).** Write a **≤500-char** dedication for **every selected piece** into `DEDICATIONS.md`, **measured in code, never eyeballed**; overflow to a companion credits section the caption points at. Trim order is (5)→(1): "full credits below" · AI authorship · living-scene lineage · **the sharpest session-player credit** · the raised source-sound. ⛔ **IF A PROMPT NAMES A BREAK, CREDIT THE DRUMMER** — sweep every shipped style field for `amen`, `funky drummer`, `think`, `apache` and named historical figures of sound, and credit the **player** (amen → **Gregory C. Coleman / The Winstons**), not only the living scene. *(2026-08-13: two songs shipped `amen` in the style field with full multi-artist lineage blocks and neither credited Coleman — living-scene credit is already gated and therefore easy; the dead session player is the credit the system forgets.)* **Honesty both ways:** a generated track is **not** a sample — write *"we asked for the figure by name, so we name him"*, never *"contains a sample of…"*.
+5. **Present the drop** in chat: the research highlights, the tri-source declaration, the best 6 songs (paste-ready Suno packages) and top 6 image prompts, with the panel decisions and "why these win." No render calls — emit text; the user renders (Suno / Flux / Lyria).
+6. **Publish policy — dailies are PRACTICE.** The daily drop lands in chat + `output/daily/`; it is **not** a publish queue. Anything headed to a public channel (Suno account, socials) additionally requires: the full-rig path (no NON-CANONICAL runs), the cross-model step-11 review (`lofn-step11-packager`), and **the Scientist's ear — with borderline defaulting to HOLD.** An empty publish day is acceptable; a lowered bar is not (`lofn-qa` "The publish bar"). Never promote a piece to publication just because the day's slot is empty.
 
 ---
 

@@ -1,0 +1,17 @@
+{
+  "run_slug": "lofn-prime-every-element",
+  "controller_id": "claude:1064f9a2-6b9d-4350-94ca-ad037622445f",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-23T01:04:20Z",
+  "heartbeat_utc": "2026-08-23T03:03:53Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:1064f9a2-6b9d-4350-94ca-ad037622445f",
+      "joined_utc": "2026-08-23T01:04:20Z"
+    }
+  ],
+  "completed_utc": "2026-08-23T03:03:53Z"
+}

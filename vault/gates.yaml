@@ -20,11 +20,22 @@
 music_prompt_chars: [850, 1000]
 # The entire Suno LYRICS field hard cap (a render limit). Target stays under
 # the soft target; the hard cap is the render ceiling.
+# The EXCLUDE field band. Prose-only until 2026-08-27, when the P02 pair went
+# looking for it here on the coordinator's instruction and found nothing: it lived
+# solely at .claude/skills/lofn-music/SKILL.md. Three of the four numbers a Suno
+# package must hit were in this file and the fourth was not, while CLAUDE.md says
+# thresholds live here. Prose and YAML did not disagree -- one of them was simply
+# absent, which no meta-check was watching for.
+suno_exclude_chars: [400, 900]
+suno_exclude_chars_hard_max: 1000
+
 suno_lyrics_field_max: 5000
 suno_lyrics_field_target: 4800
-# Sung-line band for the lyrics section (lines that are actually sung — not
-# headers, bracket tags, or SFX cues). Below the low bound triggers repair.
+# Sung-line target band for the lyrics section (lines that are actually sung —
+# not headers, bracket tags, or SFX cues). The separate hard floor triggers
+# repair; a run-local gates file may lower it for a personality-specific form.
 sung_lines: [70, 120]
+sung_lines_hard_floor: 60
 
 # --- Boundary-hugging + truncation (2026-07-01 regression review) ----------
 # Optimization pressure shows up as gate-hugging: every late-June style prompt
@@ -50,12 +61,12 @@ music_prompt_terminal_punctuation: true
 max_sung_numeric_facts: 1
 
 # --- The ONE sung numeral is written as WORDS, never digits (HARD) ---------
-# Source: a LISTENER, on a published track, 2026-05 —
+# Source: a LISTENER, on "Triple Arch Over Me", 2026-05 —
 #   "its epic, only fault I can find is that you didn't spell five hundred and
 #    ten. If it wasn't for that I'd say its production ready."
-# He was right and we sat on it for thirteen weeks. A renderer is free to voice
-# `510` as "five ten" / "five one zero" / "five hundred ten" — the one moment
-# the whole song hangs on, left to a coin toss.
+# He was right and we sat on it for thirteen weeks. The lyric ships `510` and
+# a renderer is free to voice that as "five ten" / "five one zero" / "five
+# hundred ten" — the one moment the whole song hangs on, left to a coin toss.
 # Digits are not a pronunciation; they are an instruction to guess.
 #
 # RULE: any numeral that is SUNG is spelled out in words in the lyrics field
@@ -64,7 +75,8 @@ max_sung_numeric_facts: 1
 #
 # This is the only doctrine in this file contributed by an audience member,
 # and it is here because THE GRAIN LAW's whole point is that our gates are
-# textual and the ear is the instrument we do not own.
+# textual and the ear is the instrument we do not own. Somebody with ears
+# told us for free. Write it down next time.
 sung_numerals_spelled_out: true
 
 # --- House lexicon (self-copying guard — FLAG ONLY) -------------------------
@@ -99,6 +111,70 @@ taxonomy_cardinality: 50
 # Minimum word count for an image scene description.
 image_min_words: 80
 
+# --- VISUAL RETURN FLOORS (added 2026-08-15 — the Scientist's "texture ruined
+# the fantastic/fairy look" note) --------------------------------------------
+# The SAME failure as the music RETURN FLOORS below, one modality across. The
+# image contract mandated MATERIAL four times (first-third naming, concrete
+# materials, the both-modes clause, and 3rd place in the QA ranking order) and
+# the other five ART_SOUL principles ZERO times. Gates ratchet: what is measured
+# grows, what is unmeasured decays. Measured with scripts/measure_visual_drift.py
+# against our OWN archived winners (vault/ART_SOUL.md):
+#
+#                        material/100w  narrative/100w  texture_ratio  N media
+#   1st of 869 winner         9.26           5.56           1.25          1
+#   winning era (n=14)        0.77           0.83           0.47        0.5
+#   2026-08-09  (n=24)        2.53           0.00           2.90          0
+#
+# Principle PREVALENCE, winning era -> 2026-08-09:
+#   P3 material 79% -> 100% | P2 light 79% -> 58% | P4 narrative 86% -> 38%
+#   P5 dissolution 43% -> 0% | P6 contrast 43% -> 4%
+#
+# ⭐⛔ THE WINNER IS 3.7x MORE TEXTURE-DENSE THAN THE WORK CALLED TEXTURE-RUINED.
+# Texture VOLUME is not the defect, and a ceiling on it would have optimised us
+# AWAY from the only prompt in the corpus that took a first place out of 869.
+# The defect is DISPLACEMENT: narrative fell to a median of ZERO, so texture is
+# simply the last thing left standing in an emptied frame. In the winner every
+# texture is PREDICATED of a subject in motion ("wings fractured and trembling",
+# "veins flicker"); in the new work it is APPOSED as inventory ("oil on coarse
+# linen, ridged alla prima"). Same vocabulary, opposite grammar.
+#
+# So these are FLOORS on what went missing, NEVER a cap on material. They are
+# FLAGs (pass=None) routed to the Visual Somatic read — never hard fails; a
+# deliberate still-life may sit below them, but it must say so on purpose.
+#
+# ⛔ CALIBRATION — AND THE ERROR THAT WAS CAUGHT IN THE FIRST RUN (2026-08-15).
+# These were first set from the single ART_SOUL showcase exemplar (narrative
+# 5.56, light 1.85) at floors of 2.0 / 1.0. On the very first gate run that
+# FAILED THE WINNING ERA 12/12 — a gate that rejects our own winners measures
+# nothing. The exemplar is a short, unusually dense 54-word showcase; the
+# archived prompts are longer and more diffuse. Floors are now calibrated to
+# SEPARATE THE ERAS, sitting just under the winning-era median:
+#
+#                     winning era (n=14)   2026-08-09 (n=24)   floor
+#   narrative/100w          0.83                 0.00           0.50
+#   texture_ratio           0.31                 1.50           0.80
+#   light/100w              1.19                 1.45           0.50
+#
+# ⛔ SECOND INSTRUMENT REPAIR (2026-08-15, found on the gate's FIRST REAL RUN).
+# The light lexicon could not see the word "light": it scored "Light still leaks
+# from the seam of her closed fingers" as 0.0, and flagged three prompts whose
+# whole subject is emanation. A light lexicon that cannot see "light" is not a
+# light lexicon. Fixed, and the era numbers above are RE-MEASURED post-fix — the
+# texture_ratio scale moved (winning 0.47 -> 0.31, recent 2.90 -> 1.50) because
+# the ratio's denominator grew, so the ceiling moved 1.50 -> 0.80 to keep the
+# same separating power. The file's own header was also being measured as a
+# prompt; fenced-only parsing now prevents that.
+#
+# ⚠️ HONEST NOTE ON LIGHT — STRENGTHENED BY THE REPAIR. Light density does not
+# discriminate at all: post-fix the RECENT era measures HIGHER than the winning
+# era (1.45 vs 1.19), the reverse of the drift. Light PREVALENCE fell 79% -> 58%
+# but density did not. The light floor is a bare presence check that catches
+# total absence, and it must NEVER be quoted as evidence of the drift.
+# ⭐ NARRATIVE and TEXTURE_RATIO are the only two measures that carry the finding.
+image_narrative_p100_floor: 0.50   # P4 — unresolved question / arrested moment
+image_light_p100_floor: 0.50       # P2 — presence check ONLY; see note above
+image_texture_ratio_ceiling: 0.80  # material / (light + narrative); winning 0.31
+
 # --- Portfolio / fan-out --------------------------------------------------
 # Total variation prompts across the 6 pairs (4 each).
 total_prompts: 24
@@ -112,7 +188,8 @@ total_prompts: 24
 # shared motif that survives repair is a HUMAN WAIVE, never a silent ship.
 # (These measure similarity BETWEEN pairs; within-song chorus/refrain repetition
 # is a separate FLAG handled by unique_line_ratio_floor below, chorus-exempt.)
-step06_min_facets: 8              # substantive facets required per pair at step 06
+step06_min_facets: 5              # music Step 06 canonical contract returns exactly five scoring-facet strings
+story_step06_min_facets: 5        # story Step 06 contract returns exactly five scoring-facet strings
 step06_max_pair_similarity: 0.50  # pairwise facet-text SequenceMatcher ceiling
 step09_max_pair_similarity: 0.62  # pairwise artist-refine SequenceMatcher ceiling
 portfolio_max_lyric_similarity: 0.42   # step-10 pairwise lyric ceiling
@@ -133,6 +210,23 @@ banned_imperative_openers:
 # Banned haze words anywhere in an image scene (emotion shown, not named; no
 # fog of vague atmosphere). FLAG-level by default in the report; the prose §4
 # gate / human read decides REPAIR.
+#
+# ⛔ SCOPE (clarified 2026-08-15). This list bans the HAZE ADJECTIVE, never the
+# LIGHT MECHANISM. It was written against generic AI slop and it is right that
+# "ethereal" is a lazy word — but read as a blanket lexical ban it also removed
+# "soft glow", "magical", "delicate" and "floating", which is most of the
+# working vocabulary of ART_SOUL principle 2 (EMANATING LIGHT) and of the
+# fantastic/fairy register that won four first places. Light prevalence then
+# fell 79% -> 58%. We banned the words for light coming off a thing and then
+# measured that light stopped appearing.
+#
+# THE TEST: does the phrase name a MECHANISM a renderer can draw, or is it an
+# atmosphere adjective doing the work instead of an image?
+#   ❌ BANNED  — "ethereal glow", "a magical, dreamlike scene", "soft glow"
+#   ✅ REQUIRED — "light coming off her hands through the vellum", "gold leaf
+#      veins flicker", "the lantern is the only source and it is inside her"
+# A concrete emanation clause is NOT a ban_words hit even when it contains a
+# listed token; see image_light_p100_floor above, which now REQUIRES one.
 ban_words:
   - ethereal
   - dreamlike
@@ -188,3 +282,35 @@ chorus_repetition_requires_no_justification: true
 # stretches, so any timeout short enough to be useful would have stolen its
 # lock too. Only a human may break a lock.
 run_lock_stale_hours: 4
+
+# --- MUSIC ATLAS (SKADI) — readers: scripts/validate_music_atlas.py, scripts/skadi_*.py ---
+atlas_probe_slots: 6
+atlas_probe_slots_min: 2          # a down-scaled slice is legal; the floor is the control pair
+atlas_min_positive_controls: 1
+atlas_min_negative_controls: 1
+atlas_non_obvious_quota: 1
+atlas_non_obvious_min_slots: 4    # below this, the non-obvious quota is waived (calibration)
+atlas_confidence_cap_n: 4          # below this n, confidence <= MEDIUM
+atlas_bank_min_n: 2                # BANKED requires n >= 2
+atlas_verdicts: [ARRIVES, PARTIAL, SMOOTHED, ABSENT, INVERTED, TRANSFORMS]
+atlas_channels: [style, exclude, lyric_form, emo, section]
+atlas_lanes: [NUMERIC, LISTENER, BOTH]
+atlas_delta_moves: [NEW-BEHAVIOR, BEHAVIOR-CONFIRMED, SCOPE-NARROWED, OPERATOR-LAW, INSTRUMENT-ONLY, NONE, RE-AUTHORIZED]
+atlas_streak_reauthorize: 3        # consecutive INSTRUMENT-ONLY/NONE deltas -> human question
+atlas_scruff_rift_sightings: 3     # same deviation in >= this many probes -> flag as rift
+atlas_expedition_prefix: output/expeditions/
+
+# HIGH confidence requires at least one evidence path from a real expedition plate
+# (under atlas_expedition_prefix). An archive sweep of work already on disk had no
+# controls, no registered predictions and no non-obvious slot behind it, so it caps
+# at MEDIUM regardless of n. Reader: validate_music_atlas.py :: check_archive_provenance.
+atlas_high_requires_plate: true
+
+# Thresholds for the archive intent tests. Reader: scripts/skadi_import_archive.py.
+# Each one turns an explicit ask in the style text into a measurable pass/fail; a
+# track that does not ask contributes nothing to the class either way.
+atlas_tempo_tolerance_bpm: 5       # named BPM vs measured candidate, octave-folded
+atlas_quiet_open_db: -30           # a "near-silent opening" is this far under the peak
+atlas_sub_build_db: 3              # 20-80 Hz rise from first quarter to last
+atlas_width_corr_threshold: 0.10   # |width/level correlation| below this is no movement
+atlas_tone_match_cents: 50         # a named Hz is met by a sustained tone this close

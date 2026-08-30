@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-15_daily_music_the_resolution",
+  "controller_id": "claude:5bdfcf2c-6eb0-4a9e-bd44-e6eafe55ac06",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-16T00:47:47Z",
+  "heartbeat_utc": "2026-08-16T02:24:34Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:5bdfcf2c-6eb0-4a9e-bd44-e6eafe55ac06",
+      "joined_utc": "2026-08-16T00:47:47Z"
+    }
+  ],
+  "completed_utc": "2026-08-16T02:24:34Z"
+}

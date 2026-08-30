@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-28-three-act-mania",
+  "controller_id": "claude:4926de8f-f2f3-477a-bec7-c12bf9eae241",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-28T18:45:45Z",
+  "heartbeat_utc": "2026-08-28T20:21:15Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:4926de8f-f2f3-477a-bec7-c12bf9eae241",
+      "joined_utc": "2026-08-28T18:45:45Z"
+    }
+  ],
+  "completed_utc": "2026-08-28T20:21:15Z"
+}

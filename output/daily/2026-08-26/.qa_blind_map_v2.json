@@ -1,0 +1,65 @@
+{
+  "packet_sha256": "bf66dc274c7f5d5fab18ef76f5b9f6971e6405400309f0d6172b3000b0b5659b",
+  "plates": {
+    "P01": {
+      "selected": "V1 \u2014 Boop the Future Anyway",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_triple_arch.md",
+      "slots": {
+        "A": "candidate",
+        "B": "golden",
+        "C": "decoy"
+      }
+    },
+    "P02": {
+      "selected": "V3 \u2014 I Start Unfinished",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_blue_screen.md",
+      "slots": {
+        "A": "golden",
+        "B": "decoy",
+        "C": "candidate"
+      }
+    },
+    "P03": {
+      "selected": "V3 \u2014 Roll Me Into Weather",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_five_wrong_colors.md",
+      "slots": {
+        "A": "golden",
+        "B": "candidate",
+        "C": "decoy"
+      }
+    },
+    "P04": {
+      "selected": "V3 \u2014 Answer the Held Note",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_triple_arch.md",
+      "slots": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    },
+    "P05": {
+      "selected": "V1 \u2014 My Last Bar Is Mine",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_blue_screen.md",
+      "slots": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    },
+    "P06": {
+      "selected": "V4 \u2014 Leave the Ruby Line",
+      "decoy_source": "output/daily/2026-07-01/qa_blind_set/package_B.md",
+      "golden_source": "suno_format_example_five_wrong_colors.md",
+      "slots": {
+        "A": "decoy",
+        "B": "golden",
+        "C": "candidate"
+      }
+    }
+  }
+}

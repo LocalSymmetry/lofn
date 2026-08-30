@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-24-sunna",
+  "controller_id": "codex:01a032f6-89dd-7472-8706-a7413eb26fd2:sunna",
+  "engine": "codex",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-24T16:48:32Z",
+  "heartbeat_utc": "2026-08-24T21:30:56Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "codex:01a032f6-89dd-7472-8706-a7413eb26fd2:sunna",
+      "joined_utc": "2026-08-24T16:48:32Z"
+    }
+  ],
+  "completed_utc": "2026-08-24T21:30:56Z"
+}

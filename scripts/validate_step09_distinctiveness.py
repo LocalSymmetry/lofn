@@ -49,11 +49,42 @@ def norm(s: str) -> str:
 
 
 def body(text: str) -> str:
-    m = re.search(r"## 4\. Complete Step Output(.*?)(?=\n## 5\.|\n## 6\.|\Z)", text, re.I | re.S)
-    if m:
-        return m.group(1)
-    m = re.search(r"## 3\. Model Response / Creative Work(.*?)(?=\n## 4\.|\n## 5\.|\Z)", text, re.I | re.S)
-    return m.group(1) if m else text
+    # Step artifacts are cumulative: Step 09 begins with the exact bytes of
+    # Step 08, which itself contains older "Complete Step Output" headings.
+    # Auditing the first match therefore inspects historical work and can report
+    # a false missing-critique failure.  The newest (last) delimited block is the
+    # Step-09 body that this validator is responsible for.
+    matches = list(re.finditer(
+        r"## 4\. Complete Step Output(.*?)(?=\n## 5\.|\n## 6\.|\Z)",
+        text,
+        re.I | re.S,
+    ))
+    if matches:
+        return matches[-1].group(1)
+    matches = list(re.finditer(
+        r"## 3\. Model Response / Creative Work(.*?)(?=\n## 4\.|\n## 5\.|\Z)",
+        text,
+        re.I | re.S,
+    ))
+    return matches[-1].group(1) if matches else text
+
+
+def step09_segment(text: str) -> str:
+    """Return only the newest Step-09 section from a cumulative artifact."""
+    # Pair chains are allowed to label the current stage with H1, H2, or H3.
+    # Restricting this to H1 silently retained the cumulative ICB for chains
+    # that used ``## Pair NN · Step 09`` and made SequenceMatcher compare
+    # ~100 KB of shared context instead of the newest refinement body.
+    marker = "# ===== END CREATIVE CONTEXT ====="
+    cut = text.rfind(marker)
+    current = text[cut + len(marker):] if cut >= 0 else text
+    matches = list(re.finditer(r"^#{1,3}\s+.*\bstep\s*0?9\b.*$", current, re.I | re.M))
+    # The first Step-09 heading owns the current artifact; later same-step
+    # headings are internal subsections such as a supplied-panel refinement.
+    # The ICB terminator, when present, has already removed historical context.
+    if not matches:
+        return current
+    return current[matches[0].start():]
 
 
 def main() -> int:
@@ -74,19 +105,35 @@ def main() -> int:
     entries = []
     failures = []
     for p in files:
-        txt = body(p.read_text(errors="replace"))
-        low = txt.lower()
+        segment = step09_segment(p.read_text(errors="replace"))
+        # Adversarial reasoning often lives immediately before the renderable
+        # Complete Step Output.  Check the current Step-09 segment for that
+        # evidence, while comparing only its output body for convergence.
+        low = segment.lower()
         repeated = [ph for ph in BOILERPLATE_PHRASES if ph in low]
         if len(repeated) >= 3:
             failures.append(f"{p.name} contains cloned Step 09 boilerplate: {', '.join(repeated[:3])}")
         # Require an actual named adversarial perspective, not generic artist critique.
         if not re.search(r"devil|hyper-skeptic|critic|objection|resolution", low):
             failures.append(f"{p.name} lacks adversarial critique/resolution language")
-        entries.append((p.name, norm(txt)))
+        entries.append((p.name, norm(body(segment))))
+
+    # An empty extraction is an INSTRUMENT failure, never a similarity score
+    # (two empty strings compare as 1.000).
+    blank = [name for name, txt in entries if not txt.strip()]
+    if blank:
+        print("ERROR: extraction returned empty text — validator defect, not a result.")
+        for name in blank:
+            print(f"- empty extraction: {name}")
+        return 2
+    print(f"extracted {len(entries)} pair files: " +
+          ", ".join(f"{n} ({len(t)} chars)" for n, t in entries))
 
     for i in range(len(entries)):
         for j in range(i + 1, len(entries)):
-            r = difflib.SequenceMatcher(None, entries[i][1], entries[j][1]).ratio()
+            # autojunk=False is MANDATORY — the default silently under-reports
+            # similarity on sequences over 200 elements (2026-08-05 ledger).
+            r = difflib.SequenceMatcher(None, entries[i][1], entries[j][1], autojunk=False).ratio()
             if r > max_sim:
                 failures.append(
                     f"Step 09 similarity too high {entries[i][0]} vs {entries[j][0]}: {r:.3f} (max {max_sim:.2f})"

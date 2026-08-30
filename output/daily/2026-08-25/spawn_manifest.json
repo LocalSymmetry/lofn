@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-08-25-lofn-self-loud",
+  "max_children": 3,
+  "spawn_strategy": "staggered_3_plus_3",
+  "agents": [
+    {"pair": 1, "status": "pending"},
+    {"pair": 2, "status": "pending"},
+    {"pair": 3, "status": "pending"},
+    {"pair": 4, "status": "pending_concurrency_slot"},
+    {"pair": 5, "status": "pending_concurrency_slot"},
+    {"pair": 6, "status": "pending_concurrency_slot"}
+  ],
+  "timeouts_minutes": {
+    "orchestrator": 15,
+    "coordinator": 20,
+    "pair_agent": 30,
+    "qa": 15,
+    "standard_full_run": 120,
+    "competition_full_run": 120
+  }
+}

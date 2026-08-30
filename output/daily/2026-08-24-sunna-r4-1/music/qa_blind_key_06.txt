@@ -1,0 +1,3 @@
+A = DECOY
+B = CAND:06_hot_girl_future_tense:V1
+C = GOLDEN

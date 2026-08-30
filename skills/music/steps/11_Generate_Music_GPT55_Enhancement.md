@@ -31,7 +31,7 @@ For each pair:
 3. `02_golden_seed.md` — the invariant hook, story anchor, and PERSONALITY GENRE DNA CONSTRAINT
 4. `03_orchestrator_panel_debate.md` — all Special Flairs, Concept/Medium/Context & Marketing panels, 18 voices, and Devil's Advocate / Hyper-Skeptic objections
 5. `04_orchestrator_metaprompt.md` and `05_orchestrator_pair_assignments.md`
-6. `06_audio_handoff.md` — Panel Ledger + selected Golden Song References
+6. `06_audio_handoff.md` (or `06_music_handoff.md`) — Panel Ledger + the run's quarantine ruling. ⛔ **NOT Golden Song payloads:** step 11 is a **generating** context and past golden outputs are judge-side only (GOLDEN-OUTPUT QUARANTINE, `.claude/skills/lofn/EXECUTION.md` §3). You get the **GOLDEN MOVE**, not the mold. If this file and the run handoff disagree, **the handoff wins** (`COMPETITION_LEARNINGS` L30).
 7. `step05_pair_dispatch.md` — what step10 should have received
 8. The 15-point QA checklist (injected in the spawn task)
 

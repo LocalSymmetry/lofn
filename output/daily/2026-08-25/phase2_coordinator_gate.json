@@ -1,0 +1,12 @@
+{
+  "phase": "phase_2_coordinator_steps_00_05",
+  "required_files": [
+    {"path": "music/step00_aesthetics_and_genres.md", "min_bytes": 150000, "required_text": ["ruby-voltage confidence", "Lofn-Prime genre-eating club art"]},
+    {"path": "music/step01_essence_and_facets.md", "min_bytes": 150000, "required_text": ["Owned Want", "One Seam Power"]},
+    {"path": "music/step02_concepts.md", "min_bytes": 155000, "required_text": ["Turn Me Up Until I Have Weather", "Tomorrow, Say It Back"]},
+    {"path": "music/step03_artist_and_critique.md", "min_bytes": 160000, "required_text": ["devil's advocate", "Hyper-Skeptic"]},
+    {"path": "music/step04_medium.md", "min_bytes": 155000, "required_text": ["industrial grief-soul", "scorched choral organ-techno"]},
+    {"path": "music/step05_refine_medium.md", "min_bytes": 175000, "required_text": ["Cut Ledger", "Pair 06"]},
+    {"path": "music/concept_medium_pairs.json", "min_bytes": 25000, "required_text": ["\"pair_num\": 1", "\"pair_num\": 6"]}
+  ]
+}

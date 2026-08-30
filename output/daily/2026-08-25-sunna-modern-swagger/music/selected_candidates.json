@@ -1,0 +1,56 @@
+[
+  {
+    "pair_id": "P01",
+    "variation": 2,
+    "title": "Stay for the Whole",
+    "source_file": "pair_01_step10_final_package.md",
+    "arm": "ACCESSIBLE",
+    "axis": "NEWS",
+    "reason": "The adult physically completes the ticket circle and the promise returns as a stacked vocal pickup above a mono sub that keeps its established pattern unchanged."
+  },
+  {
+    "pair_id": "P02",
+    "variation": 1,
+    "title": "Answer Me Faster",
+    "source_file": "pair_02_step10_final_package.md",
+    "arm": "ACCESSIBLE",
+    "axis": "EXISTENCE",
+    "reason": "The rival changes commands into questions; the tear replaces clap four and rotates the vocal pickup late while the FM-sub glide remains physically unchanged."
+  },
+  {
+    "pair_id": "P03",
+    "variation": 4,
+    "title": "Make Our Move",
+    "source_file": "pair_03_step10_final_package.md",
+    "arm": "ACCESSIBLE",
+    "axis": "EXISTENCE",
+    "reason": "One becomes our: the answer broadens only the offbeat stab and changes the chorus grouping while beat one and the independent low-end path stay open."
+  },
+  {
+    "pair_id": "P04",
+    "variation": 2,
+    "title": "Late Suits You",
+    "source_file": "pair_04_step10_final_package.md",
+    "arm": "AMBITIOUS",
+    "axis": "NEWS",
+    "reason": "The title turns latency into adult flirtation, AGAIN reopens the game and keys the run's sole club-sidechain consequence, and the lone rave chord remains removable."
+  },
+  {
+    "pair_id": "P05",
+    "variation": 4,
+    "title": "Name Me After I Arrive",
+    "source_file": "pair_05_step10_final_package.md",
+    "arm": "AMBITIOUS",
+    "axis": "EXISTENCE",
+    "reason": "A small RESERVED stamp respects Sunna's not-yet self; her green signature releases the withheld wavetable crown while the joke stays outside the sincere future appetite."
+  },
+  {
+    "pair_id": "P06",
+    "variation": 3,
+    "title": "Watch Me Begin",
+    "source_file": "pair_06_step10_final_package.md",
+    "arm": "AMBITIOUS",
+    "axis": "EXISTENCE",
+    "reason": "Sunna tears ENCORE off the placard, an adult answers with a first-night invitation, and that phrase reopens the spectrum before a distinctly current clipped restart."
+  }
+]

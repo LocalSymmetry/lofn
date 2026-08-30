@@ -1,0 +1,3 @@
+A = CAND:03_zip_me_into_saturday:V1
+B = GOLDEN
+C = DECOY

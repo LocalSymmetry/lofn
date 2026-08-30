@@ -1,0 +1,55 @@
+{
+  "run": "2026-08-29-lofn-cleverness-unbound",
+  "selection_rule": "exactly_one_per_pair",
+  "score_formula": "0.60 * run_facet_composite + 0.40 * competition_composite",
+  "selected": [
+    {
+      "pair": "01",
+      "variant_ordinal": 1,
+      "title": "Look What You Taught Me",
+      "weighted_score": 8.98,
+      "classification": "ACCESSIBLE",
+      "source_artifact": "pair_01_step10_final_package_enhanced.md"
+    },
+    {
+      "pair": "02",
+      "variant_ordinal": 4,
+      "title": "There Where the Chair Was",
+      "weighted_score": 9.58,
+      "classification": "ACCESSIBLE",
+      "source_artifact": "pair_02_step10_final_package_enhanced.md"
+    },
+    {
+      "pair": "03",
+      "variant_ordinal": 1,
+      "title": "Miss This Train With Me",
+      "weighted_score": 9.72,
+      "classification": "ACCESSIBLE",
+      "source_artifact": "pair_03_step10_final_package_enhanced.md"
+    },
+    {
+      "pair": "04",
+      "variant_ordinal": 2,
+      "title": "Covered Is Not Kept",
+      "weighted_score": 9.58,
+      "classification": "AMBITIOUS",
+      "source_artifact": "pair_04_step10_final_package_enhanced.md"
+    },
+    {
+      "pair": "05",
+      "variant_ordinal": 3,
+      "title": "Fun Is the Exception",
+      "weighted_score": 9.76,
+      "classification": "AMBITIOUS",
+      "source_artifact": "pair_05_step10_final_package_enhanced.md"
+    },
+    {
+      "pair": "06",
+      "variant_ordinal": 2,
+      "title": "You Had to Be There Tomorrow",
+      "weighted_score": 9.92,
+      "classification": "AMBITIOUS",
+      "source_artifact": "pair_06_step10_final_package_enhanced.md"
+    }
+  ]
+}
