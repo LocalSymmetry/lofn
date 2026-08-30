@@ -1,0 +1,68 @@
+[
+  {
+    "code": "S01",
+    "cohort": "A_HIGH_BAR",
+    "title": "ASK FOR IT BY NAME",
+    "source": "output/daily/2026-08-17-dialtone2/SUNO_GUIDES/DIAL_TONE_2_TOP_SIX.md"
+  },
+  {
+    "code": "S02",
+    "cohort": "B_2026_08_29",
+    "title": "Covered Is Not Kept",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/04_covered-is-not-kept.md"
+  },
+  {
+    "code": "S03",
+    "cohort": "B_2026_08_29",
+    "title": "Fun Is the Exception",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/05_fun-is-the-exception.md"
+  },
+  {
+    "code": "S04",
+    "cohort": "A_HIGH_BAR",
+    "title": "Burning Bush With a Barcode",
+    "source": "output/songs/2026-07-06_P05V1_burning-bush-with-a-barcode.md"
+  },
+  {
+    "code": "S05",
+    "cohort": "B_2026_08_29",
+    "title": "You Had to Be There Tomorrow",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/06_you-had-to-be-there-tomorrow.md"
+  },
+  {
+    "code": "S06",
+    "cohort": "B_2026_08_29",
+    "title": "There Where the Chair Was",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/02_there-where-the-chair-was.md"
+  },
+  {
+    "code": "S07",
+    "cohort": "B_2026_08_29",
+    "title": "Look What You Taught Me",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/01_look-what-you-taught-me.md"
+  },
+  {
+    "code": "S08",
+    "cohort": "A_HIGH_BAR",
+    "title": "Spare Hair Tie",
+    "source": "output/songs/20260809_the-spare-hair-tie_P04_V2.md"
+  },
+  {
+    "code": "S09",
+    "cohort": "B_2026_08_29",
+    "title": "Miss This Train With Me",
+    "source": "output/daily/2026-08-29-lofn-cleverness-unbound/selected/03_miss-this-train-with-me.md"
+  },
+  {
+    "code": "S10",
+    "cohort": "A_HIGH_BAR",
+    "title": "The Wedding Takes It Louder",
+    "source": "output/songs/20260821_the_wedding_takes_it_louder_P06_V2.md"
+  },
+  {
+    "code": "S11",
+    "cohort": "A_HIGH_BAR",
+    "title": "Triple Arch Over Me",
+    "source": "output/distribution/LYRICS/SIDE_A/A17 - Triple Arch Over Me.txt"
+  }
+]

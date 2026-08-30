@@ -21,7 +21,17 @@ Invoke explicitly when:
 - File sizes are too small (song files < 5KB, image prompt files < 2KB)
 - The Scientist reports something feels "off" about a delivered set
 
-### 0A. ELIGIBILITY SCORING — 7-PROPERTY PRE-FLIGHT CHECK (DO THIS FIRST)
+### 0A. MUSIC ABSOLUTE FORCE — SEALED PLAIN-LYRIC READ (DO THIS FIRST FOR MUSIC)
+
+Before eligibility scores, package checks, ICB, deterministic evidence, or production intentions enter the music judge's context, read and apply:
+
+`references/music_absolute_force_gate.md`
+
+The coordinator builds the shuffled plain-lyric plate and the clean judge freezes its first-read receipt plus the three-control bracket. The receipt is evidence, not a score: eligibility, causal completion, package compliance, majority enthusiasm, and promised production cannot raise `Absolute Force: HOLD / REPAIR` to SHIP. For non-music modalities, continue directly to the applicable checks below.
+
+---
+
+### 0B. ELIGIBILITY SCORING — 7-PROPERTY PRE-FLIGHT CHECK (AFTER THE MUSIC RECEIPT)
 
 Before any other audit, score the output on ALL 7 eligibility properties. This determines whether the song can reach broad audiences or is intentionally on the ambitious side of the barbell.
 
@@ -73,19 +83,19 @@ Score each 0-5. Target ≥5/7 with average ≥3.5 for "accessible" classificatio
 
 ---
 
-### 0B. SUNO 15-POINT QA GATE — MUSIC ONLY (DO THIS AFTER ELIGIBILITY)
+### 0C. SUNO 16-POINT QA GATE — MUSIC ONLY (DO THIS AFTER ELIGIBILITY)
 
 For music/audio outputs, read and apply:
 
 `references/suno_15_point_qa.md`
 
-The first 7 points are the eligibility properties. Points 8–15 are the Suno/package/Lofn survival checks learned from the Suno staff-pick follow-up repair.
+The route classification is recorded first; the current 16-point reference then audits Singer Surface, Cathedral Engine, Suno Package, and Lineage & Credit. The reference filename remains legacy.
 
-A music output cannot receive `PASS — READY FOR SUNO` unless it passes the applicable 15-point gate or is explicitly classified AMBITIOUS with eligibility misses documented and no blocking delivery failures.
+A music output cannot receive `PASS — READY FOR SUNO` unless its Absolute Force verdict is CLEAR and it passes the applicable 16-point gate. AMBITIOUS is a route classification, never a bypass; its eligibility misses remain documented and all blocking delivery failures still apply.
 
-Blocking failures include: missing standalone Suno style prompt, missing full lyrics, bare section tags only, real artist names in final prompt, no hook for accessible songs, no body anchor for accessible songs, no identifiable Lofn-specific move, or incomplete paste-ready package.
+Blocking failures include: Absolute Force HOLD/REPAIR or missing receipt, missing standalone Suno style prompt, missing full lyrics, bare section tags only, real artist names in final prompt, no hook for accessible songs, no body anchor for accessible songs, no identifiable Lofn-specific move, or incomplete paste-ready package.
 
-### 0C. RUNTIME CHECK (ALWAYS DO THIS)
+### 0D. RUNTIME CHECK (ALWAYS DO THIS)
 
 Before auditing any output, check how long the pipeline agent actually ran.
 
@@ -607,6 +617,13 @@ Write QA report to `QA_REPORT.md` in the output directory:
 **Date:** YYYY-MM-DD HH:MM
 **Agent:** lofn-qa
 **Status:** PASS | PASS WITH WARNINGS | FAIL
+
+## Absolute Force (music only)
+- Verdict: CLEAR | HOLD | REPAIR
+- Plain-Lyric First Read: [frozen receipt path / summary]
+- Absolute High-Bar Bracket: [three controls + decoy result]
+- Evidence Boundary: [text / production intent / rendered fact]
+- Proxy-Capture Check: [pressure sentence / mechanism sentence / verdict]
 
 ## Summary
 - Files scanned: N

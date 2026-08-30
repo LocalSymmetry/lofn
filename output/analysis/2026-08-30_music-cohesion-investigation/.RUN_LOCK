@@ -1,0 +1,17 @@
+{
+  "run_slug": "2026-08-30_music-cohesion-investigation",
+  "controller_id": "codex:music-cohesion-investigation-20260830",
+  "engine": "claude",
+  "host": "Psychosis-v6",
+  "status": "complete",
+  "started_utc": "2026-08-30T14:18:54Z",
+  "heartbeat_utc": "2026-08-30T14:56:47Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "codex:music-cohesion-investigation-20260830",
+      "joined_utc": "2026-08-30T14:18:54Z"
+    }
+  ],
+  "completed_utc": "2026-08-30T14:56:47Z"
+}

@@ -1,4 +1,4 @@
-"""Build a genuinely blind golden+decoy set for lofn-qa procedure 4.5.
+"""Build a genuinely blind comparison set for lofn-qa procedure 4.5.
 
 Lesson L10 (vault/COMPETITION_LEARNINGS.md, 2026-07-01): a blind set whose
 members self-identify, or which contains an empty stub, VOIDS the calibration
@@ -6,21 +6,24 @@ and must be rebuilt, not ranked around. This script therefore fails CLOSED:
 any extraction problem is exit 1, never a silent skip.
 
 What it does:
-  - extracts, per candidate variation, ONLY the bare payload — the
-    `## 1. MUSIC PROMPT` paragraph, the EXCLUDE field, and the lyrics field —
-    from step-11 packages (multi-variation files are split correctly);
+  - package mode extracts, per candidate variation, ONLY the music prompt,
+    EXCLUDE field, and lyrics field;
+  - lyrics mode extracts ONLY sung words for the sealed Absolute Force read:
+    no title, prompt, Theme/Form/EMO headers, rationale, score, or identity;
+  - step-11 multi-variation files are split correctly in both modes;
   - strips every provenance line (pair ids, run ids, verdicts, self-checks,
     Major Deviations, byte counts, "measured" annotations);
-  - adds golden + decoy payloads the same way (title lines removed; internal
+  - adds one or more golden controls + one decoy the same way (title lines removed; internal
     lyric text stays — a lyric that names its own title is content, not
     metadata);
   - shuffles with an explicit seed, writes package_A..Z.md, one member per
-    file, RE-STATS each (>= 1500 bytes or exit 1), and writes the
+    file, RE-STATS each (mode floor or exit 1), and writes the
     coordinator-only key OUTSIDE the blind directory.
 
 Usage:
-  python scripts/build_blind_set.py --out <blind_dir> --key <key_file> \
-      --seed <int> --golden <file> --decoy <file> <candidate_step11_files...>
+  python scripts/build_blind_set.py --mode lyrics --out <blind_dir> \
+      --key <key_file> --seed <int> --golden <file> [--golden <file> ...] \
+      --decoy <file> <candidate_files...>
 """
 from __future__ import annotations
 
@@ -30,7 +33,7 @@ import re
 import sys
 from pathlib import Path
 
-MIN_BYTES = 1500
+MIN_BYTES_BY_MODE = {"package": 1500, "lyrics": 600}
 
 # lines that leak provenance — dropped everywhere
 _LEAK = re.compile(
@@ -38,6 +41,15 @@ _LEAK = re.compile(
     r"publication status|verdict|self-check|major deviation|measured|"
     r"gate_report|provenance|continuity payload|special flairs|icb|"
     r"selected_for_top_six|step ?1[01]|variation angle|bytes)"
+)
+
+# Lyrics may legitimately sing words such as "golden", "source", or
+# "measured". Only provenance-shaped field lines are leaks in lyrics mode.
+_LYRIC_META = re.compile(
+    r"(?i)^(?:pair(?:[ _]?id)?\s*:|run(?:[ _]?id)?\s*:|source\s*:|"
+    r"publication status\s*:|verdict\s*:|self-check\s*:|major deviation\s*:|"
+    r"gate_report\s*:|provenance\s*:|selected_for_top_six\s*:|"
+    r"step ?1[01]\s*:|variation angle\s*:|bytes\s*:|staff pick\s*:)"
 )
 
 
@@ -66,7 +78,7 @@ def _split_variations(text: str) -> list[str]:
     return [text[a:b] for a, b in zip(marks, marks[1:])]
 
 
-def _payload(chunk: str) -> str:
+def _package_payload(chunk: str) -> str:
     """Keep only prompt/exclude/lyrics sections of a chunk, cleaned."""
     keep: list[str] = []
     for sec in re.split(r"(?=^#+ )", chunk, flags=re.M):
@@ -78,15 +90,78 @@ def _payload(chunk: str) -> str:
     return body
 
 
+def _drop_frontmatter(text: str) -> str:
+    lines = text.splitlines()
+    if lines and lines[0].strip() == "---":
+        for i in range(1, len(lines)):
+            if lines[i].strip() == "---":
+                return "\n".join(lines[i + 1:])
+    return text
+
+
+def _heading_sections(text: str) -> list[tuple[str, str]]:
+    """Return (heading, body) sections; preamble is intentionally omitted."""
+    marks = list(re.finditer(r"^#{1,6}\s+(.+?)\s*$", text, re.M))
+    return [
+        (m.group(1), text[m.end(): marks[i + 1].start() if i + 1 < len(marks) else len(text)])
+        for i, m in enumerate(marks)
+    ]
+
+
+def _plain_sung_words(text: str) -> str:
+    """Strip judge-biasing package notation while preserving the lyric itself."""
+    kept: list[str] = []
+    for raw in _drop_frontmatter(text).splitlines():
+        line = raw.strip()
+        if not line:
+            if kept and kept[-1] != "":
+                kept.append("")
+            continue
+        if line.startswith(("#", ">", "```")) or line == "---":
+            continue
+        if re.fullmatch(r"\[(?:Theme|Song Form)\s*:.*\]", line, re.I):
+            continue
+        if re.fullmatch(r"\[[^\]]+\]", line):  # section / EMO / production header
+            continue
+        if re.fullmatch(r"\*[^*]+\*", line):   # non-lexical or SFX cue
+            continue
+        if line.startswith("|") or re.fullmatch(r"[-:| ]+", line):
+            continue
+        line = re.sub(r"[*_]{1,2}", "", line).strip()
+        if line and not _LYRIC_META.search(line):
+            kept.append(line)
+    while kept and kept[-1] == "":
+        kept.pop()
+    return "\n".join(kept)
+
+
+def _lyrics_payload(chunk: str) -> str:
+    """Extract the largest lyrics-labelled section, or clean a plain-lyric file."""
+    lyric_sections = [body for head, body in _heading_sections(chunk)
+                      if re.search(r"(?i)\blyrics?\b", head)]
+    candidates = [_plain_sung_words(body) for body in lyric_sections]
+    candidates = [body for body in candidates if body]
+    if candidates:
+        return max(candidates, key=lambda body: len(body.encode("utf-8")))
+    return _plain_sung_words(chunk)
+
+
+def _payload(chunk: str, mode: str) -> str:
+    return _lyrics_payload(chunk) if mode == "lyrics" else _package_payload(chunk)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--key", required=True)
     ap.add_argument("--seed", type=int, required=True)
-    ap.add_argument("--golden", required=True)
+    ap.add_argument("--mode", choices=sorted(MIN_BYTES_BY_MODE), default="package")
+    ap.add_argument("--golden", action="append", required=True,
+                    help="Golden/control file; repeat for an absolute bracket")
     ap.add_argument("--decoy", required=True)
     ap.add_argument("candidates", nargs="+")
     a = ap.parse_args()
+    min_bytes = MIN_BYTES_BY_MODE[a.mode]
 
     out = Path(a.out)
     key_path = Path(a.key)
@@ -102,19 +177,21 @@ def main() -> int:
         stem = Path(path).stem
         kept = 0
         for i, ch in enumerate(chunks, 1):
-            body = _payload(ch)
-            if len(body.encode()) >= MIN_BYTES:
+            body = _payload(ch, a.mode)
+            if len(body.encode()) >= min_bytes:
                 entries.append((f"CAND:{stem}:V{i}", body))
                 kept += 1
         print(f"  {stem}: {len(chunks)} chunk(s) -> {kept} member(s)")
-    for tag, path in (("GOLDEN", a.golden), ("DECOY", a.decoy)):
-        body = _payload(Path(path).read_text(encoding="utf-8", errors="replace"))
-        if len(body.encode()) < MIN_BYTES:
-            print(f"FATAL: {tag} payload under {MIN_BYTES}B after cleaning", file=sys.stderr)
+    controls = [(f"GOLDEN:{Path(path).stem}", path) for path in a.golden]
+    controls.append(("DECOY", a.decoy))
+    for tag, path in controls:
+        body = _payload(Path(path).read_text(encoding="utf-8", errors="replace"), a.mode)
+        if len(body.encode()) < min_bytes:
+            print(f"FATAL: {tag} payload under {min_bytes}B after cleaning", file=sys.stderr)
             return 1
         entries.append((tag, body))
 
-    n_cands = len(entries) - 2
+    n_cands = len(entries) - len(controls)
     if n_cands < 1:
         print("FATAL: zero candidate variations extracted", file=sys.stderr)
         return 1
@@ -129,17 +206,19 @@ def main() -> int:
         p = out / f"package_{label}.md"
         p.write_text(body, encoding="utf-8")
         size = p.stat().st_size
-        if size < MIN_BYTES:
-            print(f"FATAL: {p.name} re-stats at {size}B (< {MIN_BYTES}) — stub; set VOID", file=sys.stderr)
+        if size < min_bytes:
+            print(f"FATAL: {p.name} re-stats at {size}B (< {min_bytes}) — stub; set VOID", file=sys.stderr)
             return 1
-        leak = [l for l in body.splitlines() if _LEAK.search(l)]
+        leak_pattern = _LYRIC_META if a.mode == "lyrics" else _LEAK
+        leak = [l for l in body.splitlines() if leak_pattern.search(l)]
         if leak:
             print(f"FATAL: {p.name} still carries provenance: {leak[0][:60]}", file=sys.stderr)
             return 1
         key_lines.append(f"{label} = {tag}")
     key_path.write_text("\n".join(key_lines), encoding="utf-8")
-    print(f"OK: {len(entries)} members ({n_cands} candidates + golden + decoy), "
-          f"all >= {MIN_BYTES}B, key at {key_path}")
+    print(f"OK: mode={a.mode}; {len(entries)} members "
+          f"({n_cands} candidates + {len(a.golden)} golden + decoy), "
+          f"all >= {min_bytes}B, key at {key_path}")
     return 0
 
 

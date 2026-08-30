@@ -1,0 +1,50 @@
+{
+  "corpus_hash": "d874de1d0e194ee21b3dad471f2abc08049070a8fa87a6a28d853707935e923a",
+  "primary_n": {
+    "A_HIGH_BAR": 5,
+    "B_2026_08_29": 6
+  },
+  "timeline_n": {
+    "2026-08-21": 6,
+    "2026-08-22": 6,
+    "2026-08-26": 6,
+    "2026-08-27": 6,
+    "2026-08-28": 6,
+    "2026-08-24": 6,
+    "2026-08-25": 6,
+    "2026-08-29": 6
+  },
+  "medians": {
+    "A_HIGH_BAR": {
+      "sung_lines": 82,
+      "words_per_line": 6.846,
+      "ultrashort_rate": 0.1098,
+      "fragment_proxy_rate": 0.3571,
+      "list_run_rate": 0.0357,
+      "adjacent_carry_proxy": 0.4815,
+      "exact_repeat_ratio": 0.2317,
+      "abstract_lexicon_per_100w": 1.483,
+      "action_lexicon_per_100w": 4.577,
+      "section_count": 11,
+      "engine_proxy_count": 0
+    },
+    "B_2026_08_29": {
+      "sung_lines": 75.5,
+      "words_per_line": 4.8195,
+      "ultrashort_rate": 0.0779,
+      "fragment_proxy_rate": 0.2475,
+      "list_run_rate": 0.0518,
+      "adjacent_carry_proxy": 0.4806,
+      "exact_repeat_ratio": 0.1826,
+      "abstract_lexicon_per_100w": 2.3515,
+      "action_lexicon_per_100w": 12.0605,
+      "section_count": 11.0,
+      "engine_proxy_count": 4.0
+    }
+  },
+  "cautions": [
+    "All deterministic continuity/fragment/list/abstract metrics are narrow proxies, not verdicts.",
+    "The blinded reader and panel must retain counterexamples and may reject proxy validity.",
+    "Audio claims remain out of scope without the recent renders."
+  ]
+}

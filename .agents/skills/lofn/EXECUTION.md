@@ -271,7 +271,8 @@ Phase 0 (core seed, inline)
   → 00–05 coordinator (inline, shared context)
   → fan-out { 06–10 per pair }            ← 6 parallel subagents (see 7.2 branch)
   → [music only: 11 enhance per pair, 12 audit when triggered]
-  → QA (lofn-qa, fresh judge context)
+  → QA Stage A (music: sealed plain-lyric Absolute Force; freeze receipt)
+  → QA Stage B (package + ICB + measured evidence, fresh judge context)
   → save per-artifact
   → INDEX (written last, coordinator only)
 ```
@@ -299,7 +300,7 @@ When one pair fails or stalls, **re-dispatch THAT pair alone** from its last-goo
 
 Append a terse footer to the run INDEX: **{ pairs_shipped, pairs_quarantined, total_gate_retries, qa_repairs_issued }** — four fields, no more (`lofn-daily` § "Run-health footer" spells the same four). It surfaces a real degradation signal without inviting a dashboard.
 
-**The zero-rejection tripwire.** `qa_repairs_issued` is there because a QA that never says no is decorative: the expected band for a healthy 6-pair run is **≥1 REPAIR (or ≥1 substantive FLAG escalated to the Somatic read)**. A full run that reports **0 repairs and 0 quarantines across 24 artifacts does not celebrate — it triggers an audit of the JUDGE** (re-run the lofn-qa blind golden+decoy check on a sample; see `lofn-qa`). When the measures say perfect and the listener says worse, the measures are lying — this tripwire is how the harness notices.
+**The zero-rejection tripwire.** `qa_repairs_issued` is there because a QA that never says no is decorative: the expected band for a healthy 6-pair run is **≥1 REPAIR (or ≥1 substantive FLAG escalated to the Somatic read)**. A full run that reports **0 repairs and 0 quarantines across 24 artifacts does not celebrate — it triggers an audit of the JUDGE**: for music, re-run the sealed plain-lyric Absolute Force bracket on a sample against `Triple Arch Over Me`, `Spare Hair Tie`, `Burning Bush With a Barcode`, and a decoy; candidate > decoy is zero positive SHIP evidence. Freeze that receipt before any package, ICB, score, or production-intent reveal; see `lofn-qa`. When the measures say perfect and the listener says worse, the measures are lying — this tripwire is how the harness notices.
 
 ### 7.6 Agent vs Workflow, and the human transition
 

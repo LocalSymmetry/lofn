@@ -2,6 +2,8 @@
 
 P(hit) = P(eligible) × P(distribution_event) × P(amplification). Eligibility is controllable, but eligibility must not collapse into tasteful safety.
 
+> **Classification is not force.** These properties classify route and diagnose eligibility; they do not measure compulsion, emotional recognition, or SHIP. Causal completion, formal payoff, concrete detail, and high average scores cannot clear `music_absolute_force_gate.md`, and must never be averaged against an Absolute Force HOLD/REPAIR. This corrects the 2026-08-30 proxy-capture finding without restricting cleverness, fragments, abstraction, delayed wants, or complex form.
+
 Score each property 1–5.
 
 ## Core 7 Properties
@@ -33,3 +35,5 @@ Score each property 1–5.
 - ACCESSIBLE: average >= 3.5 across the active checks and at least 5 core properties >= 3. For hit-seeking accessible runs, no score below 3 on Checks 8, 9, 11, 12, or 13 unless explicitly justified by an exceptional counterweight.
 - AMBITIOUS: intentionally below accessible threshold; not a failure unless route was accessible.
 - RUN FAIL: Any set where Check 12 averages <3 across finalists is not a complete run even if individual songs pass.
+
+ACCESSIBLE and AMBITIOUS are route labels only. Neither is positive evidence for Absolute Force or Overall SHIP.

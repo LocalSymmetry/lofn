@@ -4,10 +4,12 @@
 > **`EXECUTION.md §4` is authoritative. This reference is a CHECKLIST ONLY.** Where this file and `EXECUTION.md §4` disagree, §4 wins. In particular: **the dense-paragraph MUSIC PROMPT mandate (2026-06-09) is the NEWER authority.** A correct dense-paragraph Suno prompt must **NOT** be failed for the stale bracketed `key:value` rule below — doing so false-fails a correct prompt into a wasteful REPAIR loop. The bracket-format requirement in gate 14 is **superseded** and retained only as annotated legacy.
 >
 > This gate is the **16-point** gate everywhere it is named across the SKILLs. The filename `suno_15_point_qa.md` is **legacy** — do not infer a "15-point" gate from it.
+>
+> **Music Absolute Force precedes this package gate.** `skills/qa/references/music_absolute_force_gate.md` runs in a sealed plain-lyric Stage A before the judge sees prompts, ICB, headers, scores, or production intentions. Nothing in this 16-point checklist can raise `Absolute Force: HOLD / REPAIR` to SHIP.
 
 Read first:
 - `skills/music/references/simple_surface_complex_engine.md`
-- **Judge-side only:** `skills/qa/references/golden_song_examples.md` — blind-comparison calibration for QA / step 12 / the step11-packager. GOLDEN-OUTPUT QUARANTINE (`.claude/skills/lofn/EXECUTION.md` §3): a **generating context** applying this checklist as a self-check (e.g. step 11) **SKIPS this read** — golden payloads never enter a generator's prompt.
+- **Judge-side only:** `skills/qa/references/golden_song_examples.md` — optional full-package calibration for QA / step 12 / the step11-packager, never the plain-lyric Absolute Force bracket. GOLDEN-OUTPUT QUARANTINE (`.claude/skills/lofn/EXECUTION.md` §3): a **generating context** applying this checklist as a self-check (e.g. step 11) **SKIPS this read** — golden payloads never enter a generator's prompt.
 
 QA must prove two things:
 
@@ -22,6 +24,7 @@ Fail both extremes:
 
 - **Pipeline Integrity Verdict:** PASS / REPAIR REQUIRED / FAIL
 - **Suno Package Verdict:** PASS / REPAIR REQUIRED / FAIL
+- **Absolute Force Verdict:** CLEAR / HOLD / REPAIR
 - **Overall Verdict:** SHIP / REPAIR / FAIL
 
 ## 16 gates
@@ -33,7 +36,7 @@ Fail both extremes:
 3. **Adoptable hook** — title hook is singable, memorable, emotionally clear.
 4. **Hook recurrence / mutation** — hook repeats or mutates recognizably; chorus protects it.
 5. **Chorus clarity** — chorus is emotionally adoptable, not thesis/policy/procedure.
-6. **Voice + pulse survival** — stripped to voice/pulse/hook, song still lands.
+6. **Voice + pulse survival** — judged from the plain sung words, pulse, and hook, the song still lands. Intended panning, bass behavior, missing beats, formant shifts, or other unrendered production instructions are not evidence that the text survives.
 7. **15–30 second clip survival** — a short excerpt can communicate hook, scene, and ache.
 
 ### B. Cathedral Engine — 5 gates
@@ -54,7 +57,7 @@ Fail both extremes:
 
 ## Legacy QA remains binding
 
-This 16-point gate is additive, not a replacement. Final music PASS still requires the legacy Suno/package gate from `qa_full_legacy.md` and `music_full_legacy.md` unless The Scientist explicitly approves a run-level exception:
+This 16-point gate is additive, not a replacement. Final music PASS first requires `music_absolute_force_gate.md`, then the legacy Suno/package gate from `qa_full_legacy.md` and `music_full_legacy.md` unless The Scientist explicitly approves a run-level exception. Legacy/package compliance cannot waive an Absolute Force HOLD or REPAIR:
 
 - standalone 850–1000 character copy-paste Suno/Udio prompt, no real artist names (format is the current **dense PROSE paragraph** per `EXECUTION.md §4`; the legacy "categorized v5.5 key:value format" phrasing is **superseded** — see gate 14)
 - 70–120 sung lines for normal 3:00–4:00 songs; <60 is repair required
@@ -72,6 +75,9 @@ The Poe panel repair changes HOW to meet these gates: use recurrence, hook mutat
 - chorus is thesis/procedure
 - lyric surface has prompt/procedure debris
 - production is the only reason the song works
+- plain-lyric Absolute Force is HOLD or REPAIR
+- thesis, policy, device setup, or procedure occupies the first hook cycle and a late bridge supplies the first recognizable person/pressure
+- formal mechanism is easier to explain than why the song matters (proxy capture)
 - no mythic image pressure reaches lyric/hook
 - no panel-forced artifact change
 - no full Suno package
@@ -87,7 +93,16 @@ The Poe panel repair changes HOW to meet these gates: use recurrence, hook mutat
 ## Verdicts
 - Pipeline Integrity Verdict:
 - Suno Package Verdict:
+- Absolute Force Verdict: CLEAR | HOLD | REPAIR
 - Overall Verdict:
+
+## Plain-Lyric First Read (frozen before package/ICB reveal)
+
+## Absolute High-Bar Bracket
+
+## Evidence Boundary
+
+## Proxy-Capture Check
 
 ## Score Table
 | # | Gate | Verdict | Evidence | Repair |

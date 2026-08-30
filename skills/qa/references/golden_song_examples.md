@@ -12,7 +12,7 @@
 
 # Example Songs
 
-Three of Lofn's top hits, payloads verbatim — the judge's calibration bar. Use them for **blind golden+decoy comparison** (`.claude/skills/lofn-qa/SKILL.md`, procedure step 4.5), step-12 audits, and the step11-packager bundle. The legacy generator-facing intro that rode with them ("do not use them for direct inspiration…") is retired: no generator reads this file at all.
+Three historical Lofn payloads, verbatim. Use them for optional **full-package** calibration, step-12 audits, and the step11-packager bundle. They are not the sealed plain-lyric Absolute Force bracket and cannot contribute positive evidence to Overall SHIP; procedure 4.5 now uses `music_absolute_force_gate.md` and its named controls. The legacy generator-facing intro that rode with them ("do not use them for direct inspiration…") is retired: no generator reads this file at all.
 
 
 ## Example 1
