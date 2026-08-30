@@ -1,0 +1,18 @@
+{
+  "run_slug": "2026-08-06-somebody-went-and-looked",
+  "controller_id": "claude:<redacted-controller-id>",
+  "engine": "claude",
+  "host": "<redacted-host>",
+  "status": "complete",
+  "started_utc": "2026-08-06T19:26:59Z",
+  "heartbeat_utc": "2026-08-06T21:40:11Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:<redacted-controller-id>",
+      "joined_utc": "2026-08-06T19:26:59Z"
+    }
+  ],
+  "completed_utc": "2026-08-06T21:40:11Z",
+  "_redacted": "host and controller_id redacted for the public mirror; schema and lifecycle are verbatim"
+}

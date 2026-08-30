@@ -1,0 +1,18 @@
+{
+  "run_slug": "2026-08-09_daily_music_genz",
+  "controller_id": "claude:<redacted-controller-id>",
+  "engine": "claude",
+  "host": "<redacted-host>",
+  "status": "complete",
+  "started_utc": "2026-08-10T03:52:21Z",
+  "heartbeat_utc": "2026-08-10T05:39:20Z",
+  "phase": "complete",
+  "controllers": [
+    {
+      "controller_id": "claude:<redacted-controller-id>",
+      "joined_utc": "2026-08-10T03:52:21Z"
+    }
+  ],
+  "completed_utc": "2026-08-10T05:39:20Z",
+  "_redacted": "host and controller_id redacted for the public mirror; schema and lifecycle are verbatim"
+}

@@ -204,6 +204,10 @@ The panel runs **3 transformations** per session (baseline → group transform �
 ## 🧊 The Frozen Block and the State Machine
 
 > Full statement, with the panel debate that produced it: **[`docs/ARCHITECTURE_STATEMENT.md`](docs/ARCHITECTURE_STATEMENT.md)**
+>
+> ⭐ **Want to build one? The step-by-step operational companion is [`docs/AGENTIC_ENGINEERING_GUIDE.md`](docs/AGENTIC_ENGINEERING_GUIDE.md)** — how the ICB is constructed, frozen, hashed and transported; how a run is held together across ~45 model-steps and six concurrent agents; a per-script reference verified against source rather than docstrings; and a failure catalogue pairing every control with the autopsy that produced it.
+>
+> **Its organizing principle:** *a rule in a document is not a control — it is a hope.* Every rule there names the script, exit code, or required artifact that enforces it, **or is labelled ADVISORY (unenforced)** — and the unenforced inventory is published (§7.5) rather than buried, because an unenforced rule sitting beside enforced ones borrows credibility it has not earned.
 
 A long creative pipeline built on language models has one structural enemy: **the model has no memory, and every hop is a chance for the work to drift.** The usual answers — a bigger context window, or summarizing between steps — fail the same way. A summary is a lossy write, and a bigger window still lets late steps quietly overwrite what early steps decided.
 
