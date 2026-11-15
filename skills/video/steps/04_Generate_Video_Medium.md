@@ -564,7 +564,7 @@ Simulate a discussion between the specialized panels.
 - **The Cinematography Panel (The DPs):** Choose 6 experts (e.g., Emmanuel Lubezki, Ellen Kuras, Roger Deakins, plus complementary experts and a Devil's Advocate).
 - **The Context & Marketing Panel (The Strategists):** (Trend Forecaster, Virality Expert).
 
-**Step 2: The Purge (Mandatory - Show Your Work)**
+**Step 2: The Purge (Mandatory - List What You Discard)**
 
 2.1. Have the panels brainstorm 14 conventional or obvious filming techniques/mediums (e.g., "digital film," "slow motion," "drone shot," "found footage," "long takes").
 2.2. **Action:** List these 14 techniques.
