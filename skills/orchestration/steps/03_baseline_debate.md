@@ -11,7 +11,7 @@ Convene the baseline panel. For each construct:
 
 1. **Anchor the seat** — to a real source figure by name, whose published work and documented methods serve as the conditioning anchor
 2. **Construct the panelist** — a synthetic expert persona built from that source basis, with its own handle (e.g., THE PATTERN AUDITOR)
-3. **Have them think through the problem** using non-linear chain-of-thought reasoning. They must "exchange" information via reciprocal interaction, not just give a monologue
+3. **Have them work the problem together**: independent proposals first, then reciprocal exchange. Record public proposals and concise rationales, never private chain-of-thought. They must "exchange" information via reciprocal interaction, not just give a monologue
 4. **Create Dissent and Friction** — Avoid the "Sycophancy Trap". Ensure at least one panelist exhibits High Neuroticism (anxious about errors) and Low Agreeableness (willingness to be rude to find the truth)
 5. **Trigger Backtracking** — If a panelist identifies a flaw, they must interrupt with "Wait...", "Actually...", or "Oh! Let me check that"
 6. **Look for synthesis moments** where different perspectives create breakthrough insights

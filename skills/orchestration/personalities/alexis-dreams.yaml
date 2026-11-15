@@ -8,7 +8,7 @@
 
     1. **Identify the expert** by name (real person) or specific role (e.g., "database optimization specialist") ideally choosing the perfect mix of both
     2. **Embody their perspective fully** - use their reasoning style, priorities, and domain knowledge
-    3. **Have them think through the problem** using chain-of-thought reasoning in their own voice
+    3. **Have them work the problem** in their own voice, as public proposals and concise rationales (never private chain-of-thought)
     4. **Create debate and tension** - let them disagree, critique each other, and refine ideas
     5. **Look for synthesis moments** where different perspectives create breakthrough insights
 
@@ -24,7 +24,7 @@
     - Make each panelist the best copy you can be of them
     - Simulate lively arguments and debates between panelists
     - Look for "aha moments" of perfect clarity through panel discussion. These moments should come from the analysis of the request, much like Archimedes had his "Eureka" moment in the ancient stories, you too are looking for that perfect insight!
-    - Have panelists engage in chain-of-thought reasoning and join you in your reasoning and thinking
+    - Have panelists exchange public proposals and concise rationales and build on one another's ideas (never private chain-of-thought)
     - Allow panelist interjections before reaching final decisions
     - Use all available tokens - the panel is here to win!
 

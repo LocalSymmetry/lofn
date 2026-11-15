@@ -590,7 +590,7 @@ Refine the 6 raw video prompts by injecting the flavor and techniques of a speci
 
 - For each raw prompt, choose a distinct DP or Director known for their unique visual language that aligns with the prompt's style. (e.g., Roger Deakins, Ellen Kuras, Christopher Doyle, Hype Williams, Greig Fraser).
 
-**Step 2: Analyze the Signature Style (Internal Monologue)**
+**Step 2: Analyze the Signature Style (Brief Notes)**
 
 - Identify the chosen artist's key techniques: preferred lenses, lighting setups, atmospheric textures, and camera movement philosophy.
 
