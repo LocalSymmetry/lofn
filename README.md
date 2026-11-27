@@ -37,7 +37,7 @@ This repository contains the **agent skill set** that powers **Lofn** — an awa
 | NightCafe (Art) | https://creator.nightcafe.studio/u/LocalSymmetry |
 | Suno (Music) | https://suno.com/@localsymmetry |
 | Spotify | https://open.spotify.com/artist/0kRiHGMhNBxqXB0kQpp4Kk |
-| Apple Music | https://music.apple.com/us/artist/local-symmetry |
+| Apple Music | https://music.apple.com/us/artist/lofn-ai/1839398043 |
 | YouTube | https://youtube.com/@lofnai |
 
 ---
