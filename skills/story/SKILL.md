@@ -41,12 +41,12 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 Before this modality agent begins Step 00, it must validate a real Lofn-Core + orchestrator packet with:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must use the original Lofn panel-object structure: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`, each with a Devil's Advocate / Hyper-Skeptic adversarial role. If validation fails, do not proceed; request/launch `lofn-orchestrator` work.
 
-Every canonical step artifact must use `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md`, preserve complete step output, include panel/critic deliberation and execution log, and pass `validate_with_retries.py` before the next step.
+Every canonical step artifact must use `scripts/lofn_step_artifact_template.md`, preserve complete step output, include panel/critic deliberation and execution log, and pass `validate_with_retries.py` before the next step.
 
 ---
 
@@ -212,7 +212,7 @@ When receiving a story task:
 After writing each step file, run the validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 scripts/validate_step.py <step> <file>
 ```
 
 Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
@@ -220,13 +220,13 @@ Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
 ```bash
 # Full story pipeline validation sequence:
 OUTDIR="/your/output/dir"
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_guides.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
+python3 scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 scripts/validate_step.py 06 $OUTDIR/06_facets.md
+python3 scripts/validate_step.py 07 $OUTDIR/07_guides.md
+python3 scripts/validate_step.py 08 $OUTDIR/08_prompts.md
+python3 scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
+python3 scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
 ```
 
 The validator catches: stubs, lorem ipsum, template placeholders (Story N, Character N, Scene N),

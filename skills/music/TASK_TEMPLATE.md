@@ -26,7 +26,7 @@ Important correction: “one function call” in the Streamlit UI did **not** me
 Before coordinator Step 00, validate that the run has a real Lofn-Core + orchestrator packet:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must include a substantial seed lineage, Golden Seed/core seed, original Lofn panel object (`Special Flairs`, `Concept Panel`, `Medium Panel`, `Context & Marketing Panel`) with Devil’s Advocate / Hyper-Skeptic roles, metaprompt, pair assignments with rationale, and audio handoff. If this fails, do not proceed to audio. Launch or request `lofn-orchestrator` work instead.
@@ -41,7 +41,7 @@ The controller is the only phase router. Coordinator and pair agents write their
 
 ## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
 
-Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and include:
+Every canonical step file must follow `scripts/lofn_step_artifact_template.md` and include:
 
 1. `## 0. Step Provenance` — exact step file loaded, input artifacts used, model call mode, validation command.
 2. `## 1. Input Context Digest` — concrete digest of prior artifacts; must name actual concepts/facets/media, not generic task text.
@@ -93,7 +93,7 @@ Executes as **six separate LLM turns**, matching original `generate_concept_medi
 After writing each step artifact, run:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
 ```
 
 If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop the run, write `TIMEOUT_STATUS.md` or `VALIDATION_BLOCKED.md`, and escalate. Do **not** continue to the next step with a failed artifact.
@@ -125,7 +125,7 @@ collapse_guard: no compact direct synthesis; no local emulation of other pairs
 
 A pair package without a real child `session_key` is not pipeline-clean. It may be useful draft material, but QA must mark **Pipeline Integrity: REPAIR REQUIRED** until provenance is repaired or the pair is rerun.
 
-Each receives the full-context pair-agent injection standard from `skills/music/SKILL.md` Workflow item 9. This supersedes the former lean input standard in `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`.
+Each receives the full-context pair-agent injection standard from `skills/music/SKILL.md` Workflow item 9. This supersedes the former lean input standard in `vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`.
 
 Normal pair-agent prompts must inject the complete upstream context needed for the current pair and step:
 - Full personality DNA block for the assigned personality: core identity, sonic world, signature device, catchphrases, G.L.O.W. Protocol where applicable, and vocal architecture
@@ -156,7 +156,7 @@ Each executes (for its ONE pair only) as **five separate LLM turns or five exter
 After writing each pair step artifact, run:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
 ```
 
 If validation fails, repair the artifact in place and rerun with `--attempt 2`, then `--attempt 3` if needed. After 3 failed attempts, stop that pair, save `pair_{NN}_VALIDATION_BLOCKED.md`, and return the exact validator failure. Do **not** write Step 10 or claim the pair is complete if Step 06–09 failed.
@@ -164,15 +164,15 @@ If validation fails, repair the artifact in place and rerun with `--attempt 2`, 
 Before writing `pair_{NN}_COMPLETE.md` or returning completion to the parent, also run the pair-level gate:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_pair_artifacts.py <audio_dir> <NN> --attempt 1
+python3 scripts/validate_pair_artifacts.py <audio_dir> <NN> --attempt 1
 ```
 
 If it fails, repair the failing artifact(s) in place and rerun with `--attempt 2`, then `--attempt 3` if needed. `pair_{NN}_COMPLETE.md` must include the final `PAIR VALIDATION PASS` output. A pair completion message without this pass is not accepted as complete.
 
 Cross-pair gates are mandatory:
-- After all pair Step 06 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_step06_distinctiveness.py <audio_dir>`; if it fails, repair Step 06 before Step 07.
-- After all pair Step 09 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_step09_distinctiveness.py <audio_dir>`; if it fails, repair Step 09 before Step 10.
-- After all pair Step 10 files exist, run `python3 /data/.openclaw/workspace/scripts/validate_portfolio_distinctiveness.py <audio_dir>`; if it fails, repair Step 10 before completion.
+- After all pair Step 06 files exist, run `python3 scripts/validate_step06_distinctiveness.py <audio_dir>`; if it fails, repair Step 06 before Step 07.
+- After all pair Step 09 files exist, run `python3 scripts/validate_step09_distinctiveness.py <audio_dir>`; if it fails, repair Step 09 before Step 10.
+- After all pair Step 10 files exist, run `python3 scripts/validate_portfolio_distinctiveness.py <audio_dir>`; if it fails, repair Step 10 before completion.
 
 Outputs to disk: five separate step files for its pair number
 Returns: Step 10 final song prompts + lyrics as output text
@@ -212,7 +212,7 @@ Main session
 Each pair subagent must return in Step 10 only after Step 06, Step 07, Step 08, and Step 09 have already been written as separate files. Step 10 must include:
 - Suno/Udio Core Style Prompt (**target 850-1000 characters, hard max 1000 unless destination explicitly permits more, no artist names**). It must be dense, producer-grade, copy-paste-ready, and single paragraph. Mandatory order: selected genre/style label(s) + tempo/energy → vocalist spec → instrumentation/sound palette/mix → musical arrangement arc → bold sonic device. Do not lead with story, theme, or procedural phrases like “Begin in/by/with,” “Use,” “Build the track from,” or “Chronology.” Do not pad with tag soup; reach the length through useful production chronology, vocal treatment, mix/arrangement intelligence, and positive prompt logic.
 - Suno Exclude Prompt (**separate field, target 400-900 characters, hard max 1000**). It must be concrete comma-separated negative controls/failure classes only. Suno prepends `-` to this field internally, so write `EDM drop, male vocals, child vocals, autotune gloss`, not explanatory "avoid/do not" prose.
-- Full lyrics using **clean EMO section headers** and legacy runtime length: **70-120 sung lines target; <60 sung lines is a repair trigger.** Song-force improvements change HOW length is earned, not whether the package needs enough sung material for a 3:00-4:00 Suno result. Use hook recurrence, chorus mutation, bridge pressure, call-response, ghost/echo reprises, and embodied image development — never filler or procedural exposition.
+- Full lyrics using **clean EMO section headers** and the default runtime target of **370–430 sung words**. Song-force improvements change HOW length is earned, not whether the package needs enough sung material for a 3:00-4:00 Suno result. Use hook recurrence, chorus mutation, bridge pressure, call-response, ghost/echo reprises, and embodied image development — never filler or procedural exposition.
   - Required `[Theme: <specific scene-pressure / emotional operating system>]` as the first line of the Suno lyrics block for every final song. This is a focusing spell for Suno and for the agent: it must be specific, embodied, and musically useful, not a generic topic label.
   - Required `[SONG FORM: <named form>]` declaration immediately after Theme for every final song/lyric set. The form must be descriptive enough to guide structure (e.g., “Bathroom piano house — breath intro / verse / pre / chorus / dry bridge / call-response final chorus / afterglow”), not just “pop song.”
   - Clean section headers with full performance-script syntax: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
@@ -232,7 +232,7 @@ Before writing your final step10 output, run this check. If any box is unchecked
 **In the final output for each song:**
 - [ ] Standalone `## 1. MUSIC PROMPT` or `[SUNO STYLE PROMPT:]` section exists: copy-paste-ready Core Music Prompt, single paragraph, **850-1000 characters**, no artist names, and includes emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device. Scattered `[STYLE/TEMPO/KEY]`, `[SONIC WORLD]`, and `[PRODUCTION NOTES]` do NOT satisfy this gate; extra detail belongs in sidecars.
 - [ ] Standalone `## 1B. SUNO EXCLUDE PROMPT` or `[SUNO EXCLUDE PROMPT:]` section exists: concrete comma-separated negative controls, target 400-900 characters, hard max 1000. Suno prepends `-` to these terms internally; do not write explanatory "avoid/do not" prose and do not put exclude terms in the style prompt.
-- [ ] Lyrics begin with `[Theme: <specific scene-pressure / emotional operating system>]`, immediately followed by `[SONG FORM: <named form>]`; lyrics have 70-120 sung lines target with <60 repair, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
+- [ ] Lyrics begin with `[Theme: <specific scene-pressure / emotional operating system>]`, immediately followed by `[SONG FORM: <named form>]`; lyrics have the configured sung-word budget, and clean full section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`.
 - [ ] Sung lines contain no prompt/procedure/QA/production-manual debris.
 - [ ] SFX cues / non-lexical hooks are included only if they serve the hook or controlled fracture.
 - [ ] At least one non-lexical vocal hook (`ooh`, `mm`, `ah`, whispered echo, call-response fragment)

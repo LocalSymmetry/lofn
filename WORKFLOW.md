@@ -2,6 +2,20 @@
 
 > **Authority & paths:** `.claude/skills/lofn/EXECUTION.md` is the authoritative execution protocol, and `.claude/skills/lofn/SKILL.md` → **CANONICAL PATHS** is the single source of truth for every repo path. This file is a high-level dispatcher map only; where it disagrees with EXECUTION.md or CANONICAL PATHS, those win. The diagrams below are illustrative — the Claude-native pipeline spawns **Agent subagents** (not OpenClaw `sessions_spawn`) and writes outputs to disk under `output/<run-slug>/` (no external messaging step). Refer to keys (e.g. `GOLDEN_SEEDS_FULL`, `RUN_DIR`) from CANONICAL PATHS rather than re-spelling paths here.
 
+## Before your first run
+
+Run the repository commands from the root of your clone. The agent skills produce
+local prompt packages by default; rendering and publishing are separate steps.
+
+- **Music:** Follow the [Suno v6 package contract](docs/SUNO_V6_PACKAGING.md).
+  Budget the lyrics in sung words and keep the production sidecar outside the paste box.
+- **Images:** Before targeting a challenge, verify whether it accepts outside
+  uploads or requires on-site creation. Confirm the seed before rendering.
+- **Video:** Select a renderer and endpoint before drafting shot prompts. Check
+  reference support and run the cost preflight before any paid rendering.
+- **Story:** Record the panel’s alternatives, decisive objections, and ruling
+  as concise decision notes. Deliver the polished prose separately.
+
 ## The Law
 
 **I am the DISPATCHER, not the creative engine.**

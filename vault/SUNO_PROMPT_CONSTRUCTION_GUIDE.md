@@ -587,7 +587,7 @@ Example:
 - **Female vocals only**
 - **Body noise mandate:** minimum 3-5 parenthetical body noises with declared functions (breath, hum, click, mm) distributed across the arc
 - **Hook recurrence:** primary hook must appear in at least two choruses + one mutation/transformation
-- **Line count:** 70–120 performable lines (excluding metadata and bracketed cues)
+- **Length (`V6-19`):** 370–430 sung words (aim 400, a usual 3:30; hard gate 300–520); the line count is a form choice and is not gated (5.0–6.8 words/line is a singability flag; overhead <=1,100c, `[Disc_*]` in `## Production Sidecar`)
 
 ### The Triple Arch Benchmark Question
 
@@ -707,7 +707,7 @@ Solarpunk Green-Synth Pop, 112 BPM, luminous mid-high energy, A Dorian warmth ov
 │  □ EMO labels from taxonomy, not AWE/INDIGNATION/SYNTHESIS  │
 │  □ 3-5 body noises with declared functions                  │
 │  □ Hook recurs in ≥2 choruses + one mutation                 │
-│  □ 70-120 performable lines                                  │
+│  □ 370-430 sung words (aim 400, about 3:30; lines free)      │
 │  □ No QA debris or instructions in sung lines                │
 │                                                             │
 │  PASTE-READY                                                │

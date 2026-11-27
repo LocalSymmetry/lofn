@@ -7,12 +7,12 @@ Read:
 For each song guide, write a COMPLETE Suno-ready package with:
 - `## 0. GATE CHECK` — document: music prompt char count; named song form; EMO header count; one SFX cue; one non-lexical hook; one Lofn-specific move that survives in prompt + lyrics
 - `## 1. MUSIC PROMPT` — REQUIRED standalone copy-paste Suno/Udio prompt, single paragraph, target 850-1000 chars, hard max 1000 unless explicitly justified. It must include: emotion → selected style label(s) from the run → vocalist spec → instrumentation/mix → chronological progression → bold sonic device → avoidances. Scattered style/tempo/key, sonic-world, metadata tables, or production notes do NOT satisfy this requirement.
-- `## 2. LYRICS` — full lyrics, MINIMUM 70 sung lines, target 70-120 lines. Start with `[SONG FORM: <meaningful named form>]` and `[Theme:]` or `[Setting:]`.
+- `## 2. LYRICS` — full lyrics, aim for 370–430 sung words; line count is advisory. Start with `[SONG FORM: <meaningful named form>]` and `[Theme:]` or `[Setting:]`.
 - `## 3. TITLE` — final song title
 - `## 4. PRODUCTION NOTES` — concrete instruments/materials/textures/mix behaviors, special events, and a short-clip hook note
 - Full lyrics with section markers using the full emotional taxonomy: `[Verse 1 – EMO:tender grief – Vocalist – dry close]`
   - ⚠️ The `EMO:` prefix IS the emotion tag — use it to express the precise feeling for each section
-  - Draw from `/data/.openclaw/workspace/skills/lofn-core/refs/EMOTION_TAXONOMY.md` — choose the specific emotion or combination (e.g. `nostalgia + yearning`, `righteous fury`, `quiet dread`, `ecstatic release`)
+  - Draw from `skills/lofn-core/refs/EMOTION_TAXONOMY.md` — choose the specific emotion or combination (e.g. `nostalgia + yearning`, `righteous fury`, `quiet dread`, `ecstatic release`)
   - NEVER use bare Lofn architectural states (`AWE:`, `INDIGNATION:`, `SYNTHESIS:`) as emotion labels — those are coarse categories, not section-level feeling
 - Production notes inline (e.g., "[Bass drops to sub-only, 30Hz rumble]")
 - At least one standalone SFX cue in asterisks, ≤5 words (e.g., `*phone buzz*`)

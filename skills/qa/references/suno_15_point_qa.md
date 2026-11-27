@@ -60,7 +60,7 @@ Fail both extremes:
 This 16-point gate is additive, not a replacement. Final music PASS first requires `music_absolute_force_gate.md`, then the legacy Suno/package gate from `qa_full_legacy.md` and `music_full_legacy.md` unless The Scientist explicitly approves a run-level exception. Legacy/package compliance cannot waive an Absolute Force HOLD or REPAIR:
 
 - standalone 850–1000 character copy-paste Suno/Udio prompt, no real artist names (format is the current **dense PROSE paragraph** per `EXECUTION.md §4`; the legacy "categorized v5.5 key:value format" phrasing is **superseded** — see gate 14)
-- 70–120 sung lines for normal 3:00–4:00 songs; <60 is repair required
+- 370–430 sung words for a roughly 3:30 song; flag or repair against the configured word band and hard bounds, not line count
 - full Suno performance-script section headers: `[Section - EMO:<emotion(s)> - <Role> - <cues>]`
 - mandatory `[Theme: ...]` followed immediately by mandatory `[SONG FORM: ...]` in every final Suno lyric block
 - SFX/non-lexical hooks when required by the legacy task template or when musically appropriate

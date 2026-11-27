@@ -209,7 +209,7 @@ one per subject — is retired.)
 7. **NOT a collage, and NOT a catalogue:** one scene, shared shadows, shared atmosphere — and one hero. If a viewer cannot tell what to look at first, the image reads as low quality however well it is made.
 8. **Storybook Assassin veto:** Zero use of "ethereal," "dreamlike," "whimsical," "gentle light," "soft glow," "magical," "delicate."
 9. **No artist names in prompts:** Reference styles/techniques, not living artists.
-10. **Thumbnail voltage:** At least ONE subject must stop the scroll — Op Art vibration or Synthwave neon glow.
+10. **Thumbnail voltage:** Make one event and one light junction carry the thumbnail. Do not bolt on a second style for contrast.
 
 ### ⛔ RETIRED EXAMPLES — kept visible as anti-patterns, do NOT copy
 

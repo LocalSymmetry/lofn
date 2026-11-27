@@ -24,6 +24,9 @@ Usage:
   validate_step.py <step> <file>            # validate one step artifact
   validate_step.py --gate-report <step> <file> [--out PATH]
                                             # also write GATE_REPORT.json rows
+  validate_step.py --expected-prompts 4 08 <file>
+                                            # current four-candidate music run;
+                                            # legacy Step08 default stays six
   validate_step.py --gates PATH <step> <file>
                                             # validate against a specific gates.yaml
                                             # (Studio run-local, knob-adjusted thresholds)
@@ -44,6 +47,9 @@ import sys
 from pathlib import Path
 import json
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from icb_span import load_icb, strip_icb  # the one ICB strip (2026-10-01) -- never re-derived
+
 
 # --------------------------------------------------------------------------
 # gates.yaml loading (FAIL-OPEN). Built-in defaults MIRROR vault/gates.yaml so a
@@ -53,14 +59,29 @@ import json
 DEFAULT_GATES = {
     "music_prompt_chars": [850, 1000],
     "suno_lyrics_field_max": 5000,
-    "suno_lyrics_field_target": 4800,
-    "sung_lines": [70, 120],
-    "sung_lines_hard_floor": 60,
+    "suno_lyrics_field_target": 3800,
+    "suno_lyrics_field_target_band": [2600, 3600],
+    # V6-19 (2026-11-25): length is budgeted in SUNG WORDS; lines are advisory.
+    # Mirrors vault/gates.yaml. `length_gate: lines` restores the older behaviour.
+    "length_gate": "words",
+    "sung_words_target": [370, 430],
+    "sung_words_band": [340, 460],
+    "sung_words_hard_floor": 300,
+    "sung_words_hard_ceiling": 520,
+    "sung_chars_target": [1800, 2150],
+    "sung_lines": [40, 100],
+    "sung_lines_hard_floor": 45,
+    "sung_lines_target": [56, 72],
+    "mean_words_per_line_ceiling": 6.8,
+    "lyrics_overhead_max_chars": 1100,
+    "lyrics_overhead_flag_chars": 1300,
+    "lyrics_overhead_flag_pct": 40.0,
+    "disc_channel_in_lyrics_box": False,
     "step00_min_bytes": 2000,
     "taxonomy_cardinality": 50,
     "image_min_words": 80,
     "total_prompts": 24,
-    "step06_min_facets": 8,
+    "step06_min_facets": 5,
     "step06_max_pair_similarity": 0.50,
     "step09_max_pair_similarity": 0.62,
     "portfolio_max_lyric_similarity": 0.42,
@@ -74,7 +95,7 @@ DEFAULT_GATES = {
     "unique_line_ratio_floor": 0.45,
     "ngram_collapse_n": 4,
     "music_prompt_hug_ceiling": 985,
-    "sung_lines_floor_hug": 72,
+    "sung_lines_floor_hug": 48,
     "music_prompt_terminal_punctuation": True,
     "max_sung_numeric_facts": 1,
     "house_lexicon": [
@@ -118,6 +139,11 @@ def load_gates(path: Path | None = None) -> dict:
             loaded = _tiny_yaml_parse(raw)
         if isinstance(loaded, dict):
             gates.update({k: v for k, v in loaded.items() if v is not None})
+            # V6-19 (2026-11-25): a gates file that declares a line band and no
+            # `length_gate` was written when lines were the gate. Read it as it
+            # was written, so an older run's own RUN_GATES.yaml keeps its meaning.
+            if "sung_lines" in loaded and "length_gate" not in loaded:
+                gates["length_gate"] = "lines"
         else:
             print(f"WARN: gates.yaml did not parse to a mapping; using defaults", file=sys.stderr)
     except Exception as exc:  # noqa: BLE001 — fail open on ANYTHING
@@ -162,6 +188,11 @@ def _tiny_yaml_parse(raw: str) -> dict:
 
 def _coerce_scalar(s: str):
     s = s.strip().strip("'\"")
+    low = s.lower()
+    if low == "true":
+        return True
+    if low == "false":
+        return False
     try:
         if re.fullmatch(r"-?\d+", s):
             return int(s)
@@ -195,6 +226,70 @@ def _current_step_segment(text: str, step: str) -> str:
         re.I | re.M,
     ))
     return text[matches[-1].start():] if matches else text
+
+
+def _complete_step_json(text: str):
+    """Parse the JSON model response inside a canonical step artifact.
+
+    Canonical artifacts wrap an otherwise JSON-only model response in provenance,
+    deliberation, execution, and validation sections. The step contract's
+    "JSON only" rule applies to ``## 4. Complete Step Output`` rather than to the
+    whole evidence-bearing artifact, so validators must inspect that section.
+    """
+    match = re.search(
+        r"^##\s*4\.\s*complete step output\b\s*(.*?)(?=^##\s*5\.|\Z)",
+        text,
+        re.I | re.M | re.S,
+    )
+    if not match:
+        raise ValueError("missing ## 4. Complete Step Output section")
+    body = "\n".join(line for line in match.group(1).splitlines() if not is_fence(line)).strip()
+    start = body.find("{")
+    end = body.rfind("}")
+    if start < 0 or end < start:
+        raise ValueError("Complete Step Output contains no JSON object")
+    trailing = body[end + 1:].strip()
+    if trailing:
+        raise ValueError("Complete Step Output contains text after the JSON object")
+    return json.loads(body[start:end + 1])
+
+
+def _step10_json_items(text: str):
+    """Read the current two-revised/two-synthesized contract, or legacy prose.
+
+    The editorial contract returns JSON. Do not require authors to duplicate
+    every field as Markdown just to satisfy a reader written for old wraps.
+    """
+    section = re.search(
+        r"^##\s*4\.\s*complete step output\b\s*(.*?)(?=^##\s*5\.|\Z)",
+        text, re.I | re.M | re.S,
+    )
+    if not section or not re.match(r"\s*(?:```json\s*|\{)", section[1]):
+        return None
+    payload = _complete_step_json(text)
+    if not isinstance(payload, dict) or set(payload) != {"revised_prompts", "synthesized_prompts"}:
+        raise ValueError("Step10 JSON requires exactly revised_prompts and synthesized_prompts")
+    items = []
+    required = {"title", "music_prompt", "exclude_prompt", "lyrics_prompt"}
+    for key in ("revised_prompts", "synthesized_prompts"):
+        values = payload[key]
+        if not isinstance(values, list) or len(values) != 2:
+            raise ValueError(f"{key} requires exactly two complete objects")
+        for item in values:
+            if not isinstance(item, dict) or set(item) != required:
+                raise ValueError(f"{key} objects require exactly {sorted(required)}")
+            if any(not isinstance(value, str) or not value.strip() for value in item.values()):
+                raise ValueError(f"{key} contains an empty or non-string field")
+            items.append(item)
+    return items
+
+
+def _step10_field_view(item: dict) -> str:
+    """Lossless field view for the same existing checks; never writes an artifact."""
+    return ("## 1. MUSIC PROMPT\n\n```text\n" + item["music_prompt"] + "\n```\n\n"
+            "## 1B. SUNO EXCLUDE PROMPT\n\n```text\n" + item["exclude_prompt"] + "\n```\n\n"
+            "## 2. LYRICS\n\n```text\n" + item["lyrics_prompt"] + "\n```\n\n"
+            "## 3. TITLE\n\n" + item["title"] + "\n")
 
 
 def is_fence(line: str) -> bool:
@@ -299,7 +394,7 @@ def build_gate_report(step: str, path: Path, text: str, gates: dict) -> list[dic
                 _gate_row(rows, pair, step, "image_ban_words(FLAG)", "none present", ", ".join(hits), None)
 
         # Music prompt char band + lyrics-field cap + sung-line band.
-        if is_music and step in {"08", "10"}:
+        if is_music and step == "10":
             ps = re.search(r"^##\s*1\.\s*music prompt\b\s*(.*?)(?=^##\s*2\.\s*lyrics\b|^##\s+|\Z)",
                            text, re.I | re.M | re.S)
             lo, hi = _band(gates.get("music_prompt_chars", [850, 1000]), 850, 1000)
@@ -340,23 +435,66 @@ def build_gate_report(step: str, path: Path, text: str, gates: dict) -> list[dic
             lyr = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", text, re.I | re.M | re.S)
             if lyr:
                 field = lyr.group(1)
+                clean_field = "\n".join(
+                    ln for ln in field.splitlines() if not is_fence(ln)
+                ).strip()
                 cap = int(gates.get("suno_lyrics_field_max", 5000))
                 _gate_row(rows, pair, step, "suno_lyrics_field_max", f"< {cap}", len(field), len(field) < cap)
-                slo, shi = _band(gates.get("sung_lines", [70, 120]), 70, 120)
+                target_ceil = int(gates.get("suno_lyrics_field_target", 3800))
+                if len(clean_field) > target_ceil:
+                    _gate_row(rows, pair, step, "suno_lyrics_field_target(FLAG)",
+                              f"<= {target_ceil} (v6 middle-ground target 2600-3600)", len(clean_field), None)
+                length_gate = str(gates.get("length_gate", "words")).strip().lower()
+                slo, shi = _band(gates.get("sung_lines", [40, 100]), 40, 100)
                 sung_lines_list = [s for ln in field.splitlines()
                                    if (s := ln.strip()) and not s.startswith("#")
                                    and not is_fence(s)
                                    and not (s.startswith("[") and s.endswith("]"))
                                    and not (s.startswith("*") and s.endswith("*"))]
                 sung = len(sung_lines_list)
-                _gate_row(rows, pair, step, "sung_lines", f"{slo}-{shi}", sung, slo <= sung <= shi)
-
-                # Floor-hugging — FLAG only. A lyric pinned at the 70 floor is
-                # optimization to the constraint, not a song's natural length.
-                floor_hug = int(gates.get("sung_lines_floor_hug", 72))
-                if slo <= sung <= floor_hug:
-                    _gate_row(rows, pair, step, "sung_lines_floor_hugging(FLAG)",
-                              f"> {floor_hug} (the floor is a floor, not a target)", sung, None)
+                sung_words = sum(len(s.split()) for s in sung_lines_list)
+                wlo, whi = _band(gates.get("sung_words_band", [340, 460]), 340, 460)
+                tlo, thi = _band(gates.get("sung_words_target", [370, 430]), 370, 430)
+                if length_gate == "lines":
+                    # Pre-2026-11-25 behaviour, for a gates file written that way.
+                    _gate_row(rows, pair, step, "sung_lines", f"{slo}-{shi}", sung, slo <= sung <= shi)
+                    floor_hug = int(gates.get("sung_lines_floor_hug", 48))
+                    if slo <= sung <= floor_hug:
+                        _gate_row(rows, pair, step, "sung_lines_floor_hugging(FLAG)",
+                                  f"> {floor_hug} (the floor is a floor, not a target)", sung, None)
+                else:
+                    # V6-19: sung words are the length gate (a usual 3:30 at about 400).
+                    # The unit is this reader's own: whitespace tokens on the sung lines.
+                    hlo = int(gates.get("sung_words_hard_floor", 300))
+                    hhi = int(gates.get("sung_words_hard_ceiling", 520))
+                    _gate_row(rows, pair, step, "sung_words", f"{hlo}-{hhi}", sung_words,
+                              hlo <= sung_words <= hhi)
+                    if not (slo <= sung <= shi):
+                        _gate_row(rows, pair, step, "sung_lines(ADVISORY)",
+                                  f"{slo}-{shi} (a form choice; length is set by sung words)", sung, None)
+                if sung_words < wlo or sung_words > whi:
+                    _gate_row(rows, pair, step, "sung_words(FLAG)",
+                              f"{wlo}-{whi} (target {tlo}-{thi}, about 3:30, unless form-declared)",
+                              sung_words, None)
+                if sung > 0:
+                    wpl = round(sung_words / sung, 2)
+                    wpl_ceil = float(gates.get("mean_words_per_line_ceiling", 6.8))
+                    if wpl > wpl_ceil:
+                        _gate_row(rows, pair, step, "mean_words_per_line(FLAG)",
+                                  f"<= {wpl_ceil} (5.0-6.8 w/l natural v6 singing range)", wpl, None)
+                sung_chars = sum(len(s) for s in sung_lines_list)
+                ovh_chars = max(0, len(clean_field) - sung_chars)
+                ovh_pct = round(100.0 * ovh_chars / len(clean_field), 1) if clean_field else 0.0
+                ovh_flag_c = int(gates.get("lyrics_overhead_flag_chars", 1300))
+                ovh_flag_p = float(gates.get("lyrics_overhead_flag_pct", 40.0))
+                if ovh_chars > ovh_flag_c or ovh_pct > ovh_flag_p:
+                    _gate_row(rows, pair, step, "lyrics_markup_overhead(FLAG)",
+                              f"<= {ovh_flag_c}c and <= {ovh_flag_p}% (target <= 1100c)",
+                              f"{ovh_chars}c ({ovh_pct}%)", None)
+                if not gates.get("disc_channel_in_lyrics_box", False) and re.search(r"^\[Disc_", clean_field, re.M | re.I):
+                    _gate_row(rows, pair, step, "disc_channel_in_lyrics_box(FLAG)",
+                              "keep [Disc_*] in ## Production Sidecar outside pasted Suno lyrics",
+                              "present in lyrics box", None)
 
                 # One-fact rule — FLAG only. At most ONE numeric fact is sung;
                 # research informs theme/form, it is not recited in meter.
@@ -472,16 +610,30 @@ def meta_check(root: Path | None = None) -> int:
     # to co-occur with them in prose, so we only flag a genuine contradiction.
     expectations = []
     mpc = _band(gates.get("music_prompt_chars", [850, 1000]), 850, 1000)
+    mpc_target = _band(gates.get("music_prompt_chars_target", [870, 960]), 870, 960)
+
+    def music_band_ok(match: re.Match) -> bool:
+        band = (int(match.group(1)), int(match.group(2)))
+        if band == mpc or not (700 <= band[0] <= 1200):
+            return True
+        # The target and hard band are separate YAML values. Accept the target
+        # only when this particular range is explicitly labelled as a target;
+        # an unlabelled replacement of the hard band must still warn.
+        before = re.sub(r"[*_]", "", match.string[max(0, match.start() - 60):match.start()])
+        after = re.sub(r"[*_]", "", match.string[match.end():match.end() + 30])
+        labelled_target = (re.search(r"\btarget(?:\s+band)?[\s:=(]*$", before, re.I)
+                           or re.match(r"[\s)]*target\b", after, re.I))
+        return band == mpc_target and bool(labelled_target)
+
     expectations.append(("music prompt 850-1000 band", re.compile(r"music\s+(?:style\s+)?prompt", re.I),
                          re.compile(r"\b(\d{3,4})\s*[-–—to]+\s*(\d{3,4})\b"),
-                         lambda m: (int(m.group(1)), int(m.group(2))) == mpc or
-                                   not (700 <= int(m.group(1)) <= 1200)))
+                         music_band_ok))
     cap = int(gates.get("suno_lyrics_field_max", 5000))
     expectations.append(("suno lyrics field cap", re.compile(r"lyrics?[\s-]*field|suno.*cap|<\s*\d{4}", re.I),
                          re.compile(r"<\s*(\d{4})\b"),
                          lambda m: int(m.group(1)) == cap or not (4000 <= int(m.group(1)) <= 6000)))
 
-    scan_dirs = [root / ".claude" / "skills", root / "skills", root / "vault"]
+    scan_dirs = [root / ".claude" / "skills", root / ".agents" / "skills", root / "skills", root / "vault"]
     # Skiplist: paths under these prefixes are NEVER meta-checked. Studio knob
     # files (tools/explorer/flows/**) legitimately RESTATE the gate numbers (they
     # bind them via gates_key), so if the scan is ever extended to cover them they
@@ -561,6 +713,7 @@ def main() -> int:
     emit_report = False
     out_path = None
     gates_path = None
+    expected_prompts = 6
     if argv and argv[0] == "--gate-report":
         emit_report = True
         argv = argv[1:]
@@ -581,15 +734,136 @@ def main() -> int:
         else:
             return fail("--gates requires a PATH argument")
 
+    if "--expected-prompts" in argv:
+        i = argv.index("--expected-prompts")
+        if i + 1 >= len(argv) or argv[i + 1] not in {"4", "6"}:
+            return fail("--expected-prompts requires 4 or 6")
+        expected_prompts = int(argv[i + 1])
+        argv = [a for j, a in enumerate(argv) if j not in (i, i + 1)]
+
     if len(argv) != 2:
-        return fail("usage: validate_step.py [--gate-report [--out PATH]] [--gates PATH] <step> <file>  |  --meta-check  |  --help")
+        return fail("usage: validate_step.py [--gate-report [--out PATH]] [--gates PATH] [--expected-prompts 4|6] <step> <file>  |  --meta-check  |  --help")
     step = str(argv[0]).zfill(2)
     path = Path(argv[1])
-    return _validate(step, path, emit_report=emit_report, out_path=out_path, gates_path=gates_path)
+    return _validate(step, path, emit_report=emit_report, out_path=out_path, gates_path=gates_path,
+                     expected_prompts=expected_prompts)
+
+
+def _validate_music_step10_fields(music_text: str, gates_path: Path | None = None):
+    if "lyrics" not in music_text.lower():
+        return fail("music song artifact missing lyrics")
+    prompt_matches = list(re.finditer(r"^##\s*1\.\s*music prompt\b|^\[suno style prompt\s*:\]", music_text, re.I | re.M))
+    prompt_count = len(prompt_matches)
+    lyric_count = len(re.findall(r"^##\s*2\.\s*lyrics\b", music_text, re.I | re.M))
+    song_form_count = len(re.findall(r"\[song form\s*:[^\]]+\]", music_text, re.I))
+    theme_count = len(re.findall(r"\[theme\s*:[^\]]+\]", music_text, re.I))
+    full_emo_headers = len(re.findall(r"^\[[^\]\n]+[-–—]\s*EMO\s*:[^\]\n]+[-–—][^\]\n]+[-–—][^\]\n]+\]", music_text, re.I | re.M))
+    bare_emo_headers = len(re.findall(r"^\[\s*EMO\s*:", music_text, re.I | re.M))
+    if prompt_count < 1:
+        return fail("music song artifact missing standalone ## 1. MUSIC PROMPT")
+    # Enforce the restored legacy Suno prompt band. Extract text between the
+    # prompt heading and lyrics heading (or next h2) and measure non-heading content.
+    prompt_section = re.search(r"^##\s*1\.\s*music prompt\b\s*(.*?)(?=^##\s*2\.\s*lyrics\b|^##\s+|\Z)", music_text, re.I | re.M | re.S)
+    if prompt_section:
+        # Same extraction as the gate-report path above (step 08/10 music
+        # prompt band): strip markdown code fences and "*(annotation)*"
+        # lines so neither counts as prompt text. These two paths measure
+        # the SAME quantity and MUST agree -- when they diverged, the
+        # gate-report path read the true length while this one read it
+        # +8 chars (two fences plus a newline) and hard-failed the house
+        # format outright. One implementation per measurement.
+        prompt_body = "\n".join(
+            ln.strip() for ln in prompt_section.group(1).splitlines()
+            if ln.strip() and not ln.strip().startswith("#")
+            and not is_fence(ln)
+        ).strip()
+        prompt_body = re.sub(r"^\*\([^)]*\)\*\s*$", "", prompt_body, flags=re.M).strip()
+        prompt_chars = len(prompt_body)
+        if prompt_chars < 850 or prompt_chars > 1000:
+            return fail(f"music prompt must be 850-1000 characters, found {prompt_chars}")
+        first_prompt_line = next((ln.strip() for ln in prompt_body.splitlines() if ln.strip()), "")
+        if re.match(r"^(begin\s+(in|by|with)\b|use\b|build\s+the\s+track\s+from\b|chronology\s*:|for\s+an\s+adult\s+human\s+singer\b)", first_prompt_line, re.I):
+            return fail("music prompt opens with banned procedural/narrative phrasing; lead with genre/style + tempo/energy + vocalist + instrumentation")
+    if lyric_count < 1:
+        return fail("music song artifact missing ## 2. LYRICS section")
+    if theme_count < lyric_count:
+        return fail(f"music song artifact missing bracketed [Theme:] declarations ({theme_count}/{lyric_count})")
+    if song_form_count < lyric_count:
+        return fail(f"music song artifact missing bracketed [SONG FORM:] declarations ({song_form_count}/{lyric_count})")
+    lyrics_section_for_header = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", music_text, re.I | re.M | re.S)
+    if lyrics_section_for_header:
+        content_lines = [ln.strip() for ln in lyrics_section_for_header.group(1).splitlines() if ln.strip()]
+        # Code fences are house format for a paste-ready Suno field; they are
+        # not lyric content. Without this the fence IS non_title_lines[0] and
+        # [Theme:] can never match -- which silently hard-failed every
+        # correctly-formatted package this repo has ever produced.
+        non_title_lines = [
+            ln for ln in content_lines
+            if not ln.startswith("#") and not is_fence(ln)
+        ]
+        if len(non_title_lines) < 2 or not re.match(r"^\[theme\s*:[^\]]+\]$", non_title_lines[0], re.I) or not re.match(r"^\[song form\s*:[^\]]+\]$", non_title_lines[1], re.I):
+            return fail("music lyrics must begin with [Theme: ...] immediately followed by [SONG FORM: ...]")
+    if full_emo_headers < max(6, lyric_count * 4):
+        return fail(f"music song artifact has too few full section EMO headers ({full_emo_headers}); bare [EMO:...] is not enough")
+    if bare_emo_headers:
+        return fail("music song artifact uses bare [EMO:...] headers instead of [Section - EMO:... - Voice - Cue]")
+    if re.search(r"^\s*EMO\s+HEADER\s*:", music_text, re.I | re.M):
+        return fail("music song artifact contains prose EMO HEADER lines")
+    if re.search(r"^\s*SONG FORM\s*:", music_text, re.I | re.M):
+        return fail("music song artifact contains plain SONG FORM: text instead of [SONG FORM: ...]")
+    if not re.search(r"^\*[^*\n]{1,50}\*\s*$", music_text, re.M):
+        return fail("music song artifact missing standalone SFX cue")
+    lyrics_section = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", music_text, re.I | re.M | re.S)
+    if lyrics_section:
+        sung_lines = 0
+        sung_words = 0
+        for ln in lyrics_section.group(1).splitlines():
+            s = ln.strip()
+            if (not s or s.startswith("#") or is_fence(s)
+                    or (s.startswith("[") and s.endswith("]"))
+                    or (s.startswith("*") and s.endswith("*"))):
+                continue
+            sung_lines += 1
+            sung_words += len(s.split())
+        lyric_gates = load_gates(gates_path)
+        if str(lyric_gates.get("length_gate", "words")).strip().lower() == "lines":
+            # Pre-2026-11-25 behaviour, for a gates file written that way.
+            sung_floor = int(lyric_gates.get("sung_lines_hard_floor", 45))
+            sung_ceiling_raw = lyric_gates.get("sung_lines_hard_ceiling")
+            sung_ceiling = int(sung_ceiling_raw) if sung_ceiling_raw is not None else None
+            sung_target = lyric_gates.get("sung_lines", [52, 76])
+            if sung_lines < sung_floor:
+                return fail(
+                    f"music lyrics have too few sung lines ({sung_lines}); "
+                    f"<{sung_floor} triggers repair, target {sung_target[0]}-{sung_target[1]}"
+                )
+            if sung_ceiling is not None and sung_lines > sung_ceiling:
+                return fail(
+                    f"music lyrics have too many sung lines ({sung_lines}); "
+                    f">{sung_ceiling} triggers repair, target {sung_target[0]}-{sung_target[1]}"
+                )
+        else:
+            # V6-19: the length gate is sung words (whitespace tokens on sung lines).
+            word_floor = int(lyric_gates.get("sung_words_hard_floor", 300))
+            word_ceiling = int(lyric_gates.get("sung_words_hard_ceiling", 520))
+            word_target = lyric_gates.get("sung_words_target", [370, 430])
+            if sung_words < word_floor:
+                return fail(
+                    f"music lyrics have too few sung words ({sung_words} in {sung_lines} lines); "
+                    f"<{word_floor} triggers repair, target {word_target[0]}-{word_target[1]} (about 3:30)"
+                )
+            if sung_words > word_ceiling:
+                return fail(
+                    f"music lyrics have too many sung words ({sung_words} in {sung_lines} lines); "
+                    f">{word_ceiling} triggers repair unless the form is declared in RUN_GATES.yaml, "
+                    f"target {word_target[0]}-{word_target[1]} (about 3:30)"
+                )
 
 
 def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path | None = None,
-              gates_path: Path | None = None) -> int:
+              gates_path: Path | None = None, expected_prompts: int = 6) -> int:
+    if expected_prompts not in {4, 6}:
+        return fail("expected_prompts must be 4 or 6")
     if not path.exists() or not path.is_file():
         return fail(f"missing file: {path}")
     name = path.name
@@ -606,7 +880,17 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
 
     if len(text.strip()) < 800:
         return fail("artifact is too short to be a real Lofn step")
-    if re.search(r"\b(lorem ipsum|todo|tbd|placeholder|similar arrangement|song n|genre n)\b", lower):
+    # 2026-10-01 (run 2026-09-30-caterpillar-survivors): this stub-word scan ran over the
+    # WHOLE file, so one word inside the frozen, preflight-checked creative-context block
+    # (a root-written heading describing an omitted empty shell) failed every ICB-prefixed
+    # artifact regardless of its body. The block is bounded by explicit BEGIN/END markers
+    # and is validated once by check_icb_preflight.py; exclude exactly that span here.
+    # The step body stays fully subject to the check. A block with no END marker is not
+    # stripped, so a malformed artifact is still scanned whole (fail-closed).
+    # Same day, later: the strip now goes through the shared helper (step-11 contract:
+    # every reader strips the ICB through scripts/icb_span.py), not a fifth local regex.
+    body_lower = strip_icb(text, load_icb(str(path.parent)))[0].lower()
+    if re.search(r"\b(lorem ipsum|todo|tbd|placeholder|similar arrangement|song n|genre n)\b", body_lower):
         return fail("artifact contains placeholder/template language")
     # Catch numbered lyric/content stubs only when they are the line's actual
     # label.  The prior unanchored search also rejected legitimate provenance
@@ -706,96 +990,51 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
                 if key not in item or not str(item[key]).strip():
                     return fail(f"concept_medium_pairs.json item {i} missing required key: {key}")
 
-    if is_music and step in {"08", "10"}:
+    if is_music and step == "08":
+        try:
+            generated = _complete_step_json(_current_step_segment(text, step))
+        except Exception as exc:
+            return fail(f"music Step 08 Complete Step Output is not valid JSON: {exc}")
+        if not isinstance(generated, dict) or set(generated) != {"music_prompts"}:
+            return fail("music Step 08 JSON must have exactly one root key: music_prompts")
+        prompts = generated.get("music_prompts")
+        if not isinstance(prompts, list) or len(prompts) != expected_prompts:
+            actual = len(prompts) if isinstance(prompts, list) else "non-list"
+            return fail(f"music Step 08 must contain exactly {expected_prompts} prompt objects, found {actual}")
+        required = {"music_prompt", "lyrics_prompt", "title"}
+        for index, item in enumerate(prompts, 1):
+            if not isinstance(item, dict) or not required <= set(item) or set(item) - required - {"exclude_prompt"}:
+                return fail(
+                    f"music Step 08 prompt {index} must contain "
+                    "music_prompt, lyrics_prompt, and title, with only exclude_prompt optional"
+                )
+            for key in item:
+                if not isinstance(item[key], str) or not item[key].strip():
+                    return fail(f"music Step 08 prompt {index} has empty/non-string {key}")
+
+    step10_items = None
+    if is_music and step == "10":
         music_text = _current_step_segment(text, step)
-        if "lyrics" not in music_text.lower():
-            return fail("music song artifact missing lyrics")
-        prompt_matches = list(re.finditer(r"^##\s*1\.\s*music prompt\b|^\[suno style prompt\s*:\]", music_text, re.I | re.M))
-        prompt_count = len(prompt_matches)
-        lyric_count = len(re.findall(r"^##\s*2\.\s*lyrics\b", music_text, re.I | re.M))
-        song_form_count = len(re.findall(r"\[song form\s*:[^\]]+\]", music_text, re.I))
-        theme_count = len(re.findall(r"\[theme\s*:[^\]]+\]", music_text, re.I))
-        full_emo_headers = len(re.findall(r"^\[[^\]\n]+[-–—]\s*EMO\s*:[^\]\n]+[-–—][^\]\n]+[-–—][^\]\n]+\]", music_text, re.I | re.M))
-        bare_emo_headers = len(re.findall(r"^\[\s*EMO\s*:", music_text, re.I | re.M))
-        if prompt_count < 1:
-            return fail("music song artifact missing standalone ## 1. MUSIC PROMPT")
-        # Enforce the restored legacy Suno prompt band. Extract text between the
-        # prompt heading and lyrics heading (or next h2) and measure non-heading content.
-        prompt_section = re.search(r"^##\s*1\.\s*music prompt\b\s*(.*?)(?=^##\s*2\.\s*lyrics\b|^##\s+|\Z)", music_text, re.I | re.M | re.S)
-        if prompt_section:
-            # Same extraction as the gate-report path above (step 08/10 music
-            # prompt band): strip markdown code fences and "*(annotation)*"
-            # lines so neither counts as prompt text. These two paths measure
-            # the SAME quantity and MUST agree -- when they diverged, the
-            # gate-report path read the true length while this one read it
-            # +8 chars (two fences plus a newline) and hard-failed the house
-            # format outright. One implementation per measurement.
-            prompt_body = "\n".join(
-                ln.strip() for ln in prompt_section.group(1).splitlines()
-                if ln.strip() and not ln.strip().startswith("#")
-                and not is_fence(ln)
-            ).strip()
-            prompt_body = re.sub(r"^\*\([^)]*\)\*\s*$", "", prompt_body, flags=re.M).strip()
-            prompt_chars = len(prompt_body)
-            if prompt_chars < 850 or prompt_chars > 1000:
-                return fail(f"music prompt must be 850-1000 characters, found {prompt_chars}")
-            first_prompt_line = next((ln.strip() for ln in prompt_body.splitlines() if ln.strip()), "")
-            if re.match(r"^(begin\s+(in|by|with)\b|use\b|build\s+the\s+track\s+from\b|chronology\s*:|for\s+an\s+adult\s+human\s+singer\b)", first_prompt_line, re.I):
-                return fail("music prompt opens with banned procedural/narrative phrasing; lead with genre/style + tempo/energy + vocalist + instrumentation")
-        if lyric_count < 1:
-            return fail("music song artifact missing ## 2. LYRICS section")
-        if theme_count < lyric_count:
-            return fail(f"music song artifact missing bracketed [Theme:] declarations ({theme_count}/{lyric_count})")
-        if song_form_count < lyric_count:
-            return fail(f"music song artifact missing bracketed [SONG FORM:] declarations ({song_form_count}/{lyric_count})")
-        lyrics_section_for_header = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", music_text, re.I | re.M | re.S)
-        if lyrics_section_for_header:
-            content_lines = [ln.strip() for ln in lyrics_section_for_header.group(1).splitlines() if ln.strip()]
-            # Code fences are house format for a paste-ready Suno field; they are
-            # not lyric content. Without this the fence IS non_title_lines[0] and
-            # [Theme:] can never match -- which silently hard-failed every
-            # correctly-formatted package this repo has ever produced.
-            non_title_lines = [
-                ln for ln in content_lines
-                if not ln.startswith("#") and not is_fence(ln)
-            ]
-            if len(non_title_lines) < 2 or not re.match(r"^\[theme\s*:[^\]]+\]$", non_title_lines[0], re.I) or not re.match(r"^\[song form\s*:[^\]]+\]$", non_title_lines[1], re.I):
-                return fail("music lyrics must begin with [Theme: ...] immediately followed by [SONG FORM: ...]")
-        if full_emo_headers < max(6, lyric_count * 4):
-            return fail(f"music song artifact has too few full section EMO headers ({full_emo_headers}); bare [EMO:...] is not enough")
-        if bare_emo_headers:
-            return fail("music song artifact uses bare [EMO:...] headers instead of [Section - EMO:... - Voice - Cue]")
-        if re.search(r"^\s*EMO\s+HEADER\s*:", music_text, re.I | re.M):
-            return fail("music song artifact contains prose EMO HEADER lines")
-        if re.search(r"^\s*SONG FORM\s*:", music_text, re.I | re.M):
-            return fail("music song artifact contains plain SONG FORM: text instead of [SONG FORM: ...]")
-        if not re.search(r"^\*[^*\n]{1,50}\*\s*$", music_text, re.M):
-            return fail("music song artifact missing standalone SFX cue")
-        lyrics_section = re.search(r"^##\s*2\.\s*lyrics\b\s*(.*?)(?=^##\s+|\Z)", music_text, re.I | re.M | re.S)
-        if lyrics_section:
-            sung_lines = 0
-            for ln in lyrics_section.group(1).splitlines():
-                s = ln.strip()
-                if (not s or s.startswith("#") or is_fence(s)
-                        or (s.startswith("[") and s.endswith("]"))
-                        or (s.startswith("*") and s.endswith("*"))):
-                    continue
-                sung_lines += 1
-            lyric_gates = load_gates(gates_path)
-            sung_floor = int(lyric_gates.get("sung_lines_hard_floor", 60))
-            sung_ceiling_raw = lyric_gates.get("sung_lines_hard_ceiling")
-            sung_ceiling = int(sung_ceiling_raw) if sung_ceiling_raw is not None else None
-            sung_target = lyric_gates.get("sung_lines", [70, 120])
-            if sung_lines < sung_floor:
-                return fail(
-                    f"music lyrics have too few sung lines ({sung_lines}); "
-                    f"<{sung_floor} triggers repair, target {sung_target[0]}-{sung_target[1]}"
-                )
-            if sung_ceiling is not None and sung_lines > sung_ceiling:
-                return fail(
-                    f"music lyrics have too many sung lines ({sung_lines}); "
-                    f">{sung_ceiling} triggers repair, target {sung_target[0]}-{sung_target[1]}"
-                )
+        try:
+            step10_items = _step10_json_items(music_text)
+        except (ValueError, TypeError) as exc:
+            return fail(f"music Step10 terminal JSON: {exc}")
+        views = [_step10_field_view(item) for item in step10_items] if step10_items is not None else [music_text]
+        for index, view in enumerate(views, 1):
+            if step10_items is not None:
+                item = step10_items[index - 1]
+                field_gates = load_gates(gates_path)
+                lo, hi = _band(field_gates.get("music_prompt_chars", [850, 1000]), 850, 1000)
+                if not lo <= len(item["music_prompt"]) <= hi:
+                    return fail(f"Step10 JSON candidate {index}: music prompt must be {lo}-{hi} characters, found {len(item['music_prompt'])}")
+                cap = int(field_gates.get("suno_lyrics_field_max", 5000))
+                if len(item["lyrics_prompt"]) >= cap:
+                    return fail(f"Step10 JSON candidate {index}: lyrics field must be <{cap} characters")
+            result = _validate_music_step10_fields(view, gates_path)
+            if result is not None:
+                if step10_items is not None:
+                    print(f"Step10 JSON candidate {index} failed the field check")
+                return result
 
     # ----------------------------------------------------------------------
     # L4 countable-subset GATE_REPORT (item 2.1). Fail-open: scoring never raises
@@ -805,7 +1044,26 @@ def _validate(step: str, path: Path, emit_report: bool = False, out_path: Path |
     # ----------------------------------------------------------------------
     try:
         gates = load_gates(gates_path)
-        rows = build_gate_report(step, path, text, gates)
+        if step10_items is None:
+            rows = build_gate_report(step, path, text, gates)
+        else:
+            rows = []
+            for index, item in enumerate(step10_items, 1):
+                candidate_rows = build_gate_report(step, path, _step10_field_view(item), gates)
+                for row in candidate_rows:
+                    row["variant"] = index
+                    if row["check"] == "music_prompt_chars":
+                        row["actual"] = len(item["music_prompt"])
+                        lo, hi = _band(gates.get("music_prompt_chars", [850, 1000]), 850, 1000)
+                        row["pass"] = lo <= row["actual"] <= hi
+                    if row["check"] == "suno_lyrics_field_max":
+                        row["actual"] = len(item["lyrics_prompt"])
+                        row["pass"] = len(item["lyrics_prompt"]) < int(gates.get("suno_lyrics_field_max", 5000))
+                elo, ehi = _band(gates.get("suno_exclude_chars", [400, 900]), 400, 900)
+                _gate_row(candidate_rows, _pair_id_from_path(path), step, "suno_exclude_chars",
+                          f"{elo}-{ehi}", len(item["exclude_prompt"]), elo <= len(item["exclude_prompt"]) <= ehi)
+                candidate_rows[-1]["variant"] = index
+                rows.extend(candidate_rows)
         if emit_report:
             target = out_path or (path.parent / "GATE_REPORT.json")
             write_gate_report(rows, target)

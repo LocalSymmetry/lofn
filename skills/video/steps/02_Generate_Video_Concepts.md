@@ -539,7 +539,7 @@ Convene the required panels. Simulate their discussion and use their expertise t
     - *The Music Marketer:* Ensures the concept aligns with the artist's brand (Lofn) and the song's appeal.
     - *The Virality Expert:* Identifies potential "hooks" and shareable elements.
 
-**Step 2: The Purge (Mandatory - Show Your Work)**
+**Step 2: The Purge (Mandatory - List What You Discard)**
 
 2.1. Have the panels collaborate to generate 17 initial concepts in detail. These should explore the obvious interpretations, common associations, and low-hanging fruit related to the user's idea.
 2.2. **Action:** Write out these 17 concepts.

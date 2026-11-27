@@ -31,7 +31,7 @@ Run directory auto-discovery:
 import os, sys, glob, re, argparse, json
 
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WORKSPACE = "/data/.openclaw/workspace"
+WORKSPACE = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
 PERS_DIR = os.path.join(WORKSPACE, "skills/orchestration/personalities")
 RULES_PATH = os.path.join(SKILL_DIR, "references/suno_rules_condensed.md")
 GOLDEN_INDEX_PATH = os.path.join(WORKSPACE, "skills/music/references/golden_songs_index.md")
@@ -70,7 +70,7 @@ You have complete creative authority. The output MUST use the three-block format
 
 **## SUNO EXCLUDE PROMPT — PRIMARY:** Concrete comma-separated blacklist terms. 400-900 chars. HARD LIMIT 900 characters. Rewrite if prose-y or thin. No categories, no brackets, no headers — just terms separated by commas. This is a negative-control field for Suno's parser. The block header is literally `## SUNO EXCLUDE PROMPT`.
 
-**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Disc_Channel block immediately following. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Minimum 60 sung lines. HARD LIMIT: 5,000 characters. Suno rejects lyrics exceeding this bound. Count the entire lyrics block (sung text only, not metadata/headers). The block header is literally `## SUNO ENHANCED LYRICS`.
+**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Place the Disc_Channel block in the separate Production Sidecar, outside the pasteable lyrics box. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Target 370-430 sung words (default hard gate 300-520), with no sung-line minimum. HARD LIMIT: 5,000 characters. Suno rejects lyrics exceeding this bound. Count the complete pasted block, including headers and cues. The block header is literally `## SUNO ENHANCED LYRICS`.
 
 ### CRITICAL: Disc_Channel Format — EXACT EXAMPLE, DO NOT DEVIATE
 
@@ -121,8 +121,8 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
 - `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip, integrated EMO section headers using `–` em dashes, >=60 sung lines, sung text <=5,000 chars (Suno hard limit), literary density, structural transformation
-- Disc_Channel: 5-line channel strip — PRESENT (above the lyrics)
+- `## SUNO ENHANCED LYRICS`: [Theme:] + [SONG FORM:], 5-line Disc_Channel channel strip in a separate Production Sidecar, integrated EMO section headers using `–` em dashes, 370-430 sung words, complete pasted lyrics <5,000 chars (Suno hard limit), literary density, structural transformation
+- Disc_Channel: 5-line channel strip — PRESENT in the Production Sidecar outside the lyrics box
 - EMO Tags: Integrated into section headers using `–` em dash separators — PRESENT on every section
 - Vocal Fingerprint: full table — PRESENT
 - Production Dramaturgy: full stage table with timestamps — PRESENT

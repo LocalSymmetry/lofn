@@ -13,7 +13,7 @@ Do NOT use: `video_generate`, `veo`, or any video generation tool.
 Do NOT attempt to produce video files.
 
 Your output is: `.md` files containing final ranked video prompts ready for rendering.
-The main session or cron agent handles actual Veo/Kling API calls.
+Choose the named renderer and endpoint in Phase 0 and carry that choice through every step. Legacy Veo templates are specific to Veo. The controller checks selected prompts with the local cost preflight; this skill never renders.
 
 ---
 
@@ -78,12 +78,12 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 Before this modality agent begins Step 00, it must validate a real Lofn-Core + orchestrator packet with:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must use the original Lofn panel-object structure: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`, each with a Devil's Advocate / Hyper-Skeptic adversarial role. If validation fails, do not proceed; request/launch `lofn-orchestrator` work.
 
-Every canonical step artifact must use `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and pass `validate_with_retries.py` before the next step.
+Every canonical step artifact must use `scripts/lofn_step_artifact_template.md` and pass `validate_with_retries.py` before the next step.
 
 ---
 
@@ -99,7 +99,7 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
-- You will receive ONE concept-medium pair via the lean pair-agent input standard in `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`
+- You will receive ONE concept-medium pair via the lean pair-agent input standard in `vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`
 - Run steps 06-10 for that pair only
 - Output 4 shot prompt variants to `step10_final_pair{N}.md`
 - Return as completion message
@@ -128,7 +128,7 @@ After Step 05 completes:
 2. Load `skills/lofn-core/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/video/TASK_TEMPLATE.md` for exact output requirements.
-4a. For pair-agent spawning or pair-agent execution, load `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md` and use the compact pair brief; do not load the full upstream packet into ordinary pair agents.
+4a. For pair-agent spawning or pair-agent execution, load `vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md` and use the compact pair brief; do not load the full upstream packet into ordinary pair agents.
 
 **⚠️ EVERY video generation MUST follow the full pipeline: 10 steps, 3 panels, 6 pairs × 4 outputs = 24 treatments minimum. Then select the best N to return. No shortcuts.**
 
@@ -334,7 +334,7 @@ When receiving a video task:
 After writing each step file, run the validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 scripts/validate_step.py <step> <file>
 ```
 
 Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
@@ -342,13 +342,13 @@ Exit 0 = proceed. Exit 1 = read the error, fix the file, rerun until it passes.
 ```bash
 # Full video pipeline validation sequence:
 OUTDIR="/your/output/dir"
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_guides.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
+python3 scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 scripts/validate_step.py 06 $OUTDIR/06_facets.md
+python3 scripts/validate_step.py 07 $OUTDIR/07_guides.md
+python3 scripts/validate_step.py 08 $OUTDIR/08_prompts.md
+python3 scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
+python3 scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
 ```
 
 The validator catches: stubs, lorem ipsum, template placeholders (Scene N, Shot N, Treatment N),

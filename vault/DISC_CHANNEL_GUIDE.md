@@ -1,4 +1,6 @@
-# Disc_Channel Guide — Suno Lyrics-Only Prompting
+# Disc_Channel Guide — Suno Production Notes
+
+For current Suno v6 vocal packages, keep the five-channel strip in a separate Production Sidecar, outside the pasted lyrics. Older inline examples below are historical. Use inline mode only if a run explicitly overrides the default in its run-local gates. Instrumentals have no lyrics box or channel strip. See [the current package guide](../docs/SUNO_V6_PACKAGING.md).
 
 **Adopted:** 2026-06-09 | **Source:** Reddit r/SunoAI (see end) | **Status:** Active pipeline mandate for Step 11+
 

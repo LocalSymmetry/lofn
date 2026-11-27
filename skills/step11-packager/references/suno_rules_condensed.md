@@ -58,8 +58,10 @@ Every step11 enhanced output MUST use exactly three canonical blocks, followed b
 ## SUNO ENHANCED LYRICS
 
 [Theme:] + [SONG FORM:] first
-5-line Disc_Channel block
-Full EMO-tagged lyrics, >=60 sung lines
+Full EMO-tagged lyrics: target 370-430 sung words, not a line minimum. Keep the complete pasted box under 5,000 characters.
+
+## Production Sidecar
+Place the 5-line Disc_Channel block here, outside the pasted box.
 
 ## Vocal Fingerprint
 ## Production Dramaturgy

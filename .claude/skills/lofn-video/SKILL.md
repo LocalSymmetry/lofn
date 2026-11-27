@@ -10,6 +10,8 @@ Produces cinematic shot lists and animation prompts at Lofn competition grade. T
 > **Rewritten 2026-08-15.** This skill used to be a Veo 3.1 skill wearing a general name. Veo 3.1 is now the *shortest* frontier model on the menu (8s), native audio is table stakes everywhere, and prices span **12× per second**. Model choice is now a Phase-0 decision, not a footnote. Landscape: `output/analysis/2026-08-15_video-model-landscape.md`. Rates and caps: `vault/VIDEO_MODEL_DOSSIER.yaml`.
 
 ## Before you start
+
+Decide whether the shot needs a short first-frame clip or full reference conditioning. A faster variant of a renderer need not accept the same references as its full version. State the job of every input and check the actual endpoint before rendering. For a music video, keep synthesized audio as a timing reference and cut to the approved master.
 1. Confirm a Phase-0/1 packet exists (`core_seed.md`, `04_metaprompt.md`, `05_pair_assignments.md`, `06_director_handoff.md` with the **ICB / Panel Ledger**, filled `CREATIVE_CONTEXT.md`). **No packet → run `lofn` first.**
 2. **PICK THE RENDERER NOW, BEFORE ANY PROMPT EXISTS** (see *Model-first* below). Record it in the handoff. The prompt grammar depends on it.
 3. Read the craft just-in-time:

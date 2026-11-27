@@ -73,7 +73,7 @@ Supplied images (if any): {image_context}
 # USER REASONING GUIDANCE
 - Your saved artifact (JSON or canonical .md) is the only part that moves on in the process. Make it complete and standalone. You may hide other thinking.
 - Look for "aha moments" of perfect audio clarity, and write them out. Iterate on tone, pacing, story, clarity, tools, and instruments to perfectly convey the intended concept, idea, take, and mood. Leave a lasting impression by artistry, not just uniqueness.
-- Use the panel to the fullest! Have entire panel discussions, chain-of-thought reasoning led by the named panelists, and panelist interjections before final decisions. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
+- Use the panel to the fullest! Run the panel as public proposals: independent seat proposals, reciprocal exchange among the named panelists, and panelist interjections before final decisions. Record public proposals and concise rationales, never private chain-of-thought. Each panel's Devil's Advocate / Hyper-Skeptic must genuinely dissent.
 
 ## ADDITIONAL GUIDANCE — PHASE ROUTING
 Determine — by the artifact you are asked to write at this step — which guidance applies.

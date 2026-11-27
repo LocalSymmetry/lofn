@@ -25,9 +25,13 @@ GATES = {
     'exclude_chars': (400, 1000),
     'exclude_target': (400, 900),
     'lyrics_max': 5000,
-    'lyrics_target': 4800,
-    'sung_lines': (70, 120),
-    'sung_floor_hug': 72,
+    'lyrics_target': 3800,
+    # V6-19 (2026-11-25): sung words are the length gate; the line count is advisory.
+    # Mirrors vault/gates.yaml (sung_words_hard_floor/ceiling, sung_words_band, sung_lines).
+    'sung_words_hard': (300, 520),
+    'sung_words_band': (340, 460),
+    'sung_words_target': (370, 430),
+    'sung_lines_advisory': (40, 100),
     'dedication_max': 500,
 }
 # [2026-08-21] ⛔ THIS LIST WAS A PREVIOUS RUN'S BANDCAMP VOCABULARY, HARDCODED.
@@ -168,6 +172,19 @@ def strip_fence(s):
         return None
     m = re.search(r'(?s)```[a-zA-Z]*\n(.*?)\n?```', s)
     return m.group(1).strip() if m else s.strip()
+def count_sung_words(lyrics):
+    """Whitespace tokens on the sung lines: the unit vault/gates.yaml budgets length in."""
+    n = 0
+    for ln in lyrics.splitlines():
+        t = ln.strip()
+        if not t:
+            continue
+        if t.startswith('[') or t.startswith('*') or t.startswith('#'):
+            continue
+        if re.match(r'^[-=_*]{3,}$', t):
+            continue
+        n += len(t.split())
+    return n
 def count_sung_lines(lyrics):
     n = 0
     for ln in lyrics.splitlines():
@@ -262,13 +279,17 @@ def main():
             if lyr:
                 n = len(lyr)
                 sl = count_sung_lines(lyr)
+                sw = count_sung_words(lyr)
+                slo, shi = GATES['sung_lines_advisory']
+                hlo, hhi = GATES['sung_words_hard']
+                wlo, whi = GATES['sung_words_band']
                 check(rows, pair, vid, 'lyrics_field_chars', n, '<5000', n < GATES['lyrics_max'])
-                check(rows, pair, vid, 'sung_lines', sl, '70-120', 70 <= sl <= 120)
-                # Floor hugging is an advisory in gates.yaml and validate_step.py,
-                # not a package failure.  Keep it visible without turning a frozen
-                # 70-line pair budget into a contradictory hard gate.
-                check(rows, pair, vid, 'sung_lines_floor_hugging(FLAG)', sl,
-                      '>72 (advisory)', True)
+                check(rows, pair, vid, 'sung_words', sw, f'{hlo}-{hhi}', hlo <= sw <= hhi)
+                # Advisory rows: recorded, never a package failure.
+                check(rows, pair, vid, 'sung_words_band(FLAG)', sw,
+                      f'{wlo}-{whi} (advisory; target 370-430, about 3:30)', True)
+                check(rows, pair, vid, 'sung_lines(ADVISORY)', sl,
+                      f'{slo}-{shi} (advisory; a form choice)', True)
                 check(rows, pair, vid, 'has_theme_header', bool(re.search(r'\[Theme:', lyr)),
                       'True', bool(re.search(r'\[Theme:', lyr)))
                 check(rows, pair, vid, 'has_song_form', bool(re.search(r'\[SONG FORM:', lyr, re.I)),

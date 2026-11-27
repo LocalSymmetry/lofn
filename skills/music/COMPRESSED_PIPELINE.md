@@ -55,7 +55,7 @@ For each song guide, write a COMPLETE Suno-ready package with this exact structu
 ## 2. LYRICS
 [SONG FORM: <meaningful named form, not "verse-chorus">]
 [Theme: or Setting: <specific context>]
-[Full lyrics, 70-120 sung lines, performance-ready Suno syntax. Every section header must include EMO:<emotion>, vocalist cue, and mix/performance cue. Include at least one standalone SFX cue in asterisks, ≤5 words, and at least one non-lexical vocal hook where musically appropriate.]
+[Full lyrics, 370–430 sung words, performance-ready Suno syntax. Every section header must include EMO:<emotion>, vocalist cue, and mix/performance cue. Include at least one standalone SFX cue in asterisks, ≤5 words, and at least one non-lexical vocal hook where musically appropriate.]
 
 ## 3. TITLE
 [Final title]
@@ -81,7 +81,7 @@ Repair any blocking failure before delivery. Then send each song file to Telegra
 When possible, run the deterministic validator before delivery:
 
 ```bash
-python3 /data/.openclaw/workspace/skills/music/scripts/validate_suno_packages.py <output_dir>
+python3 skills/music/scripts/validate_suno_packages.py <output_dir>
 ```
 
 Treat any `FAIL` result as a repair blocker.
