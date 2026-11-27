@@ -12,7 +12,7 @@ This repository contains the **agent skill set** that powers **Lofn** — an awa
 |---|---|---|
 | **Claude Code** | [`.claude/skills/`](.claude/skills/) — `/lofn`, `/lofn-music`, `/lofn-image`, `/lofn-video`, `/lofn-story`, `/lofn-qa` | ⭐ **primary — where Lofn actually lives and where every run below was produced** |
 | **Codex** | `.agents/skills/` (mirrored; parity enforced by `scripts/check_skill_mirror.py`) | supported |
-| **OpenClaw** | [`skills/`](skills/) originals, unchanged | still works; no longer the assumed host |
+| **OpenClaw** | [`skills/`](skills/) shared workflow contracts | requires a configured OpenClaw host |
 | **Anything else** | [`skills/`](skills/) + your own spawn/path layer | the step contracts are portable prose — see [`.claude/skills/lofn/EXECUTION.md`](.claude/skills/lofn/EXECUTION.md) for what a host layer has to provide |
 
 
@@ -152,7 +152,7 @@ docs/                        # Plans, knob census & ground-truth for the Explore
 
 `/lofn` runs the seed + 3-panel debate inline, fans the 6 pairs out to parallel Claude subagents, then QA. You can also call a modality directly when a Phase-0/1 packet already exists in the run dir.
 
-**How these relate to the OpenClaw `skills/`:** the originals under `skills/**` are untouched and still power OpenClaw deployments. The Claude port **reuses** the same step files, the 114-personality / panel libraries, the Golden Seeds, and the QA references — only the **execution layer** is swapped (OpenClaw session-spawn → Claude **Agent** subagents; DeepSeek / GPT-5.5 / Gemini model-tiering → **Claude**; `validate_*.py` → Claude-native self-check gates; absolute workspace paths → repo-relative). Full detail in [`.claude/skills/README.md`](.claude/skills/README.md).
+**How these relate to the OpenClaw `skills/`:** `skills/` holds the shared workflow contracts, including the current prompts and validators. OpenClaw use requires a configured host. The Claude port **reuses** the same step files, the 114-personality / panel libraries, the Golden Seeds, and the QA references — only the **execution layer** is swapped (OpenClaw session-spawn → Claude **Agent** subagents; DeepSeek / GPT-5.5 / Gemini model-tiering → **Claude**; `validate_*.py` → Claude-native self-check gates; absolute workspace paths → repo-relative). Full detail in [`.claude/skills/README.md`](.claude/skills/README.md).
 
 ---
 
@@ -456,8 +456,8 @@ Then, in Claude Code:
 
 ### Other hosts
 
-- **Codex** — mirrored skills under `.agents/skills/`, entry point `AGENTS.md`.
-- **OpenClaw** — the originals under `skills/` are untouched; copy them into your workspace.
+- **Codex:** Open the clone root and start with the [Lofn skill](.agents/skills/lofn/SKILL.md).
+- **OpenClaw:** Use the [shared workflow contracts](skills/) from a configured OpenClaw workspace.
 - **Anything else** — the step contracts are prose. A host layer needs to provide four things: spawn a subagent, resolve repo-relative paths, read/write files, and run a shell command. [`.claude/skills/lofn/EXECUTION.md`](.claude/skills/lofn/EXECUTION.md) is the reference implementation of exactly that translation.
 
 ### Use
