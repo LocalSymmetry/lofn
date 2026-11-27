@@ -105,7 +105,7 @@ Rules:
 | Missing `[Theme:]` / `[SONG FORM:]` | Both mandatory as first two lyric lines | Semantic container for Suno |
 | `###` markdown sections | Bracket format only: `[Section – EMO:Tag – Role]` | ### ≠ Suno-compatible |
 | >3 sound commands | 1-2 total, at emotional peaks only | Clutter kills impact |
-| <60 sung lines | 70-120 sung lines | Too short for a 3-4 minute full daily deliverable |
+| Sung words outside the run bounds | Aim for 370–430 sung words | Repair an undeclared exception; preserve the chosen form |
 | Style prompt opens "Lead with love..." | Genre × subgenre, BPM, key, 432Hz first | Suno needs genre-first density |
 | Missing `## SUNO STYLE PROMPT` or `## SUNO LYRICS` headers | Two-section structure mandatory | Section headers are the container — content without container = unparseable |
 | Lofn voice instead of assigned personality | "YOU ARE [PERSONA]" + full DNA block | Personality collapse = reject |
@@ -144,8 +144,8 @@ lyrics...
 - **Apply at least one technique, flair, or structural transformation.**
 - The invariant hook must land with maximum force
 - Cross-domain processing vocabulary where applicable (e.g., `cassette_tape_saturation` on synth textures, `Wall_Of_Sound_Spector_Layering` on choral pads)
-- Lyrics + Disc_Channel + section headers should remain compact enough for Suno handling while preserving full song length: at least 60 sung lines, target 70-120. Reduce bloat through tighter language, not by collapsing the song.
-- 🚨 **SUNO LYRICS-FIELD HARD CAP — measure it, < 5000 chars (target ≤4800).** The field is everything pasted into Suno's lyrics box: `[Theme]` + `[SONG FORM]` + the **Disc_Channel block** + every EMO/section header + every `*SFX*` + all sung lines. The MAX/Disc_Channel config makes this tight — budget for it. If the count hits the cap: trim/merge sung lines, tighten headers, and if still over, **move the Disc_Channel block to a `## Production Sidecar` outside the lyrics field** (the render field wins; note it). The 70-120-line target yields to this cap. State the measured char count in the self-check; `scripts/validate_suno_packages.py` fails the package at ≥5000.
+- Budget 370–430 sung words by default; move production notes out of the pasted field rather than compressing the sung form to fit.
+- **Suno lyrics-box limit:** measure the pasted box; keep it under 5,000 characters (soft ceiling 3,800). Keep `[Disc_*]` and production metadata in a `## Production Sidecar` outside that box. Tighten non-sung cues and headers before cutting sung material. Record the actual count.
 
 ### 2. Style Prompt + Exclude Prompt — MAX SUNO TWO-FIELD FORM (MANDATORY — 2026-06-14)
 

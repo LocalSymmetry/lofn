@@ -78,12 +78,12 @@ Lofn-Core's job: seed + research. Orchestrator's job: panel + personality + meta
 Before this modality agent begins Step 00, it must validate a real Lofn-Core + orchestrator packet with:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must use the original Lofn panel-object structure: `Special Flairs`, `Concept Panel`, `Medium Panel`, and `Context & Marketing Panel`, each with a Devil's Advocate / Hyper-Skeptic adversarial role. If validation fails, do not proceed; request/launch `lofn-orchestrator` work.
 
-Every canonical step artifact must use `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and pass `validate_with_retries.py` before the next step.
+Every canonical step artifact must use `scripts/lofn_step_artifact_template.md` and pass `validate_with_retries.py` before the next step.
 
 ---
 
@@ -99,7 +99,7 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
-- You will receive ONE concept-medium pair via the lean pair-agent input standard in `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`
+- You will receive ONE concept-medium pair via the lean pair-agent input standard in `vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`
 - Run steps 06-10 for that pair only
 - Output 4 final prompts to `step10_final_pair{N}.md`
 - Return prompts as completion message
@@ -127,7 +127,7 @@ After Step 05 completes:
 2. Load `skills/lofn-core/refs/PIPELINE.md` for the MANDATORY execution pipeline.
 3. Load `skills/lofn-core/OUTPUT.md` for the MANDATORY artifact saving format.
 4. Load `skills/image/TASK_TEMPLATE.md` for exact output requirements.
-4a. For pair-agent spawning or pair-agent execution, load `/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md` and use the compact pair brief; do not load the full upstream packet into ordinary pair agents.
+4a. For pair-agent spawning or pair-agent execution, load `vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md` and use the compact pair brief; do not load the full upstream packet into ordinary pair agents.
 5. For seeds: read `skills/lofn-core/GOLDEN_SEEDS_INDEX.md` first (2KB), then read only the 3-4 most relevant seeds from `skills/lofn-core/refs/GOLDEN_SEEDS.md` using offset/limit.
 
 **Pipeline step files** are in `skills/image/steps/` - load only the step you are currently running.
@@ -196,8 +196,8 @@ This "shakes up the creative space" by ensuring every run explores different cor
 ## 🔀 DUAL-MODE PIPELINE (GPT Image 2 support added 2026-04-26)
 
 **When `TARGET_RENDERER = GPT_I2` is set in the orchestrator metaprompt:**
-- Load `/data/.openclaw/workspace/skills/image/renderer_gpt_image2_rules.md` before Step 05
-- Load `/data/.openclaw/workspace/vault/GPT_IMAGE2_PLAYBOOK.md` for competition-grade prompt engineering
+- Load `skills/image/renderer_gpt_image2_rules.md` before Step 05
+- Load `vault/GPT_IMAGE2_PLAYBOOK.md` for competition-grade prompt engineering
 - Steps 05-10 rules are OVERRIDDEN by GPT Image 2 renderer rules (Five-Slot Framework, Storybook Cliché override, additive directing, camera spec language, one-shot commitment)
 - Do NOT use artist names in prompts - use material/technique descriptions directly
 - Do NOT use negative constraints - use additive directing
@@ -326,20 +326,20 @@ When receiving an image task:
 After writing each step file, run this validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_step.py <step> <file>
+python3 scripts/validate_step.py <step> <file>
 ```
 
 If it exits with code 1 (FAIL): read the error, fix the file, rerun validation. Do NOT proceed until it passes.
 
 ```bash
 # Run after each step - example for full pipeline:
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_guides.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
+python3 scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 scripts/validate_step.py 06 $OUTDIR/06_facets.md
+python3 scripts/validate_step.py 07 $OUTDIR/07_guides.md
+python3 scripts/validate_step.py 08 $OUTDIR/08_prompts.md
+python3 scripts/validate_step.py 09 $OUTDIR/09_refined_prompts.md
+python3 scripts/validate_step.py 10 $OUTDIR/10_final_prompts.md
 ```
 
 **Only declare completion after all validators return exit code 0.**

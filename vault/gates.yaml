@@ -30,12 +30,24 @@ suno_exclude_chars: [400, 900]
 suno_exclude_chars_hard_max: 1000
 
 suno_lyrics_field_max: 5000
-suno_lyrics_field_target: 4800
-# Sung-line target band for the lyrics section (lines that are actually sung —
-# not headers, bracket tags, or SFX cues). The separate hard floor triggers
-# repair; a run-local gates file may lower it for a personality-specific form.
-sung_lines: [70, 120]
-sung_lines_hard_floor: 60
+suno_lyrics_field_target: 3800
+suno_lyrics_field_target_band: [2600, 3600]
+# For Suno v6, count sung words. Line count is stylistic in this mode.
+length_gate: words
+sung_words_target: [370, 430]
+sung_words_band: [340, 460]
+sung_words_hard_floor: 300
+sung_words_hard_ceiling: 520
+sung_chars_target: [1800, 2150]
+sung_lines: [40, 100]
+sung_lines_hard_floor: 45
+lyrics_overhead_max_chars: 1100
+lyrics_overhead_flag_chars: 1300
+lyrics_overhead_flag_pct: 40.0
+lyrics_header_meta_max_chars: 250
+lyrics_section_headers_max_chars: 650
+disc_channel_in_lyrics_box: false
+sfx_cue_max_chars: 60
 
 # --- Boundary-hugging + truncation (2026-07-01 regression review) ----------
 # Optimization pressure shows up as gate-hugging: every late-June style prompt
@@ -264,7 +276,7 @@ ngram_collapse_n: 4
 rhyme_window: 4                 # ±N lines; THE definition — see scripts/measure_soundcraft.py
 rhyme_return_floor: 0.30        # strict_end_rhyme(): last-3-chars of final word recurring within ±rhyme_window
 line_return_floor: 0.20         # exact repeated-line ratio (choruses COUNT)
-mean_words_per_line_ceiling: 7.5  # above this the lyric drifts toward prose
+mean_words_per_line_ceiling: 6.8  # advisory singability flag, not a length gate
 alliteration_per_100w_floor: 11.0
 
 # ⛔ EXACT CHORUS REPETITION NEEDS NO DEFENCE.

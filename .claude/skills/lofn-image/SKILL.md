@@ -8,6 +8,8 @@ description: Run the Lofn image/visual pipeline (steps 00–10) backed by Claude
 Produces render-ready image prompts at Lofn competition grade (the catalog behind 11 first-place finishes). Depth lives in `skills/image/`; this skill runs it with Claude as the engine (hybrid execution per `.claude/skills/lofn/EXECUTION.md`).
 
 ## Before you start
+
+For a challenge that requires native creation, check its current rules before staging prompts. External renders or uploads may be ineligible. Draft a broad golden seed for review, then use the challenge rules and renderer choice to guide the prompt variations. Keep draft packages separate from rendering and submission.
 1. Confirm a Phase-0/1 packet exists (`core_seed.md`, `04_metaprompt.md`, `05_pair_assignments.md`, `06_vision_handoff.md` with the **ICB / Panel Ledger**, filled `CREATIVE_CONTEXT.md`). **No packet → run `lofn` first.**
 2. **Pick the renderer mode** (the metaprompt/dispatch may set `TARGET_RENDERER`):
    - **FLUX / unset** (daily & community challenges) → read `skills/image/renderer_flux_rules.md`. Description-style, noun-first, 80–150 words.

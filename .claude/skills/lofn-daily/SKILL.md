@@ -106,7 +106,7 @@ Every daily piece integrates three sources; state them explicitly in the metapro
 For daily runs, **always select personality + panel from the existing libraries** (`personalities_index.md` / `panels_index.md`) — **no generation.** Freshly generated personalities over-fit the day's theme and lose the battle-tested DNA. (Generation is reserved for competition/Scientist-special runs.)
 
 ### Modality specifics
-- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 70–120 lines; `06_audio_handoff.md` carries 2 Golden Songs. Run music in parallel with image.
+- **MUSIC** (`lofn-music`): 24 songs (6×4); each ≤1000-char two-field Suno prompt, female vocals default, EMO headers, 370–430 sung words; `06_audio_handoff.md` carries 2 Golden Songs. Run music in parallel with image.
 - **IMAGE** (`lofn-image`): 24 prompts → rank → **top 12 → top 6**; figurative legible primary subject (thumbnail test); noun-first present-tense ≥80 words; warm palette leads on NightCafe-style venues (INDIGNATION underperforms there — see `vault/COMPETITION_WORKFLOW.md`); aspect 3:4 for upload challenges else 9:16. Apply the **Container Test** (`COMPETITION_WORKFLOW.md`) and **Action-Verb rule** (action theme → cinematic wide, not portrait).
 
 Run the two modalities concurrently (independent `lofn` runs writing to `music/` and `images/` subdirs). Each fans its 6 pairs out as parallel subagents per `.claude/skills/lofn/EXECUTION.md`.

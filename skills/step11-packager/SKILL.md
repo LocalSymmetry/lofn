@@ -103,7 +103,7 @@ You have complete creative authority. The output MUST use the three-block format
 
 **## SUNO EXCLUDE PROMPT — PRIMARY:** Concrete comma-separated blacklist terms. 400-900 chars. Rewrite if prose-y or thin. No categories, no brackets, no headers — just terms separated by commas. This is a negative-control field for Suno's parser. The block header is literally `## SUNO EXCLUDE PROMPT`.
 
-**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Disc_Channel block immediately following. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Minimum 60 sung lines. The block header is literally `## SUNO ENHANCED LYRICS`.
+**## SUNO ENHANCED LYRICS — PRIMARY:** Rewrite, restructure, rebuild. Elevate to literary density. Apply at least one structural transformation. If a verse is generic, replace it wholesale. If the bridge doesn't earn its place, cut it or reinvent it. If the song form fights the emotional arc, change the form. Must open with [Theme:] + [SONG FORM:] lines. Place the Disc_Channel block in the separate Production Sidecar, outside the pasteable lyrics box. Then full lyrics with EMO tags INTEGRATED INTO EVERY SECTION HEADER. Target 370-430 sung words (default hard gate 300-520), with no sung-line minimum. The block header is literally `## SUNO ENHANCED LYRICS`.
 
 ### CRITICAL: Disc_Channel Format — EXACT EXAMPLE, DO NOT DEVIATE
 
@@ -168,8 +168,8 @@ You are producing, not polishing. Rewrite entire verses. Restructure the song fo
 ### 4. FINAL VERIFICATION — THREE-BLOCK + ALL SUPPORTING SECTIONS CHECKLIST
 - `## SUNO STYLE PROMPT`: 850-1000 chars, one paragraph, procedural-free, genre-first, 7-position order
 - `## SUNO EXCLUDE PROMPT`: 400-900 chars, comma-separated terms only, no categories, no brackets
-- `## SUNO ENHANCED LYRICS`: [Theme:  ...] + [SONG FORM: ...], 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), >=60 sung lines, literary density, structural transformation
-- Disc_Channel: 5-line channel strip — `[Disc_Rhythm: ...]` `[Disc_Vocal: ...]` `[Disc_Sub: ...]` `[Disc_Pad: ...]` `[Disc_Texture: ...]` — pipe-separated tokens in bracket-wrapped lines — PRESENT (above the lyrics)
+- `## SUNO ENHANCED LYRICS`: [Theme:  ...] + [SONG FORM: ...], separate Production Sidecar with a 5-line Disc_Channel channel strip (pipe-separated tokens per `[Disc_NAME: ...]` bracket), integrated EMO section headers using `–` em dashes (NOT standalone EMO lines), 370-430 sung words, literary density, structural transformation
+- Disc_Channel: 5-line channel strip — `[Disc_Rhythm: ...]` `[Disc_Vocal: ...]` `[Disc_Sub: ...]` `[Disc_Pad: ...]` `[Disc_Texture: ...]` — pipe-separated tokens in bracket-wrapped lines — PRESENT in the Production Sidecar outside the lyrics box
 - EMO Tags: Integrated into section headers as `[Section – Label – EMO:State1, State2 [11] – Persona, delivery notes]` using `–` (em dash) separators — NOT standalone `[EMO=xxx]` lines — PRESENT on every section
 - Vocal Fingerprint: full table, tessitura, timbre, mic distance, spatial — PRESENT as `## Vocal Fingerprint`
 - Production Dramaturgy: full stage table with timestamps — PRESENT as `## Production Dramaturgy`
@@ -236,7 +236,7 @@ Every step11 output MUST use exactly three canonical blocks for the Suno-facing 
 
 ## SUNO ENHANCED LYRICS
 
-[Theme:] + [SONG FORM:] at top, 5-line Disc_Channel channel strip (pipe-separated `[Disc_NAME: ...]` brackets), full EMO-tagged lyrics with `–` (em dash) section headers, minimum 60 sung lines]
+[Theme:] + [SONG FORM:] at top, separate Production Sidecar with a 5-line Disc_Channel channel strip (pipe-separated `[Disc_NAME: ...]` brackets), full EMO-tagged lyrics with `–` (em dash) section headers, target 370-430 sung words with no sung-line minimum]
 ```
 
 **All other blocks MUST remain present below these three.** Do not skip: vocal fingerprint, production dramaturgy, binding locks, lineage & credit, major deviations, golden song references, style-axis locks, arrangement dramaturgy, panel ledger, QA report, constraint audit. The three-block standard is a FORMAT SPEC — not a content reduction. Everything that was in the step10 + step11 pipeline survives; it just flows into a clean, Suno-ready handoff with the three canonical blocks at the top.
@@ -280,4 +280,4 @@ These files are 200-300KB each and contain the complete pipeline output. Use the
 
 - `references/suno_rules_condensed.md` — Condensed Suno construction rules for inline embedding
 - `scripts/build_fable_prompt.py` — Automated builder script
-- `~/.openclaw/workspace/skills/orchestration/personalities/lofn-prime-mini.yaml` — Full LOFN-PRIME YAML (1800 lines)
+- `skills/orchestration/personalities/lofn-prime-mini.yaml` — Full LOFN-PRIME YAML (1800 lines)

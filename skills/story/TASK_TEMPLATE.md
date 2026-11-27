@@ -16,7 +16,7 @@ The original Lofn app ran this exact pattern:
 Before coordinator Step 00, validate that the run has a real Lofn-Core + orchestrator packet:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must include substantial seed lineage, Golden Seed/core seed, the original Lofn panel object (`Special Flairs`, `Concept Panel`, `Medium Panel`, `Context & Marketing Panel`) with Devil's Advocate / Hyper-Skeptic roles, metaprompt, pair assignments with rationale, and modality handoff. If this fails, do not proceed. Launch or request `lofn-orchestrator` work instead.
@@ -25,7 +25,7 @@ The packet must include substantial seed lineage, Golden Seed/core seed, the ori
 
 ## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
 
-Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and include:
+Every canonical step file must follow `scripts/lofn_step_artifact_template.md` and include:
 
 1. `## 0. Step Provenance` — exact step file loaded, input artifacts used, model call mode, validation command.
 2. `## 1. Input Context Digest` — concrete digest of prior artifacts; must name actual concepts/facets/media, not generic task text.
@@ -53,7 +53,7 @@ Executes as **six separate LLM turns**, matching original `generate_concept_medi
 - Step 05: read `steps/05_Generate_Story_Refine_Medium.md`, call the model using Step 04 output, write `step05_refine_medium.md` using the canonical provenance template and `concept_medium_pairs.json` (6 pairs)
 
 ### Mandatory validation + retry loop for Steps 00–05
-After writing each step artifact, run `python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1`. Repair in place and retry attempts 2/3 if needed. Do not continue with a failed artifact.
+After writing each step artifact, run `python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1`. Repair in place and retry attempts 2/3 if needed. Do not continue with a failed artifact.
 
 **STOP HERE. Do not proceed to step 06.**
 
@@ -75,7 +75,7 @@ Each executes (for its ONE pair only) as **five separate LLM turns**, matching o
 - Step 10: read `steps/10_Generate_Story_Revision_Synthesis.md`, call the model using Step 09 output, write `pair_{NN}_step10_revision_synthesis.md` using the canonical provenance template
 
 ### Mandatory validation + retry loop for Steps 06–10
-After writing each pair step artifact, run `python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1`. Repair in place and retry attempts 2/3 if needed. Do not claim the pair is complete if a prior step failed.
+After writing each pair step artifact, run `python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1`. Repair in place and retry attempts 2/3 if needed. Do not claim the pair is complete if a prior step failed.
 
 Outputs to disk: five separate step files for its pair number
 Returns: Step 10 final story variants as output text

@@ -122,7 +122,7 @@ For music, the tri-source method feeds theme and form. It is not a lyric quota. 
 - **Stanza economy:** vary stanza lengths intentionally.
 - **Per-pair variation angles:** each pair derives its own 4 angles from its own concept.
 - **Pair isolation:** for dailies, music Steps 05-11 run as isolated pair runs. Step 05 writes a pair-specific brief; Steps 06-11 for one pair must not reuse another pair's lyric scaffold, section map, stanza template, rhyme scheme, hook grammar, or helper-generated line factory. Sharing validators and file I/O is fine; sharing creative bones is a repair. If pairs sound like the same song with nouns swapped, rerun each affected pair from Step 05.
-- **Suno package:** dense music prompt, exclude prompt, EMO headers, female vocals by default, 70-120 sung lines.
+- **Suno package:** dense music prompt, exclude prompt, EMO headers, female vocals by default, 370–430 sung words by default.
 
 ## Image Rules (Daily Runs Only)
 

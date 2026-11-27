@@ -1,4 +1,6 @@
 ---
+
+> **Historical reference:** the line-count targets below describe the legacy workflow. New Suno v6 runs use the [sung-word budget](../../../docs/SUNO_V6_PACKAGING.md) instead.
 name: lofn-music
 description: Run Lofn music/audio pipeline, Suno-ready prompts, lyrics, song guides, and music production briefs. Do NOT use for static image prompts, QA audit, or final ranking.
 ---
@@ -50,7 +52,7 @@ See `TASK_TEMPLATE.md` for the full specification. Summary:
 3. Main session spawns 6 parallel pair subagents (steps 06-10, one per pair)
 
 ### When spawned as a "pair agent" (steps 06-10):
-- You will receive ONE concept-medium pair through the full-context injected pair payload required by `skills/music/SKILL.md` Workflow item 9. The former lean pair-agent input standard (`/data/.openclaw/workspace/vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`) is legacy reference only.
+- You will receive ONE concept-medium pair through the full-context injected pair payload required by `skills/music/SKILL.md` Workflow item 9. The former lean pair-agent input standard (`vault/LEAN_PAIR_AGENT_INPUT_STANDARD.md`) is legacy reference only.
 - The parent/controller validates the full upstream packet, then gives the pair agent only Step 05, `concept_medium_pairs.json`, one pair assignment excerpt, the step contract, tiny provenance, and relevant blockers
 - Run steps 06-10 for that pair only
 - **Run each step as its own model call / prompt-response turn**, matching original `lofn/llm_integration.py`:
@@ -349,7 +351,7 @@ When receiving a music task:
 After writing each step file, run the retry validator BEFORE moving to the next step:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <step> <file> --attempt 1
+python3 scripts/validate_with_retries.py <step> <file> --attempt 1
 ```
 
 Exit 0 = proceed. Exit 1 = repair the file in place and rerun with `--attempt 2`, then `--attempt 3` if needed. Exit 2 / max attempts exhausted = stop, checkpoint, and escalate to controller/QA. Do not continue with a failed artifact.
@@ -359,14 +361,14 @@ This mirrors the original Streamlit retry discipline: failure is expected someti
 ```bash
 # Full music pipeline validation sequence:
 OUTDIR="/your/output/dir"
-python3 /data/.openclaw/workspace/scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
-python3 /data/.openclaw/workspace/scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
+python3 scripts/validate_step.py 00 $OUTDIR/00_aesthetics.md
+python3 scripts/validate_step.py 05 $OUTDIR/05_refined_pairs.md
+python3 scripts/validate_step.py 06 $OUTDIR/06_scoring_facets.md
+python3 scripts/validate_step.py 07 $OUTDIR/07_song_guides.md
 # For each song file (08_song_*.md), validate individually:
-python3 /data/.openclaw/workspace/scripts/validate_step.py 08 $OUTDIR/08_song_01.md
+python3 scripts/validate_step.py 08 $OUTDIR/08_song_01.md
 # ... repeat for all 24 song files
-python3 /data/.openclaw/workspace/scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
+python3 scripts/validate_step.py 10 $OUTDIR/10_final_songs.md
 ```
 
 The validator catches: stubs, lorem ipsum, template placeholders (Song N, Genre N),
@@ -376,7 +378,7 @@ identical pair sections, recycled "Similar arrangement" prompts, short content.
 
 ### 🔴 CALL/RESPONSE PROVENANCE GATE
 
-Every canonical step artifact must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md`. This is how OpenClaw proves it actually executed the original Lofn prompt chain rather than backfilling filenames.
+Every canonical step artifact must follow `scripts/lofn_step_artifact_template.md`. This is how OpenClaw proves it actually executed the original Lofn prompt chain rather than backfilling filenames.
 
 Required sections:
 - `## 0. Step Provenance`

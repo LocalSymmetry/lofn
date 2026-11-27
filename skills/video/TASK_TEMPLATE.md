@@ -16,7 +16,7 @@ The original Lofn app ran this exact pattern:
 Before coordinator Step 00, validate that the run has a real Lofn-Core + orchestrator packet:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_orchestrator_packet.py <run_dir>
+python3 scripts/validate_orchestrator_packet.py <run_dir>
 ```
 
 The packet must include substantial seed lineage, Golden Seed/core seed, the original Lofn panel object (`Special Flairs`, `Concept Panel`, `Medium Panel`, `Context & Marketing Panel`) with Devil's Advocate / Hyper-Skeptic roles, metaprompt, pair assignments with rationale, and modality handoff. If this fails, do not proceed. Launch or request `lofn-orchestrator` work instead.
@@ -25,7 +25,7 @@ The packet must include substantial seed lineage, Golden Seed/core seed, the ori
 
 ## CANONICAL STEP ARTIFACT PROVENANCE — REQUIRED
 
-Every canonical step file must follow `/data/.openclaw/workspace/scripts/lofn_step_artifact_template.md` and include:
+Every canonical step file must follow `scripts/lofn_step_artifact_template.md` and include:
 
 1. `## 0. Step Provenance` — exact step file loaded, input artifacts used, model call mode, validation command.
 2. `## 1. Input Context Digest` — concrete digest of prior artifacts; must name actual concepts/facets/media, not generic task text.
@@ -58,7 +58,7 @@ Executes as **six separate LLM turns**, matching original `generate_concept_medi
 After writing each step artifact, run:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
 ```
 
 If validation fails, repair in place and rerun attempts 2 and 3. After 3 failed attempts, stop and escalate. Do **not** continue with a failed artifact.
@@ -88,7 +88,7 @@ Each executes (for its ONE pair only) as **five separate LLM turns**, matching o
 After writing each pair step artifact, run:
 
 ```bash
-python3 /data/.openclaw/workspace/scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
+python3 scripts/validate_with_retries.py <STEP> <FILE> --attempt 1
 ```
 
 If validation fails, repair in place and rerun attempts 2 and 3. After 3 failed attempts, stop that pair and return the exact validator failure. Do not claim the pair is complete if a prior step failed.
