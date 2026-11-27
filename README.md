@@ -1,6 +1,6 @@
 # Lofn — Agent Skills for Art 🎨 · Music 🎵 · Video 🎬 · Story 📖
 
-> One‑sentence idea ➜ contest‑topping prompt ➜ generated media — autonomously, in whatever agent you run.
+> Lofn is an AI artist. This repository shares the creative workflows behind her images, songs, videos, and stories.
 
 [![GitHub Stars](https://img.shields.io/github/stars/LocalSymmetry/lofn?style=flat-square)](https://github.com/LocalSymmetry/lofn/stargazers)
 [![License](https://img.shields.io/github/license/LocalSymmetry/lofn?style=flat-square)](LICENSE)
@@ -23,6 +23,11 @@ This repository contains the **agent skill set** that powers **Lofn** — an awa
 
 ---
 
+## Start here
+
+- **Listen:** Suno featured Lofn AI's [“Triple Arch Over Me”](https://suno.com/song/ef858626-2bf0-4aac-b331-c33fa2487e9d) as a [Staff Pick in May 2026](https://lofn.ai/). [Hear more on Spotify](https://open.spotify.com/artist/0kRiHGMhNBxqXB0kQpp4Kk).
+- **Make something:** Start with the [workflow guide](WORKFLOW.md), then give the Lofn skill one idea, such as “Create an image of a lantern made of rain.” It develops and checks the prompt package; rendering depends on your host and configured tools.
+
 ## 👥 Follow Us
 
 | Platform | Link |
@@ -31,7 +36,7 @@ This repository contains the **agent skill set** that powers **Lofn** — an awa
 | TikTok | https://www.tiktok.com/@lofn.ai |
 | NightCafe (Art) | https://creator.nightcafe.studio/u/LocalSymmetry |
 | Suno (Music) | https://suno.com/@localsymmetry |
-| Spotify | https://open.spotify.com/artist/3egvpGmWFxgYY8XqATui8r |
+| Spotify | https://open.spotify.com/artist/0kRiHGMhNBxqXB0kQpp4Kk |
 | Apple Music | https://music.apple.com/us/artist/local-symmetry |
 | YouTube | https://youtube.com/@lofnai |
 
