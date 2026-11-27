@@ -59,7 +59,7 @@ Lead with seed/scene, end with the checklist.
 
 **GPT_I2 mode:** five-slot directive, front-loaded camera spec (85mm, f/1.8), lighting source+angle+Kelvin+shadow behavior, background declared (VOID/STRUCTURED/MINIMAL), 3+ named devices with visible behavior; apply the mandatory anti-default substitutions ("warm rim light" → "hard axial light from below"; "centered" → "lower third with aggressive negative space"; etc.). 250–400 words.
 
-**Both modes:** subject **legible at first glance** (thumbnail impact); material specificity; emotional legibility in pose/expression. Aspect ratio: upload challenges **3:4**, TikTok/Stories **9:16**, landscape **16:9** (default 9:16 unless told otherwise).
+**Both modes:** subject **legible at first glance** (thumbnail impact); material specificity; emotional legibility in pose/expression. At pair assignment, choose an aspect ratio from the renderer’s supported sizes based on the composition; cite the reason and record it in artifact frontmatter. Venue requirements take precedence. Revisions keep the chosen shape unless the subject or staging changes.
 
 ### ⭐ ONE SEAM — N = 1 (hard gate, `COMPETITION_LEARNINGS` L38)
 **A piece is made OF a material, never ABOUT materials. The medium is the SUBSTANCE, never the SUBJECT.**
@@ -68,11 +68,11 @@ Lead with seed/scene, end with the checklist.
 - ✅ **KEEP the historical-medium anchor.** Without a named lineage the renderer defaults to "pretty AI portrait". The anchor is the good half; the collision is the bad half.
 - **Pair self-check (state it in step 10):** count the distinct material systems in the frame. **If the count is >2, cut until it isn't.** Name the single seam and what the subject does across it.
 
-### THE VINCENT TEST — post-render, pre-submission (`COMPETITION_LEARNINGS` L39)
-NightCafe's auto-generated **"Creation Summary by Vincent"** has never seen the prompt — a **free blind first-read**. **If its headline names an EVENT, the piece works; if it names a STYLE, TECHNIQUE or MEDIUM, the picture is about its own craft — repair or hold.** This is THE BLIND RULE for images; it costs nothing, so it is never skipped.
+### NIGHTCAFE: SEPARATE PROMPT FOCUS FROM IMAGE REVIEW
 
-### ⭐ THE SIX-WORD EVENT — pre-render Vincent proxy (step 10, added 2026-08-15)
-Vincent is free but it fires **after the credits are spent.** The same failure is catchable in text for nothing.
+Use a six-word event to check the text before rendering. On themed challenges, remove the stated theme as a thought experiment: if the hero would be unchanged, move the theme onto the hero. A platform-generated caption is not proof of a blind pixel read. For pre-submission QA, show the untitled image alone to a fresh reader, check what event they see first, and look for anatomy and compositing defects. Do not use a model score as a forecast of voter ratings. Keep the entry choice with the person running the challenge.
+
+### ⭐ THE SIX-WORD EVENT — pre-render prompt focus check (step 10, added 2026-08-15)
 
 **At step 10, each pair states in ≤6 words what is HAPPENING in its frame — no medium, no period, no technique, no format.** If the only honest answer names a medium, the piece has no event: **repair once through the existing loop, then surface.**
 

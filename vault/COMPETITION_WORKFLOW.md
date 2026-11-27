@@ -467,9 +467,15 @@ Voter must be able to retell the image concept in one sentence. If they can't, r
 
 ---
 
-## MODEL STRATEGY (Proven 2026-03-24)
+## MODEL STRATEGY
 
-### Daily Challenges (PRO CREATIONS NOT ALLOWED)
+Read the active challenge’s eligibility and the renderer configuration before
+choosing a model. PRO restrictions, native-generation requirements, sizes,
+and credit costs can vary. Select the aspect ratio per composition rather than
+starting with one default. Preserve the old tier notes below as historical
+context, not as the current rules for every Daily Challenge.
+
+### Historical non-PRO challenge settings
 
 **Model Tier List (updated 2026-04-11, tested on #1276 Human-Fruit Hybrids)**
 
