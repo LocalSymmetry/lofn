@@ -18,5 +18,7 @@
 - **Setup:** Active workflow paths resolve from the checkout rather than the
   original OpenClaw workspace. See [the workflow guide](WORKFLOW.md).
 
+- **Optional tools:** Updated the Explorer web dependencies and PDF Augmenter's Pillow requirement. CI verifies the Explorer production build and PDF tests.
+
 Private runs, unpublished media, deployment settings, and account details are
 outside this update.
