@@ -2,7 +2,7 @@
 
 Import this; never re-derive it. History: four readers each re-derived the step and disagreed —
   * check_palette_floor.py stripped an exact byte-0 prefix and reported ERROR for any package without one
-    (measured 2026-10-01: it refused all six finals of output/2026-09-30_forge-hub-instrumentals);
+    (reproduced on instrumental-only packages);
   * check_field_census.py stripped an exact prefix only if the file started with it;
   * check_instrumental_package.py stripped a marker-delimited span anywhere in the file;
   * check_generator_negatives.py did nothing, and read the ICB's own template headings as a lyrics field (exit 2).

@@ -32,6 +32,7 @@ EXIT CODES
 from __future__ import annotations
 
 import argparse
+import math
 import sys
 from pathlib import Path
 
@@ -155,6 +156,13 @@ def main() -> int:
                         "THAN NO RENDER — this needs a stated reason, not a flag reflex.")
 
     a = p.parse_args()
+    if a.count < 1 or (a.takes is not None and a.takes < 1) or a.finish_count < 1:
+        die("counts and takes must be positive", 3)
+    for label, value in (("duration", a.duration), ("finish duration", a.finish_duration)):
+        if value is not None and (not math.isfinite(value) or value <= 0):
+            die(f"{label} must be finite and positive", 3)
+    if a.ceiling is not None and (not math.isfinite(a.ceiling) or a.ceiling < 0):
+        die("ceiling must be finite and nonnegative", 3)
     doc = load(Path(a.dossier))
     models, meta, budget = doc["models"], doc["meta"], doc["budget"]
     ceilings = budget["wave_ceiling_usd"]
@@ -288,4 +296,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # A redirected Windows console can be CP1252 even when the dossier is UTF-8.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="replace")
     raise SystemExit(main())

@@ -31,7 +31,7 @@ Run directory auto-discovery:
 import os, sys, glob, re, argparse, json
 
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WORKSPACE = "/data/.openclaw/workspace"
+WORKSPACE = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
 PERS_DIR = os.path.join(WORKSPACE, "skills/orchestration/personalities")
 RULES_PATH = os.path.join(SKILL_DIR, "references/suno_rules_condensed.md")
 GOLDEN_INDEX_PATH = os.path.join(WORKSPACE, "skills/music/references/golden_songs_index.md")
