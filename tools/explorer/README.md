@@ -10,6 +10,8 @@ ground truth in [`docs/explorer-ground-truth.md`](../../docs/explorer-ground-tru
 
 ## Run it
 
+Use Node.js 22.12 or later on a supported release line for the web build.
+
 **Windows:**
 
 ```powershell

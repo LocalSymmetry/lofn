@@ -19,6 +19,8 @@ are controlled by the operating system, not embedded in the PDF.
 
 ## Windows quick start
 
+Use a supported Python version with a Pillow 13 wheel (Python 3.12 or later recommended).
+
 The launcher creates a private virtual environment and installs the four local Python
 dependencies on first use.
 
